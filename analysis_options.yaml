@@ -1,0 +1,28 @@
+# Defines a default set of lint rules enforced for
+# projects at Google. For details and rationale,
+# see https://github.com/dart-lang/pedantic#enabled-lints.
+include: package:pedantic/analysis_options.yaml
+# For lint rules and documentation, see http://dart-lang.github.io/linter/lints.
+# Uncomment to specify additional rules.
+linter:
+  rules:
+    omit_local_variable_types: false
+    avoid_returning_this: false
+    avoid_shadowing_type_parameters: true
+    non_constant_identifier_names: true
+    file_names: true
+    avoid_empty_else: true
+    avoid_relative_lib_imports: true
+    avoid_returning_null_for_future: true
+    avoid_types_as_parameter_names: true
+    empty_statements: true
+    invariant_booleans: true
+    always_declare_return_types: true
+    always_put_required_named_parameters_first: true
+    avoid_redundant_argument_values: true
+    unnecessary_this: true
+    prefer_mixin: true
+
+
+analyzer:
+  exclude: [build/**]
