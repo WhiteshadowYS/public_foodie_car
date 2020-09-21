@@ -6,33 +6,31 @@ import 'package:pictures_view/dictionary/models/language.dart';
 import 'package:pictures_view/dictionary/flutter_delegate.dart';
 
 class FlutterDictionary {
-  static const String TAG = '[FlutterDictionary]';
+  static const String tag = '[FlutterDictionary]';
+
+  FlutterDictionary._privateConstructor({this.locale});
+
+  static final FlutterDictionary _instance = FlutterDictionary._privateConstructor();
+
+  static FlutterDictionary get instance => _instance;
 
   final Locale locale;
   Language language;
-
-  static FlutterDictionary instance;
 
   FlutterDictionary(this.locale) {
     if (locale != null) setNewLanguage(locale.languageCode);
   }
 
   void setNewLanguage(String languageCode) {
-    logger.i('$TAG => setNewLanguage() => locale => $languageCode');
+    logger.i('$tag => setNewLanguage() => locale => $languageCode');
     FlutterDictionaryDelegate.changeLocaleWithLanguageCode(languageCode);
     language = FlutterDictionaryDelegate.getLanguageByLanguageCode(languageCode);
   }
 
   void setNewLanguageAndSave(String languageCode) {
-    logger.i('$TAG => setNewLanguageAndSave() => locale => $languageCode');
+    logger.i('$tag => setNewLanguageAndSave() => locale => $languageCode');
     language = FlutterDictionaryDelegate.getLanguageByLanguageCode(languageCode);
   }
-
-  static FlutterDictionary of(BuildContext context) {
-    return Localizations.of<FlutterDictionary>(context, FlutterDictionary);
-  }
-
-  static void init(BuildContext context) => instance = FlutterDictionary.of(context);
 
   static const List<String> _rtlLanguages = <String>[
     LOCALE_HE,

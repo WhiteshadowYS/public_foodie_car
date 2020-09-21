@@ -32,8 +32,8 @@ class AppState {
       homePageState: state.homePageState.reducer(action),
       settingsPageState: state.settingsPageState.reducer(action),
     );
-
   }
+
   static final getAppEpic = combineEpics<AppState>([
 
   ]);

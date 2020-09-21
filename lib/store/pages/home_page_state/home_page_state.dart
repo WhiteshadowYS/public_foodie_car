@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:pictures_view/store/application/reducer.dart';
+import 'package:pictures_view/store/shared/reducer.dart';
 
 class HomePageState {
   HomePageState();
