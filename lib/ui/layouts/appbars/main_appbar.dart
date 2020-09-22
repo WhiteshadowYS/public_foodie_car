@@ -10,7 +10,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   MainAppBar({
     this.title,
     this.height = 50.0,
-  }) : preferredSize = Size.fromHeight(height);
+  }) : preferredSize = Size.fromHeight(height), super(key: Key('MainAppBar'));
 
   @override
   Widget build(BuildContext context) {

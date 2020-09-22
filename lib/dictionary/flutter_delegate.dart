@@ -7,8 +7,8 @@ import 'package:pictures_view/dictionary/flutter_dictionary.dart';
 import 'package:pictures_view/dictionary/models/supported_locales.dart';
 
 class FlutterDictionaryDelegate extends LocalizationsDelegate<FlutterDictionary> {
-  static List<LocalizationsDelegate> get getLocalizationDelegates {
-    return [
+  static List<LocalizationsDelegate<dynamic>> get getLocalizationDelegates {
+    return <LocalizationsDelegate<dynamic>>[
       FlutterDictionaryDelegate(),
       GlobalWidgetsLocalizations.delegate,
       GlobalMaterialLocalizations.delegate,

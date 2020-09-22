@@ -21,7 +21,7 @@ void main() {
     DeviceOrientation.portraitUp,
   ]);
 
-  Store store = Store<AppState>(
+  final Store store = Store<AppState>(
     AppState.getReducer,
     initialState: AppState.initial(),
     middleware: [

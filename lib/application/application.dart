@@ -17,7 +17,7 @@ import 'package:pictures_view/ui/pages/home_page/home_page.dart';
 class Application extends StatelessWidget {
   final Store<AppState> store;
 
-  const Application({this.store});
+  Application({this.store}) : super(key: Key('Application'));
 
   @override
   Widget build(BuildContext context) {
