@@ -11,7 +11,7 @@ import 'package:pictures_view/ui/pages/settings_page/settings_page.dart';
 class RouteHelper {
   static const String tag = '[RouteHelper]';
 
-  static Route onGenerateRoute(RouteSettings settings) {
+  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.home:
         return _defaultRoute(
@@ -40,8 +40,8 @@ class RouteHelper {
     }
   }
 
-  static Route _defaultRoute({RouteSettings settings, Widget page}) {
-    return PageRouteBuilder(
+  static Route<dynamic> _defaultRoute({RouteSettings settings, Widget page}) {
+    return PageRouteBuilder<dynamic>(
       pageBuilder: (
           BuildContext context,
           Animation<double> animation,

@@ -13,11 +13,12 @@ import 'package:pictures_view/dictionary/flutter_delegate.dart';
 import 'package:pictures_view/store/application/app_state.dart';
 
 import 'package:pictures_view/ui/pages/home_page/home_page.dart';
+import 'package:pictures_view/extensions/string_extensions/to_key.dart';
 
 class Application extends StatelessWidget {
   final Store<AppState> store;
 
-  const Application({this.store});
+  Application({this.store}) : super(key: Key('Application'));
 
   @override
   Widget build(BuildContext context) {

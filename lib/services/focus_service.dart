@@ -14,20 +14,20 @@ class FocusService {
   void clearKeys() => _keys.clear();
 
   FocusKey getFollowingKeyByValue(String value) {
-    FocusKey selectedKey = getKeyByValue(value);
+    final FocusKey selectedKey = getKeyByValue(value);
     if (selectedKey == null) return null;
 
-    int nextOrder = _findNextOrder(selectedKey);
+    final int nextOrder = _findNextOrder(selectedKey);
     if (nextOrder == null) return null;
 
-    FocusKey nextKey = getKeyByOrder(nextOrder);
+    final FocusKey nextKey = getKeyByOrder(nextOrder);
     if (nextKey == null) return null;
 
     return nextKey;
   }
 
   FocusKey getKeyByValue(String value) {
-    int index = _keys.indexWhere((e) => e.value == value);
+    final int index = _keys.indexWhere((e) => e.value == value);
 
     if (index == -1) {
       print('$tag => <getKeyByValue> => key not found');
@@ -38,7 +38,7 @@ class FocusService {
   }
 
   FocusKey getKeyByOrder(int order) {
-    int index = _keys.indexWhere((e) => e.order == order);
+    final int index = _keys.indexWhere((e) => e.order == order);
 
     if (index == -1) {
       print('$tag => <getKeyByValue> => key not found');
@@ -53,7 +53,7 @@ class FocusService {
 
     for (FocusKey nKey in _keys) {
       if (nKey.order > key.order && nKey.order < tmpOrder) {
-        FocusKey nextKey = getKeyByOrder(nKey.order);
+        final FocusKey nextKey = getKeyByOrder(nKey.order);
 
         if (nextKey.focusNode.context == null) {
           print('$tag => <_findNextOrder> => key found without clients => continue');
@@ -70,7 +70,7 @@ class FocusService {
     }
 
     if (tmpOrder == key.order) {
-      print('$tag => <_findNextOrder> => new oreder == old order');
+      print('$tag => <_findNextOrder> => new order == old order');
       return null;
     }
 

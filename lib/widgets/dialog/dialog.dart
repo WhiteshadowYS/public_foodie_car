@@ -37,7 +37,7 @@ class ClientDropdown extends StatefulWidget {
     @required this.whenSheetDispose,
     @required this.printedParam,
     @required this.title,
-  });
+  }) : super(key: Key('ClientDropdown'));
 
   @override
   _ClientDropdownState createState() => _ClientDropdownState();

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pictures_view/services/focus_service.dart';
 import 'package:pictures_view/ui/layouts/main_layout/main_layout.dart';
-import 'package:pictures_view/widgets/dialog/dialog.dart';
 
 import '../../../widgets/text_field.dart';
 
 class NextButtonPage extends StatefulWidget {
+  NextButtonPage() : super(key: Key('NextButtonPage'));
+
   @override
   _NextButtonPageState createState() => _NextButtonPageState();
 }

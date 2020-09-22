@@ -5,6 +5,8 @@ import 'package:pictures_view/ui/layouts/main_layout/main_layout.dart';
 import 'package:pictures_view/widgets/cashed_network_image.dart';
 
 class HomePage extends StatelessWidget {
+  HomePage() : super(key: Key('HomePage'));
+
   final List<String> urlImages = [
     for (int i = 0; i < 20; i++) ...[
       'https://i.insider.com/5eb031e1e3c3fb77d21c342e?width=1100&format=jpeg&auto=webp',

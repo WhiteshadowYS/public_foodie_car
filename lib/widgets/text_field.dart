@@ -16,7 +16,7 @@ class NextButtonTextField extends StatelessWidget {
       focusNode: focusService.getKeyByValue(focusKeyValue)?.focusNode,
       textInputAction: TextInputAction.next,
       onFieldSubmitted: (_) {
-        FocusKey nKey = focusService.getFollowingKeyByValue(focusKeyValue);
+        final FocusKey nKey = focusService.getFollowingKeyByValue(focusKeyValue);
         if (nKey == null) {
           FocusScope.of(context).unfocus();
           return;

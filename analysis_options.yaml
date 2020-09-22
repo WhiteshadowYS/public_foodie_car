@@ -7,7 +7,7 @@ include: package:pedantic/analysis_options.yaml
 linter:
   rules:
     # Always
-    always_specify_types: true
+    always_specify_types: false
     always_use_package_imports: true
     always_declare_return_types: true
     always_put_required_named_parameters_first: true
@@ -27,7 +27,6 @@ linter:
     avoid_shadowing_type_parameters: true
     avoid_returning_null_for_future: true
     avoid_redundant_argument_values: true
-    avoid_types_on_closure_parameters: true
     avoid_positional_boolean_parameters: true
     avoid_unused_constructor_parameters: true
     avoid_function_literals_in_foreach_calls: true
@@ -36,6 +35,7 @@ linter:
 
     avoid_as: false
     avoid_returning_this: false
+    avoid_types_on_closure_parameters: false
     avoid_classes_with_only_static_members: false
 
 
@@ -44,7 +44,7 @@ linter:
     prefer_final_locals: true
     prefer_collection_literals: true
     prefer_conditional_assignment: true
-    prefer_expression_function_bodies: true
+    prefer_expression_function_bodies: false
 
 
     file_names: true
