@@ -1,0 +1,51 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
+import 'package:pictures_view/dialogs/interfaces/i_dialog.dart';
+import 'package:pictures_view/res/const.dart';
+
+class DialogService {
+  static const tag = '[DialogService]';
+
+  DialogService._privateConstructor();
+
+  static final DialogService _instance = DialogService._privateConstructor();
+
+  static DialogService get instance => _instance;
+
+  bool _isDisplayed = false;
+
+  bool get isDisplayed => _isDisplayed;
+
+  void show(IDialog dialog) => dialog.show(_display);
+
+  void closeDialog() {
+    if (!_isDisplayed) {
+      logger.e('$tag => <closeDialog> => Error Message: _isDisplayed: $_isDisplayed, Dialog cant be removed.');
+      return;
+    }
+
+    if (NavigatorHolder.navigatorKey.currentState.canPop()) {
+      NavigatorHolder.navigatorKey.currentState.pop();
+      _isDisplayed = false;
+    }
+  }
+
+  void _display(Widget widget) {
+    if (_isDisplayed) {
+      logger.e('$tag => <_display> => Error Message: _isDisplayed: $_isDisplayed, Dialog cant be showed.');
+      return;
+    }
+
+    _isDisplayed = true;
+
+    showDialog(
+      context: NavigatorHolder.navigatorKey.currentState.overlay.context,
+      builder: (BuildContext context) {
+        return widget;
+      }
+    ).then((_) {
+      _isDisplayed = false;
+    });
+  }
+}

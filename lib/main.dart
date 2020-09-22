@@ -17,15 +17,15 @@ void main() {
     ),
   );
 
-  SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+  SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
 
-  final Store<AppState> store = Store<AppState>(
+  final Store store = Store<AppState>(
     AppState.getReducer,
     initialState: AppState.initial(),
     middleware: [
-      EpicMiddleware<dynamic>(AppState.getAppEpic),
+      EpicMiddleware(AppState.getAppEpic),
       NavigationMiddleware<AppState>(),
     ],
   );
