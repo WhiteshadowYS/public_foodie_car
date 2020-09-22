@@ -1,43 +1,10 @@
 import 'package:flutter/material.dart';
-
-Future showClientDropdown({
-  @required BuildContext context,
-  @required List<Map<String, dynamic>> list,
-  @required void Function(bool) whenSheetDispose,
-  @required void Function(int) onItemSelected,
-  @required String printedParam,
-  @required String title,
-}) async {
-  return showModalBottomSheet<dynamic>(
-    elevation: 0.0,
-    clipBehavior: Clip.hardEdge,
-    context: context,
-    builder: (context) {
-      return ClientDropdown(
-        list: list,
-        onItemSelected: onItemSelected,
-        whenSheetDispose: whenSheetDispose,
-        printedParam: printedParam,
-        title: title,
-      );
-    },
-  );
-}
+import 'package:pictures_view/dialogs/models/dropdown_dialog.dart';
 
 class ClientDropdown extends StatefulWidget {
-  final List<Map<String, dynamic>> list;
-  final void Function(bool) whenSheetDispose;
-  final void Function(int) onItemSelected;
-  final String printedParam;
-  final String title;
+  final DropdownDialog dialog;
 
-  ClientDropdown({
-    @required this.list,
-    @required this.onItemSelected,
-    @required this.whenSheetDispose,
-    @required this.printedParam,
-    @required this.title,
-  }) : super(key: Key('ClientDropdown'));
+  ClientDropdown(this.dialog) : super(key: Key('ClientDropdown'));
 
   @override
   _ClientDropdownState createState() => _ClientDropdownState();
@@ -48,8 +15,8 @@ class _ClientDropdownState extends State<ClientDropdown> {
 
   @override
   void dispose() {
-    if (widget.whenSheetDispose != null) {
-      widget.whenSheetDispose(isForceClose);
+    if (widget.dialog.whenSheetDispose != null) {
+      widget.dialog.whenSheetDispose(isForceClose);
     }
     super.dispose();
   }
@@ -91,7 +58,7 @@ class _ClientDropdownState extends State<ClientDropdown> {
                       left: 34.0,
                     ),
                     child: Text(
-                      widget.title ?? 'EMPTY_STRING',
+                      widget.dialog.title ?? 'EMPTY_STRING',
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -107,30 +74,30 @@ class _ClientDropdownState extends State<ClientDropdown> {
             ),
             color: Colors.white,
             child: ListView.builder(
-              itemCount: widget.list.length,
+              itemCount: widget.dialog.list.length,
               itemBuilder: (BuildContext context, int index) {
-                if (widget.printedParam == null ||
-                    widget.printedParam.isEmpty ||
-                    widget.list[index][widget.printedParam] == null ||
-                    widget.list[index][widget.printedParam].isEmpty ||
-                    widget.list[index][widget.printedParam] == ' ') {
+                if (widget.dialog.printedParam == null ||
+                    widget.dialog.printedParam.isEmpty ||
+                    widget.dialog.list[index][widget.dialog.printedParam] == null ||
+                    widget.dialog.list[index][widget.dialog.printedParam].isEmpty ||
+                    widget.dialog.list[index][widget.dialog.printedParam] == ' ') {
                   return Container();
                 }
 
-                if (widget.list.length - 1 == index) {
+                if (widget.dialog.list.length - 1 == index) {
                   return InkWell(
                     onTap: () {
                       setState(() {
                         isForceClose = false;
                       });
-                      widget.onItemSelected(index);
+                      widget.dialog.onItemSelected(index);
                     },
                     child: Container(
                       height: 45.0,
                       width: double.infinity,
                       padding: const EdgeInsets.only(top: 10.0),
                       child: Text(
-                        widget.list[index][widget.printedParam],
+                        widget.dialog.list[index][widget.dialog.printedParam],
                         style: TextStyle(color: Colors.black),
                         textAlign: TextAlign.center,
                       ),
@@ -145,14 +112,14 @@ class _ClientDropdownState extends State<ClientDropdown> {
                         setState(() {
                           isForceClose = false;
                         });
-                        widget.onItemSelected(index);
+                        widget.dialog.onItemSelected(index);
                       },
                       child: Container(
                         height: 45.0,
                         width: double.infinity,
                         padding: const EdgeInsets.only(top: 10.0),
                         child: Text(
-                          widget.list[index][widget.printedParam],
+                          widget.dialog.list[index][widget.dialog.printedParam],
                           style: TextStyle(color: Colors.black),
                           textAlign: TextAlign.center,
                         ),

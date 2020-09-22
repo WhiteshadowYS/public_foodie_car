@@ -13,6 +13,25 @@ class FocusService {
 
   void clearKeys() => _keys.clear();
 
+  void nextFocus({BuildContext context, String currentFocusKeyValue}) {
+    final FocusKey nKey = getFollowingKeyByValue(currentFocusKeyValue);
+
+    if (nKey == null) {
+      FocusScope.of(context).unfocus();
+      return;
+    }
+
+    FocusScope.of(context).requestFocus(nKey.focusNode);
+  }
+
+  void changeKeyOpeningStatus({bool status, String currentFocusKeyValue}) {
+    for (FocusKey key in _keys) {
+      if (key.value == currentFocusKeyValue) {
+        key.canBeOpened = status;
+      }
+    }
+  }
+
   FocusKey getFollowingKeyByValue(String value) {
     final FocusKey selectedKey = getKeyByValue(value);
     if (selectedKey == null) return null;

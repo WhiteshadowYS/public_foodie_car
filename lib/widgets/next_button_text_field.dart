@@ -4,25 +4,34 @@ import 'package:pictures_view/services/focus_service.dart';
 class NextButtonTextField extends StatelessWidget {
   final String focusKeyValue;
   final FocusService focusService;
+  final TextEditingController controller;
 
   NextButtonTextField({
     this.focusKeyValue,
     this.focusService,
+    this.controller,
   }) : super(key: Key(focusKeyValue));
+
+  bool get _isControllerHaveData {
+    return controller.text != null && controller.text != '';
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       focusNode: focusService.getKeyByValue(focusKeyValue)?.focusNode,
       textInputAction: TextInputAction.next,
       onFieldSubmitted: (_) {
-        final FocusKey nKey = focusService.getFollowingKeyByValue(focusKeyValue);
-        if (nKey == null) {
-          FocusScope.of(context).unfocus();
-          return;
-        }
+        focusService.changeKeyOpeningStatus(
+          status: !_isControllerHaveData,
+          currentFocusKeyValue: focusKeyValue,
+        );
 
-        FocusScope.of(context).requestFocus(nKey.focusNode);
+        focusService.nextFocus(
+          context: context,
+          currentFocusKeyValue: focusKeyValue,
+        );
       },
     );
   }

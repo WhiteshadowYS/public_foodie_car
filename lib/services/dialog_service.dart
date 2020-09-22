@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:pictures_view/dialogs/interfaces/i_dialog.dart';
+import 'package:pictures_view/dialogs/shared/dialog_builders.dart';
 import 'package:pictures_view/res/const.dart';
 
 class DialogService {
@@ -31,7 +32,7 @@ class DialogService {
     }
   }
 
-  void _display(Widget widget) {
+  void _display(BuilderFunction builder) {
     if (_isDisplayed) {
       logger.e('$tag => <_display> => Error Message: _isDisplayed: $_isDisplayed, Dialog cant be showed.');
       return;
@@ -39,12 +40,10 @@ class DialogService {
 
     _isDisplayed = true;
 
-    showDialog(
-      context: NavigatorHolder.navigatorKey.currentState.overlay.context,
-      builder: (BuildContext context) {
-        return widget;
-      }
-    ).then((_) {
+    final BuildContext ctx = NavigatorHolder.navigatorKey.currentState.overlay.context;
+
+    builder(ctx).then((_) {
+      FocusScope.of(ctx).unfocus();
       _isDisplayed = false;
     });
   }
