@@ -8,7 +8,6 @@ class SupportedLanguage {
   final Language language;
   bool _isSelected;
 
-
   SupportedLanguage({
     @required this.languageCode,
     @required this.language,
