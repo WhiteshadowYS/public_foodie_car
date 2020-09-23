@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pictures_view/services/dialog_service.dart';
+import 'package:pictures_view/services/focus_service.dart';
 
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';

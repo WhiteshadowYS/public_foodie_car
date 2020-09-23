@@ -21,7 +21,7 @@ class ErrorDialogWidget extends StatelessWidget {
           ),
           child: RaisedButton(
             onPressed: () {
-              DialogService.instance.closeDialog();
+              DialogService.instance.close();
             },
           ),
         ),

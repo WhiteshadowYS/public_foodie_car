@@ -46,7 +46,7 @@ class _NextButtonDropdownState extends State<NextButtonDropdown> {
         printedParam: widget.printedParam,
         list: widget.list,
         onItemSelected: (int index) {
-          DialogService.instance.closeDialog();
+          DialogService.instance.close();
 
           widget.focusService.changeKeyOpeningStatus(
             status: false,

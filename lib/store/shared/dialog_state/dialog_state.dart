@@ -28,7 +28,7 @@ class DialogState {
   }
 
   DialogState _forceCloseDialogAction(ForceCloseDialogAction action) {
-    DialogService.instance.closeDialog();
+    DialogService.instance.close();
     return this;
   }
 

@@ -1,18 +1,45 @@
 import 'package:flutter/material.dart';
 
+/// This Service help us with fields navigation.
+/// [FocusService] is not a singleton, for using - create a variable on the screen widget.
+/// FocusService focusService = FocusService();
+/// Params:
+///   - [_keys] a private variable for save [FocusKey] for fields on page.
+///   After service initialization [_keys] is empty. Use one of methods for add [FocusKey]'s to list: [addKey] or [addAllKeys].
+///   - [getKeysValues] This getter will convert [_keys] list to list of string keys.
+/// Methods:
+///   - [addKey] - For add single [FocusKey] to [_keys].
+///   - [addAllKeys] - For add a list of [FocusKey] to [_keys]
+///   - [clearKeys] - For remove all [_keys]
+///   - [nextFocus] - This function will change a focus to next [FocusKey] in order.
+///   - [changeKeyOpeningStatus] - This function will change a [FocusKey.canBeOpened] status.
+///   - [getFollowingKeyByValue] - This function will find a next [FocusKey] in order with using [FocusKey.value].
+///   - [getKeyByValue] - This function will get a [FocusKey] from [_keys] with using [FocusKey.value].
+///   - [getKeyByOrder] - This function will get a [FocusKey] from [_keys] with using [FocusKey.order].
+///   - [_findNextOrder] - This function will find a [int] index of next [FocusKey].
 class FocusService {
   static const tag = '[FocusService]';
 
+  /// A private variable for save [FocusKey] for fields on page.
+  /// After service initialization [_keys] is empty. Use one of methods for add [FocusKey]'s to list: [addKey] or [addAllKeys].
   final List<FocusKey> _keys = [];
 
+  /// This getter will convert [_keys] list to list of string keys.
   List<String> get getKeysValues => _keys.map<String>((e) => e.value).toList();
 
+  /// This function is need it for adding a single [FocusKey] to [_keys].
   void addKey(FocusKey key) => _keys.add(key);
 
+  /// This function is need it for adding a list of [FocusKey]'s to [_keys].
   void addAllKeys(List<FocusKey> keys) => _keys.addAll(keys);
 
+  /// This function is need it for clearing [_keys] list.
   void clearKeys() => _keys.clear();
 
+  /// This function is need it for change a request focus to next [FocusKey] in order.
+  /// Function [nextFocus] will use [getFollowingKeyByValue] for find next [FocusKey].
+  /// If [FocusKey] with next order was found - we use function [requestFocus] method of [FocusScope] class.
+  /// If [FocusKey] with next order was not found - we use function [unfocus] of [FocusScope] class.
   void nextFocus({BuildContext context, String currentFocusKeyValue}) {
     final FocusKey nKey = getFollowingKeyByValue(currentFocusKeyValue);
 
@@ -24,6 +51,10 @@ class FocusService {
     FocusScope.of(context).requestFocus(nKey.focusNode);
   }
 
+  /// This function is need it for change a [FocusKey.canBeOpened] status by [FocusKey.value].
+  /// Function [changeKeyOpeningStatus] will use [for] method for find current [FocusKey] by [FocusKey.value].
+  /// If [FocusKey] in [_keys] with value [currentFocusKeyValue] was found - value of [FocusKey] will be changed to [status].
+  /// If [FocusKey] in [_keys] with value [currentFocusKeyValue] was not found - nothing.
   void changeKeyOpeningStatus({bool status, String currentFocusKeyValue}) {
     for (FocusKey key in _keys) {
       if (key.value == currentFocusKeyValue) {
@@ -32,6 +63,9 @@ class FocusService {
     }
   }
 
+  /// This function is need it for get a next [FocusKey] in order by [FocusKey.value].
+  /// This function will use next functions: [getFollowingKeyByValue], [_findNextOrder], [getKeyByOrder] for get following [FocusKey].
+  /// If each function will not found result - this function will return [Null].
   FocusKey getFollowingKeyByValue(String value) {
     final FocusKey selectedKey = getKeyByValue(value);
     if (selectedKey == null) return null;
@@ -45,6 +79,9 @@ class FocusService {
     return nextKey;
   }
 
+  /// This function is need it for get [FocusKey] by [FocusKey.value].
+  /// This function will use [_keys.indexWhere] function for find the index [FocusKey] with [value].
+  /// if [_keys.indexWhere] will return the [-1] - Function will return a [Null] value and will print to console result.
   FocusKey getKeyByValue(String value) {
     final int index = _keys.indexWhere((e) => e.value == value);
 
@@ -56,6 +93,9 @@ class FocusService {
     return _keys[index];
   }
 
+  /// This function is need it for get [FocusKey] by [FocusKey.order]
+  /// This function will use [_keys.indexWhere] function for find the index [FocusKey] with [order].
+  /// if [_keys.indexWhere] will return the [-1] - Function will return a [Null] value and will print to console result.
   FocusKey getKeyByOrder(int order) {
     final int index = _keys.indexWhere((e) => e.order == order);
 
@@ -67,6 +107,9 @@ class FocusService {
     return _keys[index];
   }
 
+  /// This function is need it for find the [int] index of next [FocusKey] in order.
+  /// This function will use [for] function for find the [FocusKey] with minimal [order] < [key.order].
+  /// For all checks added print to console what will why your was not found.
   int _findNextOrder(FocusKey key) {
     int tmpOrder = FocusKey.maxKeyValue;
 
@@ -102,6 +145,12 @@ class FocusService {
   }
 }
 
+/// FocusKey class it is main class for contain [Focus] data.
+/// Params:
+///   - [value] - This [String] variable will save a main key. Also this key was using for fields with [Focus] function.
+///   - [order] - This [int] variable will using for find the next [Focus] order in [FocusKey] list.
+///   - [canBeOpened] - This [bool] variable will using for track is field with this [FocusKey] can be opened.
+///   - [FocusNode] - It is basic [Flutter] type for tracking the [Focus] state.
 class FocusKey {
   final String value;
   final int order;
