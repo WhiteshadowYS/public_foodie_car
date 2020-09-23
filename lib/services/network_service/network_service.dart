@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:pictures_view/services/network_service/models/base_error.dart';
 
 import 'abstracts/base_http_requset.dart';
-import 'abstracts/base_request_type.dart';
 import 'models/base_http_error.dart';
 import 'models/base_http_response.dart';
 import 'res/consts.dart';
@@ -16,26 +16,34 @@ class NetworkService extends BaseHttpRequest {
 
   static NetworkService get instance => _instance;
 
+  List<BaseError> _errors = [];
+
+  void init(List<BaseError> errors) {
+    _errors = errors;
+  }
+
   @override
-  Future<BaseHttpResponse> request(BaseRequestType req) async {
+  Future<BaseHttpResponse> request(Future<http.Response> resp) async {
     bool hasInternet = await DataConnectionChecker().hasConnection;
 
     if (!hasInternet) {
       return BaseHttpResponse(
         error: BaseHttpError(
-          error: 'No Internet Connection',
+          error: NO_INTERNET_CONNECTION,
           statusCode: BAD_GATEWAY_STATUS_CODE,
         ),
       );
     }
 
-    http.Response response = await req();
+    http.Response response = await resp;
+
+    print('response: ${response.body}');
 
     return _getCheckedForErrorResponse(response);
   }
 
   // region [Check response for error]
-  static BaseHttpResponse _getCheckedForErrorResponse(http.Response response) {
+  BaseHttpResponse _getCheckedForErrorResponse(http.Response response) {
 
     if (response.statusCode < HTTP_OK || response.statusCode > HTTP_MAX_OK) {
       return BaseHttpResponse(
@@ -47,10 +55,27 @@ class NetworkService extends BaseHttpRequest {
     }
 
     if (response.statusCode == HTTP_UNPROCESSABLE) {
-      String error;
-
       try {
+        Map<String, dynamic> responseBody = jsonDecode(response.body);
 
+        int code = responseBody[DATA];
+        String error = _getErrorByCode(code);
+
+        if (error == null) {
+          return BaseHttpResponse(
+            error: BaseHttpError(
+              error: response?.reasonPhrase,
+              statusCode: response?.statusCode,
+            ),
+          );
+        }
+
+        return BaseHttpResponse(
+          error: BaseHttpError(
+            error: error,
+            statusCode: code,
+          ),
+        );
       } catch (e) {
         return BaseHttpResponse(
           error: BaseHttpError(
@@ -59,13 +84,6 @@ class NetworkService extends BaseHttpRequest {
           ),
         );
       }
-
-      return BaseHttpResponse(
-        error: BaseHttpError(
-          error: error,
-          statusCode: response?.statusCode,
-        ),
-      );
     }
 
     return BaseHttpResponse(
@@ -73,5 +91,15 @@ class NetworkService extends BaseHttpRequest {
     );
   }
   // endregion
+
+  String _getErrorByCode(int code) {
+    for (BaseError error in _errors) {
+      if (error.statusCode == code) {
+        return error.error;
+      }
+    }
+
+    return null;
+  }
 }
 
