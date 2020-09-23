@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pictures_view/services/dialog_service.dart';
+import 'file:///F:/src/projects/TestWorks/pictures/lib/services/dialog_service/dialog_service.dart';
 import 'package:pictures_view/services/focus_service.dart';
 
 import 'package:redux/redux.dart';

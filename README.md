@@ -1,6 +1,6 @@
-# pictures_view
+# Pictures
 
-A new Flutter project.
+Pictures it flutter project created for testing new technologies. 
 
 ## Getting Started
 

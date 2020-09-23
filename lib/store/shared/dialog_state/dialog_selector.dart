@@ -1,6 +1,6 @@
-import 'package:pictures_view/dialogs/models/dropdown_dialog.dart';
-import 'package:pictures_view/dialogs/models/error_dialog.dart';
 import 'package:pictures_view/models/models/dropdown_model.dart';
+import 'package:pictures_view/services/dialog_service/models/dropdown_dialog.dart';
+import 'package:pictures_view/services/dialog_service/models/error_dialog.dart';
 import 'package:pictures_view/store/application/app_state.dart';
 import 'package:pictures_view/store/shared/dialog_state/actions/force_close_dialog_action.dart';
 import 'package:pictures_view/store/shared/dialog_state/actions/show_dialog_action.dart';
