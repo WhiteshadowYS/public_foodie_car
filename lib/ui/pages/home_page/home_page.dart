@@ -20,9 +20,7 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () => NavigatorHolder.navigatorKey.currentState.pushNamed(
-              Routes.nextButton,
-            ),
+            onPressed: () => NavigatorHolder.navigatorKey.currentState.pushNamed(Routes.nextButton),
           ),
         ],
       ),

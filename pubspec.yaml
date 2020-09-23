@@ -41,3 +41,8 @@ flutter:
 
   assets:
     - assets/gifs/loading_image.gif
+
+  fonts:
+    - family: BottomBar
+      fonts:
+        - asset: assets/icons/BottomBar.ttf

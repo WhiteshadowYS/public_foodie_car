@@ -15,7 +15,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.amberAccent,
+      color: Color(0xff16191D),
       child: SafeArea(
         top: true,
         child: Container(
@@ -25,8 +25,10 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Text(
             title,
             style: TextStyle(
+              height: 1.3,
               fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
