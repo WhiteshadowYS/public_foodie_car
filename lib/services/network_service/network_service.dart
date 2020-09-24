@@ -4,12 +4,12 @@ import 'package:http/http.dart' as http;
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:pictures_view/services/network_service/models/base_error.dart';
 
-import 'abstracts/base_http_requset.dart';
+import './interfaces/i_base_http_requset.dart';
 import 'models/base_http_error.dart';
 import 'models/base_http_response.dart';
 import 'res/consts.dart';
 
-class NetworkService extends BaseHttpRequest {
+class NetworkService extends IBaseHttpRequest {
   NetworkService._privateConstructor();
 
   static final NetworkService _instance = NetworkService._privateConstructor();

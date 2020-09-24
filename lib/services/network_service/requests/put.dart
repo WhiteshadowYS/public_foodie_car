@@ -3,9 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:pictures_view/services/network_service/models/base_http_response.dart';
 import 'package:pictures_view/services/network_service/network_service.dart';
 
-import '../abstracts/base_request_type.dart';
+import '../interfaces/i_base_request.dart';
 
-class Put extends BaseRequestType {
+class Put implements IBaseRequest {
 
   @override
   Future<BaseHttpResponse> call({
