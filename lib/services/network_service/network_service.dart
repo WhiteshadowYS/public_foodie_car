@@ -3,13 +3,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:pictures_view/services/network_service/models/base_error.dart';
+import 'package:pictures_view/services/network_service/res/typedef.dart';
 
-import './interfaces/i_base_http_requset.dart';
+import 'interfaces/base_http_requset.dart';
 import 'models/base_http_error.dart';
 import 'models/base_http_response.dart';
 import 'res/consts.dart';
 
-class NetworkService extends IBaseHttpRequest {
+class NetworkService implements IBaseHttpRequest {
+  static const tag = '[NetworkService]';
+
   NetworkService._privateConstructor();
 
   static final NetworkService _instance = NetworkService._privateConstructor();
@@ -23,8 +26,8 @@ class NetworkService extends IBaseHttpRequest {
   }
 
   @override
-  Future<BaseHttpResponse> request(Future<http.Response> resp) async {
-    bool hasInternet = await DataConnectionChecker().hasConnection;
+  Future<BaseHttpResponse> request(HttpRequestFunction req) async {
+    final bool hasInternet = await DataConnectionChecker().hasConnection;
 
     if (!hasInternet) {
       return BaseHttpResponse(
@@ -35,9 +38,7 @@ class NetworkService extends IBaseHttpRequest {
       );
     }
 
-    http.Response response = await resp;
-
-    print('response: ${response.body}');
+    final http.Response response = await req();
 
     return _getCheckedForErrorResponse(response);
   }
