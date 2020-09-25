@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'file:///F:/src/projects/TestWorks/pictures/lib/services/dialog_service/dialog_service.dart';
+import 'package:pictures_view/services/dialog_service/dialog_service.dart';
 import 'package:pictures_view/store/shared/dialog_state/actions/force_close_dialog_action.dart';
 import 'package:pictures_view/store/shared/dialog_state/actions/show_dialog_action.dart';
 import 'package:pictures_view/store/shared/reducer.dart';
