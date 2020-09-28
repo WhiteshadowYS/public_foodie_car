@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:pictures_view/theme/custom_theme.dart';
+
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
@@ -8,27 +10,27 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 
   MainAppBar({
-    this.title,
-    this.height = 50.0,
-  }) : preferredSize = Size.fromHeight(height), super(key: Key('MainAppBar'));
+    @required this.title,
+    this.height = 91.0,
+  })  : preferredSize = Size.fromHeight(height),
+        assert(title != null, throw ('You forgot filled title!')),
+        super(key: const Key('MainAppBar'));
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xff16191D),
+      color: CustomTheme.colors.accentColor,
       child: SafeArea(
         top: true,
         child: Container(
           height: height,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          alignment: Alignment.bottomCenter,
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 17.0),
           child: Text(
             title,
-            style: TextStyle(
+            style: CustomTheme.textStyles.titleTextStyle(
+              size: 20.0,
               height: 1.3,
-              fontSize: 20.0,
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
             ),
           ),
         ),

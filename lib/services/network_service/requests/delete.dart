@@ -1,22 +1,25 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:pictures_view/services/network_service/interfaces/base_request_type.dart';
 import 'package:pictures_view/services/network_service/models/base_http_response.dart';
+import 'package:pictures_view/services/network_service/res/typedef.dart';
 
-import '../abstracts/base_request_type.dart';
 import '../network_service.dart';
 
-class Delete extends BaseRequestType {
+class Delete implements IBaseRequest {
 
   @override
   Future<BaseHttpResponse> call({
     @required url,
     Map<String, String> headers,
   }) async {
+    final HttpRequestFunction request = () => http.delete(
+      url,
+      headers: headers,
+    );
+
     return await NetworkService.instance.request(
-      http.delete(
-        url,
-        headers: headers,
-      ),
+      request,
     );
   }
 }
