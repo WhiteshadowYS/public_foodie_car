@@ -6,13 +6,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:pictures_view/services/network_service/interfaces/i_base_request.dart';
 import 'package:pictures_view/services/network_service/models/base_error.dart';
+import 'package:pictures_view/services/network_service/res/typedef.dart';
 
-import './interfaces/i_base_http_requset.dart';
 import 'models/base_http_error.dart';
 import 'models/base_http_response.dart';
 import 'res/consts.dart';
 
 class NetworkService {
+  static const tag = '[NetworkService]';
+
   NetworkService._privateConstructor();
 
   static final NetworkService _instance = NetworkService._privateConstructor();
