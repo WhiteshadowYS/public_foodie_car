@@ -16,8 +16,6 @@ import 'package:my_catalog/dictionary/flutter_delegate.dart';
 
 import 'package:my_catalog/store/application/app_state.dart';
 
-import 'package:my_catalog/ui/pages/home_page/home_page.dart';
-
 class Application extends StatelessWidget {
   final Store<AppState> store;
 
