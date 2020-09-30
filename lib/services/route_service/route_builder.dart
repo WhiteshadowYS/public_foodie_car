@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:my_catalog/res/const.dart';
-import 'file:///F:/src/projects/MyCatalog%20projects/MyCatalog/lib/services/route_service/models/routes.dart';
+import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/ui/pages/catalogs_page/catalogs_page.dart';
 import 'package:my_catalog/ui/pages/categories_page/categories_page.dart';
 import 'package:my_catalog/ui/pages/main_page/main_page.dart';
