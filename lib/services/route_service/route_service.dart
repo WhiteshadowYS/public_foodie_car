@@ -22,7 +22,8 @@ class RouteService {
   }
 
   NavigateToAction push(String route) {
-    if (_history.last == route) return null;
+    if (_history.isNotEmpty &&
+        _history.last == route) return null;
 
     _history.add(route);
 
@@ -30,7 +31,8 @@ class RouteService {
   }
 
   NavigateToAction pushAndRemoveUntil(String route) {
-    if (_history.last == route) return null;
+    if (_history.isNotEmpty &&
+        _history.last == route) return null;
 
     _history.clear();
     _history.add(route);
@@ -39,7 +41,8 @@ class RouteService {
   }
 
   NavigateToAction replace(String route) {
-    if (_history.isNotEmpty && _history.last == route) return null;
+    if (_history.isNotEmpty &&
+        _history.last == route) return null;
 
     if (_history.isNotEmpty) _history.removeLast();
     _history.add(route);
