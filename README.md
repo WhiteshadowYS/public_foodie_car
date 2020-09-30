@@ -1,16 +1,54 @@
-# myCatalog
+# MyCatalog
+MyCatalog it is AppVesto project.
 
-myCatalog it flutter project created for testing new technologies. 
+## Architecture - Redux
+## Project Links
+- [Git](https://bitbucket.org/flutterodessa/my_catalog/src/dev/)
+- [Jira](https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&projectKey=MC&selectedIssue=MC-23)
+- [Design (Not Added)](https://zpl.io/2jnWG4Q)
+- [Confluence](https://appvesto.atlassian.net/l/c/BTkHodu2)
+- [Jenkins](http://dev.appvesto.com:8080/)
 
-## Getting Started
+## Flutter Version: 1.20.1
+## Dart Version: 2.9.0
+## Version History
+- 0.0.1 + 1 - No Releases
 
-This project is a starting point for a Flutter application.
+## Packages
+#### Redux
+- redux: 3.0.0
+- redux_epics: 0.10.6
+- flutter_redux: 0.5.3
+- flutter_redux_navigation: 0.4.1
+- rxdart: 0.22.6
 
-A few resources to get you started if this is your first Flutter project:
+### System
+- intl: 0.16.1
+- http: 0.12.0+2
+- screen: ^0.0.5
+- chewie: ^0.9.10
+- provider: 4.0.1
+- camera: ^0.5.7+3
+- flutter_svg: ^0.17.4
+- path_provider: ^1.5.1
+- qr_code_tools: ^0.0.6
+- video_player: ^0.10.11
+- cupertino_icons: ^0.1.2
+- qr_code_scanner: 0.0.12
+- firebase_ml_vision: ^0.9.3+8
+- flutter_secure_storage: 3.2.1+1
+- flutter_ringtone_player: ^2.0.0
+- data_connection_checker: ^0.3.4
+- permission_handler: ^4.2.0+hotfix.3
+- flutter_keyboard_visibility: ^2.0.0
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Dev pacakges
+- build_runner: 1.7.2
+- json_serializable: 3.2.5
+- flutter_launcher_icons: ^0.7.5
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Additional links
+- [Project Code Style](https://appvesto.atlassian.net/l/c/2LAcARuf)
+- [Redux Documentation](https://appvesto.atlassian.net/l/c/DMoEFzp2)
+- [Jenkins Documentation](https://appvesto.atlassian.net/l/c/1DGmD7k8)
+- [Sonar Documentation](https://appvesto.atlassian.net/l/c/5V3nsgTf)
