@@ -5,7 +5,7 @@ pipeline {
     agent any
 
     environment {
-        PROJECT_FLUTTER_VERSION = "1.20.1";
+        PROJECT_FLUTTER_VERSION = "1.20.4";
 
         // Tokens
         DEBUG_BUILD_TOKEN = " -d";

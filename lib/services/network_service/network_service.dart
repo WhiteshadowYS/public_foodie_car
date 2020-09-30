@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_catalog/services/network_service/interfaces/i_base_request.dart';
 import 'package:my_catalog/services/network_service/models/base_error.dart';
-import 'package:my_catalog/services/network_service/res/typedef.dart';
 
 import 'models/base_http_error.dart';
 import 'models/base_http_response.dart';
