@@ -22,7 +22,6 @@ void main() {
   ]);
 
   final Store store = Store<AppState>(
-
     AppState.getReducer,
     initialState: AppState.initial(),
     middleware: [
