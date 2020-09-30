@@ -1,0 +1,16 @@
+const String EMPTY_STRING = '';
+const String MESSAGE_BODY = 'body';
+const String MESSAGE_PUSH_TITLE = 'push_title';
+const String MESSAGE_PUSH_BODY = 'push_body';
+const String MESSAGE_TYPE = 'type';
+const String MESSAGE_TITLE = 'title';
+const String MESSAGE_CONTENT = 'content';
+const String MESSAGE_DESCRIPTION = 'description';
+const String MESSAGE_NOTIFICATION = 'notification';
+const String MESSAGE_DATA = 'data';
+const String MESSAGE_APS = 'aps';
+const String MESSAGE_ALERT = 'alert';
+const String MESSAGE_ID = 'message_id';
+const String ON_MESSAGE = 'onMessage';
+const String ON_RESUME = 'onResume';
+const String ON_LAUNCH = 'onLaunch';
