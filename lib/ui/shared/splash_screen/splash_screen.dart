@@ -5,9 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_version/get_version.dart';
 
 import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
-import 'package:my_catalog/ui/pages/splash_screen/widgets/splash_loader.dart';
+import 'package:my_catalog/ui/shared/splash_screen/widgets/splash_loader.dart';
 
 // ignore: use_key_in_widget_constructors
 class SplashScreen extends StatefulWidget {
