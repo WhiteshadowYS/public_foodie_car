@@ -1,15 +1,15 @@
 import 'package:flutter/foundation.dart';
 
-import 'package:pictures_view/res/const.dart';
+import 'package:my_catalog/res/const.dart';
 
-import 'package:pictures_view/theme/data/default_theme.dart';
+import 'package:my_catalog/theme/data/default_theme.dart';
 
-import 'package:pictures_view/theme/models/appvesto_theme.dart';
-import 'package:pictures_view/theme/models/appvesto_colors.dart';
-import 'package:pictures_view/theme/models/appvesto_text_styles.dart';
+import 'package:my_catalog/theme/models/appvesto_theme.dart';
+import 'package:my_catalog/theme/models/appvesto_colors.dart';
+import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
 
-import 'package:pictures_view/theme/interfaces/i_appvesto_colors.dart';
-import 'package:pictures_view/theme/interfaces/i_appvesto_text_theme.dart';
+import 'package:my_catalog/theme/interfaces/i_appvesto_colors.dart';
+import 'package:my_catalog/theme/interfaces/i_appvesto_text_theme.dart';
 
 class CustomTheme {
   static const String tag = '[CustomTheme]';

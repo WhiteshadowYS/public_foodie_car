@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:pictures_view/models/models/route_info.dart';
+import 'package:my_catalog/models/models/route_info.dart';
 
 class BottomBarItemModel {
   static double idCounter = 0;

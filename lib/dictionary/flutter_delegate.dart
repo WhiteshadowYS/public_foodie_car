@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'package:pictures_view/dictionary/models/language.dart';
-import 'package:pictures_view/dictionary/flutter_dictionary.dart';
-import 'package:pictures_view/dictionary/models/supported_locales.dart';
+import 'package:my_catalog/dictionary/models/language.dart';
+import 'package:my_catalog/dictionary/flutter_dictionary.dart';
+import 'package:my_catalog/dictionary/models/supported_locales.dart';
 
 class FlutterDictionaryDelegate extends LocalizationsDelegate<FlutterDictionary> {
   static List<LocalizationsDelegate<dynamic>> get getLocalizationDelegates {

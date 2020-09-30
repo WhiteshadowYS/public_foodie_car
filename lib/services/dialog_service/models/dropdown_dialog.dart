@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pictures_view/services/dialog_service/interfaces/i_dialog.dart';
-import 'package:pictures_view/services/dialog_service/shared/dialog_builders.dart';
-import 'package:pictures_view/services/dialog_service/widgets/dropdown_dialog_widget.dart';
+import 'package:my_catalog/services/dialog_service/interfaces/i_dialog.dart';
+import 'package:my_catalog/services/dialog_service/shared/dialog_builders.dart';
+import 'package:my_catalog/services/dialog_service/widgets/dropdown_dialog_widget.dart';
 
 class DropdownDialog implements IDialog {
   final List<Map<String, dynamic>> list;

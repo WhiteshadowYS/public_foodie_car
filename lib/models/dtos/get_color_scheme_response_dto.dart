@@ -1,4 +1,4 @@
-import 'package:pictures_view/models/interfaces/i_dto.dart';
+import 'package:my_catalog/models/interfaces/i_dto.dart';
 
 class GetColorSchemeResponseDto implements IDto {
   final List<List<int>> result;

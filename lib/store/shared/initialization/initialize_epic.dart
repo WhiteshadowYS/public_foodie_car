@@ -1,12 +1,12 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:redux_epics/redux_epics.dart';
 
-import 'package:pictures_view/res/const.dart';
+import 'package:my_catalog/res/const.dart';
 
-import 'package:pictures_view/handler/route_handler.dart';
+import 'package:my_catalog/handler/route_handler.dart';
 
-import 'package:pictures_view/store/application/app_state.dart';
-import 'package:pictures_view/store/shared/initialization/actions/start_initialization.dart';
+import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/store/shared/initialization/actions/start_initialization.dart';
 
 class InitializeEpics {
   static final indexEpic = combineEpics<AppState>([

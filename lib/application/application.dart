@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:pictures_view/handler/route_handler.dart';
-import 'package:pictures_view/store/shared/initialization/initialize_selector.dart';
-import 'package:pictures_view/ui/layouts/bottom_bar/bottom_bar.dart';
-import 'package:pictures_view/ui/pages/splash_screen/splash_screen.dart';
+import 'package:my_catalog/handler/route_handler.dart';
+import 'package:my_catalog/store/shared/initialization/initialize_selector.dart';
+import 'package:my_catalog/ui/layouts/bottom_bar/bottom_bar.dart';
+import 'package:my_catalog/ui/pages/splash_screen/splash_screen.dart';
 
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 
-import 'package:pictures_view/res/const.dart';
+import 'package:my_catalog/res/const.dart';
 
-import 'package:pictures_view/helpers/route_helper.dart';
+import 'package:my_catalog/helpers/route_helper.dart';
 
-import 'package:pictures_view/dictionary/flutter_delegate.dart';
+import 'package:my_catalog/dictionary/flutter_delegate.dart';
 
-import 'package:pictures_view/store/application/app_state.dart';
+import 'package:my_catalog/store/application/app_state.dart';
 
-import 'package:pictures_view/ui/pages/home_page/home_page.dart';
+import 'package:my_catalog/ui/pages/home_page/home_page.dart';
 
 class Application extends StatelessWidget {
   final Store<AppState> store;

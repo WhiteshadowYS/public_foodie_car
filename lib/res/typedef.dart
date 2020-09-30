@@ -1,4 +1,4 @@
-import 'package:pictures_view/models/models/route_info.dart';
+import 'package:my_catalog/models/models/route_info.dart';
 
 typedef OnTapFunction = void Function();
 

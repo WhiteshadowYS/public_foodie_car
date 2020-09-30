@@ -1,6 +1,6 @@
 import 'package:logger/logger.dart';
-import 'package:pictures_view/models/models/route_info.dart';
-import 'package:pictures_view/res/routes.dart';
+import 'package:my_catalog/models/models/route_info.dart';
+import 'package:my_catalog/res/routes.dart';
 
 final Logger logger = Logger();
 

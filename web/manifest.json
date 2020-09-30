@@ -1,6 +1,6 @@
 {
-    "name": "pictures_view",
-    "short_name": "pictures_view",
+    "name": "my_catalog",
+    "short_name": "my_catalog",
     "start_url": ".",
     "display": "minimal-ui",
     "background_color": "#0175C2",

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 
-import 'package:pictures_view/res/const.dart';
-import 'package:pictures_view/res/image_assets.dart';
+import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/image_assets.dart';
 
 class CachedImage extends StatelessWidget {
   final String imageUrl;

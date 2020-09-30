@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:pictures_view/res/typedef.dart';
-import 'package:pictures_view/res/app_styles/app_shadows.dart';
+import 'package:my_catalog/res/typedef.dart';
+import 'package:my_catalog/res/app_styles/app_shadows.dart';
 
-import 'package:pictures_view/theme/custom_theme.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
 class BottomBarItemContainer extends StatelessWidget {
   final double size;

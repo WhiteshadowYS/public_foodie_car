@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:pictures_view/res/const.dart';
+import 'package:my_catalog/res/const.dart';
 
-import 'package:pictures_view/dictionary/models/language.dart';
-import 'package:pictures_view/dictionary/flutter_delegate.dart';
+import 'package:my_catalog/dictionary/models/language.dart';
+import 'package:my_catalog/dictionary/flutter_delegate.dart';
 
 class FlutterDictionary {
   static const String tag = '[FlutterDictionary]';

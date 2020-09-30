@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:pictures_view/res/const.dart';
+import 'package:my_catalog/res/const.dart';
 
-import 'package:pictures_view/dictionary/data/en.dart';
-import 'package:pictures_view/dictionary/models/supported_language.dart';
+import 'package:my_catalog/dictionary/data/en.dart';
+import 'package:my_catalog/dictionary/models/supported_language.dart';
 
 class SupportedLocales {
   List<SupportedLanguage> _supportedLocales;

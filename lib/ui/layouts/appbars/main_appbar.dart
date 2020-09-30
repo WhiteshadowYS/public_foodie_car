@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:pictures_view/theme/custom_theme.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override

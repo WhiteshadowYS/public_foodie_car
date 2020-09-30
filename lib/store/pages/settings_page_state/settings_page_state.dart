@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:pictures_view/store/shared/reducer.dart';
+import 'package:my_catalog/store/shared/reducer.dart';
 
 class SettingsPageState {
   SettingsPageState();

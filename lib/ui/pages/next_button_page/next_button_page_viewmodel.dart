@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pictures_view/models/models/dropdown_model.dart';
-import 'package:pictures_view/store/application/app_state.dart';
-import 'package:pictures_view/store/shared/dialog_state/dialog_selector.dart';
+import 'package:my_catalog/models/models/dropdown_model.dart';
+import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/store/shared/dialog_state/dialog_selector.dart';
 import 'package:redux/redux.dart';
 
 class NextButtonPageViewModel {

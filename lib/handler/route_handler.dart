@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 
-import 'package:pictures_view/res/const.dart';
-import 'package:pictures_view/res/icons/bottom_bar_icons.dart';
+import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/icons/bottom_bar_icons.dart';
 
-import 'package:pictures_view/models/models/pages.dart';
-import 'package:pictures_view/models/models/route_info.dart';
-import 'package:pictures_view/models/models/bottom_bar_item_model.dart';
+import 'package:my_catalog/models/models/pages.dart';
+import 'package:my_catalog/models/models/route_info.dart';
+import 'package:my_catalog/models/models/bottom_bar_item_model.dart';
 
 class RouteHandler {
   // region [Initialization]

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pictures_view/services/network_service/interfaces/i_base_request.dart';
-import 'package:pictures_view/services/network_service/models/delete_request_model.dart';
-import 'package:pictures_view/services/network_service/models/get_request_model.dart';
-import 'package:pictures_view/services/network_service/models/patch_request_model.dart';
-import 'package:pictures_view/services/network_service/models/post_request_model.dart';
-import 'package:pictures_view/services/network_service/models/put_request_model.dart';
-import 'package:pictures_view/services/network_service/network_service.dart';
-import 'package:pictures_view/services/network_service/res/consts.dart';
+import 'package:my_catalog/services/network_service/interfaces/i_base_request.dart';
+import 'package:my_catalog/services/network_service/models/delete_request_model.dart';
+import 'package:my_catalog/services/network_service/models/get_request_model.dart';
+import 'package:my_catalog/services/network_service/models/patch_request_model.dart';
+import 'package:my_catalog/services/network_service/models/post_request_model.dart';
+import 'package:my_catalog/services/network_service/models/put_request_model.dart';
+import 'package:my_catalog/services/network_service/network_service.dart';
+import 'package:my_catalog/services/network_service/res/consts.dart';
 
 class RequestBuilders {
   static IBaseRequest get({

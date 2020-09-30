@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pictures_view/services/dialog_service/interfaces/i_dialog.dart';
-import 'package:pictures_view/services/dialog_service/shared/dialog_builders.dart';
-import 'package:pictures_view/services/dialog_service/widgets/error_dialog_widget.dart';
+import 'package:my_catalog/services/dialog_service/dialog_service.dart';
+import 'package:my_catalog/services/dialog_service/interfaces/i_dialog.dart';
+import 'package:my_catalog/services/dialog_service/shared/dialog_builders.dart';
+import 'package:my_catalog/services/dialog_service/widgets/error_dialog_widget.dart';
 
 /// [ErrorDialog] realisation for [IDialog] interface. This [dialog] was using for show all errors in the application.
 /// Params:

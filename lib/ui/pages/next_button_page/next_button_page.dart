@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:pictures_view/services/focus_service.dart';
-import 'package:pictures_view/store/application/app_state.dart';
-import 'package:pictures_view/ui/layouts/main_layout/main_layout.dart';
-import 'package:pictures_view/widgets/next_button_dropdown.dart';
+import 'package:my_catalog/services/focus_service.dart';
+import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
+import 'package:my_catalog/widgets/next_button_dropdown.dart';
 
 import '../../../widgets/next_button_text_field.dart';
 import 'next_button_page_viewmodel.dart';

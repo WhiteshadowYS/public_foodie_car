@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:pictures_view/res/app_styles/app_colors.dart';
+import 'package:my_catalog/res/app_styles/app_colors.dart';
 
-import 'package:pictures_view/theme/models/appvesto_theme.dart';
-import 'package:pictures_view/theme/models/appvesto_colors.dart';
-import 'package:pictures_view/theme/models/appvesto_edge_insets.dart';
-import 'package:pictures_view/theme/models/appvesto_text_styles.dart';
+import 'package:my_catalog/theme/models/appvesto_theme.dart';
+import 'package:my_catalog/theme/models/appvesto_colors.dart';
+import 'package:my_catalog/theme/models/appvesto_edge_insets.dart';
+import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
 
 AVTheme darkTheme = AVTheme(
   themeName: 'default_theme',

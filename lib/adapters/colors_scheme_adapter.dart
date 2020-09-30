@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pictures_view/adapters/interfaces/i_adapter.dart';
-import 'package:pictures_view/models/dtos/get_color_scheme_response_dto.dart';
-import 'package:pictures_view/models/models/color_scheme_model.dart';
-import 'package:pictures_view/network/shared/i_request.dart';
+import 'package:my_catalog/adapters/interfaces/i_adapter.dart';
+import 'package:my_catalog/models/dtos/get_color_scheme_response_dto.dart';
+import 'package:my_catalog/models/models/color_scheme_model.dart';
+import 'package:my_catalog/network/shared/i_request.dart';
 
 class ColorSchemeAdapter implements IAdapter<ColorSchemeModel> {
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pictures_view/services/dialog_service/dialog_service.dart';
+import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 
 /// Dialog Interface. All Dialogs models in the app should be extended from this interface.
 /// Methods:

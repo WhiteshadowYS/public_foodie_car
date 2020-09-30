@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-import 'package:pictures_view/res/app_styles/app_shadows.dart';
+import 'package:my_catalog/res/app_styles/app_shadows.dart';
 
-import 'package:pictures_view/handler/route_handler.dart';
+import 'package:my_catalog/handler/route_handler.dart';
 
-import 'package:pictures_view/models/models/bottom_bar_item_model.dart';
+import 'package:my_catalog/models/models/bottom_bar_item_model.dart';
 
-import 'package:pictures_view/theme/custom_theme.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
-import 'package:pictures_view/ui/layouts/bottom_bar/bottom_bar_view_model.dart';
-import 'package:pictures_view/ui/layouts/bottom_bar/widgets/bottom_bar_item.dart';
+import 'package:my_catalog/ui/layouts/bottom_bar/bottom_bar_view_model.dart';
+import 'package:my_catalog/ui/layouts/bottom_bar/widgets/bottom_bar_item.dart';
 
 class BottomBar extends StatelessWidget {
   static final GlobalKey bottomBarKey = GlobalKey(debugLabel: 'Bottom Bar');

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:pictures_view/res/typedef.dart';
+import 'package:my_catalog/res/typedef.dart';
 
-import 'package:pictures_view/theme/custom_theme.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
-import 'package:pictures_view/ui/layouts/bottom_bar/widgets/bottom_bar_item_container.dart';
+import 'package:my_catalog/ui/layouts/bottom_bar/widgets/bottom_bar_item_container.dart';
 
 class BottomBarItem extends StatelessWidget {
   final double size;

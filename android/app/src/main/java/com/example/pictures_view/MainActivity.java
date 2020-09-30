@@ -1,4 +1,4 @@
-package com.example.pictures_view;
+package com.example.my_catalog;
 
 import io.flutter.embedding.android.FlutterActivity;
 

@@ -1,3 +1,3 @@
-import 'package:pictures_view/dictionary/models/language.dart';
+import 'package:my_catalog/dictionary/models/language.dart';
 
 const Language en = Language();

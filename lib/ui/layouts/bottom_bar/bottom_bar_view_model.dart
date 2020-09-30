@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 
 import 'package:redux/redux.dart';
 
-import 'package:pictures_view/res/typedef.dart';
+import 'package:my_catalog/res/typedef.dart';
 
-import 'package:pictures_view/store/application/app_state.dart';
-import 'package:pictures_view/store/shared/route_selectors.dart';
+import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/store/shared/route_selectors.dart';
 
 
 class BottomBarViewModel {

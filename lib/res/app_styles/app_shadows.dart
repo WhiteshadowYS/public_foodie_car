@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'package:pictures_view/res/app_styles/app_colors.dart';
+import 'package:my_catalog/res/app_styles/app_colors.dart';
 
 class AppShadows {
   static final List<BoxShadow> bottomBarItemShadow = [

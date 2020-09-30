@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:pictures_view/res/const.dart';
-import 'package:pictures_view/res/routes.dart';
+import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/routes.dart';
 
-import 'package:pictures_view/ui/pages/home_page/home_page.dart';
-import 'package:pictures_view/ui/pages/next_button_page/next_button_page.dart';
-import 'package:pictures_view/ui/pages/splash_screen/splash_screen.dart';
-import 'package:pictures_view/ui/pages/unknown_page/unknown_page.dart';
-import 'package:pictures_view/ui/pages/settings_page/settings_page.dart';
+import 'package:my_catalog/ui/pages/home_page/home_page.dart';
+import 'package:my_catalog/ui/pages/next_button_page/next_button_page.dart';
+import 'package:my_catalog/ui/pages/splash_screen/splash_screen.dart';
+import 'package:my_catalog/ui/pages/unknown_page/unknown_page.dart';
+import 'package:my_catalog/ui/pages/settings_page/settings_page.dart';
 
 class RouteHelper {
   static const String tag = '[RouteHelper]';

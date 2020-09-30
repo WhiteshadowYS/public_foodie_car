@@ -5,8 +5,8 @@ import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 
-import 'package:pictures_view/application/application.dart';
-import 'package:pictures_view/store/application/app_state.dart';
+import 'package:my_catalog/application/application.dart';
+import 'package:my_catalog/store/application/app_state.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

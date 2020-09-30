@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:http/src/response.dart';
-import 'package:pictures_view/services/network_service/interfaces/i_base_request.dart';
+import 'package:my_catalog/services/network_service/interfaces/i_base_request.dart';
 
 class GetRequestModel implements IBaseRequest {
   final String url;

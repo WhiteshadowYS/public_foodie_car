@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:pictures_view/res/app_styles/app_gradient.dart';
+import 'package:my_catalog/res/app_styles/app_gradient.dart';
 
 // ignore: use_key_in_widget_constructors
 class SplashLoader extends StatefulWidget {

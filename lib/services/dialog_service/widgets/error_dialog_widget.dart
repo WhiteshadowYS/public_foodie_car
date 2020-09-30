@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pictures_view/services/dialog_service/dialog_service.dart';
-import 'package:pictures_view/services/dialog_service/models/error_dialog.dart';
+import 'package:my_catalog/services/dialog_service/dialog_service.dart';
+import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
 
 class ErrorDialogWidget extends StatelessWidget {
   final ErrorDialog dialogModel;

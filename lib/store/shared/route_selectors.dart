@@ -1,12 +1,12 @@
 import 'package:redux/redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 
-import 'package:pictures_view/res/typedef.dart';
+import 'package:my_catalog/res/typedef.dart';
 
-import 'package:pictures_view/handler/route_handler.dart';
-import 'package:pictures_view/models/models/route_info.dart';
+import 'package:my_catalog/handler/route_handler.dart';
+import 'package:my_catalog/models/models/route_info.dart';
 
-import 'package:pictures_view/store/application/app_state.dart';
+import 'package:my_catalog/store/application/app_state.dart';
 
 class RouteSelectors {
   static NavigateToFunction navigateTo(Store<AppState> store) {

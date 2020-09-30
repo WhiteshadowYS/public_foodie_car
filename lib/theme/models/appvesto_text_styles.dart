@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:pictures_view/theme/interfaces/i_appvesto_text_theme.dart';
+import 'package:my_catalog/theme/interfaces/i_appvesto_text_theme.dart';
 
 class AVTextStyles implements IAVTextStyles {
   final String titleFontFamily;

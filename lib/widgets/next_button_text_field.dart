@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pictures_view/services/focus_service.dart';
+import 'package:my_catalog/services/focus_service.dart';
 
 class NextButtonTextField extends StatelessWidget {
   final String focusKeyValue;

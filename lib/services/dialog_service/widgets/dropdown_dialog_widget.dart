@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pictures_view/services/dialog_service/models/dropdown_dialog.dart';
+import 'package:my_catalog/services/dialog_service/models/dropdown_dialog.dart';
 
 class ClientDropdown extends StatefulWidget {
   final DropdownDialog dialog;

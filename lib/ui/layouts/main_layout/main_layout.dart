@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:pictures_view/ui/layouts/bottom_bar/bottom_bar.dart';
+import 'package:my_catalog/ui/layouts/bottom_bar/bottom_bar.dart';
 
 class MainLayout extends StatelessWidget {
   final Widget child;

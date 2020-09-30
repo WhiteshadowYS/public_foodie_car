@@ -1,6 +1,6 @@
-# Pictures
+# myCatalog
 
-Pictures it flutter project created for testing new technologies. 
+myCatalog it flutter project created for testing new technologies. 
 
 ## Getting Started
 

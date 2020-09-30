@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pictures_view/theme/custom_theme.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
-import 'package:pictures_view/widgets/clean_behavior.dart';
-import 'package:pictures_view/widgets/cashed_network_image.dart';
+import 'package:my_catalog/widgets/clean_behavior.dart';
+import 'package:my_catalog/widgets/cashed_network_image.dart';
 
-import 'package:pictures_view/ui/layouts/appbars/main_appbar.dart';
-import 'package:pictures_view/ui/layouts/main_layout/main_layout.dart';
+import 'package:my_catalog/ui/layouts/appbars/main_appbar.dart';
+import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 
 // ignore: use_key_in_widget_constructors
 class HomePage extends StatelessWidget {
