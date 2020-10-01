@@ -10,7 +10,7 @@ GDRFileDto _$GDRFileDtoFromJson(Map<String, dynamic> json) {
   return $checkedNew('GDRFileDto', json, () {
     final val = GDRFileDto(
       id: $checkedConvert(json, 'id', (v) => v as int),
-      type: $checkedConvert(json, 'type', (v) => v as int),
+      type: $checkedConvert(json, 'type', (v) => v as String),
       imageLink: $checkedConvert(json, 'image', (v) => v as String),
       languages: $checkedConvert(
           json, 'sub_categories', (v) => v as Map<String, dynamic>),

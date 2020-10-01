@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/network_service/interfaces/i_base_request.dart';
 import 'package:my_catalog/services/network_service/models/base_error.dart';
 
@@ -38,7 +39,7 @@ class NetworkService {
 
     final http.Response response = await request();
 
-    print('response: ${response.body}');
+    logger.v('response: ${response.body}');
 
     return _getCheckedForErrorResponse(response);
   }

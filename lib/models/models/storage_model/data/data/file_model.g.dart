@@ -10,7 +10,7 @@ FileModel _$FileModelFromJson(Map<String, dynamic> json) {
   return $checkedNew('FileModel', json, () {
     final val = FileModel(
       id: $checkedConvert(json, 'id', (v) => v as int),
-      type: $checkedConvert(json, 'type', (v) => v as int),
+      type: $checkedConvert(json, 'type', (v) => v as String),
       imageLink: $checkedConvert(json, 'image', (v) => v as String),
       languages: $checkedConvert(
           json, 'sub_categories', (v) => v as Map<String, dynamic>),

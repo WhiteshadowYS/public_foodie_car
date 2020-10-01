@@ -13,7 +13,7 @@ class GDRFileDto implements IDto {
   @JsonKey(name: 'id', required: false, nullable: true)
   final int id;
   @JsonKey(name: 'type', required: false, nullable: true)
-  final int type;
+  final String type;
   @JsonKey(name: 'image', required: false, nullable: true)
   final String imageLink;
   @JsonKey(name: 'sub_categories', required: false, nullable: true)
