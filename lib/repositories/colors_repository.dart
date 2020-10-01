@@ -4,8 +4,8 @@
 // import 'package:my_catalog/repositories/shared/repository.dart';
 //
 // class ColorsRepository extends Repository {
-//   Future<ColorSchemeModel> getDefaultColorScheme() async {
-//     return await repository<ColorSchemeModel>(
+//   // Future<ColorSchemeModel> getDefaultColorScheme() {
+//     return repository<ColorSchemeModel>(
 //       ColorSchemeAdapter(request: GetDefaultColorScheme()),
 //     );
 //   }

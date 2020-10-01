@@ -1,20 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_data_request_dto.dart';
+part of 'storage_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetDataRequestDto _$GetDataRequestDtoFromJson(Map<String, dynamic> json) {
-  return $checkedNew('GetDataRequestDto', json, () {
-    final val = GetDataRequestDto(
+StorageModel _$StorageModelFromJson(Map<String, dynamic> json) {
+  return $checkedNew('StorageModel', json, () {
+    final val = StorageModel(
       lastUpdate: $checkedConvert(json, 'last_update', (v) => v as int),
       partnerLevel: $checkedConvert(json, 'partner_level', (v) => v as String),
       settings: $checkedConvert(json, 'settings',
-          (v) => v == null ? null : GDRSettingsDto.fromJson(v)),
+          (v) => v == null ? null : SettingsModel.fromJson(v)),
       data: $checkedConvert(
-          json, 'data', (v) => v == null ? null : GDRDataDto.fromJson(v)),
+          json, 'data', (v) => v == null ? null : DataModel.fromJson(v)),
     );
     return val;
   }, fieldKeyMap: const {
@@ -23,7 +23,7 @@ GetDataRequestDto _$GetDataRequestDtoFromJson(Map<String, dynamic> json) {
   });
 }
 
-Map<String, dynamic> _$GetDataRequestDtoToJson(GetDataRequestDto instance) =>
+Map<String, dynamic> _$StorageModelToJson(StorageModel instance) =>
     <String, dynamic>{
       'last_update': instance.lastUpdate,
       'partner_level': instance.partnerLevel,
