@@ -1,4 +1,5 @@
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
+import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 
 class RouteService {
   static const tag = '[RouteService]';
@@ -14,6 +15,7 @@ class RouteService {
   String get currentRoute => _history.last;
 
   NavigateToAction pop() {
+    if (_isDialogDisplayed()) return null;
     if (_history.isEmpty) return null;
 
     _history.removeLast();
@@ -22,8 +24,8 @@ class RouteService {
   }
 
   NavigateToAction push(String route) {
-    if (_history.isNotEmpty &&
-        _history.last == route) return null;
+    if (_isDialogDisplayed()) return null;
+    if (_history.isNotEmpty && _history.last == route) return null;
 
     _history.add(route);
 
@@ -31,8 +33,8 @@ class RouteService {
   }
 
   NavigateToAction pushAndRemoveUntil(String route) {
-    if (_history.isNotEmpty &&
-        _history.last == route) return null;
+    if (_isDialogDisplayed()) return null;
+    if (_history.isNotEmpty && _history.last == route) return null;
 
     _history.clear();
     _history.add(route);
@@ -41,12 +43,16 @@ class RouteService {
   }
 
   NavigateToAction replace(String route) {
-    if (_history.isNotEmpty &&
-        _history.last == route) return null;
+    if (_isDialogDisplayed()) return null;
+    if (_history.isNotEmpty && _history.last == route) return null;
 
     if (_history.isNotEmpty) _history.removeLast();
     _history.add(route);
 
     return NavigateToAction.replace(route);
+  }
+
+  bool _isDialogDisplayed() {
+    return DialogService.instance.isDisplayed;
   }
 }

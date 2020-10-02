@@ -1,4 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'package:my_catalog/store/global/storage/storage_epics.dart';
+import 'package:my_catalog/store/global/storage/storage_state.dart';
+import 'package:my_catalog/store/pages/home_page/storage_id_text_field_state/storage_id_text_field_state.dart';
 
 import 'package:redux_epics/redux_epics.dart';
 
@@ -6,25 +9,23 @@ import 'package:my_catalog/res/const.dart';
 
 import 'package:my_catalog/store/shared/dialog_state/dialog_state.dart';
 import 'package:my_catalog/store/shared/initialization/initialize_epic.dart';
-import 'package:my_catalog/store/pages/home_page_state/home_page_state.dart';
-import 'package:my_catalog/store/pages/settings_page_state/settings_page_state.dart';
 
 class AppState {
-  DialogState dialogState;
-  HomePageState homePageState;
-  SettingsPageState settingsPageState;
+  final DialogState dialogState;
+  final StorageState storageState;
+  final StorageIdTextFieldState storageIdTextFieldState;
 
   AppState({
     @required this.dialogState,
-    @required this.homePageState,
-    @required this.settingsPageState,
+    @required this.storageState,
+    @required this.storageIdTextFieldState,
   });
 
   factory AppState.initial() {
     return AppState(
       dialogState: DialogState.initial(),
-      homePageState: HomePageState.initial(),
-      settingsPageState: SettingsPageState.initial(),
+      storageState: StorageState.initial(),
+      storageIdTextFieldState: StorageIdTextFieldState.initial(),
     );
   }
 
@@ -35,12 +36,13 @@ class AppState {
 
     return AppState(
       dialogState: state.dialogState.reducer(action),
-      homePageState: state.homePageState.reducer(action),
-      settingsPageState: state.settingsPageState.reducer(action),
+      storageState: state.storageState.reducer(action),
+      storageIdTextFieldState: state.storageIdTextFieldState.reducer(action),
     );
   }
 
   static final getAppEpic = combineEpics<AppState>([
     InitializeEpics.indexEpic,
+    StorageEpics.indexEpic,
   ]);
 }
