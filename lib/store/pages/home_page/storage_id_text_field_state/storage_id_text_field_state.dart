@@ -1,17 +1,22 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:my_catalog/models/models/storage_model/storage_model.dart';
-import 'package:my_catalog/services/dialog_service/dialog_service.dart';
+import 'package:my_catalog/network/requests/get_check_id_request.dart';
+import 'package:my_catalog/network/requests/get_data_request.dart';
 import 'package:my_catalog/store/shared/reducer.dart';
+import 'package:my_catalog/ui/pages/main_page/main_page.dart';
 
+/// [StorageIdTextFieldState] it is state created for [TextField] in [MainPage].
+/// This state need for update only [TextField] data.
+/// Params:
+///   - [storageId]. ID of storage. Need for next functions: [GetCheckIdRequest], [GetDataRequest]
 class StorageIdTextFieldState {
   final String storageId;
 
   StorageIdTextFieldState({
     @required this.storageId,
   });
-  
+
   factory StorageIdTextFieldState.initial() {
     return StorageIdTextFieldState(
       storageId: null,
