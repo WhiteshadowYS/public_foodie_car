@@ -24,7 +24,6 @@ class MainPage extends StatelessWidget {
                 onPressed: () => DialogService.instance.show(NotificationDialog(
                   title: 'Eternal',
                   message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                  logoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg',
                 )),
 //                onPressed: () => vm.navigateToTermsPage(),
               ),

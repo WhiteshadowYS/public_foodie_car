@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/notification_dialog.dart';
+import 'package:my_catalog/ui/shared/svg_images.dart';
 
 class NotificationDialogWidget extends StatelessWidget {
   final NotificationDialog dialogModel;
@@ -34,11 +35,11 @@ class NotificationDialogWidget extends StatelessWidget {
                       margin: EdgeInsets.symmetric(
                         vertical: 30.0,
                       ),
-                      child: dialogModel.logoUrl != null
+                      child: dialogModel.logoUrl != null && dialogModel.logoUrl != ''
                           ? Image.network(
                               dialogModel.logoUrl
                             )
-                          : Container(), // TODO(Oles): add myCatalog logo
+                          : SVGImages().mcLogo(),
                     ),
                     Text(
                       dialogModel.title,
@@ -93,10 +94,7 @@ class NotificationDialogWidget extends StatelessWidget {
                   right: 6.0,
                   child: InkWell(
                     onTap: () => DialogService.instance.close(),
-                    child: Icon(
-                      Icons.close,
-                      color: Color(0xFF5db075),
-                    ),
+                    child: SVGImages().close(),
                   ),
                 ),
               ],
