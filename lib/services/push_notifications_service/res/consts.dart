@@ -3,6 +3,7 @@ const String MESSAGE_BODY = 'body';
 const String MESSAGE_PUSH_TITLE = 'push_title';
 const String MESSAGE_PUSH_BODY = 'push_body';
 const String MESSAGE_TYPE = 'type';
+const String MESSAGE_IMAGE_URL = 'image_url';
 const String MESSAGE_TITLE = 'title';
 const String MESSAGE_CONTENT = 'content';
 const String MESSAGE_DESCRIPTION = 'description';

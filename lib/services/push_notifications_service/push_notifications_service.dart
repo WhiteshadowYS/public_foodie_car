@@ -4,6 +4,7 @@ import 'package:my_catalog/services/dialog_service/models/notification_dialog.da
 import 'package:my_catalog/services/push_notifications_service/models/message.dart';
 import 'package:my_catalog/services/push_notifications_service/models/message_dto.dart';
 import 'package:my_catalog/services/push_notifications_service/res/consts.dart';
+import 'package:my_catalog/services/push_notifications_service/shared/message_adapter.dart';
 
 /// [PushNotificationsService] it is service for control dialogs.
 /// This class it - Singleton, for function using use [PushNotificationsService.instance]
@@ -53,10 +54,12 @@ class PushNotificationsService {
         await _firebaseMessaging.setAutoInitEnabled(true);
       }
 
+      final MessageAdapter _adapter = MessageAdapter();
+
       _firebaseMessaging.configure(
-        onMessage: (Map<String, dynamic> message) => _onAllMessages(Message(MessageDto(message)), ON_MESSAGE),
-        onResume: (Map<String, dynamic> message) => _onAllMessages(Message(MessageDto(message)), ON_RESUME),
-        onLaunch: (Map<String, dynamic> message) => _onAllMessages(Message(MessageDto(message)), ON_LAUNCH),
+        onMessage: (Map<String, dynamic> message) => _onAllMessages(_adapter.incomingNotificationToMessage(MessageDto(message)), ON_MESSAGE),
+        onResume: (Map<String, dynamic> message) => _onAllMessages(_adapter.incomingNotificationToMessage(MessageDto(message)), ON_RESUME),
+        onLaunch: (Map<String, dynamic> message) => _onAllMessages(_adapter.incomingNotificationToMessage(MessageDto(message)), ON_LAUNCH),
       );
 
       _firebaseMessaging.requestNotificationPermissions();
@@ -64,13 +67,13 @@ class PushNotificationsService {
       print('$tag -> <initialiseFCM> -> catch error -> $e');
     }
   }
-
   // endregion
 
   void _handleCurrentMessage(Message message) {
     DialogService.instance.show(NotificationDialog(
       title: message.title,
-      message: message.body,
+      message: message.content,
+      logoUrl: message.imageUrl,
     ));
   }
 

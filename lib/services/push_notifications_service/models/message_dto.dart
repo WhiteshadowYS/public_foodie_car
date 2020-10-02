@@ -35,7 +35,11 @@ class MessageDto {
 
   dynamic get messageDataType => messageData[MESSAGE_TYPE];
 
+  dynamic get messageDataImageUrl => messageData[MESSAGE_IMAGE_URL];
+
   dynamic get messageNotificationType => messageNotification[MESSAGE_TYPE];
+
+  dynamic get messageNotificationImageUrl => messageNotification[MESSAGE_IMAGE_URL];
 
   Map get iosMessageData => messageMap[MESSAGE_APS];
 
@@ -62,4 +66,6 @@ class MessageDto {
   dynamic get iosMessageBody => messageMap[MESSAGE_BODY];
 
   dynamic get iosMessageAlertBody => iosMessageAlert[MESSAGE_BODY];
+
+  dynamic get iosMessageAlertImageUrl => iosMessageAlert[MESSAGE_IMAGE_URL];
 }
