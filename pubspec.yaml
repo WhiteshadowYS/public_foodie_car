@@ -53,9 +53,6 @@ flutter:
     - family: BottomBar
       fonts:
         - asset: assets/icons/BottomBar.ttf
-    - family: MyCatalogLogoBar
-      fonts:
-        - asset: assets/icons/MyCatalogLogo.ttf
     - family: EXIL71
       fonts:
         - asset: assets/EXIL71.ttf
