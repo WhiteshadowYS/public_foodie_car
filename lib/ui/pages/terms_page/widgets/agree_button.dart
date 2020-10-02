@@ -11,7 +11,7 @@ class AgreeButton extends StatefulWidget {
   AgreeButton({
     @required this.onTap,
     @required this.title,
-    this.duration = const Duration(milliseconds: 500),
+    this.duration = const Duration(milliseconds: 700),
   })  : assert(title != null && onTap != null),
         super(key: Key('AgreeButton'));
 
