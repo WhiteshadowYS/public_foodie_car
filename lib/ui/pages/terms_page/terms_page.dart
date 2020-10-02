@@ -30,7 +30,7 @@ class TermsPage extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.only(
               left: 16.w,
-              right: 37.w,
+              right: 16.w,
               top: 50.h,
             ),
             child: SingleChildScrollView(
@@ -39,7 +39,7 @@ class TermsPage extends StatelessWidget {
                 children: [
                   Text(
                     dictionary.title,
-                    style: CustomTheme.textStyles.titleTextStyle(size: 18.0),
+                    style: CustomTheme.textStyles.titleTextStyle(size: 20.0),
                   ),
                   SizedBox(height: 56.h),
                   // TODO(Daniil): Use theme primary textStyle
