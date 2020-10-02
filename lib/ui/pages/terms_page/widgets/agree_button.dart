@@ -3,6 +3,8 @@ import 'package:my_catalog/theme/custom_theme.dart';
 
 import 'accept_check_box.dart';
 
+///Button with checkbox which show check icon and call function passed as a parameter in [onTap] after some time passed in [duration]
+///[AgreeButton] takes 2 required parameters [onTap], [title] and 1 not required [duration]. Default [duration] is 500 milliseconds.
 class AgreeButton extends StatefulWidget {
   final void Function() onTap;
   final String title;
@@ -20,6 +22,7 @@ class AgreeButton extends StatefulWidget {
 }
 
 class _AgreeButtonState extends State<AgreeButton> {
+  ///This variable is responsible for displaying check icon
   bool accept = false;
 
   @override
@@ -42,7 +45,7 @@ class _AgreeButtonState extends State<AgreeButton> {
       ),
     );
   }
-
+  ///This function add [duration] before [onTap] function and set [accept] true to show checkIcon
   void _onTap() {
     Future.delayed(widget.duration).then((value) {
       widget.onTap();

@@ -12,6 +12,11 @@ import 'package:my_catalog/ui/pages/terms_page/terms_page_vm.dart';
 
 import 'widgets/agree_button.dart';
 
+/// [TermsPage] It is shown to the user for the first time after the first login to the application, as well as whenever the rules of use change.
+/// Terms and conditions text is getting from [TermsPageVM]
+/// The user must approve those TOC by tapping on [AgreeButton]
+/// After tapping on [AgreeButton] user goes to the [CatalogsPage]
+
 class TermsPage extends StatelessWidget {
   TermsPage() : super(key: Key('TermsPage'));
 
@@ -43,6 +48,7 @@ class TermsPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 20.0.h),
                     child: const Divider(thickness: 1.0),
                   ),
+                  /// [AgreeButton] takes [vm.navigateToCatalogsPage] as onTap function and [dictionary.agree] text as title
                   AgreeButton(
                     onTap: () => vm.navigateToCatalogsPage(),
                     title: dictionary.agree,
