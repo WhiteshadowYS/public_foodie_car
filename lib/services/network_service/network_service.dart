@@ -1,16 +1,30 @@
 import 'dart:convert';
 
 import 'package:data_connection_checker/data_connection_checker.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/services/network_service/interfaces/i_base_error.dart';
+import 'package:my_catalog/services/network_service/interfaces/i_base_http_error.dart';
 import 'package:my_catalog/services/network_service/interfaces/i_base_request.dart';
-import 'package:my_catalog/services/network_service/models/base_error.dart';
+import 'package:my_catalog/services/network_service/shared/request_builders.dart';
 
-import 'models/base_http_error.dart';
 import 'models/base_http_response.dart';
 import 'res/consts.dart';
 
+/// [NetworkService] it is Service for get data from server.
+/// In our architecture we does use this service from [Request] classes from [network/requests/] folder.
+/// This service have a prams:
+/// variables:
+///   - [baseUrl]. This variable does set with [init] method or [overrideBaseUrl]. This variable does contains a base link for http requests.
+///   - [_errors]. This list does initialize with [init] method. This list does contains all specific errors for Network.
+/// methods:
+///   - [init]. This method will initialize [_errors] and [baseUrl] variables. It should be used after start of application in [initializeEpic].
+///   - [request]. This is a main method of [NetworkService]. This method will return a [BaseHttpResponse].
+///   - [overrideBaseUrl]. This method can set a new value to [baseUrl].
+///   - [_getCheckedForErrorResponse]. This method will check a response for all basic errors.
+///   - [_checkInternetConnection]. This method will check internet connection of app.
+///   - [_getErrorByCode]. This method will return a error text by error code.
 class NetworkService {
   static const tag = '[NetworkService]';
 
@@ -20,19 +34,27 @@ class NetworkService {
 
   static NetworkService get instance => _instance;
 
+  /// Basic url for requests. This variable will use as default but can be updated by [overrideBaseUrl].
+  /// All request builders use this variable for build request but also have a param [url].
   String baseUrl;
-  List<BaseError> _errors = [];
 
+  /// Basic errors. This list does using by [_getErrorByCode] and [_getCheckedForErrorResponse] for check errors.
+  List<IBaseError> _errors = [];
+
+  /// This function will update a [baseUrl]. Not required for use.
   void overrideBaseUrl(String url) => baseUrl = baseUrl;
 
   void init({
     @required String baseUrl,
-    @required List<BaseError> errors,
+    @required List<IBaseError> errors,
   }) {
     baseUrl = baseUrl;
     _errors = errors;
   }
 
+  /// Main function of [NetworkService]. This function will use for get data from server.
+  /// params:
+  ///   - [request]. Will accept object extended from [IBaseRequest]. List of main request types will contains in [RequestBuilders] class.
   Future<BaseHttpResponse> request(IBaseRequest request) async {
     final BaseHttpResponse checkConnection = await _checkInternetConnection();
     if (checkConnection != null) return checkConnection;
@@ -44,10 +66,13 @@ class NetworkService {
     return _getCheckedForErrorResponse(response);
   }
 
+  /// This function will check a response for main errors.
+  /// params:
+  ///   - [response]. This params we will get from [http.get] or etc functions.
   BaseHttpResponse _getCheckedForErrorResponse(http.Response response) {
     if (response.statusCode < HTTP_OK || response.statusCode > HTTP_MAX_OK) {
       return BaseHttpResponse(
-        error: BaseHttpError(
+        error: IBaseHttpError(
           error: response?.reasonPhrase,
           statusCode: response?.statusCode,
         ),
@@ -63,7 +88,7 @@ class NetworkService {
 
         if (error == null) {
           return BaseHttpResponse(
-            error: BaseHttpError(
+            error: IBaseHttpError(
               error: response?.reasonPhrase,
               statusCode: response?.statusCode,
             ),
@@ -71,14 +96,14 @@ class NetworkService {
         }
 
         return BaseHttpResponse(
-          error: BaseHttpError(
+          error: IBaseHttpError(
             error: error,
             statusCode: code,
           ),
         );
       } catch (e) {
         return BaseHttpResponse(
-          error: BaseHttpError(
+          error: IBaseHttpError(
             error: response?.reasonPhrase,
             statusCode: response?.statusCode,
           ),
@@ -91,12 +116,13 @@ class NetworkService {
     );
   }
 
+  /// This function will check internet connection before request.
   Future<BaseHttpResponse> _checkInternetConnection() async {
     final bool hasInternet = await DataConnectionChecker().hasConnection;
 
     if (!hasInternet) {
       return BaseHttpResponse(
-        error: BaseHttpError(
+        error: IBaseHttpError(
           error: NO_INTERNET_CONNECTION,
           statusCode: BAD_GATEWAY_STATUS_CODE,
         ),
@@ -106,8 +132,9 @@ class NetworkService {
     return null;
   }
 
+  /// This functions will get a error text by error code.
   String _getErrorByCode(int code) {
-    for (BaseError error in _errors) {
+    for (IBaseError error in _errors) {
       if (error.statusCode == code) {
         return error.error;
       }

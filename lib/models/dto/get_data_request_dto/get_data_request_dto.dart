@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:my_catalog/models/dto/get_data_request_dto/gdr_data_dto.dart';
 import 'package:my_catalog/models/dto/get_data_request_dto/gdr_settings_dto.dart';
 import 'package:my_catalog/models/interfaces/i_dto.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:my_catalog/network/requests/get_data_request.dart';
 
 part 'get_data_request_dto.g.dart';
 
+/// It is dto for main request of application [GetDataRequest].
 @JsonSerializable(
   fieldRename: FieldRename.snake,
   checked: true,
