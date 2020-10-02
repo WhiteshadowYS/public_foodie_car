@@ -32,10 +32,10 @@ class Message {
         _body = EMPTY_STRING;
         _type = EMPTY_STRING;
         _data = {};
-      } else if (incomingMessage.messageNotification != null && incomingMessage.messageData == null) {
+      } else if (incomingMessage.messageNotification != null) {
         _id = incomingMessage.messageNotificationMessageId ?? EMPTY_STRING;
         _title = incomingMessage.messageNotificationTitle ?? EMPTY_STRING;
-        _body = incomingMessage.messageNotificationPushBody ?? EMPTY_STRING;
+        _body = incomingMessage.messageNotificationPushBody ?? incomingMessage.messageNotificationBody ?? EMPTY_STRING;
         _type = incomingMessage.messageNotificationType ?? EMPTY_STRING;
         _data = incomingMessage.messageData ?? {};
       } else if (incomingMessage.messageNotification == null || incomingMessage.messageNotification.isEmpty) {

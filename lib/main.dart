@@ -31,7 +31,7 @@ void main() {
     ],
   );
 
-  PushNotificationsService.instance;
+  PushNotificationsService.instance.init();
 
   runApp(Application(store: store));
 }
