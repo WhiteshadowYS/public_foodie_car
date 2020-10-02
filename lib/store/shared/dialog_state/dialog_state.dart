@@ -1,10 +1,18 @@
 import 'dart:collection';
 
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
+import 'package:my_catalog/services/dialog_service/interfaces/i_dialog.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/force_close_dialog_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
 import 'package:my_catalog/store/shared/reducer.dart';
 
+
+/// Dialog state - it state need for work with dialogs from Epics.
+/// Params:
+///   - [isDialogDisplayed]. Getter what will get dialog status from [DialogService].
+/// Actions:
+///   - [ShowDialogAction]. Need for show any dialogs extended from [IDialog].
+///   - [ForceCloseDialogAction]. Need for force close any dialogs.
 class DialogState {
   DialogState();
 

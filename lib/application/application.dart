@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/res/locales.dart';
 import 'package:my_catalog/store/shared/initialization/initialize_selector.dart';
 import 'package:my_catalog/ui/shared/splash_screen/splash_screen.dart';
 
@@ -31,7 +32,7 @@ class Application extends StatelessWidget {
             navigatorKey: NavigatorHolder.navigatorKey,
             onGenerateRoute: route.RouteBuilder.onGenerateRoute,
             home: SplashScreen(),
-            locale: Locale(BASE_LOCALE),
+            locale: Locale(Locales.base),
             supportedLocales: FlutterDictionaryDelegate.getSupportedLocales,
             localizationsDelegates: FlutterDictionaryDelegate.getLocalizationDelegates,
           );

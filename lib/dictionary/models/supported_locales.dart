@@ -4,6 +4,7 @@ import 'package:my_catalog/res/const.dart';
 
 import 'package:my_catalog/dictionary/data/en.dart';
 import 'package:my_catalog/dictionary/models/supported_language.dart';
+import 'package:my_catalog/res/locales.dart';
 
 class SupportedLocales {
   List<SupportedLanguage> _supportedLocales;
@@ -11,7 +12,7 @@ class SupportedLocales {
   SupportedLocales._() {
     _supportedLocales = <SupportedLanguage>[
       SupportedLanguage(
-        languageCode: LOCALE_EN,
+        languageCode: Locales.en,
         language: en,
       )..choose(),
     ];
@@ -29,7 +30,7 @@ class SupportedLocales {
   }
 
   String get getCurrentLocale {
-    return _supportedLocales?.firstWhere((SupportedLanguage supLang) => supLang.isSelected)?.languageCode ?? BASE_LOCALE;
+    return _supportedLocales?.firstWhere((SupportedLanguage supLang) => supLang.isSelected)?.languageCode ?? Locales.base;
   }
 
   SupportedLanguage getSupportedLanguage(Locale locale) {

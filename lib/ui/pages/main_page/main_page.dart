@@ -21,6 +21,11 @@ class MainPage extends StatelessWidget {
                 child: Text('To Terms Page'),
                 onPressed: () => vm.navigateToTermsPage(),
               ),
+              const SizedBox(height: 24.0),
+              RaisedButton(
+                child: Text('Get Storage Data'),
+                onPressed: () => vm.getData(),
+              ),
             ],
           ),
         );

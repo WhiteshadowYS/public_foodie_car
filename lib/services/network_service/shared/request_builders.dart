@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/network_service/interfaces/i_base_request.dart';
 import 'package:my_catalog/services/network_service/models/delete_request_model.dart';
 import 'package:my_catalog/services/network_service/models/get_request_model.dart';
@@ -152,12 +153,16 @@ class RequestBuilders {
   }) {
     String originalRoute = functionName;
 
-    if (params != null) {
+    if (params != null && params.isNotEmpty) {
       final List<String> paramStrings = params
-          .map((key, value) => MapEntry(
-                key,
-                _createParamString(key, value),
-              ))
+          .map((key, value) {
+            if (key == null || value == null) logger.e('params: $params');
+
+            return MapEntry(
+              key ?? '',
+              _createParamString(key, value) ?? '',
+            );
+          })
           .values
           .toList();
 
