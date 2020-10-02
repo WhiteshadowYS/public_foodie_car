@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_version/get_version.dart';
+import 'package:my_catalog/dictionary/flutter_delegate.dart';
+import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 
+import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/splash_screen/widgets/splash_loader.dart';
 
+
+/// [SplashScreen] is the very first page you need to download the application.
+/// It is necessary to initialize the flutter_screenutil package.
+/// Also in the [updateAppVersion] function, all information about the current version of the application is displayed in the console.
 // ignore: use_key_in_widget_constructors
 class SplashScreen extends StatefulWidget {
   @override
@@ -15,10 +24,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  /// This variable will write all information about the application.
   String appVersion;
 
   @override
   void initState() {
+    FlutterDictionary.instance.setNewLanguage(FlutterDictionaryDelegate.getCurrentLocale);
+    /// This function will be called after the first build
+    /// It is necessary to initialize the flutter_screenutil package.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ScreenUtil.init(
         context,
@@ -27,6 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
         allowFontScaling: DESIGN_SCREEN_ALLOW_FONT_SCALING,
       );
     });
+    /// This function displays the current version of the application in the console.
     updateAppVersion();
     super.initState();
   }
@@ -37,23 +51,27 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: CustomTheme.colors.accentColor,
       body: Directionality(
         textDirection: TextDirection.ltr,
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 47.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Spacer(),
-                Text('PIK', style: CustomTheme.textStyles.titleTextStyle(size: 45.0, height: 1.3)),
-                Text('CHA', style: CustomTheme.textStyles.titleTextStyle(size: 45.0, height: 1.3)),
-                SizedBox(height: 30.0),
-                SplashLoader(),
-                Spacer(),
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 47.0),
+          child: Column(
+            children: <Widget>[
+              Spacer(),
+              Text(
+                TITLE,
+                style: CustomTheme.textStyles.titleTextStyle(size: 30),
+              ),
+              SizedBox(height: 20.0),
+              SvgPicture.asset(ImageAssets.LOGO),
+              SizedBox(height: 40.0),
+
+              SplashLoader(
+                duration: Duration(seconds: 4),
+                color: AppColors.kGreen,
+                padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.15),
+                backColor: AppColors.kGreyTwo.withOpacity(0.5),
+              ),
+              Spacer(),
+            ],
           ),
         ),
       ),

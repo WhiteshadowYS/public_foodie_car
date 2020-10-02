@@ -1,58 +1,94 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:my_catalog/res/app_styles/app_gradient.dart';
-
-// ignore: use_key_in_widget_constructors
 class SplashLoader extends StatefulWidget {
+  final LinearGradient gradient;
+  final EdgeInsets padding;
+  final double strokeWidth;
+  final Duration duration;
+  final double height;
+  final double radius;
+  final Color color;
+  final Color backColor;
+
+  // ignore: use_key_in_widget_constructors
+  SplashLoader({
+    @required this.duration,
+    this.strokeWidth = 0.0,
+    this.height = 2.0,
+    this.radius = 11.0,
+    this.padding = const EdgeInsets.symmetric(horizontal: 70.0),
+    this.color,
+    this.backColor,
+    this.gradient,
+  }) : assert(duration != null && (gradient != null || color != null));
+
   @override
   _SplashLoaderState createState() => _SplashLoaderState();
 }
 
-class _SplashLoaderState extends State<SplashLoader> with TickerProviderStateMixin {
-  AnimationController controller;
-  Animation<double> animation;
+class _SplashLoaderState extends State<SplashLoader> with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+  Animation<double> _animation;
 
   @override
   void initState() {
-    super.initState();
-    controller = AnimationController(duration: const Duration(seconds: 4, milliseconds: 500), vsync: this);
+    _animationController = AnimationController(duration: widget.duration, vsync: this);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      animation = Tween<double>(begin: 0.0, end: context.size.width).animate(controller)
-        ..addListener(() => setState(() {}));
-      controller.forward();
+      _animation = Tween<double>(begin: 0.0, end: context.size.width).animate(_animationController);
+      _animationController.addListener(_updateState);
+      _animationController.forward();
     });
+    super.initState();
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    _animationController.removeListener(_updateState);
+    _animationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 4.0,
-      padding: const EdgeInsets.symmetric(horizontal: 70.0),
+    return Padding(
+      padding: widget.padding,
       child: Stack(
         children: <Widget>[
           Container(
-            width: double.infinity,
+            height: widget.height,
             decoration: BoxDecoration(
-              color: Color(0xFFE5E5E5),
-              borderRadius: BorderRadius.circular(11.0),
+              color: widget.backColor,
+              border: Border.all(
+                width: widget.strokeWidth,
+                style: widget.strokeWidth == 0.0 ? BorderStyle.none : BorderStyle.solid,
+              ),
+              borderRadius: BorderRadius.circular(widget.radius),
             ),
           ),
-          Container(
-            width: animation?.value ?? 0,
-            decoration: BoxDecoration(
-              gradient: AppGradient.mainGradient,
-              borderRadius: BorderRadius.circular(11.0),
+          AnimatedOpacity(
+            duration: const Duration(milliseconds: 300),
+            opacity: _animationController.value * 10 <= 1 ? _animationController.value * 10 : 1,
+            child: AnimatedContainer(
+              height: widget.height,
+              width: _animation?.value ?? 0,
+              decoration: BoxDecoration(
+                color: widget.color,
+                gradient: widget.gradient,
+                border: Border.all(
+                  width: widget.strokeWidth,
+                  style: widget.strokeWidth == 0.0 ? BorderStyle.none : BorderStyle.solid,
+                ),
+                borderRadius: BorderRadius.circular(widget.radius),
+              ),
+              duration: const Duration(milliseconds: 400),
             ),
-          )
+          ),
         ],
       ),
     );
   }
+
+  void _updateState() => setState(() {});
 }

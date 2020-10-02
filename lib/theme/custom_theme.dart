@@ -15,7 +15,7 @@ class CustomTheme {
   static const String tag = '[CustomTheme]';
 
   CustomTheme._privateConstructor() {
-    _theme = darkTheme;
+    _theme = lightTheme;
   }
 
   static final CustomTheme _instance = CustomTheme._privateConstructor();
