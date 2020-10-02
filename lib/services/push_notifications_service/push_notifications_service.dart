@@ -23,15 +23,28 @@ class PushNotificationsService {
 
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
+  /// A variable that stores all [Message] received
+  /// when the application is turned off or roll upped.
   final List<Message> _unreadNotificationsList = [];
 
+  /// A variable that stores current [Message] message.
+  /// It is necessary to check the following message for duplicate
   Message _currentMessage;
 
+  /// A [String] type getter that returns current [_firebaseMessaging] token
   Future<String> get getFCMToken async => await _firebaseMessaging.getToken();
 
+  /// A [Message] type getter that returns current [_unreadNotificationsList]
   List<Message> get getUnreadNotificationsList => _unreadNotificationsList;
 
   // region [_onAllMessages]
+  /// [_onAllMessage] used for type and duplicate test
+  /// Works if [type] not equals to [_currentMessage] id
+  /// or id of any [_unreadNotificationsList] notification
+  /// If type of received notification [ON_RESUME] or [ON_LAUNCH] save
+  /// notification to [_unreadNotificationsList]
+  /// In other cases use [_handleCurrentMessage] to do
+  /// something you need with received [Message]
   // ignore: missing_return
   Future<void> _onAllMessages(Message message, String type) {
     print('$tag => <_onAllMessages> => message: ${message.id}');
@@ -48,6 +61,10 @@ class PushNotificationsService {
   // endregion
 
   // region [initialise]
+  /// [init] method used to initialize [_firebaseMessaging].
+  /// [onMessage] configuration used to receive [message] if opened app
+  /// [onLaunch] configuration used to receive [message] if closed app
+  /// [onResume] configuration used to receive [message] if rolled up app
   void init() async {
     try {
       if (await _firebaseMessaging.autoInitEnabled() == false) {
@@ -69,6 +86,7 @@ class PushNotificationsService {
   }
   // endregion
 
+  /// [_handleCurrentMessage] method used to show [NotificationDialog]
   void _handleCurrentMessage(Message message) {
     DialogService.instance.show(NotificationDialog(
       title: message.title,
@@ -77,5 +95,6 @@ class PushNotificationsService {
     ));
   }
 
+  /// [clearUnreadNotificationsList] used to clear [_unreadNotificationsList]
   void clearUnreadNotificationsList() => _unreadNotificationsList.clear();
 }
