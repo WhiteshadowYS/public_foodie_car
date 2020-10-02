@@ -29,6 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
+    // TODO(Andrey): We had to call this function here because during initialization, FlutterDictionary, language==null. Is it correct and can it be done differently?
     FlutterDictionary.instance.setNewLanguage(FlutterDictionaryDelegate.getCurrentLocale);
     /// This function will be called after the first build
     /// It is necessary to initialize the flutter_screenutil package.
@@ -41,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
       );
     });
     /// This function displays the current version of the application in the console.
-    updateAppVersion();
+    _updateAppVersion();
     super.initState();
   }
 
@@ -51,34 +52,36 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: CustomTheme.colors.accentColor,
       body: Directionality(
         textDirection: TextDirection.ltr,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 47.0),
-          child: Column(
-            children: <Widget>[
-              Spacer(),
-              Text(
-                TITLE,
-                style: CustomTheme.textStyles.titleTextStyle(size: 30),
-              ),
-              SizedBox(height: 20.0),
-              SvgPicture.asset(ImageAssets.LOGO),
-              SizedBox(height: 40.0),
-
-              SplashLoader(
-                duration: Duration(seconds: 4),
-                color: AppColors.kGreen,
-                padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.15),
-                backColor: AppColors.kGreyTwo.withOpacity(0.5),
-              ),
-              Spacer(),
-            ],
-          ),
+        child: Column(
+          children: <Widget>[
+            Spacer(),
+            Text(
+              TITLE,
+              style: CustomTheme.textStyles.titleTextStyle(size: 30),
+            ),
+            SizedBox(height: 20.0),
+            SvgPicture.asset(ImageAssets.LOGO),
+            SizedBox(height: 40.0),
+            /// Here the download widget is called, he should specify [duration] as a parameter.
+            /// Also to adapt to different screens, in the parameter [padding], apply MediaQuery,
+            /// which makes indents of 25% of the width of the screen.
+            SplashLoader(
+              duration: Duration(seconds: 4),
+              color: AppColors.kGreen,
+              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.25),
+              backColor: AppColors.kGreyTwo.withOpacity(0.5),
+            ),
+            Spacer(),
+          ],
         ),
       ),
     );
   }
-
-  Future<void> updateAppVersion() async {
+  /// This function displays the current version of the application in the console.
+  ///The [versionName] option will return the current weight of the application.
+  ///The [versionCode] option will return the current application version code.
+  ///The [versionPlatform] parameter will return the current platform.
+  Future<void> _updateAppVersion() async {
     String versionName;
     String versionCode;
     String versionPlatform;
