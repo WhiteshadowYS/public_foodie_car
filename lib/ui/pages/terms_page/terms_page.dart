@@ -20,32 +20,34 @@ class TermsPage extends StatelessWidget {
       builder: (BuildContext context, vm) {
         final TermsPageDictionary dictionary = FlutterDictionary.instance.language.termsPageDictionary;
         return MainLayout(
-          child: Padding(
-            padding: EdgeInsets.only(
+          child: Container(
+            margin: EdgeInsets.only(
               left: 16.w,
               right: 37.w,
               top: 50.h,
-              bottom: 60.h,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // TODO(Daniil): Use theme textStyles
-                Text(
-                  dictionary.title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
-                ),
-                Text(
-                  vm.termsText,
-                ),
-                Divider(
-                  thickness: 2.0,
-                ),
-                AgreeButton(
-                  onTap: () => vm.navigateToCatalogsPage(),
-                  title: dictionary.agree,
-                ),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    dictionary.title,
+                    style: CustomTheme.textStyles.titleTextStyle(size: 18.0),
+                  ),
+                  SizedBox(height: 56.h),
+                  // TODO(Daniil): Use theme primary textStyle
+                  Text(vm.termsText),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20.0.h),
+                    child: const Divider(thickness: 1.5),
+                  ),
+                  AgreeButton(
+                    onTap: () => vm.navigateToCatalogsPage(),
+                    title: dictionary.agree,
+                  ),
+                  const SizedBox(height: 20.0),
+                ],
+              ),
             ),
           ),
         );

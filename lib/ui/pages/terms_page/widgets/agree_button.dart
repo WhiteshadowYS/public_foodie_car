@@ -45,7 +45,7 @@ class _AgreeButtonState extends State<AgreeButton> {
 
   void _onTap() {
     Future.delayed(widget.duration).then((value) {
-     // widget.onTap();
+      widget.onTap();
     });
     setState(() {
       accept = true;
