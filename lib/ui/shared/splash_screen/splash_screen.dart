@@ -54,24 +54,24 @@ class _SplashScreenState extends State<SplashScreen> {
         textDirection: TextDirection.ltr,
         child: Column(
           children: <Widget>[
-            Spacer(),
+            const Spacer(),
             Text(
               TITLE,
-              style: CustomTheme.textStyles.titleTextStyle(size: 30),
+              style: CustomTheme.textStyles.titleTextStyle(size: 30.0),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             SvgPicture.asset(ImageAssets.LOGO),
-            SizedBox(height: 40.0),
+            const SizedBox(height: 40.0),
             /// Here the download widget is called, he should specify [duration] as a parameter.
             /// Also to adapt to different screens, in the parameter [padding], apply MediaQuery,
             /// which makes indents of 25% of the width of the screen.
             SplashLoader(
-              duration: Duration(seconds: 4),
+              duration: const Duration(seconds: 4),
               color: AppColors.kGreen,
               padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.25),
               backColor: AppColors.kGreyTwo.withOpacity(0.5),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ),
