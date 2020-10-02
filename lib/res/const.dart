@@ -5,6 +5,7 @@ final Logger logger = Logger();
 const Duration MILLISECONDS_300 = Duration(milliseconds: 300);
 
 const String LOCALE_EN = 'en';
+const String TITLE = 'My catalog';
 
 const String BASE_LOCALE = LOCALE_EN;
 

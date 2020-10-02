@@ -15,7 +15,7 @@ class AppColors {
 
   //region active item colors
   static const Color kOrange = Color(0xFFF06500);
-  static const Color kGreen = Color(0xFF20C6A4);
+  static const Color kGreen = Color(0xFF5DB075);
   static const Color kBlue = Color(0xFF5F70FF);
   static const Color kYellow = Color(0xFFFFCD53);
 
