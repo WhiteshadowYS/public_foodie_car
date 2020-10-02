@@ -48,6 +48,7 @@ flutter:
     - assets/gifs/loading_image.gif
     - assets/svg/mc_logo.svg
     - assets/svg/close.svg
+    - assets/svg/back_arrow.svg
 
   fonts:
     - family: BottomBar

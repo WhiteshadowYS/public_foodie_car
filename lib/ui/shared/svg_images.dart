@@ -14,4 +14,10 @@ class SVGImages {
       color: color,
     );
   }
+  Widget backArrow({Color color = const Color(0xFF5DB075)}) {
+    return SvgPicture.asset(
+      'assets/svg/back_arrow.svg',
+      color: color,
+    );
+  }
 }
