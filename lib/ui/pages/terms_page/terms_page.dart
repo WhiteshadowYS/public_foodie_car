@@ -39,7 +39,7 @@ class TermsPage extends StatelessWidget {
                   Text(vm.termsText),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.0.h),
-                    child: const Divider(thickness: 1.5),
+                    child: const Divider(thickness: 1.0),
                   ),
                   AgreeButton(
                     onTap: () => vm.navigateToCatalogsPage(),
