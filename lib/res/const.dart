@@ -17,3 +17,10 @@ const double DESIGN_SCREEN_WIDTH = 375.0;
 class ResponseKeys {
   static const String data = 'data';
 }
+
+class PageTypes {
+  static const String HOME_TYPE = 'HOME';
+  static const String SETTINGS_TYPE = 'SETTINGS';
+  static const String SWITCH_TYPE = 'SWITCH';
+  static const String LOGOUT_TYPE = 'LOGOUT';
+}
