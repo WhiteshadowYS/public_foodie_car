@@ -18,7 +18,7 @@ class MainPage extends StatelessWidget {
         return MainLayout(
           appBar: MainAppBar(
             key: 'MainAppBar',
-            logoUrl: 'https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg',
+            //logoUrl: 'https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg',
             title: 'T E S L A',
             backOnTap: () {},
           ),
