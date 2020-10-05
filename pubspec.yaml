@@ -19,6 +19,8 @@ dependencies:
   get_version: ^0.2.2
   google_fonts: ^1.1.0
 
+  firebase_messaging: ^7.0.0
+
   redux: ^4.0.0
   rxdart: ^0.24.1
   redux_epics: ^0.14.0
@@ -47,6 +49,9 @@ flutter:
   assets:
     - assets/gifs/loading_image.gif
     - assets/svgs/logo.svg
+    - assets/svg/mc_logo.svg
+    - assets/svg/close.svg
+    - assets/svg/back_arrow.svg
 
   fonts:
     - family: Ubuntu

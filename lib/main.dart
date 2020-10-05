@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_catalog/services/push_notifications_service/push_notifications_service.dart';
 
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
@@ -13,7 +14,8 @@ void main() {
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
+      statusBarColor: Color(0xFFFFFFFF),
+      statusBarIconBrightness: Brightness.dark,
     ),
   );
 
@@ -29,6 +31,8 @@ void main() {
       NavigationMiddleware<AppState>(),
     ],
   );
+
+  PushNotificationsService.instance.init();
 
   runApp(Application(store: store));
 }
