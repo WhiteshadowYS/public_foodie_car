@@ -16,7 +16,7 @@ AVTheme darkTheme = AVTheme(
     inActiveColor: AppColors.kGreyTwo,
   ),
   textStyles: AVTextStyles(
-    titleFontFamily: 'EXIL71',
+    titleFontFamily: 'Ubuntu',
     textFontFamily: 'SF Pro Display',
     mainTextColor: AppColors.kWhite,
   ),
@@ -34,8 +34,8 @@ AVTheme lightTheme = AVTheme(
     inActiveColor: AppColors.kGreyTwo,
   ),
   textStyles: AVTextStyles(
-    titleFontFamily: 'EXIL71',
-    textFontFamily : 'SF Pro Display',
+    titleFontFamily: 'Ubuntu',
+    textFontFamily: 'SF Pro Display',
     mainTextColor: AppColors.kBlack,
   ),
   edgeInsets: AVEdgeInsets(
