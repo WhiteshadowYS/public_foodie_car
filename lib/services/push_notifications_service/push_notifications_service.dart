@@ -2,7 +2,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/notification_dialog.dart';
 import 'package:my_catalog/services/push_notifications_service/models/message.dart';
-import 'package:my_catalog/services/push_notifications_service/models/message_dto.dart';
 import 'package:my_catalog/services/push_notifications_service/res/consts.dart';
 import 'package:my_catalog/services/push_notifications_service/shared/message_adapter.dart';
 
@@ -74,9 +73,9 @@ class PushNotificationsService {
       final MessageAdapter _adapter = MessageAdapter();
 
       _firebaseMessaging.configure(
-        onMessage: (Map<String, dynamic> message) => _onAllMessages(_adapter.incomingNotificationToMessage(MessageDto(message)), ON_MESSAGE),
-        onResume: (Map<String, dynamic> message) => _onAllMessages(_adapter.incomingNotificationToMessage(MessageDto(message)), ON_RESUME),
-        onLaunch: (Map<String, dynamic> message) => _onAllMessages(_adapter.incomingNotificationToMessage(MessageDto(message)), ON_LAUNCH),
+        onMessage: (Map<String, dynamic> message) => _onAllMessages(_adapter.incomingNotificationToMessage(message), ON_MESSAGE),
+        onResume: (Map<String, dynamic> message) => _onAllMessages(_adapter.incomingNotificationToMessage(message), ON_RESUME),
+        onLaunch: (Map<String, dynamic> message) => _onAllMessages(_adapter.incomingNotificationToMessage(message), ON_LAUNCH),
       );
 
       _firebaseMessaging.requestNotificationPermissions();
@@ -88,11 +87,14 @@ class PushNotificationsService {
 
   /// [_handleCurrentMessage] method used to show [NotificationDialog]
   void _handleCurrentMessage(Message message) {
-    DialogService.instance.show(NotificationDialog(
-      title: message.title,
-      message: message.content,
-      logoUrl: message.imageUrl,
-    ));
+    if ((message.title != null && message.title != EMPTY_STRING) ||
+        (message.content != null && message.content != EMPTY_STRING)) {
+      DialogService.instance.show(NotificationDialog(
+        title: message.title,
+        message: message.content,
+        logoUrl: message.imageUrl,
+      ));
+    }
   }
 
   /// [clearUnreadNotificationsList] used to clear [_unreadNotificationsList]
