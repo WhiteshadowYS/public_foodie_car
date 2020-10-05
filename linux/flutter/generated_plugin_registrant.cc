@@ -4,9 +4,6 @@
 
 #include "generated_plugin_registrant.h"
 
-#include <none.h>
 
-void RegisterPlugins(flutter::PluginRegistry* registry) {
-  noneRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("none"));
+void fl_register_plugins(FlPluginRegistry* registry) {
 }

@@ -4,7 +4,7 @@ description: A new Flutter project.
 version: 0.0.1+1
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.9.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -17,6 +17,7 @@ dependencies:
   http: 0.12.0+2
   logger: ^0.9.1
   get_version: ^0.2.2
+  google_fonts: ^1.1.0
 
   firebase_messaging: ^7.0.0
 
@@ -43,33 +44,27 @@ dev_dependencies:
   build_runner: 1.10.0
 
 flutter:
-
   uses-material-design: true
 
   assets:
     - assets/gifs/loading_image.gif
+    - assets/svgs/logo.svg
     - assets/svg/mc_logo.svg
     - assets/svg/close.svg
     - assets/svg/back_arrow.svg
 
   fonts:
-    - family: BottomBar
+    - family: Ubuntu
       fonts:
-        - asset: assets/icons/BottomBar.ttf
-    - family: EXIL71
-      fonts:
-        - asset: assets/EXIL71.ttf
-    - family: SFProDisplay
-      fonts:
-        - asset: assets/SFPD/SFProDisplay-Black.ttf
-        - asset: assets/SFPD/SFProDisplay-Heavy.ttf
-        - asset: assets/SFPD/SFProDisplay-Medium.ttf
-        - asset: assets/SFPD/SFProDisplay-Regular.ttf
-        - asset: assets/SFPD/SFProDisplay-Semibold.ttf
-        - asset: assets/SFPD/SFProDisplay-Ultralight.ttf
-        - asset: assets/SFPD/SFProDisplay-ThinItalic.ttf
+        - asset: assets/ubuntu/Ubuntu-Bold.ttf
+        - asset: assets/ubuntu/Ubuntu-BoldItalic.ttf
           style: italic
-        - asset: assets/SFPD/SFProDisplay-LightItalic.ttf
+        - asset: assets/ubuntu/Ubuntu-Italic.ttf
           style: italic
-        - asset: assets/SFPD/SFProDisplay-BoldItalic.ttf
+        - asset: assets/ubuntu/Ubuntu-Light.ttf
+        - asset: assets/ubuntu/Ubuntu-LightItalic.ttf
           style: italic
+        - asset: assets/ubuntu/Ubuntu-Medium.ttf
+        - asset: assets/ubuntu/Ubuntu-MediumItalic.ttf
+          style: italic
+        - asset: assets/ubuntu/Ubuntu-Regular.ttf
