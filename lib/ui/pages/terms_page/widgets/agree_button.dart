@@ -13,7 +13,7 @@ class AgreeButton extends StatefulWidget {
   AgreeButton({
     @required this.onTap,
     @required this.title,
-    this.duration = const Duration(milliseconds: 700),
+    this.duration = const Duration(milliseconds: 1500),
   })  : assert(title != null && onTap != null),
         super(key: Key('AgreeButton'));
 
@@ -27,31 +27,40 @@ class _AgreeButtonState extends State<AgreeButton> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _onTap,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AcceptCheckBox(
-            duration: widget.duration,
-            accept: accept,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: InkWell(
+        onTap: _onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AcceptCheckBox(
+                duration: widget.duration,
+                accept: accept,
+              ),
+              const SizedBox(width: 10.0),
+              Text(
+                widget.title,
+                style: CustomTheme.textStyles.titleTextStyle(size: 18.0),
+              ),
+            ],
           ),
-          const SizedBox(width: 10),
-          Text(
-            widget.title,
-            style: CustomTheme.textStyles.titleTextStyle(size: 18.0),
-          ),
-        ],
+        ),
       ),
     );
   }
+
   ///This function add [duration] before [onTap] function and set [accept] true to show checkIcon
   void _onTap() {
     Future.delayed(widget.duration).then((value) {
-      widget.onTap();
+      if (accept) {
+        widget.onTap();
+      }
     });
     setState(() {
-      accept = true;
+      accept = !accept;
     });
   }
 }
