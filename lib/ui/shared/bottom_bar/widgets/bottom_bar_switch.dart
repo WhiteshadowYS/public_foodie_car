@@ -3,7 +3,7 @@ import 'package:my_catalog/models/models/storage_model/settings/footer_button_mo
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
-import 'package:my_catalog/ui/shared/bottom_bar/widgets/bottom_bar_switch_item.dart';
+import 'package:my_catalog/widgets/list_tile_item.dart';
 
 class BottomBarSwitch extends StatelessWidget {
   final bool isSwitch;
@@ -45,8 +45,9 @@ class BottomBarSwitch extends StatelessWidget {
           opacity: isSwitch ? 1.0 : 0.0,
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
-              return BottomBarSwitchItem(
-                footerButton: switchItems[index],
+              return ListTileItem(
+                title: switchItems[index].type,
+                iconPath: switchItems[index].iconSvg,
                 onTap: () => onTap(switchItems[index].type, vm),
               );
             },
