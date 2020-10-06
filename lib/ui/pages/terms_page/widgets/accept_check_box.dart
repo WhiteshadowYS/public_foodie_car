@@ -15,6 +15,9 @@ class AcceptCheckBox extends StatelessWidget {
     @required this.accept,
   }) : super(key: Key('AcceptCheckBox'));
 
+
+  ///if [accept] true, opacity of check icon is 100%, if false - opacity 0%
+  /// [duration] is divided by 4 so the user can see the check icon before the page changes
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,10 +28,8 @@ class AcceptCheckBox extends StatelessWidget {
         color: AppColors.kGreyTwo.withOpacity(0.2),
       ),
       alignment: Alignment.center,
-      ///if [accept] true, opacity of check icon is 100%, if false - opacity 0%
       child: AnimatedOpacity(
         opacity: accept ? 1 : 0,
-        /// [duration] is divided by 4 so the user can see the check icon before the page changes
         duration: Duration(milliseconds: (duration.inMilliseconds / 4).round()),
         child: Icon(
           Icons.check,
