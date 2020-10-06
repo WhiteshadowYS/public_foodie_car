@@ -3,9 +3,11 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/notification_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/main_page/main_page_vm.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
+import 'package:my_catalog/widgets/main_list_view.dart';
 
 class MainPage extends StatelessWidget {
   MainPage() : super(key: Key('MainPage'));
@@ -16,15 +18,21 @@ class MainPage extends StatelessWidget {
       converter: MainPageVM.fromStore,
       builder: (BuildContext context, vm) {
         return MainLayout(
-          appBar: MainAppBar(
-            key: 'MainAppBar',
-            //logoUrl: 'https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg',
-            title: 'T E S L A',
-            backOnTap: () {},
-          ),
+          bgColor: CustomTheme.colors.primaryColor,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(height: 24.0),
+              MainListView(
+                height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+                itemHeight: 0.0,
+                itemCount: vm.catalogs.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return NotificationItemWidget(
+                    title: viewModel.listNotifications[index].title,
+                    description: viewModel.listNotifications[index].description,
+                  );
+                },
+              ),
               Text('Main Page'),
               const SizedBox(height: 24.0),
               RaisedButton(

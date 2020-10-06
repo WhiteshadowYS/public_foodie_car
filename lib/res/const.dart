@@ -2,7 +2,9 @@ import 'package:logger/logger.dart';
 
 final Logger logger = Logger();
 
+const Duration MILLISECONDS_200 = Duration(milliseconds: 200);
 const Duration MILLISECONDS_300 = Duration(milliseconds: 300);
+
 
 const String TITLE = 'My catalog';
 
