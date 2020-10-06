@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'clean_behavior.dart';
 import 'list_overflow_borders.dart';
 
-
 class MainListView extends StatefulWidget {
   final IndexedWidgetBuilder itemBuilder;
   final int itemCount;
@@ -57,11 +56,14 @@ class _MainListViewState extends State<MainListView> {
       children: <Widget>[
         ScrollConfiguration(
           behavior: CleanBehavior(),
-          child: ListView.builder(
-            scrollDirection: widget.scrollDirection,
-            controller: _scrollController,
-            itemCount: widget.itemCount,
-            itemBuilder: widget.itemBuilder,
+          child: SizedBox(
+            height: widget.height ?? double.infinity,
+            child: ListView.builder(
+              scrollDirection: widget.scrollDirection,
+              controller: _scrollController,
+              itemCount: widget.itemCount,
+              itemBuilder: widget.itemBuilder,
+            ),
           ),
         ),
         ListOverflowBorders(
