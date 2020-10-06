@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
@@ -55,9 +56,18 @@ class MainAppBarChild extends StatelessWidget {
           ),
         if (logoUrl != null)
           Align(
+            alignment: Alignment.topCenter,
             child: SizedBox(
-              height: 30.0,
+              height: 35.0,
               child: Image.network(logoUrl),
+            ),
+          ),
+        if (logoUrl == null && title == null)
+          Align(
+            alignment: Alignment.topCenter,
+            child: SizedBox(
+              height: 35.0,
+              child: SVGImages().mcLogo(),
             ),
           ),
       ],

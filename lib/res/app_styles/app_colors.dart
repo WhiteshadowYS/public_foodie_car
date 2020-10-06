@@ -7,6 +7,7 @@ class AppColors {
   static const Color kBlackLight = Color(0xFF19282F);
 
   static const Color kGrey = Color(0xFF979797);
+  static const Color kLightGrey = Color(0xFFf6f6f6);
   static const Color kGreyTwo = Color(0xFF96A7AF);
 
   //region shadow colors

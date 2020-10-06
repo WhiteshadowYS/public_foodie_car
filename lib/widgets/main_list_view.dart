@@ -9,12 +9,14 @@ class MainListView extends StatefulWidget {
   final double height;
   final double itemHeight;
   final scrollDirection;
+  final ScrollController scrollController;
 
   const MainListView({
     @required this.itemBuilder,
     @required this.itemCount,
     @required this.height,
     @required this.itemHeight,
+    this.scrollController,
     this.scrollDirection = Axis.vertical,
   });
 
@@ -23,13 +25,14 @@ class MainListView extends StatefulWidget {
 }
 
 class _MainListViewState extends State<MainListView> {
-  final ScrollController _scrollController = ScrollController();
+  ScrollController _scrollController;
 
   bool _scrollUp;
   bool _scrollDown;
 
   @override
   void initState() {
+    _scrollController = widget.scrollController ?? ScrollController();
     setState(() {
       _scrollUp = false;
       if (widget.itemCount * widget.itemHeight > widget.height) {

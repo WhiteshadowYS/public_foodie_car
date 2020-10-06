@@ -21,7 +21,7 @@ class AppGradient {
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [
-        AppColors.kWhite,
+        AppColors.kWhite.withOpacity(0.8),
         AppColors.kWhite.withOpacity(0.5),
         AppColors.kWhite.withOpacity(0.0),
       ],
@@ -32,7 +32,7 @@ class AppGradient {
       begin: Alignment.bottomCenter,
       end: Alignment.topCenter,
       colors: [
-        AppColors.kWhite,
+        AppColors.kWhite.withOpacity(0.8),
         AppColors.kWhite.withOpacity(0.5),
         AppColors.kWhite.withOpacity(0.0),
       ],
@@ -43,7 +43,7 @@ class AppGradient {
       begin: Alignment.centerRight,
       end: Alignment.centerLeft,
       colors: [
-        AppColors.kWhite,
+        AppColors.kWhite.withOpacity(0.8),
         AppColors.kWhite.withOpacity(0.5),
         AppColors.kWhite.withOpacity(0.0),
       ],
@@ -52,7 +52,7 @@ class AppGradient {
   static LinearGradient get overflowRightGradient {
     return  LinearGradient(
       colors: [
-        AppColors.kWhite,
+        AppColors.kWhite.withOpacity(0.8),
         AppColors.kWhite.withOpacity(0.5),
         AppColors.kWhite.withOpacity(0.0),
       ],
