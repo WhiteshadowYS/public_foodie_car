@@ -8,7 +8,7 @@ import 'package:redux_epics/redux_epics.dart';
 import 'package:my_catalog/res/const.dart';
 
 import 'package:my_catalog/store/shared/dialog_state/dialog_state.dart';
-import 'package:my_catalog/store/shared/initialization/initialize_epic.dart';
+import 'package:my_catalog/store/shared/initialization/initialize_epics.dart';
 
 class AppState {
   final DialogState dialogState;

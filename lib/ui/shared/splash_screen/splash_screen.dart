@@ -88,7 +88,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     try {
       versionName = await GetVersion.projectVersion;
-      logger.d('Version Name: $versionName');
+      // logger.d('Version Name: $versionName');
     } on PlatformException {
       logger.e('Failed to get project version.');
       versionName = null;
@@ -96,7 +96,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     try {
       versionCode = await GetVersion.projectCode;
-      logger.d('Version Code: $versionCode');
+      // logger.d('Version Code: $versionCode');
     } on PlatformException {
       logger.e('Failed to get code version.');
       versionCode = null;
@@ -104,7 +104,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     try {
       versionPlatform = await GetVersion.platformVersion;
-      logger.d('Version Platform: $versionPlatform');
+      // logger.d('Version Platform: $versionPlatform');
     } on PlatformException {
       logger.e('Failed to get platform version.');
       versionPlatform = null;
