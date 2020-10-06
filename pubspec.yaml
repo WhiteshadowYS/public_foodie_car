@@ -52,6 +52,7 @@ flutter:
     - assets/svg/mc_logo.svg
     - assets/svg/close.svg
     - assets/svg/back_arrow.svg
+    - assets/png/mc_logo.png
 
   fonts:
     - family: Ubuntu
