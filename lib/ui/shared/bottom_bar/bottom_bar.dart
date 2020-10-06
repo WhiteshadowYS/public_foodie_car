@@ -22,7 +22,6 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   bool isSwitch = false;
 
-  // TODO(Daniil): Need to refactor
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, BottomBarVM>(
@@ -33,7 +32,7 @@ class _BottomBarState extends State<BottomBar> {
           mainAxisSize: MainAxisSize.min,
           children: [
             BottomBarSwitch(isSwitch: isSwitch, vm: vm, onTap: _onTap),
-            BottomBarList(onTap: _onTap, height: widget.height, vm: vm),
+            BottomBarList(onTap: _onTap, height: widget.height, vm: vm, isSwitch: isSwitch),
           ],
         );
       },

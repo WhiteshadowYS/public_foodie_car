@@ -20,6 +20,7 @@ class BottomBarSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     List<FooterButtonModel> switchItems;
     switchItems = vm.footerButtons.where((element) => element.type == PageTypes.SWITCH_TYPE).toList().first.list;
+    // TODO(Daniil): Add focus node;
     return AnimatedContainer(
       duration: MILLISECONDS_300,
       height: isSwitch ? 180 : 0,
@@ -39,7 +40,8 @@ class BottomBarSwitch extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: AnimatedOpacity(
-          duration: MILLISECONDS_300,
+          duration:MILLISECONDS_900,
+          curve: Curves.easeInOutCirc,
           opacity: isSwitch ? 1.0 : 0.0,
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {

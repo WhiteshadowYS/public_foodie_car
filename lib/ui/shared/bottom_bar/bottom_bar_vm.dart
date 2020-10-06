@@ -27,6 +27,7 @@ class BottomBarVM {
     );
   }
 
+  // TODO(Daniil): Used for tests
   static List<FooterButtonModel> dummyButtons = [
     FooterButtonModel(
       type: 'HOME',

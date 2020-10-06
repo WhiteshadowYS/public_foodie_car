@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/services/route_service/models/routes.dart';
+import 'package:my_catalog/services/route_service/route_service.dart';
+import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 
-import '../bottom_bar_vm.dart';
 import 'bottom_bar_item.dart';
 
 class BottomBarList extends StatelessWidget {
   final BottomBarVM vm;
   final void Function(String, BottomBarVM) onTap;
+  final bool isSwitch;
   final double height;
 
-  // ignore: use_key_in_widget_constructors
   BottomBarList({
     @required this.height,
     @required this.vm,
+    @required this.isSwitch,
     @required this.onTap,
   });
 
@@ -31,9 +35,27 @@ class BottomBarList extends StatelessWidget {
             BottomBarItem(
               iconUrl: item.iconSvg,
               onTap: () => onTap(item.type, vm),
+              isSelected: _isButtonSelected(item.type),
             ),
         ],
       ),
     );
+  }
+
+  bool _isButtonSelected(String buttonType) {
+    if(buttonType!=PageTypes.SWITCH_TYPE && isSwitch){
+      return false;
+    }
+    switch (buttonType) {
+      case PageTypes.HOME_TYPE:
+        return RouteService.instance.currentRoute == Routes.categories;
+      case PageTypes.SETTINGS_TYPE:
+        return RouteService.instance.currentRoute == Routes.settings;
+      case PageTypes.LOGOUT_TYPE:
+        return RouteService.instance.currentRoute == Routes.main;
+      case PageTypes.SWITCH_TYPE:
+        return isSwitch;
+      default: return false;
+    }
   }
 }

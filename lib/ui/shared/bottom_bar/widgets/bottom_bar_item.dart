@@ -4,10 +4,12 @@ import 'package:my_catalog/res/app_styles/app_colors.dart';
 
 class BottomBarItem extends StatelessWidget {
   final String iconUrl;
+  final bool isSelected;
   final void Function() onTap;
 
   BottomBarItem({
     @required this.iconUrl,
+    @required this.isSelected,
     @required this.onTap,
   });
 
@@ -17,9 +19,9 @@ class BottomBarItem extends StatelessWidget {
       onTap: onTap,
       child: SvgPicture.network(
         iconUrl,
-        height: 35,
+        height: 35.0,
         // TODO(Daniil): User theme color
-        color: AppColors.kGreen,
+        color: isSelected ? AppColors.kGreen : AppColors.kGreen.withOpacity(0.5),
       ),
     );
   }
