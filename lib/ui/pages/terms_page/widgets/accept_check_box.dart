@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 
 ///Responsible for checkBox state in [AgreeButton]
-///Takes 2 required parameters [duration], which is responsible for the checkIcon display time, and [accept] which indicates wheter the check icon should be shown
+///Takes 2 required parameters [duration] [accept]
+///[duration] is responsible for the checkIcon display time
+///[accept] which indicates whether the check icon should be shown
 class AcceptCheckBox extends StatelessWidget {
   final Duration duration;
   final bool accept;
