@@ -6,6 +6,7 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/main_page/main_page_vm.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
+import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
 
 class MainPage extends StatelessWidget {
   MainPage() : super(key: Key('MainPage'));
@@ -22,6 +23,7 @@ class MainPage extends StatelessWidget {
             title: 'T E S L A',
             backOnTap: () {},
           ),
+          bottomBar: BottomBar(key: 'BottomBar',),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

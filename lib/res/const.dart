@@ -3,6 +3,7 @@ import 'package:logger/logger.dart';
 final Logger logger = Logger();
 
 const Duration MILLISECONDS_300 = Duration(milliseconds: 300);
+const Duration MILLISECONDS_900 = Duration(milliseconds: 900);
 
 const String TITLE = 'My catalog';
 
@@ -16,4 +17,11 @@ const double DESIGN_SCREEN_WIDTH = 375.0;
 
 class ResponseKeys {
   static const String data = 'data';
+}
+
+class PageTypes {
+  static const String HOME_TYPE = 'HOME';
+  static const String SETTINGS_TYPE = 'SETTINGS';
+  static const String SWITCH_TYPE = 'SWITCH';
+  static const String LOGOUT_TYPE = 'LOGOUT';
 }
