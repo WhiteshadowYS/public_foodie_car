@@ -34,6 +34,7 @@ const Language en = Language(
     chooseStore: 'Choose another store',
   ),
   popUpDictionary: PopUpDictionary(
-    gotIt: 'Got it!'
+    gotIt: 'Got it!',
+    loading: 'Loading...',
   ),
 );

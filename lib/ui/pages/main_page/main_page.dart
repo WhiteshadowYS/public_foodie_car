@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
+import 'package:my_catalog/services/dialog_service/models/loadier_dialog.dart';
 import 'package:my_catalog/services/dialog_service/models/notification_dialog.dart';
+import 'package:my_catalog/services/dialog_service/widgets/loader_dialog_widget.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/main_page/main_page_vm.dart';
@@ -23,7 +25,9 @@ class MainPage extends StatelessWidget {
             title: 'T E S L A',
             backOnTap: () {},
           ),
-          bottomBar: BottomBar(key: 'BottomBar',),
+          bottomBar: BottomBar(
+            key: 'BottomBar',
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -48,6 +52,13 @@ class MainPage extends StatelessWidget {
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                   ),
                 ),
+              ),
+              RaisedButton(
+                child: Text('Show loader'),
+                onPressed: () {
+                  vm.showLoader();
+                  Future.delayed(Duration(seconds: 3)).then((value) => vm.stopDialog());
+                },
               ),
             ],
           ),
