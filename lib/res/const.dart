@@ -20,6 +20,9 @@ const bool DESIGN_SCREEN_ALLOW_FONT_SCALING = true;
 const double DESIGN_SCREEN_HEIGHT = 812.0;
 const double DESIGN_SCREEN_WIDTH = 375.0;
 
+const String NAME = 'name';
+const String DESCRIPTION = 'description';
+
 class ResponseKeys {
   static const String data = 'data';
 }
