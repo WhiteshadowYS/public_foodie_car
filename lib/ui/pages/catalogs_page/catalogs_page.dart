@@ -26,6 +26,10 @@ class CatalogsPage extends StatelessWidget {
                   child: Text('To Categories Page'),
                   onPressed: () => vm.navigateToCategoriesPage(),
                 ),
+                RaisedButton(
+                  child: Text('Error dialog'),
+                  onPressed: () => vm.errorDialog('Some error message!!!'),
+                ),
               ],
             ),
           );

@@ -22,6 +22,7 @@ const double DESIGN_SCREEN_WIDTH = 375.0;
 
 const String NAME = 'name';
 const String DESCRIPTION = 'description';
+const String ERROR = 'Error!';
 
 class ResponseKeys {
   static const String data = 'data';
