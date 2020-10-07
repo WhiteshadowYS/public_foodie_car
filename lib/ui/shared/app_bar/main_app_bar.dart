@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
 import 'widgets/main_app_bar_child.dart';
 
@@ -25,7 +26,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: Container(
         height: height,
         width: double.infinity,
-        color: Color(0xFFFFFFFF),
+        color: CustomTheme.colors.background,
         alignment: Alignment.center,
         child: MainAppBarChild(
           key: key.toString(),

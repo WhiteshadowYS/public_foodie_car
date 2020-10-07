@@ -38,7 +38,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
               width: 150.0,
               height: 22.0,
               decoration: BoxDecoration(
-                color: AppColors.kRedLight.withRed(228),
+                color: AppColors.kRed.withRed(228),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(64),
                   bottomRight: Radius.circular(32),
