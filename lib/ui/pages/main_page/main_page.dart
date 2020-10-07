@@ -3,18 +3,26 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/notification_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/theme/models/appvesto_colors.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/main_page/main_page_vm.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   MainPage() : super(key: Key('MainPage'));
 
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, MainPageVM>(
       converter: MainPageVM.fromStore,
       builder: (BuildContext context, vm) {
+        AVColors colors = vm.colors;
         return MainLayout(
           appBar: MainAppBar(
             key: 'MainAppBar',
@@ -22,6 +30,7 @@ class MainPage extends StatelessWidget {
             title: 'T E S L A',
             backOnTap: () {},
           ),
+          bgColor: colors.background,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -29,16 +38,19 @@ class MainPage extends StatelessWidget {
               const SizedBox(height: 24.0),
               RaisedButton(
                 child: Text('To Terms Page'),
+                color: colors.buttons,
                 onPressed: () => vm.navigateToTermsPage(),
               ),
               const SizedBox(height: 24.0),
               RaisedButton(
                 child: Text('Get Storage Data'),
+                color: colors.buttons,
                 onPressed: () => vm.getData(),
               ),
               const SizedBox(height: 24.0),
               RaisedButton(
-                child: Text('Get Storage Data'),
+                child: Text('Show popup'),
+                color: colors.buttons,
                 onPressed: () => DialogService.instance.show(
                   NotificationDialog(
                     title: 'Eternal',
@@ -46,6 +58,16 @@ class MainPage extends StatelessWidget {
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                   ),
                 ),
+              ),
+              const SizedBox(height: 24.0),
+              RaisedButton(
+                child: Text('ChangeTheme'),
+                color: colors.buttons,
+                onPressed: () {
+                  vm.changeTheme();
+
+                  setState(() {});
+                },
               ),
             ],
           ),

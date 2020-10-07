@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget  {
@@ -25,7 +27,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget  {
       child: Container(
         height: height,
         width: double.infinity,
-        color: Color(0xFFFFFFFF),
+        color: CustomTheme.colors.background,
         alignment: Alignment.center,
         child: _getChild(),
       ),
@@ -33,6 +35,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget  {
   }
 
   Widget _getChild() {
+    AVTextStyles textStyles = CustomTheme.textStyles;
+
     if (title != null) {
       if (backOnTap != null) {
         return Stack(
@@ -53,23 +57,18 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget  {
                   ),
                   Text(
                     'Back',
-                    style: TextStyle(
-                      color: Color(0xFF5DB075),
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400,
+                    style: textStyles.accentTextStyle(
+                      size: 17.0,
                     ),
                   ),
                 ],
               ),
             ),
             Align(
-              alignment: Alignment.center,
               child: Text(
                 title,
-                style: TextStyle(
-                  color: Color(0xFF494949),
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                style: textStyles.titleTextStyle(
+                  size: 18.0,
                 ),
               ),
             ),
@@ -79,10 +78,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget  {
 
       return Text(
         title,
-        style: TextStyle(
-          color: Color(0xFF494949),
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
+        style: textStyles.titleTextStyle(
+          size: 18.0,
         ),
       );
     }
@@ -107,10 +104,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget  {
                   ),
                   Text(
                     'Back',
-                    style: TextStyle(
-                      color: Color(0xFF5DB075),
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400,
+                    style: textStyles.accentTextStyle(
+                      size: 17.0,
                     ),
                   ),
                 ],

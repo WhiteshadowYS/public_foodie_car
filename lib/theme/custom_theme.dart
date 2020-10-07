@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import 'package:my_catalog/res/const.dart';
 
 import 'package:my_catalog/theme/data/default_theme.dart';
@@ -7,15 +5,13 @@ import 'package:my_catalog/theme/data/default_theme.dart';
 import 'package:my_catalog/theme/models/appvesto_theme.dart';
 import 'package:my_catalog/theme/models/appvesto_colors.dart';
 import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
-
-import 'package:my_catalog/theme/interfaces/i_appvesto_colors.dart';
-import 'package:my_catalog/theme/interfaces/i_appvesto_text_theme.dart';
+import 'package:my_catalog/theme/models/colors_dto.dart';
 
 class CustomTheme {
   static const String tag = '[CustomTheme]';
 
   CustomTheme._privateConstructor() {
-    _theme = lightTheme;
+    _theme = defaultTheme;
   }
 
   static final CustomTheme _instance = CustomTheme._privateConstructor();
@@ -24,22 +20,39 @@ class CustomTheme {
 
   AVTheme _theme;
 
-  Never setNewTheme(AVTheme thm) {
+  void setNewTheme(AVTheme thm) {
     logger.i('$tag => setNewTheme() => theme => ${thm.themeName}');
     _theme = thm;
   }
 
-  Never setCustomTheme({@required String themeName, AVColors colors, AVTextStyles textStyles}) {
-    logger.i('$tag => setCustomTheme() => themeName => $themeName}');
-    _theme.copyWith(
-      themeName: themeName,
-      colors: colors,
-      textStyles: textStyles,
+  void setColorsFromJson(Map<String, dynamic> json) {
+    logger.i('$tag => <setColorsFromJson()> => json => $json');
+    final AVColors newColors = colors.fromColorsDTO(ColorsDTO.fromJson(json));
+
+    _theme = _theme.copyWith(
+      colors: newColors,
+      textStyles: textStyles.copyWith(
+        titleTextColor: newColors.font,
+        mainTextColor: newColors.minorFont,
+        accentTextColor: newColors.accentFont,
+        additionalTextColor: newColors.buttonFont,
+      ),
     );
   }
 
-  static IAVColors get colors => instance._theme.colors;
+  void setFontFamily(String fontFamily) {
+    logger.i('$tag => <setFontFamily()> => fontFamily => $fontFamily');
+    _theme.copyWith(
+      textStyles: textStyles.copyWith(fontFamily: fontFamily),
+    );
+  }
 
-  static IAVTextStyles get textStyles => instance._theme.textStyles;
+  void setDefaultTheme() {
+    logger.i('$tag => <setDefaultTheme()>');
+    _theme = defaultTheme;
+  }
 
+  static AVColors get colors => instance._theme.colors;
+
+  static AVTextStyles get textStyles => instance._theme.textStyles;
 }
