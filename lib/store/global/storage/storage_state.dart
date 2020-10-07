@@ -63,7 +63,6 @@ class StorageState {
   }
 
   StorageState _setOpenedStoreId(SetOpenedStoreIdAction action) {
-    print('SetOpenedStoreIdAction');
     if (action.storeId == null) return this;
 
     return copyWith(
@@ -72,7 +71,6 @@ class StorageState {
   }
 
   StorageState _setStoresHistory(SetStoresHistoryAction action) {
-    print('SetStoresHistoryAction');
     if (action.storesHistory == null || action.storesHistory.isEmpty) return this;
 
     return copyWith(
