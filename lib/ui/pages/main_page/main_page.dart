@@ -11,7 +11,6 @@ import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/main_page/main_page_vm.dart';
 import 'package:my_catalog/widgets/links_button.dart';
 import 'package:my_catalog/widgets/main_button.dart';
-import 'file:///C:/Users/AppVesto/IdeaProjects/my_catalog/lib/ui/pages/main_page/widgets/catalog_text_field.dart';
 
 import 'widgets/catalog_id_search.dart';
 import 'widgets/catalog_list.dart';
