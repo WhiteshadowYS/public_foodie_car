@@ -4,7 +4,7 @@ import 'package:my_catalog/models/models/storage_model/settings/footer_button_mo
 const List<ProductModel> dummyProducts = [
   ProductModel(
     id: 0,
-    imageLink: 'https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg!',
+    imageLink: 'https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg',
     galleryImagesLinks: [
       'https://ichef.bbci.co.uk/news/1024/cpsprodpb/67CF/production/_108857562_mediaitem108857561.jpg'
           'https://www.allaboutbirds.org/guide/assets/photo/64802871-480px.jpg',
@@ -93,8 +93,8 @@ const List<ProductModel> dummyProducts = [
     },
   ),
   ProductModel(
-    id: 2,
-    imageLink: 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg',
+    id: 3,
+    imageLink: 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.j   pg',
     galleryImagesLinks: [
       'https://cdn.mos.cms.futurecdn.net/JzqhuEDTRfCZKMKHUxPySB.jpg'
           'https://i.dailymail.co.uk/1s/2019/11/18/16/21162158-0-image-a-44_1574095086222.jpg',
