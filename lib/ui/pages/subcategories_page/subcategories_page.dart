@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/subcategories_page/subcategories_page_vm.dart';
+import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
 
 class SubcategoriesPage extends StatelessWidget {
   SubcategoriesPage() : super(key: Key('SubcategoriesPage'));
@@ -12,6 +13,7 @@ class SubcategoriesPage extends StatelessWidget {
       converter: SubcategoriesPageVM.fromStore,
       builder: (BuildContext context, vm) {
         return MainLayout(
+          bottomBar: BottomBar(key: 'SubCategoriesBottomBar'),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

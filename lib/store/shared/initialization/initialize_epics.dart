@@ -45,7 +45,7 @@ class InitializeEpics {
   }
 
   static Stream<dynamic> _startPeriodicStream(EpicStore<AppState> store) {
-    return Stream.periodic(Duration(seconds: 15), (int circle) {
+    return Stream.periodic(Duration(minutes: 1), (int circle) {
       logger.d('$tag => [_startPeriodicStream] => '
           'circle: $circle, '
           'openedStoreId: ${store.state.storageState.openedStoreId}, '

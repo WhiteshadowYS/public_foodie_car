@@ -11,6 +11,7 @@ import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/theme/models/appvesto_colors.dart';
 import 'package:my_catalog/ui/shared/splash_screen/widgets/splash_loader.dart';
 
 
@@ -48,8 +49,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AVColors _colors = CustomTheme.colors;
+
     return Scaffold(
-      backgroundColor: CustomTheme.colors.accentColor,
+      backgroundColor: _colors.background,
       body: Directionality(
         textDirection: TextDirection.ltr,
         child: Column(
@@ -67,9 +70,9 @@ class _SplashScreenState extends State<SplashScreen> {
             /// which makes indents of 25% of the width of the screen.
             SplashLoader(
               duration: const Duration(seconds: 4),
-              color: AppColors.kGreen,
+              color: _colors.primaryColor,
               padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.25),
-              backColor: AppColors.kGreyTwo.withOpacity(0.5),
+              backColor: _colors.accentColor.withOpacity(0.5),
             ),
             const Spacer(),
           ],
