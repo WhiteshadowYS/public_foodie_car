@@ -5,7 +5,6 @@ import 'package:my_catalog/res/const.dart';
 class CatalogTextField extends StatefulWidget {
   final void Function(String) onChange;
   final void Function(String) onSubmitted;
-  final TextEditingController controller;
 
   final String labelText;
 
@@ -18,7 +17,6 @@ class CatalogTextField extends StatefulWidget {
 
   CatalogTextField({
     @required this.onChange,
-    @required this.controller,
     this.textStyle,
     this.onSubmitted,
     this.labelText,
@@ -76,7 +74,6 @@ class _CatalogTextFieldState extends State<CatalogTextField> {
               cursorWidth: 2.0,
               style: textStyle,
               onSubmitted: widget.onSubmitted,
-              controller: widget.controller,
               textInputAction: TextInputAction.none,
               decoration: InputDecoration(
                 errorStyle: TextStyle(fontSize: 14),

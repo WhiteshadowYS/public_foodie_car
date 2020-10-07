@@ -6,13 +6,11 @@ import 'package:my_catalog/res/const.dart';
 import 'catalog_text_field.dart';
 
 class CatalogIdSearchTextField extends StatefulWidget {
-  final TextEditingController textEditingController;
   final void Function(String) onSubmitted;
   final void Function(String) onChanged;
   final bool error;
 
   CatalogIdSearchTextField({
-    @required this.textEditingController,
     @required this.onSubmitted,
     @required this.onChanged,
     @required this.error,
@@ -31,7 +29,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
         alignment: Alignment.topRight,
         children: [
           AnimatedContainer(
-            duration: MILLISECONDS_900,
+            duration: widget.error ? MILLISECONDS_500 : MILLISECONDS_300,
             height: 50.0,
             alignment: widget.error ? Alignment.topRight : Alignment.bottomRight,
             child: Container(
@@ -61,7 +59,6 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
           Padding(
             padding: const EdgeInsets.only(top: 24.0),
             child: CatalogTextField(
-              controller: widget.textEditingController,
               onChange: widget.onChanged,
               onSubmitted: widget.onSubmitted,
               labelText: EXAMPLE_ID,

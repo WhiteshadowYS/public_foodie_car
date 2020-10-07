@@ -25,7 +25,6 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   bool _error = false;
-  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +43,13 @@ class _MainPageState extends State<MainPage> {
                 Text(dictionary.enterCatalogId, style: CustomTheme.textStyles.titleTextStyle()),
                 // TODO(Andrey): Add textField;
                 CatalogIdSearchTextField(
-                  textEditingController: _textEditingController,
-                  onSubmitted: (string) => _onSubmitted(string, vm),
-                  onChanged: _onChanged,
+                  onSubmitted: (String value) => _onSubmitted(value, vm),
+                  onChanged: (String value) => _onChanged(value, vm),
                   error: _error,
                 ),
                 MainButton(
                   title: dictionary.viewCatalog,
-                  onTap: () => _onSubmitted(_textEditingController.text, vm),
+                  onTap: () => _onSubmitted(vm.catalogId, vm),
                   key: 'MainPageButton',
                 ),
                 const SizedBox(height: 24.0),
@@ -70,12 +68,13 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void _onChanged(String value) {
+  void _onChanged(String value, MainPageVM mainPageVM) {
     if (_error == true) {
       _error = false;
       setState(() {});
       return;
     }
+    mainPageVM.saveCatalogId(value);
   }
 
   void _onSubmitted(String value, MainPageVM mainPageVM) {
@@ -86,6 +85,7 @@ class _MainPageState extends State<MainPage> {
       setState(() {});
       return;
     }
+
     mainPageVM.navigateToTermsPage();
   }
 }
