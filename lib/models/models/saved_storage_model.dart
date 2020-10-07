@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 
 part 'saved_storage_model.g.dart';
 
@@ -10,10 +10,12 @@ part 'saved_storage_model.g.dart';
   explicitToJson: true,
 )
 class SavedStorageModel {
+  final String id;
   final String locale;
   final StorageModel storage;
 
   const SavedStorageModel({
+    @required this.id,
     @required this.storage,
     @required this.locale,
   });
