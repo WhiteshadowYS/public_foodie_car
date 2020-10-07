@@ -48,7 +48,7 @@ class BottomBarList extends StatelessWidget {
     }
     switch (buttonType) {
       case PageTypes.HOME_TYPE:
-        return RouteService.instance.currentRoute == Routes.categories;
+        return RouteService.instance.currentRoute == Routes.catalogs;
       case PageTypes.SETTINGS_TYPE:
         return RouteService.instance.currentRoute == Routes.settings;
       case PageTypes.LOGOUT_TYPE:

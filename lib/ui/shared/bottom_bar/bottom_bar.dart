@@ -42,7 +42,7 @@ class _BottomBarState extends State<BottomBar> {
   void _onTap(String type, BottomBarVM vm) {
     switch (type) {
       case PageTypes.HOME_TYPE:
-        vm.navigateCategoriesPage();
+        vm.navigateCatalogPage();
         break;
       case PageTypes.SETTINGS_TYPE:
         vm.navigateToSettingsPage();

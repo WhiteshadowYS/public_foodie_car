@@ -9,9 +9,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.logoUrl,
     this.backOnTap,
-  })
-      : assert(!(logoUrl != null && title != null) && !(logoUrl == null && title == null)),
-        preferredSize = Size.fromHeight(height),
+  })  : preferredSize = Size.fromHeight(height),
         super(key: Key(key));
 
   @override

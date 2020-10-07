@@ -7,13 +7,13 @@ import 'package:redux/redux.dart';
 
 class BottomBarVM {
   final List<FooterButtonModel> footerButtons;
-  final void Function() navigateCategoriesPage;
+  final void Function() navigateCatalogPage;
   final void Function() navigateToSettingsPage;
   final void Function() navigateToMainPage;
 
   BottomBarVM({
     @required this.footerButtons,
-    @required this.navigateCategoriesPage,
+    @required this.navigateCatalogPage,
     @required this.navigateToMainPage,
     @required this.navigateToSettingsPage,
   });
@@ -22,7 +22,7 @@ class BottomBarVM {
     return BottomBarVM(
       // TODO(Daniil): Use selector for this
       footerButtons: dummyButtons,
-      navigateCategoriesPage: RouteSelectors.gotoCategoriesPage(store),
+      navigateCatalogPage: RouteSelectors.gotoCatalogsPage(store),
       navigateToMainPage: RouteSelectors.gotoMainPage(store),
       navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
     );
