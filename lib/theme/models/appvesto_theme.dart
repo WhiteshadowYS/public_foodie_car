@@ -1,4 +1,5 @@
 import 'package:my_catalog/theme/models/appvesto_colors.dart';
+import 'package:my_catalog/theme/models/appvesto_edge_insets.dart';
 import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
 
 import 'package:my_catalog/theme/interfaces/i_appvesto_theme.dart';
@@ -6,14 +7,11 @@ import 'package:my_catalog/theme/interfaces/i_appvesto_colors.dart';
 import 'package:my_catalog/theme/interfaces/i_appvesto_text_theme.dart';
 import 'package:my_catalog/theme/interfaces/i_appvesto_edge_insets.dart';
 
-class AVTheme implements IAVTheme {
+class AVTheme {
   final String themeName;
-  @override
-  IAVColors colors;
-  @override
-  IAVTextStyles textStyles;
-  @override
-  IAVEdgeInsets edgeInsets;
+  AVColors colors;
+  AVTextStyles textStyles;
+  AVEdgeInsets edgeInsets;
 
   AVTheme({
     this.themeName,
@@ -27,13 +25,13 @@ class AVTheme implements IAVTheme {
     String themeName,
     AVColors colors,
     AVTextStyles textStyles,
-    AVTextStyles edgeInsets,
+    IAVEdgeInsets edgeInsets,
   }) {
     return AVTheme(
       colors: colors ?? this.colors,
       themeName: themeName ?? this.themeName,
       textStyles: textStyles ?? this.textStyles,
-      edgeInsets: textStyles ?? this.edgeInsets,
+      edgeInsets: edgeInsets ?? this.edgeInsets,
     );
   }
 }
