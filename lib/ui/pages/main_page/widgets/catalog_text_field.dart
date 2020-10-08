@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
 class CatalogTextField extends StatefulWidget {
   final void Function(String) onChange;
@@ -50,13 +51,12 @@ class _CatalogTextFieldState extends State<CatalogTextField> {
       child: Stack(
         alignment: Alignment.topCenter,
         children: <Widget>[
-          AnimatedContainer(
+          Container(
             height: 50.0,
-            duration: MILLISECONDS_300,
             alignment: Alignment.center,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: AppColors.kLightGrey,
+              color: CustomTheme.colors.accentColor.withOpacity(0.1),
               border: Border.all(color: AppColors.kGrey.withOpacity(0.3)),
               borderRadius: BorderRadius.circular(10.0),
             ),
@@ -74,7 +74,6 @@ class _CatalogTextFieldState extends State<CatalogTextField> {
               cursorWidth: 2.0,
               style: textStyle,
               onSubmitted: widget.onSubmitted,
-              textInputAction: TextInputAction.none,
               decoration: InputDecoration(
                 errorStyle: TextStyle(fontSize: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,

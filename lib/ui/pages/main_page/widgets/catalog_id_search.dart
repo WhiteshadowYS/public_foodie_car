@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
 import 'catalog_text_field.dart';
 
@@ -38,7 +39,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
               width: 150.0,
               height: 22.0,
               decoration: BoxDecoration(
-                color: AppColors.kRed.withRed(228),
+                color: CustomTheme.colors.errorColor.withOpacity(widget.error ? 1.0 : 0.0),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(64),
                   bottomRight: Radius.circular(32),
@@ -51,7 +52,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
                   FlutterDictionary.instance.language.mainPageDictionary.errorID,
                   textAlign: TextAlign.center,
                   // TODO(Andrey): Add textStyle;
-                  style: TextStyle(color: AppColors.kWhite, fontSize: 12),
+                  style: CustomTheme.textStyles.buttonTextStyle(size: 8),
                 ),
               ),
             ),
