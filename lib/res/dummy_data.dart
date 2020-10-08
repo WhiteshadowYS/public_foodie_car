@@ -138,19 +138,39 @@ const List<DummyFile> dummyFiles = [
   DummyFile(
     id: 0,
     type: 'VIDEO',
-    fileUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    fileUrl: 'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     languages: {
       'HE': {
-        'name': '#4 Name he',
-        'description': '#4 Description he',
-        'desc2': '#4 Description2 he',
-        'points': ['point1', 'point2', 'point3']
+        'name': '#1 Video Name he',
       },
       'EN': {
-        'name': '#4 Name  en',
-        'description': '#4 Description  en',
-        'desc2': '#4 Description2 en',
-        'points': ['point1', 'point2', 'point3']
+        'name': '#1 Video Name  en',
+      }
+    },
+  ),
+  DummyFile(
+    id: 1,
+    type: 'IMAGE',
+    fileUrl: 'https://ichef.bbci.co.uk/images/ic/640x360/p01gz8pp.jpg',
+    languages: {
+      'HE': {
+        'name': '#2 Image Name he',
+      },
+      'EN': {
+        'name': '#2 Image Name  en',
+      }
+    },
+  ),
+  DummyFile(
+    id: 2,
+    type: 'PDF',
+    fileUrl: 'http://www.orimi.com/pdf-test.pdf',
+    languages: {
+      'HE': {
+        'name': '#3 PDF Name he',
+      },
+      'EN': {
+        'name': '#3 PDF Name  en',
       }
     },
   ),

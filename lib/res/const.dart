@@ -2,6 +2,8 @@ import 'package:logger/logger.dart';
 
 final Logger logger = Logger();
 
+const Duration SECONDS_1 = Duration(seconds: 1);
+
 const Duration MILLISECONDS_200 = Duration(milliseconds: 200);
 const Duration MILLISECONDS_300 = Duration(milliseconds: 300);
 const Duration MILLISECONDS_500 = Duration(milliseconds: 500);
@@ -33,4 +35,10 @@ class PageTypes {
   static const String SETTINGS_TYPE = 'SETTINGS';
   static const String SWITCH_TYPE = 'SWITCH';
   static const String LOGOUT_TYPE = 'LOGOUT';
+}
+
+class FileTypes{
+  static const IMAGE_TYPE = 'IMAGE';
+  static const VIDEO_TYPE = 'VIDEO';
+  static const PDF_TYPE = 'PDF_TYPE';
 }

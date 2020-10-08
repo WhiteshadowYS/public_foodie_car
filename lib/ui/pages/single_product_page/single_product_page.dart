@@ -34,7 +34,7 @@ class SingleProductPage extends StatelessWidget {
               ),
               RaisedButton(
                 child: Text('File preview dialog'),
-                onPressed: () => vm.filePreview(dummyFiles.first),
+                onPressed: () => vm.filePreview(dummyFiles[0]),
               ),
             ],
           ),
