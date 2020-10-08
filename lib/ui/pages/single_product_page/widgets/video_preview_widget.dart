@@ -76,7 +76,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
             ),
             VideoProgressIndicator(
               _controller,
-              allowScrubbing: true,
+              allowScrubbing: _controller.value.duration.compareTo(_controller.value.position) == 1,
               colors: VideoProgressColors(
                 playedColor: CustomTheme.colors.primaryColor,
                 backgroundColor: CustomTheme.colors.accentColor,
@@ -86,8 +86,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
         ),
       );
     } else {
-      // If the VideoPlayerController is still initializing, show a
-      // loading spinner.
+      // If the VideoPlayerController is still initializing, show a loader
       return Image.asset(
         ImageAssets.LOADING,
         color: CustomTheme.colors.primaryColor,
