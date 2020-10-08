@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:my_catalog/adapters/get_check_id_adapter.dart';
 import 'package:my_catalog/adapters/get_data_adapter.dart';
@@ -47,10 +48,67 @@ class StorageRepository extends Repository {
 
     final List decodedData = jsonDecode(storesJson);
 
-    return decodedData.map((item) => SavedStorageModel.fromJson(item)).toList();
+    return decodedData.map<SavedStorageModel>((item) => SavedStorageModel.fromJson(item)).toList();
+  }
+
+  Future<void> updateStoresHistory({
+    @required String id,
+    @required String locale,
+    @required StorageModel storageModel,
+  }) async {
+    final SavedStorageModel model = SavedStorageModel(
+      id: id,
+      locale: locale ?? '',
+      storage: storageModel,
+    );
+    final String json = await LocalStorageService.instance.getValueByKey(StorageKeys.stores);
+
+    if (json == null || json == '') {
+      await _overrideStoresHistoryWithModel(model);
+      return;
+    }
+
+    await _replaceStoreInHistory(model, json);
+    return;
   }
 
   Future<String> getOpenedStoreId() async {
     return LocalStorageService.instance.getValueByKey(StorageKeys.openedStoreId);
+  }
+
+  Future<void> _overrideStoresHistoryWithModel(SavedStorageModel model) async {
+    final String json = jsonEncode(<Map>[model.toJson()]);
+
+    await LocalStorageService.instance.saveValueByKey(StorageKeys.stores, json);
+  }
+
+  Future<void> _addStoreToHistory(SavedStorageModel model, String json) async {
+    final List<SavedStorageModel> history = jsonDecode(json).map<SavedStorageModel>((Map json) {
+      return SavedStorageModel.fromJson(json);
+    }).toList();
+
+    json = jsonEncode(history..add(model));
+    await LocalStorageService.instance.saveValueByKey(StorageKeys.stores, json);
+  }
+
+  Future<void> _replaceStoreInHistory(SavedStorageModel model, String json) async {
+    final List<SavedStorageModel> history = jsonDecode(json).map<SavedStorageModel>((Map json) {
+      return SavedStorageModel.fromJson(json);
+    }).toList();
+
+    final int index = history.indexWhere((_model) {
+      return _model.id == model.id;
+    });
+
+    if (index == -1) {
+      await _addStoreToHistory(model, json);
+      return;
+    }
+
+    history[index] = model;
+
+    json = jsonEncode(history);
+
+    await LocalStorageService.instance.saveValueByKey(StorageKeys.stores, json);
   }
 }

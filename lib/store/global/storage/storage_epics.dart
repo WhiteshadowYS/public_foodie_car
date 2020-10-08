@@ -38,19 +38,17 @@ class StorageEpics {
 
       if (response.error != null) {
         yield* Stream.value(ShowDialogAction(
-          dialog: ErrorDialog(
-            title: 'title',
-            message: 'message'
-          ),
+          dialog: ErrorDialog(title: 'title', message: 'message'),
         ));
-
       } else {
         for (SavedStorageModel storageModel in history) {
           final bool idCheck = storageModel.id == response.response.id;
           final bool lastUpdateCheck = storageModel.storage.lastUpdate < response.response.lastUpdate;
 
           if (idCheck && lastUpdateCheck) {
-            // GetData() by id;
+            yield* Stream.fromIterable([
+              GetDataAction(storageId: storageModel.id),
+            ]);
             // UpdateSavedStorageModel() by id and with new lastUpdate value; (in localStorage and AppState)
           }
         }
@@ -68,6 +66,8 @@ class StorageEpics {
       final StorageRepository repository = StorageRepository();
 
       final BaseHttpResponse<StorageModel> response = await repository.getStorageData(storageId: store.state.storageState.openedStoreId);
+
+      await repository.updateStoresHistory(id: action.storageId, locale: '', storageModel: response.response);
     });
   }
 

@@ -73,7 +73,7 @@ class InitializeEpics {
       }
 
       return EmptyAction();
-    }).where((_) => WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed);
+    }).where((action) => WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed && action.runtimeType != EmptyAction);
   }
 
   static Stream<dynamic> _changeInitializationLoading(bool value) {

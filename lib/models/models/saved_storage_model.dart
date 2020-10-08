@@ -20,6 +20,18 @@ class SavedStorageModel {
     @required this.locale,
   });
 
+  SavedStorageModel copyWith({
+    final String id,
+    final String locale,
+    final StorageModel storage,
+  }) {
+    return SavedStorageModel(
+      id: id ?? this.id,
+      locale: locale ?? this.locale,
+      storage: storage ?? this.storage,
+    );
+  }
+
   factory SavedStorageModel.fromJson(json) => _$SavedStorageModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SavedStorageModelToJson(this);
