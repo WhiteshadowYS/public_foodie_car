@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/models/models/dropdown_model.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
-import 'package:my_catalog/services/focus_service.dart';
+import 'file:///F:/src/projects/MyCatalog%20projects/MyCatalog/lib/services/focus_service/focus_service.dart';
 
 class NextButtonDropdown extends StatefulWidget {
   final String focusKeyValue;

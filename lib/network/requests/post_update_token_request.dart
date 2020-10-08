@@ -6,7 +6,6 @@ import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 import 'package:my_catalog/services/network_service/network_service.dart';
 import 'package:my_catalog/services/network_service/shared/request_builders.dart';
-import 'package:my_catalog/store/pages/home_page/storage_id_text_field_state/storage_id_text_field_state.dart';
 import 'package:my_catalog/ui/pages/main_page/main_page.dart';
 
 /// This request we use after every language change in application and after accepting terms.

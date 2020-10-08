@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/image_assets.dart';
-import 'package:my_catalog/services/dialog_service/models/loadier_dialog.dart';
+import 'package:my_catalog/services/dialog_service/models/default_loader_dialog.dart';
 
 class LoaderDialogWidget extends StatelessWidget {
-  final LoaderDialog loaderModel;
+  final DefaultLoaderDialog loaderModel;
 
   LoaderDialogWidget(this.loaderModel) : super(key: Key('LoaderDialogWidget'));
 

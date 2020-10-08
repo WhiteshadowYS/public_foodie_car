@@ -1,53 +1,60 @@
-// import 'dart:collection';
-// import 'package:example_redux/store/shared/loader/loader_actions.dart';
-// import 'package:example_redux/store/shared/interfaces/loader.dart';
-// import 'package:example_redux/store/shared/models/reducer.dart';
-// import 'package:flutter/cupertino.dart';
-//
-// enum LoaderKey {
-//   initializationLoading,
-//   loginLoading,
-// }
-//
-// class LoaderState {
-//   List<LoaderDialog> loaders;
-//
-//   LoaderState({
-//     @required this.loaders,
-//   });
-//
-//   factory LoaderState.initial() {
-//     return LoaderState(
-//       loaders: List(),
-//     );
-//   }
-//
-//   LoaderState copyWith({
-//     List<LoaderDialog> loaders,
-//   }) {
-//     return LoaderState(
-//       loaders: loaders ?? this.loaders,
-//     );
-//   }
-//
-//   LoaderState reducer(dynamic action) {
-//     return Reducer<LoaderState>(
-//       actions: HashMap.from({
-//         StartLoading: (dynamic action) => startLoading(action as StartLoading),
-//         StopLoading: (dynamic action) => stopLoading(action as StopLoading),
-//       }),
-//     ).updateState(action, this);
-//   }
-//
-//   LoaderState startLoading(StartLoading action) {
-//     return this.copyWith(
-//       loaders: this.loaders..add(action.loader),
-//     );
-//   }
-//
-//   LoaderState stopLoading(StopLoading action) {
-//     return this.copyWith(
-//       loaders: this.loaders..removeWhere((loader) => loader.loaderKey == action.loaderKey),
-//     );
-//   }
-// }
+import 'dart:collection';
+import 'package:flutter/cupertino.dart';
+import 'package:my_catalog/services/dialog_service/interfaces/i_loader.dart';
+import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
+import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
+import 'package:my_catalog/store/shared/reducer.dart';
+
+enum LoaderKey {
+  initializationLoading,
+  checkIdLoading,
+}
+
+class LoaderState {
+  List<ILoader> loaders;
+
+  LoaderState({
+    @required this.loaders,
+  });
+
+  factory LoaderState.initial() {
+    return LoaderState(
+      loaders: <ILoader>[],
+    );
+  }
+
+  LoaderState copyWith({
+    List<ILoader> loaders,
+  }) {
+    return LoaderState(
+      loaders: loaders ?? this.loaders,
+    );
+  }
+
+  LoaderState reducer(dynamic action) {
+    return Reducer<LoaderState>(
+      actions: HashMap.from({
+        StartLoadingAction: (dynamic action) => _startLoading(action as StartLoadingAction),
+        StopLoadingAction: (dynamic action) => _stopLoading(action as StopLoadingAction),
+      }),
+    ).updateState(action, this);
+  }
+
+  LoaderState _startLoading(StartLoadingAction action) {
+    final int index = loaders.indexWhere((e) => e.loaderKey == action.loader.loaderKey);
+
+    if (index == -1) {
+      return copyWith(
+        loaders: loaders..add(action.loader),
+      );
+    }
+
+    return this;
+  }
+
+  LoaderState _stopLoading(StopLoadingAction action) {
+    return copyWith(
+      loaders: loaders..removeWhere((loader) => loader.loaderKey == action.loaderKey),
+    );
+  }
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/ui/layouts/loader_layout/loader_layout.dart';
 
 class MainLayout extends StatelessWidget {
   final Widget child;
@@ -27,7 +28,10 @@ class MainLayout extends StatelessWidget {
         color: bgColor,
         width: double.infinity,
         height: double.infinity,
-        child: child,
+        child: LoaderLayout(
+          key: Key(key.toString() + 'Loader'),
+          child: child,
+        ),
       ),
     );
   }

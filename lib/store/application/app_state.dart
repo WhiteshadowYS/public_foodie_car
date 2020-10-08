@@ -4,21 +4,25 @@ import 'package:my_catalog/store/global/storage/storage_epics.dart';
 import 'package:my_catalog/store/global/storage/storage_state.dart';
 import 'package:my_catalog/store/shared/dialog_state/dialog_state.dart';
 import 'package:my_catalog/store/shared/initialization/initialize_epics.dart';
+import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:redux_epics/redux_epics.dart';
 
 class AppState {
   final DialogState dialogState;
   final StorageState storageState;
+  final LoaderState loaderState;
 
   AppState({
     @required this.dialogState,
     @required this.storageState,
+    @required this.loaderState,
   });
 
   factory AppState.initial() {
     return AppState(
       dialogState: DialogState.initial(),
       storageState: StorageState.initial(),
+      loaderState: LoaderState.initial(),
     );
   }
 
@@ -29,6 +33,7 @@ class AppState {
 
     return AppState(
       dialogState: state.dialogState.reducer(action),
+      loaderState: state.loaderState.reducer(action),
       storageState: state.storageState.reducer(action),
     );
   }

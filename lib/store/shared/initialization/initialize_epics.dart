@@ -2,11 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/services/dialog_service/models/default_loader_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/set_opened_store_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
 import 'package:my_catalog/store/shared/initialization/actions/start_initialization.dart';
+import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
+import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
+import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:my_catalog/utils/empty_action.dart';
 import 'package:redux_epics/redux_epics.dart';
@@ -23,6 +27,8 @@ class InitializeEpics {
     return actions.whereType<StartInitialization>().switchMap((action) async* {
       final StorageRepository repository = StorageRepository();
 
+      yield* _changeInitializationLoading(true);
+
       final String openedStorageId = await repository.getOpenedStoreId();
       final List<SavedStorageModel> history = await repository.getStoresHistory();
 
@@ -38,6 +44,12 @@ class InitializeEpics {
         ]);
       }
 
+      yield* Stream.value(StopLoadingAction(
+        loaderKey: LoaderKey.initializationLoading,
+      ));
+
+      yield* _changeInitializationLoading(false);
+
       yield* _homePageNavigationStream();
 
       yield* _startPeriodicStream(store);
@@ -51,7 +63,6 @@ class InitializeEpics {
           'openedStoreId: ${store.state.storageState.openedStoreId}, '
           'Application Status: ${WidgetsBinding.instance.lifecycleState}');
 
-
       // TODO: change if and value.
       final String tmpStorageId = '123456';
 
@@ -63,6 +74,21 @@ class InitializeEpics {
 
       return EmptyAction();
     }).where((_) => WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed);
+  }
+
+  static Stream<dynamic> _changeInitializationLoading(bool value) {
+    if (value) {
+      return Stream.value(StartLoadingAction(
+        loader: DefaultLoaderDialog(
+          state: true,
+          loaderKey: LoaderKey.initializationLoading,
+        ),
+      ));
+    }
+
+    return Stream.value(StopLoadingAction(
+      loaderKey: LoaderKey.initializationLoading,
+    ));
   }
 
   static Stream<dynamic> _homePageNavigationStream() {

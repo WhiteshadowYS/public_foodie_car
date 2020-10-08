@@ -1,4 +1,4 @@
-import 'package:my_catalog/services/dialog_service/models/loadier_dialog.dart';
+import 'package:my_catalog/services/dialog_service/models/default_loader_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/force_close_dialog_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
@@ -18,9 +18,4 @@ class DialogSelectors {
       store.dispatch(ForceCloseDialogAction());
     };
   }
-
-  static void Function() getShowLoadingDialogFunction(Store<AppState> store) {
-    return () => store.dispatch(ShowDialogAction(dialog: LoaderDialog()));
-  }
-
 }
