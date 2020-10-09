@@ -62,13 +62,6 @@ class _MainPageState extends State<MainPage> {
                   title: dictionary.viewCatalog,
                   onTap: () => _onSubmitted(text, vm),
                 ),
-                MainButton(
-                  key: 'MainPageButton',
-                  title: dictionary.viewCatalog,
-                  onTap: () {
-                    vm.checkId(text);
-                  },
-                ),
                 const SizedBox(height: 24.0),
                 LinksButton(
                   key: 'MainPageOwnCatalogButton',

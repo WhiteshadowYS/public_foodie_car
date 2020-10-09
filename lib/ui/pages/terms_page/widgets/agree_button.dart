@@ -29,23 +29,31 @@ class _AgreeButtonState extends State<AgreeButton> {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.ltr,
-      child: InkWell(
-        onTap: _onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AcceptCheckBox(
-                duration: widget.duration,
-                accept: accept,
-              ),
-              const SizedBox(width: 10.0),
-              Text(
-                widget.title,
-                style: CustomTheme.textStyles.titleTextStyle(size: 18.0),
-              ),
-            ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.15,
+        ),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(24.0),
+          splashColor: CustomTheme.colors.background,
+          highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.4),
+          onTap: _onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AcceptCheckBox(
+                  duration: widget.duration,
+                  accept: accept,
+                ),
+                const SizedBox(width: 10.0),
+                Text(
+                  widget.title,
+                  style: CustomTheme.textStyles.titleTextStyle(size: 18.0),
+                ),
+              ],
+            ),
           ),
         ),
       ),
