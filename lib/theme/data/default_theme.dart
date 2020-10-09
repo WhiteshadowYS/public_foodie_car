@@ -13,6 +13,7 @@ AVTheme defaultTheme = AVTheme(
 
     font: AppColors.kGrey,
     minorFont: AppColors.kLightGrey,
+    accentFont: AppColors.kGreen,
     background: AppColors.kWhite,
     footerIcons: AppColors.kGreen,
     footerIconsSelected: AppColors.kGreen,

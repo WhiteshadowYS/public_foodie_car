@@ -3,46 +3,28 @@ import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
-class CatalogTextField extends StatefulWidget {
+class CatalogTextField extends StatelessWidget {
   final void Function(String) onChange;
   final void Function(String) onSubmitted;
 
   final String labelText;
-
   final TextStyle textStyle;
-
   final String hintText;
   final TextStyle hintTextStyle;
-
   final TextInputType inputType;
+  final TextEditingController controller;
 
   CatalogTextField({
+    @required String key,
     @required this.onChange,
+    @required this.controller,
     this.textStyle,
     this.onSubmitted,
     this.labelText,
     this.hintText,
     this.hintTextStyle,
     this.inputType = TextInputType.number,
-  });
-
-  @override
-  _CatalogTextFieldState createState() => _CatalogTextFieldState();
-}
-
-class _CatalogTextFieldState extends State<CatalogTextField> {
-  TextStyle textStyle;
-
-  @override
-  void initState() {
-    widget.textStyle == null ? textStyle = TextStyle(fontWeight: FontWeight.bold) : textStyle = widget.textStyle;
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  }) : super(key: Key(key));
 
   @override
   Widget build(BuildContext context) {
@@ -53,36 +35,35 @@ class _CatalogTextFieldState extends State<CatalogTextField> {
         children: <Widget>[
           Container(
             height: 50.0,
-            alignment: Alignment.center,
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: CustomTheme.colors.accentColor.withOpacity(0.1),
-              border: Border.all(color: AppColors.kGrey.withOpacity(0.3)),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
+            color: CustomTheme.colors.background,
           ),
           Container(
             alignment: Alignment.center,
             height: 45.0,
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            decoration: BoxDecoration(
+              color: CustomTheme.colors.accentColor.withOpacity(0.1),
+              border: Border.all(color: AppColors.kGrey.withOpacity(0.3)),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
             child: TextField(
-              keyboardType: widget.inputType,
+              controller: controller,
+              keyboardType: inputType,
               cursorColor: AppColors.kGreen,
               onChanged: (String text) {
-                widget.onChange(text);
+                onChange(text);
               },
-              cursorWidth: 2.0,
               style: textStyle,
-              onSubmitted: widget.onSubmitted,
+              onSubmitted: onSubmitted,
               decoration: InputDecoration(
-                errorStyle: TextStyle(fontSize: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 alignLabelWithHint: true,
-                labelText: widget.labelText,
-                labelStyle: TextStyle(color: AppColors.kGrey.withOpacity(0.5)),
+                labelText: labelText,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
-                hintText: widget.hintText,
+                hintText: hintText,
+                hintStyle: hintTextStyle,
               ),
             ),
           ),

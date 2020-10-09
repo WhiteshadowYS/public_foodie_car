@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_catalog_model.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/ui/pages/main_page/main_page_vm.dart';
 import 'package:my_catalog/widgets/main_list_view.dart';
 
@@ -7,15 +8,23 @@ import 'catalogs_list_item.dart';
 
 class CatalogList extends StatefulWidget {
   final MainPageVM vm;
+  final Function(int) setId;
 
-  CatalogList({@required this.vm});
+  CatalogList({
+    @required String key,
+    @required this.vm,
+    this.setId,
+  }) : super(key: Key(key));
 
   @override
   _CatalogListState createState() => _CatalogListState();
 }
 
 class _CatalogListState extends State<CatalogList> {
-  final ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController(
+    initialScrollOffset: itemHeight,
+  );
+  static const itemHeight = 60.0;
 
   @override
   void initState() {
@@ -34,25 +43,42 @@ class _CatalogListState extends State<CatalogList> {
   Widget build(BuildContext context) {
     return MainListView(
       scrollController: _scrollController,
-      itemCount: widget.vm.catalogs.length,
-      itemHeight: 60.0,
-      height: 200.0,
-      itemBuilder: (BuildContext context, int index) => CatalogsListItem(
-        onTap: () {},
-        title: widget.vm.catalogs[index].id.toString(),
-        select: _checkSelect(index, widget.vm.catalogs),
-      ),
+      itemCount: widget.vm.catalogs.length + 1,
+      itemHeight: itemHeight,
+      height: 180.0,
+      itemBuilder: (BuildContext context, int index) {
+        if (index == 0 || index == widget.vm.catalogs.length) {
+          return SizedBox(
+            height: itemHeight,
+          );
+        }
+
+        return CatalogsListItem(
+          key: '${widget.key.toString()}Item$index',
+          onTap: () {
+            widget.setId(widget.vm.catalogs[index].id);
+            _scrollController.animateTo(
+              itemHeight * (index - 1),
+              duration: MILLISECONDS_400,
+              curve: Curves.easeOut,
+            );
+          },
+          title: widget.vm.catalogs[index].id.toString(),
+          isSelected: _checkSelect(index, widget.vm.catalogs),
+        );
+      },
     );
   }
 
   bool _checkSelect(int index, List<InfoCatalogModel> catalogs) {
-    if (_scrollController.offset == 0) {
-      return 0 == index;
+    final double _itemMinHeight = itemHeight * index;
+    final double _itemMaxHeight = _itemMinHeight + itemHeight;
+
+    if (_scrollController.offset + itemHeight >= _itemMinHeight && _scrollController.offset + itemHeight < _itemMaxHeight) {
+      return true;
     }
-    if (_scrollController.offset + 200 >= (catalogs.length) * 62.0) {
-      return catalogs.length - 1 == index;
-    }
-    return (_scrollController.offset / 60.0).round() + 1 == index;
+
+    return false;
   }
 
   void _updateState() => setState(() {});
