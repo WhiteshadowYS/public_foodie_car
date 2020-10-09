@@ -6,8 +6,11 @@ const Duration SECONDS_1 = Duration(seconds: 1);
 
 const Duration MILLISECONDS_200 = Duration(milliseconds: 200);
 const Duration MILLISECONDS_300 = Duration(milliseconds: 300);
+const Duration MILLISECONDS_400 = Duration(milliseconds: 400);
 const Duration MILLISECONDS_500 = Duration(milliseconds: 500);
 const Duration MILLISECONDS_900 = Duration(milliseconds: 900);
+
+const String WANNA_CREATE_MY_CATALOG_LINK = 'https://www.gettyimages.com/gi-resources/images/500px/983794168.jpg';
 
 
 const String TITLE = 'My catalog';

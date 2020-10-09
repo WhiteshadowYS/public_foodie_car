@@ -70,6 +70,23 @@ class AVTextStyles implements IAVTextStyles {
     );
   }
 
+  TextStyle linkTextStyle({
+    double size,
+    FontWeight fontWeight,
+    double decorationThickness,
+    Color decorationColor,
+  }) {
+    return TextStyle(
+      fontFamily: fontFamily,
+      fontSize: size,
+      color: _accentTextColor,
+      fontWeight: fontWeight,
+      decoration: TextDecoration.underline,
+      decorationThickness: decorationThickness,
+      decorationColor: decorationColor,
+    );
+  }
+
   TextStyle buttonTextStyle({double size, double height}) {
     return TextStyle(
       fontFamily: fontFamily,

@@ -7,7 +7,7 @@ class MainButton extends StatefulWidget {
   final String title;
   final void Function() onTap;
 
-  MainButton({
+   MainButton({
     @required String key,
     @required this.title,
     @required this.onTap,
