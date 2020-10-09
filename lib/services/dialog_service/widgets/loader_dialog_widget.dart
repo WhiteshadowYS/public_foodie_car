@@ -14,7 +14,7 @@ class LoaderDialogWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: AppColors.kBlack,
+      color: AppColors.kBlack.withOpacity(0.3),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

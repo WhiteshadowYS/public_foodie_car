@@ -3,11 +3,13 @@ import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 import 'package:my_catalog/models/models/storage_status_model.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/services/dialog_service/models/default_loader_dialog.dart';
+import 'package:my_catalog/services/dialog_service/models/empty_loader_dialog.dart';
 import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
+import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
@@ -68,13 +70,21 @@ class StorageEpics {
       final BaseHttpResponse<StorageModel> response = await repository.getStorageData(storageId: store.state.storageState.openedStoreId);
 
       await repository.updateStoresHistory(id: action.storageId, locale: '', storageModel: response.response);
+
+      final List<SavedStorageModel> history = await repository.getStoresHistory();
+
+      if (history != null && history.isNotEmpty) {
+        yield* Stream.fromIterable([
+          SetStoresHistoryAction(storesHistory: history),
+        ]);
+      }
     });
   }
 
   static Stream<dynamic> _changeCheckIdLoadingState(bool value) {
     if (value) {
       return Stream.value(StartLoadingAction(
-        loader: DefaultLoaderDialog(
+        loader: EmptyLoaderDialog(
           state: true,
           loaderKey: LoaderKey.checkIdLoading,
         ),

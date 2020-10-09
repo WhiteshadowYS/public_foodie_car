@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/services/dialog_service/models/default_loader_dialog.dart';
+import 'package:my_catalog/services/dialog_service/models/empty_loader_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/set_opened_store_id_action.dart';
@@ -79,7 +79,7 @@ class InitializeEpics {
   static Stream<dynamic> _changeInitializationLoading(bool value) {
     if (value) {
       return Stream.value(StartLoadingAction(
-        loader: DefaultLoaderDialog(
+        loader: EmptyLoaderDialog(
           state: true,
           loaderKey: LoaderKey.initializationLoading,
         ),

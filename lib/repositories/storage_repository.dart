@@ -10,7 +10,7 @@ import 'package:my_catalog/models/models/storage_status_model.dart';
 import 'package:my_catalog/network/requests/get_check_id_request.dart';
 import 'package:my_catalog/network/requests/get_data_request.dart';
 import 'package:my_catalog/repositories/shared/repository.dart';
-import 'file:///F:/src/projects/MyCatalog%20projects/MyCatalog/lib/services/local_storage_service.dart';
+import 'package:my_catalog/services/local_storage_service.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 
 /// This repository need for get data about storage from server.
