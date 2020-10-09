@@ -3,6 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 
 class AppGradient {
+  static LinearGradient get overflowTopWhiteGradient {
+    return  LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        AppColors.kWhite.withOpacity(1.0),
+        AppColors.kWhite.withOpacity(0.6),
+        AppColors.kWhite.withOpacity(0.3),
+        AppColors.kWhite.withOpacity(0.0),
+      ],
+    );
+  }
+  static LinearGradient get overflowBottomWhiteGradient {
+    return  LinearGradient(
+      end: Alignment.topCenter,
+      begin: Alignment.bottomCenter,
+      colors: [
+        AppColors.kWhite.withOpacity(1.0),
+        AppColors.kWhite.withOpacity(0.6),
+        AppColors.kWhite.withOpacity(0.3),
+        AppColors.kWhite.withOpacity(0.0),
+      ],
+    );
+  }
+
   static LinearGradient get overflowTopGradient {
     return  LinearGradient(
       begin: Alignment.topCenter,

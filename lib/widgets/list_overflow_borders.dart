@@ -21,6 +21,30 @@ class ListOverflowBorders extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
+        IgnorePointer(
+          child: SizedBox(
+            height: maxHeight,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                height: maxHeight / 4,
+                decoration: BoxDecoration(gradient: AppGradient.overflowTopWhiteGradient),
+              ),
+            ),
+          ),
+        ),
+        IgnorePointer(
+          child: SizedBox(
+            height: maxHeight,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: maxHeight / 4,
+                decoration: BoxDecoration(gradient: AppGradient.overflowBottomWhiteGradient),
+              ),
+            ),
+          ),
+        ),
         if (scrollDirection == Axis.vertical)
           IgnorePointer(
             child: AnimatedOpacity(
