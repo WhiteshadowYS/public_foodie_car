@@ -24,13 +24,20 @@ class MainLayout extends StatelessWidget {
       appBar: appBar,
       backgroundColor: bgColor,
       bottomNavigationBar: bottomBar,
-      body: Container(
-        color: bgColor,
-        width: double.infinity,
-        height: double.infinity,
-        child: LoaderLayout(
-          key: Key(key.toString() + 'Loader'),
-          child: child,
+      body: GestureDetector(
+        onTap: () {
+          if (FocusScope.of(context).hasFocus) {
+            FocusScope.of(context).unfocus();
+          }
+        },
+        child: Container(
+          color: bgColor,
+          width: double.infinity,
+          height: double.infinity,
+          child: LoaderLayout(
+            key: Key(key.toString() + 'Loader'),
+            child: child,
+          ),
         ),
       ),
     );

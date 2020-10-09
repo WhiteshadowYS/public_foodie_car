@@ -79,7 +79,6 @@ class _MainButtonState extends State<MainButton> {
       final String result = widget.validator(widget.controller.text);
 
       status = result == null || result == '';
-      print(status);
 
       setState(() {});
     }
