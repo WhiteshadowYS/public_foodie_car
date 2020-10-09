@@ -14,6 +14,10 @@ class RouteService {
 
   String get currentRoute => _history.last;
 
+  bool get canPop {
+    return NavigatorHolder.navigatorKey.currentState.canPop() && _history.length > 1;
+  }
+
   NavigateToAction pop() {
     if (_isDialogDisplayed()) return null;
     if (_history.isEmpty) return null;

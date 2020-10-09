@@ -43,6 +43,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
       alignment: Alignment.topRight,
       children: [
         AnimatedContainer(
+          curve: Curves.bounceOut,
           duration: hasError ? MILLISECONDS_500 : MILLISECONDS_300,
           height: 50.0,
           alignment: hasError ? Alignment.topRight : Alignment.bottomRight,
