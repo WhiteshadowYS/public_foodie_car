@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
-
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
@@ -23,6 +21,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  String text;
   bool _error = false;
 
   @override
@@ -42,22 +41,26 @@ class _MainPageState extends State<MainPage> {
                 Text(dictionary.enterCatalogId, style: CustomTheme.textStyles.titleTextStyle()),
                 // TODO(Andrey): Add textField;
                 CatalogIdSearchTextField(
-                  onSubmitted: (String value) => _onSubmitted(value, vm),
-                  onChanged: (String value) => _onChanged(value, vm),
+                  onSubmitted: (String value) {},
+                  onChanged: (String value) {
+                    text = value;
+                  },
                   error: _error,
                 ),
                 MainButton(
-                  title: dictionary.viewCatalog,
-                  onTap: () => _onSubmitted(vm.catalogId, vm),
                   key: 'MainPageButton',
+                  title: dictionary.viewCatalog,
+                  onTap: () {
+                    print('text: $text');
+                    vm.checkId(text);
+                  },
                 ),
                 const SizedBox(height: 24.0),
                 LinksButton(
                   key: 'LinksMainPageButton',
                   title: dictionary.iWantToCreate,
                   // TODO(Andrey): Add url;
-                  url:
-                      'https://www.google.com/search?q=котята&client=opera&hs=MBB&sxsrf=ALeKk007nQvMQdXtdu4N3La8YFKLRj-hyw:1601990957635&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjy0dmviaDsAhXUAhAIHX9JCGMQ_AUoAXoECBQQAw&biw=1880&bih=939',
+                  url: 'https://www.google.com',
                 ),
               ],
             ),
@@ -68,12 +71,12 @@ class _MainPageState extends State<MainPage> {
   }
 
   void _onChanged(String value, MainPageVM mainPageVM) {
-    if (_error == true) {
-      _error = false;
-      setState(() {});
-      return;
-    }
-    mainPageVM.saveCatalogId(value);
+    // if (_error == true) {
+    //   _error = false;
+    //   setState(() {});
+    //   return;
+    // }
+    // mainPageVM.checkStoreId(value);
   }
 
   void _onSubmitted(String value, MainPageVM mainPageVM) {

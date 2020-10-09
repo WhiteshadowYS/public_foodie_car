@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:my_catalog/models/dto/get_data_request_dto/get_data_request_dto.dart';
+import 'package:my_catalog/models/dto/get_check_id_request_dto/get_check_id_request_dto.dart';
 import 'package:my_catalog/network/shared/i_request.dart';
 import 'package:my_catalog/res/api.dart';
-import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 import 'package:my_catalog/services/network_service/network_service.dart';
 import 'package:my_catalog/services/network_service/shared/request_builders.dart';
-import 'package:my_catalog/store/pages/home_page/storage_id_text_field_state/storage_id_text_field_state.dart';
 import 'package:my_catalog/ui/pages/main_page/main_page.dart';
 
 /// This request we use after every route in application. Request will check a last update of storage data.
@@ -22,7 +20,7 @@ import 'package:my_catalog/ui/pages/main_page/main_page.dart';
 ///   *In last update name of param - [StorageIdTextFieldState.storageId].
 ///   - "api_version". This string param it is const variable in [Api] class.
 ///   *In last update name of param - [Api.version].
-class GetCheckIdRequest implements IRequest<Null> {
+class GetCheckIdRequest implements IRequest<BaseHttpResponse<GetCheckIdRequestDto>> {
   final String storageId;
 
   GetCheckIdRequest({
@@ -30,8 +28,7 @@ class GetCheckIdRequest implements IRequest<Null> {
   });
 
   @override
-  Future<Null> call() async {
-    // TODO(Yura Shevelev), Need update of data.
+  Future<BaseHttpResponse<GetCheckIdRequestDto>> call() async {
     final BaseHttpResponse response = await NetworkService.instance.request(
       RequestBuilders.get(
         url: Api.mockApiLink,
@@ -43,6 +40,6 @@ class GetCheckIdRequest implements IRequest<Null> {
       ),
     );
 
-    return Null;
+    return BaseHttpResponse<GetCheckIdRequestDto>(response: GetCheckIdRequestDto.fromJson(response.response['data']));
   }
 }
