@@ -4,6 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
+import 'package:my_catalog/res/const.dart';
 
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -24,6 +25,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   bool _error = false;
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,27 +39,36 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               children: [
                 const SizedBox(height: 24.0),
-                CatalogList(vm: vm),
+                CatalogList(
+                  key: 'MainPageCatalogList',
+                  vm: vm,
+                  setId: (int id) {
+                    controller.text = id.toString();
+                  },
+                ),
                 SizedBox(height: 50.h),
-                Text(dictionary.enterCatalogId, style: CustomTheme.textStyles.titleTextStyle()),
-                // TODO(Andrey): Add textField;
+                Text(
+                  dictionary.enterCatalogId,
+                  style: CustomTheme.textStyles.titleTextStyle(size: 18),
+                ),
                 CatalogIdSearchTextField(
+                  key: 'MainPageIdTextField',
+                  controller: controller,
                   onSubmitted: (String value) => _onSubmitted(value, vm),
                   onChanged: (String value) => _onChanged(value, vm),
                   error: _error,
                 ),
                 MainButton(
+                  key: 'MainPageSearchButton',
                   title: dictionary.viewCatalog,
                   onTap: () => _onSubmitted(vm.catalogId, vm),
-                  key: 'MainPageButton',
                 ),
                 const SizedBox(height: 24.0),
                 LinksButton(
-                  key: 'LinksMainPageButton',
+                  key: 'MainPageOwnCatalogButton',
                   title: dictionary.iWantToCreate,
                   // TODO(Andrey): Add url;
-                  url:
-                      'https://www.google.com/search?q=котята&client=opera&hs=MBB&sxsrf=ALeKk007nQvMQdXtdu4N3La8YFKLRj-hyw:1601990957635&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjy0dmviaDsAhXUAhAIHX9JCGMQ_AUoAXoECBQQAw&biw=1880&bih=939',
+                  url: WANNA_CREATE_MY_CATALOG_LINK,
                 ),
               ],
             ),

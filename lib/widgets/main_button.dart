@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
 class MainButton extends StatefulWidget {
   final String title;
   final void Function() onTap;
 
-  MainButton({
+   MainButton({
     @required String key,
     @required this.title,
     @required this.onTap,
@@ -29,7 +30,7 @@ class _MainButtonState extends State<MainButton> {
         width: double.infinity,
         duration: MILLISECONDS_300,
         decoration: BoxDecoration(
-          color: AppColors.kGreen.withGreen(_tap ? 160 : 180),
+          color: CustomTheme.colors.buttons.withOpacity(_tap ? 0.9 : 1),
           borderRadius: BorderRadius.circular(30.0),
         ),
         margin: EdgeInsets.all(16.0),
@@ -38,13 +39,7 @@ class _MainButtonState extends State<MainButton> {
           child: Text(
             widget.title,
             textAlign: TextAlign.center,
-            // TODO(Andrey): Add theme;
-            style: TextStyle(
-              fontFamily: 'Ubuntu',
-              fontSize: 18,
-              color: AppColors.kWhite,
-              fontWeight: FontWeight.w500,
-            ),
+            style: CustomTheme.textStyles.buttonTextStyle(size: 16.0),
           ),
         ),
       ),

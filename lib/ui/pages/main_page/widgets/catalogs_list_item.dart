@@ -5,17 +5,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/theme/models/appvesto_colors.dart';
+import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
 
 class CatalogsListItem extends StatefulWidget {
   final String title;
-  final bool select;
+  final bool isSelected;
   final void Function() onTap;
 
   CatalogsListItem({
+    @required String key,
     @required this.title,
-    @required this.select,
+    @required this.isSelected,
     @required this.onTap,
-  });
+  }) : super(key: Key(key));
 
   @override
   _CatalogsListItemState createState() => _CatalogsListItemState();
@@ -24,10 +28,13 @@ class CatalogsListItem extends StatefulWidget {
 class _CatalogsListItemState extends State<CatalogsListItem> {
   @override
   Widget build(BuildContext context) {
+    final AVColors colors = CustomTheme.colors;
+    final AVTextStyles textStyles = CustomTheme.textStyles;
+
     return InkWell(
       onTap: widget.onTap,
       child: Container(
-        color: AppColors.kBlack.withOpacity(0.0),
+        color: colors.background,
         height: 60.0,
         child: Column(
           children: [
@@ -38,23 +45,27 @@ class _CatalogsListItemState extends State<CatalogsListItem> {
                 children: [
                   AnimatedDefaultTextStyle(
                     duration: MILLISECONDS_300,
-                    style: TextStyle(
-                      color: widget.select ? AppColors.kGreen : AppColors.kBlack,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: widget.isSelected
+                        ? textStyles.accentTextStyle(size: 14)
+                        : textStyles.titleTextStyle(size: 14),
                     child: Text(widget.title),
                   ),
                   Transform.rotate(
                     angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
                     child: Icon(
                       Icons.keyboard_arrow_right,
-                      color: AppColors.kGrey,
+                      color: colors.accentColor.withOpacity(0.8),
                     ),
                   ),
                 ],
               ),
             ),
-            const Divider(thickness: 1.5, indent: 10.0, endIndent: 10.0),
+            Divider(
+              thickness: 1.5,
+              indent: 10.0,
+              endIndent: 10.0,
+              color: colors.accentColor.withOpacity(0.4),
+            ),
           ],
         ),
       ),
