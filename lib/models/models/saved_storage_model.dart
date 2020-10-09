@@ -10,11 +10,13 @@ part 'saved_storage_model.g.dart';
   explicitToJson: true,
 )
 class SavedStorageModel {
+  final int update;
   final String id;
   final String locale;
   final StorageModel storage;
 
   const SavedStorageModel({
+    @required this.update,
     @required this.id,
     @required this.storage,
     @required this.locale,
@@ -23,11 +25,13 @@ class SavedStorageModel {
   SavedStorageModel copyWith({
     final String id,
     final String locale,
+    final int update,
     final StorageModel storage,
   }) {
     return SavedStorageModel(
       id: id ?? this.id,
       locale: locale ?? this.locale,
+      update: update ?? this.update,
       storage: storage ?? this.storage,
     );
   }

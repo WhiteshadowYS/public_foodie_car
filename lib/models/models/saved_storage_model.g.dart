@@ -9,6 +9,7 @@ part of 'saved_storage_model.dart';
 SavedStorageModel _$SavedStorageModelFromJson(Map<String, dynamic> json) {
   return $checkedNew('SavedStorageModel', json, () {
     final val = SavedStorageModel(
+      update: $checkedConvert(json, 'update', (v) => v as int),
       id: $checkedConvert(json, 'id', (v) => v as String),
       storage: $checkedConvert(
           json, 'storage', (v) => v == null ? null : StorageModel.fromJson(v)),
@@ -20,6 +21,7 @@ SavedStorageModel _$SavedStorageModelFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SavedStorageModelToJson(SavedStorageModel instance) =>
     <String, dynamic>{
+      'update': instance.update,
       'id': instance.id,
       'locale': instance.locale,
       'storage': instance.storage?.toJson(),

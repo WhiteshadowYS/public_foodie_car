@@ -11,8 +11,4 @@ class StorageSelector {
   static void Function(String id) getCheckIdFunction(Store<AppState> store) {
     return (String id) => store.dispatch(CheckIdAction(storageId: id));
   }
-
-  static void Function() getDataFunction(Store<AppState> store) {
-    return () => store.dispatch(GetDataAction());
-  }
 }

@@ -6,12 +6,10 @@ import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux/redux.dart';
 
 class MainPageVM {
-  final void Function() navigateToTermsPage;
+  final void Function(String) checkId;
   final List<InfoCatalogModel> catalogs;
-  final void Function(String id) checkId;
 
   MainPageVM({
-    @required this.navigateToTermsPage,
     @required this.catalogs,
     @required this.checkId,
   });
@@ -20,7 +18,6 @@ class MainPageVM {
     return MainPageVM(
       checkId: StorageSelector.getCheckIdFunction(store),
       catalogs: dummyCatalogs,
-      navigateToTermsPage: RouteSelectors.gotoTermsPage(store),
     );
   }
 
