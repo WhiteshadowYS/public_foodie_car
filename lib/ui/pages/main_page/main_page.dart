@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
       converter: MainPageVM.fromStore,
       builder: (BuildContext context, MainPageVM vm) {
         return MainLayout(
-          bgColor: CustomTheme.colors.primaryColor,
+          bgColor: CustomTheme.colors.background,
           child: SingleChildScrollView(
             child: Column(
               children: [
