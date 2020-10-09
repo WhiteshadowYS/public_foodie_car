@@ -53,6 +53,7 @@ class _MainPageState extends State<MainPage> {
                   onTap: () {
                     print('text: $text');
                     vm.checkId(text);
+                    vm.navigateToTermsPage();
                   },
                 ),
                 const SizedBox(height: 24.0),
