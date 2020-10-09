@@ -1,5 +1,6 @@
 import 'package:my_catalog/dictionary/dictionary_classes/appbar_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/catalog_page_dictionary.dart';
+import 'package:my_catalog/dictionary/dictionary_classes/error_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/popup_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/setting_page_dictionary.dart';
@@ -10,6 +11,9 @@ const Language en = Language(
   termsPageDictionary: TermsPageDictionary(
     title: 'Terms and conditions',
     agree: 'I Agree',
+  ),
+  errorDictionary: ErrorDictionary(
+    isNumberError: 'Please enter number',
   ),
   mainPageDictionary: MainPageDictionary(
     enterCatalogId: 'Please enter a Catalog ID',

@@ -12,27 +12,29 @@ class CatalogsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, CatalogsPageVM>(
-        converter: CatalogsPageVM.fromStore,
-        builder: (BuildContext context, vm) {
-          return MainLayout(
-            appBar: MainAppBar(key: 'CatalogsAppBar', backOnTap: () {}),
-            bottomBar: BottomBar(key: 'CatalogsBottomBar'),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Catalogs Page'),
-                const SizedBox(height: 24.0),
-                RaisedButton(
-                  child: Text('To Categories Page'),
-                  onPressed: () => vm.navigateToCategoriesPage(),
-                ),
-                RaisedButton(
-                  child: Text('Error dialog'),
-                  onPressed: () => vm.errorDialog('Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!'),
-                ),
-              ],
-            ),
-          );
-        });
+      converter: CatalogsPageVM.fromStore,
+      builder: (BuildContext context, vm) {
+        return MainLayout(
+          appBar: MainAppBar(key: 'CatalogsAppBar', backOnTap: () {}),
+          bottomBar: BottomBar(key: 'CatalogsBottomBar'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Catalogs Page'),
+              const SizedBox(height: 24.0),
+              RaisedButton(
+                child: Text('To Categories Page'),
+                onPressed: () => vm.navigateToCategoriesPage(),
+              ),
+              RaisedButton(
+                child: Text('Error dialog'),
+                onPressed: () => vm.errorDialog(
+                    'Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

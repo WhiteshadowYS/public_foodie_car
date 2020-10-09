@@ -22,21 +22,23 @@ class _LinksButtonState extends State<LinksButton> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: _onTapDown,
-      onTapUp: _onTapUp,
-      onTapCancel: _onTapCancel,
-      child: AnimatedDefaultTextStyle(
-        duration: MILLISECONDS_300,
-        style: CustomTheme.textStyles.linkTextStyle(
-          size: 18.0,
-          fontWeight: FontWeight.bold,
-          decorationColor: _tap
-              ? CustomTheme.colors.accentFont.withOpacity(0.0)
-              : CustomTheme.colors.accentFont,
-        ),
-        child: Text(
-          widget.title,
+    return Center(
+      child: GestureDetector(
+        onTapDown: _onTapDown,
+        onTapUp: _onTapUp,
+        onTapCancel: _onTapCancel,
+        child: AnimatedDefaultTextStyle(
+          duration: MILLISECONDS_300,
+          style: CustomTheme.textStyles.linkTextStyle(
+            size: 18.0,
+            fontWeight: FontWeight.bold,
+            decorationColor: _tap
+                ? CustomTheme.colors.accentFont.withOpacity(0.0)
+                : CustomTheme.colors.accentFont,
+          ),
+          child: Text(
+            widget.title,
+          ),
         ),
       ),
     );

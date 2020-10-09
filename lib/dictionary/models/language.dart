@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/appbar_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/catalog_page_dictionary.dart';
+import 'package:my_catalog/dictionary/dictionary_classes/error_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/popup_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/setting_page_dictionary.dart';
@@ -13,6 +14,7 @@ class Language {
   final SettingPageDictionary settingPageDictionary;
   final CatalogPageDictionary catalogPageDictionary;
   final PopUpDictionary popUpDictionary;
+  final ErrorDictionary errorDictionary;
 
   const Language({
     @required this.termsPageDictionary,
@@ -21,5 +23,6 @@ class Language {
     @required this.settingPageDictionary,
     @required this.catalogPageDictionary,
     @required this.popUpDictionary,
+    @required this.errorDictionary,
   });
 }

@@ -6,13 +6,13 @@ import 'package:my_catalog/widgets/main_list_view.dart';
 
 import 'catalogs_list_item.dart';
 
-class CatalogList extends StatefulWidget {
-  final MainPageVM vm;
+class StoresList extends StatefulWidget {
+  final List<InfoCatalogModel> stores;
   final Function(int) setId;
 
-  CatalogList({
+  StoresList({
     @required String key,
-    @required this.vm,
+    @required this.stores,
     this.setId,
   }) : super(key: Key(key));
 
@@ -20,7 +20,7 @@ class CatalogList extends StatefulWidget {
   _CatalogListState createState() => _CatalogListState();
 }
 
-class _CatalogListState extends State<CatalogList> {
+class _CatalogListState extends State<StoresList> {
   final ScrollController _scrollController = ScrollController(
     initialScrollOffset: itemHeight,
   );
@@ -43,11 +43,11 @@ class _CatalogListState extends State<CatalogList> {
   Widget build(BuildContext context) {
     return MainListView(
       scrollController: _scrollController,
-      itemCount: widget.vm.catalogs.length + 1,
+      itemCount: widget.stores.length + 1,
       itemHeight: itemHeight,
       height: 180.0,
       itemBuilder: (BuildContext context, int index) {
-        if (index == 0 || index == widget.vm.catalogs.length) {
+        if (index == 0 || index == widget.stores.length) {
           return SizedBox(
             height: itemHeight,
           );
@@ -56,15 +56,15 @@ class _CatalogListState extends State<CatalogList> {
         return CatalogsListItem(
           key: '${widget.key.toString()}Item$index',
           onTap: () {
-            widget.setId(widget.vm.catalogs[index].id);
+            widget.setId(widget.stores[index].id);
             _scrollController.animateTo(
               itemHeight * (index - 1),
               duration: MILLISECONDS_400,
               curve: Curves.easeOut,
             );
           },
-          title: widget.vm.catalogs[index].id.toString(),
-          isSelected: _checkSelect(index, widget.vm.catalogs),
+          title: widget.stores[index].id.toString(),
+          isSelected: _checkSelect(index, widget.stores),
         );
       },
     );

@@ -7,10 +7,15 @@ class MainButton extends StatefulWidget {
   final String title;
   final void Function() onTap;
 
-   MainButton({
+  final String Function(String) validator;
+  final TextEditingController controller;
+
+  MainButton({
     @required String key,
     @required this.title,
     @required this.onTap,
+    this.validator,
+    this.controller,
   }) : super(key: Key(key));
 
   @override
@@ -18,19 +23,39 @@ class MainButton extends StatefulWidget {
 }
 
 class _MainButtonState extends State<MainButton> {
+  bool status = true;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.validator != null && widget.controller != null) {
+      widget.controller.addListener(_validation);
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (widget.validator != null && widget.controller != null) {
+      widget.controller.removeListener(_validation);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: CustomTheme.colors.primaryColor,
+        color: status ? CustomTheme.colors.primaryColor : Colors.grey,
         borderRadius: BorderRadius.circular(30.0),
       ),
       width: double.infinity,
-      margin: EdgeInsets.all(16.0),
+      margin: EdgeInsets.symmetric(
+        horizontal: 16.0,
+      ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: widget.onTap,
+          onTap: status ? widget.onTap : (){},
           splashColor: CustomTheme.colors.background.withOpacity(0.4),
           highlightColor: CustomTheme.colors.background.withOpacity(0.2),
           borderRadius: BorderRadius.circular(30.0),
@@ -39,17 +64,24 @@ class _MainButtonState extends State<MainButton> {
             child: Text(
               widget.title,
               textAlign: TextAlign.center,
-              // TODO(Andrey): Add theme;
-              style: TextStyle(
-                fontFamily: 'Ubuntu',
-                fontSize: 18,
-                color: AppColors.kWhite,
-                fontWeight: FontWeight.w500,
+              style: CustomTheme.textStyles.buttonTextStyle(
+                size: 18.0,
               ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  void _validation() {
+    if (widget.validator != null) {
+      final String result = widget.validator(widget.controller.text);
+
+      status = result == null || result == '';
+      print(status);
+
+      setState(() {});
+    }
   }
 }
