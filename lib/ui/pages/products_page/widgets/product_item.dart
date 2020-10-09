@@ -40,7 +40,6 @@ class ProductItem extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            // TODO(Daniil): Use theme text styles;
             title: Text(
               product.languages[currentLocale.toUpperCase()][NAME],
               style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
@@ -49,7 +48,7 @@ class ProductItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
                 product.languages[currentLocale.toUpperCase()][DESCRIPTION],
-                style: TextStyle(color: AppColors.kGrey),
+                style: CustomTheme.textStyles.mainTextStyle(size: 13.0),
               ),
             ),
             trailing: Transform.rotate(
