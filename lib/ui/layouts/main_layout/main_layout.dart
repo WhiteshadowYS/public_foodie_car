@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/ui/layouts/loader_layout/loader_layout.dart';
 
 class MainLayout extends StatelessWidget {
@@ -19,24 +20,27 @@ class MainLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomPadding: resizeToAvoidBottomPadding,
-      appBar: appBar,
-      backgroundColor: bgColor,
-      bottomNavigationBar: bottomBar,
-      body: GestureDetector(
-        onTap: () {
-          if (FocusScope.of(context).hasFocus) {
-            FocusScope.of(context).unfocus();
-          }
-        },
-        child: Container(
-          color: bgColor,
-          width: double.infinity,
-          height: double.infinity,
-          child: LoaderLayout(
-            key: Key(key.toString() + 'Loader'),
-            child: child,
+    return WillPopScope(
+      onWillPop: () async => RouteService.instance.canPop,
+      child: Scaffold(
+        resizeToAvoidBottomPadding: resizeToAvoidBottomPadding,
+        appBar: appBar,
+        backgroundColor: bgColor,
+        bottomNavigationBar: bottomBar,
+        body: GestureDetector(
+          onTap: () {
+            if (FocusScope.of(context).hasFocus) {
+              FocusScope.of(context).unfocus();
+            }
+          },
+          child: Container(
+            color: bgColor,
+            width: double.infinity,
+            height: double.infinity,
+            child: LoaderLayout(
+              key: Key(key.toString() + 'Loader'),
+              child: child,
+            ),
           ),
         ),
       ),

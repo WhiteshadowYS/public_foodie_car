@@ -63,6 +63,7 @@ class _MainPageState extends State<MainPage> {
                   style: CustomTheme.textStyles.titleTextStyle(size: 18),
                 ),
               ),
+              const SizedBox(height: 8.0),
               CatalogIdSearchTextField(
                 focusKeyValue: 'MainPageIdTextField',
                 focusService: _focusService,
