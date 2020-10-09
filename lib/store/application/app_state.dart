@@ -1,31 +1,28 @@
 import 'package:flutter/foundation.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/store/global/storage/storage_epics.dart';
 import 'package:my_catalog/store/global/storage/storage_state.dart';
-import 'package:my_catalog/store/pages/home_page/storage_id_text_field_state/storage_id_text_field_state.dart';
-
-import 'package:redux_epics/redux_epics.dart';
-
-import 'package:my_catalog/res/const.dart';
-
 import 'package:my_catalog/store/shared/dialog_state/dialog_state.dart';
-import 'package:my_catalog/store/shared/initialization/initialize_epic.dart';
+import 'package:my_catalog/store/shared/initialization/initialize_epics.dart';
+import 'package:my_catalog/store/shared/loader/loader_state.dart';
+import 'package:redux_epics/redux_epics.dart';
 
 class AppState {
   final DialogState dialogState;
   final StorageState storageState;
-  final StorageIdTextFieldState storageIdTextFieldState;
+  final LoaderState loaderState;
 
   AppState({
     @required this.dialogState,
     @required this.storageState,
-    @required this.storageIdTextFieldState,
+    @required this.loaderState,
   });
 
   factory AppState.initial() {
     return AppState(
       dialogState: DialogState.initial(),
       storageState: StorageState.initial(),
-      storageIdTextFieldState: StorageIdTextFieldState.initial(),
+      loaderState: LoaderState.initial(),
     );
   }
 
@@ -36,8 +33,8 @@ class AppState {
 
     return AppState(
       dialogState: state.dialogState.reducer(action),
+      loaderState: state.loaderState.reducer(action),
       storageState: state.storageState.reducer(action),
-      storageIdTextFieldState: state.storageIdTextFieldState.reducer(action),
     );
   }
 

@@ -3,21 +3,26 @@ import 'package:my_catalog/models/dto/get_data_request_dto/get_data_request_dto.
 import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 import 'package:my_catalog/network/requests/get_data_request.dart';
 import 'package:my_catalog/network/shared/i_request.dart';
+import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 
 /// Adapter for main request in application. [GetDataRequest].
 /// This adapter will convert [GetDataRequestDto] to [StorageModel].
-class GetDataAdapter implements IAdapter<StorageModel> {
+class GetDataAdapter implements IAdapter<BaseHttpResponse<StorageModel>> {
   @override
   final IRequest request;
 
   GetDataAdapter({this.request});
 
   @override
-  Future<StorageModel> call() async {
-    final GetDataRequestDto dto = await request();
+  Future<BaseHttpResponse<StorageModel>> call() async {
+    final BaseHttpResponse<GetDataRequestDto> response = await request();
 
-    final StorageModel model = StorageModel.fromJson(dto.toJson());
+    final StorageModel model = StorageModel.fromJson(
+      response.response.toJson(),
+    );
 
-    return model;
+    return BaseHttpResponse<StorageModel>(
+      response: model,
+    );
   }
 }

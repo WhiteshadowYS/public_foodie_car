@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
 
@@ -14,27 +15,20 @@ const List<ProductModel> dummyProducts = [
         'name': '#1 Name he',
         'description': '#1 Description he',
         'desc2': '#1 Description2 he',
-        'points': [
-          'point1',
-          'point2',
-          'point3'
-        ]
+        'points': ['point1', 'point2', 'point3']
       },
       'EN': {
         'name': '#1 Name  en',
         'description': '#1 Description  en',
         'desc2': '#1 Description2 en',
-        'points': [
-          'point1',
-          'point2',
-          'point3'
-        ]
+        'points': ['point1', 'point2', 'point3']
       }
     },
   ),
   ProductModel(
     id: 1,
-    imageLink: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/close-up-of-cat-wearing-sunglasses-while-sitting-royalty-free-image-1571755145.jpg',
+    imageLink:
+        'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/close-up-of-cat-wearing-sunglasses-while-sitting-royalty-free-image-1571755145.jpg',
     galleryImagesLinks: [
       'https://static.scientificamerican.com/sciam/cache/file/F1E90F3D-1FFD-4BA9-9DFA98AE647FA7D4_source.jpg'
           'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/close-up-of-cat-wearing-sunglasses-while-sitting-royalty-free-image-1571755145.jpg',
@@ -44,21 +38,13 @@ const List<ProductModel> dummyProducts = [
         'name': '#2 Name he',
         'description': '#2 Description he',
         'desc2': '#2 Description2 he',
-        'points': [
-          'point1',
-          'point2',
-          'point3'
-        ]
+        'points': ['point1', 'point2', 'point3']
       },
       'EN': {
         'name': '#2 Name  en',
         'description': '#2 Description  en',
         'desc2': '#2 Description2 en',
-        'points': [
-          'point1',
-          'point2',
-          'point3'
-        ]
+        'points': ['point1', 'point2', 'point3']
       }
     },
   ),
@@ -74,21 +60,13 @@ const List<ProductModel> dummyProducts = [
         'name': '#3 Name he',
         'description': '#3 Description he',
         'desc2': '#3 Description2 he',
-        'points': [
-          'point1',
-          'point2',
-          'point3'
-        ]
+        'points': ['point1', 'point2', 'point3']
       },
       'EN': {
         'name': '#3 Name  en',
         'description': '#3 Description  en',
         'desc2': '#3 Description2 en',
-        'points': [
-          'point1',
-          'point2',
-          'point3'
-        ]
+        'points': ['point1', 'point2', 'point3']
       }
     },
   ),
@@ -104,21 +82,13 @@ const List<ProductModel> dummyProducts = [
         'name': '#4 Name he',
         'description': '#4 Description he',
         'desc2': '#4 Description2 he',
-        'points': [
-          'point1',
-          'point2',
-          'point3'
-        ]
+        'points': ['point1', 'point2', 'point3']
       },
       'EN': {
         'name': '#4 Name  en',
         'description': '#4 Description  en',
         'desc2': '#4 Description2 en',
-        'points': [
-          'point1',
-          'point2',
-          'point3'
-        ]
+        'points': ['point1', 'point2', 'point3']
       }
     },
   ),
@@ -163,3 +133,59 @@ const List<FooterButtonModel> dummyButtons = [
     list: [],
   ),
 ];
+
+const List<DummyFile> dummyFiles = [
+  DummyFile(
+    id: 0,
+    type: 'VIDEO',
+    fileUrl: 'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    languages: {
+      'HE': {
+        'name': '#1 Video Name he',
+      },
+      'EN': {
+        'name': '#1 Video Name  en',
+      }
+    },
+  ),
+  DummyFile(
+    id: 1,
+    type: 'IMAGE',
+    fileUrl: 'https://ichef.bbci.co.uk/images/ic/640x360/p01gz8pp.jpg',
+    languages: {
+      'HE': {
+        'name': '#2 Image Name he',
+      },
+      'EN': {
+        'name': '#2 Image Name  en',
+      }
+    },
+  ),
+  DummyFile(
+    id: 2,
+    type: 'PDF',
+    fileUrl: 'http://www.orimi.com/pdf-test.pdf',
+    languages: {
+      'HE': {
+        'name': '#3 PDF Name he',
+      },
+      'EN': {
+        'name': '#3 PDF Name  en',
+      }
+    },
+  ),
+];
+
+class DummyFile {
+  final int id;
+  final String type;
+  final String fileUrl;
+  final Map<String, dynamic> languages;
+
+  const DummyFile({
+    @required this.id,
+    @required this.type,
+    @required this.fileUrl,
+    @required this.languages,
+  });
+}

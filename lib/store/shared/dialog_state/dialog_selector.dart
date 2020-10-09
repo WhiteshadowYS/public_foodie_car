@@ -1,9 +1,9 @@
+import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
-import 'package:my_catalog/services/dialog_service/models/loadier_dialog.dart';
-import 'package:my_catalog/services/dialog_service/models/notification_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/force_close_dialog_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
+import 'package:my_catalog/ui/pages/single_product_page/widgets/file_preview_dialog.dart';
 import 'package:redux/redux.dart';
 
 /// [DialogSelectors] it class with static functions for work with Dialogs from Pages.
@@ -21,11 +21,11 @@ class DialogSelectors {
     };
   }
 
-  static void Function() getShowLoadingDialogFunction(Store<AppState> store) {
-    return () => store.dispatch(ShowDialogAction(dialog: LoaderDialog()));
-  }
-
   static void Function(String message) getShowErrorDialogFunction(Store<AppState> store) {
     return (String message) => store.dispatch(ShowDialogAction(dialog: ErrorDialog(message: message)));
+  }
+
+  static void Function(DummyFile file ) getShowFilePreviewDialogFunction(Store<AppState> store) {
+    return (DummyFile file) => store.dispatch(ShowDialogAction(dialog: FilePreviewDialog(file: file)));
   }
 }

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/const.dart';
-
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
@@ -24,6 +22,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  String text;
   bool _error = false;
   final TextEditingController controller = TextEditingController();
 
@@ -61,13 +60,19 @@ class _MainPageState extends State<MainPage> {
                 MainButton(
                   key: 'MainPageSearchButton',
                   title: dictionary.viewCatalog,
-                  onTap: () => _onSubmitted(vm.catalogId, vm),
+                  onTap: () => _onSubmitted(text, vm),
+                ),
+                MainButton(
+                  key: 'MainPageButton',
+                  title: dictionary.viewCatalog,
+                  onTap: () {
+                    vm.checkId(text);
+                  },
                 ),
                 const SizedBox(height: 24.0),
                 LinksButton(
                   key: 'MainPageOwnCatalogButton',
                   title: dictionary.iWantToCreate,
-                  // TODO(Andrey): Add url;
                   url: WANNA_CREATE_MY_CATALOG_LINK,
                 ),
               ],
@@ -79,12 +84,12 @@ class _MainPageState extends State<MainPage> {
   }
 
   void _onChanged(String value, MainPageVM mainPageVM) {
-    if (_error == true) {
-      _error = false;
-      setState(() {});
-      return;
-    }
-    mainPageVM.saveCatalogId(value);
+    // if (_error == true) {
+    //   _error = false;
+    //   setState(() {});
+    //   return;
+    // }
+    // mainPageVM.checkStoreId(value);
   }
 
   void _onSubmitted(String value, MainPageVM mainPageVM) {
