@@ -28,7 +28,7 @@ class CatalogsPage extends StatelessWidget {
                 ),
                 RaisedButton(
                   child: Text('Error dialog'),
-                  onPressed: () => vm.errorDialog('Some error message!!!'),
+                  onPressed: () => vm.errorDialog('Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!Some error message!!!'),
                 ),
               ],
             ),

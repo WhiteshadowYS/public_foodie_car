@@ -90,7 +90,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
       return Image.asset(
         ImageAssets.LOADING,
         color: CustomTheme.colors.primaryColor,
-        height: 50.h,
+        height: 60.h,
       );
     }
   }

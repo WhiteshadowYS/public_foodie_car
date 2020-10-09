@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
+import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/file_preview_bottom_block.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/file_preview_dialog.dart';
@@ -17,37 +18,26 @@ class FilePreviewDialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: Center(
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 16.0),
-          constraints: BoxConstraints(
-            maxHeight: 600.h,
-            minHeight: 450.h,
+    return DialogLayout(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+            alignment: Alignment.topRight,
+            child: InkWell(
+              onTap: () => DialogService.instance.close(),
+              child: SVGImages().close(),
+            ),
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            color: CustomTheme.colors.background,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 23.0),
+            child: _getPreviewFileWidget(dialogModel.file.type, dialogModel.file.fileUrl),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                alignment: Alignment.topRight,
-                child: InkWell(
-                  onTap: () => DialogService.instance.close(),
-                  child: SVGImages().close(),
-                ),
-              ),
-              _getPreviewFileWidget(dialogModel.file.type, dialogModel.file.fileUrl),
-              FilePreviewBottomBlock(
-                  itemName: dialogModel.file.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()][NAME]),
-            ],
-          ),
-        ),
+          FilePreviewBottomBlock(
+              itemName: dialogModel.file.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()][NAME]),
+        ],
       ),
     );
   }
