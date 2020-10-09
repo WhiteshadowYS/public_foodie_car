@@ -33,8 +33,8 @@ class ProductItem extends StatelessWidget {
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(30.0),
               child: FadeInImage(
-                width: 50.w,
-                height: 50.w,
+                width: 50.h,
+                height: 50.h,
                 placeholder: AssetImage(ImageAssets.LOGO_PNG),
                 image: NetworkImage(product.imageLink),
                 fit: BoxFit.cover,
