@@ -18,47 +18,38 @@ class MainButton extends StatefulWidget {
 }
 
 class _MainButtonState extends State<MainButton> {
-  bool _tap = false;
-
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: _onTapDown,
-      onTapUp: _onTapUp,
-      onTapCancel: _onTapCancel,
-      child: AnimatedContainer(
-        width: double.infinity,
-        duration: MILLISECONDS_300,
-        decoration: BoxDecoration(
-          color: CustomTheme.colors.buttons.withOpacity(_tap ? 0.9 : 1),
+    return Container(
+      decoration: BoxDecoration(
+        color: CustomTheme.colors.primaryColor,
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      width: double.infinity,
+      margin: EdgeInsets.all(16.0),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: widget.onTap,
+          splashColor: CustomTheme.colors.background.withOpacity(0.4),
+          highlightColor: CustomTheme.colors.background.withOpacity(0.2),
           borderRadius: BorderRadius.circular(30.0),
-        ),
-        margin: EdgeInsets.all(16.0),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            widget.title,
-            textAlign: TextAlign.center,
-            style: CustomTheme.textStyles.buttonTextStyle(size: 16.0),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              widget.title,
+              textAlign: TextAlign.center,
+              // TODO(Andrey): Add theme;
+              style: TextStyle(
+                fontFamily: 'Ubuntu',
+                fontSize: 18,
+                color: AppColors.kWhite,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
         ),
       ),
     );
-  }
-
-  void _onTapDown(TapDownDetails details) {
-    _tap = true;
-    setState(() {});
-  }
-
-  void _onTapUp(TapUpDetails details) {
-    _tap = false;
-    widget.onTap();
-    setState(() {});
-  }
-
-  void _onTapCancel() {
-    _tap = false;
-    setState(() {});
   }
 }
