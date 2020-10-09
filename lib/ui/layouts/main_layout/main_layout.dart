@@ -8,6 +8,7 @@ class MainLayout extends StatelessWidget {
   final PreferredSizeWidget appBar;
   final Widget bottomBar;
   final bool resizeToAvoidBottomPadding;
+  final Function back;
 
   const MainLayout({
     Key key,
@@ -15,13 +16,20 @@ class MainLayout extends StatelessWidget {
     this.bottomBar,
     this.bgColor,
     this.child,
+    this.back,
     this.resizeToAvoidBottomPadding = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => RouteService.instance.canPop,
+      onWillPop: () async {
+        if (back != null) {
+          back();
+        }
+
+        return RouteService.instance.canPop;
+      },
       child: Scaffold(
         resizeToAvoidBottomPadding: resizeToAvoidBottomPadding,
         appBar: appBar,

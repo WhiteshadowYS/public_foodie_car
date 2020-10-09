@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_redux/flutter_redux.dart';
@@ -9,6 +11,7 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/terms_page/terms_page_vm.dart';
+import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 
 import 'widgets/agree_button.dart';
 
@@ -17,16 +20,29 @@ import 'widgets/agree_button.dart';
 /// The user must approve those TOC by tapping on [AgreeButton]
 /// After tapping on [AgreeButton] user goes to the [CatalogsPage]
 
-class TermsPage extends StatelessWidget {
+class TermsPage extends StatefulWidget {
   TermsPage() : super(key: Key('TermsPage'));
 
+  @override
+  _TermsPageState createState() => _TermsPageState();
+}
+
+class _TermsPageState extends State<TermsPage> {
+  Timer timer;
+  bool isAccepted = false;
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, TermsPageVM>(
       converter: TermsPageVM.fromStore,
-      builder: (BuildContext context, vm) {
+      builder: (BuildContext context, TermsPageVM vm) {
         final TermsPageDictionary dictionary = FlutterDictionary.instance.language.termsPageDictionary;
         return MainLayout(
+          back: () => back(vm),
+          appBar: MainAppBar(
+            key: 'TACPageAppBar',
+            title: dictionary.title,
+            backOnTap: () => back(vm),
+          ),
           child: Container(
             margin: EdgeInsets.only(
               left: 16.w,
@@ -37,11 +53,6 @@ class TermsPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    dictionary.title,
-                    style: CustomTheme.textStyles.titleTextStyle(size: 20.0),
-                  ),
-                  SizedBox(height: 56.h),
                   // TODO(Daniil): Use theme primary textStyle
                   Text(vm.termsText),
                   Padding(
@@ -50,7 +61,21 @@ class TermsPage extends StatelessWidget {
                   ),
                   /// [AgreeButton] takes [vm.navigateToCatalogsPage] as onTap function and [dictionary.agree] text as title
                   AgreeButton(
-                    onTap: () => vm.navigateToCatalogsPage(),
+                    onTap: () {
+                      timer = Timer(
+                        Duration(milliseconds: 1500),
+                            () {
+                          if (isAccepted) {
+                            vm.navigateToCatalogsPage();
+                          }
+                        }
+                      );
+
+                      setState(() {
+                        isAccepted = !isAccepted;
+                      });
+                    },
+                    isAccepted: isAccepted,
                     title: dictionary.agree,
                   ),
                   const SizedBox(height: 20.0),
@@ -61,5 +86,11 @@ class TermsPage extends StatelessWidget {
         );
       },
     );
+  }
+
+  void back(TermsPageVM vm) {
+    timer.cancel();
+
+    vm.navigateToMainPage();
   }
 }
