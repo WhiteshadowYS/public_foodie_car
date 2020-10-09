@@ -27,7 +27,7 @@ class ListOverflowBorders extends StatelessWidget {
               duration: MILLISECONDS_200,
               opacity: scrollUp ? 1 : 0,
               child: Container(
-                height: maxHeight / 3,
+                height: maxHeight / 5,
                 decoration: BoxDecoration(gradient: AppGradient.overflowTopGradient),
               ),
             ),
@@ -41,7 +41,7 @@ class ListOverflowBorders extends StatelessWidget {
                 duration: MILLISECONDS_200,
                 opacity: scrollDown ? 1 : 0,
                 child: Container(
-                  height: maxHeight / 6,
+                  height: maxHeight / 5,
                   decoration: BoxDecoration(gradient: AppGradient.overflowBottomGradient),
                 ),
               ),

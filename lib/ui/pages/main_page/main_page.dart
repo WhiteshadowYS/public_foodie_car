@@ -22,7 +22,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  String text;
   bool _error = false;
   final TextEditingController controller = TextEditingController();
 
@@ -60,14 +59,7 @@ class _MainPageState extends State<MainPage> {
                 MainButton(
                   key: 'MainPageSearchButton',
                   title: dictionary.viewCatalog,
-                  onTap: () => _onSubmitted(text, vm),
-                ),
-                MainButton(
-                  key: 'MainPageButton',
-                  title: dictionary.viewCatalog,
-                  onTap: () {
-                    vm.checkId(text);
-                  },
+                  onTap: () => _onSubmitted(controller.text, vm),
                 ),
                 const SizedBox(height: 24.0),
                 LinksButton(

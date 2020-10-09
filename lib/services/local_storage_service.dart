@@ -21,9 +21,13 @@ class LocalStorageService {
   }
 
   Future<String> getValueByKey(StorageKeys key) async {
-    final String value = await _service.read(key: _keys[key]);
+    try {
+      final String value = await _service.read(key: _keys[key]);
 
-    return value;
+      return value;
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<void> deleteValueByKey(StorageKeys key) async {
