@@ -4,26 +4,29 @@ import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
 class CatalogTextField extends StatelessWidget {
-  final void Function(String) onChange;
   final void Function(String) onSubmitted;
+  final void Function(String) validator;
 
   final String labelText;
   final TextStyle textStyle;
   final String hintText;
   final TextStyle hintTextStyle;
   final TextInputType inputType;
+
+  final FocusNode focusNode;
   final TextEditingController controller;
 
   CatalogTextField({
     @required String key,
-    @required this.onChange,
     @required this.controller,
+    this.focusNode,
     this.textStyle,
     this.onSubmitted,
     this.labelText,
     this.hintText,
     this.hintTextStyle,
     this.inputType = TextInputType.number,
+    this.validator,
   }) : super(key: Key(key));
 
   @override
@@ -47,15 +50,14 @@ class CatalogTextField extends StatelessWidget {
               border: Border.all(color: AppColors.kGrey.withOpacity(0.3)),
               borderRadius: BorderRadius.circular(10.0),
             ),
-            child: TextField(
+            child: TextFormField(
+              focusNode: focusNode,
               controller: controller,
               keyboardType: inputType,
               cursorColor: AppColors.kGreen,
-              onChanged: (String text) {
-                onChange(text);
-              },
               style: textStyle,
-              onSubmitted: onSubmitted,
+              onChanged: validator,
+              onFieldSubmitted: onSubmitted,
               decoration: InputDecoration(
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 alignLabelWithHint: true,
