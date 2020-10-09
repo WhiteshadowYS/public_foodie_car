@@ -51,6 +51,7 @@ class CatalogTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: TextFormField(
+              key: key,
               focusNode: focusNode,
               controller: controller,
               keyboardType: inputType,
