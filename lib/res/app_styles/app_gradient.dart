@@ -8,9 +8,10 @@ class AppGradient {
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [
-        AppColors.kWhite.withOpacity(0.8),
-        AppColors.kWhite.withOpacity(0.5),
-        AppColors.kWhite.withOpacity(0.0),
+        AppColors.kLightGrey.withOpacity(0.2),
+        AppColors.kLightGrey.withOpacity(0.1),
+        AppColors.kLightGrey.withOpacity(0.05),
+        AppColors.kLightGrey.withOpacity(0.0),
       ],
     );
   }
@@ -19,9 +20,10 @@ class AppGradient {
       begin: Alignment.bottomCenter,
       end: Alignment.topCenter,
       colors: [
-        AppColors.kWhite.withOpacity(0.8),
-        AppColors.kWhite.withOpacity(0.5),
-        AppColors.kWhite.withOpacity(0.0),
+        AppColors.kLightGrey.withOpacity(0.2),
+        AppColors.kLightGrey.withOpacity(0.1),
+        AppColors.kLightGrey.withOpacity(0.05),
+        AppColors.kLightGrey.withOpacity(0.0),
       ],
     );
   }
@@ -30,18 +32,20 @@ class AppGradient {
       begin: Alignment.centerRight,
       end: Alignment.centerLeft,
       colors: [
-        AppColors.kWhite.withOpacity(0.8),
-        AppColors.kWhite.withOpacity(0.5),
-        AppColors.kWhite.withOpacity(0.0),
+        AppColors.kLightGrey.withOpacity(0.2),
+        AppColors.kLightGrey.withOpacity(0.1),
+        AppColors.kLightGrey.withOpacity(0.05),
+        AppColors.kLightGrey.withOpacity(0.0),
       ],
     );
   }
   static LinearGradient get overflowRightGradient {
     return  LinearGradient(
       colors: [
-        AppColors.kWhite.withOpacity(0.8),
-        AppColors.kWhite.withOpacity(0.5),
-        AppColors.kWhite.withOpacity(0.0),
+        AppColors.kLightGrey.withOpacity(0.2),
+        AppColors.kLightGrey.withOpacity(0.1),
+        AppColors.kLightGrey.withOpacity(0.05),
+        AppColors.kLightGrey.withOpacity(0.0),
       ],
     );
   }
