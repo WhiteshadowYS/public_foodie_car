@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_catalog/services/firebase_service/firebase_service.dart';
 import 'package:my_catalog/services/push_notifications_service/push_notifications_service.dart';
 
 import 'package:redux/redux.dart';
@@ -33,6 +34,7 @@ void main() {
   );
 
   PushNotificationsService.instance.init();
+  //FirebaseService.instance.listenChanges('2222');
 
   runApp(Application(store: store));
 }
