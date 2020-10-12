@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_database/firebase_database.dart';
 
 class FirebaseService {
@@ -10,15 +12,14 @@ class FirebaseService {
   static FirebaseService get instance => _instance;
 
   final databaseReference = FirebaseDatabase.instance.reference();
- /// Работает, слушает только по указанному ключу
-  /// Нужно привести в нормальный вид
-  void init() async {
-    final String key = '1234';
-    FirebaseDatabase.instance.reference().onChildChanged.where((event) => event.snapshot.key == key).listen(
-      (event) {
-        print('$tag ------------- ${event.snapshot.key}: ${event.snapshot.value} ');
+  StreamSubscription<Event> _subscription;
+
+  void listenChanges(String storageKey, void Function(String) onCatalogChangedFunction) async {
+    await _subscription?.cancel();
+    _subscription = databaseReference.onChildChanged.where((Event event) => event.snapshot.key == storageKey).listen(
+      (Event event) {
+        onCatalogChangedFunction(storageKey);
       },
     );
   }
-
 }
