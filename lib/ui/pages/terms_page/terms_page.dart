@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/terms_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/terms_page/terms_page_vm.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
