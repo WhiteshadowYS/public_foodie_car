@@ -32,7 +32,7 @@ class Application extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             navigatorKey: NavigatorHolder.navigatorKey,
             onGenerateRoute: route.RouteBuilder.onGenerateRoute,
-            home: CategoriesPage(),//SplashScreen(),
+            home: SplashScreen(),
             locale: Locale(Locales.base),
             supportedLocales: FlutterDictionaryDelegate.getSupportedLocales,
             localizationsDelegates: FlutterDictionaryDelegate.getLocalizationDelegates,

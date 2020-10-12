@@ -15,46 +15,34 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, CategoriesPageVM>(
-        converter: CategoriesPageVM.fromStore,
-        builder: (BuildContext context, vm) {
-          return MainLayout(
-            bgColor: CustomTheme.colors.background,
-              //  bottomBar: BottomBar(key: 'CategoriesBottomBar'),
-//            appBar: MainAppBar(
-//              key: 'MainAppBar',
-//              title: 'Categories',
-//              backOnTap: () {},
-//            ),
-              child: Container(
+      converter: CategoriesPageVM.fromStore,
+      builder: (BuildContext context, vm) {
+        return MainLayout(
+          bgColor: CustomTheme.colors.background,
+          bottomBar: BottomBar(key: 'CategoriesBottomBar'),
+          appBar: MainAppBar(key: 'MainAppBar', title: 'Categories', backOnTap: () {}),
+          child: Container(
             margin: const EdgeInsets.all(16.0),
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 16.0,
                 mainAxisSpacing: 16.0,
-               childAspectRatio: 0.8,
+                childAspectRatio: 0.8,
               ),
               itemCount: vm.getCategories.length,
               itemBuilder: (BuildContext context, int index) {
                 return CategoryItem(
+                  index: index,
                   imageUrl: vm.getCategories[index].imageLink,
                   categoryName: vm.getCategories[index].languages['EN'][NAME],
+                  onTap: () {},
                 );
               },
             ),
-          )
-//            Column(
-//              mainAxisAlignment: MainAxisAlignment.center,
-//              children: [
-//                Text('Categories Page'),
-//                const SizedBox(height: 24.0),
-//                RaisedButton(
-//                  child: Text('To Subcategories Page'),
-//                  onPressed: () => vm.navigateToSubcategoriesPage(),
-//                ),
-//              ],
-//            ),
-              );
-        });
+          ),
+        );
+      },
+    );
   }
 }

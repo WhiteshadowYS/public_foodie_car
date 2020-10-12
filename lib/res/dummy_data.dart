@@ -5,7 +5,7 @@ import 'package:my_catalog/models/models/storage_model/settings/footer_button_mo
 const List<ProductModel> dummyProducts = [
   ProductModel(
     id: 0,
-    imageLink: 'https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg',
+    imageLink: 'https://pbs.twimg.com/profile_images/1281386497288081414/_hafDEuV_400x400.jpg',
     galleryImagesLinks: [
       'https://ichef.bbci.co.uk/news/1024/cpsprodpb/67CF/production/_108857562_mediaitem108857561.jpg'
           'https://www.allaboutbirds.org/guide/assets/photo/64802871-480px.jpg',
