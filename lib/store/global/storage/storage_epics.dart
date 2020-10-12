@@ -14,6 +14,7 @@ import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.
 import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/loader_state.dart';
+import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -21,6 +22,7 @@ class StorageEpics {
   static final indexEpic = combineEpics<AppState>([
     getDataEpic,
     checkIdEpic,
+    openStorageEpic,
   ]);
 
   static bool _idValidation(CheckIdAction action) => action.storageId != null && action.storageId != '';
@@ -35,12 +37,14 @@ class StorageEpics {
 
       final BaseHttpResponse<StorageStatusModel> response = await repository.getStorageStatus(storageId: action.storageId);
 
+      print('status: ${response.response.toJson()}');
+
       if (response.error != null) {
         yield* Stream.value(
           ShowDialogAction(
             dialog: ErrorDialog(
               title: 'title',
-              message: 'message',
+              message: response.error?.error ?? 'Error not found',
             ),
           ),
         );
@@ -49,6 +53,30 @@ class StorageEpics {
 
         if (!isLastUpdate) {
           yield* Stream.value(GetDataAction(storageId: response.response.id));
+        } else {
+          final List<SavedStorageModel> history = await repository.getStoresHistory();
+
+          if (history != null && history.isNotEmpty) {
+            await repository.updateOpenedStoreId(id: action.storageId);
+
+            final int index = history.indexWhere((store) {
+              return store.id == action.storageId;
+            });
+
+            if (index != null && index != -1) {
+              yield* Stream.fromIterable([
+                SetStoresHistoryAction(storesHistory: history),
+                OpenStorageAction(
+                  id: action.storageId,
+                  storage: history[index].storage,
+                ),
+              ]);
+            } else {
+              yield* _noStorageFound();
+            }
+          } else {
+            yield* _noStorageFound();
+          }
         }
       }
 
@@ -77,6 +105,23 @@ class StorageEpics {
         ]);
       }
     });
+  }
+
+  static Stream<dynamic> openStorageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<OpenStorageAction>().switchMap((action) {
+      return Stream.value(RouteSelectors.gotoCatalogsPageAction);
+    });
+  }
+
+  static Stream<dynamic> _noStorageFound() {
+    return Stream.value(
+      ShowDialogAction(
+        dialog: ErrorDialog(
+          title: 'Error',
+          message: 'No Storage found',
+        ),
+      ),
+    );
   }
 
   static Stream<dynamic> _changeCheckIdLoadingState(bool value) {

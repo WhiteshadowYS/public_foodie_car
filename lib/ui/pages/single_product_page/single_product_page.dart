@@ -10,36 +10,36 @@ import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
 
 class SingleProductPage extends StatelessWidget {
   SingleProductPage() : super(key: Key('SingleProductPage'));
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, SingleProductPageVM>(
-      converter: SingleProductPageVM.fromStore,
-      builder: (BuildContext context, vm) {
-        return MainLayout(
-          bgColor: AppColors.kWhite,
-          appBar: MainAppBar(
-            key: 'MainAppBar',
-            title: 'SubCategoryTitle',
-            backOnTap: () {},
-          ),
-          bottomBar: BottomBar(key: 'BottomBar'),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Single Product Page'),
-              const SizedBox(height: 24.0),
-              RaisedButton(
-                child: Text('To Settings Page'),
-                onPressed: () => vm.navigateToSettingsPage(),
-              ),
-              RaisedButton(
-                child: Text('File preview dialog'),
-                onPressed: () => vm.filePreview(dummyFiles[0]),
-              ),
-            ],
-          ),
-        );
-      }
-    );
+        converter: SingleProductPageVM.fromStore,
+        builder: (BuildContext context, vm) {
+          return MainLayout(
+            bgColor: AppColors.kWhite,
+            appBar: MainAppBar(
+              key: 'MainAppBar',
+              title: 'SubCategoryTitle',
+              backOnTap: () {},
+            ),
+            bottomBar: BottomBar(key: 'BottomBar'),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Single Product Page'),
+                const SizedBox(height: 24.0),
+                RaisedButton(
+                  child: Text('To Settings Page'),
+                  onPressed: () => vm.navigateToSettingsPage(),
+                ),
+                RaisedButton(
+                  child: Text('File preview dialog'),
+                  onPressed: () => vm.filePreview(dummyFiles[0]),
+                ),
+              ],
+            ),
+          );
+        });
   }
 }

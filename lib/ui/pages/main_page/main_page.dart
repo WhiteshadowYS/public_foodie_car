@@ -77,7 +77,7 @@ class _MainPageState extends State<MainPage> {
               MainButton(
                 key: 'MainPageSearchButton',
                 title: dictionary.viewCatalog,
-                onTap: () {},
+                onTap: () => _onButtonPressed(vm),
                 controller: _controller,
                 validator: (arg) => ValidationService.numberValidation(
                   arg,
@@ -97,5 +97,5 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void onButtonPressed(MainPageVM vm) => vm.checkId(_controller.text);
+  void _onButtonPressed(MainPageVM vm) => vm.checkId(_controller.text);
 }

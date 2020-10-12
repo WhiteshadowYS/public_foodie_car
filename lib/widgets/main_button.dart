@@ -75,6 +75,13 @@ class _MainButtonState extends State<MainButton> {
   }
 
   void _validation() {
+    if (widget.controller.text == null || widget.controller.text == '') {
+      status = false;
+
+      setState(() {});
+      return;
+    }
+
     if (widget.validator != null) {
       final String result = widget.validator(widget.controller.text);
 

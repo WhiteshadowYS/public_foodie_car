@@ -103,7 +103,7 @@ class StorageRepository extends Repository {
   }
 
   Future<void> _replaceStoreInHistory(SavedStorageModel model, String json) async {
-    final List<SavedStorageModel> history = jsonDecode(json).map<SavedStorageModel>((Map json) {
+    final List<SavedStorageModel> history = jsonDecode(json).map<SavedStorageModel>((json) {
       return SavedStorageModel.fromJson(json);
     }).toList();
 
@@ -138,6 +138,11 @@ class StorageRepository extends Repository {
     });
 
     if (index == -1) return false;
+
+    print('history: ${history[index].update}');
+    print('statusModel: ${statusModel.update}');
+
+    if (history[index].update == null) return false;
 
     if (history[index].update >= statusModel.update) return false;
 

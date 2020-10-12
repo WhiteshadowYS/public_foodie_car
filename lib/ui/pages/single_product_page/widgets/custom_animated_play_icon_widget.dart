@@ -53,7 +53,7 @@ class _CustomAnimatedIconWidgetState extends State<CustomAnimatedPlayIconWidget>
   Widget build(BuildContext context) {
     if (widget.controller.value.isPlaying) {
       animationController.reverse();
-     animationTwoController.reverse();
+      animationTwoController.reverse();
     } else {
       animationController.forward();
     }
@@ -86,7 +86,6 @@ class _CustomAnimatedIconWidgetState extends State<CustomAnimatedPlayIconWidget>
     }
     setState(() {});
   }
-
 
   void _secondControllerUpdateListener() => setState(() {});
 }

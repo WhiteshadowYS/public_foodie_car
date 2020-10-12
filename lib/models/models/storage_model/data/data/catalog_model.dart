@@ -23,6 +23,14 @@ class CatalogModel implements IDto {
     @required this.languages
   });
 
+  String titleForLanguage(String langCode) {
+    return languages[langCode]['name'];
+  }
+
+  String descriptionForLanguage(String langCode) {
+    return languages[langCode]['description'];
+  }
+
   factory CatalogModel.fromJson(json) => _$CatalogModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CatalogModelToJson(this);

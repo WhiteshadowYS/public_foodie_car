@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/custom_animated_play_icon_widget.dart';
 import 'package:video_player/video_player.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class VideoPreviewWidget extends StatefulWidget {
   final String videoUrl;
