@@ -52,7 +52,7 @@ class InitializeEpics {
 
       yield* _homePageNavigationStream();
 
-      yield* _startPeriodicStream(store);
+//      yield* _startPeriodicStream(store);
     });
   }
 
