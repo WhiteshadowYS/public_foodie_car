@@ -78,10 +78,11 @@ class _MainPageState extends State<MainPage> {
               MainButton(
                 key: 'MainPageSearchButton',
                 title: dictionary.viewCatalog,
-                onTap: () {
-                  onButtonPressed(vm);
-                  FirebaseService.instance.listenChanges(_controller.text, vm.checkId);
-                },
+                onTap: () => _onButtonPressed(vm),
+                // onTap: () {
+                //   onButtonPressed(vm);
+                //   FirebaseService.instance.listenChanges(_controller.text, vm.checkId);
+                // },
                 controller: _controller,
                 validator: (arg) => ValidationService.numberValidation(
                   arg,
@@ -101,5 +102,5 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void onButtonPressed(MainPageVM vm) => vm.checkId(_controller.text);
+  void _onButtonPressed(MainPageVM vm) => vm.checkId(_controller.text);
 }

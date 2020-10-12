@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_catalog_model.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/storage_selector.dart';
-import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux/redux.dart';
 
 class MainPageVM {
@@ -16,8 +15,8 @@ class MainPageVM {
 
   static MainPageVM fromStore(Store<AppState> store) {
     return MainPageVM(
-      checkId: StorageSelector.getCheckIdFunction(store),
       catalogs: dummyCatalogs,
+      checkId: StorageSelector.getCheckIdFunction(store),
     );
   }
 

@@ -9,7 +9,6 @@ class SingleProductPageVM {
   final void Function() navigateToSettingsPage;
   final void Function(DummyFile file) filePreview;
 
-
   const SingleProductPageVM({
     @required this.navigateToSettingsPage,
     @required this.filePreview,
@@ -17,8 +16,9 @@ class SingleProductPageVM {
 
   static SingleProductPageVM fromStore(Store<AppState> store) {
     return SingleProductPageVM(
-      navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
-      filePreview: DialogSelectors.getShowFilePreviewDialogFunction(store,)
-    );
+        navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
+        filePreview: DialogSelectors.getShowFilePreviewDialogFunction(
+          store,
+        ));
   }
 }

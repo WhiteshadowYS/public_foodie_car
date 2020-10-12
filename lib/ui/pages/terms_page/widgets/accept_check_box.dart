@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 
 ///Responsible for checkBox state in [AgreeButton]
@@ -16,7 +14,6 @@ class AcceptCheckBox extends StatelessWidget {
     @required this.duration,
     @required this.accept,
   }) : super(key: Key('AcceptCheckBox'));
-
 
   ///if [accept] true, opacity of check icon is 100%, if false - opacity 0%
   /// [duration] is divided by 4 so the user can see the check icon before the page changes

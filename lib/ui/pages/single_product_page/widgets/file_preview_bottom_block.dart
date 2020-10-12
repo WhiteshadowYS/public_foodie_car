@@ -7,6 +7,7 @@ class FilePreviewBottomBlock extends StatelessWidget {
   FilePreviewBottomBlock({@required this.itemName})
       : assert(itemName != null, throw ('itemName should be not null')),
         super(key: Key('FilePreviewBottomBlock'));
+
   @override
   Widget build(BuildContext context) {
     return Container(

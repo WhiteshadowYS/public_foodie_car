@@ -44,36 +44,10 @@ class InitializeEpics {
         ]);
       }
 
-      yield* Stream.value(StopLoadingAction(
-        loaderKey: LoaderKey.initializationLoading,
-      ));
-
       yield* _changeInitializationLoading(false);
 
-      yield* _homePageNavigationStream();
-
-      yield* _startPeriodicStream(store);
+      yield* _navigationStream(openedStorageId);
     });
-  }
-
-  static Stream<dynamic> _startPeriodicStream(EpicStore<AppState> store) {
-    return Stream.periodic(Duration(minutes: 1), (int circle) {
-      logger.d('$tag => [_startPeriodicStream] => '
-          'circle: $circle, '
-          'openedStoreId: ${store.state.storageState.openedStoreId}, '
-          'Application Status: ${WidgetsBinding.instance.lifecycleState}');
-
-      // TODO: change if and value.
-      final String tmpStorageId = '123456';
-
-      if (tmpStorageId != null) {
-        return CheckIdAction(
-          storageId: tmpStorageId,
-        );
-      }
-
-      return EmptyAction();
-    }).where((action) => WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed && action.runtimeType != EmptyAction);
   }
 
   static Stream<dynamic> _changeInitializationLoading(bool value) {
@@ -91,9 +65,9 @@ class InitializeEpics {
     ));
   }
 
-  static Stream<dynamic> _homePageNavigationStream() {
-    return Stream.fromIterable([
-      RouteSelectors.gotoMainPageAction,
-    ]);
+  static Stream<dynamic> _navigationStream(String id) {
+    if (id == null) return Stream.value(RouteSelectors.gotoMainPageAction);
+
+    return Stream.value(CheckIdAction(storageId: id));
   }
 }

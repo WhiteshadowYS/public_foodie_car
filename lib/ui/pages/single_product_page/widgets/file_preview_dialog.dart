@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/services/dialog_service/interfaces/i_dialog.dart';
