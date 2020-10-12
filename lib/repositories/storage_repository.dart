@@ -72,6 +72,12 @@ class StorageRepository extends Repository {
     return;
   }
 
+  Future<void> updateOpenedStoreId({@required String id}) async {
+    final String json = jsonEncode(id);
+
+    await LocalStorageService.instance.saveValueByKey(StorageKeys.openedStoreId, id);
+  }
+
   Future<String> getOpenedStoreId() async {
     return LocalStorageService.instance.getValueByKey(StorageKeys.openedStoreId);
   }
@@ -110,5 +116,19 @@ class StorageRepository extends Repository {
     json = jsonEncode(history);
 
     await LocalStorageService.instance.saveValueByKey(StorageKeys.stores, json);
+  }
+
+  Future<bool> isLastUpdate(StorageStatusModel statusModel) async {
+    final List<SavedStorageModel> history = await getStoresHistory();
+
+    final int index = history.indexWhere((model) {
+      return model.id == statusModel.id;
+    });
+
+    if (index == -1) return false;
+
+    if (history[index].update >= statusModel.update) return false;
+
+    return true;
   }
 }

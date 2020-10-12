@@ -10,15 +10,15 @@ StorageStatusModel _$StorageStatusModelFromJson(Map<String, dynamic> json) {
   return $checkedNew('StorageStatusModel', json, () {
     final val = StorageStatusModel(
       id: $checkedConvert(json, 'id', (v) => v as String),
-      lastUpdate:
+      update:
           $checkedConvert(json, 'last_update', (v) => (v as num)?.toDouble()),
     );
     return val;
-  }, fieldKeyMap: const {'lastUpdate': 'last_update'});
+  }, fieldKeyMap: const {'update': 'last_update'});
 }
 
 Map<String, dynamic> _$StorageStatusModelToJson(StorageStatusModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'last_update': instance.lastUpdate,
+      'last_update': instance.update,
     };

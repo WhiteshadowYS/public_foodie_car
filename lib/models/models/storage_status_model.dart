@@ -13,11 +13,11 @@ class StorageStatusModel implements IModel {
   @JsonKey(name: 'id', required: false, nullable: true)
   final String id;
   @JsonKey(name: 'last_update', required: false, nullable: true)
-  final double lastUpdate;
+  final double update;
 
   StorageStatusModel({
     @required this.id,
-    @required this.lastUpdate,
+    @required this.update,
   });
 
   factory StorageStatusModel.fromJson(json) => _$StorageStatusModelFromJson(json);

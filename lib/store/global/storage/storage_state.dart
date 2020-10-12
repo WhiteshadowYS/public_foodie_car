@@ -55,9 +55,10 @@ class StorageState {
   }
 
   StorageState _openStorage(OpenStorageAction action) {
-    if (action.storage == null) return this;
+    if (action.storage == null || action.id == null) return this;
 
     return copyWith(
+      openedStoreId: action.id,
       storage: action.storage,
     );
   }
