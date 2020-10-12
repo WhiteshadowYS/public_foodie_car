@@ -18,9 +18,7 @@ class CatalogsPageVM {
 
   static CatalogsPageVM fromStore(Store<AppState> store) {
     return CatalogsPageVM(
-      navigateToCategoriesPage: (String id) {
-        RouteSelectors.gotoCategoriesPage(store);
-      },
+      navigateToCategoriesPage: RouteSelectors.gotoCategoriesPage(store),
       errorDialog: DialogSelectors.getShowErrorDialogFunction(store),
       catalogs: _tmpCatalog,
     );
