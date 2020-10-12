@@ -93,6 +93,11 @@ class StorageRepository extends Repository {
       return SavedStorageModel.fromJson(json);
     }).toList();
 
+    if (history == null) {
+      await _overrideStoresHistoryWithModel(model);
+      return;
+    }
+
     json = jsonEncode(history..add(model));
     await LocalStorageService.instance.saveValueByKey(StorageKeys.stores, json);
   }
@@ -101,6 +106,11 @@ class StorageRepository extends Repository {
     final List<SavedStorageModel> history = jsonDecode(json).map<SavedStorageModel>((Map json) {
       return SavedStorageModel.fromJson(json);
     }).toList();
+
+    if (history == null) {
+      await _addStoreToHistory(model, json);
+      return;
+    }
 
     final int index = history.indexWhere((_model) {
       return _model.id == model.id;
@@ -120,6 +130,8 @@ class StorageRepository extends Repository {
 
   Future<bool> isLastUpdate(StorageStatusModel statusModel) async {
     final List<SavedStorageModel> history = await getStoresHistory();
+
+    if (history == null) return false;
 
     final int index = history.indexWhere((model) {
       return model.id == statusModel.id;

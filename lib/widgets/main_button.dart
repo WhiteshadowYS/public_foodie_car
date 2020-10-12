@@ -55,7 +55,7 @@ class _MainButtonState extends State<MainButton> {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: status ? widget.onTap : (){},
+          onTap: status ? widget.onTap : () {},
           splashColor: CustomTheme.colors.background.withOpacity(0.4),
           highlightColor: CustomTheme.colors.background.withOpacity(0.2),
           borderRadius: BorderRadius.circular(30.0),
