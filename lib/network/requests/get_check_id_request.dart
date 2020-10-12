@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/dto/get_check_id_request_dto/get_check_id_request_dto.dart';
 import 'package:my_catalog/network/shared/i_request.dart';
 import 'package:my_catalog/res/api.dart';
+import 'package:my_catalog/services/firebase_service/firebase_service.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
-import 'package:my_catalog/services/network_service/network_service.dart';
-import 'package:my_catalog/services/network_service/shared/request_builders.dart';
 import 'package:my_catalog/ui/pages/main_page/main_page.dart';
 
 /// This request we use after every route in application. Request will check a last update of storage data.
@@ -29,17 +28,30 @@ class GetCheckIdRequest implements IRequest<BaseHttpResponse<GetCheckIdRequestDt
 
   @override
   Future<BaseHttpResponse<GetCheckIdRequestDto>> call() async {
-    final BaseHttpResponse response = await NetworkService.instance.request(
-      RequestBuilders.get(
-        url: Api.mockApiLink,
-        functionName: ApiFunctions.checkId,
-        params: {
-          ApiKeys.id: storageId,
-          ApiKeys.apiVersion: Api.version,
-        },
-      ),
-    );
+    final Map<dynamic, dynamic> response = await FirebaseService.instance.getStoresVersions();
 
-    return BaseHttpResponse<GetCheckIdRequestDto>(response: GetCheckIdRequestDto.fromJson(response.response['data']));
+    if (response.containsKey(storageId)) {
+      final double result = double.tryParse(response[storageId]);
+
+      return BaseHttpResponse<GetCheckIdRequestDto>(
+        response: GetCheckIdRequestDto(
+          lastUpdate: result ?? 0,
+        ),
+      );
+    }
+
+    return BaseHttpResponse<GetCheckIdRequestDto>();
   }
 }
+// final BaseHttpResponse response = await NetworkService.instance.request(
+//   RequestBuilders.get(
+//     url: Api.mockApiLink,
+//     functionName: ApiFunctions.checkId,
+//     params: {
+//       ApiKeys.id: storageId,
+//       ApiKeys.apiVersion: Api.version,
+//     },
+//   ),
+// );
+
+// return BaseHttpResponse<GetCheckIdRequestDto>(response: GetCheckIdRequestDto.fromJson(response.response['data']));

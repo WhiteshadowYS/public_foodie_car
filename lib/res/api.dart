@@ -2,7 +2,7 @@ class Api {
   static const String version = '1';
 
   static const String apiLink = '';
-  static const String mockApiLink = 'https://ce361eeb-8e38-4724-9104-faa7dfd0d688.mock.pstmn.io';
+  static const String mockApiLink = 'https://us-central1-mycatalog-appvesto.cloudfunctions.net';
 }
 
 class ApiFunctions {

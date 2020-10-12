@@ -4,6 +4,7 @@ import 'package:my_catalog/models/dto/get_check_id_request_dto/get_check_id_requ
 import 'package:my_catalog/models/models/storage_status_model.dart';
 import 'package:my_catalog/network/shared/i_request.dart';
 import 'package:my_catalog/res/api.dart';
+import 'package:my_catalog/services/network_service/interfaces/i_base_http_error.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 
 /// Adapter for main request in application. [GetCheckIdRequest].
@@ -22,6 +23,15 @@ class GetCheckIdAdapter implements IAdapter<BaseHttpResponse<StorageStatusModel>
   @override
   Future<BaseHttpResponse<StorageStatusModel>> call() async {
     final BaseHttpResponse<GetCheckIdRequestDto> response = await request();
+
+    if (response.response == null) {
+      return BaseHttpResponse<StorageStatusModel>(
+        error: IBaseHttpError(
+          error: 'No Storage found',
+          statusCode: 500,
+        ),
+      );
+    }
 
     final Map<String, dynamic> updatedMap = response.response.toJson();
     updatedMap.addAll({

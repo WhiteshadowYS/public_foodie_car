@@ -8,7 +8,24 @@ import 'package:redux/redux.dart';
 /// Methods:
 ///   - [getDataFunction]. It is function fot get all storage data from the server.
 class StorageSelector {
+  static void Function(String) _getData(Store<AppState> store) {
+    return (String id) {
+      store.dispatch(
+        GetDataAction(
+          storageId: id,
+        ),
+      );
+    };
+  }
+
   static void Function(String id) getCheckIdFunction(Store<AppState> store) {
-    return (String id) => store.dispatch(CheckIdAction(storageId: id));
+    return (String id) {
+      store.dispatch(
+        CheckIdAction(
+          storageId: id,
+          getData: _getData(store),
+        ),
+      );
+    };
   }
 }

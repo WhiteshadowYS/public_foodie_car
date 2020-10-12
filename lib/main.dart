@@ -34,7 +34,6 @@ void main() {
   );
 
   PushNotificationsService.instance.init();
-  //FirebaseService.instance.listenChanges('2222');
 
   runApp(Application(store: store));
 }
