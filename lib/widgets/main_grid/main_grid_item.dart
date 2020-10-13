@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
-class CategoryItem extends StatefulWidget {
+class MainGridItem extends StatefulWidget {
   final int index;
   final String title;
   final String imageUrl;
   final void Function() onTap;
 
-  CategoryItem({
+  MainGridItem({
     @required String key,
     @required this.imageUrl,
     @required this.title,
@@ -17,10 +17,10 @@ class CategoryItem extends StatefulWidget {
   }) : super(key: Key(key));
 
   @override
-  _CategoryItemState createState() => _CategoryItemState();
+  _MainGridItemState createState() => _MainGridItemState();
 }
 
-class _CategoryItemState extends State<CategoryItem> with SingleTickerProviderStateMixin {
+class _MainGridItemState extends State<MainGridItem> with SingleTickerProviderStateMixin {
   bool _init = false;
 
   @override
