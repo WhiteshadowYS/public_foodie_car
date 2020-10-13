@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/services/dialog_service/interfaces/i_dialog.dart';
 import 'package:my_catalog/services/dialog_service/shared/dialog_builders.dart';
-import 'package:my_catalog/ui/pages/single_product_page/widgets/file_preview_dialog_widget.dart';
+import 'package:my_catalog/ui/pages/single_product_page/widgets/dialog_widgets/file_preview_dialog_widget.dart';
 
 /// [FilePreviewDialog] realisation for [IDialog] interface. This [dialog] is using for show video, image, or pdf files.
 /// Params:
