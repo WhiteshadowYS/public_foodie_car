@@ -77,7 +77,7 @@ class _MainPageState extends State<MainPage> {
               MainButton(
                 key: 'MainPageSearchButton',
                 title: dictionary.viewCatalog,
-                onTap: () => vm.toSettingsPage(),
+                onTap: () {},
                 controller: _controller,
                 validator: (arg) => ValidationService.numberValidation(
                   arg,

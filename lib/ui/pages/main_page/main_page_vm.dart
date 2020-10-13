@@ -8,19 +8,16 @@ import 'package:redux/redux.dart';
 class MainPageVM {
   final void Function(String) checkId;
   final List<InfoCatalogModel> catalogs;
-  final void Function() toSettingsPage;
 
   MainPageVM({
     @required this.catalogs,
     @required this.checkId,
-    @required this.toSettingsPage,
   });
 
   static MainPageVM fromStore(Store<AppState> store) {
     return MainPageVM(
       checkId: StorageSelector.getCheckIdFunction(store),
       catalogs: dummyCatalogs,
-      toSettingsPage: RouteSelectors.gotoSettingsPage(store),
     );
   }
 
