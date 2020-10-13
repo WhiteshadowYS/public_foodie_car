@@ -6,7 +6,7 @@ import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux/redux.dart';
 
 class CategoriesPageVM {
-  final void Function() navigateToSubcategoriesPage;
+  final void Function(String) navigateToSubcategoriesPage;
   // TODO(Daniil): Change type
   final List<ProductModel> getCategories;
 

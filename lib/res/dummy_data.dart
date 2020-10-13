@@ -57,13 +57,13 @@ const List<ProductModel> dummyProducts = [
     ],
     languages: {
       'HE': {
-        'name': '#3 Name he',
+        'name': '#3 Longer Name he',
         'description': '#3 Description he',
         'desc2': '#3 Description2 he',
         'points': ['point1', 'point2', 'point3']
       },
       'EN': {
-        'name': '#3 Name  en',
+        'name': '#3 Longer Name  en',
         'description': '#3 Description  en',
         'desc2': '#3 Description2 en',
         'points': ['point1', 'point2', 'point3']
