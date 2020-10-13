@@ -38,8 +38,8 @@ class RouteSelectors {
     return (String id) => store.dispatch(gotoSubcategoriesPageAction);
   }
 
-  static void Function() gotoProductsPage(Store<AppState> store) {
-    return () => store.dispatch(gotoProductsPageAction);
+  static void Function(String) gotoProductsPage(Store<AppState> store) {
+    return (String id) => store.dispatch(gotoProductsPageAction);
   }
 
   static void Function() gotoSingleProductPage(Store<AppState> store) {
