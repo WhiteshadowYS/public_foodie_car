@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -31,11 +32,12 @@ class _SettingsPageState extends State<SettingsPage> {
 
         return MainLayout(
           appBar: MainAppBar(
+            key: 'SettingsPageMainAppBar',
             title: 'Settings',
-            backOnTap: () {},
+            backOnTap: () {}, // TODO(Oles): get function from vm
           ),
           bottomBar: BottomBar(
-            key: 'BottomBar',
+            key: 'SettingsPageBottomBar',
           ),
           bgColor: CustomTheme.colors.background,
           child: Column(
@@ -46,32 +48,44 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               SettingsItem(
                 key: 'SettingsItemPushNotifications',
-                text: 'Push notifications',
-                child: Switch(
-                  value: true,
-                  onChanged: (bool val) {},
+                text: 'Push notifications', // TODO(Oles): remove to dictionary
+                child: CustomSwitch(
+                  key: 'SettingsItemPushNotificationsCustomSwitch',
+                  value: true, // TODO(Oles): get value from vm
+                  activeColor: CustomTheme.colors.primaryColor,
+                  inactiveColor: CustomTheme.colors.accentColor,
+                  circleColor: CustomTheme.colors.background,
+                  callBack: (bool value) {}, // TODO(Oles): get function from vm
                 ),
               ),
               SettingsItem(
                 key: 'SettingsItemLanguage',
-                text: 'Language',
-                child: Container(),
+                text: 'Language', // TODO(Oles): remove to dictionary
+                child: LanguageDropdown(
+                  key: 'SettingsItemLanguageLanguageDropdown',
+                  text: 'English', // TODO(Oles): get language from vm
+                  callback: () {}, // TODO(Oles): get function from vm
+                ),
               ),
               SettingsItem(
                 key: 'SettingsItemTAC',
-                text: 'Terms and Conditions',
-                child: Icon(Icons.arrow_forward_ios),
+                text: 'Terms and Conditions', // TODO(Oles): remove to dictionary
+                child: Icon(
+                  Icons.keyboard_arrow_right, // TODO(Oles): set icon from design
+                  size: 18,
+                  color: CustomTheme.colors.minorFont,
+                ),
               ),
               Spacer(),
               Text(
-                'App version $appVersion',
+                'App version $appVersion', // TODO(Oles): remove to dictionary
                 style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
               ),
               SizedBox(
                 height: 14.0,
               ),
               Text(
-                'Created by AppVesto',
+                'Created by AppVesto', // TODO(Oles): remove to dictionary
                 style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
               ),
               SizedBox(
@@ -84,10 +98,10 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
+  // TODO(Oles): remove function to utils
   Future<void> _updateAppVersion() async {
     String versionName;
     String versionCode;
-    String versionPlatform;
 
     try {
       versionName = await GetVersion.projectVersion;
@@ -103,19 +117,59 @@ class _SettingsPageState extends State<SettingsPage> {
       versionCode = null;
     }
 
-    try {
-      versionPlatform = await GetVersion.platformVersion;
-      // logger.d('Version Platform: $versionPlatform');
-    } on PlatformException {
-      versionPlatform = null;
-    }
-
     setState(() {
       appVersion = '$versionName ($versionCode)';
     });
   }
 }
 
+// TODO(Oles): remove to widgets
+class LanguageDropdown extends StatelessWidget {
+  final void Function() callback;
+  final String text;
+
+  LanguageDropdown({
+    @required String key,
+    @required this.text,
+    @required this.callback,
+  }) : super(key: Key(key));
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 108.0,
+      height: 24.0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                text,
+                style: CustomTheme.textStyles.mainTextStyle(size: 15.0),
+              ),
+              Icon(
+                Icons.keyboard_arrow_down,  // TODO(Oles): add arrow from design
+                size: 18,
+                color: CustomTheme.colors.minorFont,
+              )
+            ],
+          ),
+          Container(
+            width: double.infinity,
+            height: 1.0,
+            color: CustomTheme.colors.minorFont,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+// TODO(Oles): remove to widgets
 class InfoBlock extends StatelessWidget {
   final InfoModel info;
 
@@ -165,6 +219,7 @@ class InfoBlock extends StatelessWidget {
   }
 }
 
+// TODO(Oles): remove to widgets
 class SettingsItem extends StatelessWidget {
   final String text;
   final Widget child;
@@ -212,4 +267,73 @@ class SettingsItem extends StatelessWidget {
   }
 }
 
+// TODO(Oles): remove to widgets
+class CustomSwitch extends StatefulWidget {
+  bool value;
+  final void Function(bool) callBack;
+  final Color activeColor;
+  final Color inactiveColor;
+  final Color circleColor;
 
+  CustomSwitch({
+    @required String key,
+    @required this.value,
+    @required this.activeColor,
+    @required this.inactiveColor,
+    @required this.circleColor,
+    @required this.callBack,
+  }) : super(key: Key(key));
+
+  @override
+  _CustomSwitchState createState() => _CustomSwitchState();
+}
+
+class _CustomSwitchState extends State<CustomSwitch> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          widget.value = !widget.value;
+          if (widget.value != null) widget.callBack(widget.value);
+        });
+      },
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 200),
+        curve: Curves.easeIn,
+        height: 29.0,
+        width: 56.0,
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 0.0,
+            color: widget.value
+                ? widget.activeColor
+                : widget.inactiveColor,
+          ),
+          borderRadius: BorderRadius.circular(50.0),
+          color: widget.value
+              ? widget.activeColor
+              : widget.inactiveColor,
+        ),
+        child: Container(
+          padding: EdgeInsets.all(4.0),
+          child: Row(
+            mainAxisAlignment: !widget.value
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                height: 22.0,
+                width: 22.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(22.0),
+                  color: widget.circleColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
