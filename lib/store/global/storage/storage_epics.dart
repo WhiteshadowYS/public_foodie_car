@@ -48,7 +48,11 @@ class StorageEpics {
       FirebaseService.instance.listenChanges(action.storageId, action.getData);
 
       if (!isLastUpdate) {
-        yield* Stream.value(GetDataAction(storageId: response.response.id));
+        print('get data');
+        yield* Stream.value(GetDataAction(
+          storageId: response.response.id,
+          update: response.response.update.toInt(),
+        ));
         return;
       }
 
@@ -76,6 +80,8 @@ class StorageEpics {
         return;
       }
 
+      print('before SetStoresHistoryAction');
+
       yield* ConcatEagerStream([
         Stream.fromIterable([
           SetStoresHistoryAction(storesHistory: history),
@@ -95,7 +101,12 @@ class StorageEpics {
 
       final BaseHttpResponse<StorageModel> response = await repository.getStorageData(storageId: action.storageId);
 
-      await repository.updateStoresHistory(id: action.storageId, locale: '', storageModel: response.response);
+      await repository.updateStoresHistory(
+        id: action.storageId,
+        locale: '',
+        storageModel: response.response,
+        update: action.update,
+      );
       await repository.updateOpenedStoreId(id: action.storageId);
 
       final List<SavedStorageModel> history = await repository.getStoresHistory();

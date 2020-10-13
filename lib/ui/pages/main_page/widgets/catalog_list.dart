@@ -6,8 +6,8 @@ import 'package:my_catalog/widgets/main_list_view.dart';
 import 'catalogs_list_item.dart';
 
 class StoresList extends StatefulWidget {
-  final List<InfoCatalogModel> stores;
-  final Function(int) setId;
+  final List<String> stores;
+  final Function(String) setId;
 
   StoresList({
     @required String key,
@@ -55,21 +55,21 @@ class _CatalogListState extends State<StoresList> {
         return CatalogsListItem(
           key: '${widget.key.toString()}Item$index',
           onTap: () {
-            widget.setId(widget.stores[index].id);
+            widget.setId(widget.stores[index]);
             _scrollController.animateTo(
               itemHeight * (index - 1),
               duration: MILLISECONDS_400,
               curve: Curves.easeOut,
             );
           },
-          title: widget.stores[index].id.toString(),
+          title: widget.stores[index],
           isSelected: _checkSelect(index, widget.stores),
         );
       },
     );
   }
 
-  bool _checkSelect(int index, List<InfoCatalogModel> catalogs) {
+  bool _checkSelect(int index, List<String> stores) {
     final double _itemMinHeight = itemHeight * index;
     final double _itemMaxHeight = _itemMinHeight + itemHeight;
 

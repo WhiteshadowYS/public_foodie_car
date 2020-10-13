@@ -15,11 +15,12 @@ class FirebaseService {
   final databaseReference = FirebaseDatabase.instance.reference();
   StreamSubscription<Event> _subscription;
 
-  void listenChanges(String storageKey, void Function(String) getData) async {
+  void listenChanges(String storageKey, void Function(String, int) getData) async {
     await _subscription?.cancel();
     _subscription = databaseReference.onChildChanged.where((Event event) => event.snapshot.key == storageKey).listen(
       (Event event) {
-        getData(storageKey);
+        logger.i('Update: ${event.snapshot.value}');
+        getData(storageKey, event.snapshot.value);
       },
     );
   }

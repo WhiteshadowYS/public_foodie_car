@@ -72,7 +72,7 @@ const List<ProductModel> dummyProducts = [
   ),
   ProductModel(
     id: 3,
-    imageLink: 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.j   pg',
+    imageLink: 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg',
     galleryImagesLinks: [
       'https://cdn.mos.cms.futurecdn.net/JzqhuEDTRfCZKMKHUxPySB.jpg'
           'https://i.dailymail.co.uk/1s/2019/11/18/16/21162158-0-image-a-44_1574095086222.jpg',

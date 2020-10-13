@@ -51,6 +51,7 @@ class StorageRepository extends Repository {
   }
 
   Future<void> updateStoresHistory({
+    @required int update,
     @required String id,
     @required String locale,
     @required StorageModel storageModel,
@@ -59,6 +60,7 @@ class StorageRepository extends Repository {
       id: id,
       locale: locale ?? '',
       storage: storageModel,
+      update: update,
     );
     final String json = await LocalStorageService.instance.getValueByKey(StorageKeys.stores);
 
@@ -138,12 +140,13 @@ class StorageRepository extends Repository {
 
     if (index == -1) return false;
 
-    print('history: ${history[index].update}');
-    print('statusModel: ${statusModel.update}');
+    print('history list: ${history.map((e) => 'id: ${e.id}, update: ${e.update}').toList()}');
+    print('history model update: ${history[index].update}');
+    print('statusModel update: ${statusModel.update}');
 
     if (history[index].update == null) return false;
 
-    if (history[index].update >= statusModel.update) return false;
+    if (history[index].update >= statusModel.update.toInt()) return false;
 
     return true;
   }
