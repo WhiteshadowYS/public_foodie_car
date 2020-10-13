@@ -12,7 +12,7 @@ class NotificationsRepository extends Repository {
     return repository<UpdateTokenStatusModel>(
       PostUpdateTokenAdapter(
         request: PostUpdateTokenRequest(
-          storageId: storageId,
+          id: id,
           language: '',
           deviceId: '',
           pushToken: '',

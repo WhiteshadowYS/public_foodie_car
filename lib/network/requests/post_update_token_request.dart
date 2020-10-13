@@ -29,7 +29,7 @@ class PostUpdateTokenRequest implements IRequest<Null> {
   final String language;
 
   PostUpdateTokenRequest({
-    @required this.storageId,
+    @required this.id,
     @required this.pushToken,
     @required this.deviceId,
     @required this.language,
@@ -43,7 +43,7 @@ class PostUpdateTokenRequest implements IRequest<Null> {
         url: Api.mockApiLink,
         functionName: ApiFunctions.updateToken,
         body: {
-          ApiKeys.id: storageId,
+          ApiKeys.id: id.toString(),
           ApiKeys.pushToken: pushToken,
           ApiKeys.deviceId: deviceId,
           ApiKeys.language: language,
