@@ -4,3 +4,4 @@ class Repository {
   Future<T> repository<T>(IAdapter adapter) async {
     return await adapter();
   }
+}
