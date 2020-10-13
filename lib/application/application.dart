@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/locales.dart';
 import 'package:my_catalog/store/shared/initialization/initialize_selector.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/categories_page/categories_page.dart';
 import 'package:my_catalog/ui/shared/splash_screen/splash_screen.dart';
 
@@ -27,6 +28,10 @@ class Application extends StatelessWidget {
         onInitialBuild: (AppState state) => InitializeSelectors.startInitialization(store),
         builder: (BuildContext context, AppState store) {
           return MaterialApp(
+            theme: ThemeData(
+              splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
+              highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+            ),
             debugShowCheckedModeBanner: false,
             navigatorKey: NavigatorHolder.navigatorKey,
             onGenerateRoute: route.RouteBuilder.onGenerateRoute,
