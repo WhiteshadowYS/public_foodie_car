@@ -8,7 +8,7 @@ import 'package:my_catalog/repositories/shared/repository.dart';
 ///   - [updateToken]. This functions need for update token on the server.
 ///   * Need update params on this function.
 class NotificationsRepository extends Repository {
-  Future<UpdateTokenStatusModel> updateToken({String storageId}) {
+  Future<UpdateTokenStatusModel> updateToken({int id}) {
     return repository<UpdateTokenStatusModel>(
       PostUpdateTokenAdapter(
         request: PostUpdateTokenRequest(

@@ -49,10 +49,10 @@ class _MainPageState extends State<MainPage> {
               StoresList(
                 key: 'MainPageCatalogList',
                 stores: vm.stores?.map((e) {
-                      return e.id;
+                      return e.id.toString();
                     })?.toList() ??
                     [],
-                setId: (String id) => setState(() => _controller.text = id),
+                setId: (int id) => setState(() => _controller.text = id.toString()),
               ),
               const SizedBox(height: 48.0),
               Center(
@@ -95,5 +95,5 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void _onButtonPressed(MainPageVM vm) => vm.checkId(_controller.text);
+  void _onButtonPressed(MainPageVM vm) => vm.checkId(int.tryParse(_controller.text));
 }

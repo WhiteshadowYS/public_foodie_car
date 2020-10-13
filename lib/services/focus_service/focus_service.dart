@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/res/const.dart';
 
 /// This Service help us with fields navigation.
 /// [FocusService] is not a singleton, for using - create a variable on the screen widget.
@@ -86,7 +87,7 @@ class FocusService {
     final int index = _keys.indexWhere((e) => e.value == value);
 
     if (index == -1) {
-      print('$tag => <getKeyByValue> => key not found');
+      logger.d('$tag => <getKeyByValue> => key not found');
       return null;
     }
 
@@ -100,7 +101,7 @@ class FocusService {
     final int index = _keys.indexWhere((e) => e.order == order);
 
     if (index == -1) {
-      print('$tag => <getKeyByValue> => key not found');
+      logger.d('$tag => <getKeyByValue> => key not found');
       return null;
     }
 
@@ -118,12 +119,12 @@ class FocusService {
         final FocusKey nextKey = getKeyByOrder(nKey.order);
 
         if (nextKey.focusNode.context == null) {
-          print('$tag => <_findNextOrder> => key found without clients => continue');
+          logger.d('$tag => <_findNextOrder> => key found without clients => continue');
           continue;
         }
 
         if (!nextKey.canBeOpened) {
-          print('$tag => <_findNextOrder> => key found but cant be opened => continue');
+          logger.d('$tag => <_findNextOrder> => key found but cant be opened => continue');
           continue;
         }
 
@@ -132,12 +133,12 @@ class FocusService {
     }
 
     if (tmpOrder == key.order) {
-      print('$tag => <_findNextOrder> => new order == old order');
+      logger.d('$tag => <_findNextOrder> => new order == old order');
       return null;
     }
 
     if (tmpOrder == FocusKey.maxKeyValue) {
-      print('$tag => <_findNextOrder> => maxKeyValue was found');
+      logger.d('$tag => <_findNextOrder> => maxKeyValue was found');
       return null;
     }
 

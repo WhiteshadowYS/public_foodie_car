@@ -3,10 +3,10 @@ import 'package:my_catalog/store/shared/base_action.dart';
 
 class GetDataAction extends BaseAction {
   final int update;
-  final String storageId;
+  final int id;
 
   GetDataAction({
     @required this.update,
-    @required this.storageId,
+    @required this.id,
   }) : super(type: 'GetDataAction');
 }

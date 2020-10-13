@@ -49,6 +49,7 @@ class _BottomBarState extends State<BottomBar> {
         break;
       case PageTypes.LOGOUT_TYPE:
         vm.navigateToMainPage();
+        vm.removeOpenedStore();
         break;
       case PageTypes.SWITCH_TYPE:
         setState(() {

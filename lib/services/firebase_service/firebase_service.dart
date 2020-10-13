@@ -15,12 +15,12 @@ class FirebaseService {
   final databaseReference = FirebaseDatabase.instance.reference();
   StreamSubscription<Event> _subscription;
 
-  void listenChanges(String storageKey, void Function(String, int) getData) async {
+  void listenChanges(int id, void Function(int, int) getData) async {
     await _subscription?.cancel();
-    _subscription = databaseReference.onChildChanged.where((Event event) => event.snapshot.key == storageKey).listen(
+    _subscription = databaseReference.onChildChanged.where((Event event) => event.snapshot.key == id.toString()).listen(
       (Event event) {
-        logger.i('Update: ${event.snapshot.value}');
-        getData(storageKey, event.snapshot.value);
+        logger.d('$tag => <listenChanges> => new version: ${event.snapshot.value}');
+        getData(id, event.snapshot.value);
       },
     );
   }
@@ -28,7 +28,7 @@ class FirebaseService {
   Future<dynamic> getStoresVersions() async {
     final DataSnapshot data = await databaseReference.once();
 
-    logger.i('Loaded data: ${data.value}, type: ${data.value.runtimeType}');
+    logger.d('Loaded data: ${data.value}, type: ${data.value.runtimeType}');
 
     return data.value;
   }

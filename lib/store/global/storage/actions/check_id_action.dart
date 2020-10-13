@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/store/shared/base_action.dart';
 
 class CheckIdAction extends BaseAction {
-  final String storageId;
-  final void Function(String, int) getData;
+  final int id;
+  final void Function(int, int) getData;
 
   CheckIdAction({
-    @required this.storageId,
+    @required this.id,
     @required this.getData,
   }) : super(type: 'CheckIdAction');
 }

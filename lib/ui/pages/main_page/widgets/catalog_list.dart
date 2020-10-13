@@ -7,7 +7,7 @@ import 'catalogs_list_item.dart';
 
 class StoresList extends StatefulWidget {
   final List<String> stores;
-  final Function(String) setId;
+  final Function(int) setId;
 
   StoresList({
     @required String key,
@@ -42,11 +42,11 @@ class _CatalogListState extends State<StoresList> {
   Widget build(BuildContext context) {
     return MainListView(
       scrollController: _scrollController,
-      itemCount: widget.stores.length + 1,
+      itemCount: widget.stores.length + 2,
       itemHeight: itemHeight,
       height: 180.0,
       itemBuilder: (BuildContext context, int index) {
-        if (index == 0 || index == widget.stores.length) {
+        if (index == 0 || index == widget.stores.length + 1) {
           return SizedBox(
             height: itemHeight,
           );
@@ -55,14 +55,14 @@ class _CatalogListState extends State<StoresList> {
         return CatalogsListItem(
           key: '${widget.key.toString()}Item$index',
           onTap: () {
-            widget.setId(widget.stores[index]);
+            widget.setId(int.tryParse(widget.stores[index - 1]));
             _scrollController.animateTo(
               itemHeight * (index - 1),
               duration: MILLISECONDS_400,
               curve: Curves.easeOut,
             );
           },
-          title: widget.stores[index],
+          title: widget.stores[index - 1],
           isSelected: _checkSelect(index, widget.stores),
         );
       },
@@ -70,7 +70,7 @@ class _CatalogListState extends State<StoresList> {
   }
 
   bool _checkSelect(int index, List<String> stores) {
-    final double _itemMinHeight = itemHeight * index;
+    final double _itemMinHeight = itemHeight * index - 1;
     final double _itemMaxHeight = _itemMinHeight + itemHeight;
 
     return _scrollController.offset + itemHeight >= _itemMinHeight &&

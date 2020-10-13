@@ -12,10 +12,10 @@ part 'get_check_id_request_dto.g.dart';
   explicitToJson: true,
 )
 class GetCheckIdRequestDto implements IDto {
-  final double lastUpdate;
+  final int update;
 
   GetCheckIdRequestDto({
-    @required this.lastUpdate,
+    @required this.update,
   });
 
   factory GetCheckIdRequestDto.fromJson(json) => _$GetCheckIdRequestDtoFromJson(json);

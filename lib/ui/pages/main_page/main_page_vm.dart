@@ -6,7 +6,7 @@ import 'package:my_catalog/store/global/storage/storage_selector.dart';
 import 'package:redux/redux.dart';
 
 class MainPageVM {
-  final void Function(String) checkId;
+  final void Function(int) checkId;
   final List<SavedStorageModel> stores;
 
   MainPageVM({

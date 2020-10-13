@@ -14,7 +14,7 @@ import 'package:my_catalog/store/shared/reducer.dart';
 /// Params:
 ///   - [storage] it is model of storage  what we load from server in [GetDataRequest] class.
 class StorageState {
-  final String openedStoreId;
+  final int openedStoreId;
   final StorageModel storage;
   final List<SavedStorageModel> storesHistory;
 
@@ -34,7 +34,7 @@ class StorageState {
 
   StorageState copyWith({
     StorageModel storage,
-    String openedStoreId,
+    int openedStoreId,
     List<SavedStorageModel> storesHistory,
   }) {
     return StorageState(

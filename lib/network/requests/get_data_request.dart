@@ -22,10 +22,10 @@ import 'package:my_catalog/ui/pages/main_page/main_page.dart';
 ///   - "api_version". This string param it is const variable in [Api] class.
 ///   *In last update name of param - [Api.version].
 class GetDataRequest implements IRequest<BaseHttpResponse<GetDataRequestDto>> {
-  final String storageId;
+  final int id;
 
   GetDataRequest({
-    @required this.storageId,
+    @required this.id,
   });
 
   @override
@@ -35,7 +35,7 @@ class GetDataRequest implements IRequest<BaseHttpResponse<GetDataRequestDto>> {
         url: Api.mockApiLink,
         functionName: ApiFunctions.getData,
         params: {
-          ApiKeys.id: storageId,
+          ApiKeys.id: id.toString(),
           ApiKeys.apiVersion: Api.version,
         },
       ),

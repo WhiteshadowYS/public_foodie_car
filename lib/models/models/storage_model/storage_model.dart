@@ -12,8 +12,6 @@ part 'storage_model.g.dart';
   explicitToJson: true,
 )
 class StorageModel implements IDto {
-  @JsonKey(name: 'last_update', required: false, nullable: true)
-  final int lastUpdate;
   @JsonKey(name: 'partner_level', required: false, nullable: true)
   final String partnerLevel;
   @JsonKey(name: 'settings', required: false, nullable: true)
@@ -22,7 +20,6 @@ class StorageModel implements IDto {
   final DataModel data;
 
   const StorageModel({
-    @required this.lastUpdate,
     @required this.partnerLevel,
     @required this.settings,
     @required this.data,
