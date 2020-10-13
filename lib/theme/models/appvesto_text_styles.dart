@@ -15,11 +15,10 @@ class AVTextStyles implements IAVTextStyles {
     Color mainTextColor,
     Color accentTextColor,
     Color additionalTextColor,
-  }) : _titleTextColor = titleTextColor,
-       _mainTextColor = mainTextColor,
-       _accentTextColor = accentTextColor,
-       _additionalTextColor = additionalTextColor;
-
+  })  : _titleTextColor = titleTextColor,
+        _mainTextColor = mainTextColor,
+        _accentTextColor = accentTextColor,
+        _additionalTextColor = additionalTextColor;
 
   @override
   AVTextStyles copyWith({
@@ -60,13 +59,13 @@ class AVTextStyles implements IAVTextStyles {
     );
   }
 
-  TextStyle accentTextStyle({double size, double height}) {
+  TextStyle accentTextStyle({double size, double height, FontWeight fontWeight = FontWeight.w400}) {
     return TextStyle(
       fontFamily: fontFamily,
       height: height,
       fontSize: size,
       color: _accentTextColor,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeight,
     );
   }
 
