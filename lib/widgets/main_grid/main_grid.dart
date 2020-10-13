@@ -22,7 +22,7 @@ class MainGrid extends StatelessWidget {
             crossAxisCount: 2,
             crossAxisSpacing: 16.0,
             mainAxisSpacing: 16.0,
-            childAspectRatio: 0.8,
+            childAspectRatio: 0.75,
           ),
           itemCount: itemCount,
           itemBuilder: itemBuilder,

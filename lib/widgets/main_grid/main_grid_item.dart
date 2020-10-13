@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainGridItem extends StatefulWidget {
   final int index;
@@ -50,18 +51,20 @@ class _MainGridItemState extends State<MainGridItem> with SingleTickerProviderSt
               ClipRRect(
                 borderRadius: BorderRadius.circular(12.0),
                 child: FadeInImage(
-                  height: 190.0,
+                  height: 200.h,
+                  width: double.infinity,
                   placeholder: AssetImage(ImageAssets.LOGO_PNG),
                   image: NetworkImage(widget.imageUrl),
                   fit: BoxFit.cover,
                 ),
               ),
               const SizedBox(height: 8.0),
-              Text(
-                widget.title,
-                //widget.category.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()][NAME],
-                style: CustomTheme.textStyles.titleTextStyle(size: 15.0),
-                textAlign: TextAlign.left,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: Text(
+                  widget.title,
+                  style: CustomTheme.textStyles.titleTextStyle(size: 15.0),
+                ),
               ),
             ],
           ),
