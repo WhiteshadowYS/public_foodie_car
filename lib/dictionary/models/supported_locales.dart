@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_catalog/res/const.dart';
-
 import 'package:my_catalog/dictionary/data/en.dart';
 import 'package:my_catalog/dictionary/models/supported_language.dart';
 import 'package:my_catalog/res/locales.dart';

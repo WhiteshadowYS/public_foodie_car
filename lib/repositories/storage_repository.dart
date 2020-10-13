@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart';
 import 'package:my_catalog/adapters/get_check_id_adapter.dart';
 import 'package:my_catalog/adapters/get_data_adapter.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';

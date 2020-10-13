@@ -73,11 +73,8 @@ class _CatalogListState extends State<StoresList> {
     final double _itemMinHeight = itemHeight * index;
     final double _itemMaxHeight = _itemMinHeight + itemHeight;
 
-    if (_scrollController.offset + itemHeight >= _itemMinHeight && _scrollController.offset + itemHeight < _itemMaxHeight) {
-      return true;
-    }
-
-    return false;
+    return _scrollController.offset + itemHeight >= _itemMinHeight &&
+        _scrollController.offset + itemHeight < _itemMaxHeight;
   }
 
   void _updateState() => setState(() {});

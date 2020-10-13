@@ -81,10 +81,10 @@ class NetworkService {
 
     if (response.statusCode == HTTP_UNPROCESSABLE) {
       try {
-        Map<String, dynamic> responseBody = jsonDecode(response.body);
+        final Map<String, dynamic> responseBody = jsonDecode(response.body);
 
-        int code = responseBody[DATA];
-        String error = _getErrorByCode(code);
+        final int code = responseBody[DATA];
+        final String error = _getErrorByCode(code);
 
         if (error == null) {
           return BaseHttpResponse(

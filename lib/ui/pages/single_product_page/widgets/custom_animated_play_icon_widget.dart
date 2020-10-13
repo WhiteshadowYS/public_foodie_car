@@ -60,7 +60,7 @@ class _CustomAnimatedIconWidgetState extends State<CustomAnimatedPlayIconWidget>
     return Center(
       child: Transform.rotate(
         angle: -(pi / (2 / (1 - animationController.value))),
-        child: Container(
+        child: SizedBox(
           width: widget.size,
           height: widget.size,
           child: CustomPaint(

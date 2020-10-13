@@ -1,8 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:my_catalog/models/dto/get_data_request_dto/settings/gdr_colors_dto.dart';
-import 'package:my_catalog/models/dto/get_data_request_dto/settings/gdr_footer_button_dto.dart';
-import 'package:my_catalog/models/dto/get_data_request_dto/settings/gdr_info_dto.dart';
-import 'package:my_catalog/models/dto/get_data_request_dto/settings/gdr_language_dto.dart';
 import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_catalog/models/models/storage_model/settings/colors_model.dart';

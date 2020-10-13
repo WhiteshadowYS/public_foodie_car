@@ -17,8 +17,6 @@ class SingleProductPageVM {
   static SingleProductPageVM fromStore(Store<AppState> store) {
     return SingleProductPageVM(
         navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
-        filePreview: DialogSelectors.getShowFilePreviewDialogFunction(
-          store,
-        ));
+        filePreview: DialogSelectors.getShowFilePreviewDialogFunction(store));
   }
 }
