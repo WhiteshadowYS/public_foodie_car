@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/locales.dart';
 import 'package:my_catalog/store/shared/initialization/initialize_selector.dart';
+import 'package:my_catalog/ui/pages/categories_page/categories_page.dart';
 import 'package:my_catalog/ui/shared/splash_screen/splash_screen.dart';
 
 import 'package:redux/redux.dart';
