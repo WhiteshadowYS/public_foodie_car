@@ -46,3 +46,4 @@ class RouteSelectors {
     return () => store.dispatch(gotoSingleProductPageAction);
   }
 }
+

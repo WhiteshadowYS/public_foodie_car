@@ -89,7 +89,7 @@ class StorageRepository extends Repository {
   }
 
   Future<void> _addStoreToHistory(SavedStorageModel model, String json) async {
-    final List<SavedStorageModel> history = jsonDecode(json).map<SavedStorageModel>((Map json) {
+    final List<SavedStorageModel> history = jsonDecode(json).map<SavedStorageModel>((json) {
       return SavedStorageModel.fromJson(json);
     }).toList();
 
