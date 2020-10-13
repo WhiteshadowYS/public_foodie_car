@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_catalog_model.dart';
 import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/ui/pages/main_page/main_page_vm.dart';
 import 'package:my_catalog/widgets/main_list_view.dart';
 
 import 'catalogs_list_item.dart';

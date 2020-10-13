@@ -20,10 +20,8 @@ class ProductsPageVM {
     return ProductsPageVM(
       navigateToSingleProductPagePage: RouteSelectors.gotoSingleProductPage(store),
       // TODO(Daniil): Use selectors for this
-      selectProduct: (int i) => null ,
+      selectProduct: (int i) => null,
       products: dummyProducts,
     );
   }
-
-
 }

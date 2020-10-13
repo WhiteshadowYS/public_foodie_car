@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
@@ -18,7 +16,7 @@ class AgreeButton extends StatefulWidget {
     @required this.title,
     this.isAccepted = false,
     this.duration = const Duration(milliseconds: 1500),
-  })  : super(key: Key('AgreeButton'));
+  }) : super(key: Key('AgreeButton'));
 
   @override
   _AgreeButtonState createState() => _AgreeButtonState();

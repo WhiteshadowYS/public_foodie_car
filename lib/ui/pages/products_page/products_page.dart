@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
