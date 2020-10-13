@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
@@ -16,7 +17,7 @@ class FileViewButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (dummyFile.type == "VIDEO")
+        if (dummyFile.type == FileTypes.VIDEO_TYPE)
           ListTile(
             onTap: onTap,
             leading: CircleAvatar(
@@ -29,7 +30,7 @@ class FileViewButton extends StatelessWidget {
             ),
             trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
           ),
-        if (dummyFile.type == "IMAGE")
+        if (dummyFile.type == FileTypes.IMAGE_TYPE)
           ListTile(
             onTap: onTap,
             leading: CircleAvatar(
@@ -42,7 +43,7 @@ class FileViewButton extends StatelessWidget {
             ),
             trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
           ),
-        if (dummyFile.type == "PDF")
+        if (dummyFile.type == FileTypes.PDF_TYPE)
           ListTile(
             onTap: onTap,
             leading: CircleAvatar(

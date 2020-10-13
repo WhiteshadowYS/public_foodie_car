@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-import 'package:my_catalog/dictionary/flutter_delegate.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/store/application/app_state.dart';
