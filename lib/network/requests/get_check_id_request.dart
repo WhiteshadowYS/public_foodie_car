@@ -31,11 +31,18 @@ class GetCheckIdRequest implements IRequest<BaseHttpResponse<GetCheckIdRequestDt
     final Map<dynamic, dynamic> response = await FirebaseService.instance.getStoresVersions();
 
     if (response.containsKey(storageId)) {
-      final double result = double.tryParse(response[storageId]);
+      final value = response[storageId];
+      int result;
+
+      if (value is String) {
+        result = int.tryParse(response[storageId]);
+      } else if (value is int) {
+        result = value;
+      }
 
       return BaseHttpResponse<GetCheckIdRequestDto>(
         response: GetCheckIdRequestDto(
-          lastUpdate: result ?? 0,
+          lastUpdate: result.toDouble() ?? 0,
         ),
       );
     }
