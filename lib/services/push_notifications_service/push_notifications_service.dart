@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/notification_dialog.dart';
 import 'package:my_catalog/services/push_notifications_service/models/message.dart';
@@ -46,7 +47,7 @@ class PushNotificationsService {
   /// something you need with received [Message]
   // ignore: missing_return
   Future<void> _onAllMessages(Message message, String type) {
-    print('$tag => <_onAllMessages> => message: ${message.id}');
+    logger.d('$tag => <_onAllMessages> => message: ${message.id}');
     if (message.id == EMPTY_STRING || (_currentMessage?.id != message.id && _unreadNotificationsList.indexWhere((e) => e.id == message.id) == -1)) {
       _currentMessage = message;
 
@@ -80,7 +81,7 @@ class PushNotificationsService {
 
       _firebaseMessaging.requestNotificationPermissions();
     } catch (e) {
-      print('$tag -> <initialiseFCM> -> catch error -> $e');
+      logger.d('$tag -> <initialiseFCM> -> catch error -> $e');
     }
   }
   // endregion

@@ -1,4 +1,5 @@
 import 'package:flutter/painting.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/interfaces/i_appvesto_colors.dart';
 import 'package:my_catalog/theme/models/colors_dto.dart';
 
@@ -44,8 +45,6 @@ class AVColors implements IAVColors {
   });
 
   AVColors fromColorsDTO(ColorsDTO colorsDTO) {
-    print(colorsDTO.buttons);
-
     final AVColors _c = copyWith(
       primaryColor: _hexStringToColor(colorsDTO.primaryColor),
       accentColor: _hexStringToColor(colorsDTO.accentColor),
@@ -67,8 +66,6 @@ class AVColors implements IAVColors {
       popupOkButton: _hexStringToColor(colorsDTO.popupOkButton),
       popupCancelButton: _hexStringToColor(colorsDTO.popupCancelButton),
     );
-
-    print(_c.buttons);
 
     return _c;
   }
@@ -118,12 +115,10 @@ class AVColors implements IAVColors {
 
     if (hex == null) return null;
 
-    print('_hexStringToColor1: $hex');
     try {
-      print('_hexStringToColor2: ${Color(int.parse('FF$hex', radix: 16))}');
       return Color(int.parse('FF$hex', radix: 16));
     } catch (e) {
-      print('_hexStringToColor3: $e');
+      logger.e('_hexStringToColor: $e');
       return null;
     }
   }

@@ -14,6 +14,10 @@ class ValidationService {
       return dictionary.isNumberError;
     }
 
+    if (int.tryParse(arg) == null) {
+      return dictionary.isNumberError;
+    }
+
     return null;
   }
 }

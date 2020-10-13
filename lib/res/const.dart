@@ -1,6 +1,12 @@
 import 'package:logger/logger.dart';
 
-final Logger logger = Logger();
+final Logger logger = Logger(
+  printer: PrettyPrinter(
+    methodCount: 0,
+    lineLength: 140,
+  ),
+
+);
 
 const Duration SECONDS_1 = Duration(seconds: 1);
 

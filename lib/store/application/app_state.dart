@@ -29,8 +29,6 @@ class AppState {
   static AppState getReducer(AppState state, dynamic action) {
     const String TAG = '[appReducer]';
 
-    logger.i('$TAG  => <appReducer> => action: ${action.runtimeType}');
-
     return AppState(
       dialogState: state.dialogState.reducer(action),
       loaderState: state.loaderState.reducer(action),

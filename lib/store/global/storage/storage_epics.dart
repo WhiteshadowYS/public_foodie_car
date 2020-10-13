@@ -10,6 +10,7 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
 import 'package:my_catalog/store/global/storage/actions/open_storage_action.dart';
+import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_action.dart';
 import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
@@ -24,11 +25,12 @@ class StorageEpics {
     _checkIdEpic,
     _getDataEpic,
     _openStorageEpic,
+    _removeOpenedStorageEpic,
   ]);
 
-  static bool _idValidation(CheckIdAction action) => action.storageId != null && action.storageId != '';
+  static bool _idValidation(CheckIdAction action) => action.id != null;
 
-  static bool _id2Validation(GetDataAction action) => action.storageId != null && action.storageId != '';
+  static bool _id2Validation(GetDataAction action) => action.id != null;
 
   static Stream<dynamic> _checkIdEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<CheckIdAction>().where(_idValidation).switchMap((action) async* {
@@ -36,7 +38,7 @@ class StorageEpics {
 
       yield* _changeCheckIdLoadingState(true);
 
-      final BaseHttpResponse<StorageStatusModel> response = await repository.getStorageStatus(storageId: action.storageId);
+      final BaseHttpResponse<StorageStatusModel> response = await repository.getStorageStatus(id: action.id);
 
       if (response.error != null || response.response == null) {
         yield* _showError(response.error?.error ?? 'Error not found');
@@ -45,10 +47,13 @@ class StorageEpics {
 
       final bool isLastUpdate = await repository.isLastUpdate(response.response);
 
-      FirebaseService.instance.listenChanges(action.storageId, action.getData);
+      FirebaseService.instance.listenChanges(action.id, action.getData);
 
       if (!isLastUpdate) {
-        yield* Stream.value(GetDataAction(storageId: response.response.id));
+        yield* Stream.value(GetDataAction(
+          id: response.response.id,
+          update: response.response.update,
+        ));
         return;
       }
 
@@ -62,10 +67,10 @@ class StorageEpics {
         return;
       }
 
-      await repository.updateOpenedStoreId(id: action.storageId);
+      await repository.updateOpenedStoreId(id: action.id);
 
       final int index = history.indexWhere((store) {
-        return store.id == action.storageId;
+        return store.id == action.id;
       });
 
       if (index == null && index == -1) {
@@ -80,7 +85,7 @@ class StorageEpics {
         Stream.fromIterable([
           SetStoresHistoryAction(storesHistory: history),
           OpenStorageAction(
-            id: action.storageId,
+            id: action.id,
             storage: history[index].storage,
           ),
         ]),
@@ -93,10 +98,15 @@ class StorageEpics {
     return actions.whereType<GetDataAction>().where(_id2Validation).switchMap((action) async* {
       final StorageRepository repository = StorageRepository();
 
-      final BaseHttpResponse<StorageModel> response = await repository.getStorageData(storageId: action.storageId);
+      final BaseHttpResponse<StorageModel> response = await repository.getStorageData(id: action.id);
 
-      await repository.updateStoresHistory(id: action.storageId, locale: '', storageModel: response.response);
-      await repository.updateOpenedStoreId(id: action.storageId);
+      await repository.updateStoresHistory(
+        id: action.id,
+        locale: '',
+        storageModel: response.response,
+        update: action.update,
+      );
+      await repository.updateOpenedStoreId(id: action.id);
 
       final List<SavedStorageModel> history = await repository.getStoresHistory();
 
@@ -104,7 +114,7 @@ class StorageEpics {
         yield* Stream.fromIterable([
           SetStoresHistoryAction(storesHistory: history),
           OpenStorageAction(
-            id: action.storageId,
+            id: action.id,
             storage: response.response,
           ),
         ]);
@@ -115,6 +125,15 @@ class StorageEpics {
   static Stream<dynamic> _openStorageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<OpenStorageAction>().switchMap((action) {
       return Stream.value(RouteSelectors.gotoCatalogsPageAction);
+    });
+  }
+
+  static Stream<dynamic> _removeOpenedStorageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<RemoveOpenedStorageAction>().switchMap((action) async* {
+      final StorageRepository repository = StorageRepository();
+
+      await repository.removeOpenedStoreId();
+      return;
     });
   }
 

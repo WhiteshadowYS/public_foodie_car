@@ -30,12 +30,12 @@ class RouteSelectors {
     return () => store.dispatch(gotoCatalogsPageAction);
   }
 
-  static void Function(String) gotoCategoriesPage(Store<AppState> store) {
-    return (String id) => store.dispatch(gotoCategoriesPageAction);
+  static void Function(int) gotoCategoriesPage(Store<AppState> store) {
+    return (int id) => store.dispatch(gotoCategoriesPageAction);
   }
 
-  static void Function(String) gotoSubcategoriesPage(Store<AppState> store) {
-    return (String id) => store.dispatch(gotoSubcategoriesPageAction);
+  static void Function(int) gotoSubcategoriesPage(Store<AppState> store) {
+    return (int id) => store.dispatch(gotoSubcategoriesPageAction);
   }
 
   static void Function(String) gotoProductsPage(Store<AppState> store) {

@@ -23,7 +23,7 @@ import 'package:my_catalog/ui/pages/main_page/main_page.dart';
 ///   - "device_id" - [deviceId]. No Realisation at this moment (This id we will take from [DeviceService] in the future).
 ///   - "language" - [language]. No Realisation at this moment (This param we will take from [Data] in the future).
 class PostUpdateTokenRequest implements IRequest<Null> {
-  final String storageId;
+  final int id;
   final String pushToken;
   final String deviceId;
   final String language;

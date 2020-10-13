@@ -20,29 +20,29 @@ import 'package:my_catalog/ui/pages/main_page/main_page.dart';
 ///   - "api_version". This string param it is const variable in [Api] class.
 ///   *In last update name of param - [Api.version].
 class GetCheckIdRequest implements IRequest<BaseHttpResponse<GetCheckIdRequestDto>> {
-  final String storageId;
+  final int id;
 
   GetCheckIdRequest({
-    @required this.storageId,
+    @required this.id,
   });
 
   @override
   Future<BaseHttpResponse<GetCheckIdRequestDto>> call() async {
     final Map<dynamic, dynamic> response = await FirebaseService.instance.getStoresVersions();
 
-    if (response.containsKey(storageId)) {
-      final value = response[storageId];
+    if (response.containsKey(id.toString())) {
+      final value = response[id.toString()];
       int result;
 
       if (value is String) {
-        result = int.tryParse(response[storageId]);
+        result = int.tryParse(value);
       } else if (value is int) {
         result = value;
       }
 
       return BaseHttpResponse<GetCheckIdRequestDto>(
         response: GetCheckIdRequestDto(
-          lastUpdate: result.toDouble() ?? 0,
+          update: result ?? 0,
         ),
       );
     }

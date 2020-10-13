@@ -3,7 +3,7 @@
 /// [title] - title of message.
 /// [content] - content of message.
 abstract class IMessage {
-  String id;
+  int id;
   String title;
   String content;
 }
