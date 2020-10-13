@@ -164,7 +164,7 @@ const List<DummyFile> dummyFiles = [
   DummyFile(
     id: 2,
     type: 'PDF',
-    fileUrl: 'http://www.orimi.com/pdf-test.pdf',
+    fileUrl: 'https://raw.githubusercontent.com/FlutterInThai/Dart-for-Flutter-Sheet-cheet/master/Dart-for-Flutter-Cheat-Sheet.pdf',
     languages: {
       'HE': {
         'name': '#3 PDF Name he',

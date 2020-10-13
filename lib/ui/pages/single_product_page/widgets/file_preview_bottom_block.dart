@@ -19,11 +19,20 @@ class FilePreviewBottomBlock extends StatelessWidget {
             itemName,
             style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
           ),
-          IconButton(
-            icon: Icon(Icons.share),
-            color: CustomTheme.colors.buttons,
-            iconSize: 35,
-            onPressed: () {},
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(25.0),
+              splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
+              highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+              // TODO(Daniil): Add onTap
+              onTap: () {},
+              child: Icon(
+                Icons.share,
+                color: CustomTheme.colors.primaryColor,
+                size: 42.0,
+              ),
+            ),
           ),
         ],
       ),

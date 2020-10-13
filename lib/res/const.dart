@@ -49,5 +49,5 @@ class PageTypes {
 class FileTypes{
   static const IMAGE_TYPE = 'IMAGE';
   static const VIDEO_TYPE = 'VIDEO';
-  static const PDF_TYPE = 'PDF_TYPE';
+  static const PDF_TYPE = 'PDF';
 }
