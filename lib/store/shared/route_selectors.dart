@@ -11,7 +11,7 @@ class RouteSelectors {
   static NavigateToAction get gotoCatalogsPageAction => RouteService.instance.pushAndRemoveUntil(Routes.catalogs);
   static NavigateToAction get gotoCategoriesPageAction => RouteService.instance.pushAndRemoveUntil(Routes.categories);
   static NavigateToAction get gotoSubcategoriesPageAction => RouteService.instance.push(Routes.subCategories);
-  static NavigateToAction get gotoProductsPageAction => RouteService.instance.push (Routes.products);
+  static NavigateToAction get gotoProductsPageAction => RouteService.instance.push(Routes.products);
   static NavigateToAction get gotoSingleProductPageAction => RouteService.instance.push(Routes.singleProduct);
 
   static void Function() gotoMainPage(Store<AppState> store) {
