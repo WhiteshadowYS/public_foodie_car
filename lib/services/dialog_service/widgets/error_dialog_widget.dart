@@ -3,7 +3,6 @@ import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
 

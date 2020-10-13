@@ -8,8 +8,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:my_catalog/services/route_service/route_builder.dart' as route;
 
-import 'package:my_catalog/res/const.dart';
-
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
 
 import 'package:my_catalog/store/application/app_state.dart';

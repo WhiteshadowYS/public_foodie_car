@@ -3,7 +3,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/services/firebase_service/firebase_service.dart';
 import 'package:my_catalog/services/focus_service/focus_service.dart';
 import 'package:my_catalog/services/validation_service/validation_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -32,10 +31,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     _focusService.addKey(
-      FocusKey(
-        order: 1,
-        value: 'MainPageIdTextField',
-      ),
+      FocusKey(order: 1, value: 'MainPageIdTextField')
     );
   }
 

@@ -15,7 +15,7 @@ class CustomPlayIconPaint extends CustomPainter {
 
   void _drawPath(Canvas canvas, Paint paint, Paint paintStroke) {
     canvas.save();
-    Path path = Path();
+    final Path path = Path();
     canvas.restore();
     path.addPolygon(
       [
@@ -42,11 +42,11 @@ class CustomPlayIconPaint extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     size = Size(sizeIcon, sizeIcon);
-    Paint paint = Paint()
+    final Paint paint = Paint()
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.fill
       ..color = color ?? Colors.black;
-    Paint paintStroke = Paint()
+    final Paint paintStroke = Paint()
       ..strokeCap = StrokeCap.square
       ..strokeJoin = StrokeJoin.round
       ..strokeWidth = sizeIcon / 10

@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/models/dto/get_data_request_dto/data/data/gdr_catalog_dto.dart';
-import 'package:my_catalog/models/dto/get_data_request_dto/data/data/gdr_category_dto.dart';
-import 'package:my_catalog/models/dto/get_data_request_dto/data/data/gdr_file_dto.dart';
-import 'package:my_catalog/models/dto/get_data_request_dto/data/data/gdr_product_dto.dart';
-import 'package:my_catalog/models/dto/get_data_request_dto/data/data/gdr_subcategory_dto.dart';
 import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
-import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/dialog_service/models/empty_loader_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
@@ -12,7 +10,6 @@ import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart
 import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
-import 'package:my_catalog/utils/empty_action.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 

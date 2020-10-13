@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:my_catalog/models/dto/get_data_request_dto/data/gdr_info_category_dto.dart';
 import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_category_model.dart';

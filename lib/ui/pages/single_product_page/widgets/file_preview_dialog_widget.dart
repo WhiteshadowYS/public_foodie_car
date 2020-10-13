@@ -50,6 +50,8 @@ class FilePreviewDialogWidget extends StatelessWidget {
           fallbackHeight: 200,
           color: Colors.green,
         );
+      default:
+        return SizedBox();
     }
   }
 }

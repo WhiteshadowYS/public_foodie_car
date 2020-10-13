@@ -46,7 +46,7 @@ class AVColors implements IAVColors {
   AVColors fromColorsDTO(ColorsDTO colorsDTO) {
     print(colorsDTO.buttons);
 
-    AVColors _c = copyWith(
+    final AVColors _c = copyWith(
       primaryColor: _hexStringToColor(colorsDTO.primaryColor),
       accentColor: _hexStringToColor(colorsDTO.accentColor),
       errorColor: _hexStringToColor(colorsDTO.errorColor),
