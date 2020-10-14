@@ -31,11 +31,12 @@ class BottomBarList extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          for (var item in vm.footerButtons)
+          for (int i = 0; i < vm.footerButtons.length; i++)
             BottomBarItem(
-              iconUrl: item.iconSvg,
-              onTap: () => onTap(item.type, vm),
-              isSelected: _isButtonSelected(item.type),
+              key: 'footerButton[$i]',
+              iconUrl: vm.footerButtons[i].iconSvg,
+              onTap: () => onTap(vm.footerButtons[i].type, vm),
+              isSelected: _isButtonSelected(vm.footerButtons[i].type),
             ),
         ],
       ),
@@ -43,7 +44,7 @@ class BottomBarList extends StatelessWidget {
   }
 
   bool _isButtonSelected(String buttonType) {
-    if(buttonType!=PageTypes.SWITCH_TYPE && isSwitch){
+    if (buttonType != PageTypes.SWITCH_TYPE && isSwitch){
       return false;
     }
     switch (buttonType) {
@@ -55,7 +56,7 @@ class BottomBarList extends StatelessWidget {
         return RouteService.instance.currentRoute == Routes.main;
       case PageTypes.SWITCH_TYPE:
         return isSwitch;
-      default: return false;
+      default: return true;
     }
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
 import 'package:my_catalog/res/const.dart';
@@ -19,6 +21,10 @@ class FileViewButton extends StatelessWidget {
       children: [
         if (dummyFile.type == FileTypes.VIDEO_TYPE)
           ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 8.0,
+            ),
             onTap: onTap,
             leading: CircleAvatar(
               backgroundColor: CustomTheme.colors.primaryColor,
@@ -32,6 +38,10 @@ class FileViewButton extends StatelessWidget {
           ),
         if (dummyFile.type == FileTypes.IMAGE_TYPE)
           ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 8.0,
+            ),
             onTap: onTap,
             leading: CircleAvatar(
               backgroundColor: CustomTheme.colors.primaryColor,
@@ -45,6 +55,10 @@ class FileViewButton extends StatelessWidget {
           ),
         if (dummyFile.type == FileTypes.PDF_TYPE)
           ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 8.0,
+            ),
             onTap: onTap,
             leading: CircleAvatar(
               backgroundColor: CustomTheme.colors.primaryColor,
@@ -56,7 +70,10 @@ class FileViewButton extends StatelessWidget {
             ),
             trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
           ),
-        Divider(),
+        Container(
+          height: 0.5,
+          color: Colors.grey.withOpacity(0.3),
+        ),
       ],
     );
   }
