@@ -51,88 +51,90 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      splashColor: CustomTheme.colors.background.withOpacity(0.4),
-      highlightColor: CustomTheme.colors.background.withOpacity(0.2),
-      onTap: () {
-        isOpen = true;
-        setState(() {});
-        widget.onTap();
-      },
-      child: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Column(
-              children: [
-                SizedBox(height: 5),
-                if (widget.dummyFile.type == FileTypes.VIDEO_TYPE)
-                  ListTile(
-                    leading: CircleAvatar(
-                      radius: 24,
-                      backgroundColor: CustomTheme.colors.primaryColor,
-                      child: Icon(Icons.videocam, color: CustomTheme.colors.background, size: 28),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+
+        splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
+        highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+        onTap: () {
+          isOpen = true;
+          setState(() {});
+          widget.onTap();
+        },
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                children: [
+                  const SizedBox(height: 5.0),
+                  if (widget.dummyFile.type == FileTypes.VIDEO_TYPE)
+                    ListTile(
+                      leading: CircleAvatar(
+                        radius: 24,
+                        backgroundColor: CustomTheme.colors.primaryColor,
+                        child: Icon(Icons.videocam, color: CustomTheme.colors.background, size: 28),
+                      ),
+                      title: Text(
+                        'Watch video "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                      ),
+                      trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
                     ),
-                    title: Text(
-                      'Watch video "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
-                      style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                  if (widget.dummyFile.type == FileTypes.IMAGE_TYPE)
+                    ListTile(
+                      leading: CircleAvatar(
+                        radius: 24,
+                        backgroundColor: CustomTheme.colors.primaryColor,
+                        child: Icon(Icons.image, color: CustomTheme.colors.background, size: 28),
+                      ),
+                      title: Text(
+                        'See pictures "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                      ),
+                      trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
                     ),
-                    trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
+                  if (widget.dummyFile.type == FileTypes.PDF_TYPE)
+                    ListTile(
+                      leading: CircleAvatar(
+                        radius: 24,
+                        backgroundColor: CustomTheme.colors.primaryColor,
+                        child: Icon(Icons.picture_as_pdf, color: CustomTheme.colors.background, size: 28),
+                      ),
+                      title: Text(
+                        'Check documents "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                      ),
+                      trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
+                    ),
+                  const SizedBox(height: 10.0),
+                  Container(
+                    height: 0.5,
+                    color: Colors.grey.withOpacity(0.3),
                   ),
-                if (widget.dummyFile.type == FileTypes.IMAGE_TYPE)
-                  ListTile(
-                    onTap: widget.onTap,
-                    leading: CircleAvatar(
-                      radius: 24,
-                      backgroundColor: CustomTheme.colors.primaryColor,
-                      child: Icon(Icons.image, color: CustomTheme.colors.background, size: 28),
-                    ),
-                    title: Text(
-                      'See pictures "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
-                      style: CustomTheme.textStyles.titleTextStyle(size: 14),
-                    ),
-                    trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
-                  ),
-                if (widget.dummyFile.type == FileTypes.PDF_TYPE)
-                  ListTile(
-                    onTap: widget.onTap,
-                    leading: CircleAvatar(
-                      radius: 24,
-                      backgroundColor: CustomTheme.colors.primaryColor,
-                      child: Icon(Icons.picture_as_pdf, color: CustomTheme.colors.background, size: 28),
-                    ),
-                    title: Text(
-                      'Check documents "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
-                      style: CustomTheme.textStyles.titleTextStyle(size: 14),
-                    ),
-                    trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
-                  ),
-                SizedBox(height: 10),
-                Container(
-                  height: 0.5,
-                  color: Colors.grey.withOpacity(0.3),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          if (!isOpen)
-            ClipRRect(
-              child: Container(
-                height: 72,
-                alignment: Alignment((_animation.value - 0.5) * 2, 0),
-                width: double.infinity,
-                child: Transform.rotate(
-                  angle: pi / 8,
-                  child: Container(
-                    width: 18,
-                    decoration: BoxDecoration(
-                      boxShadow: AppShadows.shadowsFile(CustomTheme.colors.primaryColor.withOpacity(0.2)),
+            if (!isOpen)
+              ClipRRect(
+                child: Container(
+                  height: 72,
+                  alignment: Alignment((_animation.value - 0.5) * 2.5, 0),
+                  width: double.infinity,
+                  child: Transform.rotate(
+                    angle: pi / 8,
+                    child: Container(
+                      width: 18,
+                      decoration: BoxDecoration(
+                        boxShadow: AppShadows.shadowsFile(CustomTheme.colors.primaryColor.withOpacity(0.2)),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -140,12 +142,12 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
   void _updateListener() {
     setState(() {});
     if (_animation.value == 0) {
-      Future.delayed(Duration(milliseconds: 1500)).then((value) {
+      Future.delayed(Duration(milliseconds: 1000)).then((value) {
         _animationController.forward();
       });
     }
     if (_animation.value == 1) {
-      Future.delayed(Duration(milliseconds: 1500)).then((value) {
+      Future.delayed(Duration(milliseconds: 1000)).then((value) {
         _animationController.value = 0;
         _animationController.forward();
       });
