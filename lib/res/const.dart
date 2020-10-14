@@ -43,7 +43,7 @@ class PageTypes {
   static const String HOME_TYPE = 'HOME';
   static const String SETTINGS_TYPE = 'SETTINGS';
   static const String SWITCH_TYPE = 'SWITCH';
-  static const String LOGOUT_TYPE = 'LOGOUT';
+  static const String SIGNOUT_TYPE = 'SIGNOUT';
 }
 
 class FileTypes{
