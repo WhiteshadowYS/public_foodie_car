@@ -26,7 +26,7 @@ const Language en = Language(
     back: 'Back',
   ),
   settingPageDictionary: SettingPageDictionary(
-    appVersion: 'App version 1.01.1',
+    appVersion: 'App version',
     createBy: 'Created by AppVesto',
     settings: 'Settings',
     language: 'Language',

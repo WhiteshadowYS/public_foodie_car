@@ -7,6 +7,7 @@ import 'package:my_catalog/network/requests/get_data_request.dart';
 import 'package:my_catalog/store/global/storage/actions/open_storage_action.dart';
 import 'package:my_catalog/store/global/storage/actions/set_opened_store_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
+import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/reducer.dart';
 
 /// [StorageState] it is state of last loaded storage.
@@ -50,6 +51,7 @@ class StorageState {
         OpenStorageAction: (dynamic action) => _openStorage(action as OpenStorageAction),
         SetOpenedStoreIdAction: (dynamic action) => _setOpenedStoreId(action as SetOpenedStoreIdAction),
         SetStoresHistoryAction: (dynamic action) => _setStoresHistory(action as SetStoresHistoryAction),
+        UpdateLanguageAction: (dynamic action) => _updateStoreLanguage(action as UpdateLanguageAction),
       }),
     ).updateState(action, this);
   }
@@ -76,6 +78,16 @@ class StorageState {
 
     return copyWith(
       storesHistory: action.storesHistory,
+    );
+  }
+
+  StorageState _updateStoreLanguage(UpdateLanguageAction action) {
+    if (action.newModel == null) return this;
+
+    return copyWith(
+      storesHistory: List.from(storesHistory)
+        ..removeLast()
+        ..add(action.newModel),
     );
   }
 }

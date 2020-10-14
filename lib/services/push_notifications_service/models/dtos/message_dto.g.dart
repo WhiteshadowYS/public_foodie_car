@@ -9,7 +9,7 @@ part of 'message_dto.dart';
 MessageDto _$MessageDtoFromJson(Map<String, dynamic> json) {
   return $checkedNew('MessageDto', json, () {
     final val = MessageDto(
-      id: $checkedConvert(json, 'id', (v) => v as int),
+      id: $checkedConvert(json, 'id', (v) => v as String),
       title: $checkedConvert(json, 'title', (v) => v as String),
       body: $checkedConvert(json, 'body', (v) => v as String),
       image: $checkedConvert(json, 'image', (v) => v as String),
