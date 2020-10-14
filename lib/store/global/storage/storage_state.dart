@@ -82,16 +82,12 @@ class StorageState {
   }
 
   StorageState _updateStoreLanguage(UpdateLanguageAction action) {
-    if (action.locale == null || action.locale.isEmpty) return this;
+    if (action.newModel == null) return this;
 
     return copyWith(
       storesHistory: List.from(storesHistory)
         ..removeLast()
-        ..add(
-          storesHistory.last.copyWith(
-            locale: action.locale
-          ),
-        ),
+        ..add(action.newModel),
     );
   }
 }

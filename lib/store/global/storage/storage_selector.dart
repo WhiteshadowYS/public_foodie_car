@@ -44,7 +44,9 @@ class StorageSelector {
     return (String locale) {
       store.dispatch(
         UpdateLanguageAction(
-          locale: locale,
+          newModel: store.state.storageState.storesHistory.last.copyWith(
+              locale: locale
+          ),
         ),
       );
     };

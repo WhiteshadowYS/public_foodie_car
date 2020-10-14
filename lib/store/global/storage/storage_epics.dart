@@ -12,6 +12,7 @@ import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
 import 'package:my_catalog/store/global/storage/actions/open_storage_action.dart';
 import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_action.dart';
 import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
+import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
@@ -26,6 +27,7 @@ class StorageEpics {
     _getDataEpic,
     _openStorageEpic,
     _removeOpenedStorageEpic,
+    _updateLanguageEpic,
   ]);
 
   static bool _idValidation(CheckIdAction action) => action.id != null;
@@ -119,6 +121,21 @@ class StorageEpics {
           ),
         ]);
       }
+    });
+  }
+
+  static Stream<dynamic> _updateLanguageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<UpdateLanguageAction>().switchMap((action) async* {
+      final StorageRepository repository = StorageRepository();
+
+      await repository.updateStoresHistory(
+        id: action.newModel.id,
+        locale: action.newModel.locale,
+        storageModel: action.newModel.storage,
+        update: action.newModel.update,
+      );
+
+      return;
     });
   }
 
