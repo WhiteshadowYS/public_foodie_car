@@ -4,6 +4,7 @@ import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'widgets/bottom_bar_list.dart';
 import 'widgets/bottom_bar_switch.dart';
 
@@ -32,7 +33,7 @@ class _BottomBarState extends State<BottomBar> {
           mainAxisSize: MainAxisSize.min,
           children: [
             BottomBarSwitch(isSwitch: isSwitch, vm: vm, onTap: _onTap),
-            BottomBarList(onTap: _onTap, height: widget.height, vm: vm, isSwitch: isSwitch),
+            BottomBarList(onTap: _onTap, height: (widget.height).h, vm: vm, isSwitch: isSwitch),
           ],
         );
       },
