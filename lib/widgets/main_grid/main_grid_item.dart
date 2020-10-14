@@ -51,7 +51,7 @@ class _MainGridItemState extends State<MainGridItem> with SingleTickerProviderSt
               ClipRRect(
                 borderRadius: BorderRadius.circular(12.0),
                 child: FadeInImage(
-                  height: 172.h,
+                  height: 186.h,
                   width: double.infinity,
                   placeholder: AssetImage(ImageAssets.LOGO_PNG),
                   image: NetworkImage(widget.imageUrl),
