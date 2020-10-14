@@ -69,7 +69,7 @@ class _BottomBarListState extends State<BottomBarList> {
     } else if (RouteService.instance.currentRoute == Routes.settings) {
       selectedIndex = buttons.indexWhere((element) => element.type == PageTypes.SETTINGS_TYPE);
     } else if (RouteService.instance.currentRoute == Routes.main) {
-      selectedIndex = buttons.indexWhere((element) => element.type == PageTypes.LOGOUT_TYPE);
+      selectedIndex = buttons.indexWhere((element) => element.type == PageTypes.SIGNOUT_TYPE);
     } else if (widget.isSwitch) {
       selectedIndex = buttons.indexWhere((element) => element.type == PageTypes.SWITCH_TYPE);
     } else {

@@ -119,7 +119,7 @@ const List<FooterButtonModel> dummyButtons = [
         list: [],
       ),
       FooterButtonModel(
-        type: 'LOGOUT',
+        type: 'SIGNOUT',
         iconSvg: 'https://www.flaticon.com/svg/static/icons/svg/1286/1286853.svg',
         name: {'EN': 'Logout'},
         list: [],
