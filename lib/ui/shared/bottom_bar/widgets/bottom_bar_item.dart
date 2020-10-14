@@ -24,16 +24,12 @@ class BottomBarItem extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(48.h),
         onTap: onTap,
-        child: SizedBox(
-          height: 56.h,
-          width: 56.h,
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: SvgPicture.network(
-              iconUrl,
-              height: 32.h,
-              color: isSelected ? CustomTheme.colors.primaryColor : CustomTheme.colors.primaryColor.withOpacity(0.3),
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: SvgPicture.network(
+            iconUrl,
+            height: 32,
+            color: isSelected ? CustomTheme.colors.primaryColor : CustomTheme.colors.primaryColor.withOpacity(0.3),
           ),
         ),
       ),
