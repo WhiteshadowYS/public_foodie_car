@@ -21,7 +21,7 @@ class MainGrid extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 16.0,
-            mainAxisSpacing: 16.0,
+            mainAxisSpacing: 8.0,
             childAspectRatio: 0.75,
           ),
           itemCount: itemCount,
