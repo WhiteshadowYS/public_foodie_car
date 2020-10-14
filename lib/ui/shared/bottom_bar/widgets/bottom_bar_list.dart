@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/route_service/models/routes.dart';
@@ -7,7 +8,7 @@ import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 
 import 'bottom_bar_item.dart';
 
-class BottomBarList extends StatelessWidget {
+class BottomBarList extends StatefulWidget {
   final BottomBarVM vm;
   final void Function(String, BottomBarVM) onTap;
   final bool isSwitch;
@@ -21,42 +22,60 @@ class BottomBarList extends StatelessWidget {
   });
 
   @override
+  _BottomBarListState createState() => _BottomBarListState();
+}
+
+class _BottomBarListState extends State<BottomBarList> {
+  int selectedIndex = 0;
+
+  @override
+  void initState() {
+    _updateSelectedIndex(widget.vm.footerButtons);
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(BottomBarList oldWidget) {
+    _updateSelectedIndex(widget.vm.footerButtons);
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.kWhite),
         color: AppColors.kWhite,
       ),
-      height: height,
+      height: widget.height,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          for (int i = 0; i < vm.footerButtons.length; i++)
-            BottomBarItem(
-              key: 'footerButton[$i]',
-              iconUrl: vm.footerButtons[i].iconSvg,
-              onTap: () => onTap(vm.footerButtons[i].type, vm),
-              isSelected: _isButtonSelected(vm.footerButtons[i].type),
-            ),
-        ],
-      ),
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: widget.vm.footerButtons.map((item) {
+            return BottomBarItem(
+              key: 'footerButton[${widget.vm.footerButtons.indexOf(item)}]',
+              iconUrl: item.iconSvg,
+              onTap: () => widget.onTap(item.type, widget.vm),
+              isSelected: selectedIndex == -1 || selectedIndex == widget.vm.footerButtons.indexOf(item),
+            );
+          }).toList()),
     );
   }
 
-  bool _isButtonSelected(String buttonType) {
-    if (buttonType != PageTypes.SWITCH_TYPE && isSwitch){
-      return false;
+  void _updateSelectedIndex(List<FooterButtonModel> buttons) {
+    selectedIndex = -1;
+
+    if (RouteService.instance.currentRoute == Routes.catalogs) {
+      selectedIndex = buttons.indexWhere((element) => element.type == PageTypes.HOME_TYPE);
+    } else if (RouteService.instance.currentRoute == Routes.settings) {
+      selectedIndex = buttons.indexWhere((element) => element.type == PageTypes.SETTINGS_TYPE);
+    } else if (RouteService.instance.currentRoute == Routes.main) {
+      selectedIndex = buttons.indexWhere((element) => element.type == PageTypes.LOGOUT_TYPE);
+    } else if (widget.isSwitch) {
+      selectedIndex = buttons.indexWhere((element) => element.type == PageTypes.SWITCH_TYPE);
+    } else {
+      selectedIndex = -1;
     }
-    switch (buttonType) {
-      case PageTypes.HOME_TYPE:
-        return RouteService.instance.currentRoute == Routes.catalogs;
-      case PageTypes.SETTINGS_TYPE:
-        return RouteService.instance.currentRoute == Routes.settings;
-      case PageTypes.LOGOUT_TYPE:
-        return RouteService.instance.currentRoute == Routes.main;
-      case PageTypes.SWITCH_TYPE:
-        return isSwitch;
-      default: return true;
-    }
+
+    setState(() {});
   }
 }

@@ -4,14 +4,15 @@ import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
 class LinksButton extends StatefulWidget {
+  final String keyValue;
   final String title;
   final String url;
 
   LinksButton({
-    @required String key,
+    @required this.keyValue,
     @required this.title,
     @required this.url,
-  }) : super(key: Key(key));
+  }) : super(key: Key(keyValue + 'LinksButton'));
 
   @override
   _LinksButtonState createState() => _LinksButtonState();
@@ -24,6 +25,7 @@ class _LinksButtonState extends State<LinksButton> {
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
+        key: Key(widget.keyValue),
         onTapDown: _onTapDown,
         onTapUp: _onTapUp,
         onTapCancel: _onTapCancel,

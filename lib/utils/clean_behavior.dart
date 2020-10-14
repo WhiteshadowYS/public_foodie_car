@@ -8,17 +8,20 @@ class CleanBehavior extends ScrollBehavior {
 }
 
 class CleanedListView extends StatelessWidget {
+  final String keyValue;
   final List<Widget> children;
 
-  const CleanedListView({
+  CleanedListView({
+    @required this.keyValue,
     this.children,
-  }) : super(key: const Key('CleanedListView'));
+  }) : super(key: Key(keyValue + 'CleanedListView'));
 
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: CleanBehavior(),
       child: ListView(
+        key: Key(keyValue),
         children: children,
       ),
     );

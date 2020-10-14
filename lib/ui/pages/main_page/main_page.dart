@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/services/focus_service/focus_service.dart';
 import 'package:my_catalog/services/validation_service/validation_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -31,7 +32,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     _focusService.addKey(
-      FocusKey(order: 1, value: 'MainPageIdTextField'),
+      FocusKey(order: 1, value: MainPageKeys.textField),
     );
   }
 
@@ -44,10 +45,11 @@ class _MainPageState extends State<MainPage> {
         return MainLayout(
           bgColor: CustomTheme.colors.background,
           child: CleanedListView(
+            keyValue: MainPageKeys.listView,
             children: [
               const SizedBox(height: 24.0),
               StoresList(
-                key: 'MainPageCatalogList',
+                keyValue: MainPageKeys.catalogListItem,
                 stores: vm.stores?.map((e) {
                       return e.id.toString();
                     })?.toList() ??
@@ -63,7 +65,7 @@ class _MainPageState extends State<MainPage> {
               ),
               const SizedBox(height: 8.0),
               CatalogIdSearchTextField(
-                focusKeyValue: 'MainPageIdTextField',
+                focusKeyValue: MainPageKeys.textField,
                 focusService: _focusService,
                 controller: _controller,
                 validator: (arg) => ValidationService.numberValidation(
@@ -73,7 +75,7 @@ class _MainPageState extends State<MainPage> {
               ),
               const SizedBox(height: 20.0),
               MainButton(
-                key: 'MainPageSearchButton',
+                keyValue: MainPageKeys.button,
                 title: dictionary.viewCatalog,
                 onTap: () => _onButtonPressed(vm),
                 controller: _controller,
@@ -84,7 +86,7 @@ class _MainPageState extends State<MainPage> {
               ),
               const SizedBox(height: 64.0),
               LinksButton(
-                key: 'MainPageOwnCatalogButton',
+                keyValue: MainPageKeys.ownButton,
                 title: dictionary.iWantToCreate,
                 url: WANNA_CREATE_MY_CATALOG_LINK,
               ),

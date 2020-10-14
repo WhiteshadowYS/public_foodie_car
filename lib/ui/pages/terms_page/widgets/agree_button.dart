@@ -6,17 +6,19 @@ import 'accept_check_box.dart';
 ///Button with checkbox which show check icon and call function passed as a parameter in [onTap] after some time passed in [duration]
 ///[AgreeButton] takes 2 required parameters [onTap], [title] and 1 not required [duration]. Default [duration] is 500 milliseconds.
 class AgreeButton extends StatefulWidget {
+  final String keyValue;
   final Function onTap;
   final String title;
   final bool isAccepted;
   final Duration duration;
 
   AgreeButton({
+    @required this.keyValue,
     @required this.onTap,
     @required this.title,
     this.isAccepted = false,
     this.duration = const Duration(milliseconds: 1500),
-  }) : super(key: Key('AgreeButton'));
+  }) : super(key: Key(keyValue + 'AgreeButton'));
 
   @override
   _AgreeButtonState createState() => _AgreeButtonState();
@@ -32,6 +34,7 @@ class _AgreeButtonState extends State<AgreeButton> {
           horizontal: MediaQuery.of(context).size.width * 0.15,
         ),
         child: InkWell(
+          key: Key(widget.keyValue),
           borderRadius: BorderRadius.circular(24.0),
           splashColor: CustomTheme.colors.background,
           highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.4),

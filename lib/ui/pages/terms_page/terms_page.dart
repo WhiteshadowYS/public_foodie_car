@@ -5,6 +5,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/terms_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
@@ -38,7 +39,7 @@ class _TermsPageState extends State<TermsPage> {
         return MainLayout(
           back: () => back(vm),
           appBar: MainAppBar(
-            key: 'TACPageAppBar',
+            key: TermsPageKeys.appbar,
             title: dictionary.title,
             backOnTap: () => back(vm),
           ),
@@ -49,6 +50,7 @@ class _TermsPageState extends State<TermsPage> {
               top: 50.h,
             ),
             child: SingleChildScrollView(
+              key: Key(TermsPageKeys.listView),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -64,6 +66,7 @@ class _TermsPageState extends State<TermsPage> {
 
                   /// [AgreeButton] takes [vm.navigateToCatalogsPage] as onTap function and [dictionary.agree] text as title
                   AgreeButton(
+                    keyValue: TermsPageKeys.button,
                     onTap: () {
                       timer = Timer(Duration(milliseconds: 1500), () {
                         if (isAccepted) {

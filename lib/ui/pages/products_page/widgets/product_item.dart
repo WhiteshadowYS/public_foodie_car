@@ -11,13 +11,15 @@ import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
 class ProductItem extends StatelessWidget {
+  final String keyValue;
   final ProductModel product;
   final void Function() onTap;
 
   ProductItem({
+    @required this.keyValue,
     @required this.product,
     @required this.onTap,
-  });
+  }) : super(key: Key(keyValue + 'ProductItem'));
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class ProductItem extends StatelessWidget {
       child: Column(
         children: [
           ListTile(
+            key: Key(keyValue),
             contentPadding: EdgeInsets.symmetric(
               vertical: 10.0,
               horizontal: 16.0,

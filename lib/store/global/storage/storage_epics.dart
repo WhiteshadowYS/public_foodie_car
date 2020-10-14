@@ -7,6 +7,8 @@ import 'package:my_catalog/services/dialog_service/models/empty_loader_dialog.da
 import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
 import 'package:my_catalog/services/firebase_service/firebase_service.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
+import 'package:my_catalog/services/route_service/models/routes.dart';
+import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
@@ -136,7 +138,13 @@ class StorageEpics {
 
   static Stream<dynamic> _openStorageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<OpenStorageAction>().switchMap((action) {
-      return Stream.value(RouteSelectors.gotoCatalogsPageAction);
+      final String lastRoute = RouteService.instance.currentRoute;
+
+      if (lastRoute == Routes.main || lastRoute == null) {
+        return Stream.value(RouteSelectors.gotoCatalogsPageAction);
+      }
+
+      return Stream.empty();
     });
   }
 

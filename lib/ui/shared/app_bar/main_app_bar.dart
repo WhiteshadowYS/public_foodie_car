@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:my_catalog/services/route_service/route_service.dart';
+import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/ui/shared/app_bar/main_app_bar_vm.dart';
 
 import 'widgets/main_app_bar_child.dart';
 
@@ -28,11 +32,16 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         width: double.infinity,
         color: CustomTheme.colors.background,
         alignment: Alignment.center,
-        child: MainAppBarChild(
-          key: key.toString(),
-          title: title,
-          backOnTap: backOnTap,
-          logoUrl: logoUrl,
+        child: StoreConnector<AppState, MainAppbarVM>(
+          converter: MainAppbarVM.fromStore,
+          builder: (BuildContext context, MainAppbarVM vm) {
+            return MainAppBarChild(
+              key: key.toString(),
+              title: title,
+              backOnTap: backOnTap ?? () => vm.doRoute(RouteService.instance.pop()),
+              logoUrl: logoUrl,
+            );
+          },
         ),
       ),
     );

@@ -8,16 +8,17 @@ import 'package:my_catalog/theme/models/appvesto_colors.dart';
 import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
 
 class CatalogsListItem extends StatefulWidget {
+  final String keyValue;
   final String title;
   final bool isSelected;
   final void Function() onTap;
 
   CatalogsListItem({
-    @required String key,
+    @required this.keyValue,
     @required this.title,
     @required this.isSelected,
     @required this.onTap,
-  }) : super(key: Key(key));
+  }) : super(key: Key(keyValue + 'CatalogsListItem'));
 
   @override
   _CatalogsListItemState createState() => _CatalogsListItemState();
@@ -30,6 +31,7 @@ class _CatalogsListItemState extends State<CatalogsListItem> {
     final AVTextStyles textStyles = CustomTheme.textStyles;
 
     return InkWell(
+      key: Key(widget.keyValue),
       onTap: widget.onTap,
       child: Container(
         color: colors.background,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
 class CatalogTextField extends StatelessWidget {
+  final String keyValue;
   final void Function(String) onSubmitted;
   final void Function(String) validator;
 
@@ -16,7 +18,7 @@ class CatalogTextField extends StatelessWidget {
   final TextEditingController controller;
 
   CatalogTextField({
-    @required String key,
+    @required this.keyValue,
     @required this.controller,
     this.focusNode,
     this.textStyle,
@@ -26,7 +28,7 @@ class CatalogTextField extends StatelessWidget {
     this.hintTextStyle,
     this.inputType = TextInputType.number,
     this.validator,
-  }) : super(key: Key(key));
+  }) : super(key: Key(keyValue + 'CatalogTextField'));
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class CatalogTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: TextFormField(
-              key: Key(key.toString() + 'TextField'),
+              key: Key(keyValue),
               focusNode: focusNode,
               controller: controller,
               keyboardType: inputType,

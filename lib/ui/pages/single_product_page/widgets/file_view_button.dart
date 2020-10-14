@@ -1,10 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'dart:async';
 import 'dart:math';
 
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
 import 'package:my_catalog/res/app_styles/app_shadows.dart';
 import 'package:my_catalog/res/const.dart';
@@ -12,22 +9,25 @@ import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
 class FileViewButton extends StatefulWidget {
+  final String keyValue;
   final DummyFile dummyFile;
   final void Function() onTap;
 
   FileViewButton({
+    @required this.keyValue,
     @required this.dummyFile,
     @required this.onTap,
-  });
+  }) : super(key: Key(keyValue + 'FileViewButton'));
 
   @override
   _FileViewButtonState createState() => _FileViewButtonState();
 }
 
 class _FileViewButtonState extends State<FileViewButton> with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  CurvedAnimation _animation;
   bool isOpen = false;
+  bool _isDisposed = false;
+  CurvedAnimation _animation;
+  AnimationController _animationController;
 
   @override
   void initState() {
@@ -44,6 +44,7 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
 
   @override
   void dispose() {
+    _isDisposed = true;
     _animationController.removeListener(_updateListener);
     _animationController.dispose();
     super.dispose();
@@ -54,7 +55,7 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
     return Material(
       color: Colors.transparent,
       child: InkWell(
-
+        key: Key(widget.keyValue),
         splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
         highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
         onTap: () {
@@ -142,14 +143,16 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
   void _updateListener() {
     setState(() {});
     if (_animation.value == 0) {
-      Future.delayed(Duration(milliseconds: 1000)).then((value) {
-        _animationController.forward();
+      Future.delayed(Duration(seconds: 1)).then((_) {
+        if (_isDisposed) return;
+        _animationController?.forward();
       });
     }
     if (_animation.value == 1) {
-      Future.delayed(Duration(milliseconds: 1000)).then((value) {
-        _animationController.value = 0;
-        _animationController.forward();
+      Future.delayed(Duration(seconds: 1)).then((_) {
+        if (_isDisposed) return;
+        _animationController?.value = 0;
+        _animationController?.forward();
       });
     }
   }

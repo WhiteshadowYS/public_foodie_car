@@ -6,14 +6,15 @@ import 'package:my_catalog/widgets/main_list_view.dart';
 import 'catalogs_list_item.dart';
 
 class StoresList extends StatefulWidget {
+  final String keyValue;
   final List<String> stores;
   final Function(int) setId;
 
   StoresList({
-    @required String key,
+    @required this.keyValue,
     @required this.stores,
     this.setId,
-  }) : super(key: Key(key));
+  }) : super(key: Key(keyValue + 'StoresList'));
 
   @override
   _CatalogListState createState() => _CatalogListState();
@@ -53,7 +54,7 @@ class _CatalogListState extends State<StoresList> {
         }
 
         return CatalogsListItem(
-          key: '${widget.key.toString()}Item$index',
+          keyValue: widget.keyValue,
           onTap: () {
             widget.setId(int.tryParse(widget.stores[index - 1]));
             _scrollController.animateTo(

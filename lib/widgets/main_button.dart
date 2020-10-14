@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
 class MainButton extends StatefulWidget {
+  final String keyValue;
   final String title;
   final void Function() onTap;
 
@@ -9,12 +10,12 @@ class MainButton extends StatefulWidget {
   final TextEditingController controller;
 
   MainButton({
-    @required String key,
+    @required this.keyValue,
     @required this.title,
     @required this.onTap,
     this.validator,
     this.controller,
-  }) : super(key: Key(key));
+  }) : super(key: Key(keyValue + 'MainButton'));
 
   @override
   _MainButtonState createState() => _MainButtonState();
@@ -54,6 +55,7 @@ class _MainButtonState extends State<MainButton> {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
+          key: Key(widget.keyValue),
           onTap: status ? widget.onTap : () {},
           splashColor: CustomTheme.colors.background.withOpacity(0.4),
           highlightColor: CustomTheme.colors.background.withOpacity(0.2),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/services/focus_service/focus_service.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
@@ -18,7 +19,7 @@ class CatalogIdSearchTextField extends StatefulWidget {
     @required this.focusKeyValue,
     @required this.controller,
     @required this.validator,
-  }) : super(key: Key(focusKeyValue));
+  }) : super(key: Key(focusKeyValue + 'CatalogIdSearchTextField'));
 
   @override
   _CatalogIdSearchTextFieldState createState() => _CatalogIdSearchTextFieldState();
@@ -72,7 +73,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
         Padding(
           padding: const EdgeInsets.only(top: 24.0),
           child: CatalogTextField(
-            key: '${widget.focusKeyValue.toString()}CatalogTextField',
+            keyValue: widget.focusKeyValue,
             controller: widget.controller,
             focusNode: widget.focusService.getKeyByValue(widget.focusKeyValue).focusNode,
             onSubmitted: (String value) {

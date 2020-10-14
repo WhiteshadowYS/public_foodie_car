@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
@@ -44,7 +45,7 @@ class CatalogsPage extends StatelessWidget {
                       itemCount: vm.catalogs.length,
                       itemBuilder: (BuildContext context, int index) {
                         return CatalogItem(
-                          key: 'CatalogItem$index',
+                          keyValue: CatalogsPageKeys.catalogItem + '$index',
                           catalog: vm.catalogs[index],
                           navigateToCategories: vm.navigateToCategoriesPage,
                         );

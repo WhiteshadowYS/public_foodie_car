@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/products_page/products_page_vm.dart';
@@ -20,17 +21,18 @@ class ProductsPage extends StatelessWidget {
         return MainLayout(
           bgColor: AppColors.kWhite,
           appBar: MainAppBar(
-            key: 'MainAppBar',
+            key: ProductsPageKeys.appbar,
             title: 'Products',
-            backOnTap: () {},
           ),
-          bottomBar: BottomBar(key: 'BottomBar'),
+          bottomBar: BottomBar(key: ProductsPageKeys.bottomBar),
           child: ScrollConfiguration(
             behavior: CleanBehavior(),
             child: ListView.builder(
+              key: Key(ProductsPageKeys.listView),
               itemCount: vm.products.length,
               itemBuilder: (BuildContext context, int index) {
                 return ProductItem(
+                  keyValue: ProductsPageKeys.productItem,
                   product: vm.products[index],
                   onTap: () {
                     vm.selectProduct(vm.products[index].id);

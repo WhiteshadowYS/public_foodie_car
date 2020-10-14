@@ -12,7 +12,7 @@ class RouteService {
 
   final List<String> _history = [];
 
-  String get currentRoute => _history.last;
+  String get currentRoute => _history.isNotEmpty ? _history.last : null;
 
   bool get canPop {
     return NavigatorHolder.navigatorKey.currentState.canPop() && _history.length > 1;

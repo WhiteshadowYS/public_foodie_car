@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/dummy_data.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
@@ -24,9 +25,10 @@ class SingleProductPage extends StatelessWidget {
       builder: (BuildContext context, SingleProductPageVM vm) {
         return MainLayout(
           bgColor: AppColors.kWhite,
-          appBar: MainAppBar(key: 'MainAppBar', title: 'SubCategoryTitle', backOnTap: () {}),
-          bottomBar: BottomBar(key: 'BottomBar'),
+          appBar: MainAppBar(key: SingleProductKeys.appbar),
+          bottomBar: BottomBar(key: SingleProductKeys.bottomBar),
           child: CleanedListView(
+            keyValue: SingleProductKeys.listView,
             children: [
               const SizedBox(height: 20.0),
               Text(
@@ -35,7 +37,7 @@ class SingleProductPage extends StatelessWidget {
                 style: CustomTheme.textStyles.accentTextStyle(size: 22, fontWeight: FontWeight.w600),
               ),
               ImageViewer(
-                key: 'SingleProductKey',
+                key: SingleProductKeys.gallery,
                 gallery: [
                   'https://24smi.org/public/media/resize/800x-/2018/1/25/ruu3af4b8cb17.jpg',
                   'https://img.pravda.com/images/doc/4/3/4377786-original.jpg',
@@ -80,6 +82,7 @@ class SingleProductPage extends StatelessWidget {
                   itemCount: dummyFiles.length,
                   itemBuilder: (BuildContext context, int index) {
                     return FileViewButton(
+                      keyValue: SingleProductKeys.fileItem,
                       dummyFile: dummyFiles[index],
                       onTap: () => vm.filePreview(dummyFiles[index]),
                     );

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
+import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
 
@@ -21,7 +22,7 @@ class MainAppBarChild extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        if (backOnTap != null)
+        if (backOnTap != null && RouteService.instance.canPop)
           InkWell(
             onTap: backOnTap,
             child: Align(

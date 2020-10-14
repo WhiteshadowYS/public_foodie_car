@@ -4,18 +4,19 @@ import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainGridItem extends StatefulWidget {
+  final String keyValue;
   final int index;
   final String title;
   final String imageUrl;
   final void Function() onTap;
 
   MainGridItem({
-    @required String key,
+    @required this.keyValue,
     @required this.imageUrl,
     @required this.title,
     @required this.index,
     @required this.onTap,
-  }) : super(key: Key(key));
+  }) : super(key: Key(keyValue + 'MainGridItem'));
 
   @override
   _MainGridItemState createState() => _MainGridItemState();
@@ -41,6 +42,7 @@ class _MainGridItemState extends State<MainGridItem> with SingleTickerProviderSt
       child: Material(
         color: Colors.transparent,
         child: InkWell(
+          key: Key(widget.keyValue),
           borderRadius: BorderRadius.circular(18.0),
           splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
           highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),

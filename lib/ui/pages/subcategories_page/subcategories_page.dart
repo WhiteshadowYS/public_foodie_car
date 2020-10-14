@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
@@ -21,16 +22,15 @@ class SubcategoriesPage extends StatelessWidget {
       builder: (BuildContext context, vm) {
         return MainLayout(
           bgColor: CustomTheme.colors.background,
-          bottomBar: BottomBar(key: 'SubCategoriesBottomBar'),
-          appBar: MainAppBar(key: 'MainAppBar', title: 'SubCategories', backOnTap: () {}),
+          bottomBar: BottomBar(key: SubCategoriesPageKeys.bottomBar),
+          appBar: MainAppBar(key: SubCategoriesPageKeys.appbar, title: 'SubCategories'),
           child: MainGrid(
-            key: 'SubCategoriesGrid',
+            key: SubCategoriesPageKeys.gridView,
             itemCount: vm.getSubCategories.length,
             itemBuilder: (BuildContext context, int index) {
               return MainGridItem(
-                key: 'MainGridItem$index',
-                title: vm.getSubCategories[index].languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]
-                    [NAME],
+                keyValue: SubCategoriesPageKeys.subcategoryItem + '$index',
+                title: vm.getSubCategories[index].languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()][NAME],
                 imageUrl: vm.getSubCategories[index].imageLink,
                 index: index,
                 onTap: () => vm.navigateToProductsPage(vm.getSubCategories[index].id.toString()),
