@@ -10,7 +10,7 @@ import 'package:my_catalog/services/network_service/models/base_http_response.da
 /// Adapter for main request in application. [GetCheckIdRequest].
 /// This adapter will convert [GetCheckIdRequestDto] to [StorageStatusModel].
 class GetCheckIdAdapter implements IAdapter<BaseHttpResponse<StorageStatusModel>> {
-  final String storeId;
+  final int storeId;
 
   @override
   final IRequest request;

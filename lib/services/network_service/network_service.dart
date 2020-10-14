@@ -61,7 +61,7 @@ class NetworkService {
 
     final http.Response response = await request();
 
-    logger.v('response: ${response.body}');
+    logger.d('response: ${response.body}');
 
     return _getCheckedForErrorResponse(response);
   }

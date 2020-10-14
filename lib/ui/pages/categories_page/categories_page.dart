@@ -34,7 +34,7 @@ class CategoriesPage extends StatelessWidget {
                     [NAME],
                 imageUrl: vm.getCategories[index].imageLink,
                 index: index,
-                onTap: () => vm.navigateToSubcategoriesPage(vm.getCategories[index].id.toString()),
+                onTap: () => vm.navigateToSubcategoriesPage(vm.getCategories[index].id),
               );
             },
           ),

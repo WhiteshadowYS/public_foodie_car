@@ -26,6 +26,7 @@ class _MainButtonState extends State<MainButton> {
   @override
   void initState() {
     super.initState();
+    _validation();
     if (widget.validator != null && widget.controller != null) {
       widget.controller.addListener(_validation);
     }

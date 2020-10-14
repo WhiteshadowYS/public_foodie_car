@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -27,62 +26,67 @@ class SingleProductPage extends StatelessWidget {
           bgColor: AppColors.kWhite,
           appBar: MainAppBar(key: 'MainAppBar', title: 'SubCategoryTitle', backOnTap: () {}),
           bottomBar: BottomBar(key: 'BottomBar'),
-          child: ScrollConfiguration(
-            behavior: CleanBehavior(),
-            child: ListView(
-              children: [
-                const SizedBox(height: 20.0),
-                Text(
-                  'Product title',
+          child: CleanedListView(
+            children: [
+              const SizedBox(height: 20.0),
+              Text(
+                'Product title',
+                textAlign: TextAlign.center,
+                style: CustomTheme.textStyles.accentTextStyle(size: 22, fontWeight: FontWeight.w600),
+              ),
+              ImageViewer(
+                key: 'SingleProductKey',
+                gallery: [
+                  'https://24smi.org/public/media/resize/800x-/2018/1/25/ruu3af4b8cb17.jpg',
+                  'https://img.pravda.com/images/doc/4/3/4377786-original.jpg',
+                  'https://img.tsn.ua/cached/1570658675/tsn-c458e64851561f73ec5a071df604b604/thumbs/1340x530/40/d0/bd0482e31e2156cd627fbf6cbf5fd040.png',
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Description',
+                  style: CustomTheme.textStyles.titleTextStyle(size: 15),
                   textAlign: TextAlign.center,
-                  style: CustomTheme.textStyles.accentTextStyle(size: 22, fontWeight: FontWeight.w600),
                 ),
-                ImageViewer(
-                  key: 'SingleProductKey',
-                  gallery: [
-                    'https://24smi.org/public/media/resize/800x-/2018/1/25/ruu3af4b8cb17.jpg',
-                    'https://img.pravda.com/images/doc/4/3/4377786-original.jpg',
-                    'https://img.tsn.ua/cached/1570658675/tsn-c458e64851561f73ec5a071df604b604/thumbs/1340x530/40/d0/bd0482e31e2156cd627fbf6cbf5fd040.png',
-                  ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                  style: CustomTheme.textStyles.mainTextStyle(size: 15),
+                  textAlign: TextAlign.center,
                 ),
+              ),
+              for (String point in ['Point', 'Point', 'Point', 'Point', 'Point', 'Point'])
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Description',
-                    style: CustomTheme.textStyles.titleTextStyle(size: 15),
-                    textAlign: TextAlign.center,
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: SingleProductListItem(
+                    title: point,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    style: CustomTheme.textStyles.mainTextStyle(size: 15),
-                    textAlign: TextAlign.center,
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                  style: CustomTheme.textStyles.mainTextStyle(size: 15),
+                  textAlign: TextAlign.center,
                 ),
-                for (String point in ['Point', 'Point', 'Point', 'Point', 'Point', 'Point'])
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    child: SingleProductListItem(
-                      title: point,
-                    ),
-                  ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    style: CustomTheme.textStyles.mainTextStyle(size: 15),
-                    textAlign: TextAlign.center,
-                  ),
+              ),
+              SizedBox(
+                height: dummyFiles.length * 80.0,
+                child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: dummyFiles.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return FileViewButton(
+                      dummyFile: dummyFiles[index],
+                      onTap: () => vm.filePreview(dummyFiles[index]),
+                    );
+                  },
                 ),
-                for (DummyFile file in dummyFiles)
-                  FileViewButton(
-                    dummyFile: file,
-                    onTap: () => vm.filePreview(file),
-                  ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },

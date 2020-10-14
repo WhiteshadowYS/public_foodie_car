@@ -9,6 +9,7 @@ import 'package:my_catalog/models/models/storage_status_model.dart';
 import 'package:my_catalog/network/requests/get_check_id_request.dart';
 import 'package:my_catalog/network/requests/get_data_request.dart';
 import 'package:my_catalog/repositories/shared/repository.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/local_storage_service.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 
@@ -17,22 +18,22 @@ import 'package:my_catalog/services/network_service/models/base_http_response.da
 ///   - [getStorageData]. This function need for get All data about storage from the server.
 ///   - [getStorageStatus]. This function need for get last update date of current storage.
 class StorageRepository extends Repository {
-  Future<BaseHttpResponse<StorageModel>> getStorageData({String storageId}) {
+  Future<BaseHttpResponse<StorageModel>> getStorageData({int id}) {
     return repository<BaseHttpResponse<StorageModel>>(
       GetDataAdapter(
         request: GetDataRequest(
-          storageId: storageId,
+          id: id,
         ),
       ),
     );
   }
 
-  Future<BaseHttpResponse<StorageStatusModel>> getStorageStatus({String storageId}) {
+  Future<BaseHttpResponse<StorageStatusModel>> getStorageStatus({int id}) {
     return repository<BaseHttpResponse<StorageStatusModel>>(
       GetCheckIdAdapter(
-        storeId: storageId,
+        storeId: id,
         request: GetCheckIdRequest(
-          storageId: storageId,
+          id: id,
         ),
       ),
     );
@@ -51,7 +52,8 @@ class StorageRepository extends Repository {
   }
 
   Future<void> updateStoresHistory({
-    @required String id,
+    @required int update,
+    @required int id,
     @required String locale,
     @required StorageModel storageModel,
   }) async {
@@ -59,6 +61,7 @@ class StorageRepository extends Repository {
       id: id,
       locale: locale ?? '',
       storage: storageModel,
+      update: update,
     );
     final String json = await LocalStorageService.instance.getValueByKey(StorageKeys.stores);
 
@@ -71,14 +74,20 @@ class StorageRepository extends Repository {
     return;
   }
 
-  Future<void> updateOpenedStoreId({@required String id}) async {
+  Future<void> updateOpenedStoreId({@required int id}) async {
     final String json = jsonEncode(id);
 
-    await LocalStorageService.instance.saveValueByKey(StorageKeys.openedStoreId, id);
+    await LocalStorageService.instance.saveValueByKey(StorageKeys.openedStoreId, json);
   }
 
-  Future<String> getOpenedStoreId() async {
-    return LocalStorageService.instance.getValueByKey(StorageKeys.openedStoreId);
+  Future<void> removeOpenedStoreId() async {
+    await LocalStorageService.instance.saveValueByKey(StorageKeys.openedStoreId, '');
+  }
+
+  Future<int> getOpenedStoreId() async {
+    final String id = await LocalStorageService.instance.getValueByKey(StorageKeys.openedStoreId);
+
+    return id != null ? int.tryParse(id) : null;
   }
 
   Future<void> _overrideStoresHistoryWithModel(SavedStorageModel model) async {
@@ -138,12 +147,11 @@ class StorageRepository extends Repository {
 
     if (index == -1) return false;
 
-    print('history: ${history[index].update}');
-    print('statusModel: ${statusModel.update}');
+    logger.d('History list: ${history.map((e) => 'id: ${e.id}, update: ${e.update}').toList()}, \nStatus model: ${history[index].update}, \nHistory Model: ${statusModel.update}');
 
     if (history[index].update == null) return false;
 
-    if (history[index].update >= statusModel.update) return false;
+    if (history[index].update > statusModel.update) return false;
 
     return true;
   }

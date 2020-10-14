@@ -6,7 +6,7 @@ import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux/redux.dart';
 
 class CatalogsPageVM {
-  final void Function(String) navigateToCategoriesPage;
+  final void Function(int) navigateToCategoriesPage;
   final void Function(String message) errorDialog;
   final List<CatalogModel> catalogs;
 

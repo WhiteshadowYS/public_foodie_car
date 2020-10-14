@@ -61,6 +61,7 @@ class _ImageViewerState extends State<ImageViewer> {
                 enlargeCenterPage: true,
                 autoPlay: true,
                 viewportFraction: 1,
+                enlargeCenterPage: true,
                 autoPlayInterval: Duration(seconds: 8),
               ),
             ),

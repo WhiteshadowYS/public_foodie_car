@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
@@ -50,6 +52,10 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
             children: [
               if (widget.dummyFile.type == FileTypes.VIDEO_TYPE)
                 ListTile(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
                   leading: CircleAvatar(
                     backgroundColor: CustomTheme.colors.primaryColor,
                     child: Icon(Icons.videocam, color: CustomTheme.colors.background),
@@ -62,6 +68,10 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                 ),
               if (widget.dummyFile.type == FileTypes.IMAGE_TYPE)
                 ListTile(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
                   onTap: widget.onTap,
                   leading: CircleAvatar(
                     backgroundColor: CustomTheme.colors.primaryColor,
@@ -75,6 +85,10 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                 ),
               if (widget.dummyFile.type == FileTypes.PDF_TYPE)
                 ListTile(
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
                   onTap: widget.onTap,
                   leading: CircleAvatar(
                     backgroundColor: CustomTheme.colors.primaryColor,
@@ -86,7 +100,10 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                   ),
                   trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
                 ),
-              Divider(),
+              Container(
+                height: 0.5,
+                color: Colors.grey.withOpacity(0.3),
+              ),
             ],
           ),
           ClipRRect(

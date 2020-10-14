@@ -22,11 +22,15 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String currentLocale = FlutterDictionaryDelegate.getCurrentLocale;
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 10.0.h),
-          child: ListTile(
+    return Material(
+      color: Colors.transparent,
+      child: Column(
+        children: [
+          ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              vertical: 10.0,
+              horizontal: 16.0,
+            ),
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(30.0),
               child: FadeInImage(
@@ -54,9 +58,12 @@ class ProductItem extends StatelessWidget {
             ),
             onTap: onTap,
           ),
-        ),
-        const Divider(thickness: 1.5),
-      ],
+          Container(
+            height: 1.5,
+            color: Colors.grey.withOpacity(0.4),
+          ),
+        ],
+      ),
     );
   }
 }

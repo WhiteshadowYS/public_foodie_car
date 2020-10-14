@@ -9,16 +9,15 @@ part of 'storage_status_model.dart';
 StorageStatusModel _$StorageStatusModelFromJson(Map<String, dynamic> json) {
   return $checkedNew('StorageStatusModel', json, () {
     final val = StorageStatusModel(
-      id: $checkedConvert(json, 'id', (v) => v as String),
-      update:
-          $checkedConvert(json, 'last_update', (v) => (v as num)?.toDouble()),
+      id: $checkedConvert(json, 'id', (v) => v as int),
+      update: $checkedConvert(json, 'update', (v) => v as int),
     );
     return val;
-  }, fieldKeyMap: const {'update': 'last_update'});
+  });
 }
 
 Map<String, dynamic> _$StorageStatusModelToJson(StorageStatusModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'last_update': instance.update,
+      'update': instance.update,
     };
