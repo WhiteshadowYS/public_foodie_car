@@ -9,6 +9,7 @@ class SettingsPageVM {
   final InfoModel info;
   final String selectedLanguage;
   final bool isPushNotificationsOn;
+  final bool isNeedShowLanguages;
 
   final void Function() back;
   final void Function() openLanguagesPopup;
@@ -20,6 +21,7 @@ class SettingsPageVM {
     @required this.selectedLanguage,
     @required this.openLanguagesPopup,
     @required this.isPushNotificationsOn,
+    @required this.isNeedShowLanguages,
     @required this.changePushNotificationStatus,
     @required this.navigateToTermsPage,
     @required this.back,
@@ -35,6 +37,7 @@ class SettingsPageVM {
       selectedLanguage: 'English',
       openLanguagesPopup: () {},
       isPushNotificationsOn: false,
+      isNeedShowLanguages: true,
       changePushNotificationStatus: () {},
       navigateToTermsPage: RouteSelectors.gotoTermsPage(store),
       back: RouteSelectors.doPop(store),

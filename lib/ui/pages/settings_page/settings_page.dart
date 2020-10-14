@@ -64,7 +64,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 callback: vm.changePushNotificationStatus,
               ),
-              SettingsItem(
+              if (vm.isNeedShowLanguages) SettingsItem(
                 key: 'SettingsItemLanguage',
                 text: dictionary.language,
                 child: LanguageDropdown(
