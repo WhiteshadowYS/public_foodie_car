@@ -11,7 +11,7 @@ class Message implements IMessage {
   });
 
   @override
-  int id;
+  String id;
   @override
   String title;
   @override

@@ -80,6 +80,7 @@ class PushNotificationsService {
       );
 
       _firebaseMessaging.requestNotificationPermissions();
+      logger.d('$tag -> <initialiseFCM> -> SUCCESS');
     } catch (e) {
       logger.d('$tag -> <initialiseFCM> -> catch error -> $e');
     }

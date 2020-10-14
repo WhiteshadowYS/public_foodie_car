@@ -106,19 +106,19 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Future<void> _updateAppVersion() async {
+    if (appVersion != '') return;
+
     String versionName;
     String versionCode;
 
     try {
       versionName = await GetVersion.projectVersion;
-      // logger.d('Version Name: $versionName');
     } on PlatformException {
       versionName = null;
     }
 
     try {
       versionCode = await GetVersion.projectCode;
-      // logger.d('Version Code: $versionCode');
     } on PlatformException {
       versionCode = null;
     }

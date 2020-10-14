@@ -10,7 +10,7 @@ part 'message_dto.g.dart';
 )
 
 class MessageDto implements IDto {
-  int id;
+  String id;
   String title;
   String body;
   String image;

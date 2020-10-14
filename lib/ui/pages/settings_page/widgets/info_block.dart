@@ -26,7 +26,10 @@ class InfoBlock extends StatelessWidget {
           SizedBox(
             width: 35.0,
             height: 35.0,
-            child: info.logoImage != null && info.logoImage != ''
+            child: info.logoImage != null &&
+              info.logoImage != '' &&
+              info.logoImage.length >= 5 &&
+              info.logoImage.substring(info.logoImage.length - 4) == '.svg'
                 ? SvgPicture.network(info.logoImage)
                 : SVGImages().mcLogo(),
           ),
