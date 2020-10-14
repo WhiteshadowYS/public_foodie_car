@@ -89,8 +89,8 @@ class _TermsPageState extends State<TermsPage> {
   }
 
   void back(TermsPageVM vm) {
-    timer.cancel();
+    timer?.cancel();
 
-    vm.navigateToMainPage();
+    vm.back();
   }
 }

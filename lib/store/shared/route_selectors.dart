@@ -5,6 +5,9 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:redux/redux.dart';
 
 class RouteSelectors {
+  static bool get canPop => RouteService.instance.canPop;
+
+  static NavigateToAction get pop => RouteService.instance.pop();
   static NavigateToAction get gotoMainPageAction => RouteService.instance.replace(Routes.main);
   static NavigateToAction get gotoSettingsPageAction => RouteService.instance.push(Routes.settings);
   static NavigateToAction get gotoTermsPageAction => RouteService.instance.push(Routes.terms);
@@ -13,6 +16,14 @@ class RouteSelectors {
   static NavigateToAction get gotoSubcategoriesPageAction => RouteService.instance.push(Routes.subCategories);
   static NavigateToAction get gotoProductsPageAction => RouteService.instance.push(Routes.products);
   static NavigateToAction get gotoSingleProductPageAction => RouteService.instance.push(Routes.singleProduct);
+
+  static void Function() doPop(Store<AppState> store) {
+    if (canPop) {
+      return () => store.dispatch(pop);
+    }
+
+    return () => store.dispatch(gotoMainPageAction);
+  }
 
   static void Function() gotoMainPage(Store<AppState> store) {
     return () => store.dispatch(gotoMainPageAction);

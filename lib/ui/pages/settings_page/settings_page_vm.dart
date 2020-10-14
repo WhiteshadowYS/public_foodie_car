@@ -7,17 +7,22 @@ import 'package:redux/redux.dart';
 
 class SettingsPageVM {
   final InfoModel info;
-  final List<LanguageModel> languages;
+  final String selectedLanguage;
   final bool isPushNotificationsOn;
-  final String appVersion;
+
+  final void Function() back;
+  final void Function() openLanguagesPopup;
   final void Function() navigateToTermsPage;
+  final void Function() changePushNotificationStatus;
 
   const SettingsPageVM({
     @required this.info,
-    @required this.languages,
+    @required this.selectedLanguage,
+    @required this.openLanguagesPopup,
     @required this.isPushNotificationsOn,
-    @required this.appVersion,
+    @required this.changePushNotificationStatus,
     @required this.navigateToTermsPage,
+    @required this.back,
   });
 
   static SettingsPageVM fromStore(Store<AppState> store) {
@@ -27,25 +32,12 @@ class SettingsPageVM {
         title: 'Example title',
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       ),
-      languages: [
-        LanguageModel(
-          name: 'English',
-          code: 'EN',
-          flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Flag_of_the_United_States_%281795%E2%80%931818%29.svg/220px-Flag_of_the_United_States_%281795%E2%80%931818%29.svg.png',
-          direction: 'LTR',
-          isDefault: false,
-        ),
-        LanguageModel(
-          name: 'עברית',
-          code: 'HE',
-          flag: 'https://www.pictorem.com/collection/900_1824069HighRes.jpg',
-          direction: 'RTL',
-          isDefault: true,
-        ),
-      ],
+      selectedLanguage: 'English',
+      openLanguagesPopup: () {},
       isPushNotificationsOn: false,
-      appVersion: 'App version 1.01.1',
+      changePushNotificationStatus: () {},
       navigateToTermsPage: RouteSelectors.gotoTermsPage(store),
+      back: RouteSelectors.doPop(store),
     );
   }
 }
