@@ -38,7 +38,6 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
   @override
   Widget build(BuildContext context) {
     final MainPageDictionary dictionary = FlutterDictionary.instance.language.mainPageDictionary;
-
     return Stack(
       alignment: Alignment.topRight,
       children: [
@@ -47,7 +46,8 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
           duration: hasError ? MILLISECONDS_500 : MILLISECONDS_300,
           height: 50.0,
           alignment: hasError ? Alignment.topRight : Alignment.bottomRight,
-          child: Container(
+          child: AnimatedContainer(
+            duration: hasError ? MILLISECONDS_500 : MILLISECONDS_300,
             alignment: Alignment.bottomCenter,
             margin: const EdgeInsets.symmetric(horizontal: 16.0),
             width: 150.0,
