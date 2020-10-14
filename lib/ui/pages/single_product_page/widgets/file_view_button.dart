@@ -1,3 +1,4 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'dart:math';
 
 import 'dart:async';
@@ -26,17 +27,18 @@ class FileViewButton extends StatefulWidget {
 class _FileViewButtonState extends State<FileViewButton> with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   CurvedAnimation _animation;
+  bool isOpen = false;
 
   @override
   void initState() {
     // TODO: implement initState
-    _animationController = AnimationController(vsync: this, duration: Duration(seconds: 1));
-    _animationController.repeat(period: Duration(seconds: 6), min: 0, max: 1);
+    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 1500));
     _animation = CurvedAnimation(
       curve: Curves.fastOutSlowIn,
-      parent: Tween<double>(begin: 0.0, end: 1.0).animate(_animationController),
+      parent: Tween<double>(begin: 0.0, end: 1).animate(_animationController),
     );
-    _animationController.addListener(() => setState(() {}));
+    _animationController.forward();
+    _animationController.addListener(_updateListener);
     super.initState();
   }
 
@@ -45,17 +47,17 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
     return InkWell(
       splashColor: CustomTheme.colors.background.withOpacity(0.4),
       highlightColor: CustomTheme.colors.background.withOpacity(0.2),
-      onTap: widget.onTap,
+      onTap: () {
+        isOpen = true;
+        setState(() {});
+        widget.onTap();
+      },
       child: Stack(
         children: [
           Column(
             children: [
               if (widget.dummyFile.type == FileTypes.VIDEO_TYPE)
                 ListTile(
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 8.0,
-                  ),
                   leading: CircleAvatar(
                     backgroundColor: CustomTheme.colors.primaryColor,
                     child: Icon(Icons.videocam, color: CustomTheme.colors.background),
@@ -68,10 +70,6 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                 ),
               if (widget.dummyFile.type == FileTypes.IMAGE_TYPE)
                 ListTile(
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 8.0,
-                  ),
                   onTap: widget.onTap,
                   leading: CircleAvatar(
                     backgroundColor: CustomTheme.colors.primaryColor,
@@ -85,10 +83,6 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                 ),
               if (widget.dummyFile.type == FileTypes.PDF_TYPE)
                 ListTile(
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 8.0,
-                  ),
                   onTap: widget.onTap,
                   leading: CircleAvatar(
                     backgroundColor: CustomTheme.colors.primaryColor,
@@ -106,16 +100,16 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
               ),
             ],
           ),
+          if(!isOpen)
           ClipRRect(
             child: Container(
-              height: 65,
-              alignment: Alignment((_animation.value - 0.5) * 7, 0),
+              height: 56,
+              alignment: Alignment((_animation.value - 0.5) * 2, 0),
               width: double.infinity,
               child: Transform.rotate(
                 angle: pi / 8,
                 child: Container(
-                  height: 65,
-                  width: 10,
+                  width: 18,
                   decoration: BoxDecoration(
                     boxShadow: AppShadows.shadowsFile(CustomTheme.colors.primaryColor.withOpacity(0.2)),
                   ),
@@ -126,5 +120,20 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
         ],
       ),
     );
+  }
+
+  void _updateListener() {
+    setState(() {});
+    if (_animation.value == 0) {
+      Future.delayed(Duration(milliseconds: 1500)).then((value) {
+        _animationController.forward();
+      });
+    }
+    if (_animation.value == 1) {
+      Future.delayed(Duration(milliseconds: 1500)).then((value) {
+        _animationController.value = 0;
+        _animationController.forward();
+      });
+    }
   }
 }
