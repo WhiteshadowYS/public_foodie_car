@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/store/shared/base_action.dart';
 
 class GetDataAction extends BaseAction {
-  final String storageId;
+  final int update;
+  final int id;
 
   GetDataAction({
-    @required this.storageId,
+    @required this.update,
+    @required this.id,
   }) : super(type: 'GetDataAction');
 }

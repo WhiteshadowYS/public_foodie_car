@@ -19,7 +19,7 @@ class Reducer<T> {
 
   T updateState(dynamic action, T state) {
     if (actions.containsKey(action.runtimeType)) {
-      logger.i('$tag => <updateState> => founded action: $action');
+      logger.d('$tag => <updateState> => founded action: $action');
 
       return actions[action.runtimeType](action);
     }

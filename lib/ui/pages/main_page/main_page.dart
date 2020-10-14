@@ -31,7 +31,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     _focusService.addKey(
-      FocusKey(order: 1, value: 'MainPageIdTextField')
+      FocusKey(order: 1, value: 'MainPageIdTextField'),
     );
   }
 
@@ -48,10 +48,11 @@ class _MainPageState extends State<MainPage> {
               const SizedBox(height: 24.0),
               StoresList(
                 key: 'MainPageCatalogList',
-                stores: vm.catalogs,
-                setId: (int id) => setState(() {
-                  _controller.text = id.toString();
-                }),
+                stores: vm.stores?.map((e) {
+                      return e.id.toString();
+                    })?.toList() ??
+                    [],
+                setId: (int id) => setState(() => _controller.text = id.toString()),
               ),
               const SizedBox(height: 48.0),
               Center(
@@ -75,10 +76,6 @@ class _MainPageState extends State<MainPage> {
                 key: 'MainPageSearchButton',
                 title: dictionary.viewCatalog,
                 onTap: () => _onButtonPressed(vm),
-                // onTap: () {
-                //   onButtonPressed(vm);
-                //   FirebaseService.instance.listenChanges(_controller.text, vm.checkId);
-                // },
                 controller: _controller,
                 validator: (arg) => ValidationService.numberValidation(
                   arg,
@@ -98,5 +95,5 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void _onButtonPressed(MainPageVM vm) => vm.checkId(_controller.text);
+  void _onButtonPressed(MainPageVM vm) => vm.checkId(int.tryParse(_controller.text));
 }

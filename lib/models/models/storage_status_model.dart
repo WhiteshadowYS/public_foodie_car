@@ -11,9 +11,9 @@ part 'storage_status_model.g.dart';
 )
 class StorageStatusModel implements IModel {
   @JsonKey(name: 'id', required: false, nullable: true)
-  final String id;
-  @JsonKey(name: 'last_update', required: false, nullable: true)
-  final double update;
+  final int id;
+  @JsonKey(name: 'update', required: false, nullable: true)
+  final int update;
 
   StorageStatusModel({
     @required this.id,

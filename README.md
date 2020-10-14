@@ -9,7 +9,7 @@ MyCatalog it is AppVesto project.
 - [Confluence](https://appvesto.atlassian.net/l/c/BTkHodu2)
 - [Jenkins](http://dev.appvesto.com:8080/)
 
-## Flutter Version: 1.20.1
+## Flutter Version: 1.20.4
 ## Dart Version: 2.9.0
 ## Version History
 - 0.0.1 + 1 - No Releases

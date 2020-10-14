@@ -26,10 +26,10 @@ class InitializeEpics {
 
       yield* _changeInitializationLoading(true);
 
-      final String openedStorageId = await repository.getOpenedStoreId();
+      final int openedStorageId = await repository.getOpenedStoreId();
       final List<SavedStorageModel> history = await repository.getStoresHistory();
 
-      if (openedStorageId != null && openedStorageId != '') {
+      if (openedStorageId != null) {
         yield* Stream.fromIterable([
           SetOpenedStoreIdAction(storeId: openedStorageId),
         ]);
@@ -43,7 +43,7 @@ class InitializeEpics {
 
       yield* _changeInitializationLoading(false);
 
-      yield* _navigationStream(openedStorageId);
+      yield* _navigationStream(openedStorageId, action.getDataFunction);
     });
   }
 
@@ -62,9 +62,14 @@ class InitializeEpics {
     ));
   }
 
-  static Stream<dynamic> _navigationStream(String id) {
+  static Stream<dynamic> _navigationStream(int id, void Function(int, int) getDataCallback) {
     if (id == null) return Stream.value(RouteSelectors.gotoMainPageAction);
 
-    return Stream.value(CheckIdAction(storageId: id));
+    return Stream.value(
+      CheckIdAction(
+        id: id,
+        getData: getDataCallback,
+      ),
+    );
   }
 }

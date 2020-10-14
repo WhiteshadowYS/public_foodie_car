@@ -21,12 +21,12 @@ class CustomTheme {
   AVTheme _theme;
 
   void setNewTheme(AVTheme thm) {
-    logger.i('$tag => setNewTheme() => theme => ${thm.themeName}');
+    logger.d('$tag => setNewTheme() => theme => ${thm.themeName}');
     _theme = thm;
   }
 
   void setColorsFromJson(Map<String, dynamic> json) {
-    logger.i('$tag => <setColorsFromJson()> => json => $json');
+    logger.d('$tag => <setColorsFromJson()> => json => $json');
     final AVColors newColors = colors.fromColorsDTO(ColorsDTO.fromJson(json));
 
     _theme = _theme.copyWith(
@@ -41,14 +41,14 @@ class CustomTheme {
   }
 
   void setFontFamily(String fontFamily) {
-    logger.i('$tag => <setFontFamily()> => fontFamily => $fontFamily');
+    logger.d('$tag => <setFontFamily()> => fontFamily => $fontFamily');
     _theme.copyWith(
       textStyles: textStyles.copyWith(fontFamily: fontFamily),
     );
   }
 
   void setDefaultTheme() {
-    logger.i('$tag => <setDefaultTheme()>');
+    logger.d('$tag => <setDefaultTheme()>');
     _theme = defaultTheme;
   }
 

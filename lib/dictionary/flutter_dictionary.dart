@@ -18,18 +18,16 @@ class FlutterDictionary {
   final Locale locale;
   Language language;
 
-  FlutterDictionary(this.locale) {
-    if (locale != null) setNewLanguage(locale.languageCode);
-  }
+  FlutterDictionary(this.locale);
 
   void setNewLanguage(String languageCode) {
-    logger.i('$tag => setNewLanguage() => locale => $languageCode');
+    logger.d('$tag => setNewLanguage() => locale => $languageCode');
     FlutterDictionaryDelegate.changeLocaleWithLanguageCode(languageCode);
     language = FlutterDictionaryDelegate.getLanguageByLanguageCode(languageCode);
   }
 
   void setNewLanguageAndSave(String languageCode) {
-    logger.i('$tag => setNewLanguageAndSave() => locale => $languageCode');
+    logger.d('$tag => setNewLanguageAndSave() => locale => $languageCode');
     language = FlutterDictionaryDelegate.getLanguageByLanguageCode(languageCode);
   }
 

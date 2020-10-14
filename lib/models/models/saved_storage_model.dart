@@ -11,7 +11,7 @@ part 'saved_storage_model.g.dart';
 )
 class SavedStorageModel {
   final int update;
-  final String id;
+  final int id;
   final String locale;
   final StorageModel storage;
 
@@ -23,7 +23,7 @@ class SavedStorageModel {
   });
 
   SavedStorageModel copyWith({
-    final String id,
+    final int id,
     final String locale,
     final int update,
     final StorageModel storage,
