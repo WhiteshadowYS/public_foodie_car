@@ -19,7 +19,7 @@ class FirebaseService {
     await _subscription?.cancel();
     _subscription = databaseReference.onChildChanged.where((Event event) => event.snapshot.key == id.toString()).listen(
       (Event event) {
-        logger.d('$tag => <listenChanges> => new version: ${event.snapshot.value}');
+        logger.d('$tag => <listenChanges> => id: $id, new version: ${event.snapshot.value}');
         getData(id, event.snapshot.value);
       },
     );

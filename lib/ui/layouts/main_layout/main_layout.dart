@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
+import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/layouts/loader_layout/loader_layout.dart';
+import 'package:my_catalog/ui/layouts/main_layout/main_layout_vm.dart';
 
 class MainLayout extends StatelessWidget {
   final Widget child;
@@ -22,36 +25,45 @@ class MainLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        if (back != null) {
-          back();
-        }
-
-        return RouteService.instance.canPop;
-      },
-      child: Scaffold(
-        resizeToAvoidBottomPadding: resizeToAvoidBottomPadding,
-        appBar: appBar,
-        backgroundColor: bgColor,
-        bottomNavigationBar: bottomBar,
-        body: GestureDetector(
-          onTap: () {
-            if (FocusScope.of(context).hasFocus) {
-              FocusScope.of(context).unfocus();
+    return StoreConnector<AppState, MainLayoutVM>(
+      converter: MainLayoutVM.fromStore,
+      builder: (BuildContext context, MainLayoutVM vm) {
+        return WillPopScope(
+          onWillPop: () async {
+            if (back != null) {
+              back();
             }
+
+            if (RouteService.instance.canPop) {
+              vm.doRoute(RouteService.instance.pop());
+            }
+
+            return false;
           },
-          child: Container(
-            color: bgColor,
-            width: double.infinity,
-            height: double.infinity,
-            child: LoaderLayout(
-              key: Key(key.toString() + 'Loader'),
-              child: child,
+          child: Scaffold(
+            resizeToAvoidBottomPadding: resizeToAvoidBottomPadding,
+            appBar: appBar,
+            backgroundColor: bgColor,
+            bottomNavigationBar: bottomBar,
+            body: GestureDetector(
+              onTap: () {
+                if (FocusScope.of(context).hasFocus) {
+                  FocusScope.of(context).unfocus();
+                }
+              },
+              child: Container(
+                color: bgColor,
+                width: double.infinity,
+                height: double.infinity,
+                child: LoaderLayout(
+                  key: Key(key.toString() + 'Loader'),
+                  child: child,
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      }
     );
   }
 }

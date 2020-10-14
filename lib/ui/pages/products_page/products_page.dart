@@ -16,12 +16,12 @@ class ProductsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, ProductsPageVM>(
       converter: ProductsPageVM.fromStore,
-      builder: (BuildContext context, vm) {
+      builder: (BuildContext context, ProductsPageVM vm) {
         return MainLayout(
           bgColor: AppColors.kWhite,
           appBar: MainAppBar(
             key: 'MainAppBar',
-            title: 'SubCategoryTitle',
+            title: 'Products',
             backOnTap: () {},
           ),
           bottomBar: BottomBar(key: 'BottomBar'),

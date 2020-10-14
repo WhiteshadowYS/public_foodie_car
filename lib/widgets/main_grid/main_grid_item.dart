@@ -48,23 +48,27 @@ class _MainGridItemState extends State<MainGridItem> with SingleTickerProviderSt
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12.0),
-                child: FadeInImage(
-                  height: 186.h,
-                  width: double.infinity,
-                  placeholder: AssetImage(ImageAssets.LOGO_PNG),
-                  image: NetworkImage(widget.imageUrl),
-                  fit: BoxFit.cover,
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12.0),
+                  child: FadeInImage(
+                    width: double.infinity,
+                    placeholder: AssetImage(ImageAssets.LOGO_PNG),
+                    image: NetworkImage(widget.imageUrl),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               const SizedBox(height: 8.0),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: Text(
-                  widget.title,
-                  style: CustomTheme.textStyles.titleTextStyle(size: 15.0),
-                  maxLines: 2,
+              SizedBox(
+                height: 40.h,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: Text(
+                    widget.title,
+                    style: CustomTheme.textStyles.titleTextStyle(size: 15.0),
+                    maxLines: 2,
+                  ),
                 ),
               ),
             ],

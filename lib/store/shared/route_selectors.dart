@@ -2,6 +2,7 @@ import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/store/shared/base_action.dart';
 import 'package:redux/redux.dart';
 
 class RouteSelectors {
@@ -44,6 +45,10 @@ class RouteSelectors {
 
   static void Function() gotoSingleProductPage(Store<AppState> store) {
     return () => store.dispatch(gotoSingleProductPageAction);
+  }
+
+  static void Function(NavigateToAction) getDoRouteFunction(Store<AppState> store) {
+    return (NavigateToAction action) => store.dispatch(action);
   }
 }
 

@@ -2,6 +2,7 @@ import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 import 'package:my_catalog/models/models/storage_status_model.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/dialog_service/models/empty_loader_dialog.dart';
 import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
 import 'package:my_catalog/services/firebase_service/firebase_service.dart';
@@ -97,6 +98,17 @@ class StorageEpics {
   static Stream<dynamic> _getDataEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<GetDataAction>().where(_id2Validation).switchMap((action) async* {
       final StorageRepository repository = StorageRepository();
+
+      final List<SavedStorageModel> oHistory = await repository.getStoresHistory();
+
+      final int index = oHistory.indexWhere((element) {
+        return element.id == action.id;
+      });
+
+      if (index == -1 || oHistory[index].update >= action.update) {
+        logger.d('action.update: ${action.update}, history[index].update: ${oHistory[index].update}');
+        return;
+      }
 
       final BaseHttpResponse<StorageModel> response = await repository.getStorageData(id: action.id);
 
