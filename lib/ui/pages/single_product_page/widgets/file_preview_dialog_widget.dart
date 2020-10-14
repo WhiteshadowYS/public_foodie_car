@@ -9,10 +9,17 @@ import 'package:my_catalog/ui/pages/single_product_page/widgets/image_preview_wi
 import 'package:my_catalog/ui/pages/single_product_page/widgets/video_preview_widget.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
 
-class FilePreviewDialogWidget extends StatelessWidget {
+class FilePreviewDialogWidget extends StatefulWidget {
   final FilePreviewDialog dialogModel;
 
   FilePreviewDialogWidget(this.dialogModel) : super(key: Key('FilePreviewDialogWidget'));
+
+  @override
+  _FilePreviewDialogWidgetState createState() => _FilePreviewDialogWidgetState();
+}
+
+class _FilePreviewDialogWidgetState extends State<FilePreviewDialogWidget> with SingleTickerProviderStateMixin {
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +38,11 @@ class FilePreviewDialogWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 23.0),
-            child: _getPreviewFileWidget(dialogModel.file.type, dialogModel.file.fileUrl),
+            child: _getPreviewFileWidget(widget.dialogModel.file.type, widget.dialogModel.file.fileUrl),
           ),
-          FilePreviewBottomBlock(itemName: dialogModel.file.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()][NAME]),
+          FilePreviewBottomBlock(
+              itemName: widget.dialogModel.file.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]
+                  [NAME]),
         ],
       ),
     );

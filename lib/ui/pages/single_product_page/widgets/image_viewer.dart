@@ -58,6 +58,7 @@ class _ImageViewerState extends State<ImageViewer> {
                   )
               ],
               options: CarouselOptions(
+                enlargeCenterPage: true,
                 autoPlay: true,
                 viewportFraction: 1,
                 autoPlayInterval: Duration(seconds: 8),
