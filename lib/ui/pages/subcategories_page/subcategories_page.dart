@@ -31,6 +31,8 @@ class SubcategoriesPage extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               final SubcategoryModel subcategory = vm.getCurrentSubCategoryData(vm.subCategories[index].id);
 
+              if (subcategory == null) return Container();
+
               return MainGridItem(
                 keyValue: SubCategoriesPageKeys.subcategoryItem + '$index',
                 title: subcategory.languages[vm.currentLocale]['title'],
