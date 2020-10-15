@@ -76,7 +76,7 @@ pipeline {
                 expression {(env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" ) && IS_FLUTTER_VERSION_CORRECT == "false"}
             }
             steps {
-                sh 'flutter version 1.17.5'
+                sh 'flutter version $PROJECT_FLUTTER_VERSION'
             }
         }
        stage ('Flutter pub get') {
