@@ -58,7 +58,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
               child: VideoPlayer(_controller),
             ),
             Positioned(
-              top: 70.h,
+              top: 60,
               child: AnimatedOpacity(
                 duration: _controller.value.isPlaying ? SECONDS_1 : MILLISECONDS_300,
                 opacity: _controller.value.isPlaying ? 0 : 1,
