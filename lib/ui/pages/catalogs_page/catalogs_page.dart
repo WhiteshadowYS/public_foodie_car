@@ -7,6 +7,7 @@ import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/catalogs_page/catalogs_page_vm.dart';
 import 'package:my_catalog/ui/pages/catalogs_page/widgets/catalog_item.dart';
+import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
 
@@ -20,21 +21,15 @@ class CatalogsPage extends StatelessWidget {
       builder: (BuildContext context, vm) {
         return MainLayout(
           bgColor: CustomTheme.colors.background,
+          appBar: MainAppBar(
+            key: 'CatalogsAppBar',
+          ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 16.0,
             ),
             child: Column(
               children: [
-                const SizedBox(height: 50.0),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: SizedBox(
-                    height: 36.h,
-                    child: SVGImages().mcLogo(),
-                  ),
-                ),
-                const SizedBox(height: 35.0),
                 Expanded(
                   child: ScrollConfiguration(
                     behavior: CleanBehavior(),

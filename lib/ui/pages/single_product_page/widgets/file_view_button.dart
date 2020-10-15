@@ -7,6 +7,7 @@ import 'package:my_catalog/res/app_styles/app_shadows.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FileViewButton extends StatefulWidget {
   final String keyValue;
@@ -79,7 +80,7 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                       ),
                       title: Text(
                         'Watch video "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
-                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
                       ),
                       trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
                     ),
@@ -92,7 +93,7 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                       ),
                       title: Text(
                         'See pictures "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
-                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
                       ),
                       trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
                     ),
@@ -105,7 +106,7 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                       ),
                       title: Text(
                         'Check documents "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
-                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
                       ),
                       trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
                     ),

@@ -68,7 +68,7 @@ class _MainGridItemState extends State<MainGridItem> with SingleTickerProviderSt
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   child: Text(
                     widget.title,
-                    style: CustomTheme.textStyles.titleTextStyle(size: 15.0),
+                    style: CustomTheme.textStyles.titleTextStyle(size: 15.sp),
                     maxLines: 2,
                   ),
                 ),

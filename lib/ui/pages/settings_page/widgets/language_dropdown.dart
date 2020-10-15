@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LanguageDropdown extends StatelessWidget {
   final void Function() callback;
@@ -25,7 +26,7 @@ class LanguageDropdown extends StatelessWidget {
             children: [
               Text(
                 text,
-                style: CustomTheme.textStyles.mainTextStyle(size: 15.0),
+                style: CustomTheme.textStyles.mainTextStyle(size: 15.sp),
               ),
               Icon(
                 Icons.keyboard_arrow_down,

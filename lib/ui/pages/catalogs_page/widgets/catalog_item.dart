@@ -31,7 +31,7 @@ class CatalogItem extends StatelessWidget {
             Text(
               catalog.titleForLanguage('EN'),
               style: CustomTheme.textStyles.titleTextStyle(
-                size: 18.h,
+                size: 18.sp,
               ),
             ),
             const SizedBox(height: 14.0),
@@ -49,7 +49,7 @@ class CatalogItem extends StatelessWidget {
             Text(
               'Description',
               style: CustomTheme.textStyles.titleTextStyle(
-                size: 14.h,
+                size: 14.sp,
               ),
             ),
             const SizedBox(height: 14.0),
@@ -57,7 +57,7 @@ class CatalogItem extends StatelessWidget {
               catalog.descriptionForLanguage('EN'),
               textAlign: TextAlign.center,
               style: CustomTheme.textStyles.mainTextStyle(
-                size: 13.h,
+                size: 13.sp,
                 height: 1.4.h,
               ),
             ),

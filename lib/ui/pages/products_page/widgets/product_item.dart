@@ -37,8 +37,8 @@ class ProductItem extends StatelessWidget {
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(30.0),
               child: FadeInImage(
-                width: 50.h,
-                height: 50.h,
+                width: 50.sp,
+                height: 50.sp,
                 placeholder: AssetImage(ImageAssets.LOGO_PNG),
                 image: NetworkImage(product.imageLink),
                 fit: BoxFit.cover,
@@ -46,13 +46,13 @@ class ProductItem extends StatelessWidget {
             ),
             title: Text(
               product.languages[currentLocale.toUpperCase()][NAME],
-              style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
+              style: CustomTheme.textStyles.titleTextStyle(size: 16.sp),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
                 product.languages[currentLocale.toUpperCase()][DESCRIPTION],
-                style: CustomTheme.textStyles.mainTextStyle(size: 13.0),
+                style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
               ),
             ),
             trailing: Transform.rotate(

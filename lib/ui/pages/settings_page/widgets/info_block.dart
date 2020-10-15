@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:my_catalog/models/models/storage_model/settings/info_model.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InfoBlock extends StatelessWidget {
   final InfoModel info;
@@ -38,14 +39,14 @@ class InfoBlock extends StatelessWidget {
           ),
           Text(
             info.title,
-            style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
+            style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
           ),
           SizedBox(
             height: 14.0,
           ),
           Text(
             info.text,
-            style: CustomTheme.textStyles.mainTextStyle(size: 14.0),
+            style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
           ),
           SizedBox(
             height: 38.0,

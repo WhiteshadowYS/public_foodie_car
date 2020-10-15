@@ -13,6 +13,7 @@ import 'package:my_catalog/ui/pages/main_page/main_page_vm.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
 import 'package:my_catalog/widgets/links_button.dart';
 import 'package:my_catalog/widgets/main_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'widgets/catalog_id_search.dart';
 import 'widgets/catalog_list.dart';
@@ -60,7 +61,7 @@ class _MainPageState extends State<MainPage> {
               Center(
                 child: Text(
                   dictionary.enterCatalogId,
-                  style: CustomTheme.textStyles.titleTextStyle(size: 18),
+                  style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
                 ),
               ),
               const SizedBox(height: 8.0),
