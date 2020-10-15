@@ -122,6 +122,7 @@ class StorageEpics {
         storageModel: response.response,
         update: action.update,
       );
+
       await repository.updateOpenedStoreId(id: action.id);
 
       final List<SavedStorageModel> history = await repository.getStoresHistory();
