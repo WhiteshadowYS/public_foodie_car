@@ -45,10 +45,14 @@ class CatalogsPage extends StatelessWidget {
                       ),
                       itemCount: vm.catalogs.length,
                       itemBuilder: (BuildContext context, int index) {
+                        final CatalogModel catalog = vm.getCurrentCatalogData(vm.catalogs[index].id);
+
+                        if (catalog == null) return Container();
+
                         return CatalogItem(
                           keyValue: CatalogsPageKeys.catalogItem + '$index',
                           locale: vm.currentLocale,
-                          catalog: vm.getCurrentCatalogData(vm.catalogs[index].id),
+                          catalog: catalog,
                           navigateToCategories: vm.navigateToCategoriesPage,
                         );
                       },

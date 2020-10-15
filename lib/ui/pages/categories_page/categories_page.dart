@@ -31,6 +31,8 @@ class CategoriesPage extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               final CategoryModel category = vm.getCurrentCategoryData(vm.categories[index].id);
 
+              if (category == null) return Container();
+
               return MainGridItem(
                 keyValue: CategoriesPageKeys.categoryItem + '$index',
                 title: category.languages[vm.currentLocale]['title'],

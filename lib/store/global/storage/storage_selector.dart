@@ -62,55 +62,87 @@ class StorageSelector {
   }
 
   static List<InfoCategoryModel> getInfoCategories(Store<AppState> store) {
-    final int index = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+    try {
+      final int index = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
 
-    return store.state.storageState?.storage?.data?.hierarchy[index].categories ?? [];
+      return store.state.storageState?.storage?.data?.hierarchy[index].categories ?? [];
+    } catch (e) {
+      return [];
+    }
   }
 
   static List<InfoSubcategoryModel> getInfoSubCategories(Store<AppState> store) {
-    final int catalogIndex = store.state.storageState.openedCatalogId;
-    final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+    try {
+      final int catalogIndex = store.state.storageState.openedCatalogId;
+      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
 
-    return store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
+      return store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
+    } catch (e) {
+      return [];
+    }
   }
 
   static List<InfoProductModel> getInfoProducts(Store<AppState> store) {
-    final int catalogIndex = store.state.storageState.openedCatalogId;
-    final int categoryIndex = store.state.storageState.openedCategoryId;
-    final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+    try {
+      final int catalogIndex = store.state.storageState.openedCatalogId;
+      final int categoryIndex = store.state.storageState.openedCategoryId;
+      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
 
-    return store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
+      return store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
+    } catch (e) {
+      return [];
+    }
   }
 
   static CatalogModel Function(int) getCurrentCatalogModelFunction(Store<AppState> store) {
     return (int id) {
-      final int index = store.state.storageState.storage.data.data.catalogs.indexWhere((item) => item.id == id);
+      try {
+        final int index = store.state.storageState.storage.data.data.catalogs.indexWhere((item) => item.id == id);
 
-      return store.state.storageState.storage.data.data.catalogs[index];
+        return store.state.storageState.storage.data.data.catalogs[index];
+      } catch (e) {
+
+        return null;
+      }
     };
   }
 
   static CategoryModel Function(int) getCurrentCategoryModelFunction(Store<AppState> store) {
     return (int id) {
-      final int index = store.state.storageState.storage.data.data.categories.indexWhere((item) => item.id == id);
+      try {
+        final int index = store.state.storageState.storage.data.data.categories.indexWhere((item) => item.id == id);
 
-      return store.state.storageState.storage.data.data.categories[index];
+        return store.state.storageState.storage.data.data.categories[index];
+      } catch (e) {
+
+        return null;
+      }
     };
   }
 
   static SubcategoryModel Function(int) getCurrentSubCategoryModelFunction(Store<AppState> store) {
     return (int id) {
-      final int index = store.state.storageState.storage.data.data.subcategories.indexWhere((item) => item.id == id);
+      try {
+        final int index = store.state.storageState.storage.data.data.subcategories.indexWhere((item) => item.id == id);
 
-      return store.state.storageState.storage.data.data.subcategories[index];
+        return store.state.storageState.storage.data.data.subcategories[index];
+      } catch (e) {
+
+        return null;
+      }
     };
   }
 
   static ProductModel Function(int) getCurrentProductModelFunction(Store<AppState> store) {
     return (int id) {
-      final int index = store.state.storageState.storage.data.data.products.indexWhere((item) => item.id == id);
+      try {
+        final int index = store.state.storageState.storage.data.data.products.indexWhere((item) => item.id == id);
 
-      return store.state.storageState.storage.data.data.products[index];
+        return store.state.storageState.storage.data.data.products[index];
+      } catch (e) {
+
+        return null;
+      }
     };
   }
 
