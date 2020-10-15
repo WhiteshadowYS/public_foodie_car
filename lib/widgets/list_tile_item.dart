@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ListTileItem extends StatelessWidget {
   final String title;
@@ -27,7 +29,7 @@ class ListTileItem extends StatelessWidget {
             color: AppColors.kGreen,
           ),
           // TODO(Andrey): Get style from theme;
-          title: Text(title),
+          title: Text(title, style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),),
           trailing: Transform.rotate(
             angle: FlutterDictionary.instance.isRTL ? pi : 0,
             child: Icon(Icons.keyboard_arrow_right),

@@ -15,6 +15,7 @@ import 'package:my_catalog/ui/pages/settings_page/widgets/language_dropdown.dart
 import 'package:my_catalog/ui/pages/settings_page/widgets/settings_item.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage() : super(key: Key('SettingsPage'));
@@ -86,14 +87,14 @@ class _SettingsPageState extends State<SettingsPage> {
               Spacer(),
               Text(
                 '${dictionary.appVersion} $appVersion',
-                style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
+                style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
               ),
               SizedBox(
                 height: 14.0,
               ),
               Text(
                 dictionary.createBy,
-                style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
+                style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
               ),
               SizedBox(
                 height: 46.0,

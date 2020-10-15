@@ -5,6 +5,7 @@ import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainAppBarChild extends StatelessWidget {
   final String title;
@@ -42,7 +43,7 @@ class MainAppBarChild extends StatelessWidget {
                     FlutterDictionary.instance.language.appbarDictionary.back,
                     style: TextStyle(
                       color: Color(0xFF5DB075),
-                      fontSize: 17,
+                      fontSize: 17.sp,
                       fontWeight: FontWeight.w400,
                     ),
                   ),

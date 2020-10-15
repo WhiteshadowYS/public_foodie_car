@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'accept_check_box.dart';
 
@@ -51,7 +52,7 @@ class _AgreeButtonState extends State<AgreeButton> {
                 const SizedBox(width: 10.0),
                 Text(
                   widget.title,
-                  style: CustomTheme.textStyles.titleTextStyle(size: 18.0),
+                  style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
                 ),
               ],
             ),

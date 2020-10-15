@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainButton extends StatefulWidget {
   final String keyValue;
@@ -66,7 +67,7 @@ class _MainButtonState extends State<MainButton> {
               widget.title,
               textAlign: TextAlign.center,
               style: CustomTheme.textStyles.buttonTextStyle(
-                size: 18.0,
+                size: 18.sp,
               ),
             ),
           ),
