@@ -2,6 +2,7 @@ import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/store/global/storage/actions/set_opened_id_actions.dart';
 import 'package:my_catalog/store/shared/base_action.dart';
 import 'package:redux/redux.dart';
 
@@ -43,19 +44,31 @@ class RouteSelectors {
   }
 
   static void Function(int) gotoCategoriesPage(Store<AppState> store) {
-    return (int id) => store.dispatch(gotoCategoriesPageAction);
+    return (int id) {
+      store.dispatch(SetOpenedCatalogIdAction(id: id));
+      store.dispatch(gotoCategoriesPageAction);
+    };
   }
 
   static void Function(int) gotoSubcategoriesPage(Store<AppState> store) {
-    return (int id) => store.dispatch(gotoSubcategoriesPageAction);
+    return (int id) {
+      store.dispatch(SetOpenedCategoryIdAction(id: id));
+      store.dispatch(gotoSubcategoriesPageAction);
+    };
   }
 
-  static void Function(String) gotoProductsPage(Store<AppState> store) {
-    return (String id) => store.dispatch(gotoProductsPageAction);
+  static void Function(int) gotoProductsPage(Store<AppState> store) {
+    return (int id) {
+      store.dispatch(SetOpenedSubCategoryIdAction(id: id));
+      store.dispatch(gotoProductsPageAction);
+    };
   }
 
-  static void Function() gotoSingleProductPage(Store<AppState> store) {
-    return () => store.dispatch(gotoSingleProductPageAction);
+  static void Function(int) gotoSingleProductPage(Store<AppState> store) {
+    return (int id) {
+      store.dispatch(SetOpenedProductIdAction(id: id));
+      store.dispatch(gotoSingleProductPageAction);
+    };
   }
 
   static void Function(NavigateToAction) getDoRouteFunction(Store<AppState> store) {

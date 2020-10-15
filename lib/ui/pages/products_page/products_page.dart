@@ -33,11 +33,8 @@ class ProductsPage extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return ProductItem(
                   keyValue: ProductsPageKeys.productItem,
-                  product: vm.products[index],
-                  onTap: () {
-                    vm.selectProduct(vm.products[index].id);
-                    vm.navigateToSingleProductPagePage();
-                  },
+                  product: vm.getCurrentProductData(vm.products[index].id),
+                  onTap: () => vm.navigateToSingleProductPagePage(vm.products[index].id),
                 );
               },
             ),

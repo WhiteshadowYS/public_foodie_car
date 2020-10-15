@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/subcategory_model.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -26,14 +27,16 @@ class SubcategoriesPage extends StatelessWidget {
           appBar: MainAppBar(key: SubCategoriesPageKeys.appbar, title: 'SubCategories'),
           child: MainGrid(
             key: SubCategoriesPageKeys.gridView,
-            itemCount: vm.getSubCategories.length,
+            itemCount: vm.subCategories.length,
             itemBuilder: (BuildContext context, int index) {
+              final SubcategoryModel subcategory = vm.getCurrentSubCategoryData(vm.subCategories[index].id);
+
               return MainGridItem(
                 keyValue: SubCategoriesPageKeys.subcategoryItem + '$index',
-                title: vm.getSubCategories[index].languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()][NAME],
-                imageUrl: vm.getSubCategories[index].imageLink,
+                title: subcategory.languages[vm.currentLocale]['title'],
+                imageUrl: subcategory.imageLink,
                 index: index,
-                onTap: () => vm.navigateToProductsPage(vm.getSubCategories[index].id.toString()),
+                onTap: () => vm.navigateToProductsPage(subcategory.id),
               );
             },
           ),

@@ -1,6 +1,12 @@
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/category_model.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/subcategory_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_catalog_model.dart';
+import 'package:my_catalog/models/models/storage_model/data/info_category_model.dart';
+import 'package:my_catalog/models/models/storage_model/data/info_product_model.dart';
+import 'package:my_catalog/models/models/storage_model/data/info_subcategory_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/info_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/language_model.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -55,11 +61,56 @@ class StorageSelector {
     return store.state.storageState?.storage?.data?.hierarchy ?? [];
   }
 
+  static List<InfoCategoryModel> getInfoCategories(Store<AppState> store) {
+    final int index = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+
+    return store.state.storageState?.storage?.data?.hierarchy[index].categories ?? [];
+  }
+
+  static List<InfoSubcategoryModel> getInfoSubCategories(Store<AppState> store) {
+    final int catalogIndex = store.state.storageState.openedCatalogId;
+    final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+
+    return store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
+  }
+
+  static List<InfoProductModel> getInfoProducts(Store<AppState> store) {
+    final int catalogIndex = store.state.storageState.openedCatalogId;
+    final int categoryIndex = store.state.storageState.openedCategoryId;
+    final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+
+    return store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
+  }
+
   static CatalogModel Function(int) getCurrentCatalogModelFunction(Store<AppState> store) {
     return (int id) {
       final int index = store.state.storageState.storage.data.data.catalogs.indexWhere((item) => item.id == id);
 
       return store.state.storageState.storage.data.data.catalogs[index];
+    };
+  }
+
+  static CategoryModel Function(int) getCurrentCategoryModelFunction(Store<AppState> store) {
+    return (int id) {
+      final int index = store.state.storageState.storage.data.data.categories.indexWhere((item) => item.id == id);
+
+      return store.state.storageState.storage.data.data.categories[index];
+    };
+  }
+
+  static SubcategoryModel Function(int) getCurrentSubCategoryModelFunction(Store<AppState> store) {
+    return (int id) {
+      final int index = store.state.storageState.storage.data.data.subcategories.indexWhere((item) => item.id == id);
+
+      return store.state.storageState.storage.data.data.subcategories[index];
+    };
+  }
+
+  static ProductModel Function(int) getCurrentProductModelFunction(Store<AppState> store) {
+    return (int id) {
+      final int index = store.state.storageState.storage.data.data.products.indexWhere((item) => item.id == id);
+
+      return store.state.storageState.storage.data.data.products[index];
     };
   }
 
