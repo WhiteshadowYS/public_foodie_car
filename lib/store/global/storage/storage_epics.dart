@@ -105,11 +105,11 @@ class StorageEpics {
 
       final List<SavedStorageModel> oHistory = await repository.getStoresHistory();
 
-      final int index = oHistory.indexWhere((element) {
+      final int index = oHistory?.indexWhere((element) {
         return element.id == action.id;
       });
 
-      if (index == -1 || oHistory[index].update >= action.update) {
+      if (oHistory != null && oHistory.isNotEmpty && oHistory[index].update >= action.update) {
         logger.d('action.update: ${action.update}, history[index].update: ${oHistory[index].update}');
         return;
       }
