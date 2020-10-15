@@ -25,10 +25,12 @@ class _CustomSwitchState extends State<CustomSwitch> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          widget.value = !widget.value;
-          if (widget.value != null) widget.callBack(widget.value);
-        });
+        if (widget.callBack != null) {
+          setState(() {
+            widget.value = !widget.value;
+            if (widget.value != null) widget.callBack(widget.value);
+          });
+        }
       },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 200),
