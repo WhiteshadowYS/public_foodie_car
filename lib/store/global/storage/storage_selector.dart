@@ -52,7 +52,7 @@ class StorageSelector {
   }
 
   static List<InfoCatalogModel> getInfoCatalogs(Store<AppState> store) {
-    return store.state.storageState?.storage?.data?.hierarchy;
+    return store.state.storageState?.storage?.data?.hierarchy ?? [];
   }
 
   static CatalogModel Function(int) getCurrentCatalogModelFunction(Store<AppState> store) {
@@ -65,6 +65,27 @@ class StorageSelector {
 
   static List<SavedStorageModel> getHistory(Store<AppState> store) {
     return store.state.storageState.storesHistory;
+  }
+
+  static String getSelectedLocale(Store<AppState> store) {
+    final SavedStorageModel lastModel = store.state.storageState?.storesHistory?.last;
+    int _tmpIndex;
+
+    if (lastModel != null) {
+      _tmpIndex = lastModel.storage.settings.languages.indexWhere((lang) => lang.code == lastModel.locale);
+
+      if (_tmpIndex != -1) {
+        return lastModel.storage.settings.languages[_tmpIndex].code;
+      }
+    }
+
+    _tmpIndex = store.state.storageState.storage.settings.languages.indexWhere((lang) => lang.isDefault == true);
+
+    if (_tmpIndex != -1) {
+      return store.state.storageState.storage.settings.languages[_tmpIndex].code;
+    }
+
+    return store.state.storageState.storage.settings.languages.first.code;
   }
 
   static String getSelectedLanguage(Store<AppState> store) {

@@ -15,7 +15,7 @@ class GDRProductDto implements IDto {
   final String imageLink;
   @JsonKey(name: 'gallery', required: false, nullable: true)
   final List<String> galleryImagesLinks;
-  @JsonKey(name: 'files', required: false, nullable: true)
+  @JsonKey(name: 'languages', required: false, nullable: true)
   final Map<String, dynamic> languages;
 
   const GDRProductDto({

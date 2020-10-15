@@ -16,7 +16,7 @@ class GDRFileDto implements IDto {
   final String type;
   @JsonKey(name: 'image', required: false, nullable: true)
   final String imageLink;
-  @JsonKey(name: 'sub_categories', required: false, nullable: true)
+  @JsonKey(name: 'languages', required: false, nullable: true)
   final Map<String, dynamic> languages;
 
   const GDRFileDto({

@@ -14,7 +14,7 @@ class CatalogModel implements IDto {
   final int id;
   @JsonKey(name: 'image', required: false, nullable: true)
   final String imageLink;
-  @JsonKey(name: 'categories', required: false, nullable: true)
+  @JsonKey(name: 'languages', required: false, nullable: true)
   final Map<String, dynamic> languages;
 
   const CatalogModel({
@@ -24,7 +24,7 @@ class CatalogModel implements IDto {
   });
 
   String titleForLanguage(String langCode) {
-    return languages[langCode]['name'];
+    return languages[langCode]['title'];
   }
 
   String descriptionForLanguage(String langCode) {

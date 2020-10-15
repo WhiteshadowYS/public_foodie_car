@@ -12,16 +12,16 @@ FileModel _$FileModelFromJson(Map<String, dynamic> json) {
       id: $checkedConvert(json, 'id', (v) => v as int),
       type: $checkedConvert(json, 'type', (v) => v as String),
       imageLink: $checkedConvert(json, 'image', (v) => v as String),
-      languages: $checkedConvert(
-          json, 'sub_categories', (v) => v as Map<String, dynamic>),
+      languages:
+          $checkedConvert(json, 'languages', (v) => v as Map<String, dynamic>),
     );
     return val;
-  }, fieldKeyMap: const {'imageLink': 'image', 'languages': 'sub_categories'});
+  }, fieldKeyMap: const {'imageLink': 'image'});
 }
 
 Map<String, dynamic> _$FileModelToJson(FileModel instance) => <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
       'image': instance.imageLink,
-      'sub_categories': instance.languages,
+      'languages': instance.languages,
     };

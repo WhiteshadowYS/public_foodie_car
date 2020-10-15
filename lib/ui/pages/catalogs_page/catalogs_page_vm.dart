@@ -12,12 +12,14 @@ class CatalogsPageVM {
   final void Function(String message) errorDialog;
   final CatalogModel Function(int) getCurrentCatalogData;
   final List<InfoCatalogModel> catalogs;
+  final String currentLocale;
 
   const CatalogsPageVM({
     @required this.navigateToCategoriesPage,
     @required this.errorDialog,
     @required this.catalogs,
     @required this.getCurrentCatalogData,
+    @required this.currentLocale,
   });
 
   static CatalogsPageVM fromStore(Store<AppState> store) {
@@ -26,6 +28,7 @@ class CatalogsPageVM {
       errorDialog: DialogSelectors.getShowErrorDialogFunction(store),
       catalogs: StorageSelector.getInfoCatalogs(store),
       getCurrentCatalogData: StorageSelector.getCurrentCatalogModelFunction(store),
+      currentLocale: StorageSelector.getSelectedLocale(store),
     );
   }
 

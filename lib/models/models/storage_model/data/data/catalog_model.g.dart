@@ -12,15 +12,15 @@ CatalogModel _$CatalogModelFromJson(Map<String, dynamic> json) {
       id: $checkedConvert(json, 'id', (v) => v as int),
       imageLink: $checkedConvert(json, 'image', (v) => v as String),
       languages:
-          $checkedConvert(json, 'categories', (v) => v as Map<String, dynamic>),
+          $checkedConvert(json, 'languages', (v) => v as Map<String, dynamic>),
     );
     return val;
-  }, fieldKeyMap: const {'imageLink': 'image', 'languages': 'categories'});
+  }, fieldKeyMap: const {'imageLink': 'image'});
 }
 
 Map<String, dynamic> _$CatalogModelToJson(CatalogModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'image': instance.imageLink,
-      'categories': instance.languages,
+      'languages': instance.languages,
     };
