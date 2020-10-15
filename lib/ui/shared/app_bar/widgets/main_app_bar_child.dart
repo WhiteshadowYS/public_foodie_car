@@ -8,14 +8,16 @@ import 'package:my_catalog/ui/shared/svg_images.dart';
 
 class MainAppBarChild extends StatelessWidget {
   final String title;
+  final String backButtonText;
   final String logoUrl;
   final void Function() backOnTap;
 
   MainAppBarChild({
     @required String key,
     @required this.title,
-    @required this.backOnTap,
-    @required this.logoUrl,
+    this.backOnTap,
+    this.logoUrl,
+    this.backButtonText,
   }) : super(key: Key(key));
 
   @override
@@ -39,9 +41,9 @@ class MainAppBarChild extends StatelessWidget {
                   ),
                   const SizedBox(width: 6.0),
                   Text(
-                    FlutterDictionary.instance.language.appbarDictionary.back,
+                    backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
                     style: TextStyle(
-                      color: Color(0xFF5DB075),
+                      color: CustomTheme.colors.primaryColor,
                       fontSize: 17,
                       fontWeight: FontWeight.w400,
                     ),

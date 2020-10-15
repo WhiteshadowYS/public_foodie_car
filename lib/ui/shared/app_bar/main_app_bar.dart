@@ -14,6 +14,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.logoUrl,
     this.backOnTap,
+    this.backButtonText,
   })  : preferredSize = Size.fromHeight(height),
         super(key: Key(key));
 
@@ -21,6 +22,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Size preferredSize;
   final String title;
   final String logoUrl;
+  final String backButtonText;
   final Function backOnTap;
   final double height;
 
@@ -38,6 +40,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
             return MainAppBarChild(
               key: key.toString(),
               title: title,
+              backButtonText: backButtonText,
               backOnTap: backOnTap ?? () => vm.doRoute(RouteService.instance.pop()),
               logoUrl: logoUrl,
             );
