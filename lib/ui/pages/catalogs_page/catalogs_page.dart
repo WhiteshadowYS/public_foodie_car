@@ -46,7 +46,7 @@ class CatalogsPage extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         return CatalogItem(
                           keyValue: CatalogsPageKeys.catalogItem + '$index',
-                          catalog: vm.catalogs[index],
+                          catalog: vm.getCurrentCatalogData(vm.catalogs[index].id),
                           navigateToCategories: vm.navigateToCategoriesPage,
                         );
                       },

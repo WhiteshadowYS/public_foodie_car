@@ -1,4 +1,5 @@
 import 'package:my_catalog/models/models/saved_storage_model.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_catalog_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/info_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/language_model.dart';
@@ -44,11 +45,21 @@ class StorageSelector {
     return (String locale) {
       store.dispatch(
         UpdateLanguageAction(
-          newModel: store.state.storageState.storesHistory.last.copyWith(
-              locale: locale
-          ),
+          newModel: store.state.storageState.storesHistory.last.copyWith(locale: locale),
         ),
       );
+    };
+  }
+
+  static List<InfoCatalogModel> getInfoCatalogs(Store<AppState> store) {
+    return store.state.storageState?.storage?.data?.hierarchy;
+  }
+
+  static CatalogModel Function(int) getCurrentCatalogModelFunction(Store<AppState> store) {
+    return (int id) {
+      final int index = store.state.storageState.storage.data.data.catalogs.indexWhere((item) => item.id == id);
+
+      return store.state.storageState.storage.data.data.catalogs[index];
     };
   }
 
