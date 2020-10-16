@@ -23,8 +23,7 @@ class CatalogsPage extends StatelessWidget {
         return MainLayout(
           appBar: MainAppBar(
             key: 'CatalogsPageAppbar',
-            backOnTap: () {},
-            title: 'text',
+            backOnTap: vm.logOut,
             backButtonText: 'Log out',
           ),
           bgColor: CustomTheme.colors.background,

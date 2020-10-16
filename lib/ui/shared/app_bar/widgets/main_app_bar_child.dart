@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -24,31 +25,40 @@ class MainAppBarChild extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        if (backOnTap != null && RouteService.instance.canPop)
-          InkWell(
-            onTap: backOnTap,
+        if (backOnTap != null)
+          Material(
+            color: Colors.transparent,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Row(
-                children: [
-                  const SizedBox(width: 16.0),
-                  Transform.rotate(
-                    angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
-                    child: SizedBox(
-                      height: 20.0,
-                      child: SVGImages().backArrow(),
-                    ),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(20.0),
+                onTap: backOnTap,
+                child: SizedBox(
+                  height: 32.h,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(width: 16.0),
+                      Transform.rotate(
+                        angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
+                        child: SizedBox(
+                          height: 20.0,
+                          child: SVGImages().backArrow(),
+                        ),
+                      ),
+                      const SizedBox(width: 6.0),
+                      Text(
+                        backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
+                        style: TextStyle(
+                          color: CustomTheme.colors.primaryColor,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      const SizedBox(width: 16.0),
+                    ],
                   ),
-                  const SizedBox(width: 6.0),
-                  Text(
-                    backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
-                    style: TextStyle(
-                      color: CustomTheme.colors.primaryColor,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ),

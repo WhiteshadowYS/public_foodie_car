@@ -37,7 +37,6 @@ class PostUpdateTokenRequest implements IRequest<Null> {
 
   @override
   Future<Null> call() async {
-    // TODO(Yura Shevelev): Need update of data;
     final BaseHttpResponse response = await NetworkService.instance.request(
       RequestBuilders.post(
         url: Api.mockApiLink,
