@@ -1,3 +1,4 @@
+import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/category_model.dart';
@@ -58,14 +59,27 @@ class StorageSelector {
   }
 
   static List<InfoCatalogModel> getInfoCatalogs(Store<AppState> store) {
-    return store.state.storageState?.storage?.data?.hierarchy ?? [];
+    final List<InfoCatalogModel> catalogs = store.state.storageState?.storage?.data?.hierarchy ?? [];
+    List<InfoCatalogModel> catalogsInSelectedLanguage = [];
+
+    for (InfoCatalogModel catalog in catalogs) {
+      if (catalog.displayedIn.contains(store.state.storageState.storesHistory.last.locale)) catalogsInSelectedLanguage.add(catalog);
+    }
+
+    return catalogsInSelectedLanguage;
   }
 
   static List<InfoCategoryModel> getInfoCategories(Store<AppState> store) {
     try {
       final int index = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final List<InfoCategoryModel> categories = store.state.storageState?.storage?.data?.hierarchy[index].categories ?? [];
+      List<InfoCategoryModel> categoriesInSelectedLanguage = [];
 
-      return store.state.storageState?.storage?.data?.hierarchy[index].categories ?? [];
+      for (InfoCategoryModel category in categories) {
+        if (category.displayedIn.contains(store.state.storageState.storesHistory.last.locale)) categoriesInSelectedLanguage.add(category);
+      }
+
+      return categoriesInSelectedLanguage;
     } catch (e) {
       return [];
     }
@@ -73,10 +87,16 @@ class StorageSelector {
 
   static List<InfoSubcategoryModel> getInfoSubCategories(Store<AppState> store) {
     try {
-      final int catalogIndex = store.state.storageState.openedCatalogId;
-      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int catalogIndex = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
+      final List<InfoSubcategoryModel> subcategories = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
+      List<InfoSubcategoryModel> subcategoriesInSelectedLanguage = [];
 
-      return store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
+      for (InfoSubcategoryModel subcategory in subcategories) {
+        if (subcategory.displayedIn.contains(store.state.storageState.storesHistory.last.locale)) subcategoriesInSelectedLanguage.add(subcategory);
+      }
+
+      return subcategoriesInSelectedLanguage;
     } catch (e) {
       return [];
     }
@@ -84,11 +104,17 @@ class StorageSelector {
 
   static List<InfoProductModel> getInfoProducts(Store<AppState> store) {
     try {
-      final int catalogIndex = store.state.storageState.openedCatalogId;
-      final int categoryIndex = store.state.storageState.openedCategoryId;
-      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int catalogIndex = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
+      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
+      final List<InfoProductModel> products = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
+      List<InfoProductModel> productsInSelectedLanguage = [];
 
-      return store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
+      for (InfoProductModel product in products) {
+        if (product.displayedIn.contains(store.state.storageState.storesHistory.last.locale)) productsInSelectedLanguage.add(product);
+      }
+
+      return productsInSelectedLanguage;
     } catch (e) {
       return [];
     }

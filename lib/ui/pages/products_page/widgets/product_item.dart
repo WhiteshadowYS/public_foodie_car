@@ -12,18 +12,19 @@ import 'package:my_catalog/theme/custom_theme.dart';
 
 class ProductItem extends StatelessWidget {
   final String keyValue;
+  final String locale;
   final ProductModel product;
   final void Function() onTap;
 
   ProductItem({
     @required this.keyValue,
+    @required this.locale,
     @required this.product,
     @required this.onTap,
   }) : super(key: Key(keyValue + 'ProductItem'));
 
   @override
   Widget build(BuildContext context) {
-    final String currentLocale = FlutterDictionaryDelegate.getCurrentLocale;
     return Material(
       color: Colors.transparent,
       child: Column(
@@ -45,13 +46,13 @@ class ProductItem extends StatelessWidget {
               ),
             ),
             title: Text(
-              product.languages[currentLocale.toUpperCase()][NAME],
+              product.languages[locale][KEY_TITLE],
               style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                product.languages[currentLocale.toUpperCase()][DESCRIPTION],
+                product.languages[locale][KEY_DESCRIPTION],
                 style: CustomTheme.textStyles.mainTextStyle(size: 13.0),
               ),
             ),
