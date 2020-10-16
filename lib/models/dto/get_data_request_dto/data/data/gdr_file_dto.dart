@@ -14,15 +14,15 @@ class GDRFileDto implements IDto {
   final int id;
   @JsonKey(name: 'type', required: false, nullable: true)
   final String type;
-  @JsonKey(name: 'image', required: false, nullable: true)
-  final String imageLink;
+  @JsonKey(name: 'file', required: false, nullable: true)
+  final String file;
   @JsonKey(name: 'languages', required: false, nullable: true)
   final Map<String, dynamic> languages;
 
   const GDRFileDto({
     @required this.id,
     @required this.type,
-    @required this.imageLink,
+    @required this.file,
     @required this.languages
   });
 

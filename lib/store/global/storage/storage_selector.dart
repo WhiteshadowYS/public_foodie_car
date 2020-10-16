@@ -2,6 +2,7 @@ import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/category_model.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/file_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/subcategory_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_catalog_model.dart';
@@ -60,13 +61,8 @@ class StorageSelector {
 
   static List<InfoCatalogModel> getInfoCatalogs(Store<AppState> store) {
     final List<InfoCatalogModel> catalogs = store.state.storageState?.storage?.data?.hierarchy ?? [];
-    List<InfoCatalogModel> catalogsInSelectedLanguage = [];
 
-    for (InfoCatalogModel catalog in catalogs) {
-      if (catalog.displayedIn.contains(store.state.storageState.storesHistory.last.locale)) catalogsInSelectedLanguage.add(catalog);
-    }
-
-    return catalogsInSelectedLanguage;
+    return catalogs;
   }
 
   static List<InfoCategoryModel> getInfoCategories(Store<AppState> store) {
@@ -115,6 +111,33 @@ class StorageSelector {
       }
 
       return productsInSelectedLanguage;
+    } catch (e) {
+      return [];
+    }
+  }
+
+  static List<FileModel> getInfoFiles(Store<AppState> store) {
+    try {
+      final int catalogIndex = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
+      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
+      final int productIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products.indexWhere((item) => item.id == store.state.storageState.openedProductId);
+      final List<int> filesIndexes = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products[productIndex].files ?? [];
+      final List<FileModel> files = [];
+
+      for (FileModel file in store.state.storageState?.storage?.data?.data?.files ?? []) {
+        filesIndexes.forEach((index) {
+          if (file.id == index) files.add(file);
+        });
+      }
+
+      List<FileModel> filesInSelectedLanguage = [];
+
+      for (FileModel file in files) {
+        if (file.languages.containsKey(store.state.storageState.storesHistory.last.locale)) filesInSelectedLanguage.add(file);
+      }
+
+      return filesInSelectedLanguage;
     } catch (e) {
       return [];
     }
