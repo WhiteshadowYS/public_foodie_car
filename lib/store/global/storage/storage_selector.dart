@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
@@ -16,13 +17,21 @@ import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
 import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_action.dart';
 import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/global/storage/storage_state.dart';
+import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux/redux.dart';
 
 /// [StorageSelector] - selector for all data what we save in [StorageState].
 /// Methods:
 ///   - [getDataFunction]. It is function fot get all storage data from the server.
 class StorageSelector {
-  static void Function() getRemoveOpenedStorageAction(Store<AppState> store) {
+  static void Function() getLogOutFunction(Store<AppState> store) {
+    return () {
+      store.dispatch(RemoveOpenedStorageAction());
+      store.dispatch(RouteSelectors.gotoMainPageAction);
+    };
+  }
+
+  static void Function() getRemoveOpenedStorageFunction(Store<AppState> store) {
     return () => store.dispatch(RemoveOpenedStorageAction());
   }
 

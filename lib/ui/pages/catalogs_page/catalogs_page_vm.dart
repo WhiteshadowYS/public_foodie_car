@@ -8,6 +8,7 @@ import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux/redux.dart';
 
 class CatalogsPageVM {
+  final void Function() logOut;
   final void Function(int) navigateToCategoriesPage;
   final void Function(String message) errorDialog;
   final CatalogModel Function(int) getCurrentCatalogData;
@@ -15,6 +16,7 @@ class CatalogsPageVM {
   final String currentLocale;
 
   const CatalogsPageVM({
+    @required this.logOut,
     @required this.navigateToCategoriesPage,
     @required this.errorDialog,
     @required this.catalogs,
@@ -24,6 +26,7 @@ class CatalogsPageVM {
 
   static CatalogsPageVM fromStore(Store<AppState> store) {
     return CatalogsPageVM(
+      logOut: StorageSelector.getLogOutFunction(store),
       navigateToCategoriesPage: RouteSelectors.gotoCategoriesPage(store),
       errorDialog: DialogSelectors.getShowErrorDialogFunction(store),
       catalogs: StorageSelector.getInfoCatalogs(store),

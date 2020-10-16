@@ -28,7 +28,7 @@ class BottomBarVM {
       navigateCatalogPage: RouteSelectors.gotoCatalogsPage(store),
       navigateToMainPage: RouteSelectors.gotoMainPage(store),
       navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
-      removeOpenedStore: StorageSelector.getRemoveOpenedStorageAction(store),
+      removeOpenedStore: StorageSelector.getRemoveOpenedStorageFunction(store),
     );
   }
 
