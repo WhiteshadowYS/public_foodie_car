@@ -24,11 +24,19 @@ class CatalogModel implements IDto {
   });
 
   String titleForLanguage(String langCode) {
-    return languages[langCode]['title'];
+    try {
+      return languages[langCode]['title'];
+    } catch (e) {
+      return 'title';
+    }
   }
 
   String descriptionForLanguage(String langCode) {
-    return languages[langCode]['description'];
+    try {
+      return languages[langCode]['description'];
+    } catch (e) {
+      return 'description';
+    }
   }
 
   factory CatalogModel.fromJson(json) => _$CatalogModelFromJson(json);

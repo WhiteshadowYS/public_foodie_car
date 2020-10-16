@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:my_catalog/dictionary/flutter_delegate.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/ui/pages/single_product_page/single_product_page_vm.dart';
-import 'package:my_catalog/ui/pages/single_product_page/widgets/dialog_widgets/file_preview/file_preview_dialog.dart';
-import 'package:my_catalog/ui/pages/single_product_page/widgets/dialog_widgets/file_preview/file_preview_dialog_widget_vm.dart';
+import 'package:my_catalog/ui/pages/single_product_page/widgets/dialog_widgets/file_preview_dialog/file_preview_dialog.dart';
+import 'package:my_catalog/ui/pages/single_product_page/widgets/dialog_widgets/file_preview_dialog/file_preview_dialog_widget_vm.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/dialog_widgets/image_preview_widget.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/dialog_widgets/pdf_preview_widget.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/dialog_widgets/video_preview_widget.dart';
@@ -42,7 +40,8 @@ class FilePreviewDialogWidget extends StatelessWidget {
                   child: _getPreviewFileWidget(dialogModel.file.type, dialogModel.file.file),
                 ),
                 FilePreviewBottomBlock(
-                  itemName: dialogModel.file.languages[vm.currentLocale][NAME]),
+                  itemName: dialogModel.file.languages[vm.currentLocale][NAME],
+                ),
             ],
           ),
         );

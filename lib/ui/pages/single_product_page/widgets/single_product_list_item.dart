@@ -22,9 +22,12 @@ class SingleProductListItem extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: CircleAvatar(backgroundColor: CustomTheme.colors.primaryColor, radius: radius, child: icon),
             ),
-            Text(
-              title,
-              style: CustomTheme.textStyles.titleTextStyle(size: 14),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: Text(
+                title,
+                style: CustomTheme.textStyles.titleTextStyle(size: 14),
+              ),
             ),
           ],
         ),

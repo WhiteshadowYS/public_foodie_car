@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/category_model.dart';
@@ -209,24 +207,28 @@ class StorageSelector {
   }
 
   static String getSelectedLocale(Store<AppState> store) {
-    final SavedStorageModel lastModel = store.state.storageState?.storesHistory?.last;
-    int _tmpIndex;
+    try {
+      final SavedStorageModel lastModel = store.state.storageState?.storesHistory?.last;
+      int _tmpIndex;
 
-    if (lastModel != null) {
-      _tmpIndex = lastModel.storage.settings.languages.indexWhere((lang) => lang.code == lastModel.locale);
+      if (lastModel != null) {
+        _tmpIndex = lastModel.storage.settings.languages.indexWhere((lang) => lang.code == lastModel.locale);
+
+        if (_tmpIndex != -1) {
+          return lastModel.storage.settings.languages[_tmpIndex].code;
+        }
+      }
+
+      _tmpIndex = store.state.storageState.storage.settings.languages.indexWhere((lang) => lang.isDefault == true);
 
       if (_tmpIndex != -1) {
-        return lastModel.storage.settings.languages[_tmpIndex].code;
+        return store.state.storageState.storage.settings.languages[_tmpIndex].code;
       }
+
+      return store.state.storageState.storage.settings.languages.first.code ?? 'EN';
+    } catch (e) {
+      return 'EN';
     }
-
-    _tmpIndex = store.state.storageState.storage.settings.languages.indexWhere((lang) => lang.isDefault == true);
-
-    if (_tmpIndex != -1) {
-      return store.state.storageState.storage.settings.languages[_tmpIndex].code;
-    }
-
-    return store.state.storageState.storage.settings.languages.first.code;
   }
 
   static String getSelectedLanguage(Store<AppState> store) {

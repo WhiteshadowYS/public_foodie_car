@@ -43,7 +43,7 @@ class CatalogItem extends StatelessWidget {
                 height: 172.h,
                 width: double.infinity,
                 placeholder: AssetImage(ImageAssets.LOADING),
-                image: NetworkImage(catalog.imageLink),
+                image: NetworkImage(catalog.imageLink ?? ''),
                 fit: BoxFit.fitWidth,
               ),
             ),
