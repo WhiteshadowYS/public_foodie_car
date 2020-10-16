@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -32,17 +33,13 @@ class SingleProductPage extends StatelessWidget {
             children: [
               const SizedBox(height: 20.0),
               Text(
-                'Product title',
+                vm.product.languages[vm.currentLocale][KEY_TITLE],
                 textAlign: TextAlign.center,
                 style: CustomTheme.textStyles.accentTextStyle(size: 22, fontWeight: FontWeight.w600),
               ),
               ImageViewer(
                 key: SingleProductKeys.gallery,
-                gallery: [
-                  'https://24smi.org/public/media/resize/800x-/2018/1/25/ruu3af4b8cb17.jpg',
-                  'https://img.pravda.com/images/doc/4/3/4377786-original.jpg',
-                  'https://img.tsn.ua/cached/1570658675/tsn-c458e64851561f73ec5a071df604b604/thumbs/1340x530/40/d0/bd0482e31e2156cd627fbf6cbf5fd040.png',
-                ],
+                gallery: vm.product.galleryImagesLinks,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -55,12 +52,12 @@ class SingleProductPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                  vm.product.languages[vm.currentLocale][KEY_DESCRIPTION],
                   style: CustomTheme.textStyles.mainTextStyle(size: 15),
                   textAlign: TextAlign.center,
                 ),
               ),
-              for (String point in ['Point', 'Point', 'Point', 'Point', 'Point', 'Point'])
+              for (String point in vm.product.languages[vm.currentLocale][KEY_POINTS])
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   child: SingleProductListItem(
@@ -70,21 +67,22 @@ class SingleProductPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                  vm.product.languages[vm.currentLocale][KEY_DESCRIPTION_2],
                   style: CustomTheme.textStyles.mainTextStyle(size: 15),
                   textAlign: TextAlign.center,
                 ),
               ),
               SizedBox(
-                height: dummyFiles.length * 80.0,
+                height: vm.files.length * 80.0,
                 child: ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: dummyFiles.length,
+                  itemCount: vm.files.length,
                   itemBuilder: (BuildContext context, int index) {
                     return FileViewButton(
-                      keyValue: SingleProductKeys.fileItem,
-                      dummyFile: dummyFiles[index],
-                      onTap: () => vm.filePreview(dummyFiles[index]),
+                      keyValue: SingleProductKeys.fileItem + index.toString(),
+                      file: vm.files[index],
+                      locale: vm.currentLocale,
+                      onTap: () => vm.filePreview(vm.files[index]),
                     );
                   },
                 ),
