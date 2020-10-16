@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/res/keys.dart';
