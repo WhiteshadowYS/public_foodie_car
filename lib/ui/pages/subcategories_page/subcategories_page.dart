@@ -35,7 +35,7 @@ class SubcategoriesPage extends StatelessWidget {
 
               return MainGridItem(
                 keyValue: SubCategoriesPageKeys.subcategoryItem + '$index',
-                title: subcategory.languages[vm.currentLocale]['title'],
+                title: subcategory.languages[vm.currentLocale][KEY_TITLE],
                 imageUrl: subcategory.imageLink,
                 index: index,
                 onTap: () => vm.navigateToProductsPage(subcategory.id),

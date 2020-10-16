@@ -32,7 +32,8 @@ const double DESIGN_SCREEN_HEIGHT = 812.0;
 const double DESIGN_SCREEN_WIDTH = 375.0;
 
 const String NAME = 'name';
-const String DESCRIPTION = 'description';
+const String KEY_DESCRIPTION = 'description';
+const String KEY_TITLE = 'title';
 const String ERROR = 'Error!';
 
 class ResponseKeys {
