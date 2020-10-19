@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
+import 'package:my_catalog/models/models/storage_model/data/info_catalog_model.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/storage_selector.dart';
 import 'package:my_catalog/store/shared/dialog_state/dialog_selector.dart';
@@ -11,7 +12,7 @@ class CatalogsPageVM {
   final void Function(int) navigateToCategoriesPage;
   final void Function(String logoUrl) exitDialog;
   final CatalogModel Function(int) getCurrentCatalogData;
-  final List<CatalogModel> catalogs;
+  final List<InfoCatalogModel> catalogs;
   final String currentLocale;
 
 
