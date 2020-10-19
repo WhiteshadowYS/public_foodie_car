@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -19,10 +20,12 @@ class CatalogsPage extends StatelessWidget {
       converter: CatalogsPageVM.fromStore,
       builder: (BuildContext context, vm) {
         return MainLayout(
-          bgColor: CustomTheme.colors.background,
           appBar: MainAppBar(
-            key: 'CatalogsAppBar',
+            key: 'CatalogsPageAppbar',
+            backOnTap: vm.logOut,
+            backButtonText: 'Log out',
           ),
+          bgColor: CustomTheme.colors.background,
           canExit: true,
           // TODO(Daniil): Add logo url
           back: () => vm.exitDialog(EMPTY_STRING),
@@ -32,6 +35,7 @@ class CatalogsPage extends StatelessWidget {
             ),
             child: Column(
               children: [
+                const SizedBox(height: 35.0),
                 Expanded(
                   child: ScrollConfiguration(
                     behavior: CleanBehavior(),
@@ -41,9 +45,14 @@ class CatalogsPage extends StatelessWidget {
                       ),
                       itemCount: vm.catalogs.length,
                       itemBuilder: (BuildContext context, int index) {
+                        final CatalogModel catalog = vm.getCurrentCatalogData(vm.catalogs[index].id);
+
+                        if (catalog == null) return Container();
+
                         return CatalogItem(
                           keyValue: CatalogsPageKeys.catalogItem + '$index',
-                          catalog: vm.catalogs[index],
+                          locale: vm.currentLocale,
+                          catalog: catalog,
                           navigateToCategories: vm.navigateToCategoriesPage,
                         );
                       },

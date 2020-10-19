@@ -5,7 +5,7 @@ import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 import 'package:my_catalog/network/requests/get_data_request.dart';
 import 'package:my_catalog/store/global/storage/actions/open_storage_action.dart';
-import 'package:my_catalog/store/global/storage/actions/set_opened_store_id_action.dart';
+import 'package:my_catalog/store/global/storage/actions/set_opened_id_actions.dart';
 import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
 import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/reducer.dart';
@@ -19,10 +19,20 @@ class StorageState {
   final StorageModel storage;
   final List<SavedStorageModel> storesHistory;
 
+  final int openedCatalogId;
+  final int openedCategoryId;
+  final int openedSubCategoryId;
+  final int openedProductId;
+
   StorageState({
     @required this.storesHistory,
     @required this.openedStoreId,
     @required this.storage,
+
+    this.openedCatalogId,
+    this.openedCategoryId,
+    this.openedSubCategoryId,
+    this.openedProductId,
   });
 
   factory StorageState.initial() {
@@ -37,11 +47,19 @@ class StorageState {
     StorageModel storage,
     int openedStoreId,
     List<SavedStorageModel> storesHistory,
+    int openedCatalogId,
+    int openedCategoryId,
+    int openedSubCategoryId,
+    int openedProductId,
   }) {
     return StorageState(
       storage: storage ?? this.storage,
       storesHistory: storesHistory ?? this.storesHistory,
       openedStoreId: openedStoreId ?? this.openedStoreId,
+      openedCatalogId: openedCatalogId ?? this.openedCatalogId,
+      openedCategoryId: openedCategoryId ?? this.openedCategoryId,
+      openedSubCategoryId: openedSubCategoryId ?? this.openedSubCategoryId,
+      openedProductId: openedProductId ?? this.openedProductId,
     );
   }
 
@@ -52,6 +70,10 @@ class StorageState {
         SetOpenedStoreIdAction: (dynamic action) => _setOpenedStoreId(action as SetOpenedStoreIdAction),
         SetStoresHistoryAction: (dynamic action) => _setStoresHistory(action as SetStoresHistoryAction),
         UpdateLanguageAction: (dynamic action) => _updateStoreLanguage(action as UpdateLanguageAction),
+        SetOpenedCatalogIdAction: (dynamic action) => _setOpenedCatalogId(action as SetOpenedCatalogIdAction),
+        SetOpenedCategoryIdAction: (dynamic action) => _setOpenedCategoryId(action as SetOpenedCategoryIdAction),
+        SetOpenedSubCategoryIdAction: (dynamic action) => _setOpenedSubCategoryId(action as SetOpenedSubCategoryIdAction),
+        SetOpenedProductIdAction: (dynamic action) => _setOpenedProductId(action as SetOpenedProductIdAction),
       }),
     ).updateState(action, this);
   }
@@ -66,10 +88,42 @@ class StorageState {
   }
 
   StorageState _setOpenedStoreId(SetOpenedStoreIdAction action) {
-    if (action.storeId == null) return this;
+    if (action.id == null) return this;
 
     return copyWith(
-      openedStoreId: action.storeId,
+      openedStoreId: action.id,
+    );
+  }
+
+  StorageState _setOpenedCatalogId(SetOpenedCatalogIdAction action) {
+    if (action.id == null) return this;
+
+    return copyWith(
+      openedCatalogId: action.id,
+    );
+  }
+
+  StorageState _setOpenedCategoryId(SetOpenedCategoryIdAction action) {
+    if (action.id == null) return this;
+
+    return copyWith(
+      openedCategoryId: action.id,
+    );
+  }
+
+  StorageState _setOpenedSubCategoryId(SetOpenedSubCategoryIdAction action) {
+    if (action.id == null) return this;
+
+    return copyWith(
+      openedSubCategoryId: action.id,
+    );
+  }
+
+  StorageState _setOpenedProductId(SetOpenedProductIdAction action) {
+    if (action.id == null) return this;
+
+    return copyWith(
+      openedProductId: action.id,
     );
   }
 

@@ -3,7 +3,7 @@ import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/services/dialog_service/models/empty_loader_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
-import 'package:my_catalog/store/global/storage/actions/set_opened_store_id_action.dart';
+import 'package:my_catalog/store/global/storage/actions/set_opened_id_actions.dart';
 import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
 import 'package:my_catalog/store/shared/initialization/actions/start_initialization.dart';
 import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
@@ -31,7 +31,7 @@ class InitializeEpics {
 
       if (openedStorageId != null) {
         yield* Stream.fromIterable([
-          SetOpenedStoreIdAction(storeId: openedStorageId),
+          SetOpenedStoreIdAction(id: openedStorageId),
         ]);
       }
 

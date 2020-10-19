@@ -14,13 +14,12 @@ GDRProductDto _$GDRProductDtoFromJson(Map<String, dynamic> json) {
       galleryImagesLinks: $checkedConvert(json, 'gallery',
           (v) => (v as List)?.map((e) => e as String)?.toList()),
       languages:
-          $checkedConvert(json, 'files', (v) => v as Map<String, dynamic>),
+          $checkedConvert(json, 'languages', (v) => v as Map<String, dynamic>),
     );
     return val;
   }, fieldKeyMap: const {
     'imageLink': 'image',
-    'galleryImagesLinks': 'gallery',
-    'languages': 'files'
+    'galleryImagesLinks': 'gallery'
   });
 }
 
@@ -29,5 +28,5 @@ Map<String, dynamic> _$GDRProductDtoToJson(GDRProductDto instance) =>
       'id': instance.id,
       'image': instance.imageLink,
       'gallery': instance.galleryImagesLinks,
-      'files': instance.languages,
+      'languages': instance.languages,
     };

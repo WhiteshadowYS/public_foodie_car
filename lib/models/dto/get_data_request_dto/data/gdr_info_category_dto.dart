@@ -14,7 +14,7 @@ class GDRInfoCategoryDto implements IDto {
   @JsonKey(name: 'id', required: false, nullable: true)
   final int id;
   @JsonKey(name: 'displayed_in', required: false, nullable: true)
-  final List<Map<String, String>> displayedIn;
+  final List<String> displayedIn;
   @JsonKey(name: 'sub_categories', required: false, nullable: true)
   final List<GDRInfoSubcategoryDto> subcategories;
 

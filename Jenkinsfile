@@ -132,7 +132,10 @@ pipeline {
             }
 
             steps {
-                build job: 'Covid_iOS'
+                sh "curl --location --request POST 'https://api.codemagic.io/builds' \
+                    --header 'Content-Type: application/json' \
+                    --header 'x-auth-token: eXFu75mnUwvXd7tOWNfV4v-GLaz8LmC4U7T-pMN_NvQ' \
+                    --data-raw '{'appId': '5f8d489724a2011e6f4f393d','workflowId': '5f8d489724a2011e6f4f393c','branch': 'dev'}'"
             }
         }
     }

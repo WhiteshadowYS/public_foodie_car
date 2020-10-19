@@ -56,7 +56,7 @@ class _MainGridItemState extends State<MainGridItem> with SingleTickerProviderSt
                   child: FadeInImage(
                     width: double.infinity,
                     placeholder: AssetImage(ImageAssets.LOGO_PNG),
-                    image: NetworkImage(widget.imageUrl),
+                    image: NetworkImage(widget.imageUrl ?? ''),
                     fit: BoxFit.cover,
                   ),
                 ),

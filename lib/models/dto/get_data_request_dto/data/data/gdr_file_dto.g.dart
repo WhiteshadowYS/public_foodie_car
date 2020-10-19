@@ -11,18 +11,18 @@ GDRFileDto _$GDRFileDtoFromJson(Map<String, dynamic> json) {
     final val = GDRFileDto(
       id: $checkedConvert(json, 'id', (v) => v as int),
       type: $checkedConvert(json, 'type', (v) => v as String),
-      imageLink: $checkedConvert(json, 'image', (v) => v as String),
-      languages: $checkedConvert(
-          json, 'sub_categories', (v) => v as Map<String, dynamic>),
+      file: $checkedConvert(json, 'file', (v) => v as String),
+      languages:
+          $checkedConvert(json, 'languages', (v) => v as Map<String, dynamic>),
     );
     return val;
-  }, fieldKeyMap: const {'imageLink': 'image', 'languages': 'sub_categories'});
+  });
 }
 
 Map<String, dynamic> _$GDRFileDtoToJson(GDRFileDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
-      'image': instance.imageLink,
-      'sub_categories': instance.languages,
+      'file': instance.file,
+      'languages': instance.languages,
     };
