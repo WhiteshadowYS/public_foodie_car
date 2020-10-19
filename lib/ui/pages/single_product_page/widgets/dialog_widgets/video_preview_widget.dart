@@ -29,7 +29,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
       ..addListener(videoListener)
       ..initialize().then(
         (_) {
-          // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+          /// Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
           setState(() {});
         },
       );
@@ -45,8 +45,8 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
   @override
   Widget build(BuildContext context) {
     if (_controller.value.initialized) {
-      // If the VideoPlayerController has finished initialization, use
-      // the data it provides to limit the aspect ratio of the VideoPlayer.
+      /// If the VideoPlayerController has finished initialization, use
+      /// the data it provides to limit the aspect ratio of the VideoPlayer.
       return InkWell(
         onTap: onTap,
         child: Stack(
@@ -54,23 +54,24 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
           children: [
             AspectRatio(
               aspectRatio: _controller.value.aspectRatio,
-              // Use the VideoPlayer widget to display the video.
+              /// Use the VideoPlayer widget to display the video.
               child: VideoPlayer(_controller),
             ),
-            Positioned(
-              top: 60,
-              child: AnimatedOpacity(
-                duration: _controller.value.isPlaying ? SECONDS_1 : MILLISECONDS_300,
-                opacity: _controller.value.isPlaying ? 0 : 1,
-                child: Container(
-                  width: 100.h,
-                  height: 100.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(color: CustomTheme.colors.buttons, width: 2.0),
-                    color: CustomTheme.colors.primaryColor.withOpacity(0.3),
+            Positioned.fill(
+              child: Align(
+                child: AnimatedOpacity(
+                  duration: _controller.value.isPlaying ? SECONDS_1 : MILLISECONDS_300,
+                  opacity: _controller.value.isPlaying ? 0 : 1,
+                  child: Container(
+                    width: 100.sp,
+                    height: 100.sp,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      border: Border.all(color: CustomTheme.colors.buttons, width: 2.0),
+                      color: CustomTheme.colors.primaryColor.withOpacity(0.3),
+                    ),
+                    child: _videoControlButton(),
                   ),
-                  child: _videoControlButton(),
                 ),
               ),
             ),
@@ -86,7 +87,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
         ),
       );
     } else {
-      // If the VideoPlayerController is still initializing, show a loader
+      /// If the VideoPlayerController is still initializing, show a loader
       return Image.asset(
         ImageAssets.LOADING,
         color: CustomTheme.colors.primaryColor,
