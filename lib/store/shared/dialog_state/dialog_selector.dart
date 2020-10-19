@@ -1,5 +1,6 @@
 import 'package:my_catalog/models/models/storage_model/data/data/file_model.dart';
 import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
+import 'package:my_catalog/services/dialog_service/models/exit_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/force_close_dialog_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
@@ -27,5 +28,9 @@ class DialogSelectors {
 
   static void Function(FileModel file ) getShowFilePreviewDialogFunction(Store<AppState> store) {
     return (FileModel file) => store.dispatch(ShowDialogAction(dialog: FilePreviewDialog(file: file)));
+  }
+
+  static void Function(String logoUrl) getExitDialogFunction(Store<AppState> store) {
+    return (String logoUrl) => store.dispatch(ShowDialogAction(dialog: ExitDialog(logoUrl: logoUrl)));
   }
 }

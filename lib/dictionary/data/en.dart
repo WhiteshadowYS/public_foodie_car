@@ -40,5 +40,8 @@ const Language en = Language(
   popUpDictionary: PopUpDictionary(
     gotIt: 'Got it!',
     loading: 'Loading...',
+    exitText: 'Do you want to exit the application?',
+    yes: 'Yes',
+    no: 'No',
   ),
 );

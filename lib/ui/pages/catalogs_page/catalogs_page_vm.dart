@@ -10,13 +10,16 @@ import 'package:redux/redux.dart';
 class CatalogsPageVM {
   final void Function() logOut;
   final void Function(int) navigateToCategoriesPage;
+  final void Function(String logoUrl) exitDialog;
   final CatalogModel Function(int) getCurrentCatalogData;
   final List<InfoCatalogModel> catalogs;
   final String currentLocale;
 
+
   const CatalogsPageVM({
     @required this.logOut,
     @required this.navigateToCategoriesPage,
+    @required this.exitDialog,
     @required this.catalogs,
     @required this.getCurrentCatalogData,
     @required this.currentLocale,
@@ -28,6 +31,7 @@ class CatalogsPageVM {
       catalogs: StorageSelector.getInfoCatalogs(store),
       currentLocale: StorageSelector.getSelectedLocale(store),
       navigateToCategoriesPage: RouteSelectors.gotoCategoriesPage(store),
+      exitDialog: DialogSelectors.getExitDialogFunction(store),
       getCurrentCatalogData: StorageSelector.getCurrentCatalogModelFunction(store),
     );
   }

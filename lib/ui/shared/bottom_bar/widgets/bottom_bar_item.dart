@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
-import 'package:my_catalog/widgets/fade_animation_container.dart';
 
 class BottomBarItem extends StatelessWidget {
   final String iconUrl;

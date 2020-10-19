@@ -50,3 +50,8 @@ class TermsPageKeys {
   static const String listView = 'TermsPageListView';
   static const String button = 'TermsPageButton';
 }
+
+class DialogKeys {
+  static const String exitDialogYesButton = 'YesButton';
+  static const String exitDialogNoButton = 'NoButton';
+}
