@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -31,13 +32,15 @@ class ProductsPage extends StatelessWidget {
               key: Key(ProductsPageKeys.listView),
               itemCount: vm.products.length,
               itemBuilder: (BuildContext context, int index) {
+                final ProductModel product = vm.getCurrentProductData(vm.products[index].id);
+
+                if (product == null) return Container();
+
                 return ProductItem(
                   keyValue: ProductsPageKeys.productItem,
-                  product: vm.products[index],
-                  onTap: () {
-                    vm.selectProduct(vm.products[index].id);
-                    vm.navigateToSingleProductPagePage();
-                  },
+                  product: product,
+                  locale: vm.currentLocale,
+                  onTap: () => vm.navigateToSingleProductPagePage(product.id),
                 );
               },
             ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/category_model.dart';
+import 'package:my_catalog/models/models/storage_model/data/info_category_model.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -26,19 +28,39 @@ class CategoriesPage extends StatelessWidget {
           appBar: MainAppBar(key: CategoriesPageKeys.appbar, title: 'Categories'),
           child: MainGrid(
             key: CategoriesPageKeys.gridView,
-            itemCount: vm.getCategories.length,
-            itemBuilder: (BuildContext context, int index) {
-              return MainGridItem(
-                keyValue: CategoriesPageKeys.categoryItem + '$index',
-                title: vm.getCategories[index].languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()][NAME],
-                imageUrl: vm.getCategories[index].imageLink,
-                index: index,
-                onTap: () => vm.navigateToSubcategoriesPage(vm.getCategories[index].id),
-              );
-            },
+            widgets: vm.categories.map((InfoCategoryModel infoCategory) => getItem(
+              vm: vm,
+              infoCategory: infoCategory,
+            )).toList(),
           ),
         );
       },
     );
+  }
+
+  Widget getItem({CategoriesPageVM vm, InfoCategoryModel infoCategory}) {
+    try {
+      final CategoryModel category = vm.getCurrentCategoryData(infoCategory.id);
+
+      int index;
+
+      try {
+        index = vm.categories.indexOf(infoCategory);
+      } catch (e) {
+        index = 0;
+      }
+
+      if (category == null) return null;
+
+      return MainGridItem(
+        keyValue: CategoriesPageKeys.categoryItem + '${category.id}',
+        title: category.titleForLanguage(vm.currentLocale),
+        imageUrl: category.imageLink,
+        index: index,
+        onTap: () => vm.navigateToSubcategoriesPage(category.id),
+      );
+    } catch (e) {
+      return null;
+    }
   }
 }

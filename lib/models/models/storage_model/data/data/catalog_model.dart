@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:my_catalog/res/const.dart';
 
 part 'catalog_model.g.dart';
 
@@ -14,7 +15,7 @@ class CatalogModel implements IDto {
   final int id;
   @JsonKey(name: 'image', required: false, nullable: true)
   final String imageLink;
-  @JsonKey(name: 'categories', required: false, nullable: true)
+  @JsonKey(name: 'languages', required: false, nullable: true)
   final Map<String, dynamic> languages;
 
   const CatalogModel({
@@ -24,11 +25,19 @@ class CatalogModel implements IDto {
   });
 
   String titleForLanguage(String langCode) {
-    return languages[langCode]['name'];
+    try {
+      return languages[langCode][KEY_TITLE] ?? '';
+    } catch (e) {
+      return KEY_TITLE;
+    }
   }
 
   String descriptionForLanguage(String langCode) {
-    return languages[langCode]['description'];
+    try {
+      return languages[langCode][KEY_DESCRIPTION] ?? '';
+    } catch (e) {
+      return KEY_DESCRIPTION;
+    }
   }
 
   factory CatalogModel.fromJson(json) => _$CatalogModelFromJson(json);

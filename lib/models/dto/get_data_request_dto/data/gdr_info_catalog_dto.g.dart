@@ -16,14 +16,8 @@ GDRInfoCatalogDto _$GDRInfoCatalogDtoFromJson(Map<String, dynamic> json) {
           (v) => (v as List)
               ?.map((e) => e == null ? null : GDRInfoCategoryDto.fromJson(e))
               ?.toList()),
-      displayedIn: $checkedConvert(
-          json,
-          'displayed_in',
-          (v) => (v as List)
-              ?.map((e) => (e as Map<String, dynamic>)?.map(
-                    (k, e) => MapEntry(k, e as String),
-                  ))
-              ?.toList()),
+      displayedIn: $checkedConvert(json, 'displayed_in',
+          (v) => (v as List)?.map((e) => e as String)?.toList()),
     );
     return val;
   }, fieldKeyMap: const {'displayedIn': 'displayed_in'});

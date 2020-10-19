@@ -109,7 +109,7 @@ class StorageEpics {
         return element.id == action.id;
       });
 
-      if (oHistory != null && oHistory.isNotEmpty && oHistory[index].update >= action.update) {
+      if (index != -1 && oHistory != null && oHistory.isNotEmpty && oHistory[index].update >= action.update) {
         logger.d('action.update: ${action.update}, history[index].update: ${oHistory[index].update}');
         return;
       }

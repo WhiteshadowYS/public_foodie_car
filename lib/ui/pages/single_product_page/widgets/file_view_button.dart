@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/file_model.dart';
 import 'package:my_catalog/res/app_styles/app_shadows.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/dummy_data.dart';
@@ -11,12 +12,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FileViewButton extends StatefulWidget {
   final String keyValue;
-  final DummyFile dummyFile;
+  final String locale;
+  final FileModel file;
   final void Function() onTap;
 
   FileViewButton({
     @required this.keyValue,
-    @required this.dummyFile,
+    @required this.locale,
+    @required this.file,
     @required this.onTap,
   }) : super(key: Key(keyValue + 'FileViewButton'));
 
@@ -71,7 +74,7 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
               child: Column(
                 children: [
                   const SizedBox(height: 5.0),
-                  if (widget.dummyFile.type == FileTypes.VIDEO_TYPE)
+                  if (widget.file.type == FileTypes.VIDEO_TYPE)
                     ListTile(
                       leading: CircleAvatar(
                         radius: 24,
@@ -79,12 +82,12 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                         child: Icon(Icons.videocam, color: CustomTheme.colors.background, size: 28),
                       ),
                       title: Text(
-                        'Watch video "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
-                        style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+                        'Watch video "${widget.file.nameForLanguage(widget.locale)}"',
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
                       ),
                       trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
                     ),
-                  if (widget.dummyFile.type == FileTypes.IMAGE_TYPE)
+                  if (widget.file.type == FileTypes.IMAGE_TYPE)
                     ListTile(
                       leading: CircleAvatar(
                         radius: 24,
@@ -92,12 +95,12 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                         child: Icon(Icons.image, color: CustomTheme.colors.background, size: 28),
                       ),
                       title: Text(
-                        'See pictures "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
-                        style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+                        'See pictures "${widget.file.nameForLanguage(widget.locale)}"',
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
                       ),
                       trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
                     ),
-                  if (widget.dummyFile.type == FileTypes.PDF_TYPE)
+                  if (widget.file.type == FileTypes.PDF_TYPE)
                     ListTile(
                       leading: CircleAvatar(
                         radius: 24,
@@ -105,8 +108,8 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                         child: Icon(Icons.picture_as_pdf, color: CustomTheme.colors.background, size: 28),
                       ),
                       title: Text(
-                        'Check documents "${widget.dummyFile.languages[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()]['name']}"',
-                        style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+                        'Check documents "${widget.file.nameForLanguage(widget.locale)}"',
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
                       ),
                       trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
                     ),

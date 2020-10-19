@@ -6,11 +6,13 @@ import 'package:my_catalog/theme/custom_theme.dart';
 
 class CatalogItem extends StatelessWidget {
   final String keyValue;
+  final String locale;
   final CatalogModel catalog;
   final void Function(int) navigateToCategories;
 
   CatalogItem({
     @required this.keyValue,
+    @required this.locale,
     @required this.catalog,
     @required this.navigateToCategories,
   }) : super(key: Key(keyValue + 'CatalogItem'));
@@ -29,7 +31,7 @@ class CatalogItem extends StatelessWidget {
           children: [
             const SizedBox(height: 14.0),
             Text(
-              catalog.titleForLanguage('EN'),
+              catalog.titleForLanguage(locale),
               style: CustomTheme.textStyles.titleTextStyle(
                 size: 18.sp,
               ),
@@ -41,7 +43,7 @@ class CatalogItem extends StatelessWidget {
                 height: 172.h,
                 width: double.infinity,
                 placeholder: AssetImage(ImageAssets.LOADING),
-                image: NetworkImage(catalog.imageLink),
+                image: NetworkImage(catalog.imageLink ?? ''),
                 fit: BoxFit.fitWidth,
               ),
             ),
@@ -54,7 +56,7 @@ class CatalogItem extends StatelessWidget {
             ),
             const SizedBox(height: 14.0),
             Text(
-              catalog.descriptionForLanguage('EN'),
+              catalog.descriptionForLanguage(locale),
               textAlign: TextAlign.center,
               style: CustomTheme.textStyles.mainTextStyle(
                 size: 13.sp,

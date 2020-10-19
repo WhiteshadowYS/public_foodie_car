@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:my_catalog/res/const.dart';
 
 part 'subcategory_model.g.dart';
 
@@ -14,7 +15,7 @@ class SubcategoryModel implements IDto {
   final int id;
   @JsonKey(name: 'image', required: false, nullable: true)
   final String imageLink;
-  @JsonKey(name: 'sub_categories', required: false, nullable: true)
+  @JsonKey(name: 'languages', required: false, nullable: true)
   final Map<String, dynamic> languages;
 
   const SubcategoryModel({
@@ -22,6 +23,14 @@ class SubcategoryModel implements IDto {
     @required this.imageLink,
     @required this.languages
   });
+
+  String titleForLanguage(String langCode) {
+    try {
+      return languages[langCode][KEY_TITLE] ?? '';
+    } catch (e) {
+      return KEY_TITLE;
+    }
+  }
 
   factory SubcategoryModel.fromJson(json) => _$SubcategoryModelFromJson(json);
 

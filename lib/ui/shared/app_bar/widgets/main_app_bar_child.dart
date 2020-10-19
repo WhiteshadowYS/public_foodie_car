@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -9,23 +10,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainAppBarChild extends StatelessWidget {
   final String title;
+  final String backButtonText;
   final String logoUrl;
   final void Function() backOnTap;
 
   MainAppBarChild({
     @required String key,
     @required this.title,
-    @required this.backOnTap,
-    @required this.logoUrl,
+    this.backOnTap,
+    this.logoUrl,
+    this.backButtonText,
   }) : super(key: Key(key));
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        if (backOnTap != null && RouteService.instance.canPop)
-          InkWell(
-            onTap: backOnTap,
+        if (backOnTap != null)
+          Material(
+            color: Colors.transparent,
             child: Align(
               alignment: Alignment.centerLeft,
               child: Row(

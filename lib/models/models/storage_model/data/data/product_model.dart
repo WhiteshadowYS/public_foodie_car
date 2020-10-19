@@ -1,5 +1,6 @@
 import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:my_catalog/res/const.dart';
 
 part 'product_model.g.dart';
 
@@ -15,7 +16,7 @@ class ProductModel implements IDto {
   final String imageLink;
   @JsonKey(name: 'gallery', required: false, nullable: true)
   final List<String> galleryImagesLinks;
-  @JsonKey(name: 'files', required: false, nullable: true)
+  @JsonKey(name: 'languages', required: false, nullable: true)
   final Map<String, dynamic> languages;
 
   const ProductModel({
@@ -24,6 +25,38 @@ class ProductModel implements IDto {
     this.galleryImagesLinks,
     this.languages,
   });
+
+  String titleForLanguage(String langCode) {
+    try {
+      return languages[langCode][KEY_TITLE] ?? '';
+    } catch (e) {
+      return KEY_TITLE;
+    }
+  }
+
+  String descriptionForLanguage(String langCode) {
+    try {
+      return languages[langCode][KEY_DESCRIPTION] ?? '';
+    } catch (e) {
+      return KEY_DESCRIPTION;
+    }
+  }
+
+  String description2ForLanguage(String langCode) {
+    try {
+      return languages[langCode][KEY_DESCRIPTION_2] ?? '';
+    } catch (e) {
+      return KEY_DESCRIPTION_2;
+    }
+  }
+
+  List<String> pointsForLanguage(String langCode) {
+    try {
+      return languages[langCode][KEY_POINTS] ?? [];
+    } catch (e) {
+      return [];
+    }
+  }
 
   factory ProductModel.fromJson(json) => _$ProductModelFromJson(json);
 

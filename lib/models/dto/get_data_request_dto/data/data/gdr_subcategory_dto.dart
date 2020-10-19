@@ -14,7 +14,7 @@ class GDRSubcategoryDto implements IDto {
   final int id;
   @JsonKey(name: 'image', required: false, nullable: true)
   final String imageLink;
-  @JsonKey(name: 'sub_categories', required: false, nullable: true)
+  @JsonKey(name: 'languages', required: false, nullable: true)
   final Map<String, dynamic> languages;
 
   const GDRSubcategoryDto({
