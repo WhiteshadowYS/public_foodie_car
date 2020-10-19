@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
 
 class MainGrid extends StatelessWidget {
-  final int itemCount;
-  final IndexedWidgetBuilder itemBuilder;
+  final List<Widget> widgets;
 
   MainGrid({
     @required String key,
-    @required this.itemCount,
-    @required this.itemBuilder,
+    @required this.widgets,
   }) : super(key: Key(key));
 
   @override
@@ -17,17 +15,22 @@ class MainGrid extends StatelessWidget {
       margin: const EdgeInsets.all(16.0),
       child: ScrollConfiguration(
         behavior: CleanBehavior(),
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16.0,
-            mainAxisSpacing: 8.0,
-            childAspectRatio: 0.75,
-          ),
-          itemCount: itemCount,
-          itemBuilder: itemBuilder,
+        child: GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16.0,
+          mainAxisSpacing: 8.0,
+          childAspectRatio: 0.75,
+          children: getChildren(widgets),
         ),
       ),
     );
+  }
+
+  List<Widget> getChildren(List<Widget> widgets) {
+    if (widgets.contains(null)) {
+      widgets.remove(null);
+    }
+
+    return widgets;
   }
 }

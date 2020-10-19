@@ -33,7 +33,7 @@ class SingleProductPage extends StatelessWidget {
             children: [
               const SizedBox(height: 20.0),
               Text(
-                vm.product.languages[vm.currentLocale][KEY_TITLE],
+                vm.product.titleForLanguage(vm.currentLocale),
                 textAlign: TextAlign.center,
                 style: CustomTheme.textStyles.accentTextStyle(size: 22, fontWeight: FontWeight.w600),
               ),
@@ -52,12 +52,12 @@ class SingleProductPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  vm.product.languages[vm.currentLocale][KEY_DESCRIPTION],
+                  vm.product.descriptionForLanguage(vm.currentLocale),
                   style: CustomTheme.textStyles.mainTextStyle(size: 15),
                   textAlign: TextAlign.center,
                 ),
               ),
-              for (String point in vm.product.languages[vm.currentLocale][KEY_POINTS])
+              for (String point in vm.product.pointsForLanguage(vm.currentLocale))
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   child: SingleProductListItem(
@@ -67,7 +67,7 @@ class SingleProductPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  vm.product.languages[vm.currentLocale][KEY_DESCRIPTION_2],
+                  vm.product.description2ForLanguage(vm.currentLocale),
                   style: CustomTheme.textStyles.mainTextStyle(size: 15),
                   textAlign: TextAlign.center,
                 ),

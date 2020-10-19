@@ -41,18 +41,18 @@ class ProductItem extends StatelessWidget {
                 width: 50.h,
                 height: 50.h,
                 placeholder: AssetImage(ImageAssets.LOGO_PNG),
-                image: NetworkImage(product.imageLink),
+                image: NetworkImage(product.imageLink ?? ''),
                 fit: BoxFit.cover,
               ),
             ),
             title: Text(
-              product.languages[locale][KEY_TITLE],
+              product.titleForLanguage(locale),
               style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                product.languages[locale][KEY_DESCRIPTION],
+                product.descriptionForLanguage(locale),
                 style: CustomTheme.textStyles.mainTextStyle(size: 13.0),
               ),
             ),

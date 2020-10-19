@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/subcategory_model.dart';
+import 'package:my_catalog/models/models/storage_model/data/info_subcategory_model.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -26,24 +27,40 @@ class SubcategoriesPage extends StatelessWidget {
           bottomBar: BottomBar(key: SubCategoriesPageKeys.bottomBar),
           appBar: MainAppBar(key: SubCategoriesPageKeys.appbar, title: 'SubCategories'),
           child: MainGrid(
-            key: SubCategoriesPageKeys.gridView,
-            itemCount: vm.subCategories.length,
-            itemBuilder: (BuildContext context, int index) {
-              final SubcategoryModel subcategory = vm.getCurrentSubCategoryData(vm.subCategories[index].id);
-
-              if (subcategory == null) return Container();
-
-              return MainGridItem(
-                keyValue: SubCategoriesPageKeys.subcategoryItem + '$index',
-                title: subcategory.languages[vm.currentLocale][KEY_TITLE],
-                imageUrl: subcategory.imageLink,
-                index: index,
-                onTap: () => vm.navigateToProductsPage(subcategory.id),
-              );
-            },
+            key: CategoriesPageKeys.gridView,
+            widgets: vm.subCategories.map((InfoSubcategoryModel infoSubcategory) => getItem(
+              vm: vm,
+              infoSubcategory: infoSubcategory,
+            )).toList(),
           ),
         );
       },
     );
+  }
+
+  Widget getItem({SubcategoriesPageVM vm, InfoSubcategoryModel infoSubcategory}) {
+    try {
+      final SubcategoryModel subcategory = vm.getCurrentSubCategoryData(infoSubcategory.id);
+
+      int index;
+
+      try {
+        index = vm.subCategories.indexOf(infoSubcategory);
+      } catch (e) {
+        index = 0;
+      }
+
+      if (subcategory == null) return null;
+
+      return MainGridItem(
+        keyValue: CategoriesPageKeys.categoryItem + '${subcategory.id}',
+        title: subcategory.titleForLanguage(vm.currentLocale),
+        imageUrl: subcategory.imageLink,
+        index: index,
+        onTap: () => vm.navigateToProductsPage(subcategory.id),
+      );
+    } catch (e) {
+      return null;
+    }
   }
 }

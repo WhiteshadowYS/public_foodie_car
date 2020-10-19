@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:my_catalog/res/const.dart';
 
 part 'catalog_model.g.dart';
 
@@ -25,17 +26,17 @@ class CatalogModel implements IDto {
 
   String titleForLanguage(String langCode) {
     try {
-      return languages[langCode]['title'];
+      return languages[langCode][KEY_TITLE] ?? '';
     } catch (e) {
-      return 'title';
+      return KEY_TITLE;
     }
   }
 
   String descriptionForLanguage(String langCode) {
     try {
-      return languages[langCode]['description'];
+      return languages[langCode][KEY_DESCRIPTION] ?? '';
     } catch (e) {
-      return 'description';
+      return KEY_DESCRIPTION;
     }
   }
 

@@ -81,7 +81,7 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                         child: Icon(Icons.videocam, color: CustomTheme.colors.background, size: 28),
                       ),
                       title: Text(
-                        'Watch video "${widget.file.languages[widget.locale][NAME]}"',
+                        'Watch video "${widget.file.nameForLanguage(widget.locale)}"',
                         style: CustomTheme.textStyles.titleTextStyle(size: 14),
                       ),
                       trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
@@ -94,7 +94,7 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                         child: Icon(Icons.image, color: CustomTheme.colors.background, size: 28),
                       ),
                       title: Text(
-                        'See pictures "${widget.file.languages[widget.locale][NAME]}"',
+                        'See pictures "${widget.file.nameForLanguage(widget.locale)}"',
                         style: CustomTheme.textStyles.titleTextStyle(size: 14),
                       ),
                       trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
@@ -107,7 +107,7 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                         child: Icon(Icons.picture_as_pdf, color: CustomTheme.colors.background, size: 28),
                       ),
                       title: Text(
-                        'Check documents "${widget.file.languages[widget.locale][NAME]}"',
+                        'Check documents "${widget.file.nameForLanguage(widget.locale)}"',
                         style: CustomTheme.textStyles.titleTextStyle(size: 14),
                       ),
                       trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),

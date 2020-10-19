@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:my_catalog/res/const.dart';
 
 part 'file_model.g.dart';
 
@@ -25,6 +26,22 @@ class FileModel implements IDto {
     @required this.file,
     @required this.languages
   });
+
+  String nameForLanguage(String langCode) {
+    try {
+      return languages[langCode][NAME] ?? '';
+    } catch (e) {
+      return NAME;
+    }
+  }
+
+  String descriptionForLanguage(String langCode) {
+    try {
+      return languages[langCode][KEY_DESCRIPTION] ?? '';
+    } catch (e) {
+      return KEY_DESCRIPTION;
+    }
+  }
 
   factory FileModel.fromJson(json) => _$FileModelFromJson(json);
 
