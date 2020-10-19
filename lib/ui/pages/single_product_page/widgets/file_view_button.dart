@@ -8,6 +8,7 @@ import 'package:my_catalog/res/app_styles/app_shadows.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FileViewButton extends StatefulWidget {
   final String keyValue;

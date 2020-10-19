@@ -54,10 +54,9 @@ class _TermsPageState extends State<TermsPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // TODO(Daniil): Use theme primary textStyle
                   Text(
                     vm.termsText,
-                    style: CustomTheme.textStyles.mainTextStyle(size: 14.0),
+                    style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.0.h),

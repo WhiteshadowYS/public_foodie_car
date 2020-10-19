@@ -10,6 +10,8 @@ import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/catalogs_page/catalogs_page_vm.dart';
 import 'package:my_catalog/ui/pages/catalogs_page/widgets/catalog_item.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
+import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
+import 'package:my_catalog/ui/shared/svg_images.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
 
 class CatalogsPage extends StatelessWidget {

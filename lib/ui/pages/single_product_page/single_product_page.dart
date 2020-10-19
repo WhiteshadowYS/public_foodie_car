@@ -12,6 +12,7 @@ import 'package:my_catalog/ui/pages/single_product_page/widgets/file_view_button
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'widgets/image_viewer.dart';
 import 'widgets/single_product_list_item.dart';
@@ -35,7 +36,7 @@ class SingleProductPage extends StatelessWidget {
               Text(
                 vm.product.titleForLanguage(vm.currentLocale),
                 textAlign: TextAlign.center,
-                style: CustomTheme.textStyles.accentTextStyle(size: 22, fontWeight: FontWeight.w600),
+                style: CustomTheme.textStyles.accentTextStyle(size: 22.sp, fontWeight: FontWeight.w600),
               ),
               ImageViewer(
                 key: SingleProductKeys.gallery,
@@ -45,7 +46,7 @@ class SingleProductPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'Description',
-                  style: CustomTheme.textStyles.titleTextStyle(size: 15),
+                  style: CustomTheme.textStyles.titleTextStyle(size: 15.sp),
                   textAlign: TextAlign.center,
                 ),
               ),

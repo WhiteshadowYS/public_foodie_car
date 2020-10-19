@@ -6,6 +6,7 @@ import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainAppBarChild extends StatelessWidget {
   final String title;
@@ -30,35 +31,26 @@ class MainAppBarChild extends StatelessWidget {
             color: Colors.transparent,
             child: Align(
               alignment: Alignment.centerLeft,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(20.0),
-                onTap: backOnTap,
-                child: SizedBox(
-                  height: 32.h,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const SizedBox(width: 16.0),
-                      Transform.rotate(
-                        angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
-                        child: SizedBox(
-                          height: 20.0,
-                          child: SVGImages().backArrow(),
-                        ),
-                      ),
-                      const SizedBox(width: 6.0),
-                      Text(
-                        backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
-                        style: TextStyle(
-                          color: CustomTheme.colors.primaryColor,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      const SizedBox(width: 16.0),
-                    ],
+              child: Row(
+                children: [
+                  const SizedBox(width: 16.0),
+                  Transform.rotate(
+                    angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
+                    child: SizedBox(
+                      height: 20.0,
+                      child: SVGImages().backArrow(),
+                    ),
                   ),
-                ),
+                  const SizedBox(width: 6.0),
+                  Text(
+                    FlutterDictionary.instance.language.appbarDictionary.back,
+                    style: TextStyle(
+                      color: Color(0xFF5DB075),
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

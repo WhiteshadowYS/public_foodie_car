@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FilePreviewBottomBlock extends StatelessWidget {
   final String itemName;
@@ -17,7 +18,7 @@ class FilePreviewBottomBlock extends StatelessWidget {
         children: [
           Text(
             itemName,
-            style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
+            style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
           ),
           Material(
             color: Colors.transparent,

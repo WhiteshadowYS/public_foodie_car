@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SettingsItem extends StatelessWidget {
   final String text;
@@ -32,7 +33,7 @@ class SettingsItem extends StatelessWidget {
                 children: [
                   Text(
                     text,
-                    style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
+                    style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
