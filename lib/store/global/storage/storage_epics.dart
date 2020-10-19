@@ -13,7 +13,9 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
 import 'package:my_catalog/store/global/storage/actions/open_storage_action.dart';
+import 'package:my_catalog/store/global/storage/actions/open_terms_action.dart';
 import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_action.dart';
+import 'package:my_catalog/store/global/storage/actions/save_accepted_terms_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
 import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
@@ -29,13 +31,17 @@ class StorageEpics {
     _checkIdEpic,
     _getDataEpic,
     _openStorageEpic,
+    _openTermsEpic,
     _removeOpenedStorageEpic,
     _updateLanguageEpic,
+    _saveAcceptedTermsIdAndOpenStoreEpic,
   ]);
 
   static bool _idValidation(CheckIdAction action) => action.id != null;
 
   static bool _id2Validation(GetDataAction action) => action.id != null;
+
+  static bool _id3Validation(SaveAcceptedTermsIdAction action) => action.id != null;
 
   static Stream<dynamic> _checkIdEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<CheckIdAction>().where(_idValidation).switchMap((action) async* {
@@ -86,14 +92,56 @@ class StorageEpics {
         return;
       }
 
+      yield* Stream.value(SetStoresHistoryAction(storesHistory: history));
+
+      final bool isTermsAccepted = await repository.getIsTermsAccepted(action.id.toString());
+
+      if (isTermsAccepted) {
+        yield* ConcatEagerStream([
+          Stream.value(
+            OpenStorageAction(
+              id: action.id,
+              storage: history[index].storage,
+            ),
+          ),
+          _changeCheckIdLoadingState(false),
+        ]);
+
+        return;
+      }
+
       yield* ConcatEagerStream([
-        Stream.fromIterable([
-          SetStoresHistoryAction(storesHistory: history),
-          OpenStorageAction(
+        Stream.value(
+          OpenTermsAction(
             id: action.id,
             storage: history[index].storage,
           ),
-        ]),
+        ),
+        _changeCheckIdLoadingState(false),
+      ]);
+    });
+  }
+
+  static Stream<dynamic> _saveAcceptedTermsIdAndOpenStoreEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<SaveAcceptedTermsIdAction>().where(_id3Validation).switchMap((action) async* {
+      final StorageRepository repository = StorageRepository();
+
+      final BaseHttpResponse<StorageStatusModel> response = await repository.getStorageStatus(id: action.id);
+
+      if (response.error != null || response.response == null) {
+        yield* _showError(response.error?.error ?? 'Error not found');
+        return;
+      }
+
+      await repository.saveIsTermsAccepted(action.id.toString());
+
+      yield* ConcatEagerStream([
+        Stream.value(
+          OpenStorageAction(
+            id: action.id,
+            storage: action.storage,
+          ),
+        ),
         _changeCheckIdLoadingState(false),
       ]);
     });
@@ -160,6 +208,18 @@ class StorageEpics {
 
       if (lastRoute == Routes.main || lastRoute == null) {
         return Stream.value(RouteSelectors.gotoCatalogsPageAction);
+      }
+
+      return Stream.empty();
+    });
+  }
+
+  static Stream<dynamic> _openTermsEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<OpenTermsAction>().switchMap((action) {
+      final String lastRoute = RouteService.instance.currentRoute;
+
+      if (lastRoute == Routes.main || lastRoute == null) {
+        return Stream.value(RouteSelectors.gotoTermsPageAction);
       }
 
       return Stream.empty();

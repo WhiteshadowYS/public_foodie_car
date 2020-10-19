@@ -97,6 +97,18 @@ pipeline {
                 sh 'flutter doctor'
             }
         }
+        stage ('Build IOS Release') {
+            when {
+                expression {env.IS_IOS_BUILD == "true"}
+            }
+
+            steps {
+                sh "curl --location --request POST 'https://api.codemagic.io/builds' \
+                    --header 'Content-Type: application/json' \
+                    --header 'x-auth-token: eXFu75mnUwvXd7tOWNfV4v-GLaz8LmC4U7T-pMN_NvQ' \
+                    --data-raw '{\"appId\": \"5f8d489724a2011e6f4f393d\",\"workflowId\": \"5f8d489724a2011e6f4f393c\",\"branch\": \"dev\"}'"
+            }
+        }
         stage ('Build Android Debug') {
             when {
                 expression {env.IS_ANDROID_DEBUG_BUILD == "true"}
@@ -123,19 +135,6 @@ pipeline {
 
                     archiveArtifacts artifacts: "$RELEASE_APK_ROUTE/${env.PROJECT_NAME}-v${env.PROJECT_VERSION}-release.apk"
                 }
-            }
-        }
-
-        stage ('Build IOS Release') {
-            when {
-                expression {env.IS_IOS_BUILD == "true"}
-            }
-
-            steps {
-                sh "curl --location --request POST 'https://api.codemagic.io/builds' \
-                    --header 'Content-Type: application/json' \
-                    --header 'x-auth-token: eXFu75mnUwvXd7tOWNfV4v-GLaz8LmC4U7T-pMN_NvQ' \
-                    --data-raw '{\"appId\": \"5f8d489724a2011e6f4f393d\",\"workflowId\": \"5f8d489724a2011e6f4f393c\",\"branch\": \"dev\"}'"
             }
         }
     }
