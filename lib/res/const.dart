@@ -47,6 +47,7 @@ class PageTypes {
   static const String SETTINGS_TYPE = 'SETTINGS';
   static const String SWITCH_TYPE = 'SWITCH';
   static const String SIGNOUT_TYPE = 'SIGNOUT';
+  static const String ANOTHER_CATALOG = 'ANOTHER_CATALOG';
 }
 
 class FileTypes{

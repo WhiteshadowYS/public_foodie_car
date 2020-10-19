@@ -52,6 +52,9 @@ class _BottomBarState extends State<BottomBar> {
         vm.navigateToMainPage();
         vm.removeOpenedStore();
         break;
+      case PageTypes.ANOTHER_CATALOG:
+        vm.navigateToCatalogsPage();
+        break;
       case PageTypes.SWITCH_TYPE:
         setState(() {
           isSwitch = !isSwitch;
