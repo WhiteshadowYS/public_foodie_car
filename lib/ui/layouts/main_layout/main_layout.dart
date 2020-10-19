@@ -12,8 +12,9 @@ class MainLayout extends StatelessWidget {
   final Widget bottomBar;
   final bool resizeToAvoidBottomPadding;
   final Function back;
+  final bool canExit;
 
-  const MainLayout({
+  MainLayout({
     Key key,
     this.appBar,
     this.bottomBar,
@@ -21,7 +22,10 @@ class MainLayout extends StatelessWidget {
     this.child,
     this.back,
     this.resizeToAvoidBottomPadding = false,
+    this.canExit = false,
   }) : super(key: key);
+
+  DateTime _currentBackPressTime;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,9 @@ class MainLayout extends StatelessWidget {
       builder: (BuildContext context, MainLayoutVM vm) {
         return WillPopScope(
           onWillPop: () async {
-            if (back != null) {
+            if (canExit) {
+              _onDoubleClick();
+            } else if (back != null) {
               back();
             }
 
@@ -63,7 +69,15 @@ class MainLayout extends StatelessWidget {
             ),
           ),
         );
-      }
+      },
     );
+  }
+
+  void _onDoubleClick() {
+    final DateTime now = DateTime.now();
+    if (_currentBackPressTime != null && now.difference(_currentBackPressTime) < Duration(seconds: 1)) {
+      return back();
+    }
+    _currentBackPressTime = now;
   }
 }

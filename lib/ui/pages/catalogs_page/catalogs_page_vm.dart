@@ -8,11 +8,14 @@ import 'package:redux/redux.dart';
 class CatalogsPageVM {
   final void Function(int) navigateToCategoriesPage;
   final void Function(String message) errorDialog;
+  final void Function(String logoUrl) exitDialog;
   final List<CatalogModel> catalogs;
+  
 
   const CatalogsPageVM({
     @required this.navigateToCategoriesPage,
     @required this.errorDialog,
+    @required this.exitDialog,
     @required this.catalogs,
   });
 
@@ -20,6 +23,7 @@ class CatalogsPageVM {
     return CatalogsPageVM(
       navigateToCategoriesPage: RouteSelectors.gotoCategoriesPage(store),
       errorDialog: DialogSelectors.getShowErrorDialogFunction(store),
+      exitDialog: DialogSelectors.getExitDialogFunction(store),
       catalogs: _tmpCatalog,
     );
   }

@@ -45,6 +45,9 @@ class _MainPageState extends State<MainPage> {
       builder: (BuildContext context, MainPageVM vm) {
         return MainLayout(
           bgColor: CustomTheme.colors.background,
+          canExit: true,
+          // TODO(Daniil): Add logoUrl
+          back: () => vm.exitDialog(EMPTY_STRING),
           child: CleanedListView(
             keyValue: MainPageKeys.listView,
             children: [

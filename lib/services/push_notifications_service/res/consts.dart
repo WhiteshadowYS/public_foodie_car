@@ -1,4 +1,4 @@
-const String EMPTY_STRING = '';
+
 const String NOTIFICATION = 'notification';
 const String DATA = 'data';
 const String APS = 'aps';
