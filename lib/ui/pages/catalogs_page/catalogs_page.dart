@@ -27,7 +27,6 @@ class CatalogsPage extends StatelessWidget {
           ),
           bgColor: CustomTheme.colors.background,
           canExit: true,
-          // TODO(Daniil): Add logo url
           back: () => vm.exitDialog(EMPTY_STRING),
           child: Padding(
             padding: const EdgeInsets.symmetric(
