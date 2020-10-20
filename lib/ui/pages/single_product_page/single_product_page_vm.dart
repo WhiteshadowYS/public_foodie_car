@@ -11,6 +11,7 @@ import 'package:redux/redux.dart';
 class SingleProductPageVM {
   final void Function() navigateToSettingsPage;
   final void Function(FileModel file) filePreview;
+  final void Function(List<String> gallery, int currentIndex) imageView;
   final ProductModel product;
   final List<FileModel> files;
   final String currentLocale;
@@ -18,6 +19,7 @@ class SingleProductPageVM {
   const SingleProductPageVM({
     @required this.navigateToSettingsPage,
     @required this.filePreview,
+    @required this.imageView,
     @required this.product,
     @required this.files,
     @required this.currentLocale,
@@ -26,6 +28,7 @@ class SingleProductPageVM {
   static SingleProductPageVM fromStore(Store<AppState> store) {
     return SingleProductPageVM(
       navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
+      imageView: DialogSelectors.getShowImageViewDialogFunction(store),
       filePreview: DialogSelectors.getShowFilePreviewDialogFunction(store),
       product: StorageSelector.getCurrentProductModelFunction(store)(store.state.storageState.openedProductId),
       currentLocale: StorageSelector.getSelectedLocale(store),

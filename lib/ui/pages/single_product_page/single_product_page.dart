@@ -41,6 +41,7 @@ class SingleProductPage extends StatelessWidget {
               ),
               const SizedBox(height: 16.0),
               ImageViewer(
+                showGallery: vm.imageView,
                 keyValue: SingleProductKeys.gallery,
                 gallery: vm.product.galleryImagesLinks,
               ),

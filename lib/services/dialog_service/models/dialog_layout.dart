@@ -4,9 +4,13 @@ import 'package:my_catalog/theme/custom_theme.dart';
 
 class DialogLayout extends StatefulWidget {
   final Widget child;
+  final Color background;
+  final EdgeInsets margin;
 
   DialogLayout({
     this.child,
+    this.margin,
+    this.background,
   }) : super(key: Key('DialogLayout'));
 
   @override
@@ -20,10 +24,8 @@ class _DialogLayoutState extends State<DialogLayout> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(vsync: this, duration: MILLISECONDS_500);
-    scaleAnimation =
-        CurvedAnimation(parent: controller, curve: Curves.bounceOut);
+    controller = AnimationController(vsync: this, duration: MILLISECONDS_500);
+    scaleAnimation = CurvedAnimation(parent: controller, curve: Curves.bounceOut);
 
     controller.addListener(() {
       setState(() {});
@@ -40,11 +42,11 @@ class _DialogLayoutState extends State<DialogLayout> with SingleTickerProviderSt
         color: Colors.transparent,
         child: Center(
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16.0),
+            margin: widget.margin ?? const EdgeInsets.symmetric(horizontal: 16.0),
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
-              color: CustomTheme.colors.background,
+              color: widget.background ?? CustomTheme.colors.background,
             ),
             child: widget.child,
           ),
