@@ -98,11 +98,15 @@ class StorageSelector {
         return termsTitle;
       }
 
-      final String newTermsTitle = store.state?.storageState?.storage?.settings?.languageData?.termsTitle[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.termsTitle[locale];
+        if (newValue == null) return termsTitle;
 
-      if (newTermsTitle == null) return termsTitle;
+        return newValue;
+      } catch (e) {
 
-      return newTermsTitle;
+        return termsTitle;
+      }
     };
   }
 
@@ -114,11 +118,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.termsAcceptButton[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.termsAcceptButton[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -130,11 +138,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.acceptText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.acceptText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -146,11 +158,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.errorText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.errorText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -162,11 +178,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.shareText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.shareText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -178,11 +198,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.descriptionText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.descriptionText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -194,11 +218,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.logoutText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.logoutText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -210,11 +238,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.backButtonText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.backButtonText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -226,11 +258,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.productsTitle[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.productsTitle[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -242,11 +278,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.categoriesTitle[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.categoriesTitle[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -258,11 +298,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.subcategoriesTitle[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.subcategoriesTitle[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
