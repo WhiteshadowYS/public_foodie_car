@@ -28,7 +28,9 @@ class _ImageViewerState extends State<ImageViewer> {
     return SizedBox(
       height: 260.0,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+        ),
         child: Stack(
           children: [
             CarouselSlider(
@@ -59,6 +61,7 @@ class _ImageViewerState extends State<ImageViewer> {
                   )
               ],
               options: CarouselOptions(
+                height: 260.0,
                 enlargeCenterPage: true,
                 autoPlay: true,
                 viewportFraction: 1,
