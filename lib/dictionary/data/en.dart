@@ -16,6 +16,7 @@ const Language en = Language(
     isNumberError: 'Please enter number',
   ),
   mainPageDictionary: MainPageDictionary(
+    history: 'History',
     enterCatalogId: 'Please enter a Catalog ID',
     viewCatalog: 'View Catalog',
     name: 'Name',

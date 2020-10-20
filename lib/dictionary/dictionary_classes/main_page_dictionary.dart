@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 class MainPageDictionary {
   final String name;
+  final String history;
   final String enterCatalogId;
   final String viewCatalog;
   final String iWantToCreate;
@@ -9,6 +10,7 @@ class MainPageDictionary {
 
   const MainPageDictionary({
     @required this.name,
+    @required this.history,
     @required this.enterCatalogId,
     @required this.viewCatalog,
     @required this.iWantToCreate,
