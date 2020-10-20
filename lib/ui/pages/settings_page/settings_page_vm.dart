@@ -34,14 +34,7 @@ class SettingsPageVM {
     return SettingsPageVM(
       info: StorageSelector.getInfoModel(store),
       selectedLanguage: StorageSelector.getSelectedLanguage(store),
-      // TODO(Yuri): Move to Selectors, https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&view=detail&selectedIssue=MC-35.
-      openLanguagesPopup: () => DialogService.instance.show(LanguageDialog(
-        // TODO(Yuri): Fix this pop-up for count of languages > 20.
-        // TODO(Yuri): Max size of pop-up should be 2/3 of screen, after that - scrolling list, https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&view=detail&selectedIssue=MC-35.
-        list: StorageSelector.getLanguages(store),
-        selectedLanguage: StorageSelector.getSelectedLanguage(store),
-        onItemSelected: StorageSelector.getUpdateLanguageFunction(store),
-      )),
+      openLanguagesPopup: StorageSelector.getOpenLanguageDialogFunction(store),
       isNeedShowLanguages: StorageSelector.isNeedShowLanguagesPopup(store),
       navigateToTermsPage: RouteSelectors.gotoTermsReadOnlyPage(store),
       back: RouteSelectors.doPop(store),
