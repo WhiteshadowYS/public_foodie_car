@@ -10,6 +10,7 @@ import 'package:my_catalog/store/global/storage/actions/set_stores_history_actio
 import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/reducer.dart';
 
+// TODO(Yuri): Update comment for this class.
 /// [StorageState] it is state of last loaded storage.
 /// This state need for save all data need it in the app.
 /// Params:

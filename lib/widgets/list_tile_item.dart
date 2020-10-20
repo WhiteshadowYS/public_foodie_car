@@ -8,21 +8,24 @@ import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ListTileItem extends StatelessWidget {
+  final String keyValue;
   final String title;
   final String iconPath;
   final void Function() onTap;
 
   ListTileItem({
+    @required this.keyValue,
     @required this.title,
     @required this.iconPath,
     @required this.onTap,
-  });
+  }) : super(key: Key(keyValue + 'ListTileItem'));
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ListTile(
+          key: Key(keyValue),
           leading: SvgPicture.network(
             iconPath,
             height: 20.0,

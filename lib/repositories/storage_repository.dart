@@ -13,6 +13,7 @@ import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/local_storage_service.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 
+// TODO(Yuri): Update this class!!!!.
 /// This repository need for get data about storage from server.
 /// Methods:
 ///   - [getStorageData]. This function need for get All data about storage from the server.

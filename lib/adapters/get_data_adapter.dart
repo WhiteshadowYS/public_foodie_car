@@ -3,7 +3,6 @@ import 'package:my_catalog/models/dto/get_data_request_dto/get_data_request_dto.
 import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 import 'package:my_catalog/network/requests/get_data_request.dart';
 import 'package:my_catalog/network/shared/i_request.dart';
-import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 
 /// Adapter for main request in application. [GetDataRequest].

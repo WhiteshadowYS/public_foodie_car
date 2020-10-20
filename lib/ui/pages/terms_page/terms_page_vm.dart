@@ -4,6 +4,7 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux/redux.dart';
 
+// TODO(Yuri): Add comments for this class.
 class TermsPageVM {
   final void Function() navigateToCatalogsPage;
   final void Function() back;

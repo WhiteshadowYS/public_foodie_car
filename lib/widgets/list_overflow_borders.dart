@@ -5,17 +5,19 @@ import 'package:my_catalog/res/app_styles/app_gradient.dart';
 import 'package:my_catalog/res/const.dart';
 
 class ListOverflowBorders extends StatelessWidget {
+  final String keyValue;
   final double maxHeight;
   final bool scrollUp;
   final bool scrollDown;
   final scrollDirection;
 
   ListOverflowBorders({
+    @required this.keyValue,
     this.maxHeight,
     this.scrollDown,
     this.scrollUp,
     this.scrollDirection = Axis.vertical,
-  });
+  }) : super(key: Key(keyValue));
 
   @override
   Widget build(BuildContext context) {

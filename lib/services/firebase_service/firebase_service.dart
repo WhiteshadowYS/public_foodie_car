@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:my_catalog/res/const.dart';
 
+// TODO(Yuri): Add comment for this Service.
 class FirebaseService {
   static const tag = '[FirebaseService]';
 

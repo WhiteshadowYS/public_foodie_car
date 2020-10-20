@@ -5,7 +5,8 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/layouts/loader_layout/loader_layout.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout_vm.dart';
 
-class MainLayout extends StatelessWidget {
+// TODO(Yuri): Add comment for this class.
+class MainLayout extends StatefulWidget {
   final Widget child;
   final Color bgColor;
   final PreferredSizeWidget appBar;
@@ -25,6 +26,11 @@ class MainLayout extends StatelessWidget {
     this.canExit = false,
   }) : super(key: key);
 
+  @override
+  _MainLayoutState createState() => _MainLayoutState();
+}
+
+class _MainLayoutState extends State<MainLayout> {
   DateTime _currentBackPressTime;
 
   @override
@@ -34,10 +40,10 @@ class MainLayout extends StatelessWidget {
       builder: (BuildContext context, MainLayoutVM vm) {
         return WillPopScope(
           onWillPop: () async {
-            if (canExit) {
-              _onDoubleClick();
-            } else if (back != null) {
-              back();
+            if (widget.canExit) {
+              _onDoublePop();
+            } else if (widget.back != null) {
+              widget.back();
             }
 
             if (RouteService.instance.canPop) {
@@ -47,10 +53,10 @@ class MainLayout extends StatelessWidget {
             return false;
           },
           child: Scaffold(
-            resizeToAvoidBottomPadding: resizeToAvoidBottomPadding,
-            appBar: appBar,
-            backgroundColor: bgColor,
-            bottomNavigationBar: bottomBar,
+            resizeToAvoidBottomPadding: widget.resizeToAvoidBottomPadding,
+            appBar: widget.appBar,
+            backgroundColor: widget.bgColor,
+            bottomNavigationBar: widget.bottomBar,
             body: GestureDetector(
               onTap: () {
                 if (FocusScope.of(context).hasFocus) {
@@ -58,12 +64,12 @@ class MainLayout extends StatelessWidget {
                 }
               },
               child: Container(
-                color: bgColor,
+                color: widget.bgColor,
                 width: double.infinity,
                 height: double.infinity,
                 child: LoaderLayout(
-                  key: Key(key.toString() + 'Loader'),
-                  child: child,
+                  key: Key(widget.key.toString() + 'Loader'),
+                  child: widget.child,
                 ),
               ),
             ),
@@ -73,11 +79,11 @@ class MainLayout extends StatelessWidget {
     );
   }
 
-  void _onDoubleClick() {
-    final DateTime now = DateTime.now();
-    if (_currentBackPressTime != null && now.difference(_currentBackPressTime) < Duration(seconds: 1)) {
-      return back();
+  void _onDoublePop() {
+    final DateTime nowDate = DateTime.now();
+    if (_currentBackPressTime != null && nowDate.difference(_currentBackPressTime) < Duration(seconds: 1)) {
+      widget.back();
     }
-    _currentBackPressTime = now;
+    _currentBackPressTime = nowDate;
   }
 }

@@ -3,12 +3,13 @@ import 'package:my_catalog/utils/clean_behavior.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainGrid extends StatelessWidget {
+  final String keyValue;
   final List<Widget> widgets;
 
   MainGrid({
-    @required String key,
+    @required this.keyValue,
     @required this.widgets,
-  }) : super(key: Key(key));
+  }) : super(key: Key(keyValue + 'MainGrid'));
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +26,17 @@ class MainGrid extends StatelessWidget {
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 8.0,
           childAspectRatio: 0.75,
-          children: getChildren(widgets),
+          children: getChildren(widgets) ?? [],
         ),
       ),
     );
   }
 
   List<Widget> getChildren(List<Widget> widgets) {
+    if (widgets == null || widgets.isEmpty) {
+      return [];
+    }
+
     if (widgets.contains(null)) {
       widgets.remove(null);
     }

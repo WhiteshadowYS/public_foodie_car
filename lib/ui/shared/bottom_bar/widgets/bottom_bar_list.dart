@@ -9,17 +9,19 @@ import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 import 'bottom_bar_item.dart';
 
 class BottomBarList extends StatefulWidget {
+  final String keyValue;
   final BottomBarVM vm;
   final void Function(String, BottomBarVM) onTap;
   final bool isSwitch;
   final double height;
 
   BottomBarList({
+    @required this.keyValue,
     @required this.height,
     @required this.vm,
     @required this.isSwitch,
     @required this.onTap,
-  });
+  }) : super(key: Key(keyValue + 'BottomBarList'));
 
   @override
   _BottomBarListState createState() => _BottomBarListState();

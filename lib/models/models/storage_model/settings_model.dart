@@ -8,6 +8,7 @@ import 'package:my_catalog/models/models/storage_model/settings/language_model.d
 
 part 'settings_model.g.dart';
 
+// TODO(Yuri): Add comment for this class.
 @JsonSerializable(
   fieldRename: FieldRename.snake,
   checked: true,

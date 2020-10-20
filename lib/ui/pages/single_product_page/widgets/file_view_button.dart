@@ -2,13 +2,10 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:my_catalog/dictionary/flutter_delegate.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/file_model.dart';
 import 'package:my_catalog/res/app_styles/app_shadows.dart';
 import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FileViewButton extends StatefulWidget {
   final String keyValue;
@@ -35,7 +32,6 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
 
   @override
   void initState() {
-    // TODO: implement initState
     _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 1500));
     _animation = CurvedAnimation(
       curve: Curves.fastOutSlowIn,

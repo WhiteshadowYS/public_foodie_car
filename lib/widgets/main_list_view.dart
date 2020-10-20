@@ -7,6 +7,7 @@ import 'clean_behavior.dart';
 import 'list_overflow_borders.dart';
 
 class MainListView extends StatefulWidget {
+  final String keyValue;
   final IndexedWidgetBuilder itemBuilder;
   final int itemCount;
   final double height;
@@ -15,13 +16,14 @@ class MainListView extends StatefulWidget {
   final ScrollController scrollController;
 
   MainListView({
+    @required this.keyValue,
     @required this.itemBuilder,
     @required this.itemCount,
     @required this.height,
     @required this.itemHeight,
     @required this.scrollController,
     this.scrollDirection = Axis.vertical,
-  });
+  }) : super(key: Key(keyValue + 'MainListView'));
 
   @override
   _MainListViewState createState() => _MainListViewState();
@@ -57,6 +59,7 @@ class _MainListViewState extends State<MainListView> {
             child: SizedBox(
               height: widget.height ?? double.infinity,
               child: ListView.builder(
+                key: Key(widget.keyValue),
                 physics: ClampingScrollPhysics(),
                 scrollDirection: widget.scrollDirection,
                 controller: widget.scrollController,
@@ -66,6 +69,7 @@ class _MainListViewState extends State<MainListView> {
             ),
           ),
           ListOverflowBorders(
+            keyValue: widget.keyValue + 'ListOverflowBorders',
             scrollDirection: widget.scrollDirection,
             scrollUp: _scrollUp,
             scrollDown: _scrollDown,

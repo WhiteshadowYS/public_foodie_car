@@ -3,13 +3,15 @@ import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
 class ImageViewButton extends StatelessWidget {
+  final String keyValue;
   final IconData icon;
   final void Function() jumpToPage;
 
   ImageViewButton({
+    this.keyValue,
     this.icon,
     this.jumpToPage,
-  });
+  }) : super(key: Key(keyValue + 'ImageViewButton'));
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class ImageViewButton extends StatelessWidget {
           size: 34,
         ),
         IconButton(
+          key: Key(keyValue),
           icon: Icon(icon),
           color: CustomTheme.colors.buttons,
           iconSize: 30,

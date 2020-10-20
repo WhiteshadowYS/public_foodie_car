@@ -7,6 +7,7 @@ import 'package:my_catalog/store/shared/dialog_state/dialog_selector.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux/redux.dart';
 
+// TODO(Yuri): Add comments for this class.
 class CatalogsPageVM {
   final void Function() logOut;
   final void Function(int) navigateToCategoriesPage;

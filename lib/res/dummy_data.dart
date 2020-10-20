@@ -7,8 +7,8 @@ const List<ProductModel> dummyProducts = [
     id: 0,
     imageLink: 'https://pbs.twimg.com/profile_images/1281386497288081414/_hafDEuV_400x400.jpg',
     galleryImagesLinks: [
-      'https://ichef.bbci.co.uk/news/1024/cpsprodpb/67CF/production/_108857562_mediaitem108857561.jpg'
-          'https://www.allaboutbirds.org/guide/assets/photo/64802871-480px.jpg',
+      'https://ichef.bbci.co.uk/news/1024/cpsprodpb/67CF/production/_108857562_mediaitem108857561.jpg',
+      'https://www.allaboutbirds.org/guide/assets/photo/64802871-480px.jpg',
     ],
     languages: {
       'HE': {
@@ -30,8 +30,8 @@ const List<ProductModel> dummyProducts = [
     imageLink:
         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/close-up-of-cat-wearing-sunglasses-while-sitting-royalty-free-image-1571755145.jpg',
     galleryImagesLinks: [
-      'https://static.scientificamerican.com/sciam/cache/file/F1E90F3D-1FFD-4BA9-9DFA98AE647FA7D4_source.jpg'
-          'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/close-up-of-cat-wearing-sunglasses-while-sitting-royalty-free-image-1571755145.jpg',
+      'https://static.scientificamerican.com/sciam/cache/file/F1E90F3D-1FFD-4BA9-9DFA98AE647FA7D4_source.jpg',
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/close-up-of-cat-wearing-sunglasses-while-sitting-royalty-free-image-1571755145.jpg',
     ],
     languages: {
       'HE': {
@@ -52,8 +52,8 @@ const List<ProductModel> dummyProducts = [
     id: 2,
     imageLink: 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg',
     galleryImagesLinks: [
-      'https://cdn.mos.cms.futurecdn.net/JzqhuEDTRfCZKMKHUxPySB.jpg'
-          'https://i.dailymail.co.uk/1s/2019/11/18/16/21162158-0-image-a-44_1574095086222.jpg',
+      'https://cdn.mos.cms.futurecdn.net/JzqhuEDTRfCZKMKHUxPySB.jpg',
+      'https://i.dailymail.co.uk/1s/2019/11/18/16/21162158-0-image-a-44_1574095086222.jpg',
     ],
     languages: {
       'HE': {
@@ -74,8 +74,8 @@ const List<ProductModel> dummyProducts = [
     id: 3,
     imageLink: 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg',
     galleryImagesLinks: [
-      'https://cdn.mos.cms.futurecdn.net/JzqhuEDTRfCZKMKHUxPySB.jpg'
-          'https://i.dailymail.co.uk/1s/2019/11/18/16/21162158-0-image-a-44_1574095086222.jpg',
+      'https://cdn.mos.cms.futurecdn.net/JzqhuEDTRfCZKMKHUxPySB.jpg',
+      'https://i.dailymail.co.uk/1s/2019/11/18/16/21162158-0-image-a-44_1574095086222.jpg',
     ],
     languages: {
       'HE': {

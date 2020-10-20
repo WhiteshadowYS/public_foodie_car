@@ -4,6 +4,7 @@ import 'package:my_catalog/res/const.dart';
 
 part 'product_model.g.dart';
 
+// TODO(Yuri): Add comment for this class.
 @JsonSerializable(
   fieldRename: FieldRename.snake,
   checked: true,

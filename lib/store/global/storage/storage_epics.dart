@@ -24,6 +24,8 @@ import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
+// TODO(Yuri): Add comment for this class.
+// TODO(Yuri): Move storage state to shared folder.
 class StorageEpics {
   static final indexEpic = combineEpics<AppState>([
     _checkIdEpic,

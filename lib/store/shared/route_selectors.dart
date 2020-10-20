@@ -3,20 +3,27 @@ import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/actions/set_opened_id_actions.dart';
-import 'package:my_catalog/store/shared/base_action.dart';
 import 'package:redux/redux.dart';
 
 class RouteSelectors {
   static bool get canPop => RouteService.instance.canPop;
 
   static NavigateToAction get pop => RouteService.instance.pop();
+
   static NavigateToAction get gotoMainPageAction => RouteService.instance.replace(Routes.main);
+
   static NavigateToAction get gotoSettingsPageAction => RouteService.instance.push(Routes.settings);
+
   static NavigateToAction get gotoTermsPageAction => RouteService.instance.push(Routes.terms);
+
   static NavigateToAction get gotoCatalogsPageAction => RouteService.instance.pushAndRemoveUntil(Routes.catalogs);
+
   static NavigateToAction get gotoCategoriesPageAction => RouteService.instance.pushAndRemoveUntil(Routes.categories);
+
   static NavigateToAction get gotoSubcategoriesPageAction => RouteService.instance.push(Routes.subCategories);
+
   static NavigateToAction get gotoProductsPageAction => RouteService.instance.push(Routes.products);
+
   static NavigateToAction get gotoSingleProductPageAction => RouteService.instance.push(Routes.singleProduct);
 
   static void Function() doPop(Store<AppState> store) {
@@ -75,4 +82,3 @@ class RouteSelectors {
     return (NavigateToAction action) => store.dispatch(action);
   }
 }
-

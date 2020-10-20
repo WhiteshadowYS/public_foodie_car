@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:my_catalog/dictionary/flutter_delegate.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/category_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_category_model.dart';
-import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -28,10 +26,12 @@ class CategoriesPage extends StatelessWidget {
           appBar: MainAppBar(key: CategoriesPageKeys.appbar, title: 'Categories'),
           child: MainGrid(
             key: CategoriesPageKeys.gridView,
-            widgets: vm.categories.map((InfoCategoryModel infoCategory) => getItem(
-              vm: vm,
-              infoCategory: infoCategory,
-            )).toList(),
+            widgets: vm.categories
+                .map((InfoCategoryModel infoCategory) => getItem(
+                      vm: vm,
+                      infoCategory: infoCategory,
+                    ))
+                .toList(),
           ),
         );
       },

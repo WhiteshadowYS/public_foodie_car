@@ -3,9 +3,10 @@ import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class OpenInBrowserButton extends StatelessWidget {
-  String url;
+  final String url;
 
   OpenInBrowserButton({@required this.url}) : super(key: Key('OpenInBrowserButton'));
+
   @override
   Widget build(BuildContext context) {
     return Material(

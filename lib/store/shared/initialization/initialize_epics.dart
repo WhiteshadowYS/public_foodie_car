@@ -13,6 +13,7 @@ import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
+// TODO(Yuri): Update comments for this class.
 class InitializeEpics {
   static const String tag = '[InitializeEpics]';
 

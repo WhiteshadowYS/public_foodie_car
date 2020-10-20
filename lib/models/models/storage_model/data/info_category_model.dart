@@ -5,6 +5,7 @@ import 'package:my_catalog/models/models/storage_model/data/info_subcategory_mod
 
 part 'info_category_model.g.dart';
 
+// TODO(Yuri): Add comment for this class.
 @JsonSerializable(
   fieldRename: FieldRename.snake,
   checked: true,

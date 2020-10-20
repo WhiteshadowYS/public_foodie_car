@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/services/focus_service/focus_service.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 

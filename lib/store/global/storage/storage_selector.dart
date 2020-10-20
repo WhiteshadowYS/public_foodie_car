@@ -19,6 +19,7 @@ import 'package:my_catalog/store/global/storage/storage_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux/redux.dart';
 
+// TODO(Yuri): Update comment for this class.
 /// [StorageSelector] - selector for all data what we save in [StorageState].
 /// Methods:
 ///   - [getDataFunction]. It is function fot get all storage data from the server.
@@ -76,7 +77,7 @@ class StorageSelector {
     try {
       final int index = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
       final List<InfoCategoryModel> categories = store.state.storageState?.storage?.data?.hierarchy[index].categories ?? [];
-      List<InfoCategoryModel> categoriesInSelectedLanguage = [];
+      final List<InfoCategoryModel> categoriesInSelectedLanguage = [];
 
       for (InfoCategoryModel category in categories) {
         if (category.displayedIn.contains(store.state.storageState.storesHistory.last.locale)) categoriesInSelectedLanguage.add(category);
@@ -93,7 +94,7 @@ class StorageSelector {
       final int catalogIndex = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
       final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
       final List<InfoSubcategoryModel> subcategories = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
-      List<InfoSubcategoryModel> subcategoriesInSelectedLanguage = [];
+      final List<InfoSubcategoryModel> subcategoriesInSelectedLanguage = [];
 
       for (InfoSubcategoryModel subcategory in subcategories) {
         if (subcategory.displayedIn.contains(store.state.storageState.storesHistory.last.locale)) subcategoriesInSelectedLanguage.add(subcategory);
@@ -111,7 +112,7 @@ class StorageSelector {
       final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
       final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
       final List<InfoProductModel> products = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
-      List<InfoProductModel> productsInSelectedLanguage = [];
+      final List<InfoProductModel> productsInSelectedLanguage = [];
 
       for (InfoProductModel product in products) {
         if (product.displayedIn.contains(store.state.storageState.storesHistory.last.locale)) productsInSelectedLanguage.add(product);
@@ -133,12 +134,12 @@ class StorageSelector {
       final List<FileModel> files = [];
 
       for (FileModel file in store.state.storageState?.storage?.data?.data?.files ?? []) {
-        filesIndexes.forEach((index) {
+        for (int index in filesIndexes) {
           if (file.id == index) files.add(file);
-        });
+        }
       }
 
-      List<FileModel> filesInSelectedLanguage = [];
+      final List<FileModel> filesInSelectedLanguage = [];
 
       for (FileModel file in files) {
         if (file.languages.containsKey(store.state.storageState.storesHistory.last.locale)) filesInSelectedLanguage.add(file);

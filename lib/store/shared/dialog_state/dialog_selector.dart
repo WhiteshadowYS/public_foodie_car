@@ -7,6 +7,7 @@ import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.
 import 'package:my_catalog/ui/pages/single_product_page/widgets/dialog_widgets/file_preview_dialog/file_preview_dialog.dart';
 import 'package:redux/redux.dart';
 
+// TODO(Yuri): Update comment for this class.
 /// [DialogSelectors] it class with static functions for work with Dialogs from Pages.
 /// Functions:
 ///   - [isDialogDisplayed]. This function was get the current dialog status.

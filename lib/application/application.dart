@@ -13,6 +13,7 @@ import 'package:my_catalog/dictionary/flutter_delegate.dart';
 
 import 'package:my_catalog/store/application/app_state.dart';
 
+// TODO(Yuri): Addd comments for Application widget.
 class Application extends StatelessWidget {
   final Store<AppState> store;
 

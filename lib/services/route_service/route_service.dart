@@ -1,6 +1,7 @@
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 
+// TODO(Yuri): Add comment for this service.
 class RouteService {
   static const tag = '[RouteService]';
 

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SingleProductListItem extends StatelessWidget {
+  final String keyValue;
   final String title;
   final Icon icon;
   final double radius;
 
   SingleProductListItem({
+    @required this.keyValue,
     @required this.title,
     this.radius = 8.0,
     this.icon,
-  });
+  }) : super(key: Key(keyValue + 'SingleProductListItem'));
 
   @override
   Widget build(BuildContext context) {

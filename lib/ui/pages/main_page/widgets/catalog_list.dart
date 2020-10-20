@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/models/models/storage_model/data/info_catalog_model.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/widgets/main_list_view.dart';
 
@@ -42,6 +41,7 @@ class _CatalogListState extends State<StoresList> {
   @override
   Widget build(BuildContext context) {
     return MainListView(
+      keyValue: 'StoresList',
       scrollController: _scrollController,
       itemCount: widget.stores.length + 2,
       itemHeight: itemHeight,
@@ -74,8 +74,7 @@ class _CatalogListState extends State<StoresList> {
     final double _itemMinHeight = itemHeight * index - 1;
     final double _itemMaxHeight = _itemMinHeight + itemHeight;
 
-    return _scrollController.offset + itemHeight >= _itemMinHeight &&
-        _scrollController.offset + itemHeight < _itemMaxHeight;
+    return _scrollController.offset + itemHeight >= _itemMinHeight && _scrollController.offset + itemHeight < _itemMaxHeight;
   }
 
   void _updateState() => setState(() {});

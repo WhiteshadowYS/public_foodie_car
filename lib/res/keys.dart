@@ -1,3 +1,4 @@
+// TODO(Yuri): Add comment for each Keys class.
 class CatalogsPageKeys {
   /// Will using with index. For example: CatalogItem1, CatalogItem2, CatalogItem3.
   static const String catalogItem = 'CatalogItem';

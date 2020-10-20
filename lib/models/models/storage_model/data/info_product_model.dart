@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'info_product_model.g.dart';
 
+// TODO(Yuri): Add comment for this class.
 @JsonSerializable(
   fieldRename: FieldRename.snake,
   checked: true,

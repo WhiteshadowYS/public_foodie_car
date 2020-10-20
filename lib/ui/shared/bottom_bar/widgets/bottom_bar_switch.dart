@@ -6,15 +6,17 @@ import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 import 'package:my_catalog/widgets/list_tile_item.dart';
 
 class BottomBarSwitch extends StatelessWidget {
+  final String keyValue;
   final bool isSwitch;
   final void Function(String, BottomBarVM) onTap;
   final BottomBarVM vm;
 
   BottomBarSwitch({
+    @required this.keyValue,
     @required this.vm,
     @required this.isSwitch,
     @required this.onTap,
-  });
+  }) : super(key: Key(keyValue + 'BottomBarSwitch'));
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +48,7 @@ class BottomBarSwitch extends StatelessWidget {
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               return ListTileItem(
+                keyValue: 'BottomBarSwitch$index',
                 title: switchItems[index].type,
                 iconPath: switchItems[index].iconSvg,
                 onTap: () => onTap(switchItems[index].type, vm),

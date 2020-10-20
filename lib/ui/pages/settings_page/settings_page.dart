@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_version/get_version.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/setting_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
@@ -15,7 +16,6 @@ import 'package:my_catalog/ui/pages/settings_page/widgets/language_dropdown.dart
 import 'package:my_catalog/ui/pages/settings_page/widgets/settings_item.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage() : super(key: Key('SettingsPage'));
@@ -28,14 +28,19 @@ class _SettingsPageState extends State<SettingsPage> {
   String appVersion = '';
 
   @override
+  void initState() {
+    _updateAppVersion();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final SettingPageDictionary dictionary = FlutterDictionary.instance.language.settingPageDictionary;
 
     return StoreConnector<AppState, SettingsPageVM>(
+      // TODO(Yuri): Move all Keys to file with consts(res/keys.dart).
       converter: SettingsPageVM.fromStore,
       builder: (BuildContext context, SettingsPageVM vm) {
-        _updateAppVersion();
-
         return MainLayout(
           back: vm.back,
           appBar: MainAppBar(
@@ -65,15 +70,16 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 callback: vm.changePushNotificationStatus,
               ),
-              if (vm.isNeedShowLanguages) SettingsItem(
-                key: 'SettingsItemLanguage',
-                text: dictionary.language,
-                child: LanguageDropdown(
-                  key: 'SettingsItemLanguageLanguageDropdown',
-                  text: vm.selectedLanguage,
+              if (vm.isNeedShowLanguages)
+                SettingsItem(
+                  key: 'SettingsItemLanguage',
+                  text: dictionary.language,
+                  child: LanguageDropdown(
+                    key: 'SettingsItemLanguageLanguageDropdown',
+                    text: vm.selectedLanguage,
+                  ),
+                  callback: vm.openLanguagesPopup,
                 ),
-                callback: vm.openLanguagesPopup,
-              ),
               SettingsItem(
                 key: 'SettingsItemTAC',
                 text: dictionary.terms,
@@ -102,7 +108,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ],
           ),
         );
-      }
+      },
     );
   }
 
@@ -124,8 +130,8 @@ class _SettingsPageState extends State<SettingsPage> {
       versionCode = null;
     }
 
-    setState(() {
-      appVersion = '$versionName ($versionCode)';
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() => appVersion = '$versionName ($versionCode)');
     });
   }
 }

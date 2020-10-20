@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/store/global/storage/storage_epics.dart';
 import 'package:my_catalog/store/global/storage/storage_state.dart';
 import 'package:my_catalog/store/shared/dialog_state/dialog_state.dart';
@@ -7,6 +6,7 @@ import 'package:my_catalog/store/shared/initialization/initialize_epics.dart';
 import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:redux_epics/redux_epics.dart';
 
+// TODO(Yuri): Add comment for this State.
 class AppState {
   final DialogState dialogState;
   final StorageState storageState;
@@ -27,8 +27,6 @@ class AppState {
   }
 
   static AppState getReducer(AppState state, dynamic action) {
-    const String TAG = '[appReducer]';
-
     return AppState(
       dialogState: state.dialogState.reducer(action),
       loaderState: state.loaderState.reducer(action),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/const.dart';
 
+// TODO(Yuri): Move all support classes to focus service folder.
 /// This Service help us with fields navigation.
 /// [FocusService] is not a singleton, for using - create a variable on the screen widget.
 /// FocusService focusService = FocusService();
