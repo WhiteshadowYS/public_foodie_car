@@ -23,15 +23,19 @@ class SubcategoriesPage extends StatelessWidget {
         return MainLayout(
           bgColor: CustomTheme.colors.background,
           bottomBar: BottomBar(key: SubCategoriesPageKeys.bottomBar),
-          appBar: MainAppBar(key: SubCategoriesPageKeys.appbar, title: 'SubCategories'),
+          appBar: MainAppBar(
+            key: SubCategoriesPageKeys.appbar,
+            title: vm.subcategoriesPageTitle(vm.currentLocale),
+            backButtonText: vm.backButtonText(vm.currentLocale),
+          ),
           child: MainGrid(
             keyValue: CategoriesPageKeys.gridView,
-            widgets: vm.subCategories
-                .map((InfoSubcategoryModel infoSubcategory) => getItem(
-                      vm: vm,
-                      infoSubcategory: infoSubcategory,
-                    ))
-                .toList(),
+            widgets: vm.subCategories.map((InfoSubcategoryModel infoSubcategory) {
+              return getItem(
+                vm: vm,
+                infoSubcategory: infoSubcategory,
+              );
+            }).toList(),
           ),
         );
       },

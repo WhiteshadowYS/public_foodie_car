@@ -4,10 +4,12 @@ import 'package:my_catalog/dictionary/dictionary_classes/catalog_page_dictionary
 import 'package:my_catalog/dictionary/dictionary_classes/error_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/popup_dictionary.dart';
+import 'package:my_catalog/dictionary/dictionary_classes/server_texts_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/setting_page_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/terms_page_dictionary.dart';
 
 class Language {
+  final ServerTextsDictionary serverTextsDictionary;
   final TermsPageDictionary termsPageDictionary;
   final MainPageDictionary mainPageDictionary;
   final AppbarDictionary appbarDictionary;
@@ -17,6 +19,7 @@ class Language {
   final ErrorDictionary errorDictionary;
 
   const Language({
+    @required this.serverTextsDictionary,
     @required this.termsPageDictionary,
     @required this.mainPageDictionary,
     @required this.appbarDictionary,

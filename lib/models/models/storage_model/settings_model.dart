@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:my_catalog/models/models/storage_model/settings/colors_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/info_model.dart';
+import 'package:my_catalog/models/models/storage_model/settings/language_data_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/language_model.dart';
 
 part 'settings_model.g.dart';
@@ -17,6 +18,8 @@ part 'settings_model.g.dart';
 class SettingsModel implements IDto {
   @JsonKey(name: 'languages', required: false, nullable: true)
   final List<LanguageModel> languages;
+  @JsonKey(name: 'language_data', required: false, nullable: true)
+  final LanguageDataModel languageData;
   @JsonKey(name: 'tac', required: false, nullable: true)
   final String tac;
   @JsonKey(name: 'info', required: false, nullable: true)
@@ -34,6 +37,7 @@ class SettingsModel implements IDto {
     @required this.info,
     @required this.font,
     @required this.colors,
+    @required this.languageData,
     @required this.footerButtons,
   });
 

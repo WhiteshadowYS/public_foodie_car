@@ -44,7 +44,7 @@ class _TermsPageState extends State<TermsPage> {
           back: () => back(vm),
           appBar: MainAppBar(
             key: TermsPageKeys.appbar,
-            title: dictionary.title,
+            title: vm.titleText(vm.selectedLocale),
             backOnTap: () => back(vm),
           ),
           child: Container(
@@ -82,7 +82,7 @@ class _TermsPageState extends State<TermsPage> {
                       });
                     },
                     isAccepted: isAccepted,
-                    title: dictionary.agree,
+                    title: vm.buttonText(vm.selectedLocale),
                   ),
                   const SizedBox(height: 20.0),
                 ],

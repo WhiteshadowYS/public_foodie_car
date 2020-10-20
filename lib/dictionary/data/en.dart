@@ -3,11 +3,25 @@ import 'package:my_catalog/dictionary/dictionary_classes/catalog_page_dictionary
 import 'package:my_catalog/dictionary/dictionary_classes/error_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/popup_dictionary.dart';
+import 'package:my_catalog/dictionary/dictionary_classes/server_texts_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/setting_page_dictionary.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/terms_page_dictionary.dart';
 import 'package:my_catalog/dictionary/models/language.dart';
 
 const Language en = Language(
+  serverTextsDictionary: ServerTextsDictionary(
+      errorTitleText: 'Error',
+      acceptButtonText: 'Got It!',
+      shareButtonText: 'Share Via',
+      descriptionText: 'Description',
+      logoutButtonText: 'Log out',
+      backButtonText: 'Back',
+      termsPageTitle: 'Terms and Conditions',
+      termsPageAgreeButton: 'I Agree!',
+      productsPageTitle: 'Products',
+      categoriesPageTitle: 'Categories',
+      subcategoriesPageTitle: 'Subcategories',
+  ),
   termsPageDictionary: TermsPageDictionary(
     title: 'Terms and conditions',
     agree: 'I Agree',
@@ -34,6 +48,7 @@ const Language en = Language(
     pushNotification: 'Push notifications',
   ),
   catalogPageDictionary: CatalogPageDictionary(
+    logOutText: 'Log out',
     chooseCatalog: 'Choose another catalog',
     chooseStore: 'Choose another store',
   ),

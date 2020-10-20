@@ -1,3 +1,4 @@
+import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/category_model.dart';
@@ -27,6 +28,10 @@ import 'package:redux/redux.dart';
 /// Methods:
 ///   - [getDataFunction]. It is function fot get all storage data from the server.
 class StorageSelector {
+  static String getLogoUrl(Store<AppState> store) {
+    return store.state.storageState.storage?.settings?.info?.logoImage;
+  }
+
   static void Function() getLogOutFunction(Store<AppState> store) {
     return () {
       store.dispatch(RemoveOpenedStorageAction());
@@ -83,6 +88,182 @@ class StorageSelector {
 
   static String getTermsText(Store<AppState> store) {
     return store.state?.storageState?.storage?.settings?.tac ?? '';
+  }
+
+  static String Function(String locale) getTermsTitleText(Store<AppState> store) {
+    return (String locale) {
+      final String termsTitle = FlutterDictionary.instance.language.serverTextsDictionary.termsPageTitle;
+
+      if (locale == null || locale == '') {
+        return termsTitle;
+      }
+
+      final String newTermsTitle = store.state?.storageState?.storage?.settings?.languageData?.termsTitle[locale];
+
+      if (newTermsTitle == null) return termsTitle;
+
+      return newTermsTitle;
+    };
+  }
+
+  static String Function(String locale) getTermsButtonText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.termsPageAgreeButton;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.termsAcceptButton[locale];
+
+      if (newValue == null) return value;
+
+      return newValue;
+    };
+  }
+
+  static String Function(String locale) getAcceptButtonText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.acceptButtonText;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.acceptText[locale];
+
+      if (newValue == null) return value;
+
+      return newValue;
+    };
+  }
+
+  static String Function(String locale) getErrorTitleText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.errorTitleText;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.errorText[locale];
+
+      if (newValue == null) return value;
+
+      return newValue;
+    };
+  }
+
+  static String Function(String locale) getShareText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.shareButtonText;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.shareText[locale];
+
+      if (newValue == null) return value;
+
+      return newValue;
+    };
+  }
+
+  static String Function(String locale) getDescriptionText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.descriptionText;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.descriptionText[locale];
+
+      if (newValue == null) return value;
+
+      return newValue;
+    };
+  }
+
+  static String Function(String locale) getLogoutText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.logoutButtonText;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.logoutText[locale];
+
+      if (newValue == null) return value;
+
+      return newValue;
+    };
+  }
+
+  static String Function(String locale) getBackButtonText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.backButtonText;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.backButtonText[locale];
+
+      if (newValue == null) return value;
+
+      return newValue;
+    };
+  }
+
+  static String Function(String locale) getProductsTitleText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.productsPageTitle;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.productsTitle[locale];
+
+      if (newValue == null) return value;
+
+      return newValue;
+    };
+  }
+
+  static String Function(String locale) getCategoriesTitleText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.categoriesPageTitle;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.categoriesTitle[locale];
+
+      if (newValue == null) return value;
+
+      return newValue;
+    };
+  }
+
+  static String Function(String locale) getSubcategoriesTitleText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.subcategoriesPageTitle;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.subcategoriesTitle[locale];
+
+      if (newValue == null) return value;
+
+      return newValue;
+    };
   }
 
   static void Function(String) getUpdateLanguageFunction(Store<AppState> store) {
