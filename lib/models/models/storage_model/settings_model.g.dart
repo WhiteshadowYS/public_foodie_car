@@ -21,6 +21,8 @@ SettingsModel _$SettingsModelFromJson(Map<String, dynamic> json) {
       font: $checkedConvert(json, 'font', (v) => v as String),
       colors: $checkedConvert(
           json, 'color_hex', (v) => v == null ? null : ColorsModel.fromJson(v)),
+      languageData: $checkedConvert(json, 'language_data',
+          (v) => v == null ? null : LanguageDataModel.fromJson(v)),
       footerButtons: $checkedConvert(
           json,
           'footer_buttons',
@@ -31,6 +33,7 @@ SettingsModel _$SettingsModelFromJson(Map<String, dynamic> json) {
     return val;
   }, fieldKeyMap: const {
     'colors': 'color_hex',
+    'languageData': 'language_data',
     'footerButtons': 'footer_buttons'
   });
 }
@@ -38,6 +41,7 @@ SettingsModel _$SettingsModelFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$SettingsModelToJson(SettingsModel instance) =>
     <String, dynamic>{
       'languages': instance.languages?.map((e) => e?.toJson())?.toList(),
+      'language_data': instance.languageData?.toJson(),
       'tac': instance.tac,
       'info': instance.info?.toJson(),
       'font': instance.font,

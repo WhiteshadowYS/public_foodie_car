@@ -10,18 +10,27 @@ class TermsPageVM {
   final void Function() acceptTermsAndNavigate;
   final void Function() back;
   final String termsText;
+  final String selectedLocale;
+  final String Function(String) titleText;
+  final String Function(String) buttonText;
 
   const TermsPageVM({
+    @required this.selectedLocale,
+    @required this.titleText,
+    @required this.termsText,
+    @required this.buttonText,
     @required this.acceptTermsAndNavigate,
     @required this.back,
-    @required this.termsText,
   });
 
   static TermsPageVM fromStore(Store<AppState> store) {
     return TermsPageVM(
-      acceptTermsAndNavigate: StorageSelector.getAcceptTermsAndNavigateFunction(store),
       back: RouteSelectors.doPop(store),
+      acceptTermsAndNavigate: StorageSelector.getAcceptTermsAndNavigateFunction(store),
       termsText: StorageSelector.getTermsText(store),
+      titleText: StorageSelector.getTermsTitleText(store),
+      buttonText: StorageSelector.getTermsButtonText(store),
+      selectedLocale: StorageSelector.getSelectedLocale(store),
     );
   }
 }

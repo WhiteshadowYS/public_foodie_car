@@ -31,7 +31,7 @@ class ProductModel implements IDto {
     try {
       return languages[langCode][KEY_TITLE] ?? '';
     } catch (e) {
-      return KEY_TITLE;
+      return EMPTY_STRING;
     }
   }
 
@@ -39,7 +39,7 @@ class ProductModel implements IDto {
     try {
       return languages[langCode][KEY_DESCRIPTION] ?? '';
     } catch (e) {
-      return KEY_DESCRIPTION;
+      return EMPTY_STRING;
     }
   }
 
@@ -47,7 +47,7 @@ class ProductModel implements IDto {
     try {
       return languages[langCode][KEY_DESCRIPTION_2] ?? '';
     } catch (e) {
-      return KEY_DESCRIPTION_2;
+      return EMPTY_STRING;
     }
   }
 

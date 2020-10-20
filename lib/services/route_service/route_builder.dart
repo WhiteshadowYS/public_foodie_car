@@ -33,7 +33,13 @@ class RouteBuilder {
       case Routes.terms:
         return _defaultRoute(
           settings: settings,
-          page: TermsPage(),
+          page: TermsPage(isReadOnly: false),
+        );
+
+      case Routes.termsReadOnly:
+        return _defaultRoute(
+          settings: settings,
+          page: TermsPage(isReadOnly: true),
         );
 
       case Routes.settings:

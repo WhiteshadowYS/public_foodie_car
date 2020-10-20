@@ -9,30 +9,39 @@ import 'package:redux/redux.dart';
 
 // TODO(Yuri): Add comments for this class.
 class SingleProductPageVM {
+  final String logoUrl;
   final void Function() navigateToSettingsPage;
   final void Function(FileModel file) filePreview;
   final void Function(List<String> gallery, int currentIndex) imageView;
   final ProductModel product;
   final List<FileModel> files;
   final String currentLocale;
+  final String Function(String) descriptionText;
+  final String Function(String) backButtonText;
 
   const SingleProductPageVM({
+    @required this.logoUrl,
     @required this.navigateToSettingsPage,
     @required this.filePreview,
     @required this.imageView,
     @required this.product,
     @required this.files,
     @required this.currentLocale,
+    @required this.backButtonText,
+    @required this.descriptionText,
   });
 
   static SingleProductPageVM fromStore(Store<AppState> store) {
     return SingleProductPageVM(
+      files: StorageSelector.getInfoFiles(store),
+      logoUrl: StorageSelector.getLogoUrl(store),
+      product: StorageSelector.getCurrentProductModelFunction(store)(store.state.storageState.openedProductId),
       navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
       imageView: DialogSelectors.getShowImageViewDialogFunction(store),
       filePreview: DialogSelectors.getShowFilePreviewDialogFunction(store),
-      product: StorageSelector.getCurrentProductModelFunction(store)(store.state.storageState.openedProductId),
       currentLocale: StorageSelector.getSelectedLocale(store),
-      files: StorageSelector.getInfoFiles(store),
+      backButtonText: StorageSelector.getBackButtonText(store),
+      descriptionText: StorageSelector.getDescriptionText(store),
     );
   }
 }

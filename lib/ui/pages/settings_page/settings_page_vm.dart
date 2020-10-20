@@ -10,6 +10,7 @@ import 'package:redux/redux.dart';
 // TODO(Yuri): Add comments for this class.
 class SettingsPageVM {
   final InfoModel info;
+  final String selectedLocale;
   final String selectedLanguage;
   final bool isPushNotificationsOn;
   final bool isNeedShowLanguages;
@@ -18,6 +19,7 @@ class SettingsPageVM {
   final void Function() openLanguagesPopup;
   final void Function() navigateToTermsPage;
   final void Function() changePushNotificationStatus;
+  final String Function(String) backButtonText;
 
   const SettingsPageVM({
     @required this.info,
@@ -28,22 +30,19 @@ class SettingsPageVM {
     @required this.changePushNotificationStatus,
     @required this.navigateToTermsPage,
     @required this.back,
+    @required this.selectedLocale,
+    @required this.backButtonText,
   });
 
   static SettingsPageVM fromStore(Store<AppState> store) {
     return SettingsPageVM(
+      selectedLocale: StorageSelector.getSelectedLocale(store),
+      backButtonText: StorageSelector.getBackButtonText(store),
       info: StorageSelector.getInfoModel(store),
       selectedLanguage: StorageSelector.getSelectedLanguage(store),
-      // TODO(Yuri): Move to Selectors, https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&view=detail&selectedIssue=MC-35.
-      openLanguagesPopup: () => DialogService.instance.show(LanguageDialog(
-        // TODO(Yuri): Fix this pop-up for count of languages > 20.
-        // TODO(Yuri): Max size of pop-up should be 2/3 of screen, after that - scrolling list, https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&view=detail&selectedIssue=MC-35.
-        list: StorageSelector.getLanguages(store),
-        selectedLanguage: StorageSelector.getSelectedLanguage(store),
-        onItemSelected: StorageSelector.getUpdateLanguageFunction(store),
-      )),
+      openLanguagesPopup: StorageSelector.getOpenLanguageDialogFunction(store),
       isNeedShowLanguages: StorageSelector.isNeedShowLanguagesPopup(store),
-      navigateToTermsPage: RouteSelectors.gotoTermsPage(store),
+      navigateToTermsPage: RouteSelectors.gotoTermsReadOnlyPage(store),
       back: RouteSelectors.doPop(store),
       // TODO(Oles): need to add logic
       isPushNotificationsOn: true,

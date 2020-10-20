@@ -24,10 +24,11 @@ class CatalogsPage extends StatelessWidget {
       builder: (BuildContext context, vm) {
         return MainLayout(
           appBar: MainAppBar(
-            height: 50.h,
             key: 'CatalogsPageAppbar',
+            height: 50.h,
+            logoUrl: vm.logoUrl,
             backOnTap: vm.logOut,
-            backButtonText: FlutterDictionary.instance.language.catalogPageDictionary.logOutText,
+            backButtonText: vm.logoutText(vm.currentLocale),
           ),
           bgColor: CustomTheme.colors.background,
           canExit: true,
@@ -55,6 +56,7 @@ class CatalogsPage extends StatelessWidget {
                           keyValue: CatalogsPageKeys.catalogItem + '$index',
                           locale: vm.currentLocale,
                           catalog: catalog,
+                          descriptionTitle: vm.descriptionTitleText(vm.currentLocale),
                           navigateToCategories: vm.navigateToCategoriesPage,
                         );
                       },

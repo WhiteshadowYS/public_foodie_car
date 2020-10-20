@@ -16,6 +16,8 @@ class RouteSelectors {
 
   static NavigateToAction get gotoTermsPageAction => RouteService.instance.push(Routes.terms);
 
+  static NavigateToAction get gotoTermsReadOnlyPageAction => RouteService.instance.push(Routes.termsReadOnly);
+
   static NavigateToAction get gotoCatalogsPageAction => RouteService.instance.pushAndRemoveUntil(Routes.catalogs);
 
   static NavigateToAction get gotoCategoriesPageAction => RouteService.instance.pushAndRemoveUntil(Routes.categories);
@@ -44,6 +46,10 @@ class RouteSelectors {
 
   static void Function() gotoTermsPage(Store<AppState> store) {
     return () => store.dispatch(gotoTermsPageAction);
+  }
+
+  static void Function() gotoTermsReadOnlyPage(Store<AppState> store) {
+    return () => store.dispatch(gotoTermsReadOnlyPageAction);
   }
 
   static void Function() gotoCatalogsPage(Store<AppState> store) {

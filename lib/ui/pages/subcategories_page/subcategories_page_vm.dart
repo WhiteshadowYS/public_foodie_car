@@ -12,19 +12,25 @@ class SubcategoriesPageVM {
   final SubcategoryModel Function(int) getCurrentSubCategoryData;
   final List<InfoSubcategoryModel> subCategories;
   final String currentLocale;
+  final String Function(String) subcategoriesPageTitle;
+  final String Function(String) backButtonText;
 
   const SubcategoriesPageVM({
     @required this.navigateToProductsPage,
     @required this.currentLocale,
     @required this.subCategories,
     @required this.getCurrentSubCategoryData,
+    @required this.subcategoriesPageTitle,
+    @required this.backButtonText,
   });
 
   static SubcategoriesPageVM fromStore(Store<AppState> store) {
     return SubcategoriesPageVM(
+      subcategoriesPageTitle: StorageSelector.getSubcategoriesTitleText(store),
       navigateToProductsPage: RouteSelectors.gotoProductsPage(store),
       currentLocale: StorageSelector.getSelectedLocale(store),
       subCategories: StorageSelector.getInfoSubCategories(store),
+      backButtonText: StorageSelector.getBackButtonText(store),
       getCurrentSubCategoryData: StorageSelector.getCurrentSubCategoryModelFunction(store),
     );
   }
