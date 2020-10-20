@@ -13,7 +13,10 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
 import 'package:my_catalog/store/global/storage/actions/open_storage_action.dart';
+import 'package:my_catalog/store/global/storage/actions/open_terms_action.dart';
 import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_action.dart';
+import 'package:my_catalog/store/global/storage/actions/save_accepted_terms_id_action.dart';
+import 'package:my_catalog/store/global/storage/actions/set_opened_id_actions.dart';
 import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
 import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
@@ -31,13 +34,17 @@ class StorageEpics {
     _checkIdEpic,
     _getDataEpic,
     _openStorageEpic,
+    _openTermsEpic,
     _removeOpenedStorageEpic,
     _updateLanguageEpic,
+    _saveAcceptedTermsIdAndOpenStoreEpic,
   ]);
 
   static bool _idValidation(CheckIdAction action) => action.id != null;
 
   static bool _id2Validation(GetDataAction action) => action.id != null;
+
+  static bool _id3Validation(SaveAcceptedTermsIdAction action) => action.id != null;
 
   static Stream<dynamic> _checkIdEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<CheckIdAction>().where(_idValidation).switchMap((action) async* {
@@ -88,14 +95,49 @@ class StorageEpics {
         return;
       }
 
+      yield* Stream.value(SetStoresHistoryAction(storesHistory: history));
+
+      final bool isTermsAccepted = await repository.getIsTermsAccepted(action.id.toString());
+
+      if (isTermsAccepted) {
+        yield* ConcatEagerStream([
+          Stream.value(
+            OpenStorageAction(
+              id: action.id,
+              storage: history[index].storage,
+            ),
+          ),
+          _changeCheckIdLoadingState(false),
+        ]);
+
+        return;
+      }
+
       yield* ConcatEagerStream([
-        Stream.fromIterable([
-          SetStoresHistoryAction(storesHistory: history),
-          OpenStorageAction(
+        Stream.value(
+          OpenTermsAction(
             id: action.id,
             storage: history[index].storage,
           ),
-        ]),
+        ),
+        _changeCheckIdLoadingState(false),
+      ]);
+    });
+  }
+
+  static Stream<dynamic> _saveAcceptedTermsIdAndOpenStoreEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<SaveAcceptedTermsIdAction>().where(_id3Validation).switchMap((action) async* {
+      final StorageRepository repository = StorageRepository();
+
+      await repository.saveIsTermsAccepted(action.id.toString());
+
+      yield* ConcatEagerStream([
+        Stream.value(
+          OpenStorageAction(
+            id: action.id,
+            storage: action.storage,
+          ),
+        ),
         _changeCheckIdLoadingState(false),
       ]);
     });
@@ -107,12 +149,12 @@ class StorageEpics {
 
       final List<SavedStorageModel> oHistory = await repository.getStoresHistory();
 
-      final int index = oHistory?.indexWhere((element) {
+      final int oIndex = oHistory?.indexWhere((element) {
         return element.id == action.id;
       });
 
-      if (index != -1 && oHistory != null && oHistory.isNotEmpty && oHistory[index].update >= action.update) {
-        logger.d('action.update: ${action.update}, history[index].update: ${oHistory[index].update}');
+      if (oIndex != -1 && oHistory != null && oHistory.isNotEmpty && oHistory[oIndex].update >= action.update) {
+        logger.d('action.update: ${action.update}, history[index].update: ${oHistory[oIndex].update}');
         return;
       }
 
@@ -129,13 +171,37 @@ class StorageEpics {
 
       final List<SavedStorageModel> history = await repository.getStoresHistory();
 
+      final int index = history?.indexWhere((element) {
+        return element.id == action.id;
+      });
+
       if (history != null && history.isNotEmpty) {
-        yield* Stream.fromIterable([
-          SetStoresHistoryAction(storesHistory: history),
-          OpenStorageAction(
-            id: action.id,
-            storage: response.response,
+        yield* Stream.value(SetStoresHistoryAction(storesHistory: history));
+
+        final bool isTermsAccepted = await repository.getIsTermsAccepted(action.id.toString());
+
+        if (isTermsAccepted) {
+          yield* ConcatEagerStream([
+            Stream.value(
+              OpenStorageAction(
+                id: action.id,
+                storage: history[index].storage,
+              ),
+            ),
+            _changeCheckIdLoadingState(false),
+          ]);
+
+          return;
+        }
+
+        yield* ConcatEagerStream([
+          Stream.value(
+            OpenTermsAction(
+              id: action.id,
+              storage: history[index].storage,
+            ),
           ),
+          _changeCheckIdLoadingState(false),
         ]);
       }
     });
@@ -160,11 +226,24 @@ class StorageEpics {
     return actions.whereType<OpenStorageAction>().switchMap((action) {
       final String lastRoute = RouteService.instance.currentRoute;
 
-      if (lastRoute == Routes.main || lastRoute == null) {
+      if (lastRoute == Routes.main || lastRoute == Routes.terms || lastRoute == null) {
         return Stream.value(RouteSelectors.gotoCatalogsPageAction);
       }
 
       return Stream.empty();
+    });
+  }
+
+  static Stream<dynamic> _openTermsEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<OpenTermsAction>().switchMap((action) async* {
+      final String lastRoute = RouteService.instance.currentRoute;
+
+      if (lastRoute == Routes.main || lastRoute == null) {
+        yield* Stream.value(SetOpenedCatalogIdAction(id: action.id));
+        yield* Stream.value(RouteSelectors.gotoTermsPageAction);
+      }
+
+      return;
     });
   }
 

@@ -5,6 +5,7 @@ import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 import 'package:my_catalog/network/requests/get_data_request.dart';
 import 'package:my_catalog/store/global/storage/actions/open_storage_action.dart';
+import 'package:my_catalog/store/global/storage/actions/open_terms_action.dart';
 import 'package:my_catalog/store/global/storage/actions/set_opened_id_actions.dart';
 import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
 import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
@@ -68,6 +69,7 @@ class StorageState {
     return Reducer<StorageState>(
       actions: HashMap.from({
         OpenStorageAction: (dynamic action) => _openStorage(action as OpenStorageAction),
+        OpenTermsAction: (dynamic action) => _openTerms(action as OpenTermsAction),
         SetOpenedStoreIdAction: (dynamic action) => _setOpenedStoreId(action as SetOpenedStoreIdAction),
         SetStoresHistoryAction: (dynamic action) => _setStoresHistory(action as SetStoresHistoryAction),
         UpdateLanguageAction: (dynamic action) => _updateStoreLanguage(action as UpdateLanguageAction),
@@ -84,6 +86,14 @@ class StorageState {
 
     return copyWith(
       openedStoreId: action.id,
+      storage: action.storage,
+    );
+  }
+
+  StorageState _openTerms(OpenTermsAction action) {
+    if (action.storage == null) return this;
+
+    return copyWith(
       storage: action.storage,
     );
   }

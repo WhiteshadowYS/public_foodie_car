@@ -52,6 +52,33 @@ class StorageRepository extends Repository {
     return decodedData.map<SavedStorageModel>((item) => SavedStorageModel.fromJson(item)).toList();
   }
 
+  Future<bool> getIsTermsAccepted(String id) async {
+    final String acceptedIdList = await LocalStorageService.instance.getValueByKey(StorageKeys.acceptedStoreId);
+
+    if (acceptedIdList == null || acceptedIdList == '') {
+      return false;
+    }
+
+    List<String> _idList = acceptedIdList.split('|');
+
+    for (String _id in _idList) {
+      if (_id == id) return true;
+    }
+
+    return false;
+  }
+
+  Future<void> saveIsTermsAccepted(String acceptedId) async {
+    final String acceptedIdList = await LocalStorageService.instance.getValueByKey(StorageKeys.acceptedStoreId);
+
+    if (acceptedIdList == null || acceptedIdList == '') {
+      await LocalStorageService.instance.saveValueByKey(StorageKeys.acceptedStoreId, '$acceptedId|');
+      return;
+    }
+
+    await LocalStorageService.instance.saveValueByKey(StorageKeys.acceptedStoreId, acceptedIdList + '$acceptedId|');
+  }
+
   Future<void> updateStoresHistory({
     @required int update,
     @required int id,
