@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
 class SingleProductListItem extends StatelessWidget {
@@ -16,6 +17,9 @@ class SingleProductListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (title == null) {
+      return SizedBox();
+    }
     return Column(
       children: [
         Row(

@@ -52,7 +52,7 @@ class _ImageViewerState extends State<ImageViewer> {
                         SizedBox(
                           height: double.infinity,
                           width: double.infinity,
-                          child: Image.network(image, fit: BoxFit.cover),
+                          child: Image.network(image, fit: BoxFit.contain),
                         ),
                       ],
                     ),
