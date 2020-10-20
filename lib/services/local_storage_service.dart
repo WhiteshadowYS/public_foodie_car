@@ -13,6 +13,7 @@ class LocalStorageService {
 
   final Map<StorageKeys, String> _keys = {
     StorageKeys.stores: 'stores',
+    StorageKeys.acceptedStoreId: 'acceptedStoreId',
     StorageKeys.openedStoreId: 'openedStoreId',
   };
 
@@ -41,5 +42,6 @@ class LocalStorageService {
 
 enum StorageKeys {
   openedStoreId,
+  acceptedStoreId,
   stores,
 }
