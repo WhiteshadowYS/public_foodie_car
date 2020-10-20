@@ -52,6 +52,12 @@ class _MainPageState extends State<MainPage> {
             keyValue: MainPageKeys.listView,
             children: [
               const SizedBox(height: 24.0),
+              Text(
+                dictionary.history,
+                style: CustomTheme.textStyles.titleTextStyle(),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8.0),
               StoresList(
                 keyValue: MainPageKeys.catalogListItem,
                 stores: vm.stores?.map((e) {

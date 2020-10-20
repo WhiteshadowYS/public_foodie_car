@@ -44,17 +44,11 @@ class _ImageViewerState extends State<ImageViewer> {
                         SizedBox(
                           height: double.infinity,
                           width: double.infinity,
-                          child: SvgPicture.asset(
-                            ImageAssets.LOGO,
-                            height: 80.0,
-                            fit: BoxFit.fitHeight,
-                            color: CustomTheme.colors.buttons,
+                          child: FadeInImage(
+                            placeholder: AssetImage(ImageAssets.LOADING),
+                            image: NetworkImage(image),
+                            fit: BoxFit.contain,
                           ),
-                        ),
-                        SizedBox(
-                          height: double.infinity,
-                          width: double.infinity,
-                          child: Image.network(image, fit: BoxFit.cover),
                         ),
                       ],
                     ),
