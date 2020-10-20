@@ -31,6 +31,8 @@ LanguageDataModel _$LanguageDataModelFromJson(Map<String, dynamic> json) {
           json, 'categories_title', (v) => v as Map<String, dynamic>),
       subcategoriesTitle: $checkedConvert(
           json, 'subcategories_title', (v) => v as Map<String, dynamic>),
+      settingsTitle: $checkedConvert(
+          json, 'settings_title', (v) => v as Map<String, dynamic>),
     );
     return val;
   }, fieldKeyMap: const {
@@ -44,7 +46,8 @@ LanguageDataModel _$LanguageDataModelFromJson(Map<String, dynamic> json) {
     'termsAcceptButton': 'terms_accept_button',
     'productsTitle': 'products_title',
     'categoriesTitle': 'categories_title',
-    'subcategoriesTitle': 'subcategories_title'
+    'subcategoriesTitle': 'subcategories_title',
+    'settingsTitle': 'settings_title'
   });
 }
 
@@ -61,4 +64,5 @@ Map<String, dynamic> _$LanguageDataModelToJson(LanguageDataModel instance) =>
       'products_title': instance.productsTitle,
       'categories_title': instance.categoriesTitle,
       'subcategories_title': instance.subcategoriesTitle,
+      'settings_title': instance.settingsTitle,
     };

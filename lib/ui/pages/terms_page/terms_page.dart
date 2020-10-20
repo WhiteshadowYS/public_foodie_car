@@ -45,6 +45,7 @@ class _TermsPageState extends State<TermsPage> {
           appBar: MainAppBar(
             key: TermsPageKeys.appbar,
             title: vm.titleText(vm.selectedLocale),
+            backButtonText: vm.backButtonText(vm.selectedLocale),
             backOnTap: () => back(vm),
           ),
           child: Container(
@@ -68,22 +69,23 @@ class _TermsPageState extends State<TermsPage> {
                   ),
 
                   /// [AgreeButton] takes [vm.navigateToCatalogsPage] as onTap function and [dictionary.agree] text as title
-                  if (!widget.isReadOnly) AgreeButton(
-                    keyValue: TermsPageKeys.button,
-                    onTap: () {
-                      timer = Timer(Duration(milliseconds: 1500), () {
-                        if (isAccepted) {
-                          vm.acceptTermsAndNavigate();
-                        }
-                      });
+                  if (!widget.isReadOnly)
+                    AgreeButton(
+                      keyValue: TermsPageKeys.button,
+                      onTap: () {
+                        timer = Timer(Duration(milliseconds: 1500), () {
+                          if (isAccepted) {
+                            vm.acceptTermsAndNavigate();
+                          }
+                        });
 
-                      setState(() {
-                        isAccepted = !isAccepted;
-                      });
-                    },
-                    isAccepted: isAccepted,
-                    title: vm.buttonText(vm.selectedLocale),
-                  ),
+                        setState(() {
+                          isAccepted = !isAccepted;
+                        });
+                      },
+                      isAccepted: isAccepted,
+                      title: vm.buttonText(vm.selectedLocale),
+                    ),
                   const SizedBox(height: 20.0),
                 ],
               ),

@@ -9,6 +9,7 @@ import 'package:my_catalog/models/models/storage_model/data/info_catalog_model.d
 import 'package:my_catalog/models/models/storage_model/data/info_category_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_product_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_subcategory_model.dart';
+import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/info_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/language_model.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
@@ -41,12 +42,12 @@ class StorageSelector {
 
   static void Function() getOpenLanguageDialogFunction(Store<AppState> store) {
     return () => DialogService.instance.show(LanguageDialog(
-      // TODO(Yuri): Fix this pop-up for count of languages > 20.
-      // TODO(Yuri): Max size of pop-up should be 2/3 of screen, after that - scrolling list, https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&view=detail&selectedIssue=MC-35.
-      list: getLanguages(store),
-      selectedLanguage: getSelectedLanguage(store),
-      onItemSelected: getUpdateLanguageFunction(store),
-    ));
+          // TODO(Yuri): Fix this pop-up for count of languages > 20.
+          // TODO(Yuri): Max size of pop-up should be 2/3 of screen, after that - scrolling list, https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&view=detail&selectedIssue=MC-35.
+          list: getLanguages(store),
+          selectedLanguage: getSelectedLanguage(store),
+          onItemSelected: getUpdateLanguageFunction(store),
+        ));
   }
 
   static void Function() getRemoveOpenedStorageFunction(Store<AppState> store) {
@@ -98,11 +99,15 @@ class StorageSelector {
         return termsTitle;
       }
 
-      final String newTermsTitle = store.state?.storageState?.storage?.settings?.languageData?.termsTitle[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.termsTitle[locale];
+        if (newValue == null) return termsTitle;
 
-      if (newTermsTitle == null) return termsTitle;
+        return newValue;
+      } catch (e) {
 
-      return newTermsTitle;
+        return termsTitle;
+      }
     };
   }
 
@@ -114,11 +119,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.termsAcceptButton[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.termsAcceptButton[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -130,11 +139,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.acceptText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.acceptText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -146,11 +159,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.errorText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.errorText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -162,11 +179,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.shareText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.shareText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -178,11 +199,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.descriptionText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.descriptionText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -194,11 +219,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.logoutText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.logoutText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -210,11 +239,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.backButtonText[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.backButtonText[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -226,11 +259,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.productsTitle[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.productsTitle[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -242,11 +279,35 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.categoriesTitle[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.categoriesTitle[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
+    };
+  }
+
+  static String Function(String locale) getSettingsPageTitleText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.settingsPageTitle;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.settingsTitle[locale];
+
+        if (newValue == null) return value;
+
+        return newValue;
+      } catch (_) {
+        return value;
+      }
     };
   }
 
@@ -258,11 +319,15 @@ class StorageSelector {
         return value;
       }
 
-      final String newValue = store.state?.storageState?.storage?.settings?.languageData?.subcategoriesTitle[locale];
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.subcategoriesTitle[locale];
+        if (newValue == null) return value;
 
-      if (newValue == null) return value;
+        return newValue;
+      } catch (e) {
 
-      return newValue;
+        return value;
+      }
     };
   }
 
@@ -300,9 +365,12 @@ class StorageSelector {
 
   static List<InfoSubcategoryModel> getInfoSubCategories(Store<AppState> store) {
     try {
-      final int catalogIndex = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
-      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
-      final List<InfoSubcategoryModel> subcategories = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
+      final int catalogIndex =
+          store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories
+          .indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
+      final List<InfoSubcategoryModel> subcategories =
+          store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
       final List<InfoSubcategoryModel> subcategoriesInSelectedLanguage = [];
 
       for (InfoSubcategoryModel subcategory in subcategories) {
@@ -317,10 +385,14 @@ class StorageSelector {
 
   static List<InfoProductModel> getInfoProducts(Store<AppState> store) {
     try {
-      final int catalogIndex = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
-      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
-      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
-      final List<InfoProductModel> products = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
+      final int catalogIndex =
+          store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories
+          .indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
+      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories
+          .indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
+      final List<InfoProductModel> products =
+          store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
       final List<InfoProductModel> productsInSelectedLanguage = [];
 
       for (InfoProductModel product in products) {
@@ -335,11 +407,18 @@ class StorageSelector {
 
   static List<FileModel> getInfoFiles(Store<AppState> store) {
     try {
-      final int catalogIndex = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
-      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
-      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
-      final int productIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products.indexWhere((item) => item.id == store.state.storageState.openedProductId);
-      final List<int> filesIndexes = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products[productIndex].files ?? [];
+      final int catalogIndex =
+          store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories
+          .indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
+      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories
+          .indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
+      final int productIndex = store
+          .state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products
+          .indexWhere((item) => item.id == store.state.storageState.openedProductId);
+      final List<int> filesIndexes = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex]
+              .subcategories[subCategoryIndex].products[productIndex].files ??
+          [];
       final List<FileModel> files = [];
 
       for (FileModel file in store.state.storageState?.storage?.data?.data?.files ?? []) {
@@ -360,6 +439,16 @@ class StorageSelector {
     }
   }
 
+  static List<FooterButtonModel>  getFooterButtons(Store<AppState> store) {
+
+      try {
+        return store.state.storageState.storage.settings.footerButtons;
+      } catch (e) {
+
+        return null;
+      };
+  }
+
   static CatalogModel Function(int) getCurrentCatalogModelFunction(Store<AppState> store) {
     return (int id) {
       try {
@@ -367,7 +456,6 @@ class StorageSelector {
 
         return store.state.storageState.storage.data.data.catalogs[index];
       } catch (e) {
-
         return null;
       }
     };
@@ -380,7 +468,6 @@ class StorageSelector {
 
         return store.state.storageState.storage.data.data.categories[index];
       } catch (e) {
-
         return null;
       }
     };
@@ -393,7 +480,6 @@ class StorageSelector {
 
         return store.state.storageState.storage.data.data.subcategories[index];
       } catch (e) {
-
         return null;
       }
     };
@@ -406,11 +492,11 @@ class StorageSelector {
 
         return store.state.storageState.storage.data.data.products[index];
       } catch (e) {
-
         return null;
       }
     };
   }
+
 
   static List<SavedStorageModel> getHistory(Store<AppState> store) {
     return store.state.storageState.storesHistory;

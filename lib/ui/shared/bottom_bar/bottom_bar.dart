@@ -33,6 +33,7 @@ class _BottomBarState extends State<BottomBar> {
           mainAxisSize: MainAxisSize.min,
           children: [
             BottomBarSwitch(
+              close: _closeSwitchSheet,
               keyValue: 'BottomBarSwitch',
               isSwitch: isSwitch,
               vm: vm,
@@ -49,6 +50,12 @@ class _BottomBarState extends State<BottomBar> {
         );
       },
     );
+  }
+
+  void _closeSwitchSheet() {
+    setState(() {
+      isSwitch = false;
+    });
   }
 
   void _onTap(String type, BottomBarVM vm) {

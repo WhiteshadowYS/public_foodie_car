@@ -20,38 +20,50 @@ class LanguageDialogWidget extends StatelessWidget {
       child: Column(
         children: [
           Spacer(),
-          Container(
+          Material(
             color: Colors.transparent,
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height * 0.6,
-            ),
-            child: Center(
+            child: InkWell(
+              highlightColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              onTap: () {
+                DialogService.instance.close();
+              },
               child: Container(
-                decoration: BoxDecoration(
-                  color: CustomTheme.colors.popupBackground,
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                color: Colors.transparent,
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height * 0.6,
                 ),
-                padding: EdgeInsets.symmetric(
-                    vertical: 44.0
-                ),
-                margin: EdgeInsets.symmetric(
-                    horizontal: 16.0
-                ),
-                height: dialog.list.length * 55.0 + 88.0 < MediaQuery.of(context).size.height * 0.6
-                    ? dialog.list.length * 55.0 + 88.0
-                    : MediaQuery.of(context).size.height * 0.6,
-                child: ListView(
-                  children: dialog.list.map((language) {
-                    return LanguageItem(
-                      key: '${key.toString()}LanguageItem${language.name}',
-                      language: language,
-                      isSelected: _getIsSelected(language, dialog.selectedLanguage),
-                      callback: () {
-                        if (language.code != dialog.selectedLanguage) dialog.onItemSelected(language.code);
-                        DialogService.instance.close();
-                      },
-                    );
-                  }).toList(),
+                child: Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: CustomTheme.colors.popupBackground,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    padding: EdgeInsets.symmetric(
+                        vertical: 44.0
+                    ),
+                    margin: EdgeInsets.symmetric(
+                        horizontal: 16.0
+                    ),
+                    height: dialog.list.length * 55.0 + 88.0 < MediaQuery.of(context).size.height * 0.6
+                        ? dialog.list.length * 55.0 + 88.0
+                        : MediaQuery.of(context).size.height * 0.6,
+                    child: ListView(
+                      children: dialog.list.map((language) {
+                        return LanguageItem(
+                          key: '${key.toString()}LanguageItem${language.name}',
+                          language: language,
+                          isSelected: _getIsSelected(language, dialog.selectedLanguage),
+                          callback: () {
+                            if (language.code != dialog.selectedLanguage) dialog.onItemSelected(language.code);
+                            DialogService.instance.close();
+                          },
+                        );
+                      }).toList(),
+                    ),
+                  ),
                 ),
               ),
             ),
