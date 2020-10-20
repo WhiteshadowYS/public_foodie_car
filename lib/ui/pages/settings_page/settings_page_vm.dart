@@ -43,7 +43,7 @@ class SettingsPageVM {
         onItemSelected: StorageSelector.getUpdateLanguageFunction(store),
       )),
       isNeedShowLanguages: StorageSelector.isNeedShowLanguagesPopup(store),
-      navigateToTermsPage: RouteSelectors.gotoTermsPage(store),
+      navigateToTermsPage: RouteSelectors.gotoTermsReadOnlyPage(store),
       back: RouteSelectors.doPop(store),
       // TODO(Oles): need to add logic
       isPushNotificationsOn: true,
