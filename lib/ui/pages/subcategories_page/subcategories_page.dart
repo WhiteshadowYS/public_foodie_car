@@ -25,7 +25,7 @@ class SubcategoriesPage extends StatelessWidget {
           bottomBar: BottomBar(key: SubCategoriesPageKeys.bottomBar),
           appBar: MainAppBar(key: SubCategoriesPageKeys.appbar, title: 'SubCategories'),
           child: MainGrid(
-            key: CategoriesPageKeys.gridView,
+            keyValue: CategoriesPageKeys.gridView,
             widgets: vm.subCategories
                 .map((InfoSubcategoryModel infoSubcategory) => getItem(
                       vm: vm,

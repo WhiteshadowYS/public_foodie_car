@@ -25,7 +25,7 @@ class CategoriesPage extends StatelessWidget {
           bottomBar: BottomBar(key: CategoriesPageKeys.bottomBar),
           appBar: MainAppBar(key: CategoriesPageKeys.appbar, title: 'Categories'),
           child: MainGrid(
-            key: CategoriesPageKeys.gridView,
+            keyValue: CategoriesPageKeys.gridView,
             widgets: vm.categories
                 .map((InfoCategoryModel infoCategory) => getItem(
                       vm: vm,

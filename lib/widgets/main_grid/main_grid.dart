@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/utils/clean_behavior.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_catalog/utils/clean_behavior.dart';
 
 class MainGrid extends StatelessWidget {
   final String keyValue;
@@ -38,7 +38,7 @@ class MainGrid extends StatelessWidget {
     }
 
     if (widgets.contains(null)) {
-      widgets.remove(null);
+      widgets.removeWhere((w) => w == null);
     }
 
     return widgets;
