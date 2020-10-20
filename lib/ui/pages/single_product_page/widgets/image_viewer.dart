@@ -7,13 +7,14 @@ import 'package:my_catalog/theme/custom_theme.dart';
 import 'image_view_button.dart';
 
 class ImageViewer extends StatefulWidget {
+  final String keyValue;
   final List<String> gallery;
 
   ImageViewer({
-    @required String key,
+    @required this.keyValue,
     @required this.gallery,
   })  : assert(gallery != null),
-        super(key: Key(key));
+        super(key: Key(keyValue + 'ImageViewer'));
 
   @override
   _ImageViewerState createState() => _ImageViewerState();
@@ -70,10 +71,12 @@ class _ImageViewerState extends State<ImageViewer> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ImageViewButton(
+                    keyValue: 'back_button',
                     icon: Icons.arrow_back_ios,
                     jumpToPage: _carouselController.previousPage,
                   ),
                   ImageViewButton(
+                    keyValue: 'forward_button',
                     icon: Icons.arrow_forward_ios,
                     jumpToPage: _carouselController.nextPage,
                   ),

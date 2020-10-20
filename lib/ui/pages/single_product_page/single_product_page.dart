@@ -37,7 +37,7 @@ class SingleProductPage extends StatelessWidget {
                 style: CustomTheme.textStyles.accentTextStyle(size: 22.sp, fontWeight: FontWeight.w600),
               ),
               ImageViewer(
-                key: SingleProductKeys.gallery,
+                keyValue: SingleProductKeys.gallery,
                 gallery: vm.product.galleryImagesLinks,
               ),
               Padding(
