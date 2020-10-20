@@ -8,6 +8,7 @@ import 'package:my_catalog/models/models/storage_model/data/info_catalog_model.d
 import 'package:my_catalog/models/models/storage_model/data/info_category_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_product_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_subcategory_model.dart';
+import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/info_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/language_model.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -167,6 +168,16 @@ class StorageSelector {
     }
   }
 
+  static List<FooterButtonModel>  getFooterButtons(Store<AppState> store) {
+
+      try {
+        return store.state.storageState.storage.settings.footerButtons;
+      } catch (e) {
+
+        return null;
+      };
+  }
+
   static CatalogModel Function(int) getCurrentCatalogModelFunction(Store<AppState> store) {
     return (int id) {
       try {
@@ -218,6 +229,7 @@ class StorageSelector {
       }
     };
   }
+
 
   static List<SavedStorageModel> getHistory(Store<AppState> store) {
     return store.state.storageState.storesHistory;

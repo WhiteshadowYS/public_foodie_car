@@ -27,7 +27,7 @@ class BottomBarVM {
   static BottomBarVM fromStore(Store<AppState> store) {
     return BottomBarVM(
       // TODO(Daniil): Use selector for this
-      footerButtons: dummyButtons,
+      footerButtons: StorageSelector.getFooterButtons(store),//dummyButtons,
       navigateCatalogPage: RouteSelectors.gotoCatalogsPage(store),
       navigateToMainPage: RouteSelectors.gotoMainPage(store),
       navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
