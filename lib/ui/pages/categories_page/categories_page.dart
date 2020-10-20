@@ -20,6 +20,7 @@ class CategoriesPage extends StatelessWidget {
     return StoreConnector<AppState, CategoriesPageVM>(
       converter: CategoriesPageVM.fromStore,
       builder: (BuildContext context, vm) {
+
         return MainLayout(
           bgColor: CustomTheme.colors.background,
           bottomBar: BottomBar(key: CategoriesPageKeys.bottomBar),

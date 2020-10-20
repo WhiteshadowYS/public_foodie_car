@@ -34,6 +34,7 @@ const Language en = Language(
     pushNotification: 'Push notifications',
   ),
   catalogPageDictionary: CatalogPageDictionary(
+    logOutText: 'Log out',
     chooseCatalog: 'Choose another catalog',
     chooseStore: 'Choose another store',
   ),

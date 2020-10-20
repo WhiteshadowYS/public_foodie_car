@@ -25,7 +25,10 @@ class SingleProductPage extends StatelessWidget {
       builder: (BuildContext context, SingleProductPageVM vm) {
         return MainLayout(
           bgColor: AppColors.kWhite,
-          appBar: MainAppBar(key: SingleProductKeys.appbar),
+          appBar: MainAppBar(
+            key: SingleProductKeys.appbar,
+            height: 56.h,
+          ),
           bottomBar: BottomBar(key: SingleProductKeys.bottomBar),
           child: CleanedListView(
             keyValue: SingleProductKeys.listView,
@@ -36,12 +39,16 @@ class SingleProductPage extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: CustomTheme.textStyles.accentTextStyle(size: 22.sp, fontWeight: FontWeight.w600),
               ),
+              const SizedBox(height: 16.0),
               ImageViewer(
                 keyValue: SingleProductKeys.gallery,
                 gallery: vm.product.galleryImagesLinks,
               ),
+              const SizedBox(height: 16.0),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                ),
                 child: Text(
                   'Description',
                   style: CustomTheme.textStyles.titleTextStyle(size: 15.sp),

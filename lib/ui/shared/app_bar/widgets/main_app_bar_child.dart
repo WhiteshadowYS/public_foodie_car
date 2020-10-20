@@ -25,32 +25,43 @@ class MainAppBarChild extends StatelessWidget {
     return Stack(
       children: [
         if (backOnTap != null)
-          Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: backOnTap,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  children: [
-                    const SizedBox(width: 16.0),
-                    Transform.rotate(
-                      angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
-                      child: SizedBox(
-                        height: 20.0,
-                        child: SVGImages().backArrow(),
-                      ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 8.0,
+              ),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(24.0),
+                  onTap: backOnTap,
+                  child: SizedBox(
+                    height: 36.h,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(width: 8.0),
+                        Transform.rotate(
+                          angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
+                          child: SizedBox(
+                            height: 20.0,
+                            child: SVGImages().backArrow(),
+                          ),
+                        ),
+                        const SizedBox(width: 6.0),
+                        Text(
+                          backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
+                          style: TextStyle(
+                            color: Color(0xFF5DB075),
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        const SizedBox(width: 14.0),
+                      ],
                     ),
-                    const SizedBox(width: 6.0),
-                    Text(
-                      backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
-                      style: TextStyle(
-                        color: Color(0xFF5DB075),
-                        fontSize: 17.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -64,7 +75,6 @@ class MainAppBarChild extends StatelessWidget {
           ),
         if (logoUrl != null)
           Align(
-            alignment: Alignment.topCenter,
             child: SizedBox(
               height: 35.0,
               child: Image.network(logoUrl),
@@ -72,7 +82,6 @@ class MainAppBarChild extends StatelessWidget {
           ),
         if (logoUrl == null && title == null)
           Align(
-            alignment: Alignment.topCenter,
             child: SizedBox(
               height: 35.0,
               child: SVGImages().mcLogo(),
