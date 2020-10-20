@@ -12,6 +12,7 @@ class BottomBarVM {
   final void Function() navigateCatalogPage;
   final void Function() navigateToSettingsPage;
   final void Function() navigateToMainPage;
+  final void Function() navigateToCatalogsPage;
 
   BottomBarVM({
     @required this.footerButtons,
@@ -19,6 +20,7 @@ class BottomBarVM {
     @required this.navigateToMainPage,
     @required this.navigateToSettingsPage,
     @required this.removeOpenedStore,
+    @required this.navigateToCatalogsPage,
   });
 
   static BottomBarVM fromStore(Store<AppState> store) {
@@ -29,6 +31,7 @@ class BottomBarVM {
       navigateToMainPage: RouteSelectors.gotoMainPage(store),
       navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
       removeOpenedStore: StorageSelector.getRemoveOpenedStorageFunction(store),
+      navigateToCatalogsPage: RouteSelectors.gotoCatalogsPage(store),
     );
   }
 
