@@ -21,13 +21,13 @@ class ImageViewButton extends StatelessWidget {
         Icon(
           icon,
           color: AppColors.kBlack.withOpacity(0.4),
-          size: 34,
+          size: 31.0,
         ),
         IconButton(
           key: Key(keyValue),
           icon: Icon(icon),
           color: CustomTheme.colors.buttons,
-          iconSize: 30,
+          iconSize: 30.0,
           onPressed: jumpToPage,
         ),
       ],

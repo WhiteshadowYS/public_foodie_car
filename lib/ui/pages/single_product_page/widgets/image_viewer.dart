@@ -1,18 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_catalog/res/image_assets.dart';
-import 'package:my_catalog/theme/custom_theme.dart';
 
 import 'image_view_button.dart';
 
 class ImageViewer extends StatefulWidget {
   final String keyValue;
   final List<String> gallery;
+  final void Function(List<String> gallery, int currentIndex) showGallery;
 
   ImageViewer({
     @required this.keyValue,
     @required this.gallery,
+    @required this.showGallery,
   })  : assert(gallery != null),
         super(key: Key(keyValue + 'ImageViewer'));
 
@@ -39,18 +39,17 @@ class _ImageViewerState extends State<ImageViewer> {
                 for (String image in widget.gallery)
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          height: double.infinity,
-                          width: double.infinity,
-                          child: FadeInImage(
-                            placeholder: AssetImage(ImageAssets.LOADING),
-                            image: NetworkImage(image),
-                            fit: BoxFit.contain,
-                          ),
+                    child: SizedBox(
+                      height: double.infinity,
+                      width: double.infinity,
+                      child: GestureDetector(
+                        onTap: () => widget.showGallery(widget.gallery, widget.gallery.indexOf(image)),
+                        child: FadeInImage(
+                          placeholder: AssetImage(ImageAssets.LOADING),
+                          image: NetworkImage(image),
+                          fit: BoxFit.contain,
                         ),
-                      ],
+                      ),
                     ),
                   )
               ],
