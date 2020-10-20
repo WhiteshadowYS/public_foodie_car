@@ -52,6 +52,7 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
                 width: double.infinity,
                 child: PhotoView.customChild(
                   minScale: 0.5,
+                  basePosition: Alignment.center,
                   maxScale: 3.0,
                   controller: _photoViewController,
                   backgroundDecoration: BoxDecoration(color: AppColors.kBlack.withOpacity(0)),
@@ -81,23 +82,24 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: AnimatedOpacity(
-                curve: Curves.easeInBack,
-                duration: Duration(milliseconds: 800),
-                opacity: _init ? 1.0 : 0.0,
-                child: CircleAvatar(
-                  radius: 25.0,
-                  backgroundColor: Colors.white.withOpacity(0.5),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      splashColor: CustomTheme.colors.background.withOpacity(0.4),
-                      highlightColor: CustomTheme.colors.background.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(30.0),
-                      onTap: Navigator.of(context, rootNavigator: true).pop,
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                splashColor: CustomTheme.colors.primaryColor.withOpacity(0.4),
+                highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(60.0),
+                onTap: Navigator.of(context, rootNavigator: true).pop,
+                child: Container(
+                  margin: const EdgeInsets.all(16.0),
+                  child: AnimatedOpacity(
+                    curve: Curves.easeInBack,
+                    duration: Duration(milliseconds: 800),
+                    opacity: _init ? 1.0 : 0.0,
+                    child: CircleAvatar(
+                      radius: 25.0,
+                      backgroundColor: Colors.white.withOpacity(0.5),
                       child: Icon(Icons.close, size: 30.0, color: CustomTheme.colors.primaryColor),
+
                     ),
                   ),
                 ),
