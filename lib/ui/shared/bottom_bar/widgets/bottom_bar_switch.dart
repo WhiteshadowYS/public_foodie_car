@@ -46,7 +46,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
             BoxShadow(
               color: AppColors.kBlack.withOpacity(0.3),
               blurRadius: 1.5,
-            )
+            ),
           ],
           color: AppColors.kWhite,
         ),
