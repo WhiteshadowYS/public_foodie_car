@@ -20,7 +20,11 @@ import 'widgets/agree_button.dart';
 /// After tapping on [AgreeButton] user goes to the [CatalogsPage]
 
 class TermsPage extends StatefulWidget {
-  TermsPage() : super(key: Key('TermsPage'));
+  TermsPage({
+    @required this.isReadOnly,
+  }) : super(key: Key('TermsPage'));
+
+  final bool isReadOnly;
 
   @override
   _TermsPageState createState() => _TermsPageState();
@@ -64,7 +68,7 @@ class _TermsPageState extends State<TermsPage> {
                   ),
 
                   /// [AgreeButton] takes [vm.navigateToCatalogsPage] as onTap function and [dictionary.agree] text as title
-                  AgreeButton(
+                  if (!widget.isReadOnly) AgreeButton(
                     keyValue: TermsPageKeys.button,
                     onTap: () {
                       timer = Timer(Duration(milliseconds: 1500), () {

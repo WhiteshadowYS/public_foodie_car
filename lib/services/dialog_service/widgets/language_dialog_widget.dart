@@ -21,23 +21,26 @@ class LanguageDialogWidget extends StatelessWidget {
         children: [
           Spacer(),
           Container(
-            decoration: BoxDecoration(
-              color: CustomTheme.colors.popupBackground,
-              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            color: Colors.transparent,
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.6,
             ),
-            padding: EdgeInsets.symmetric(
-              vertical: 44.0
-            ),
-            margin: EdgeInsets.symmetric(
-              horizontal: 16.0
-            ),
-            child: Material(
+            child: Center(
               child: Container(
                 decoration: BoxDecoration(
                   color: CustomTheme.colors.popupBackground,
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                 ),
-                child: Column(
+                padding: EdgeInsets.symmetric(
+                    vertical: 44.0
+                ),
+                margin: EdgeInsets.symmetric(
+                    horizontal: 16.0
+                ),
+                height: dialog.list.length * 55.0 + 88.0 < MediaQuery.of(context).size.height * 0.6
+                    ? dialog.list.length * 55.0 + 88.0
+                    : MediaQuery.of(context).size.height * 0.6,
+                child: ListView(
                   children: dialog.list.map((language) {
                     return LanguageItem(
                       key: '${key.toString()}LanguageItem${language.name}',
@@ -82,44 +85,47 @@ class LanguageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: callback,
-      child: SizedBox(
-        height: 55.0,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 30.0
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      language.name,
-                      style: isSelected
-                          ? CustomTheme.textStyles.accentTextStyle(size: 14, fontWeight: FontWeight.bold)
-                          : CustomTheme.textStyles.titleTextStyle(size: 14.0),
-                    ),
-                    Icon(
-                      Icons.keyboard_arrow_right,
-                      size: 18,
-                      color: isSelected
-                          ? CustomTheme.colors.accentFont
-                          : CustomTheme.colors.minorFont,
-                    ),
-                  ],
+    return SizedBox(
+      height: 55.0,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: callback,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 30.0
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        language.name,
+                        style: isSelected
+                            ? CustomTheme.textStyles.accentTextStyle(size: 14, fontWeight: FontWeight.bold)
+                            : CustomTheme.textStyles.titleTextStyle(size: 14.0),
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_right,
+                        size: 18,
+                        color: isSelected
+                            ? CustomTheme.colors.accentFont
+                            : CustomTheme.colors.minorFont,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Container(
-              height: 1.0,
-              width: double.infinity,
-              color: CustomTheme.colors.font.withOpacity(0.2),
-            ),
-          ],
+              Container(
+                height: 1.0,
+                width: double.infinity,
+                color: CustomTheme.colors.font.withOpacity(0.2),
+              ),
+            ],
+          ),
         ),
       ),
     );

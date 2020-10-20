@@ -29,7 +29,7 @@ class BottomBarVM {
       // TODO(Daniil): Use selector for this
       footerButtons: dummyButtons,
       navigateCatalogPage: RouteSelectors.gotoCatalogsPage(store),
-      navigateToMainPage: RouteSelectors.gotoMainPage(store),
+      navigateToMainPage: StorageSelector.getLogOutFunction(store),
       navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
       removeOpenedStore: StorageSelector.getRemoveOpenedStorageFunction(store),
       navigateToCatalogsPage: RouteSelectors.gotoCatalogsPage(store),
