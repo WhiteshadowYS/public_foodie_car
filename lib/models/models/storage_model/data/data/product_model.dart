@@ -51,10 +51,11 @@ class ProductModel implements IDto {
     }
   }
 
-  List<String> pointsForLanguage(String langCode) {
+  List<dynamic> pointsForLanguage(String langCode) {
     try {
       return languages[langCode][KEY_POINTS] ?? [];
     } catch (e) {
+      print(e);
       return [];
     }
   }
