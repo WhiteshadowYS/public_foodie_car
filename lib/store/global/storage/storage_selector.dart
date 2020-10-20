@@ -96,7 +96,7 @@ class StorageSelector {
       final List<InfoCategoryModel> categoriesInSelectedLanguage = [];
 
       for (InfoCategoryModel category in categories) {
-        if (category.displayedIn.contains(store.state.storageState.storesHistory.last.locale)) categoriesInSelectedLanguage.add(category);
+        if (category.displayedIn.contains(getSelectedLocale(store))) categoriesInSelectedLanguage.add(category);
       }
 
       return categoriesInSelectedLanguage;
@@ -113,7 +113,7 @@ class StorageSelector {
       final List<InfoSubcategoryModel> subcategoriesInSelectedLanguage = [];
 
       for (InfoSubcategoryModel subcategory in subcategories) {
-        if (subcategory.displayedIn.contains(store.state.storageState.storesHistory.last.locale)) subcategoriesInSelectedLanguage.add(subcategory);
+        if (subcategory.displayedIn.contains(getSelectedLocale(store))) subcategoriesInSelectedLanguage.add(subcategory);
       }
 
       return subcategoriesInSelectedLanguage;
@@ -131,7 +131,7 @@ class StorageSelector {
       final List<InfoProductModel> productsInSelectedLanguage = [];
 
       for (InfoProductModel product in products) {
-        if (product.displayedIn.contains(store.state.storageState.storesHistory.last.locale)) productsInSelectedLanguage.add(product);
+        if (product.displayedIn.contains(getSelectedLocale(store))) productsInSelectedLanguage.add(product);
       }
 
       return productsInSelectedLanguage;
@@ -158,7 +158,7 @@ class StorageSelector {
       final List<FileModel> filesInSelectedLanguage = [];
 
       for (FileModel file in files) {
-        if (file.languages.containsKey(store.state.storageState.storesHistory.last.locale)) filesInSelectedLanguage.add(file);
+        if (file.languages.containsKey(getSelectedLocale(store))) filesInSelectedLanguage.add(file);
       }
 
       return filesInSelectedLanguage;
