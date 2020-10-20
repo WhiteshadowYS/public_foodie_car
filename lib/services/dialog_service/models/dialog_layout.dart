@@ -43,7 +43,7 @@ class _DialogLayoutState extends State<DialogLayout> with SingleTickerProviderSt
         child: Center(
           child: Container(
             margin: widget.margin ?? const EdgeInsets.symmetric(horizontal: 16.0),
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: widget.margin ??const EdgeInsets.symmetric(vertical: 8.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
               color: widget.background ?? CustomTheme.colors.background,
