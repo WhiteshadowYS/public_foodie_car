@@ -29,28 +29,31 @@ class MainAppBarChild extends StatelessWidget {
         if (backOnTap != null)
           Material(
             color: Colors.transparent,
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Row(
-                children: [
-                  const SizedBox(width: 16.0),
-                  Transform.rotate(
-                    angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
-                    child: SizedBox(
-                      height: 20.0,
-                      child: SVGImages().backArrow(),
+            child: InkWell(
+              onTap: backOnTap,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Row(
+                  children: [
+                    const SizedBox(width: 16.0),
+                    Transform.rotate(
+                      angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
+                      child: SizedBox(
+                        height: 20.0,
+                        child: SVGImages().backArrow(),
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 6.0),
-                  Text(
-                    FlutterDictionary.instance.language.appbarDictionary.back,
-                    style: TextStyle(
-                      color: Color(0xFF5DB075),
-                      fontSize: 17.sp,
-                      fontWeight: FontWeight.w400,
+                    const SizedBox(width: 6.0),
+                    Text(
+                      backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
+                      style: TextStyle(
+                        color: Color(0xFF5DB075),
+                        fontSize: 17.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

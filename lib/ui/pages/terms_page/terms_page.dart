@@ -69,7 +69,7 @@ class _TermsPageState extends State<TermsPage> {
                     onTap: () {
                       timer = Timer(Duration(milliseconds: 1500), () {
                         if (isAccepted) {
-                          vm.navigateToCatalogsPage();
+                          vm.acceptTermsAndNavigate();
                         }
                       });
 

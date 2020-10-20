@@ -14,6 +14,7 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
 import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_action.dart';
+import 'package:my_catalog/store/global/storage/actions/save_accepted_terms_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/global/storage/storage_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
@@ -54,6 +55,21 @@ class StorageSelector {
         ),
       );
     };
+  }
+
+  static void Function() getAcceptTermsAndNavigateFunction(Store<AppState> store) {
+    return () {
+      store.dispatch(
+        SaveAcceptedTermsIdAction(
+          id: store.state.storageState.openedCatalogId,
+          storage: store.state.storageState.storage,
+        ),
+      );
+    };
+  }
+
+  static String getTermsText(Store<AppState> store) {
+    return store.state?.storageState?.storage?.settings?.tac ?? '';
   }
 
   static void Function(String) getUpdateLanguageFunction(Store<AppState> store) {

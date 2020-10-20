@@ -55,7 +55,7 @@ class StorageRepository extends Repository {
     final String acceptedIdList = await LocalStorageService.instance.getValueByKey(StorageKeys.acceptedStoreId);
 
     if (acceptedIdList == null || acceptedIdList == '') {
-      return null;
+      return false;
     }
 
     List<String> _idList = acceptedIdList.split('|');
