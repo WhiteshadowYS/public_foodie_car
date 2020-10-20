@@ -52,7 +52,7 @@ class _SettingsPageState extends State<SettingsPage> {
             key: 'SettingsPageBottomBar',
           ),
           bgColor: CustomTheme.colors.background,
-          child: Column(
+          child: ListView(
             children: [
               InfoBlock(
                 key: 'SettingsPageInfoBlock',
@@ -90,17 +90,29 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 callback: vm.navigateToTermsPage,
               ),
-              Spacer(),
-              Text(
-                '${dictionary.appVersion} $appVersion',
-                style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+              SizedBox(
+                height: 64.0,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: Align(
+                  child: Text(
+                    '${dictionary.appVersion} $appVersion',
+                    style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 14.0,
               ),
-              Text(
-                dictionary.createBy,
-                style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+              SizedBox(
+                width: double.infinity,
+                child: Align(
+                  child: Text(
+                    dictionary.createBy,
+                    style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 46.0,
