@@ -23,9 +23,15 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
   final PhotoViewController _photoViewController = PhotoViewController();
   int index;
 
+  bool _init = false;
+
   @override
   void initState() {
     index = widget.dialog.currentIndex;
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _init = true;
+      setState(() {});
+    });
     super.initState();
   }
 
@@ -73,13 +79,21 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
                 ],
               ),
             ),
-            CircleAvatar(
-              radius: 25.0,
-              backgroundColor: Colors.white.withOpacity(0.5),
-              child: InkWell(
-                onTap: Navigator.of(context, rootNavigator: true).pop,
-                child: Icon(Icons.close, size: 30, color: CustomTheme.colors.primaryColor),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AnimatedOpacity(
+                curve: Curves.easeInBack,
+              duration: Duration(milliseconds: 800),
+              opacity: _init ? 1.0 : 0.0,
+              child: CircleAvatar(
+                radius: 25.0,
+                backgroundColor: Colors.white.withOpacity(0.5),
+                child: InkWell(
+                  onTap: Navigator.of(context, rootNavigator: true).pop,
+                  child: Icon(Icons.close, size: 30, color: CustomTheme.colors.primaryColor),
+                ),
               ),
+                ),
             ),
           ],
         ),

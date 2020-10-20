@@ -22,7 +22,7 @@ class MainGridItem extends StatefulWidget {
   _MainGridItemState createState() => _MainGridItemState();
 }
 
-class _MainGridItemState extends State<MainGridItem> with SingleTickerProviderStateMixin {
+class _MainGridItemState extends State<MainGridItem> {
   bool _init = false;
 
   @override
