@@ -6,6 +6,7 @@ import 'package:my_catalog/services/dialog_service/models/image_view_dialog.dart
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/image_view_button.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImageViewDialogWidget extends StatefulWidget {
   final ImageViewDialog dialog;
@@ -45,21 +46,23 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
         child: Stack(
           alignment: Alignment.topRight,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12.0),
-              child: SizedBox(
-                height: double.infinity,
-                width: double.infinity,
-                child: PhotoView.customChild(
-                  minScale: 0.5,
-                  basePosition: Alignment.center,
-                  maxScale: 3.0,
-                  controller: _photoViewController,
-                  backgroundDecoration: BoxDecoration(color: AppColors.kBlack.withOpacity(0)),
-                  child: FadeInImage(
-                    placeholder: AssetImage(ImageAssets.LOGO_FULL_PNG),
-                    image: NetworkImage(widget.dialog.gallery[index]),
-                    fit: BoxFit.contain,
+            Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12.0),
+                child: SizedBox(
+                  height: 600.h,
+                  width: MediaQuery.of(context).size.width       ,
+                  child: PhotoView.customChild(
+                    minScale: 0.7,
+                    basePosition: Alignment.center,
+                    maxScale: 2.5,
+                    controller: _photoViewController,
+                    backgroundDecoration: BoxDecoration(color: AppColors.kBlack.withOpacity(0)),
+                    child: FadeInImage(
+                      placeholder: AssetImage(ImageAssets.LOGO_FULL_PNG),
+                      image: NetworkImage(widget.dialog.gallery[index]),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
@@ -82,15 +85,15 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
                 ],
               ),
             ),
-            Material(
-              color: Colors.transparent,
-              child: InkWell(
-                splashColor: CustomTheme.colors.primaryColor.withOpacity(0.4),
-                highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(60.0),
-                onTap: Navigator.of(context, rootNavigator: true).pop,
-                child: Container(
-                  margin: const EdgeInsets.all(16.0),
+            Container(
+              margin: const EdgeInsets.all(16.0),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  splashColor: CustomTheme.colors.primaryColor.withOpacity(0.4),
+                  highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(60.0),
+                  onTap: Navigator.of(context, rootNavigator: true).pop,
                   child: AnimatedOpacity(
                     curve: Curves.easeInBack,
                     duration: Duration(milliseconds: 800),
@@ -99,7 +102,6 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
                       radius: 25.0,
                       backgroundColor: Colors.white.withOpacity(0.5),
                       child: Icon(Icons.close, size: 30.0, color: CustomTheme.colors.primaryColor),
-
                     ),
                   ),
                 ),
