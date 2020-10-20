@@ -16,6 +16,7 @@ import 'package:my_catalog/ui/pages/settings_page/widgets/language_dropdown.dart
 import 'package:my_catalog/ui/pages/settings_page/widgets/settings_item.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
+import 'package:my_catalog/utils/clean_behavior.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage() : super(key: Key('SettingsPage'));
@@ -45,7 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
           back: vm.back,
           appBar: MainAppBar(
             key: 'SettingsPageMainAppBar',
-            title: dictionary.settings,
+            title: vm.settingsPageTitle(vm.selectedLocale),
             backOnTap: vm.back,
             backButtonText: vm.backButtonText(vm.selectedLocale),
           ),
@@ -53,7 +54,8 @@ class _SettingsPageState extends State<SettingsPage> {
             key: 'SettingsPageBottomBar',
           ),
           bgColor: CustomTheme.colors.background,
-          child: ListView(
+          child: CleanedListView(
+            keyValue: 'SettingsPageListView',
             children: [
               InfoBlock(
                 key: 'SettingsPageInfoBlock',

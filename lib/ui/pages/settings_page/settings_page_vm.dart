@@ -20,6 +20,7 @@ class SettingsPageVM {
   final void Function() navigateToTermsPage;
   final void Function() changePushNotificationStatus;
   final String Function(String) backButtonText;
+  final String Function(String) settingsPageTitle;
 
   const SettingsPageVM({
     @required this.info,
@@ -32,10 +33,12 @@ class SettingsPageVM {
     @required this.back,
     @required this.selectedLocale,
     @required this.backButtonText,
+    @required this.settingsPageTitle,
   });
 
   static SettingsPageVM fromStore(Store<AppState> store) {
     return SettingsPageVM(
+      settingsPageTitle: StorageSelector.getSettingsPageTitleText(store),
       selectedLocale: StorageSelector.getSelectedLocale(store),
       backButtonText: StorageSelector.getBackButtonText(store),
       info: StorageSelector.getInfoModel(store),

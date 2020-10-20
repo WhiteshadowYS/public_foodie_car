@@ -13,12 +13,14 @@ class TermsPageVM {
   final String selectedLocale;
   final String Function(String) titleText;
   final String Function(String) buttonText;
+  final String Function(String) backButtonText;
 
   const TermsPageVM({
     @required this.selectedLocale,
     @required this.titleText,
     @required this.termsText,
     @required this.buttonText,
+    @required this.backButtonText,
     @required this.acceptTermsAndNavigate,
     @required this.back,
   });
@@ -30,6 +32,7 @@ class TermsPageVM {
       termsText: StorageSelector.getTermsText(store),
       titleText: StorageSelector.getTermsTitleText(store),
       buttonText: StorageSelector.getTermsButtonText(store),
+      backButtonText: StorageSelector.getBackButtonText(store),
       selectedLocale: StorageSelector.getSelectedLocale(store),
     );
   }

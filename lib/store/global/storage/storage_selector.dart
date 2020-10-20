@@ -41,12 +41,12 @@ class StorageSelector {
 
   static void Function() getOpenLanguageDialogFunction(Store<AppState> store) {
     return () => DialogService.instance.show(LanguageDialog(
-      // TODO(Yuri): Fix this pop-up for count of languages > 20.
-      // TODO(Yuri): Max size of pop-up should be 2/3 of screen, after that - scrolling list, https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&view=detail&selectedIssue=MC-35.
-      list: getLanguages(store),
-      selectedLanguage: getSelectedLanguage(store),
-      onItemSelected: getUpdateLanguageFunction(store),
-    ));
+          // TODO(Yuri): Fix this pop-up for count of languages > 20.
+          // TODO(Yuri): Max size of pop-up should be 2/3 of screen, after that - scrolling list, https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&view=detail&selectedIssue=MC-35.
+          list: getLanguages(store),
+          selectedLanguage: getSelectedLanguage(store),
+          onItemSelected: getUpdateLanguageFunction(store),
+        ));
   }
 
   static void Function() getRemoveOpenedStorageFunction(Store<AppState> store) {
@@ -250,6 +250,26 @@ class StorageSelector {
     };
   }
 
+  static String Function(String locale) getSettingsPageTitleText(Store<AppState> store) {
+    return (String locale) {
+      final String value = FlutterDictionary.instance.language.serverTextsDictionary.settingsPageTitle;
+
+      if (locale == null || locale == '') {
+        return value;
+      }
+
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.settingsTitle[locale];
+
+        if (newValue == null) return value;
+
+        return newValue;
+      } catch (_) {
+        return value;
+      }
+    };
+  }
+
   static String Function(String locale) getSubcategoriesTitleText(Store<AppState> store) {
     return (String locale) {
       final String value = FlutterDictionary.instance.language.serverTextsDictionary.subcategoriesPageTitle;
@@ -300,9 +320,12 @@ class StorageSelector {
 
   static List<InfoSubcategoryModel> getInfoSubCategories(Store<AppState> store) {
     try {
-      final int catalogIndex = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
-      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
-      final List<InfoSubcategoryModel> subcategories = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
+      final int catalogIndex =
+          store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories
+          .indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
+      final List<InfoSubcategoryModel> subcategories =
+          store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
       final List<InfoSubcategoryModel> subcategoriesInSelectedLanguage = [];
 
       for (InfoSubcategoryModel subcategory in subcategories) {
@@ -317,10 +340,14 @@ class StorageSelector {
 
   static List<InfoProductModel> getInfoProducts(Store<AppState> store) {
     try {
-      final int catalogIndex = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
-      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
-      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
-      final List<InfoProductModel> products = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
+      final int catalogIndex =
+          store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories
+          .indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
+      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories
+          .indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
+      final List<InfoProductModel> products =
+          store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
       final List<InfoProductModel> productsInSelectedLanguage = [];
 
       for (InfoProductModel product in products) {
@@ -335,11 +362,18 @@ class StorageSelector {
 
   static List<FileModel> getInfoFiles(Store<AppState> store) {
     try {
-      final int catalogIndex = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
-      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
-      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
-      final int productIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products.indexWhere((item) => item.id == store.state.storageState.openedProductId);
-      final List<int> filesIndexes = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products[productIndex].files ?? [];
+      final int catalogIndex =
+          store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories
+          .indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
+      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories
+          .indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
+      final int productIndex = store
+          .state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products
+          .indexWhere((item) => item.id == store.state.storageState.openedProductId);
+      final List<int> filesIndexes = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex]
+              .subcategories[subCategoryIndex].products[productIndex].files ??
+          [];
       final List<FileModel> files = [];
 
       for (FileModel file in store.state.storageState?.storage?.data?.data?.files ?? []) {
@@ -367,7 +401,6 @@ class StorageSelector {
 
         return store.state.storageState.storage.data.data.catalogs[index];
       } catch (e) {
-
         return null;
       }
     };
@@ -380,7 +413,6 @@ class StorageSelector {
 
         return store.state.storageState.storage.data.data.categories[index];
       } catch (e) {
-
         return null;
       }
     };
@@ -393,7 +425,6 @@ class StorageSelector {
 
         return store.state.storageState.storage.data.data.subcategories[index];
       } catch (e) {
-
         return null;
       }
     };
@@ -406,7 +437,6 @@ class StorageSelector {
 
         return store.state.storageState.storage.data.data.products[index];
       } catch (e) {
-
         return null;
       }
     };

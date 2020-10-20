@@ -43,6 +43,9 @@ class LanguageDataModel implements IDto {
   @JsonKey(name: 'subcategories_title', required: false, nullable: true)
   final Map<String, dynamic> subcategoriesTitle;
 
+  @JsonKey(name: 'settings_title', required: false, nullable: true)
+  final Map<String, dynamic> settingsTitle;
+
   const LanguageDataModel({
     @required this.errorText,
     @required this.acceptText,
@@ -55,6 +58,7 @@ class LanguageDataModel implements IDto {
     @required this.productsTitle,
     @required this.categoriesTitle,
     @required this.subcategoriesTitle,
+    @required this.settingsTitle,
   });
 
   factory LanguageDataModel.fromJson(json) => _$LanguageDataModelFromJson(json);
