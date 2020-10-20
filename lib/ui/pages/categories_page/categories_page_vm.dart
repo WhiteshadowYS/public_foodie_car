@@ -12,12 +12,16 @@ class CategoriesPageVM {
   final CategoryModel Function(int) getCurrentCategoryData;
   final List<InfoCategoryModel> categories;
   final String currentLocale;
+  final String Function(String) categoriesPageTitle;
+  final String Function(String) backButtonText;
 
   const CategoriesPageVM({
     @required this.navigateToSubcategoriesPage,
     @required this.currentLocale,
     @required this.categories,
     @required this.getCurrentCategoryData,
+    @required this.categoriesPageTitle,
+    @required this.backButtonText,
   });
 
   static CategoriesPageVM fromStore(Store<AppState> store) {
@@ -25,6 +29,8 @@ class CategoriesPageVM {
       navigateToSubcategoriesPage: RouteSelectors.gotoSubcategoriesPage(store),
       currentLocale: StorageSelector.getSelectedLocale(store),
       categories: StorageSelector.getInfoCategories(store),
+      backButtonText: StorageSelector.getBackButtonText(store),
+      categoriesPageTitle: StorageSelector.getCategoriesTitleText(store),
       getCurrentCategoryData: StorageSelector.getCurrentCategoryModelFunction(store),
     );
   }

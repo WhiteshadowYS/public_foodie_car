@@ -20,19 +20,22 @@ class CategoriesPage extends StatelessWidget {
     return StoreConnector<AppState, CategoriesPageVM>(
       converter: CategoriesPageVM.fromStore,
       builder: (BuildContext context, vm) {
-
         return MainLayout(
           bgColor: CustomTheme.colors.background,
           bottomBar: BottomBar(key: CategoriesPageKeys.bottomBar),
-          appBar: MainAppBar(key: CategoriesPageKeys.appbar, title: 'Categories'),
+          appBar: MainAppBar(
+            key: CategoriesPageKeys.appbar,
+            title: vm.categoriesPageTitle(vm.currentLocale),
+            backButtonText: vm.backButtonText(vm.currentLocale),
+          ),
           child: MainGrid(
             keyValue: CategoriesPageKeys.gridView,
-            widgets: vm.categories
-                .map((InfoCategoryModel infoCategory) => getItem(
-                      vm: vm,
-                      infoCategory: infoCategory,
-                    ))
-                .toList(),
+            widgets: vm.categories.map((InfoCategoryModel infoCategory) {
+              return getItem(
+                vm: vm,
+                infoCategory: infoCategory,
+              );
+            }).toList(),
           ),
         );
       },

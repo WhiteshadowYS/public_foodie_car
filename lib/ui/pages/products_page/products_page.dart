@@ -23,7 +23,12 @@ class ProductsPage extends StatelessWidget {
           bgColor: AppColors.kWhite,
           appBar: MainAppBar(
             key: ProductsPageKeys.appbar,
-            title: 'Products',
+            backButtonText: vm.backButtonText(
+              vm.currentLocale,
+            ),
+            title: vm.productsPageTitle(
+              vm.currentLocale,
+            ),
           ),
           bottomBar: BottomBar(key: ProductsPageKeys.bottomBar),
           child: ScrollConfiguration(

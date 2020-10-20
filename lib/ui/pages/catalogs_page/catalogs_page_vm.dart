@@ -14,23 +14,31 @@ class CatalogsPageVM {
   final void Function(String logoUrl) exitDialog;
   final CatalogModel Function(int) getCurrentCatalogData;
   final List<InfoCatalogModel> catalogs;
+  final String Function(String) logoutText;
+  final String Function(String) descriptionTitleText;
   final String currentLocale;
-
+  final String logoUrl;
 
   const CatalogsPageVM({
     @required this.logOut,
     @required this.navigateToCategoriesPage,
     @required this.exitDialog,
     @required this.catalogs,
+    @required this.logoutText,
     @required this.getCurrentCatalogData,
     @required this.currentLocale,
+    @required this.descriptionTitleText,
+    @required this.logoUrl,
   });
 
   static CatalogsPageVM fromStore(Store<AppState> store) {
     return CatalogsPageVM(
+      logoutText: StorageSelector.getLogoutText(store),
+      logoUrl: StorageSelector.getLogoUrl(store),
       logOut: StorageSelector.getLogOutFunction(store),
       catalogs: StorageSelector.getInfoCatalogs(store),
       currentLocale: StorageSelector.getSelectedLocale(store),
+      descriptionTitleText: StorageSelector.getDescriptionText(store),
       navigateToCategoriesPage: RouteSelectors.gotoCategoriesPage(store),
       exitDialog: DialogSelectors.getExitDialogFunction(store),
       getCurrentCatalogData: StorageSelector.getCurrentCatalogModelFunction(store),

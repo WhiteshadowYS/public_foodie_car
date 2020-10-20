@@ -10,6 +10,7 @@ import 'package:redux/redux.dart';
 // TODO(Yuri): Add comments for this class.
 class SettingsPageVM {
   final InfoModel info;
+  final String selectedLocale;
   final String selectedLanguage;
   final bool isPushNotificationsOn;
   final bool isNeedShowLanguages;
@@ -18,6 +19,7 @@ class SettingsPageVM {
   final void Function() openLanguagesPopup;
   final void Function() navigateToTermsPage;
   final void Function() changePushNotificationStatus;
+  final String Function(String) backButtonText;
 
   const SettingsPageVM({
     @required this.info,
@@ -28,10 +30,14 @@ class SettingsPageVM {
     @required this.changePushNotificationStatus,
     @required this.navigateToTermsPage,
     @required this.back,
+    @required this.selectedLocale,
+    @required this.backButtonText,
   });
 
   static SettingsPageVM fromStore(Store<AppState> store) {
     return SettingsPageVM(
+      selectedLocale: StorageSelector.getSelectedLocale(store),
+      backButtonText: StorageSelector.getBackButtonText(store),
       info: StorageSelector.getInfoModel(store),
       selectedLanguage: StorageSelector.getSelectedLanguage(store),
       // TODO(Yuri): Move to Selectors, https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&view=detail&selectedIssue=MC-35.

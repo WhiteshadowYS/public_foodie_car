@@ -47,6 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
             key: 'SettingsPageMainAppBar',
             title: dictionary.settings,
             backOnTap: vm.back,
+            backButtonText: vm.backButtonText(vm.selectedLocale),
           ),
           bottomBar: BottomBar(
             key: 'SettingsPageBottomBar',

@@ -12,12 +12,16 @@ class ProductsPageVM {
   final ProductModel Function(int) getCurrentProductData;
   final List<InfoProductModel> products;
   final String currentLocale;
+  final String Function(String) productsPageTitle;
+  final String Function(String) backButtonText;
 
   const ProductsPageVM({
     @required this.navigateToSingleProductPagePage,
     @required this.getCurrentProductData,
     @required this.currentLocale,
     @required this.products,
+    @required this.productsPageTitle,
+    @required this.backButtonText,
   });
 
   static ProductsPageVM fromStore(Store<AppState> store) {
@@ -25,7 +29,9 @@ class ProductsPageVM {
       navigateToSingleProductPagePage: RouteSelectors.gotoSingleProductPage(store),
       currentLocale: StorageSelector.getSelectedLocale(store),
       products: StorageSelector.getInfoProducts(store),
+      productsPageTitle: StorageSelector.getProductsTitleText(store),
       getCurrentProductData: StorageSelector.getCurrentProductModelFunction(store),
+      backButtonText: StorageSelector.getBackButtonText(store),
     );
   }
 }

@@ -7,12 +7,14 @@ import 'package:my_catalog/theme/custom_theme.dart';
 class CatalogItem extends StatelessWidget {
   final String keyValue;
   final String locale;
+  final String descriptionTitle;
   final CatalogModel catalog;
   final void Function(int) navigateToCategories;
 
   CatalogItem({
     @required this.keyValue,
     @required this.locale,
+    @required this.descriptionTitle,
     @required this.catalog,
     @required this.navigateToCategories,
   }) : super(key: Key(keyValue + 'CatalogItem'));
@@ -49,7 +51,7 @@ class CatalogItem extends StatelessWidget {
             ),
             const SizedBox(height: 14.0),
             Text(
-              'Description',
+              descriptionTitle ?? '',
               style: CustomTheme.textStyles.titleTextStyle(
                 size: 14.sp,
               ),

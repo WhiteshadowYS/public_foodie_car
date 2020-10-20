@@ -26,6 +26,10 @@ class SingleProductPage extends StatelessWidget {
         return MainLayout(
           bgColor: AppColors.kWhite,
           appBar: MainAppBar(
+            backButtonText: vm.backButtonText(
+              vm.currentLocale,
+            ),
+            logoUrl: vm.logoUrl,
             key: SingleProductKeys.appbar,
             height: 56.h,
           ),
@@ -50,7 +54,9 @@ class SingleProductPage extends StatelessWidget {
                   horizontal: 8.0,
                 ),
                 child: Text(
-                  'Description',
+                  vm.descriptionText(
+                    vm.currentLocale,
+                  ),
                   style: CustomTheme.textStyles.titleTextStyle(size: 15.sp),
                   textAlign: TextAlign.center,
                 ),
