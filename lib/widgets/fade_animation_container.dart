@@ -1,22 +1,12 @@
-import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:my_catalog/res/const.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:my_catalog/res/image_assets.dart';
 
 class FadeAnimationContainer extends StatefulWidget {
-  final Widget placeholder;
-  final EdgeInsets margin;
-  final double borderRadius;
-  final int periodicSeconds;
 
-  FadeAnimationContainer(
-      {@required String key,
-      @required this.placeholder,
-      this.periodicSeconds = 10,
-      this.borderRadius = 20.0,
-      this.margin = const EdgeInsets.all(0.0)})
-      : super(key: Key(key));
+  FadeAnimationContainer({Key key}) : super(key: key);
 
   @override
   _FadeAnimationContainerState createState() => _FadeAnimationContainerState();
@@ -50,7 +40,7 @@ class _FadeAnimationContainerState extends State<FadeAnimationContainer> with Si
       children: [
         Transform.rotate(
           angle: _animation.value,
-          child: widget.placeholder,
+          child: SvgPicture.asset(ImageAssets.LOADING),
         ),
       ],
     );

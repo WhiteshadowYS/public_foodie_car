@@ -46,11 +46,7 @@ class _ImageViewerState extends State<ImageViewer> {
                       width: double.infinity,
                       child: GestureDetector(
                         onTap: () => widget.showGallery(widget.gallery, widget.gallery.indexOf(image)),
-                        child: FadeAnimationContainer(
-                          key: "FadeAnimationContainerImageViewer",
-                          placeholder: SvgPicture.asset(ImageAssets.LOADING),
-                         // image: Image.network(image, fit: BoxFit.contain),
-                        ),
+                        child: FadeAnimationContainer(),
                       ),
                     ),
                   )

@@ -46,11 +46,7 @@ class CatalogItem extends StatelessWidget {
               child: SizedBox(
                 height: 172.h,
                 width: double.infinity,
-                child: FadeAnimationContainer(
-                  key: 'FadeAnimationContainerCatalogItem',
-                  placeholder: SvgPicture.asset(ImageAssets.LOADING),
-                 // image: Image.network(catalog.imageLink ?? '', fit: BoxFit.fitWidth),
-                ),
+                child: FadeAnimationContainer(),
               ),
             ),
             const SizedBox(height: 14.0),

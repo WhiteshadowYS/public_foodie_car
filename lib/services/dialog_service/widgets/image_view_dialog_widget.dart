@@ -66,10 +66,7 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
                         return Image(image: image);
                       },
                       placeholder: (ctx, image) {
-                        return FadeAnimationContainer(
-                          key: 'ImageViewDialog',
-                          placeholder: SvgPicture.asset(ImageAssets.LOADING),
-                        );
+                        return FadeAnimationContainer();
                       },
 //                      child: FadeAnimationContainer(
 //                        key: 'ImageViewDialog',

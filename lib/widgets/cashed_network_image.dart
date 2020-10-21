@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
+import 'package:my_catalog/widgets/fade_animation_container.dart';
 
 class CachedImage extends StatelessWidget {
   final String imageUrl;
@@ -22,20 +23,15 @@ class CachedImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
+    return SizedBox(
+      height: height,
       width: width,
-      duration: MILLISECONDS_300,
       child: CachedNetworkImage(
         imageUrl: imageUrl,
         height: height,
         fit: BoxFit.cover,
         placeholder: (BuildContext context, String url) {
-          return SvgPicture.asset(
-            ImageAssets.LOADING,
-            height: height,
-            width: width,
-            fit: BoxFit.cover,
-          );
+          return FadeAnimationContainer();
         },
       ),
     );
