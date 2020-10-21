@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/widgets/fade_animation_container.dart';
 
 class CatalogItem extends StatelessWidget {
   final String keyValue;
@@ -41,12 +43,10 @@ class CatalogItem extends StatelessWidget {
             const SizedBox(height: 14.0),
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: FadeInImage(
+              child: SizedBox(
                 height: 172.h,
                 width: double.infinity,
-                placeholder: AssetImage(ImageAssets.LOADING),
-                image: NetworkImage(catalog.imageLink ?? ''),
-                fit: BoxFit.fitWidth,
+                child: FadeAnimationContainer(),
               ),
             ),
             const SizedBox(height: 14.0),

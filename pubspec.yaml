@@ -63,9 +63,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/gifs/loading_image.gif
-    - assets/gifs/loading_full.gif
-    - assets/gifs/loading.gif
+    - assets/svg/loading.svg
     - assets/svgs/logo.svg
     - assets/svg/mc_logo.svg
     - assets/svg/close.svg
