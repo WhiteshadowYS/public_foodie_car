@@ -39,6 +39,7 @@ class StorageEpics {
     _removeOpenedStorageEpic,
     _updateLanguageEpic,
     _saveAcceptedTermsIdAndOpenStoreEpic,
+    _updateIsFirstOpenEpic,
   ]);
 
   static bool _idValidation(CheckIdAction action) => action.id != null;
@@ -59,10 +60,6 @@ class StorageEpics {
         yield* _showError(response.error?.error ?? 'Error not found');
         return;
       }
-
-      final bool isFirstOpen = await repository.getIsFirstOpen(action.id.toString());
-
-      yield* Stream.value(UpdateIsFirstOpenAction(isFirstOpen: isFirstOpen));
 
       final bool isLastUpdate = await repository.isLastUpdate(response.response);
 
@@ -227,15 +224,33 @@ class StorageEpics {
     });
   }
 
+  static Stream<dynamic> _updateIsFirstOpenEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<UpdateIsFirstOpenAction>().switchMap((action) async* {
+      final StorageRepository repository = StorageRepository();
+
+      await repository.saveIsFirstOpen(
+        id: store.state?.storageState?.openedStoreId?.toString(),
+        isFirstOpen: action.isFirstOpen
+      );
+
+      return;
+    });
+  }
+
   static Stream<dynamic> _openStorageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
-    return actions.whereType<OpenStorageAction>().switchMap((action) {
+    return actions.whereType<OpenStorageAction>().switchMap((action) async* {
       final String lastRoute = RouteService.instance.currentRoute;
+      final StorageRepository repository = StorageRepository();
+
+      final bool isFirstOpen = await repository.getIsFirstOpen(action.id.toString());
+
+      yield* Stream.value(UpdateIsFirstOpenAction(isFirstOpen: isFirstOpen));
 
       if (lastRoute == Routes.main || lastRoute == Routes.terms || lastRoute == null) {
-        return Stream.value(RouteSelectors.gotoCatalogsPageAction);
+        yield* Stream.value(RouteSelectors.gotoCatalogsPageAction);
       }
 
-      return Stream.empty();
+      return;
     });
   }
 

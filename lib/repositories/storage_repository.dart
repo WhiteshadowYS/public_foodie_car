@@ -89,10 +89,19 @@ class StorageRepository extends Repository {
       return;
     }
 
-    final List<Map<String, dynamic>> oldValue = jsonDecode(json);
-    oldValue.add(newValue);
+    final List oldValue = jsonDecode(json);
 
-    final String newJson = jsonEncode(oldValue);
+    List<Map<String, dynamic>> newList = [];
+
+    oldValue.forEach((element) {
+      newList.add(element as Map<String, dynamic>);
+    });
+
+    newList.removeWhere((Map<String, dynamic> element) => element.containsKey(id));
+
+    newList.add(newValue);
+
+    final String newJson = jsonEncode(newList);
 
     await LocalStorageService.instance.saveValueByKey(StorageKeys.isFirstOpen, newJson);
   }
@@ -100,7 +109,7 @@ class StorageRepository extends Repository {
   Future<bool> getIsFirstOpen(String id) async {
     try {
       final String json = await LocalStorageService.instance.getValueByKey(StorageKeys.isFirstOpen);
-      final List<Map<String, dynamic>> value = jsonDecode(json);
+      final List value = jsonDecode(json);
 
       for (Map<String, dynamic> element in value) {
         if (element.containsKey(id)) {
