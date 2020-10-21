@@ -79,6 +79,41 @@ class StorageRepository extends Repository {
     await LocalStorageService.instance.saveValueByKey(StorageKeys.acceptedStoreId, acceptedIdList + '$acceptedId|');
   }
 
+  Future<void> saveIsFirstOpen({String id, bool isFirstOpen = true}) async {
+    final Map<String, dynamic> newValue = {id: isFirstOpen};
+
+    final String json = await LocalStorageService.instance.getValueByKey(StorageKeys.isFirstOpen);
+
+    if (json == null || json == '') {
+      await LocalStorageService.instance.saveValueByKey(StorageKeys.isFirstOpen, jsonEncode([newValue]));
+      return;
+    }
+
+    final List<Map<String, dynamic>> oldValue = jsonDecode(json);
+    oldValue.add(newValue);
+
+    final String newJson = jsonEncode(oldValue);
+
+    await LocalStorageService.instance.saveValueByKey(StorageKeys.isFirstOpen, newJson);
+  }
+
+  Future<bool> getIsFirstOpen(String id) async {
+    try {
+      final String json = await LocalStorageService.instance.getValueByKey(StorageKeys.isFirstOpen);
+      final List<Map<String, dynamic>> value = jsonDecode(json);
+
+      for (Map<String, dynamic> element in value) {
+        if (element.containsKey(id)) {
+          return element[id];
+        }
+      }
+
+      return true;
+    } catch (e) {
+      return true;
+    }
+  }
+
   Future<void> updateStoresHistory({
     @required int update,
     @required int id,

@@ -24,6 +24,12 @@ class CatalogsPage extends StatelessWidget {
       },
       converter: CatalogsPageVM.fromStore,
       builder: (BuildContext context, vm) {
+        if (vm.isLanguagePopupNeeded) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            vm.openLanguagePopup();
+          });
+        }
+
         return MainLayout(
           appBar: MainAppBar(
             key: 'CatalogsPageAppbar',

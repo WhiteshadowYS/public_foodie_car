@@ -20,6 +20,9 @@ class CatalogsPageVM {
   final String currentLocale;
   final String logoUrl;
 
+  final bool isLanguagePopupNeeded;
+  final void Function() openLanguagePopup;
+
   const CatalogsPageVM({
     @required this.logOut,
     @required this.internetDialog,
@@ -31,11 +34,13 @@ class CatalogsPageVM {
     @required this.currentLocale,
     @required this.descriptionTitleText,
     @required this.logoUrl,
+    @required this.isLanguagePopupNeeded,
+    @required this.openLanguagePopup,
+
   });
 
   static CatalogsPageVM fromStore(Store<AppState> store) {
     return CatalogsPageVM(
-
       logoutText: StorageSelector.getLogoutText(store),
       logoUrl: StorageSelector.getLogoUrl(store),
       logOut: StorageSelector.getLogOutFunction(store),
@@ -45,6 +50,8 @@ class CatalogsPageVM {
       navigateToCategoriesPage: RouteSelectors.gotoCategoriesPage(store),
       exitDialog: DialogSelectors.getExitDialogFunction(store),
       getCurrentCatalogData: StorageSelector.getCurrentCatalogModelFunction(store),
+      isLanguagePopupNeeded: StorageSelector.getIsLanguagePopupNeeded(store),
+      openLanguagePopup: StorageSelector.getOpenLanguageDialogFunction(store),
       internetDialog: DialogSelectors.getInternetConnectionDialogFunction(store),
     );
   }
