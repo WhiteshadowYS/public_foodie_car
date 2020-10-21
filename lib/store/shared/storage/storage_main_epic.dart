@@ -10,33 +10,39 @@ import 'package:my_catalog/services/network_service/models/base_http_response.da
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
-import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
-import 'package:my_catalog/store/global/storage/actions/open_storage_action.dart';
-import 'package:my_catalog/store/global/storage/actions/open_terms_action.dart';
-import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_action.dart';
-import 'package:my_catalog/store/global/storage/actions/save_accepted_terms_id_action.dart';
-import 'package:my_catalog/store/global/storage/actions/set_opened_id_actions.dart';
-import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
-import 'package:my_catalog/store/global/storage/actions/update_is_first_open_action.dart';
-import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
+import 'package:my_catalog/store/shared/storage/actions/check_id_actions/check_id_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/get_data_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/open_storage_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/open_terms_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/remove_opened_storage_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/save_accepted_terms_id_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/set_opened_id_actions.dart';
+import 'package:my_catalog/store/shared/storage/actions/set_stores_history_action/set_stores_history_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_language_action.dart';
+import 'package:my_catalog/store/shared/storage/epics/check_id_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/check_update_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/subscribe_to_stores_updates_epics.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
 // TODO(Yuri): Add comment for this class.
 // TODO(Yuri): Move storage state to shared folder.
-class StorageEpics {
+class StorageMainEpic {
   static final indexEpic = combineEpics<AppState>([
+    CheckIdEpics.indexEpic,
+    CheckUpdateEpics.indexEpic,
+    SubscribeToStoresUpdatesEpics.indexEpic,
     _checkIdEpic,
     _getDataEpic,
     _openStorageEpic,
     _openTermsEpic,
-    _removeOpenedStorageEpic,
+    removeOpenedStorageEpic,
     _updateLanguageEpic,
     _saveAcceptedTermsIdAndOpenStoreEpic,
     _updateIsFirstOpenEpic,
@@ -52,12 +58,12 @@ class StorageEpics {
     return actions.whereType<CheckIdAction>().where(_idValidation).switchMap((action) async* {
       final StorageRepository repository = StorageRepository();
 
-      yield* _changeCheckIdLoadingState(true);
+      yield* changeCheckIdLoadingState(true);
 
       final BaseHttpResponse<StorageStatusModel> response = await repository.getStorageStatus(id: action.id);
 
       if (response.error != null || response.response == null) {
-        yield* _showError(response.error?.error ?? 'Error not found');
+        yield* showError(response.error?.error ?? 'Error not found');
         return;
       }
 
@@ -77,8 +83,8 @@ class StorageEpics {
 
       if (history == null && history.isEmpty) {
         yield* ConcatEagerStream([
-          _showError('No Storage found'),
-          _changeCheckIdLoadingState(false),
+          showError('No Storage found'),
+          changeCheckIdLoadingState(false),
         ]);
         return;
       }
@@ -91,8 +97,8 @@ class StorageEpics {
 
       if (index == null && index == -1) {
         yield* ConcatEagerStream([
-          _showError('No Storage found'),
-          _changeCheckIdLoadingState(false),
+          showError('No Storage found'),
+          changeCheckIdLoadingState(false),
         ]);
         return;
       }
@@ -109,7 +115,7 @@ class StorageEpics {
               storage: history[index].storage,
             ),
           ),
-          _changeCheckIdLoadingState(false),
+          changeCheckIdLoadingState(false),
         ]);
 
         return;
@@ -122,7 +128,7 @@ class StorageEpics {
             storage: history[index].storage,
           ),
         ),
-        _changeCheckIdLoadingState(false),
+        changeCheckIdLoadingState(false),
       ]);
     });
   }
@@ -140,7 +146,7 @@ class StorageEpics {
             storage: action.storage,
           ),
         ),
-        _changeCheckIdLoadingState(false),
+        changeCheckIdLoadingState(false),
       ]);
     });
   }
@@ -190,7 +196,7 @@ class StorageEpics {
                 storage: history[index].storage,
               ),
             ),
-            _changeCheckIdLoadingState(false),
+            changeCheckIdLoadingState(false),
           ]);
 
           return;
@@ -203,7 +209,7 @@ class StorageEpics {
               storage: history[index].storage,
             ),
           ),
-          _changeCheckIdLoadingState(false),
+          changeCheckIdLoadingState(false),
         ]);
       }
     });
@@ -228,10 +234,7 @@ class StorageEpics {
     return actions.whereType<UpdateIsFirstOpenAction>().switchMap((action) async* {
       final StorageRepository repository = StorageRepository();
 
-      await repository.saveIsFirstOpen(
-        id: store.state?.storageState?.openedStoreId?.toString(),
-        isFirstOpen: action.isFirstOpen
-      );
+      await repository.saveIsFirstOpen(id: store.state?.storageState?.openedStoreId?.toString(), isFirstOpen: action.isFirstOpen);
 
       return;
     });
@@ -267,7 +270,7 @@ class StorageEpics {
     });
   }
 
-  static Stream<dynamic> _removeOpenedStorageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+  static Stream<dynamic> removeOpenedStorageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<RemoveOpenedStorageAction>().switchMap((action) async* {
       final StorageRepository repository = StorageRepository();
 
@@ -276,7 +279,7 @@ class StorageEpics {
     });
   }
 
-  static Stream<dynamic> _showError(String errorText) {
+  static Stream<dynamic> showError(String errorText) {
     return Stream.value(
       ShowDialogAction(
         dialog: ErrorDialog(
@@ -286,7 +289,7 @@ class StorageEpics {
     );
   }
 
-  static Stream<dynamic> _changeCheckIdLoadingState(bool value) {
+  static Stream<dynamic> changeCheckIdLoadingState(bool value) {
     if (value) {
       return Stream.value(StartLoadingAction(
         loader: EmptyLoaderDialog(
