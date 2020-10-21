@@ -50,12 +50,11 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12.0),
                 child: SizedBox(
-                  height: 600.h,
-                  width: MediaQuery.of(context).size.width       ,
+                  width: MediaQuery.of(context).size.width,
                   child: PhotoView.customChild(
                     minScale: 0.7,
-                    basePosition: Alignment.center,
                     maxScale: 2.5,
+                    childSize: Size(200.0, 200.0),
                     controller: _photoViewController,
                     backgroundDecoration: BoxDecoration(color: AppColors.kBlack.withOpacity(0)),
                     child: FadeInImage(
