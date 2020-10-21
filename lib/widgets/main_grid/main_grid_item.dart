@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_catalog/widgets/cashed_network_image.dart';
 
 class MainGridItem extends StatefulWidget {
   final String keyValue;
@@ -53,11 +54,10 @@ class _MainGridItemState extends State<MainGridItem> {
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12.0),
-                  child: FadeInImage(
+                  child: CachedImage(
+                    key: Key(widget.key.toString() + 'CachedImage'),
+                    imageUrl: widget.imageUrl ?? '',
                     width: double.infinity,
-                    placeholder: AssetImage(ImageAssets.LOGO_PNG),
-                    image: NetworkImage(widget.imageUrl ?? ''),
-                    fit: BoxFit.cover,
                   ),
                 ),
               ),

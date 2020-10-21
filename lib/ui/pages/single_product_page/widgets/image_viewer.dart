@@ -1,8 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:my_catalog/res/image_assets.dart';
-import 'package:my_catalog/widgets/fade_animation_container.dart';
+import 'package:my_catalog/widgets/cashed_network_image.dart';
 
 import 'image_view_button.dart';
 
@@ -46,7 +45,10 @@ class _ImageViewerState extends State<ImageViewer> {
                       width: double.infinity,
                       child: GestureDetector(
                         onTap: () => widget.showGallery(widget.gallery, widget.gallery.indexOf(image)),
-                        child: FadeAnimationContainer(),
+                        child: CachedImage(
+                          key: Key(widget.key.toString() + 'CachedImage'),
+                          imageUrl: image ?? '',
+                        ),
                       ),
                     ),
                   )
