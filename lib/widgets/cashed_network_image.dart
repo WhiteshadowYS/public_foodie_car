@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/widgets/fade_animation_container.dart';
 
@@ -15,8 +12,8 @@ class CachedImage extends StatelessWidget {
 
   const CachedImage({
     @required this.imageUrl,
-    @required this.height,
-    @required this.width,
+    this.height,
+    this.width,
     this.fit = BoxFit.cover,
     Key key,
   }) : super(key: key);
@@ -28,10 +25,14 @@ class CachedImage extends StatelessWidget {
       width: width,
       child: CachedNetworkImage(
         imageUrl: imageUrl,
-        height: height,
         fit: BoxFit.cover,
+        height: height,
+        width: width,
         placeholder: (BuildContext context, String url) {
           return FadeAnimationContainer();
+        },
+        errorWidget: (BuildContext context, String image, obj) {
+          return SvgPicture.asset(ImageAssets.LOGO);
         },
       ),
     );
