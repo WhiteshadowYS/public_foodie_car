@@ -61,6 +61,7 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
                     child: CachedImage(
                       key: Key(widget.key.toString() + 'CachedImage'),
                       imageUrl: widget.dialog.gallery[index] ?? '',
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),

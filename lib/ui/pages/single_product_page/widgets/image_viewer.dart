@@ -48,6 +48,7 @@ class _ImageViewerState extends State<ImageViewer> {
                         child: CachedImage(
                           key: Key(widget.key.toString() + 'CachedImage'),
                           imageUrl: image ?? '',
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
