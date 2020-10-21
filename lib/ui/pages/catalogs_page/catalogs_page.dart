@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/res/keys.dart';
@@ -11,7 +10,6 @@ import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/catalogs_page/catalogs_page_vm.dart';
 import 'package:my_catalog/ui/pages/catalogs_page/widgets/catalog_item.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
-import 'package:my_catalog/ui/shared/svg_images.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
 
 class CatalogsPage extends StatelessWidget {
@@ -22,6 +20,12 @@ class CatalogsPage extends StatelessWidget {
     return StoreConnector<AppState, CatalogsPageVM>(
       converter: CatalogsPageVM.fromStore,
       builder: (BuildContext context, vm) {
+        if (vm.isLanguagePopupNeeded) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            vm.openLanguagePopup();
+          });
+        }
+
         return MainLayout(
           appBar: MainAppBar(
             key: 'CatalogsPageAppbar',

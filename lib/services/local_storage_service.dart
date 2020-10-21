@@ -15,6 +15,7 @@ class LocalStorageService {
     StorageKeys.stores: 'stores',
     StorageKeys.acceptedStoreId: 'acceptedStoreId',
     StorageKeys.openedStoreId: 'openedStoreId',
+    StorageKeys.isFirstOpen: 'isFirstOpen',
   };
 
   Future<bool> getValueExistsByKey(StorageKeys key) async {
@@ -43,5 +44,6 @@ class LocalStorageService {
 enum StorageKeys {
   openedStoreId,
   acceptedStoreId,
+  isFirstOpen,
   stores,
 }

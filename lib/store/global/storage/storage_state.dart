@@ -8,6 +8,7 @@ import 'package:my_catalog/store/global/storage/actions/open_storage_action.dart
 import 'package:my_catalog/store/global/storage/actions/open_terms_action.dart';
 import 'package:my_catalog/store/global/storage/actions/set_opened_id_actions.dart';
 import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
+import 'package:my_catalog/store/global/storage/actions/update_is_first_open_action.dart';
 import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/reducer.dart';
 
@@ -26,6 +27,8 @@ class StorageState {
   final int openedSubCategoryId;
   final int openedProductId;
 
+  final bool isFirstOpen;
+
   StorageState({
     @required this.storesHistory,
     @required this.openedStoreId,
@@ -35,6 +38,7 @@ class StorageState {
     this.openedCategoryId,
     this.openedSubCategoryId,
     this.openedProductId,
+    this.isFirstOpen,
   });
 
   factory StorageState.initial() {
@@ -42,6 +46,7 @@ class StorageState {
       storage: null,
       openedStoreId: null,
       storesHistory: [],
+      isFirstOpen: true,
     );
   }
 
@@ -53,6 +58,7 @@ class StorageState {
     int openedCategoryId,
     int openedSubCategoryId,
     int openedProductId,
+    bool isFirstOpen,
   }) {
     return StorageState(
       storage: storage ?? this.storage,
@@ -62,6 +68,7 @@ class StorageState {
       openedCategoryId: openedCategoryId ?? this.openedCategoryId,
       openedSubCategoryId: openedSubCategoryId ?? this.openedSubCategoryId,
       openedProductId: openedProductId ?? this.openedProductId,
+      isFirstOpen: isFirstOpen ?? this.isFirstOpen,
     );
   }
 
@@ -77,6 +84,7 @@ class StorageState {
         SetOpenedCategoryIdAction: (dynamic action) => _setOpenedCategoryId(action as SetOpenedCategoryIdAction),
         SetOpenedSubCategoryIdAction: (dynamic action) => _setOpenedSubCategoryId(action as SetOpenedSubCategoryIdAction),
         SetOpenedProductIdAction: (dynamic action) => _setOpenedProductId(action as SetOpenedProductIdAction),
+        UpdateIsFirstOpenAction: (dynamic action) => _updateIsFirstOpen(action as UpdateIsFirstOpenAction),
       }),
     ).updateState(action, this);
   }
@@ -95,6 +103,14 @@ class StorageState {
 
     return copyWith(
       storage: action.storage,
+    );
+  }
+
+  StorageState _updateIsFirstOpen(UpdateIsFirstOpenAction action) {
+    if (action.isFirstOpen == null) return this;
+
+    return copyWith(
+      isFirstOpen: action.isFirstOpen,
     );
   }
 
