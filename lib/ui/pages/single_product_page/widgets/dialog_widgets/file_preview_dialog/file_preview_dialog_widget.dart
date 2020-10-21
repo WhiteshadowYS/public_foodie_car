@@ -41,6 +41,7 @@ class FilePreviewDialogWidget extends StatelessWidget {
                 ),
                 FilePreviewBottomBlock(
                   itemName: dialogModel.file.languages[vm.currentLocale][NAME],
+                  fileUrl: dialogModel.file.file,
                 ),
             ],
           ),
