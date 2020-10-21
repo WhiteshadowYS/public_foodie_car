@@ -1,7 +1,6 @@
 // TODO(Yuri): Add comment for each Api class.
 class Api {
   static const String version = '1';
-
   static const String apiLink = '';
   static const String mockApiLink = 'https://us-central1-mycatalog-appvesto.cloudfunctions.net';
 }
