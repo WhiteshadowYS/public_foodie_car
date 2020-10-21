@@ -5,6 +5,7 @@ import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
+import 'package:my_catalog/utils/clean_behavior.dart';
 import 'package:my_catalog/widgets/list_tile_item.dart';
 
 class BottomBarSwitch extends StatefulWidget {
@@ -27,10 +28,14 @@ class BottomBarSwitch extends StatefulWidget {
 }
 
 class _BottomBarSwitchState extends State<BottomBarSwitch> {
-  double _height = 190;
+  final double _initialHeight = 190;
+  double _height ;
 
   @override
   Widget build(BuildContext context) {
+    if (!widget.isSwitch) {
+      _height = _initialHeight;
+    }
     List<FooterButtonModel> switchItems;
     switchItems = widget.vm.footerButtons.where((element) => element.type == PageTypes.SWITCH_TYPE).toList().first.list;
     return GestureDetector(
@@ -62,16 +67,19 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
                 child: SvgPicture.asset(ImageAssets.HANDLE),
               ),
               Expanded(
-                child: ListView.builder(
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTileItem(
-                      keyValue: 'BottomBarSwitch$index',
-                      title: switchItems[index].type,
-                      iconPath: switchItems[index].iconSvg,
-                      onTap: () => widget.onTap(switchItems[index].type, widget.vm),
-                    );
-                  },
-                  itemCount: switchItems.length,
+                child: ScrollConfiguration(
+                  behavior: CleanBehavior(),
+                  child: ListView.builder(
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTileItem(
+                        keyValue: 'BottomBarSwitch$index',
+                        title: switchItems[index].type,
+                        iconPath: switchItems[index].iconSvg,
+                        onTap: () => widget.onTap(switchItems[index].type, widget.vm),
+                      );
+                    },
+                    itemCount: switchItems.length,
+                  ),
                 ),
               ),
             ],
@@ -85,14 +93,16 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
     if (detail.localPosition.dy < 0) {
       return;
     }
-    if (_height - detail.localPosition.dy < 60.0) {
+    if (_height < _initialHeight / 4) {
       widget.close();
-      _height = 180;
+      _height = _initialHeight;
       setState(() {});
       return;
     }
-    setState(() {
-      _height = 180 - detail.localPosition.dy;
-    });
+    setState(
+      () {
+        _height = _initialHeight - detail.localPosition.dy;
+      },
+    );
   }
 }
