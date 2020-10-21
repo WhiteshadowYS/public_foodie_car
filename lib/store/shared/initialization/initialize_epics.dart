@@ -65,7 +65,6 @@ class InitializeEpics {
 
   static Stream<dynamic> _navigationStream(int id, void Function(int, int) getDataCallback) {
     if (id == null) return Stream.value(RouteSelectors.gotoMainPageAction);
-
     return Stream.value(
       CheckIdAction(
         id: id,

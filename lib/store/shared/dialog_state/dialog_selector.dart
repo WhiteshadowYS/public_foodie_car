@@ -2,6 +2,7 @@ import 'package:my_catalog/models/models/storage_model/data/data/file_model.dart
 import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
 import 'package:my_catalog/services/dialog_service/models/exit_dialog.dart';
 import 'package:my_catalog/services/dialog_service/models/image_view_dialog.dart';
+import 'package:my_catalog/services/dialog_service/models/internet_connection_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/force_close_dialog_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
@@ -38,6 +39,11 @@ class DialogSelectors {
             dialog: ImageViewDialog(gallery: gallery, currentIndex: currentIndex),
           ),
         );
+  }
+
+
+  static void Function() getInternetConnectionDialogFunction(Store<AppState> store) {
+    return () => store.dispatch(ShowDialogAction(dialog: InternetConnection()));
   }
 
   static void Function(String logoUrl) getExitDialogFunction(Store<AppState> store) {

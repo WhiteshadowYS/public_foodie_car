@@ -56,6 +56,8 @@ const Language en = Language(
   ),
   popUpDictionary: PopUpDictionary(
     gotIt: 'Got it!',
+    noInternet: 'No internet connection!',
+    okay: 'Okay',
     loading: 'Loading...',
     exitText: 'Do you want to exit the application?',
     yes: 'Yes',

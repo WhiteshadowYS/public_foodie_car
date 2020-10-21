@@ -10,6 +10,7 @@ import 'package:redux/redux.dart';
 // TODO(Yuri): Add comments for this class.
 class CatalogsPageVM {
   final void Function() logOut;
+  final void Function() internetDialog;
   final void Function(int) navigateToCategoriesPage;
   final void Function(String logoUrl) exitDialog;
   final CatalogModel Function(int) getCurrentCatalogData;
@@ -21,6 +22,7 @@ class CatalogsPageVM {
 
   const CatalogsPageVM({
     @required this.logOut,
+    @required this.internetDialog,
     @required this.navigateToCategoriesPage,
     @required this.exitDialog,
     @required this.catalogs,
@@ -33,6 +35,7 @@ class CatalogsPageVM {
 
   static CatalogsPageVM fromStore(Store<AppState> store) {
     return CatalogsPageVM(
+
       logoutText: StorageSelector.getLogoutText(store),
       logoUrl: StorageSelector.getLogoUrl(store),
       logOut: StorageSelector.getLogOutFunction(store),
@@ -42,6 +45,7 @@ class CatalogsPageVM {
       navigateToCategoriesPage: RouteSelectors.gotoCategoriesPage(store),
       exitDialog: DialogSelectors.getExitDialogFunction(store),
       getCurrentCatalogData: StorageSelector.getCurrentCatalogModelFunction(store),
+      internetDialog: DialogSelectors.getInternetConnectionDialogFunction(store),
     );
   }
 }
