@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -88,7 +89,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
       );
     } else {
       /// If the VideoPlayerController is still initializing, show a loader
-      return Image.asset(
+      return SvgPicture.asset(
         ImageAssets.LOADING,
         color: CustomTheme.colors.primaryColor,
         height: 60.h,
