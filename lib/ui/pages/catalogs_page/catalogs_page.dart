@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/res/keys.dart';
+import 'package:my_catalog/services/internet_connection_service/internet_connection_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
@@ -18,6 +19,9 @@ class CatalogsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, CatalogsPageVM>(
+      onInitialBuild: (CatalogsPageVM vm) {
+        InternetConnectionService.startInternetCheck(vm.internetDialog);
+      },
       converter: CatalogsPageVM.fromStore,
       builder: (BuildContext context, vm) {
         if (vm.isLanguagePopupNeeded) {

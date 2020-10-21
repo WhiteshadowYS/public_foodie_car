@@ -4,6 +4,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/services/internet_connection_service/internet_connection_service.dart';
 import 'package:my_catalog/services/network_service/interfaces/i_base_error.dart';
 import 'package:my_catalog/services/network_service/interfaces/i_base_http_error.dart';
 import 'package:my_catalog/services/network_service/interfaces/i_base_request.dart';
@@ -56,7 +57,7 @@ class NetworkService {
   /// params:
   ///   - [request]. Will accept object extended from [IBaseRequest]. List of main request types will contains in [RequestBuilders] class.
   Future<BaseHttpResponse> request(IBaseRequest request) async {
-    final BaseHttpResponse checkConnection = await _checkInternetConnection();
+    final BaseHttpResponse checkConnection = await InternetConnectionService.checkInternetConnection();
     if (checkConnection != null) return checkConnection;
 
     final http.Response response = await request();
@@ -116,21 +117,7 @@ class NetworkService {
     );
   }
 
-  /// This function will check internet connection before request.
-  Future<BaseHttpResponse> _checkInternetConnection() async {
-    final bool hasInternet = await DataConnectionChecker().hasConnection;
 
-    if (!hasInternet) {
-      return BaseHttpResponse(
-        error: IBaseHttpError(
-          error: NO_INTERNET_CONNECTION,
-          statusCode: BAD_GATEWAY_STATUS_CODE,
-        ),
-      );
-    }
-
-    return null;
-  }
 
   /// This functions will get a error text by error code.
   String _getErrorByCode(int code) {

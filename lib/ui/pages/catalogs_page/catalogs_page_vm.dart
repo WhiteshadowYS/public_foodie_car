@@ -10,6 +10,7 @@ import 'package:redux/redux.dart';
 // TODO(Yuri): Add comments for this class.
 class CatalogsPageVM {
   final void Function() logOut;
+  final void Function() internetDialog;
   final void Function(int) navigateToCategoriesPage;
   final void Function(String logoUrl) exitDialog;
   final CatalogModel Function(int) getCurrentCatalogData;
@@ -18,12 +19,13 @@ class CatalogsPageVM {
   final String Function(String) descriptionTitleText;
   final String currentLocale;
   final String logoUrl;
-  
+
   final bool isLanguagePopupNeeded;
   final void Function() openLanguagePopup;
 
   const CatalogsPageVM({
     @required this.logOut,
+    @required this.internetDialog,
     @required this.navigateToCategoriesPage,
     @required this.exitDialog,
     @required this.catalogs,
@@ -34,7 +36,7 @@ class CatalogsPageVM {
     @required this.logoUrl,
     @required this.isLanguagePopupNeeded,
     @required this.openLanguagePopup,
-    
+
   });
 
   static CatalogsPageVM fromStore(Store<AppState> store) {
@@ -50,6 +52,7 @@ class CatalogsPageVM {
       getCurrentCatalogData: StorageSelector.getCurrentCatalogModelFunction(store),
       isLanguagePopupNeeded: StorageSelector.getIsLanguagePopupNeeded(store),
       openLanguagePopup: StorageSelector.getOpenLanguageDialogFunction(store),
+      internetDialog: DialogSelectors.getInternetConnectionDialogFunction(store),
     );
   }
 }
