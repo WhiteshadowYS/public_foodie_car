@@ -3,8 +3,8 @@ import 'package:my_catalog/models/models/storage_model/settings/info_model.dart'
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/language_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/store/global/storage/storage_selector.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
+import 'package:my_catalog/store/shared/storage/storage_selector.dart';
 import 'package:redux/redux.dart';
 
 // TODO(Yuri): Add comments for this class.

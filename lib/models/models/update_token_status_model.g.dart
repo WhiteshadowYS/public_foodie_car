@@ -10,7 +10,7 @@ UpdateTokenStatusModel _$UpdateTokenStatusModelFromJson(
     Map<String, dynamic> json) {
   return $checkedNew('UpdateTokenStatusModel', json, () {
     final val = UpdateTokenStatusModel(
-      status: $checkedConvert(json, 'status', (v) => v as bool),
+      status: $checkedConvert(json, 'status', (v) => v as String),
     );
     return val;
   });

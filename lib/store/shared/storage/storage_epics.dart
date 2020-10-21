@@ -1,6 +1,8 @@
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 import 'package:my_catalog/models/models/storage_status_model.dart';
+import 'package:my_catalog/models/models/update_token_status_model.dart';
+import 'package:my_catalog/repositories/notifications_repository.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/dialog_service/models/empty_loader_dialog.dart';
@@ -10,21 +12,22 @@ import 'package:my_catalog/services/network_service/models/base_http_response.da
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
-import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
-import 'package:my_catalog/store/global/storage/actions/open_storage_action.dart';
-import 'package:my_catalog/store/global/storage/actions/open_terms_action.dart';
-import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_action.dart';
-import 'package:my_catalog/store/global/storage/actions/save_accepted_terms_id_action.dart';
-import 'package:my_catalog/store/global/storage/actions/set_opened_id_actions.dart';
-import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
-import 'package:my_catalog/store/global/storage/actions/update_is_first_open_action.dart';
-import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
+import 'package:my_catalog/store/shared/storage/actions/check_id_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/get_data_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/open_storage_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/open_terms_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/remove_opened_storage_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/save_accepted_terms_id_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/set_opened_id_actions.dart';
+import 'package:my_catalog/store/shared/storage/actions/set_stores_history_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_language_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_token_action.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -40,6 +43,7 @@ class StorageEpics {
     _updateLanguageEpic,
     _saveAcceptedTermsIdAndOpenStoreEpic,
     _updateIsFirstOpenEpic,
+    _updatePushTokenEpic,
   ]);
 
   static bool _idValidation(CheckIdAction action) => action.id != null;
@@ -209,6 +213,22 @@ class StorageEpics {
     });
   }
 
+  static Stream<dynamic> _updatePushTokenEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<UpdateTokenAction>().switchMap(
+      (action) async* {
+        final NotificationsRepository repository = NotificationsRepository();
+        final BaseHttpResponse<UpdateTokenStatusModel> response = await repository.updateToken(
+          id: action.id,
+          language: action.language,
+        );
+        if (response.error != null || response.response == null) {
+          yield* _showError(response.error?.error ?? 'Error not found');
+        }
+        return;
+      },
+    );
+  }
+
   static Stream<dynamic> _updateLanguageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<UpdateLanguageAction>().switchMap((action) async* {
       final StorageRepository repository = StorageRepository();
@@ -229,9 +249,7 @@ class StorageEpics {
       final StorageRepository repository = StorageRepository();
 
       await repository.saveIsFirstOpen(
-        id: store.state?.storageState?.openedStoreId?.toString(),
-        isFirstOpen: action.isFirstOpen
-      );
+          id: store.state?.storageState?.openedStoreId?.toString(), isFirstOpen: action.isFirstOpen);
 
       return;
     });

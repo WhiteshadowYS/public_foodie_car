@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
 import 'package:my_catalog/res/dummy_data.dart';
 import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/store/global/storage/storage_selector.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
+import 'package:my_catalog/store/shared/storage/storage_selector.dart';
 import 'package:redux/redux.dart';
 
 // TODO(Yuri): Add comments for this class.

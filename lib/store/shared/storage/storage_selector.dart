@@ -15,14 +15,14 @@ import 'package:my_catalog/models/models/storage_model/settings/language_model.d
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/language_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
-import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
-import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_action.dart';
-import 'package:my_catalog/store/global/storage/actions/save_accepted_terms_id_action.dart';
-import 'package:my_catalog/store/global/storage/actions/update_is_first_open_action.dart';
-import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
-import 'package:my_catalog/store/global/storage/storage_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
+import 'package:my_catalog/store/shared/storage/actions/check_id_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/get_data_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/remove_opened_storage_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/save_accepted_terms_id_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_language_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_token_action.dart';
 import 'package:redux/redux.dart';
 
 // TODO(Yuri): Update comment for this class.
@@ -43,12 +43,12 @@ class StorageSelector {
 
   static void Function() getOpenLanguageDialogFunction(Store<AppState> store) {
     return () => DialogService.instance.show(
-      LanguageDialog(
-        list: getLanguages(store),
-        selectedLanguage: getSelectedLanguage(store),
-        onItemSelected: getUpdateLanguageFunction(store),
-      ),
-    );
+          LanguageDialog(
+            list: getLanguages(store),
+            selectedLanguage: getSelectedLanguage(store),
+            onItemSelected: getUpdateLanguageFunction(store),
+          ),
+        );
   }
 
   static void Function() getRemoveOpenedStorageFunction(Store<AppState> store) {
@@ -106,7 +106,6 @@ class StorageSelector {
 
         return newValue;
       } catch (e) {
-
         return termsTitle;
       }
     };
@@ -126,7 +125,6 @@ class StorageSelector {
 
         return newValue;
       } catch (e) {
-
         return value;
       }
     };
@@ -146,7 +144,6 @@ class StorageSelector {
 
         return newValue;
       } catch (e) {
-
         return value;
       }
     };
@@ -166,7 +163,6 @@ class StorageSelector {
 
         return newValue;
       } catch (e) {
-
         return value;
       }
     };
@@ -186,7 +182,6 @@ class StorageSelector {
 
         return newValue;
       } catch (e) {
-
         return value;
       }
     };
@@ -206,7 +201,6 @@ class StorageSelector {
 
         return newValue;
       } catch (e) {
-
         return value;
       }
     };
@@ -226,7 +220,6 @@ class StorageSelector {
 
         return newValue;
       } catch (e) {
-
         return value;
       }
     };
@@ -246,7 +239,6 @@ class StorageSelector {
 
         return newValue;
       } catch (e) {
-
         return value;
       }
     };
@@ -266,7 +258,6 @@ class StorageSelector {
 
         return newValue;
       } catch (e) {
-
         return value;
       }
     };
@@ -286,7 +277,6 @@ class StorageSelector {
 
         return newValue;
       } catch (e) {
-
         return value;
       }
     };
@@ -326,7 +316,6 @@ class StorageSelector {
 
         return newValue;
       } catch (e) {
-
         return value;
       }
     };
@@ -344,6 +333,7 @@ class StorageSelector {
           isFirstOpen: false,
         ),
       );
+      store.dispatch(UpdateTokenAction(id: store.state.storageState.openedStoreId, language: locale));
     };
   }
 
@@ -359,8 +349,10 @@ class StorageSelector {
 
   static List<InfoCategoryModel> getInfoCategories(Store<AppState> store) {
     try {
-      final int index = store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
-      final List<InfoCategoryModel> categories = store.state.storageState?.storage?.data?.hierarchy[index].categories ?? [];
+      final int index = store.state.storageState.storage.data.hierarchy
+          .indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final List<InfoCategoryModel> categories =
+          store.state.storageState?.storage?.data?.hierarchy[index].categories ?? [];
       final List<InfoCategoryModel> categoriesInSelectedLanguage = [];
 
       for (InfoCategoryModel category in categories) {
@@ -375,16 +367,18 @@ class StorageSelector {
 
   static List<InfoSubcategoryModel> getInfoSubCategories(Store<AppState> store) {
     try {
-      final int catalogIndex =
-          store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int catalogIndex = store.state.storageState.storage.data.hierarchy
+          .indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
       final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories
           .indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
       final List<InfoSubcategoryModel> subcategories =
-          store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
+          store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ??
+              [];
       final List<InfoSubcategoryModel> subcategoriesInSelectedLanguage = [];
 
       for (InfoSubcategoryModel subcategory in subcategories) {
-        if (subcategory.displayedIn.contains(getSelectedLocale(store))) subcategoriesInSelectedLanguage.add(subcategory);
+        if (subcategory.displayedIn.contains(getSelectedLocale(store)))
+          subcategoriesInSelectedLanguage.add(subcategory);
       }
 
       return subcategoriesInSelectedLanguage;
@@ -395,14 +389,16 @@ class StorageSelector {
 
   static List<InfoProductModel> getInfoProducts(Store<AppState> store) {
     try {
-      final int catalogIndex =
-          store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int catalogIndex = store.state.storageState.storage.data.hierarchy
+          .indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
       final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories
           .indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
-      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories
+      final int subCategoryIndex = store
+          .state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories
           .indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
-      final List<InfoProductModel> products =
-          store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
+      final List<InfoProductModel> products = store.state.storageState?.storage?.data?.hierarchy[catalogIndex]
+              .categories[categoryIndex].subcategories[subCategoryIndex].products ??
+          [];
       final List<InfoProductModel> productsInSelectedLanguage = [];
 
       for (InfoProductModel product in products) {
@@ -417,17 +413,18 @@ class StorageSelector {
 
   static List<FileModel> getInfoFiles(Store<AppState> store) {
     try {
-      final int catalogIndex =
-          store.state.storageState.storage.data.hierarchy.indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
+      final int catalogIndex = store.state.storageState.storage.data.hierarchy
+          .indexWhere((item) => item.id == store.state.storageState.openedCatalogId);
       final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories
           .indexWhere((item) => item.id == store.state.storageState.openedCategoryId);
-      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories
+      final int subCategoryIndex = store
+          .state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories
           .indexWhere((item) => item.id == store.state.storageState.openedSubCategoryId);
-      final int productIndex = store
-          .state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products
+      final int productIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex]
+          .subcategories[subCategoryIndex].products
           .indexWhere((item) => item.id == store.state.storageState.openedProductId);
-      final List<int> filesIndexes = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex]
-              .subcategories[subCategoryIndex].products[productIndex].files ??
+      final List<int> filesIndexes = store.state.storageState?.storage?.data?.hierarchy[catalogIndex]
+              .categories[categoryIndex].subcategories[subCategoryIndex].products[productIndex].files ??
           [];
       final List<FileModel> files = [];
 
@@ -449,14 +446,13 @@ class StorageSelector {
     }
   }
 
-  static List<FooterButtonModel>  getFooterButtons(Store<AppState> store) {
-
-      try {
-        return store.state.storageState.storage.settings.footerButtons;
-      } catch (e) {
-
-        return null;
-      };
+  static List<FooterButtonModel> getFooterButtons(Store<AppState> store) {
+    try {
+      return store.state.storageState.storage.settings.footerButtons;
+    } catch (e) {
+      return null;
+    }
+    ;
   }
 
   static CatalogModel Function(int) getCurrentCatalogModelFunction(Store<AppState> store) {
@@ -506,7 +502,6 @@ class StorageSelector {
       }
     };
   }
-
 
   static List<SavedStorageModel> getHistory(Store<AppState> store) {
     return store.state.storageState.storesHistory;
