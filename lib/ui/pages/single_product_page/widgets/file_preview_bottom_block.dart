@@ -1,11 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share/share.dart';
 
 class FilePreviewBottomBlock extends StatelessWidget {
   final String itemName;
+  final String fileUrl;
 
-  FilePreviewBottomBlock({@required this.itemName})
+  FilePreviewBottomBlock({@required this.itemName, @required this.fileUrl,})
       : assert(itemName != null, throw ('itemName should be not null')),
         super(key: Key('FilePreviewBottomBlock'));
 
@@ -26,8 +29,7 @@ class FilePreviewBottomBlock extends StatelessWidget {
               borderRadius: BorderRadius.circular(25.0),
               splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
               highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
-              // TODO(Daniil): Add onTap
-              onTap: () {},
+              onTap: () => _onShare(context),
               child: Icon(
                 Icons.share,
                 color: CustomTheme.colors.primaryColor,
@@ -39,4 +41,15 @@ class FilePreviewBottomBlock extends StatelessWidget {
       ),
     );
   }
-}
+
+  void _onShare(BuildContext context) async {
+    // RenderObject in its descendent tree when it's not
+    // a RenderObjectWidget. The RaisedButton's RenderObject
+    // has its position and size after it's built.
+    final RenderBox box = context.findRenderObject();
+      await Share.share(fileUrl,
+          subject: itemName ,
+          sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
+    }
+  }
+

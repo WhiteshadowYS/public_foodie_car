@@ -5,4 +5,5 @@ class ImageAssets {
   static const String LOGO_PNG = 'assets/png/mc_logo.png';
   static const String LOGO_FULL_PNG = 'assets/gifs/loading_full.gif';
   static const String HANDLE = 'assets/svg/handle.svg';
+  static const String LOADER = 'assets/svg/loader.svg';
 }
