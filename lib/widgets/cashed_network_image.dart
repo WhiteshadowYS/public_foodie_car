@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
@@ -29,7 +30,7 @@ class CachedImage extends StatelessWidget {
         height: height,
         fit: BoxFit.cover,
         placeholder: (BuildContext context, String url) {
-          return Image.asset(
+          return SvgPicture.asset(
             ImageAssets.LOADING,
             height: height,
             width: width,

@@ -1,10 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/models/image_view_dialog.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/image_view_button.dart';
+import 'package:my_catalog/widgets/fade_animation_container.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -57,10 +60,22 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
                     childSize: Size(200.0, 200.0),
                     controller: _photoViewController,
                     backgroundDecoration: BoxDecoration(color: AppColors.kBlack.withOpacity(0)),
-                    child: FadeInImage(
-                      placeholder: AssetImage(ImageAssets.LOGO_FULL_PNG),
-                      image: NetworkImage(widget.dialog.gallery[index]),
-                      fit: BoxFit.contain,
+                    child: CachedNetworkImage(
+                      imageUrl: widget.dialog.gallery[index],
+                      imageBuilder: (ctx, image) {
+                        return Image(image: image);
+                      },
+                      placeholder: (ctx, image) {
+                        return FadeAnimationContainer(
+                          key: 'ImageViewDialog',
+                          placeholder: SvgPicture.asset(ImageAssets.LOADING),
+                        );
+                      },
+//                      child: FadeAnimationContainer(
+//                        key: 'ImageViewDialog',
+//                        placeholder: Image.asset(ImageAssets.LOGO_FULL_PNG),
+//                        image:,
+//                      ),
                     ),
                   ),
                 ),
