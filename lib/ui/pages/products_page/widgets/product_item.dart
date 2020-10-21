@@ -7,6 +7,7 @@ import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/widgets/cashed_network_image.dart';
 
 class ProductItem extends StatelessWidget {
   final String keyValue;
@@ -35,12 +36,11 @@ class ProductItem extends StatelessWidget {
             ),
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(30.0),
-              child: FadeInImage(
+              child: CachedImage(
                 width: 50.sp,
                 height: 50.sp,
-                placeholder: AssetImage(ImageAssets.LOGO_PNG),
-                image: NetworkImage(product.imageLink ?? ''),
-                fit: BoxFit.cover,
+                key: Key(key.toString() + 'CachedImage'),
+                imageUrl: product.imageLink ?? '',
               ),
             ),
             title: Text(
