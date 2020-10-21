@@ -15,15 +15,15 @@ import 'package:my_catalog/models/models/storage_model/settings/language_model.d
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/language_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
-import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
-import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_action.dart';
-import 'package:my_catalog/store/global/storage/actions/save_accepted_terms_id_action.dart';
-import 'package:my_catalog/store/global/storage/actions/update_is_first_open_action.dart';
-import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
-import 'package:my_catalog/store/global/storage/storage_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:redux/redux.dart';
+
+import 'actions/check_id_action.dart';
+import 'actions/get_data_action.dart';
+import 'actions/remove_opened_storage_action.dart';
+import 'actions/save_accepted_terms_id_action.dart';
+import 'actions/update_is_first_open_action.dart';
+import 'actions/update_language_action.dart';
 
 // TODO(Yuri): Update comment for this class.
 /// [StorageSelector] - selector for all data what we save in [StorageState].
@@ -564,6 +564,10 @@ class StorageSelector {
 
   static bool isNeedShowLanguagesPopup(Store<AppState> store) {
     return store.state.storageState.storage.settings.languages.length > 1;
+  }
+
+  static int getCurrentCatalogID(Store<AppState> store) {
+    return store.state.storageState.openedCatalogId;
   }
 
   static InfoModel getInfoModel(Store<AppState> store) {

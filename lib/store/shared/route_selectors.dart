@@ -2,7 +2,7 @@ import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/store/global/storage/actions/set_opened_id_actions.dart';
+import 'package:my_catalog/store/shared/storage/actions/set_opened_id_actions.dart';
 import 'package:redux/redux.dart';
 
 class RouteSelectors {

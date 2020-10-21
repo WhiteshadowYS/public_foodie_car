@@ -29,7 +29,6 @@ class CatalogsPage extends StatelessWidget {
             vm.openLanguagePopup();
           });
         }
-
         return MainLayout(
           appBar: MainAppBar(
             key: 'CatalogsPageAppbar',
