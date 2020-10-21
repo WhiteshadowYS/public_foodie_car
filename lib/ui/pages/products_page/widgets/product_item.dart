@@ -52,6 +52,8 @@ class ProductItem extends StatelessWidget {
               child: Text(
                 product.descriptionForLanguage(locale),
                 style: CustomTheme.textStyles.mainTextStyle(size: 13.0),
+                maxLines: 7,
+                overflow: TextOverflow.visible,
               ),
             ),
             trailing: Transform.rotate(

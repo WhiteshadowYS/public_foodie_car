@@ -64,6 +64,7 @@ class CatalogItem extends StatelessWidget {
                 size: 13.sp,
                 height: 1.4.h,
               ),
+              maxLines: 5,
             ),
             const SizedBox(height: 14.0),
           ],
