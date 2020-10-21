@@ -19,6 +19,7 @@ import 'package:my_catalog/store/global/storage/actions/check_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/get_data_action.dart';
 import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_action.dart';
 import 'package:my_catalog/store/global/storage/actions/save_accepted_terms_id_action.dart';
+import 'package:my_catalog/store/global/storage/actions/update_is_first_open_action.dart';
 import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/global/storage/storage_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
@@ -41,13 +42,13 @@ class StorageSelector {
   }
 
   static void Function() getOpenLanguageDialogFunction(Store<AppState> store) {
-    return () => DialogService.instance.show(LanguageDialog(
-          // TODO(Yuri): Fix this pop-up for count of languages > 20.
-          // TODO(Yuri): Max size of pop-up should be 2/3 of screen, after that - scrolling list, https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&view=detail&selectedIssue=MC-35.
-          list: getLanguages(store),
-          selectedLanguage: getSelectedLanguage(store),
-          onItemSelected: getUpdateLanguageFunction(store),
-        ));
+    return () => DialogService.instance.show(
+      LanguageDialog(
+        list: getLanguages(store),
+        selectedLanguage: getSelectedLanguage(store),
+        onItemSelected: getUpdateLanguageFunction(store),
+      ),
+    );
   }
 
   static void Function() getRemoveOpenedStorageFunction(Store<AppState> store) {
@@ -338,7 +339,16 @@ class StorageSelector {
           newModel: store.state.storageState.storesHistory.last.copyWith(locale: locale),
         ),
       );
+      store.dispatch(
+        UpdateIsFirstOpenAction(
+          isFirstOpen: false,
+        ),
+      );
     };
+  }
+
+  static bool getIsLanguagePopupNeeded(Store<AppState> store) {
+    return store.state.storageState.isFirstOpen && store.state.storageState.storage.settings.languages.length > 1;
   }
 
   static List<InfoCatalogModel> getInfoCatalogs(Store<AppState> store) {

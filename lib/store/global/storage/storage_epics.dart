@@ -18,6 +18,7 @@ import 'package:my_catalog/store/global/storage/actions/remove_opened_storage_ac
 import 'package:my_catalog/store/global/storage/actions/save_accepted_terms_id_action.dart';
 import 'package:my_catalog/store/global/storage/actions/set_opened_id_actions.dart';
 import 'package:my_catalog/store/global/storage/actions/set_stores_history_action.dart';
+import 'package:my_catalog/store/global/storage/actions/update_is_first_open_action.dart';
 import 'package:my_catalog/store/global/storage/actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
@@ -58,6 +59,10 @@ class StorageEpics {
         yield* _showError(response.error?.error ?? 'Error not found');
         return;
       }
+
+      final bool isFirstOpen = await repository.getIsFirstOpen(action.id.toString());
+
+      yield* Stream.value(UpdateIsFirstOpenAction(isFirstOpen: isFirstOpen));
 
       final bool isLastUpdate = await repository.isLastUpdate(response.response);
 
