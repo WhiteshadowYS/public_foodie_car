@@ -4,7 +4,6 @@ import 'package:my_catalog/store/shared/storage/actions/reload_stores_history_ac
 import 'package:my_catalog/store/shared/storage/actions/update_stores_history_actions/do_update_stores_history_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_stores_history_actions/update_stores_history_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_stores_history_actions/update_stores_history_result_action.dart';
-import 'package:my_catalog/utils/empty_action.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -50,7 +49,7 @@ class UpdateStoresHistoryEpics {
           locale: action.locale,
         );
 
-        return EmptyAction();
+        return UpdateStoresHistoryResultAction();
       },
     );
   }
