@@ -3,6 +3,7 @@ import 'package:my_catalog/models/models/storage_model/settings/language_model.d
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/language_dialog.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/utils/clean_behavior.dart';
 
 class LanguageDialogWidget extends StatelessWidget {
   final LanguageDialog dialog;
@@ -41,16 +42,13 @@ class LanguageDialogWidget extends StatelessWidget {
                       color: CustomTheme.colors.popupBackground,
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     ),
-                    padding: EdgeInsets.symmetric(
-                        vertical: 44.0
-                    ),
-                    margin: EdgeInsets.symmetric(
-                        horizontal: 16.0
-                    ),
+                    padding: EdgeInsets.symmetric(vertical: 44.0),
+                    margin: EdgeInsets.symmetric(horizontal: 16.0),
                     height: dialog.list.length * 55.0 + 88.0 < MediaQuery.of(context).size.height * 0.6
                         ? dialog.list.length * 55.0 + 88.0
                         : MediaQuery.of(context).size.height * 0.6,
-                    child: ListView(
+                    child: CleanedListView(
+                      keyValue: '${key.toString()}CleanedListView',
                       children: dialog.list.map((language) {
                         return LanguageItem(
                           key: '${key.toString()}LanguageItem${language.name}',
@@ -108,9 +106,7 @@ class LanguageItem extends StatelessWidget {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 30.0
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 30.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -123,9 +119,7 @@ class LanguageItem extends StatelessWidget {
                       Icon(
                         Icons.keyboard_arrow_right,
                         size: 18,
-                        color: isSelected
-                            ? CustomTheme.colors.accentFont
-                            : CustomTheme.colors.minorFont,
+                        color: isSelected ? CustomTheme.colors.accentFont : CustomTheme.colors.minorFont,
                       ),
                     ],
                   ),
@@ -143,4 +137,3 @@ class LanguageItem extends StatelessWidget {
     );
   }
 }
-

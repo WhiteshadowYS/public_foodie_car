@@ -34,16 +34,16 @@ class DialogSelectors {
   }
 
   static void Function(List<String> gallery, int currentIndex) getShowImageViewDialogFunction(Store<AppState> store) {
-    return (List<String> gallery, int currentIndex) => store.dispatch(
-          ShowDialogAction(
-            dialog: ImageViewDialog(gallery: gallery, currentIndex: currentIndex),
-          ),
-        );
+    return (List<String> gallery, int currentIndex) {
+      store.dispatch(
+        ShowDialogAction(
+          dialog: ImageViewDialog(gallery: gallery, currentIndex: currentIndex),
+        ),
+      );
+    };
   }
 
-
   static void Function() getInternetConnectionDialogFunction(Store<AppState> store) {
-    print('qweqweqweqweq');
     return () => store.dispatch(ShowDialogAction(dialog: InternetConnection()));
   }
 
