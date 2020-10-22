@@ -70,6 +70,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
                 child: ScrollConfiguration(
                   behavior: CleanBehavior(),
                   child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return ListTileItem(
                         keyValue: 'BottomBarSwitch$index',
