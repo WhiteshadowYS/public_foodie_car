@@ -16,18 +16,29 @@ import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart'
 import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_id_actions/check_id_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/get_data_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/open_storage_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/open_terms_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/get_data_actions/get_data_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/open_store_actions/open_store_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/open_terms_actions/open_terms_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/remove_opened_storage_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/save_accepted_terms_id_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/set_opened_id_actions.dart';
-import 'package:my_catalog/store/shared/storage/actions/set_stores_history_action/set_stores_history_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/set_stores_history_actions/set_stores_history_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_accepted_terms_actions/update_accepted_terms_id_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/update_language_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/storage/epics/check_id_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/check_terms_epics.dart';
 import 'package:my_catalog/store/shared/storage/epics/check_update_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/get_data_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/open_store_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/open_terms_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/reload_stores_history_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/remove_opened_storage_epics.dart';
 import 'package:my_catalog/store/shared/storage/epics/subscribe_to_stores_updates_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/update_acepted_terms_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/update_is_first_open_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/update_language_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/update_opened_store_id_epics.dart';
+import 'package:my_catalog/store/shared/storage/epics/update_stores_history_epics.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -35,249 +46,21 @@ import 'package:rxdart/rxdart.dart';
 // TODO(Yuri): Move storage state to shared folder.
 class StorageMainEpic {
   static final indexEpic = combineEpics<AppState>([
-    CheckIdEpics.indexEpic,
-    CheckUpdateEpics.indexEpic,
     SubscribeToStoresUpdatesEpics.indexEpic,
-    _checkIdEpic,
-    _getDataEpic,
-    _openStorageEpic,
-    _openTermsEpic,
-    removeOpenedStorageEpic,
-    _updateLanguageEpic,
-    _saveAcceptedTermsIdAndOpenStoreEpic,
-    _updateIsFirstOpenEpic,
+    GetDataEpics.indexEpic,
+    OpenStoreEpics.indexEpic,
+    OpenTermsEpics.indexEpic,
+    CheckIdEpics.indexEpic,
+    CheckTermsEpics.indexEpic,
+    CheckUpdateEpics.indexEpic,
+    UpdateLanguageEpics.indexEpic,
+    UpdateIsFirstOpenEpics.indexEpic,
+    UpdateAcceptedTermsEpics.indexEpic,
+    UpdateOpenedStoreIdEpics.indexEpic,
+    UpdateStoresHistoryEpics.indexEpic,
+    ReloadStoresHistoryEpics.indexEpic,
+    RemoveOpenedStorageEpics.indexEpic,
   ]);
-
-  static bool _idValidation(CheckIdAction action) => action.id != null;
-
-  static bool _id2Validation(GetDataAction action) => action.id != null;
-
-  static bool _id3Validation(SaveAcceptedTermsIdAction action) => action.id != null;
-
-  static Stream<dynamic> _checkIdEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
-    return actions.whereType<CheckIdAction>().where(_idValidation).switchMap((action) async* {
-      final StorageRepository repository = StorageRepository();
-
-      yield* changeCheckIdLoadingState(true);
-
-      final BaseHttpResponse<StorageStatusModel> response = await repository.getStorageStatus(id: action.id);
-
-      if (response.error != null || response.response == null) {
-        yield* showError(response.error?.error ?? 'Error not found');
-        return;
-      }
-
-      final bool isLastUpdate = await repository.isLastUpdate(response.response);
-
-      FirebaseService.instance.listenChanges(action.id, action.getData);
-
-      if (!isLastUpdate) {
-        yield* Stream.value(GetDataAction(
-          id: response.response.id,
-          update: response.response.update,
-        ));
-        return;
-      }
-
-      final List<SavedStorageModel> history = await repository.getStoresHistory();
-
-      if (history == null && history.isEmpty) {
-        yield* ConcatEagerStream([
-          showError('No Storage found'),
-          changeCheckIdLoadingState(false),
-        ]);
-        return;
-      }
-
-      await repository.updateOpenedStoreId(id: action.id);
-
-      final int index = history.indexWhere((store) {
-        return store.id == action.id;
-      });
-
-      if (index == null && index == -1) {
-        yield* ConcatEagerStream([
-          showError('No Storage found'),
-          changeCheckIdLoadingState(false),
-        ]);
-        return;
-      }
-
-      yield* Stream.value(SetStoresHistoryAction(storesHistory: history));
-
-      final bool isTermsAccepted = await repository.getIsTermsAccepted(action.id.toString());
-
-      if (isTermsAccepted) {
-        yield* ConcatEagerStream([
-          Stream.value(
-            OpenStorageAction(
-              id: action.id,
-              storage: history[index].storage,
-            ),
-          ),
-          changeCheckIdLoadingState(false),
-        ]);
-
-        return;
-      }
-
-      yield* ConcatEagerStream([
-        Stream.value(
-          OpenTermsAction(
-            id: action.id,
-            storage: history[index].storage,
-          ),
-        ),
-        changeCheckIdLoadingState(false),
-      ]);
-    });
-  }
-
-  static Stream<dynamic> _saveAcceptedTermsIdAndOpenStoreEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
-    return actions.whereType<SaveAcceptedTermsIdAction>().where(_id3Validation).switchMap((action) async* {
-      final StorageRepository repository = StorageRepository();
-
-      await repository.saveIsTermsAccepted(action.id.toString());
-
-      yield* ConcatEagerStream([
-        Stream.value(
-          OpenStorageAction(
-            id: action.id,
-            storage: action.storage,
-          ),
-        ),
-        changeCheckIdLoadingState(false),
-      ]);
-    });
-  }
-
-  static Stream<dynamic> _getDataEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
-    return actions.whereType<GetDataAction>().where(_id2Validation).switchMap((action) async* {
-      final StorageRepository repository = StorageRepository();
-
-      final List<SavedStorageModel> oHistory = await repository.getStoresHistory();
-
-      final int oIndex = oHistory?.indexWhere((element) {
-        return element.id == action.id;
-      });
-
-      if (oIndex != -1 && oHistory != null && oHistory.isNotEmpty && oHistory[oIndex].update >= action.update) {
-        logger.d('action.update: ${action.update}, history[index].update: ${oHistory[oIndex].update}');
-        return;
-      }
-
-      final BaseHttpResponse<StorageModel> response = await repository.getStorageData(id: action.id);
-
-      await repository.updateStoresHistory(
-        id: action.id,
-        locale: '',
-        storageModel: response.response,
-        update: action.update,
-      );
-
-      await repository.updateOpenedStoreId(id: action.id);
-
-      final List<SavedStorageModel> history = await repository.getStoresHistory();
-
-      final int index = history?.indexWhere((element) {
-        return element.id == action.id;
-      });
-
-      if (history != null && history.isNotEmpty) {
-        yield* Stream.value(SetStoresHistoryAction(storesHistory: history));
-
-        final bool isTermsAccepted = await repository.getIsTermsAccepted(action.id.toString());
-
-        if (isTermsAccepted) {
-          yield* ConcatEagerStream([
-            Stream.value(
-              OpenStorageAction(
-                id: action.id,
-                storage: history[index].storage,
-              ),
-            ),
-            changeCheckIdLoadingState(false),
-          ]);
-
-          return;
-        }
-
-        yield* ConcatEagerStream([
-          Stream.value(
-            OpenTermsAction(
-              id: action.id,
-              storage: history[index].storage,
-            ),
-          ),
-          changeCheckIdLoadingState(false),
-        ]);
-      }
-    });
-  }
-
-  static Stream<dynamic> _updateLanguageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
-    return actions.whereType<UpdateLanguageAction>().switchMap((action) async* {
-      final StorageRepository repository = StorageRepository();
-
-      await repository.updateStoresHistory(
-        id: action.newModel.id,
-        locale: action.newModel.locale,
-        storageModel: action.newModel.storage,
-        update: action.newModel.update,
-      );
-
-      return;
-    });
-  }
-
-  static Stream<dynamic> _updateIsFirstOpenEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
-    return actions.whereType<UpdateIsFirstOpenAction>().switchMap((action) async* {
-      final StorageRepository repository = StorageRepository();
-
-      await repository.saveIsFirstOpen(id: store.state?.storageState?.openedStoreId?.toString(), isFirstOpen: action.isFirstOpen);
-
-      return;
-    });
-  }
-
-  static Stream<dynamic> _openStorageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
-    return actions.whereType<OpenStorageAction>().switchMap((action) async* {
-      final String lastRoute = RouteService.instance.currentRoute;
-      final StorageRepository repository = StorageRepository();
-
-      final bool isFirstOpen = await repository.getIsFirstOpen(action.id.toString());
-
-      yield* Stream.value(UpdateIsFirstOpenAction(isFirstOpen: isFirstOpen));
-
-      if (lastRoute == Routes.main || lastRoute == Routes.terms || lastRoute == null) {
-        yield* Stream.value(RouteSelectors.gotoCatalogsPageAction);
-      }
-
-      return;
-    });
-  }
-
-  static Stream<dynamic> _openTermsEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
-    return actions.whereType<OpenTermsAction>().switchMap((action) async* {
-      final String lastRoute = RouteService.instance.currentRoute;
-
-      if (lastRoute == Routes.main || lastRoute == null) {
-        yield* Stream.value(SetOpenedCatalogIdAction(id: action.id));
-        yield* Stream.value(RouteSelectors.gotoTermsPageAction);
-      }
-
-      return;
-    });
-  }
-
-  static Stream<dynamic> removeOpenedStorageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
-    return actions.whereType<RemoveOpenedStorageAction>().switchMap((action) async* {
-      final StorageRepository repository = StorageRepository();
-
-      await repository.removeOpenedStoreId();
-      return;
-    });
-  }
 
   static Stream<dynamic> showError(String errorText) {
     return Stream.value(
@@ -289,7 +72,7 @@ class StorageMainEpic {
     );
   }
 
-  static Stream<dynamic> changeCheckIdLoadingState(bool value) {
+  static Stream<dynamic> changeCheckIdLoadingState({bool value}) {
     if (value) {
       return Stream.value(StartLoadingAction(
         loader: EmptyLoaderDialog(

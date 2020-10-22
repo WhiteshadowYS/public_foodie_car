@@ -9,7 +9,7 @@ import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_id_actions/check_id_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/set_opened_id_actions.dart';
-import 'package:my_catalog/store/shared/storage/actions/set_stores_history_action/set_stores_history_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/set_stores_history_actions/set_stores_history_action.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 

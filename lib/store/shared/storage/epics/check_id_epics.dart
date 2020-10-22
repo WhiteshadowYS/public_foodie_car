@@ -31,7 +31,7 @@ class CheckIdEpics {
               if (nAction.response.error != null || nAction.response.response == null) {
                 return ConcatEagerStream([
                   StorageMainEpic.showError(nAction.response.error?.error ?? 'Error not found'),
-                  StorageMainEpic.changeCheckIdLoadingState(false),
+                  StorageMainEpic.changeCheckIdLoadingState(value: false),
                 ]);
               }
 

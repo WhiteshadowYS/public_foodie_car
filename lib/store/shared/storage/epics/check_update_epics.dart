@@ -3,8 +3,8 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_update_actions/check_update_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_update_actions/check_update_result_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_update_actions/do_check_update_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/get_data_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/update_stores_history_actions/update_stores_history_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/get_data_actions/get_data_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/reload_stores_history_actions/reload_stores_history_action.dart';
 import 'package:my_catalog/store/shared/storage/storage_main_epic.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
@@ -36,12 +36,12 @@ class CheckUpdateEpics {
                       update: action.model.update,
                     ),
                   ),
-                  StorageMainEpic.changeCheckIdLoadingState(false),
+                  StorageMainEpic.changeCheckIdLoadingState(value: false),
                 ]);
               }
 
               return Stream.fromIterable([
-                UpdateStoresHistoryAction(
+                ReloadStoresHistoryAction(
                   newStoreId: action.model.id,
                 ),
               ]);

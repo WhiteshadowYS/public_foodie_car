@@ -5,13 +5,12 @@ import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 import 'package:my_catalog/network/requests/get_data_request.dart';
 import 'package:my_catalog/store/shared/reducer.dart';
-import 'package:my_catalog/store/shared/storage/actions/open_storage_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/open_terms_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/open_store_actions/open_store_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/open_terms_actions/open_terms_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/set_opened_id_actions.dart';
+import 'package:my_catalog/store/shared/storage/actions/set_stores_history_actions/set_stores_history_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/update_language_action.dart';
-
-import 'actions/set_stores_history_action/set_stores_history_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_action.dart';
 
 // TODO(Yuri): Update comment for this class.
 /// [StorageState] it is state of last loaded storage.
@@ -76,7 +75,7 @@ class StorageState {
   StorageState reducer(dynamic action) {
     return Reducer<StorageState>(
       actions: HashMap.from({
-        OpenStorageAction: (dynamic action) => _openStorage(action as OpenStorageAction),
+        OpenStoreAction: (dynamic action) => _openStore(action as OpenStoreAction),
         OpenTermsAction: (dynamic action) => _openTerms(action as OpenTermsAction),
         SetOpenedStoreIdAction: (dynamic action) => _setOpenedStoreId(action as SetOpenedStoreIdAction),
         SetStoresHistoryAction: (dynamic action) => _setStoresHistory(action as SetStoresHistoryAction),
@@ -90,7 +89,7 @@ class StorageState {
     ).updateState(action, this);
   }
 
-  StorageState _openStorage(OpenStorageAction action) {
+  StorageState _openStore(OpenStoreAction action) {
     if (action.storage == null || action.id == null) return this;
 
     return copyWith(
