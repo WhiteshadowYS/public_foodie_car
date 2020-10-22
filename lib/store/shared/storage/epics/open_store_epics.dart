@@ -1,3 +1,4 @@
+import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
@@ -6,6 +7,7 @@ import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:my_catalog/store/shared/storage/actions/open_store_actions/do_open_store_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/open_store_actions/open_store_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/open_store_actions/open_store_result_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/set_opened_id_actions.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
@@ -34,14 +36,8 @@ class OpenStoreEpics {
               final String lastRoute = RouteService.instance.currentRoute;
 
               if (lastRoute == Routes.main || lastRoute == Routes.terms || lastRoute == null) {
-                return ConcatEagerStream([
-                  Stream.value(
-                    UpdateIsFirstOpenAction(isFirstOpen: nAction.isFirstOpen),
-                  ),
-                  Stream.value(RouteSelectors.gotoCatalogsPageAction),
-                ]);
+                return _routeStream(nAction.isFirstOpen, action.storage);
               }
-
               return Stream.value(
                 UpdateIsFirstOpenAction(isFirstOpen: nAction.isFirstOpen),
               );
@@ -50,6 +46,21 @@ class OpenStoreEpics {
         );
       },
     );
+  }
+
+  static Stream<dynamic> _routeStream(bool isFirstOpen, StorageModel model) {
+    return ConcatEagerStream([
+      Stream.value(
+        UpdateIsFirstOpenAction(isFirstOpen: isFirstOpen),
+      ),
+      if (model.data?.hierarchy != null && model.data?.hierarchy?.length == 1)
+        Stream.fromIterable([
+          SetOpenedCatalogIdAction(id: model?.data?.hierarchy?.first?.id),
+          RouteSelectors.gotoCategoriesPageAction
+        ])
+      else
+        Stream.value(RouteSelectors.gotoCatalogsPageAction),
+    ]);
   }
 
   static Stream<dynamic> _doOpenStoreEpic(Stream<dynamic> actions, EpicStore<AppState> store) {

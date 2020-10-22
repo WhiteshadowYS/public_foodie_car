@@ -17,6 +17,7 @@ const Duration MILLISECONDS_500 = Duration(milliseconds: 500);
 const Duration MILLISECONDS_900 = Duration(milliseconds: 900);
 
 const String WANNA_CREATE_MY_CATALOG_LINK = 'https://www.gettyimages.com/gi-resources/images/500px/983794168.jpg';
+const String CREATE_BY_LINK = 'https://appvesto.com/';
 
 
 const String TITLE = 'My catalog';

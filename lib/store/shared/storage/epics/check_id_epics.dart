@@ -1,5 +1,11 @@
+import 'package:my_catalog/models/models/storage_status_model.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
+import 'package:my_catalog/services/dialog_service/models/internet_connection_dialog.dart';
+import 'package:my_catalog/services/internet_connection_service/internet_connection_service.dart';
+import 'package:my_catalog/services/network_service/models/base_http_response.dart';
+import 'package:my_catalog/services/network_service/res/consts.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_id_actions/check_id_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_id_actions/check_id_result_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_id_actions/do_check_id_action.dart';
@@ -29,6 +35,13 @@ class CheckIdEpics {
               final CheckIdResultAction nAction = values.first as CheckIdResultAction;
 
               if (nAction.response.error != null || nAction.response.response == null) {
+                if (nAction.response.error.statusCode == BAD_GATEWAY_STATUS_CODE) {
+                  return ConcatEagerStream([
+                    Stream.value(ShowDialogAction(dialog: InternetConnection())),
+                    StorageMainEpic.changeCheckIdLoadingState(value: false),
+                  ]);
+                }
+
                 return ConcatEagerStream([
                   StorageMainEpic.showError(nAction.response.error?.error ?? 'Error not found'),
                   StorageMainEpic.changeCheckIdLoadingState(value: false),
@@ -53,7 +66,17 @@ class CheckIdEpics {
 
   static Stream<dynamic> _doCheckIdEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<DoCheckIdAction>().asyncMap(
-      (action) {
+      (action) async {
+        final BaseHttpResponse response = await InternetConnectionService.checkInternetConnection();
+
+        if (response?.error != null) {
+          return CheckIdResultAction(
+            response: BaseHttpResponse<StorageStatusModel>(
+              error: response.error,
+            ),
+          );
+        }
+
         return StorageRepository().getStorageStatus(id: action.id).then((response) {
           return CheckIdResultAction(response: response);
         });

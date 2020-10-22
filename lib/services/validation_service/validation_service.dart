@@ -8,7 +8,7 @@ class ValidationService {
     if (arg == null || arg == '') return null;
 
     if (arg.startsWith('0')) {
-      return dictionary.isNumberError;
+      return dictionary.isZeroNumIdError;
     }
 
     if (!regExp.hasMatch(arg)) {
@@ -17,6 +17,10 @@ class ValidationService {
 
     if (int.tryParse(arg) == null) {
       return dictionary.isNumberError;
+    }
+
+    if (int.tryParse(arg) <= 0) {
+      return dictionary.isNegativeNumIdError;
     }
 
     return null;

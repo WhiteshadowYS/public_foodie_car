@@ -15,6 +15,10 @@ abstract class StorageDataSelector {
     return store.state.storageState.storage?.settings?.info?.logoImage;
   }
 
+  static bool getIsSimpleCatalog(Store<AppState> store) {
+    return store.state.storageState.storage?.data?.hierarchy?.length == 1;
+  }
+
   static String getTermsText(Store<AppState> store) {
     return store.state?.storageState?.storage?.settings?.tac ?? '';
   }
@@ -33,12 +37,17 @@ abstract class StorageDataSelector {
     return catalogs;
   }
 
+  static int getCurrentCatalogID(Store<AppState> store) {
+    return store.state.storageState.openedCatalogId;
+  }
+
   static List<InfoCategoryModel> getInfoCategories(Store<AppState> store) {
     try {
       final int index = store.state.storageState.storage.data.hierarchy.indexWhere(
         (item) => item.id == store.state.storageState.openedCatalogId,
       );
-      final List<InfoCategoryModel> categories = store.state.storageState?.storage?.data?.hierarchy[index].categories ?? [];
+      final List<InfoCategoryModel> categories =
+          store.state.storageState?.storage?.data?.hierarchy[index].categories ?? [];
       final List<InfoCategoryModel> categoriesInSelectedLanguage = [];
 
       for (InfoCategoryModel category in categories) {
@@ -64,7 +73,8 @@ abstract class StorageDataSelector {
         (item) => item.id == store.state.storageState.openedCategoryId,
       );
       final List<InfoSubcategoryModel> subcategories =
-          store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ?? [];
+          store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories ??
+              [];
       final List<InfoSubcategoryModel> subcategoriesInSelectedLanguage = [];
 
       for (InfoSubcategoryModel subcategory in subcategories) {
@@ -87,11 +97,14 @@ abstract class StorageDataSelector {
       final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere(
         (item) => item.id == store.state.storageState.openedCategoryId,
       );
-      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere(
+      final int subCategoryIndex = store
+          .state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories
+          .indexWhere(
         (item) => item.id == store.state.storageState.openedSubCategoryId,
       );
-      final List<InfoProductModel> products =
-          store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products ?? [];
+      final List<InfoProductModel> products = store.state.storageState?.storage?.data?.hierarchy[catalogIndex]
+              .categories[categoryIndex].subcategories[subCategoryIndex].products ??
+          [];
       final List<InfoProductModel> productsInSelectedLanguage = [];
 
       for (InfoProductModel product in products) {
@@ -114,15 +127,18 @@ abstract class StorageDataSelector {
       final int categoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories.indexWhere(
         (item) => item.id == store.state.storageState.openedCategoryId,
       );
-      final int subCategoryIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories.indexWhere(
+      final int subCategoryIndex = store
+          .state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories
+          .indexWhere(
         (item) => item.id == store.state.storageState.openedSubCategoryId,
       );
-      final int productIndex =
-          store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex].subcategories[subCategoryIndex].products.indexWhere(
+      final int productIndex = store.state.storageState.storage.data.hierarchy[catalogIndex].categories[categoryIndex]
+          .subcategories[subCategoryIndex].products
+          .indexWhere(
         (item) => item.id == store.state.storageState.openedProductId,
       );
-      final List<int> filesIndexes = store.state.storageState?.storage?.data?.hierarchy[catalogIndex].categories[categoryIndex]
-              .subcategories[subCategoryIndex].products[productIndex].files ??
+      final List<int> filesIndexes = store.state.storageState?.storage?.data?.hierarchy[catalogIndex]
+              .categories[categoryIndex].subcategories[subCategoryIndex].products[productIndex].files ??
           [];
       final List<FileModel> files = [];
 

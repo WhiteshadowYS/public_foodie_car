@@ -48,19 +48,20 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
           alignment: Alignment.topRight,
           children: [
             Center(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12.0),
-                child: SizedBox(
+              child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: PhotoView.customChild(
-                    minScale: 0.7,
+                    minScale: 1.0,
                     maxScale: 2.5,
                     childSize: Size(200.0, 200.0),
                     controller: _photoViewController,
                     backgroundDecoration: BoxDecoration(color: AppColors.kBlack.withOpacity(0)),
-                    child: CachedImage(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: CachedImage(
                       key: Key(widget.key.toString() + 'CachedImage'),
                       imageUrl: widget.dialog.gallery[index] ?? '',
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
@@ -85,7 +86,7 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.all(16.0),
+              margin: const EdgeInsets.all(12.0),
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
@@ -99,7 +100,7 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
                     opacity: _init ? 1.0 : 0.0,
                     child: CircleAvatar(
                       radius: 25.0,
-                      backgroundColor: Colors.white.withOpacity(0.5),
+                      backgroundColor: CustomTheme.colors.background.withOpacity(0.6),
                       child: Icon(Icons.close, size: 30.0, color: CustomTheme.colors.primaryColor),
                     ),
                   ),

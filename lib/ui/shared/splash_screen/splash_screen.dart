@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,11 +9,8 @@ import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
-import 'package:my_catalog/services/internet_connection_service/internet_connection_service.dart';
-import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/theme/models/appvesto_colors.dart';
-import 'package:my_catalog/ui/shared/splash_screen/splash_screen_vm.dart';
 import 'package:my_catalog/ui/shared/splash_screen/widgets/splash_loader.dart';
 
 /// [SplashScreen] is the very first page you need to download the application.
@@ -32,7 +28,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    // TODO(Andrey): We had to call this function here because during initialization, FlutterDictionary, language==null. Is it correct and can it be done differently?
     FlutterDictionary.instance.setNewLanguage(FlutterDictionaryDelegate.getCurrentLocale);
 
     /// This function will be called after the first build

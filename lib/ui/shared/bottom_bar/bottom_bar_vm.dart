@@ -8,25 +8,28 @@ import 'package:redux/redux.dart';
 
 // TODO(Yuri): Add comments for this class.
 class BottomBarVM {
+  final int currentIndex;
   final List<FooterButtonModel> footerButtons;
   final void Function() removeOpenedStore;
-  final void Function() navigateCatalogPage;
   final void Function() navigateToSettingsPage;
   final void Function() navigateToMainPage;
   final void Function() navigateToCatalogsPage;
+  final void Function(int) navigateCategoryPage;
 
   BottomBarVM({
+    @required this.currentIndex,
     @required this.footerButtons,
-    @required this.removeOpenedStore,
+    @required this.navigateCategoryPage,
     @required this.navigateToMainPage,
-    @required this.navigateCatalogPage,
     @required this.navigateToSettingsPage,
+    @required this.removeOpenedStore,
     @required this.navigateToCatalogsPage,
   });
 
   static BottomBarVM fromStore(Store<AppState> store) {
     return BottomBarVM(
       /// StorageDataSelector
+      currentIndex: StorageDataSelector.getCurrentCatalogID(store),
       footerButtons: StorageDataSelector.getFooterButtons(store),
 
       /// StorageFunctionSelector
@@ -34,9 +37,9 @@ class BottomBarVM {
       removeOpenedStore: StorageFunctionSelector.getRemoveOpenedStorageFunction(store),
 
       /// Another
-      navigateCatalogPage: RouteSelectors.gotoCatalogsPage(store),
-      navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
+      navigateCategoryPage: RouteSelectors.gotoCategoriesPage(store),
       navigateToCatalogsPage: RouteSelectors.gotoCatalogsPage(store),
+      navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
     );
   }
 }

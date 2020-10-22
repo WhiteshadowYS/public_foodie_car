@@ -3,10 +3,13 @@ import 'package:my_catalog/services/network_service/interfaces/i_base_http_error
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 import 'package:my_catalog/services/network_service/res/consts.dart';
 
-/// This function will check internet connection before request.
-
 class InternetConnectionService {
+  static bool startCheck = false;
+
   static void startInternetCheck(void Function() errorDialog) {
+    if (startCheck) return;
+
+    startCheck = true;
     DataConnectionChecker().onStatusChange.listen((status) {
       if (status == DataConnectionStatus.disconnected) {
         errorDialog();
@@ -14,6 +17,7 @@ class InternetConnectionService {
     });
   }
 
+  /// This function will check internet connection.
   static Future<BaseHttpResponse> checkInternetConnection() async {
     final bool hasInternet = await DataConnectionChecker().hasConnection;
 

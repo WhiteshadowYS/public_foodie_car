@@ -29,6 +29,8 @@ const Language en = Language(
   ),
   errorDictionary: ErrorDictionary(
     isNumberError: 'Please enter number',
+    isNegativeNumIdError: 'Id cannot be negative',
+    isZeroNumIdError: 'Id can\'t equal 0',
   ),
   mainPageDictionary: MainPageDictionary(
     history: 'History',

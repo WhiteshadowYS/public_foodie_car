@@ -33,6 +33,7 @@ class _LinksButtonState extends State<LinksButton> {
           duration: MILLISECONDS_300,
           style: CustomTheme.textStyles.linkTextStyle(
             size: 18.0,
+            decorationThickness: 0.6,
             fontWeight: FontWeight.bold,
             decorationColor: _tap
                 ? CustomTheme.colors.accentFont.withOpacity(0.0)

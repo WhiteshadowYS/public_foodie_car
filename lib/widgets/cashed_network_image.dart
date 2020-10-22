@@ -25,7 +25,7 @@ class CachedImage extends StatelessWidget {
       width: width,
       child: CachedNetworkImage(
         imageUrl: imageUrl,
-        fit: BoxFit.cover,
+        fit: fit,
         height: height,
         width: width,
         placeholder: (BuildContext context, String url) {
