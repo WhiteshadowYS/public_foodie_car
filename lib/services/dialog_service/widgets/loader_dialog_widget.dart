@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
-import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/services/dialog_service/models/default_loader_dialog.dart';
-import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/widgets/fade_animation_container.dart';
 
 class LoaderDialogWidget extends StatelessWidget {

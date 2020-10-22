@@ -6,7 +6,6 @@ import 'package:my_catalog/services/device_info_service/device_info_service.dart
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 import 'package:my_catalog/services/push_notifications_service/push_notifications_service.dart';
 
-// TODO(Yuri): Update comment for this class after function implementation.
 /// This repository does work with all in app notifications.
 /// Methods:
 ///   - [updateToken]. This functions need for update token on the server.

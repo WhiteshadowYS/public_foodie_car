@@ -21,10 +21,10 @@ class DeviceInfoService {
     String deviceId;
     if (Platform.isAndroid) {
       final AndroidDeviceInfo build = await deviceInfoPlugin.androidInfo;
-      deviceId = build.androidId; //UUID for Android
+      deviceId = build.androidId; ///UUID for Android
     } else if (Platform.isIOS) {
       final IosDeviceInfo data = await deviceInfoPlugin.iosInfo;
-      deviceId = data.identifierForVendor; //UUID for iOS
+      deviceId = data.identifierForVendor; ///UUID for iOS
     }
     return deviceId;
   }

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
-import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/models/image_view_dialog.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/image_view_button.dart';
 import 'package:my_catalog/widgets/cashed_network_image.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImageViewDialogWidget extends StatefulWidget {
   final ImageViewDialog dialog;

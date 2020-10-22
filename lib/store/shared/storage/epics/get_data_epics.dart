@@ -3,7 +3,6 @@ import 'package:my_catalog/models/models/storage_model/settings/language_model.d
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/locales.dart';
-import 'package:my_catalog/services/dialog_service/interfaces/i_loader.dart';
 import 'package:my_catalog/services/dialog_service/models/default_loader_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
