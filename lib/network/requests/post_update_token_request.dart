@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/dto/post_update_token_request_dto/post_update_token_request_dto.dart';
+import 'package:my_catalog/models/models/update_token_status_model.dart';
 import 'package:my_catalog/network/shared/i_request.dart';
 import 'package:my_catalog/res/api.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
@@ -23,7 +24,7 @@ import 'package:my_catalog/ui/pages/main_page/main_page.dart';
 ///   - "push_token" - [pushToken]. No Realisation at this moment (This token we will take from [NotificationService] in the future).
 ///   - "device_id" - [deviceId]. No Realisation at this moment (This id we will take from [DeviceService] in the future).
 ///   - "language" - [language]. No Realisation at this moment (This param we will take from [Data] in the future).
-class PostUpdateTokenRequest implements IRequest<Null> {
+class PostUpdateTokenRequest implements IRequest<BaseHttpResponse<PostUpdateTokenRequestDto>> {
   final int id;
   final String pushToken;
   final String deviceId;
@@ -37,7 +38,7 @@ class PostUpdateTokenRequest implements IRequest<Null> {
   });
 
   @override
-  Future<Null> call() async {
+  Future<BaseHttpResponse<PostUpdateTokenRequestDto>> call() async {
     final BaseHttpResponse response = await NetworkService.instance.request(
       RequestBuilders.post(
         url: Api.mockApiLink,
@@ -51,7 +52,8 @@ class PostUpdateTokenRequest implements IRequest<Null> {
         },
       ),
     );
-
-    return PostUpdateTokenRequestDto.fromJson(response.response);
+    return BaseHttpResponse<PostUpdateTokenRequestDto>(
+      response: PostUpdateTokenRequestDto.fromJson(response.response),
+    );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:http/src/response.dart';
 import 'package:my_catalog/services/network_service/interfaces/i_base_request.dart';
@@ -18,7 +20,7 @@ class PostRequestModel implements IBaseRequest {
     return http.post(
       url,
       headers: headers,
-      body: body,
+      body: json.encode(body), // TODO tttt
     );
   }
 }

@@ -1,10 +1,13 @@
 import 'package:my_catalog/models/models/saved_storage_model.dart';
+import 'package:my_catalog/models/models/storage_model/settings/language_model.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/locales.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/storage/actions/get_data_actions/do_get_data_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/get_data_actions/get_data_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/get_data_actions/get_data_result_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_stores_history_actions/update_stores_history_action.dart';
 import 'package:my_catalog/store/shared/storage/storage_main_epic.dart';
 import 'package:my_catalog/utils/empty_action.dart';
@@ -40,12 +43,36 @@ class GetDataEpics {
                 ]);
               }
 
+              final List<LanguageModel> languages = nAction.response.response.settings.languages;
+
+              int index = languages.indexWhere((element) {
+                return element.isDefault;
+              });
+
+              if (index == null || index == -1) {
+                index = languages.indexWhere((element) {
+                  return element.code == Locales.base.toUpperCase();
+                });
+              }
+
+              print('index: $index');
+              print('isFirstOpen: ${action.isInitialLoad}');
+
               return Stream.fromIterable([
                 UpdateStoresHistoryAction(
                   id: action.id,
                   update: action.update,
                   storageModel: nAction.response.response,
                 ),
+                if (index != null && index != -1 && action.isInitialLoad)
+                  UpdateLanguageAction(
+                    newModel: SavedStorageModel(
+                      id: action.id,
+                      update: action.update,
+                      storage: nAction.response.response,
+                      locale: languages[index].code ?? '',
+                    ),
+                  ),
               ]);
             }).switchMap((action) => action),
           ],

@@ -165,6 +165,12 @@ class StorageState {
   StorageState _updateStoreLanguage(UpdateLanguageAction action) {
     if (action.newModel == null) return this;
 
+    if (List.from(storesHistory) == null || List.from(storesHistory).isEmpty) {
+      return copyWith(
+        storesHistory: List.from(storesHistory)..add(action.newModel),
+      );
+    }
+
     return copyWith(
       storesHistory: List.from(storesHistory)
         ..removeLast()

@@ -12,7 +12,7 @@ part 'post_update_token_request_dto.g.dart';
   explicitToJson: true,
 )
 class PostUpdateTokenRequestDto implements IDto {
-  final bool status;
+  final String status;
 
   PostUpdateTokenRequestDto({
     @required this.status,
