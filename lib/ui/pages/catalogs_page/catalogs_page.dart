@@ -51,6 +51,7 @@ class CatalogsPage extends StatelessWidget {
                   child: ScrollConfiguration(
                     behavior: CleanBehavior(),
                     child: ListView.builder(
+                      physics: ClampingScrollPhysics(),
                       padding: EdgeInsets.symmetric(
                         vertical: 24.h,
                       ),
