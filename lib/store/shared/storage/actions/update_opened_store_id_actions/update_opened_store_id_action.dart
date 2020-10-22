@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/store/shared/base_action.dart';
 
-class GetDataAction extends BaseAction {
-  final int update;
+class UpdateOpenedStoreIdAction extends BaseAction {
   final int id;
 
-  GetDataAction({
-    @required this.update,
+  UpdateOpenedStoreIdAction({
     @required this.id,
-  }) : super(type: 'GetDataAction');
+  }) : super(type: 'UpdateOpenedStoreIdAction');
 }

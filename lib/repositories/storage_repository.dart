@@ -59,7 +59,7 @@ class StorageRepository extends Repository {
       return false;
     }
 
-    List<String> _idList = acceptedIdList.split('|');
+    final List<String> _idList = acceptedIdList.split('|');
 
     for (String _id in _idList) {
       if (_id == id) return true;
@@ -124,10 +124,10 @@ class StorageRepository extends Repository {
   }
 
   Future<void> updateStoresHistory({
-    @required int update,
     @required int id,
-    @required String locale,
+    @required int update,
     @required StorageModel storageModel,
+    String locale,
   }) async {
     final SavedStorageModel model = SavedStorageModel(
       id: id,
@@ -219,7 +219,8 @@ class StorageRepository extends Repository {
 
     if (index == -1) return false;
 
-    logger.d('History list: ${history.map((e) => 'id: ${e.id}, update: ${e.update}').toList()}, \nStatus model: ${history[index].update}, \nHistory Model: ${statusModel.update}');
+    logger.d(
+        'History list: ${history.map((e) => 'id: ${e.id}, update: ${e.update}').toList()}, \nStatus model: ${history[index].update}, \nHistory Model: ${statusModel.update}');
 
     if (history[index].update == null) return false;
 

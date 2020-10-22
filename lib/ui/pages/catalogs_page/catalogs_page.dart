@@ -25,9 +25,10 @@ class CatalogsPage extends StatelessWidget {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             vm.openLanguagePopup();
           });
-        } else {
-          vm.getUpdateTokenFunction();
         }
+//        else {
+//          vm.getUpdateTokenFunction();
+//        }
       },
       converter: CatalogsPageVM.fromStore,
       builder: (BuildContext context, vm) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/image_assets.dart';
+import 'package:my_catalog/widgets/cashed_network_image.dart';
 
 class ImagePreviewWidget extends StatelessWidget {
   final String imageUrl;
@@ -10,10 +11,9 @@ class ImagePreviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FadeInImage(
-      placeholder: AssetImage(ImageAssets.LOGO_PNG),
-      image: NetworkImage(imageUrl),
-      fit: BoxFit.cover,
+    return CachedImage(
+      key: Key(key.toString() + 'CachedImage'),
+      imageUrl: imageUrl ?? '',
     );
   }
 }

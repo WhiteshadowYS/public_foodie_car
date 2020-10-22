@@ -7,25 +7,27 @@ import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart
 import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
-import 'package:my_catalog/store/shared/storage/actions/check_id_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/check_id_actions/check_id_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/set_opened_id_actions.dart';
-import 'package:my_catalog/store/shared/storage/actions/set_stores_history_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/set_stores_history_actions/set_stores_history_action.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
 // TODO(Yuri): Update comments for this class.
-class InitializeEpics {
+class InitializeMainEpic {
   static const String tag = '[InitializeEpics]';
 
   static final indexEpic = combineEpics<AppState>([
-    startInitializationEpic,
+    _startInitializationEpic,
   ]);
 
-  static Stream<dynamic> startInitializationEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+  static Stream<dynamic> _startInitializationEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<StartInitialization>().switchMap((action) async* {
       final StorageRepository repository = StorageRepository();
 
       yield* _changeInitializationLoading(true);
+
+      await Future.delayed(Duration(seconds: 1));
 
       final int openedStorageId = await repository.getOpenedStoreId();
       final List<SavedStorageModel> history = await repository.getStoresHistory();
