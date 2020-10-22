@@ -34,6 +34,7 @@ class CheckUpdateEpics {
                     GetDataAction(
                       id: action.model.id,
                       update: action.model.update,
+                      isInitialLoad: true,
                     ),
                   ),
                   StorageMainEpic.changeCheckIdLoadingState(value: false),

@@ -33,7 +33,6 @@ class StorageState {
     @required this.storesHistory,
     @required this.openedStoreId,
     @required this.storage,
-
     this.openedCatalogId,
     this.openedCategoryId,
     this.openedSubCategoryId,
@@ -82,7 +81,8 @@ class StorageState {
         UpdateLanguageAction: (dynamic action) => _updateStoreLanguage(action as UpdateLanguageAction),
         SetOpenedCatalogIdAction: (dynamic action) => _setOpenedCatalogId(action as SetOpenedCatalogIdAction),
         SetOpenedCategoryIdAction: (dynamic action) => _setOpenedCategoryId(action as SetOpenedCategoryIdAction),
-        SetOpenedSubCategoryIdAction: (dynamic action) => _setOpenedSubCategoryId(action as SetOpenedSubCategoryIdAction),
+        SetOpenedSubCategoryIdAction: (dynamic action) =>
+            _setOpenedSubCategoryId(action as SetOpenedSubCategoryIdAction),
         SetOpenedProductIdAction: (dynamic action) => _setOpenedProductId(action as SetOpenedProductIdAction),
         UpdateIsFirstOpenAction: (dynamic action) => _updateIsFirstOpen(action as UpdateIsFirstOpenAction),
       }),
@@ -164,6 +164,12 @@ class StorageState {
 
   StorageState _updateStoreLanguage(UpdateLanguageAction action) {
     if (action.newModel == null) return this;
+
+    if (List.from(storesHistory) == null || List.from(storesHistory).isEmpty) {
+      return copyWith(
+        storesHistory: List.from(storesHistory)..add(action.newModel),
+      );
+    }
 
     return copyWith(
       storesHistory: List.from(storesHistory)

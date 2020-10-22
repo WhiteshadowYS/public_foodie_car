@@ -10,7 +10,7 @@ PostUpdateTokenRequestDto _$PostUpdateTokenRequestDtoFromJson(
     Map<String, dynamic> json) {
   return $checkedNew('PostUpdateTokenRequestDto', json, () {
     final val = PostUpdateTokenRequestDto(
-      status: $checkedConvert(json, 'status', (v) => v as bool),
+      status: $checkedConvert(json, 'status', (v) => v as String),
     );
     return val;
   });

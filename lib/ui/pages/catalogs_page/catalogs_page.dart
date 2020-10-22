@@ -21,14 +21,17 @@ class CatalogsPage extends StatelessWidget {
     return StoreConnector<AppState, CatalogsPageVM>(
       onInitialBuild: (CatalogsPageVM vm) {
         InternetConnectionService.startInternetCheck(vm.internetDialog);
-      },
-      converter: CatalogsPageVM.fromStore,
-      builder: (BuildContext context, vm) {
         if (vm.isLanguagePopupNeeded) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             vm.openLanguagePopup();
           });
         }
+//        else {
+//          vm.getUpdateTokenFunction();
+//        }
+      },
+      converter: CatalogsPageVM.fromStore,
+      builder: (BuildContext context, vm) {
 
         return MainLayout(
           appBar: MainAppBar(

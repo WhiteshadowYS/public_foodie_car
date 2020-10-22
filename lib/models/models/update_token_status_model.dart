@@ -12,7 +12,7 @@ part 'update_token_status_model.g.dart';
 )
 class UpdateTokenStatusModel implements IModel {
   @JsonKey(name: 'status', required: false, nullable: true)
-  final bool status;
+  final String status;
 
   UpdateTokenStatusModel({
     @required this.status,
