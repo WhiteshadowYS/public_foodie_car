@@ -13,18 +13,14 @@ class CategoriesPageVM {
   final String currentLocale;
   final bool isSimpleCatalog;
   final List<InfoCategoryModel> categories;
-  final void Function() logOut;
   final void Function(int) navigateToSubcategoriesPage;
   final String Function(String) categoriesPageTitle;
   final String Function(String) backButtonText;
-  final String Function(String) logoutText;
   final CategoryModel Function(int) getCurrentCategoryData;
 
   const CategoriesPageVM({
     @required this.categories,
-    @required this.logoutText,
     @required this.isSimpleCatalog,
-    @required this.logOut,
     @required this.currentLocale,
     @required this.backButtonText,
     @required this.categoriesPageTitle,
@@ -39,13 +35,11 @@ class CategoriesPageVM {
       isSimpleCatalog: StorageDataSelector.getIsSimpleCatalog(store),
 
       /// StorageLanguageSelector
-      logoutText: StorageLanguageSelector.getLogoutText(store),
       currentLocale: StorageLanguageSelector.getSelectedLocale(store),
       backButtonText: StorageLanguageSelector.getBackButtonText(store),
       categoriesPageTitle: StorageLanguageSelector.getCategoriesTitleText(store),
 
       /// StorageFunctionSelector
-      logOut: StorageFunctionSelector.getLogOutFunction(store),
       getCurrentCategoryData: StorageFunctionSelector.getCurrentCategoryModelFunction(store),
 
       /// Another

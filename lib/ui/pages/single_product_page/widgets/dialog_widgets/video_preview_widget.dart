@@ -5,6 +5,7 @@ import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/custom_animated_play_icon_widget.dart';
+import 'package:my_catalog/widgets/fade_animation_container.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPreviewWidget extends StatefulWidget {
@@ -55,6 +56,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
           children: [
             AspectRatio(
               aspectRatio: _controller.value.aspectRatio,
+
               /// Use the VideoPlayer widget to display the video.
               child: VideoPlayer(_controller),
             ),
@@ -89,11 +91,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
       );
     } else {
       /// If the VideoPlayerController is still initializing, show a loader
-      return SvgPicture.asset(
-        ImageAssets.LOADING,
-        color: CustomTheme.colors.primaryColor,
-        height: 60.h,
-      );
+      return FadeAnimationContainer();
     }
   }
 
