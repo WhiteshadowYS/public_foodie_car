@@ -27,7 +27,8 @@ class CategoriesPage extends StatelessWidget {
           appBar: MainAppBar(
             key: CategoriesPageKeys.appbar,
             title: vm.categoriesPageTitle(vm.currentLocale),
-            backButtonText: vm.backButtonText(vm.currentLocale),
+            backOnTap: vm.logOut,
+            backButtonText: vm.isSimpleCatalog ? vm.logoutText(vm.currentLocale) : vm.backButtonText(vm.currentLocale),
           ),
           child: MainGrid(
             keyValue: CategoriesPageKeys.gridView,

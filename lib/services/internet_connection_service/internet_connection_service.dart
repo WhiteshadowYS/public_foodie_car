@@ -3,7 +3,6 @@ import 'package:my_catalog/services/network_service/interfaces/i_base_http_error
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 import 'package:my_catalog/services/network_service/res/consts.dart';
 
-
 class InternetConnectionService {
   static bool startCheck = false;
 
