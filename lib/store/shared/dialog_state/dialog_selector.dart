@@ -43,6 +43,7 @@ class DialogSelectors {
 
 
   static void Function() getInternetConnectionDialogFunction(Store<AppState> store) {
+    print('qweqweqweqweq');
     return () => store.dispatch(ShowDialogAction(dialog: InternetConnection()));
   }
 

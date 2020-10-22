@@ -17,6 +17,7 @@ class CatalogsPageVM {
   final List<InfoCatalogModel> catalogs;
   final String Function(String) logoutText;
   final String Function(String) descriptionTitleText;
+  final void Function() getUpdateTokenFunction;
   final String currentLocale;
   final String logoUrl;
 
@@ -31,6 +32,7 @@ class CatalogsPageVM {
     @required this.catalogs,
     @required this.logoutText,
     @required this.getCurrentCatalogData,
+    @required this.getUpdateTokenFunction,
     @required this.currentLocale,
     @required this.descriptionTitleText,
     @required this.logoUrl,
@@ -46,6 +48,7 @@ class CatalogsPageVM {
       logOut: StorageSelector.getLogOutFunction(store),
       catalogs: StorageSelector.getInfoCatalogs(store),
       currentLocale: StorageSelector.getSelectedLocale(store),
+      getUpdateTokenFunction: StorageSelector.getUpdateTokenFunction(store),
       descriptionTitleText: StorageSelector.getDescriptionText(store),
       navigateToCategoriesPage: RouteSelectors.gotoCategoriesPage(store),
       exitDialog: DialogSelectors.getExitDialogFunction(store),

@@ -333,8 +333,16 @@ class StorageSelector {
           isFirstOpen: false,
         ),
       );
-      store.dispatch(UpdateTokenAction(id: store.state.storageState.openedStoreId, language: locale));
+      getUpdateTokenFunction(store)();
+     // store.dispatch(UpdateTokenAction(id: store.state.storageState.openedStoreId, language: locale));
     };
+  }
+
+  static void Function() getUpdateTokenFunction(Store<AppState> store) {
+    return () => store.dispatch(UpdateTokenAction(
+          id: store.state.storageState.openedStoreId,
+          language: store.state.storageState.storesHistory.last.locale,
+        ));
   }
 
   static bool getIsLanguagePopupNeeded(Store<AppState> store) {
