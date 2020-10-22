@@ -20,7 +20,6 @@ class CatalogsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, CatalogsPageVM>(
       onInitialBuild: (CatalogsPageVM vm) {
-        InternetConnectionService.startInternetCheck(vm.internetDialog);
         if (vm.isLanguagePopupNeeded) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             vm.openLanguagePopup();
