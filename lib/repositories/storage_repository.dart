@@ -201,7 +201,19 @@ class StorageRepository extends Repository {
       return;
     }
 
-    history[index] = model;
+    String newLocale = '';
+    if (model.locale == '' || model.locale == null) {
+      newLocale = history[index]?.locale ?? '';
+    } else {
+      newLocale = model.locale;
+    }
+
+    history[index] = SavedStorageModel(
+      id: model.id,
+      update: model.update,
+      locale: newLocale,
+      storage: model.storage,
+    );
 
     json = jsonEncode(history);
 
