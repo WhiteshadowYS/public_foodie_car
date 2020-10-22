@@ -10,7 +10,7 @@ import 'package:my_catalog/services/push_notifications_service/push_notification
 /// This repository does work with all in app notifications.
 /// Methods:
 ///   - [updateToken]. This functions need for update token on the server.
-///   * Need update params on this function.
+///   - params: [id] - id of selected catalog, [language] - selected locale
 class NotificationsRepository extends Repository {
   Future<BaseHttpResponse<UpdateTokenStatusModel>> updateToken({int id, String language}) async {
     return repository<BaseHttpResponse<UpdateTokenStatusModel>>(

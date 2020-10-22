@@ -2,6 +2,10 @@ import 'dart:io';
 
 import 'package:device_info/device_info.dart';
 
+/// [DeviceInfoService] it is service for getting device data.
+/// This class it - Singleton, for function using use [DeviceInfoService.instance]
+/// [getDeviceId] - function for getting UUID for Android or iOS device
+
 class DeviceInfoService {
   static const tag = '[DeviceInfoService]';
 
