@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_version/get_version.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/setting_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
@@ -17,6 +18,7 @@ import 'package:my_catalog/ui/pages/settings_page/widgets/settings_item.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
+import 'package:my_catalog/widgets/links_button.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage() : super(key: Key('SettingsPage'));
@@ -108,17 +110,19 @@ class _SettingsPageState extends State<SettingsPage> {
               SizedBox(
                 height: 14.0,
               ),
+
               SizedBox(
                 width: double.infinity,
                 child: Align(
-                  child: Text(
-                    dictionary.createBy,
-                    style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+                  child:LinksButton(
+                    keyValue: 'SettingsCreateByLink',
+                    title: dictionary.createBy,
+                    url: CREATE_BY_LINK,
                   ),
                 ),
               ),
               SizedBox(
-                height: 46.0,
+                height: 46.0.h,
               ),
             ],
           ),

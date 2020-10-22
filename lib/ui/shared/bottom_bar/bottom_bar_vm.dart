@@ -27,9 +27,8 @@ class BottomBarVM {
 
   static BottomBarVM fromStore(Store<AppState> store) {
     return BottomBarVM(
-      // TODO(Daniil): Use selector for this
       currentIndex: StorageSelector.getCurrentCatalogID(store),
-      footerButtons: StorageSelector.getFooterButtons(store),//dummyButtons,
+      footerButtons: StorageSelector.getFooterButtons(store),
       navigateCategoryPage: RouteSelectors.gotoCategoriesPage(store),
       navigateToMainPage: StorageSelector.getLogOutFunction(store),
       navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),

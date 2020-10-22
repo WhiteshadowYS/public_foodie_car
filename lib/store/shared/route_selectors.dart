@@ -20,7 +20,7 @@ class RouteSelectors {
 
   static NavigateToAction get gotoCatalogsPageAction => RouteService.instance.pushAndRemoveUntil(Routes.catalogs);
 
-  static NavigateToAction get gotoCategoriesPageAction => RouteService.instance.pushAndRemoveUntil(Routes.categories);
+  static NavigateToAction get gotoCategoriesPageAction => RouteService.instance.push(Routes.categories);
 
   static NavigateToAction get gotoSubcategoriesPageAction => RouteService.instance.push(Routes.subCategories);
 

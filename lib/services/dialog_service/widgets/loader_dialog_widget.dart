@@ -4,6 +4,7 @@ import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/services/dialog_service/models/default_loader_dialog.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
 class LoaderDialogWidget extends StatelessWidget {
   final DefaultLoaderDialog loaderModel;
@@ -23,8 +24,7 @@ class LoaderDialogWidget extends StatelessWidget {
             ImageAssets.LOADING,
             height: 50.0,
             width: 50.0,
-            // TODO(Daniil): Use theme color
-            color: AppColors.kGreen,
+            color: CustomTheme.colors.primaryColor,
           ),
           Padding(
             padding: const EdgeInsets.only(

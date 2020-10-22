@@ -5,7 +5,9 @@ import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/dialog_service/models/empty_loader_dialog.dart';
 import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
+import 'package:my_catalog/services/dialog_service/models/internet_connection_dialog.dart';
 import 'package:my_catalog/services/firebase_service/firebase_service.dart';
+import 'package:my_catalog/services/internet_connection_service/internet_connection_service.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
@@ -51,6 +53,13 @@ class StorageEpics {
 
   static Stream<dynamic> _checkIdEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<CheckIdAction>().where(_idValidation).switchMap((action) async* {
+      final BaseHttpResponse internetCheck = await InternetConnectionService.checkInternetConnection();
+
+      if (internetCheck != null) {
+        yield* Stream.value((ShowDialogAction(dialog: InternetConnection())));
+        return;
+      }
+
       final StorageRepository repository = StorageRepository();
 
       yield* _changeCheckIdLoadingState(true);

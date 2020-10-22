@@ -29,9 +29,8 @@ class ListTileItem extends StatelessWidget {
           leading: SvgPicture.network(
             iconPath,
             height: 20.0,
-            color: AppColors.kGreen,
+            color: CustomTheme.colors.primaryColor,
           ),
-          // TODO(Andrey): Get style from theme;
           title: Text(title, style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),),
           trailing: Transform.rotate(
             angle: FlutterDictionary.instance.isRTL ? pi : 0,
