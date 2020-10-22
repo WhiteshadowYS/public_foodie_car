@@ -36,7 +36,6 @@ class CatalogsPageVM {
     @required this.logoUrl,
     @required this.isLanguagePopupNeeded,
     @required this.openLanguagePopup,
-
   });
 
   static CatalogsPageVM fromStore(Store<AppState> store) {
@@ -52,7 +51,6 @@ class CatalogsPageVM {
       getCurrentCatalogData: StorageSelector.getCurrentCatalogModelFunction(store),
       isLanguagePopupNeeded: StorageSelector.getIsLanguagePopupNeeded(store),
       openLanguagePopup: StorageSelector.getOpenLanguageDialogFunction(store),
-      internetDialog: DialogSelectors.getInternetConnectionDialogFunction(store),
     );
   }
 }

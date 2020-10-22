@@ -13,10 +13,12 @@ import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
+import 'package:my_catalog/store/shared/dialog_state/dialog_selector.dart';
 import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
 import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
+import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
