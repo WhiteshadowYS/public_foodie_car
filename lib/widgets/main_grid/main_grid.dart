@@ -22,6 +22,7 @@ class MainGrid extends StatelessWidget {
       child: ScrollConfiguration(
         behavior: CleanBehavior(),
         child: GridView.count(
+          physics: ClampingScrollPhysics(),
           crossAxisCount: 2,
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 8.0,

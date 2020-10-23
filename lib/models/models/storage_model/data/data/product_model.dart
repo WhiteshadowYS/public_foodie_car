@@ -55,7 +55,7 @@ class ProductModel implements IDto {
     try {
       return languages[langCode][KEY_POINTS] ?? [];
     } catch (e) {
-      return [];
+       return [];
     }
   }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_catalog/dictionary/flutter_delegate.dart';
+import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
@@ -70,10 +72,11 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
                 child: ScrollConfiguration(
                   behavior: CleanBehavior(),
                   child: ListView.builder(
+                    physics: ClampingScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return ListTileItem(
                         keyValue: 'BottomBarSwitch$index',
-                        title: switchItems[index].type,
+                        title: switchItems[index].name[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()],
                         iconPath: switchItems[index].iconSvg,
                         onTap: () => widget.onTap(switchItems[index].type, widget.vm),
                       );

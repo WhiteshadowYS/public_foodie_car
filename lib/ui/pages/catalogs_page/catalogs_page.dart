@@ -20,7 +20,6 @@ class CatalogsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, CatalogsPageVM>(
       onInitialBuild: (CatalogsPageVM vm) {
-        InternetConnectionService.startInternetCheck(vm.internetDialog);
         if (vm.isLanguagePopupNeeded) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             vm.openLanguagePopup();
@@ -51,6 +50,7 @@ class CatalogsPage extends StatelessWidget {
                   child: ScrollConfiguration(
                     behavior: CleanBehavior(),
                     child: ListView.builder(
+                      physics: ClampingScrollPhysics(),
                       padding: EdgeInsets.symmetric(
                         vertical: 24.h,
                       ),

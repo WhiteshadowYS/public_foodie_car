@@ -7,7 +7,6 @@ import 'package:my_catalog/services/dialog_service/models/language_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_action.dart';
-import 'package:my_catalog/store/shared/storage/storage_function_selector.dart';
 import 'package:redux/redux.dart';
 
 abstract class StorageLanguageSelector {

@@ -35,6 +35,7 @@ class ProductsPage extends StatelessWidget {
             behavior: CleanBehavior(),
             child: ListView.builder(
               key: Key(ProductsPageKeys.listView),
+              physics: ClampingScrollPhysics(),
               itemCount: vm.products.length,
               itemBuilder: (BuildContext context, int index) {
                 final ProductModel product = vm.getCurrentProductData(vm.products[index].id);

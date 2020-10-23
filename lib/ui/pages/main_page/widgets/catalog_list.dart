@@ -3,6 +3,7 @@ import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/widgets/main_list_view.dart';
 
 import 'catalogs_list_item.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StoresList extends StatefulWidget {
   final String keyValue;
@@ -45,7 +46,7 @@ class _CatalogListState extends State<StoresList> {
       scrollController: _scrollController,
       itemCount: widget.stores.length + 2,
       itemHeight: itemHeight,
-      height: 180.0,
+      height: 180.0.h,
       itemBuilder: (BuildContext context, int index) {
         if (index == 0 || index == widget.stores.length + 1) {
           return SizedBox(
@@ -74,7 +75,8 @@ class _CatalogListState extends State<StoresList> {
     final double _itemMinHeight = itemHeight * index - 1;
     final double _itemMaxHeight = _itemMinHeight + itemHeight;
 
-    return _scrollController.offset + itemHeight >= _itemMinHeight && _scrollController.offset + itemHeight < _itemMaxHeight;
+    return _scrollController.offset + itemHeight >= _itemMinHeight &&
+        _scrollController.offset + itemHeight < _itemMaxHeight;
   }
 
   void _updateState() => setState(() {});

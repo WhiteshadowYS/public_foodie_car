@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/dialog_service/interfaces/i_dialog.dart';
 import 'package:my_catalog/services/dialog_service/shared/dialog_builders.dart';
 import 'package:my_catalog/services/dialog_service/widgets/error_dialog_widget.dart';

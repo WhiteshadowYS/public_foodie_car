@@ -11,6 +11,7 @@ pipeline {
         DEBUG_BUILD_TOKEN = " -d";
         RELEASE_BUILD_TOKEN = " -r";
         IOS_BUILD_TOKEN = " -i";
+        ALL_BUILD_TOKEN = " -a";
 
         // Telegram settings.
         TELEGRAM_CHAT_ID = "-1001365909620";
@@ -52,6 +53,7 @@ pipeline {
                    env.IS_ANDROID_DEBUG_BUILD = stringContains(env.GIT_COMMIT_MSG, DEBUG_BUILD_TOKEN)
                    env.IS_ANDROID_RELEASE_BUILD = stringContains(env.GIT_COMMIT_MSG, RELEASE_BUILD_TOKEN)
                    env.IS_IOS_BUILD = stringContains(env.GIT_COMMIT_MSG, IOS_BUILD_TOKEN)
+                   env.IS_ALL_BUILDS = stringContains(env.GIT_COMMIT_MSG, ALL_BUILD_TOKEN)
                    env.IS_FLUTTER_VERSION_CORRECT = stringContains(env.FLUTTER_VERSION, PROJECT_FLUTTER_VERSION)
 
                    echo "Is Flutter version correct: ${env.IS_FLUTTER_VERSION_CORRECT}"
@@ -73,7 +75,7 @@ pipeline {
         }
         stage ('Flutter version') {
             when {
-                expression {(env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" ) && IS_FLUTTER_VERSION_CORRECT == "false"}
+                expression {(env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true"  || env.IS_ALL_BUILDS == "true") && IS_FLUTTER_VERSION_CORRECT == "false"}
             }
             steps {
                 sh 'flutter version $PROJECT_FLUTTER_VERSION'
@@ -81,7 +83,7 @@ pipeline {
         }
        stage ('Flutter pub get') {
             when {
-                expression { env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true"}
+                expression { env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true"}
             }
 
             steps {
@@ -90,7 +92,7 @@ pipeline {
         }
         stage ('Flutter Doctor') {
             when {
-                expression { env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true"}
+                expression { env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true"}
             }
 
             steps {
@@ -99,7 +101,7 @@ pipeline {
         }
         stage ('Build IOS Release') {
             when {
-                expression {env.IS_IOS_BUILD == "true"}
+                expression {env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true"}
             }
 
             steps {
@@ -111,7 +113,7 @@ pipeline {
         }
         stage ('Build Android Debug') {
             when {
-                expression {env.IS_ANDROID_DEBUG_BUILD == "true"}
+                expression {env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ALL_BUILDS == "true"}
             }
 
             steps {
@@ -125,7 +127,7 @@ pipeline {
         }
         stage ('Build Android Release') {
             when {
-                expression {env.IS_ANDROID_RELEASE_BUILD == "true"}
+                expression {env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_ALL_BUILDS == "true"}
             }
 
             steps {
@@ -142,7 +144,7 @@ pipeline {
         success {
              echo "Success"
              script {
-                  if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true") {
+                  if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                       // Telegram send notification with Image
                       defaultTelegramMessage("${env.PROJECT_NAME} $BUILD_STATUS_TEXT $STATUS_SUCCESS ${env.Build_text} $SUCCESS_IMAGE", TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID)
 
@@ -154,7 +156,7 @@ pipeline {
         aborted {
             echo "Aborted"
             script {
-                if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true") {
+                if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
                     defaultTelegramMessage("${env.PROJECT_NAME} $BUILD_STATUS_TEXT $STATUS_ABORTED ${env.Build_text} $ABORTED_IMAGE", TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID)
 
@@ -166,7 +168,7 @@ pipeline {
         failure {
             echo "Failure"
             script {
-                if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true") {
+                if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
                     defaultTelegramMessage("${env.PROJECT_NAME} $BUILD_STATUS_TEXT $STATUS_FAILED ${env.Build_text} $ERROR_IMAGE", TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID)
 
