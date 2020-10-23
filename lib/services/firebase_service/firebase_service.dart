@@ -23,13 +23,18 @@ class FirebaseService {
   StreamSubscription<Event> _subscription;
 
   void listenChanges(int id, void Function(int, int) getData) async {
-    await _subscription?.cancel();
+   // await _subscription?.cancel();
+    await unsubscribeFromUpdates();
     _subscription = databaseReference.onChildChanged.where((Event event) => event.snapshot.key == id.toString()).listen(
       (Event event) {
         logger.d('$tag => <listenChanges> => id: $id, new version: ${event.snapshot.value}');
         getData(id, event.snapshot.value);
       },
     );
+  }
+
+  Future<void> unsubscribeFromUpdates() async{
+    await _subscription?.cancel();
   }
 
   Future<dynamic> getStoresVersions() async {
