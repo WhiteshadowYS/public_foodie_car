@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/widgets/cashed_network_image.dart';
 
 import 'image_view_button.dart';
