@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/popup_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
-import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/models/exit_dialog.dart';
+import 'package:my_catalog/services/dialog_service/widgets/dialog_close_button.dart';
 import 'package:my_catalog/services/dialog_service/widgets/dialog_main_button.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
@@ -27,9 +27,8 @@ class ExitDialogWidget extends StatelessWidget {
           children: <Widget>[
             Container(
               alignment: Alignment.topRight,
-              child: InkWell(
-                onTap: () => DialogService.instance.close(),
-                child: SVGImages().close(),
+              child: DialogCloseButton(
+                keyValue: DialogKeys.closeExitDialogButton,
               ),
             ),
             SizedBox(

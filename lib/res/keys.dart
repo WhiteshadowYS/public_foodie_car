@@ -81,4 +81,7 @@ class TermsPageKeys {
 class DialogKeys {
   static const String exitDialogYesButton = 'YesButton';
   static const String exitDialogNoButton = 'NoButton';
+  static const String closeErrorDialogButton ='CloseErrorDialogButton';
+  static const String closeExitDialogButton = 'CloseExitDialogButton';
+  static const String closeFilePreviewDialogButton = 'closeFilePreviewDialogButton';
 }
