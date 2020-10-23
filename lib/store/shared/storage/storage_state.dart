@@ -16,7 +16,14 @@ import 'package:my_catalog/store/shared/storage/actions/update_language_actions/
 /// [StorageState] it is state of last loaded storage.
 /// This state need for save all data need it in the app.
 /// Params:
+///   - [openedStoreId] this variable returns the current store.
 ///   - [storage] it is model of storage  what we load from server in [GetDataRequest] class.
+///   - [storesHistory] this variable stores everything we were in.
+///   - [openedCatalogId] this variable returns the current catalog.
+///   - [openedCategoryId] this variable returns the current category.
+///   - [openedSubCategoryId] this variable returns the current subcategory.
+///   - [openedProductId] this variable returns the current product.
+///   - [isFirstOpen] this variable fixes whether it is the first input.
 class StorageState {
   final int openedStoreId;
   final StorageModel storage;
@@ -40,6 +47,7 @@ class StorageState {
     this.isFirstOpen,
   });
 
+  /// factory [initial], sets the default value for an instance of the class [StorageState].
   factory StorageState.initial() {
     return StorageState(
       storage: null,
@@ -49,6 +57,7 @@ class StorageState {
     );
   }
 
+  /// The class [StorageState], overrides the main method [copyWith].
   StorageState copyWith({
     StorageModel storage,
     int openedStoreId,
@@ -71,6 +80,7 @@ class StorageState {
     );
   }
 
+  ///The [reducer] function is the main Reducer in which you call Reducer, all other states.
   StorageState reducer(dynamic action) {
     return Reducer<StorageState>(
       actions: HashMap.from({
@@ -89,6 +99,9 @@ class StorageState {
     ).updateState(action, this);
   }
 
+  /// The [_openStore] function accepts the [action] parameter, which has the [OpenStoreAction] type.
+  /// The [action] parameter has 2 parameters [id], [storage].
+  /// If successful, it writes a new value to the state, to [openStoreId] and [storage] parameters.
   StorageState _openStore(OpenStoreAction action) {
     if (action.storage == null || action.id == null) return this;
 
@@ -97,7 +110,9 @@ class StorageState {
       storage: action.storage,
     );
   }
-
+  /// The [_openTerms] function accepts the [action] parameter, which has the [OpenTermsAction] type.
+  /// The [action] parameter has parameter [storage].
+  /// If successful, it writes a new value to the state, to [storage] parameters.
   StorageState _openTerms(OpenTermsAction action) {
     if (action.storage == null) return this;
 
@@ -106,6 +121,9 @@ class StorageState {
     );
   }
 
+  /// The [_updateIsFirstOpen] function accepts the [action] parameter, which has the [UpdateIsFirstOpenAction] type.
+  /// The [action] parameter has parameter [isFirstOpen].
+  /// If successful, it writes a new value to the state, to [isFirstOpen] parameters.
   StorageState _updateIsFirstOpen(UpdateIsFirstOpenAction action) {
     if (action.isFirstOpen == null) return this;
 
@@ -114,6 +132,9 @@ class StorageState {
     );
   }
 
+  /// The [_setOpenedStoreId] function accepts the [action] parameter, which has the [SetOpenedStoreIdAction] type.
+  /// The [action] parameter has parameter [id].
+  /// If successful, it writes a new value to the state, to [openedStoreId] parameters.
   StorageState _setOpenedStoreId(SetOpenedStoreIdAction action) {
     if (action.id == null) return this;
 
@@ -121,7 +142,9 @@ class StorageState {
       openedStoreId: action.id,
     );
   }
-
+  /// The [_setOpenedCatalogId] function accepts the [action] parameter, which has the [SetOpenedCatalogIdAction] type.
+  /// The [action] parameter has parameter [id].
+  /// If successful, it writes a new value to the state, to [openedCatalogId] parameters.
   StorageState _setOpenedCatalogId(SetOpenedCatalogIdAction action) {
     if (action.id == null) return this;
 
@@ -129,7 +152,9 @@ class StorageState {
       openedCatalogId: action.id,
     );
   }
-
+  /// The [_setOpenedCategoryId] function accepts the [action] parameter, which has the [SetOpenedCategoryIdAction] type.
+  /// The [action] parameter has parameter [id].
+  /// If successful, it writes a new value to the state, to [openedCategoryId] parameters.
   StorageState _setOpenedCategoryId(SetOpenedCategoryIdAction action) {
     if (action.id == null) return this;
 
@@ -137,7 +162,9 @@ class StorageState {
       openedCategoryId: action.id,
     );
   }
-
+  /// The [_setOpenedSubCategoryId] function accepts the [action] parameter, which has the [SetOpenedSubCategoryIdAction] type.
+  /// The [action] parameter has parameter [id].
+  /// If successful, it writes a new value to the state, to [openedSubCategoryId] parameters.
   StorageState _setOpenedSubCategoryId(SetOpenedSubCategoryIdAction action) {
     if (action.id == null) return this;
 
@@ -145,7 +172,9 @@ class StorageState {
       openedSubCategoryId: action.id,
     );
   }
-
+  /// The [_setOpenedProductId] function accepts the [action] parameter, which has the [SetOpenedProductIdAction] type.
+  /// The [action] parameter has parameter [id].
+  /// If successful, it writes a new value to the state, to [openedProductId] parameters.
   StorageState _setOpenedProductId(SetOpenedProductIdAction action) {
     if (action.id == null) return this;
 
@@ -153,7 +182,9 @@ class StorageState {
       openedProductId: action.id,
     );
   }
-
+  /// The [_setStoresHistory] function accepts the [action] parameter, which has the [SetStoresHistoryAction] type.
+  /// The [action] parameter has parameter [storesHistory].
+  /// If successful, it writes a new value to the state, to [storesHistory] parameters.
   StorageState _setStoresHistory(SetStoresHistoryAction action) {
     if (action.storesHistory == null || action.storesHistory.isEmpty) return this;
 
@@ -161,7 +192,9 @@ class StorageState {
       storesHistory: action.storesHistory,
     );
   }
-
+  /// The [_updateStoreLanguage] function accepts the [action] parameter, which has the [UpdateLanguageAction] type.
+  /// The [action] parameter has parameter [newModel].
+  /// If successful, it writes a new value to the state, to [storesHistory] parameters.
   StorageState _updateStoreLanguage(UpdateLanguageAction action) {
     if (action.newModel == null) return this;
 

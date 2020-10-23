@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:my_catalog/models/models/storage_model/settings/colors_model.dart';
-import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
+
+import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:my_catalog/models/models/storage_model/settings/info_model.dart';
-import 'package:my_catalog/models/models/storage_model/settings/language_data_model.dart';
+import 'package:my_catalog/models/models/storage_model/settings/colors_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/language_model.dart';
+import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
+import 'package:my_catalog/models/models/storage_model/settings/language_data_model.dart';
 
 part 'settings_model.g.dart';
 

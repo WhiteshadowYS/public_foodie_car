@@ -4,6 +4,7 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/layouts/loader_layout/loader_layout_vm.dart';
 
 // TODO(Yuri): Add comments for this class.
+/// The [LoaderLayout] class is required to display the application.
 class LoaderLayout extends StatelessWidget {
   final Widget child;
 

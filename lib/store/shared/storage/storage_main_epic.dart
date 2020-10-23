@@ -24,13 +24,13 @@ import 'package:redux_epics/redux_epics.dart';
 
 // TODO(Yuri): Add comment for this class.
 // TODO(Yuri): Move storage state to shared folder.
+///In [StorageMainEpic] class, all other epics are initialized.
 class StorageMainEpic {
   static final indexEpic = combineEpics<AppState>([
-    SubscribeToStoresUpdatesEpics.indexEpic,
     GetDataEpics.indexEpic,
+    CheckIdEpics.indexEpic,
     OpenStoreEpics.indexEpic,
     OpenTermsEpics.indexEpic,
-    CheckIdEpics.indexEpic,
     CheckTermsEpics.indexEpic,
     CheckUpdateEpics.indexEpic,
     UpdateLanguageEpics.indexEpic,
@@ -40,8 +40,10 @@ class StorageMainEpic {
     UpdateStoresHistoryEpics.indexEpic,
     ReloadStoresHistoryEpics.indexEpic,
     RemoveOpenedStorageEpics.indexEpic,
+    SubscribeToStoresUpdatesEpics.indexEpic,
   ]);
-
+  /// The [showError] function shows an error dialog.
+  /// The text of the error depends on [errorText].
   static Stream<dynamic> showError(String errorText) {
     return Stream.value(
       ShowDialogAction(
@@ -51,7 +53,8 @@ class StorageMainEpic {
       ),
     );
   }
-
+  /// The [changeCheckIdLoadingState] function starts the action, [StartLoadingAction].
+  /// The result of [state] depends on [value].
   static Stream<dynamic> changeCheckIdLoadingState({bool value}) {
     if (value) {
       return Stream.value(StartLoadingAction(
