@@ -127,24 +127,20 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
   void _backPhoto() {
     if (index == 0) {
       index = widget.dialog.gallery.length - 1;
-      _pageController.animateToPage(index, duration: MILLISECONDS_900, curve: Curves.linear);
     } else {
       --index;
-      _pageController.animateToPage(index, duration: MILLISECONDS_300, curve: Curves.linear);
     }
-
+    _pageController.jumpToPage(index);
     setState(() {});
   }
 
   void _nextPhoto() {
     if (index == widget.dialog.gallery.length - 1) {
       index = 0;
-      _pageController.animateToPage(index, duration: MILLISECONDS_900, curve: Curves.linear);
     } else {
       ++index;
-      _pageController.animateToPage(index, duration: MILLISECONDS_300, curve: Curves.linear);
     }
-
+    _pageController.jumpToPage(index);
     setState(() {});
   }
 }
