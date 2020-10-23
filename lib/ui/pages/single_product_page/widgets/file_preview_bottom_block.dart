@@ -27,8 +27,6 @@ class FilePreviewBottomBlock extends StatelessWidget {
             color: Colors.transparent,
             child: InkWell(
               borderRadius: BorderRadius.circular(25.0),
-              splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
-              highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
               onTap: () => _onShare(context),
               child: Icon(
                 Icons.share,

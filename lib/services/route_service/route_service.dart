@@ -1,7 +1,22 @@
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 
-// TODO(Yuri): Add comment for this service.
+/// [RouteService] it is service for routing in application.
+/// This class it - Singleton, for function using use [RouteService.instance]
+/// - For init service use method [init] in [PushNotificationsService].
+/// - For get get current route you can use [currentRoute] getter.
+/// - For get info if you can make pop use [canPop] getter.
+/// - [_history] this list stores the history of page transitions in the form of routes.
+/// Methods:
+/// - [_isDialogDisplayed] check if and dialog is displayed.
+/// - [pop] this method check if routes history is not empty and if any dialog is displayed, delete last route from history and make Pop
+/// - [push] this method check if routes history is not empty, if any dialog is displayed and if next route not equal to current route
+///           then add to history route passed as a parameter and make push to this route.
+/// - [pushAndRemoveUntil] this method check if routes history is not empty, if any dialog is displayed and if next route not equal to current route
+///                        then clear history, add to history route passed as a parameter and make pushNamedAndRemoveUntil to this route.
+/// - [replace] this method check if routes history is not empty, if any dialog is displayed and if next route not equal to current route,
+///             then check if history is not empty and remove last route from history. After that it make replace to route passed as a parameter.
+
 class RouteService {
   static const tag = '[RouteService]';
 

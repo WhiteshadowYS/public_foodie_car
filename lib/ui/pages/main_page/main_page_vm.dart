@@ -10,7 +10,7 @@ import 'package:redux/redux.dart';
 class MainPageVM {
   final List<SavedStorageModel> stores;
   final void Function(int) checkId;
-  final void Function(String logoUrl) exitDialog;
+  final void Function() exitDialog;
 
   MainPageVM({
     @required this.stores,

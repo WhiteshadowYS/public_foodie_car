@@ -17,8 +17,6 @@ class OpenInBrowserButton extends StatelessWidget {
         ),
         child: InkWell(
           borderRadius: BorderRadius.circular(25.0),
-          splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
-          highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
           onTap: () async {
             if (await canLaunch(url)) {
               await launch(url);

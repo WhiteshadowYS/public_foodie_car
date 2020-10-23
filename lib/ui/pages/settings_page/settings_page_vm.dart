@@ -6,19 +6,40 @@ import 'package:my_catalog/store/shared/storage/storage_data_selector.dart';
 import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:redux/redux.dart';
 
-// TODO(Yuri): Add comments for this class.
 class SettingsPageVM {
+  /// Variable [isPushNotificationsOn] using to check is push notifications enabled
   final bool isPushNotificationsOn;
+
+  /// Variable [isNeedShowLanguages] using to check is need to show select language popup
+  /// If needed calls [openLanguagesPopup] method
   final bool isNeedShowLanguages;
+
+  /// Variable [selectedLocale] show current locale
   final String selectedLocale;
+
+  /// Variable [selectedLanguage] show current language
   final String selectedLanguage;
+
+  /// Variable [info] contains information about current company.
   final InfoModel info;
 
+  /// Method [back] used to return back from settings page
   final void Function() back;
+
+  /// Method [openLanguagesPopup] used to open language popup
   final void Function() openLanguagesPopup;
+
+  /// Method [navigateToTermsPage] used to navigates to Terms page
   final void Function() navigateToTermsPage;
+
+  /// Method [changePushNotificationStatus] used to enable or disable
+  /// push notifications
   final void Function() changePushNotificationStatus;
+
+  /// Method [backButtonText] return text that respond to [currentLocale]
   final String Function(String) backButtonText;
+
+  /// Method [settingsPageTitle] return text that respond to [currentLocale]
   final String Function(String) settingsPageTitle;
 
   const SettingsPageVM({

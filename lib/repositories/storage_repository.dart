@@ -13,11 +13,24 @@ import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/local_storage_service.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 
-// TODO(Yuri): Update this class!!!!.
 /// This repository need for get data about storage from server.
 /// Methods:
 ///   - [getStorageData]. This function need for get All data about storage from the server.
 ///   - [getStorageStatus]. This function need for get last update date of current storage.
+///   - [getStoresHistory]. This function need for get history from storage.
+///   - [getIsTermsAccepted]. This function need for get info about is terms accepted from storage.
+///   - [saveIsTermsAccepted]. This function need to save store id with accepted terms to storage.
+///   - [saveIsFirstOpen]. This function need to save if store first time opened to storage.
+///   - [getIsFirstOpen]. This function need for get info if store is first time opened from storage.
+///   - [updateStoresHistory]. This function need for updating store info in storage.
+///   - [updateOpenedStoreId]. This function need for updating opened store id in storage.
+///   - [removeOpenedStoreId]. This function need for removing opened store id from storage.
+///   - [getOpenedStoreId]. This function need for getting opened store id from storage
+///   - [_overrideStoresHistoryWithModel]. This function need for overriding stores history in storage.
+///   - [_addStoreToHistory]. This function need for add new store to history in storage.
+///   - [_replaceStoreInHistory]. This function need for replacing store in storage.
+///   - [isLastUpdate]. This function need to check if storage contains last version of stores.
+
 class StorageRepository extends Repository {
   Future<BaseHttpResponse<StorageModel>> getStorageData({int id}) {
     return repository<BaseHttpResponse<StorageModel>>(
