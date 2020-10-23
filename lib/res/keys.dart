@@ -46,6 +46,19 @@ class SingleProductKeys {
   static const String gallery = 'SingleProductGallery';
 }
 
+class SettingsPageKeys {
+  static const String appbar = 'SettingsPageMainAppBar';
+  static const String bottomBar = 'SettingsPageBottomBar';
+  static const String listView = 'SettingsPageListView';
+  static const String infoBlock = 'SettingsPageInfoBlock';
+  static const String pushNotificationsBlock = 'SettingsItemPushNotifications';
+  static const String pushNotificationsBlockSwitch = 'SettingsItemPushNotificationsCustomSwitch';
+  static const String languageBlock = 'SettingsItemLanguage';
+  static const String languageBlockDropdown = 'SettingsItemLanguageLanguageDropdown';
+  static const String tacBlock = 'SettingsItemTAC';
+  static const String createdByLink = 'SettingsCreateByLink';
+}
+
 class TermsPageKeys {
   static const String appbar = 'TermsPageAppBar';
   static const String listView = 'TermsPageListView';

@@ -7,6 +7,7 @@ import 'package:get_version/get_version.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/setting_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
@@ -41,33 +42,32 @@ class _SettingsPageState extends State<SettingsPage> {
     final SettingPageDictionary dictionary = FlutterDictionary.instance.language.settingPageDictionary;
 
     return StoreConnector<AppState, SettingsPageVM>(
-      // TODO(Yuri): Move all Keys to file with consts(res/keys.dart).
       converter: SettingsPageVM.fromStore,
       builder: (BuildContext context, SettingsPageVM vm) {
         return MainLayout(
           back: vm.back,
           appBar: MainAppBar(
-            key: 'SettingsPageMainAppBar',
+            key: SettingsPageKeys.appbar,
             title: vm.settingsPageTitle(vm.selectedLocale),
             backOnTap: vm.back,
             backButtonText: vm.backButtonText(vm.selectedLocale),
           ),
           bottomBar: BottomBar(
-            key: 'SettingsPageBottomBar',
+            key: SettingsPageKeys.bottomBar,
           ),
           bgColor: CustomTheme.colors.background,
           child: CleanedListView(
-            keyValue: 'SettingsPageListView',
+            keyValue: SettingsPageKeys.listView,
             children: [
               InfoBlock(
-                key: 'SettingsPageInfoBlock',
+                key: SettingsPageKeys.infoBlock,
                 info: vm.info,
               ),
               SettingsItem(
-                key: 'SettingsItemPushNotifications',
+                key: SettingsPageKeys.pushNotificationsBlock,
                 text: dictionary.pushNotification,
                 child: CustomSwitch(
-                  key: 'SettingsItemPushNotificationsCustomSwitch',
+                  key: SettingsPageKeys.pushNotificationsBlockSwitch,
                   value: vm.isPushNotificationsOn,
                   activeColor: CustomTheme.colors.primaryColor,
                   inactiveColor: CustomTheme.colors.accentColor,
@@ -77,16 +77,16 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               if (vm.isNeedShowLanguages)
                 SettingsItem(
-                  key: 'SettingsItemLanguage',
+                  key: SettingsPageKeys.languageBlock,
                   text: dictionary.language,
                   child: LanguageDropdown(
-                    key: 'SettingsItemLanguageLanguageDropdown',
+                    key: SettingsPageKeys.languageBlockDropdown,
                     text: vm.selectedLanguage,
                   ),
                   callback: vm.openLanguagesPopup,
                 ),
               SettingsItem(
-                key: 'SettingsItemTAC',
+                key: SettingsPageKeys.tacBlock,
                 text: dictionary.terms,
                 child: Icon(
                   Icons.keyboard_arrow_right,
@@ -115,7 +115,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 width: double.infinity,
                 child: Align(
                   child:LinksButton(
-                    keyValue: 'SettingsCreateByLink',
+                    keyValue: SettingsPageKeys.createdByLink,
                     title: dictionary.createBy,
                     url: CREATE_BY_LINK,
                   ),
