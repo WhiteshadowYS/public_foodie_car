@@ -15,6 +15,19 @@ part 'settings_model.g.dart';
   checked: true,
   explicitToJson: true,
 )
+/// The class [SettingsModel] is a model that stores data about the [SettingsModel].
+/// The purpose of the [SettingsModel] class is to accept all the customization of the theme and application settings from the server.
+/// For this class, [JsonSerializable] was applied, to work with json.
+/// Class [SettingsModel], implements from the abstract class [IDto].
+/// The [SettingsModel] class has 7 variables,
+/// [languages], [languageData], [tac], [info], [font], [colors], [footerButtons].
+/// Variable [languages], stores information about the languages in which the application is calculated.
+/// In the variable [language_data], store different system texts, in different languages.
+/// [tac], stores the stock in which the user agreement is written.
+/// In the [info] variable, the information about the company is written.
+/// [font] stores information about the font in the application
+/// In [color_hex], store the color scheme of the application.
+/// Inside [footer_buttons], there are buttons that will be used in [BottomBar].
 class SettingsModel implements IDto {
   @JsonKey(name: 'languages', required: false, nullable: true)
   final List<LanguageModel> languages;
@@ -41,7 +54,10 @@ class SettingsModel implements IDto {
     @required this.footerButtons,
   });
 
+  /// Also the class [SettingsModel], has [fromJson] and [toJson] to work with the json format.
+  /// [SettingsModel], creates a new exemplar [SettingsModel], based on json.
   factory SettingsModel.fromJson(json) => _$SettingsModelFromJson(json);
 
+  /// [toJson], creates a new json from the exemplary of the class [SettingsModel].
   Map<String, dynamic> toJson() => _$SettingsModelToJson(this);
 }
