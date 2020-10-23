@@ -35,6 +35,8 @@ class DialogMainButton extends StatelessWidget {
             textScaleFactor: 1.0,
           ),
           child: InkWell(
+            splashColor: textColor.withOpacity(0.4),
+            highlightColor: textColor.withOpacity(0.2),
             onTap: onTap,
             borderRadius: BorderRadius.circular(30.0),
             child: Padding(
