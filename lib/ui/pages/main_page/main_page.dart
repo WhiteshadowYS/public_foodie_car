@@ -45,6 +45,7 @@ class _MainPageState extends State<MainPage> {
       builder: (BuildContext context, MainPageVM vm) {
         return MainLayout(
           bgColor: CustomTheme.colors.background,
+          resizeToAvoidBottomPadding: true,
           canExit: true,
           // TODO(Daniil): Add logoUrl
           back: () => vm.exitDialog(EMPTY_STRING),
@@ -52,7 +53,7 @@ class _MainPageState extends State<MainPage> {
             keyValue: MainPageKeys.listView,
             children: [
               const SizedBox(height: 24.0),
-              if (vm.stores.length != 0)
+              if (vm.stores.isNotEmpty)
                 Text(
                   dictionary.history,
                   style: CustomTheme.textStyles.titleTextStyle(),

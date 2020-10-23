@@ -18,7 +18,7 @@ class SingleProductPageVM {
 
   final void Function() navigateToSettingsPage;
   final void Function(FileModel file) filePreview;
-  final void Function(List<String> gallery, int currentIndex) imageView;
+  final void Function(List<String> gallery, int currentIndex) showImage;
   final String Function(String) descriptionText;
   final String Function(String) backButtonText;
 
@@ -26,7 +26,7 @@ class SingleProductPageVM {
     @required this.files,
     @required this.logoUrl,
     @required this.product,
-    @required this.imageView,
+    @required this.showImage,
     @required this.filePreview,
     @required this.currentLocale,
     @required this.backButtonText,
@@ -49,7 +49,7 @@ class SingleProductPageVM {
       product: StorageFunctionSelector.getCurrentProductModelFunction(store)(store.state.storageState.openedProductId),
 
       /// Another
-      imageView: DialogSelectors.getShowImageViewDialogFunction(store),
+      showImage: DialogSelectors.getShowImageViewDialogFunction(store),
       filePreview: DialogSelectors.getShowFilePreviewDialogFunction(store),
       navigateToSettingsPage: RouteSelectors.gotoSettingsPage(store),
     );
