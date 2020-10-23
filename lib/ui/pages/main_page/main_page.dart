@@ -46,6 +46,7 @@ class _MainPageState extends State<MainPage> {
       builder: (BuildContext context, MainPageVM vm) {
         return MainLayout(
           bgColor: CustomTheme.colors.background,
+          resizeToAvoidBottomPadding: true,
           canExit: true,
           back: () => vm.exitDialog(),
           child: ScrollConfiguration(

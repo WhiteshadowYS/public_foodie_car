@@ -33,6 +33,7 @@ class LanguageDialogWidget extends StatelessWidget {
                 hoverColor: Colors.transparent,
                 splashColor: Colors.transparent,
                 onTap: () {
+                  dialog.onItemSelected(dialog.selectedLanguage);
                   DialogService.instance.close();
                 },
                 child: Container(
