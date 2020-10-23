@@ -1,15 +1,15 @@
-///[ApplicationKeys] contains keys used in Application class
+///[ApplicationKeys]contains keys used in Application class
 class ApplicationKeys{
   static const String application = 'Application';
 }
 
-///[CatalogsPageKeys] contains keys used on CatalogsPage
+///[CatalogsPageKeys]contains keys used on CatalogsPage
 class CatalogsPageKeys {
   /// Will using with index. For example: CatalogItem1, CatalogItem2, CatalogItem3.
   static const String catalogItem = 'CatalogItem';
 }
 
-///[CategoriesPageKeys] contains keys used on CategoriesPage
+///[CategoriesPageKeys]contains keys used on CategoriesPage
 class CategoriesPageKeys {
   static const String gridView = 'CategoriesGridView';
   static const String appbar = 'CategoriesGridViewAppBar';
@@ -18,7 +18,7 @@ class CategoriesPageKeys {
   static const String categoryItem = 'CategoryItem';
 }
 
-///[SubCategoriesPageKeys] contains keys used on SubCategoriesPage
+///[SubCategoriesPageKeys]contains keys used on SubCategoriesPage
 class SubCategoriesPageKeys {
   static const String gridView = 'SubCategoriesGridView';
   static const String appbar = 'SubCategoriesGridViewAppBar';
@@ -27,7 +27,7 @@ class SubCategoriesPageKeys {
   static const String subcategoryItem = 'SubCategoriesItem';
 }
 
-///[MainPageKeys] contains keys used on MainPage
+///[MainPageKeys]contains keys used on MainPage
 class MainPageKeys {
   static const String listView = 'MainPageListView';
   /// Will using with index. For example: MainPageCatalogListItem1, MainPageCatalogListItem2, MainPageCatalogListItem3.
