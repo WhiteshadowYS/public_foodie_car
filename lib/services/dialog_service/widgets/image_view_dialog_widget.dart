@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/res/app_styles/app_colors.dart';
-import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
-import 'package:my_catalog/services/dialog_service/models/image_view_dialog.dart';
-import 'package:my_catalog/theme/custom_theme.dart';
-import 'package:my_catalog/ui/pages/single_product_page/widgets/image_view_button.dart';
-import 'package:my_catalog/widgets/fade_animation_container.dart';
+
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+
+import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:my_catalog/widgets/fade_animation_container.dart';
+import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
+import 'package:my_catalog/services/dialog_service/models/image_view_dialog.dart';
+import 'package:my_catalog/ui/pages/single_product_page/widgets/image_view_button.dart';
+
 
 class ImageViewDialogWidget extends StatefulWidget {
   final ImageViewDialog dialog;
@@ -22,7 +24,7 @@ class ImageViewDialogWidget extends StatefulWidget {
 }
 
 class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
-  final PageController _pageController = PageController(keepPage: false);
+  PageController _pageController ;
   int index;
 
   bool _init = false;
@@ -30,6 +32,7 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
   @override
   void initState() {
     index = widget.dialog.currentIndex;
+    _pageController = PageController(keepPage: false, initialPage: index);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _init = true;
       setState(() {});
