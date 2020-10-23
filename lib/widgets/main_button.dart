@@ -55,19 +55,22 @@ class _MainButtonState extends State<MainButton> {
       ),
       child: Material(
         color: Colors.transparent,
-        child: InkWell(
-          key: Key(widget.keyValue),
-          onTap: status ? widget.onTap : () {},
-          splashColor: CustomTheme.colors.background.withOpacity(0.4),
-          highlightColor: CustomTheme.colors.background.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(30.0),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              widget.title,
-              textAlign: TextAlign.center,
-              style: CustomTheme.textStyles.buttonTextStyle(
-                size: 18.sp,
+        child: MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaleFactor: 1.0,
+          ),
+          child: InkWell(
+            key: Key(widget.keyValue),
+            onTap: status ? widget.onTap : () {},
+            borderRadius: BorderRadius.circular(30.0),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                widget.title,
+                textAlign: TextAlign.center,
+                style: CustomTheme.textStyles.buttonTextStyle(
+                  size: 18.sp,
+                ),
               ),
             ),
           ),

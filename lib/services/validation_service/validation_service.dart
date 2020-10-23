@@ -1,6 +1,10 @@
 import 'package:my_catalog/dictionary/dictionary_classes/error_dictionary.dart';
 
-// TODO(Yuri): Add comment for this service.
+/// [ValidationService] it is service for validation of input text.
+/// Methods:
+/// - [numberValidation] function for numbers validation, it checks input values and return error if it is not number,
+///   if it starts at zero, or if number is negative or null.
+
 class ValidationService {
   static String numberValidation(String arg, ErrorDictionary dictionary) {
     final RegExp regExp = RegExp(r'^-?[0-9]+$');

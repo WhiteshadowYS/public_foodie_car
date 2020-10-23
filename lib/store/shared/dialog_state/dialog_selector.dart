@@ -9,11 +9,16 @@ import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.
 import 'package:my_catalog/ui/pages/single_product_page/widgets/dialog_widgets/file_preview_dialog/file_preview_dialog.dart';
 import 'package:redux/redux.dart';
 
-// TODO(Yuri): Update comment for this class.
 /// [DialogSelectors] it class with static functions for work with Dialogs from Pages.
 /// Functions:
 ///   - [isDialogDisplayed]. This function was get the current dialog status.
 ///   - [getCloseDialogFunction]. This function was get function for close any dialogs.
+///   - [getShowErrorDialogFunction]. This function is getting function for showing error dialog.
+///   - [getShowFilePreviewDialogFunction]. This function is getting function for showing file preview dialog.
+///   - [getInternetConnectionDialogFunction]. This function is getting function for showing lost internet connection dialog.
+///   - [getExitDialogFunction]. This function is getting function for showing exit dialog.
+
+
 class DialogSelectors {
   static bool isDialogDisplayed(Store<AppState> store) {
     return store.state.dialogState.isDialogDisplayed;
@@ -34,20 +39,16 @@ class DialogSelectors {
   }
 
   static void Function(List<String> gallery, int currentIndex) getShowImageViewDialogFunction(Store<AppState> store) {
-    return (List<String> gallery, int currentIndex) => store.dispatch(
-          ShowDialogAction(
-            dialog: ImageViewDialog(gallery: gallery, currentIndex: currentIndex),
-          ),
-        );
+    return (List<String> gallery, int currentIndex) {
+      store.dispatch(ShowDialogAction(dialog: ImageViewDialog(gallery: gallery, currentIndex: currentIndex)));
+    };
   }
 
-
   static void Function() getInternetConnectionDialogFunction(Store<AppState> store) {
-    print('qweqweqweqweq');
     return () => store.dispatch(ShowDialogAction(dialog: InternetConnection()));
   }
 
-  static void Function(String logoUrl) getExitDialogFunction(Store<AppState> store) {
-    return (String logoUrl) => store.dispatch(ShowDialogAction(dialog: ExitDialog(logoUrl: logoUrl)));
+  static void Function() getExitDialogFunction(Store<AppState> store) {
+    return () => store.dispatch(ShowDialogAction(dialog: ExitDialog()));
   }
 }

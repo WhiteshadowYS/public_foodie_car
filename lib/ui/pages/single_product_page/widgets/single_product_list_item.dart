@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
 class SingleProductListItem extends StatelessWidget {

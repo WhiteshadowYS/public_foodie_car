@@ -34,9 +34,7 @@ class ExitDialogWidget extends StatelessWidget {
             ),
             SizedBox(
               height: 50.0,
-              child: dialogModel.logoUrl == null && dialogModel.logoUrl == EMPTY_STRING
-                  ? Image.network(dialogModel.logoUrl)
-                  : SVGImages().mcLogo(),
+              child: SVGImages().mcLogo(),
             ),
             Container(
               padding: EdgeInsets.all(16.0),
@@ -48,12 +46,14 @@ class ExitDialogWidget extends StatelessWidget {
             ),
             DialogMainButton(
               keyValue: DialogKeys.exitDialogYesButton,
-             backgroundColor: CustomTheme.colors.primaryColor,
+              backgroundColor: CustomTheme.colors.primaryColor,
               textColor: CustomTheme.colors.background,
               title: dictionary.yes,
               onTap: () => SystemNavigator.pop(),
             ),
-            SizedBox(height: 16.0,),
+            SizedBox(
+              height: 16.0,
+            ),
             DialogMainButton(
               keyValue: DialogKeys.exitDialogNoButton,
               backgroundColor: CustomTheme.colors.background,

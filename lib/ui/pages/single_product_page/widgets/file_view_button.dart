@@ -54,87 +54,90 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: InkWell(
-        key: Key(widget.keyValue),
-        splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
-        highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
-        onTap: () {
-          isOpen = true;
-          setState(() {});
-          widget.onTap();
-        },
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                children: [
-                  const SizedBox(height: 5.0),
-                  if (widget.file.type == FileTypes.VIDEO_TYPE)
-                    ListTile(
-                      leading: CircleAvatar(
-                        radius: 24,
-                        backgroundColor: CustomTheme.colors.primaryColor,
-                        child: Icon(Icons.videocam, color: CustomTheme.colors.background, size: 28),
+      child: MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          textScaleFactor: 1.0,
+        ),
+        child: InkWell(
+          key: Key(widget.keyValue),
+          onTap: () {
+            isOpen = true;
+            setState(() {});
+            widget.onTap();
+          },
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 5.0),
+                    if (widget.file.type == FileTypes.VIDEO_TYPE)
+                      ListTile(
+                        leading: CircleAvatar(
+                          radius: 24,
+                          backgroundColor: CustomTheme.colors.primaryColor,
+                          child: Icon(Icons.videocam, color: CustomTheme.colors.background, size: 28),
+                        ),
+                        title: Text(
+                          'Watch video "${widget.file.nameForLanguage(widget.locale)}"',
+                          style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                        ),
+                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
                       ),
-                      title: Text(
-                        'Watch video "${widget.file.nameForLanguage(widget.locale)}"',
-                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                    if (widget.file.type == FileTypes.IMAGE_TYPE)
+                      ListTile(
+                        leading: CircleAvatar(
+                          radius: 24,
+                          backgroundColor: CustomTheme.colors.primaryColor,
+                          child: Icon(Icons.image, color: CustomTheme.colors.background, size: 28),
+                        ),
+                        title: Text(
+                          'See pictures "${widget.file.nameForLanguage(widget.locale)}"',
+                          style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                        ),
+                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
                       ),
-                      trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
+                    if (widget.file.type == FileTypes.PDF_TYPE)
+                      ListTile(
+                        leading: CircleAvatar(
+                          radius: 24,
+                          backgroundColor: CustomTheme.colors.primaryColor,
+                          child: Icon(Icons.picture_as_pdf, color: CustomTheme.colors.background, size: 28),
+                        ),
+                        title: Text(
+                          'Check documents "${widget.file.nameForLanguage(widget.locale)}"',
+                          style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                        ),
+                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
+                      ),
+                    const SizedBox(height: 10.0),
+                    Container(
+                      height: 0.5,
+                      color: Colors.grey.withOpacity(0.3),
                     ),
-                  if (widget.file.type == FileTypes.IMAGE_TYPE)
-                    ListTile(
-                      leading: CircleAvatar(
-                        radius: 24,
-                        backgroundColor: CustomTheme.colors.primaryColor,
-                        child: Icon(Icons.image, color: CustomTheme.colors.background, size: 28),
-                      ),
-                      title: Text(
-                        'See pictures "${widget.file.nameForLanguage(widget.locale)}"',
-                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
-                      ),
-                      trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
-                    ),
-                  if (widget.file.type == FileTypes.PDF_TYPE)
-                    ListTile(
-                      leading: CircleAvatar(
-                        radius: 24,
-                        backgroundColor: CustomTheme.colors.primaryColor,
-                        child: Icon(Icons.picture_as_pdf, color: CustomTheme.colors.background, size: 28),
-                      ),
-                      title: Text(
-                        'Check documents "${widget.file.nameForLanguage(widget.locale)}"',
-                        style: CustomTheme.textStyles.titleTextStyle(size: 14),
-                      ),
-                      trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
-                    ),
-                  const SizedBox(height: 10.0),
-                  Container(
-                    height: 0.5,
-                    color: Colors.grey.withOpacity(0.3),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            if (!isOpen)
-              ClipRRect(
-                child: Container(
-                  height: 72,
-                  alignment: Alignment((_animation.value - 0.5) * 2.5, 0),
-                  width: double.infinity,
-                  child: Transform.rotate(
-                    angle: pi / 8,
-                    child: Container(
-                      width: 18,
-                      decoration: BoxDecoration(
-                        boxShadow: AppShadows.shadowsFile(CustomTheme.colors.primaryColor.withOpacity(0.2)),
+              if (!isOpen)
+                ClipRRect(
+                  child: Container(
+                    height: 72,
+                    alignment: Alignment((_animation.value - 0.5) * 2.5, 0),
+                    width: double.infinity,
+                    child: Transform.rotate(
+                      angle: pi / 8,
+                      child: Container(
+                        width: 18,
+                        decoration: BoxDecoration(
+                          boxShadow: AppShadows.shadowsFile(CustomTheme.colors.primaryColor.withOpacity(0.2)),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );

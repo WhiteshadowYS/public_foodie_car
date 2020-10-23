@@ -12,6 +12,12 @@ part 'data_model.g.dart';
   checked: true,
   explicitToJson: true,
 )
+/// The class [DataModel] is a model that stores data about the [DataModel].
+/// For this class, [JsonSerializable] was applied, to work with json.
+/// Class [DataModel], implements from the abstract class [IDto].
+/// The [DataModel] class has 2 variables, [hierarchy], [data].
+/// In the variable [hierarchy], store all information and the disposition and relationship between the data.
+/// [data], stores the whole value.
 class DataModel implements IDto {
   @JsonKey(name: 'hierarchy', required: false, nullable: true)
   final List<InfoCatalogModel> hierarchy;
@@ -23,7 +29,10 @@ class DataModel implements IDto {
     @required this.data,
   });
 
+  /// Also the class [SecondDataModel], has [fromJson] and [toJson] to work with the json format.
+  /// [SecondDataModel], creates a new exemplar [SecondDataModel], based on json.
   factory DataModel.fromJson(json) => _$DataModelFromJson(json);
 
+  /// [toJson], creates a new json from the exemplary of the class [SecondDataModel].
   Map<String, dynamic> toJson() => _$DataModelToJson(this);
 }

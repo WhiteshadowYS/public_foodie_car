@@ -30,17 +30,22 @@ class DialogMainButton extends StatelessWidget {
       width: double.infinity,
       child: Material(
         color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          splashColor: textColor.withOpacity(0.4),
-          highlightColor: textColor.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(30.0),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              title,
-              textAlign: TextAlign.center,
-              style: TextStyle(color: textColor, fontSize: 16.sp, fontWeight: FontWeight.w500),
+        child: MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaleFactor: 1.0,
+          ),
+          child: InkWell(
+            splashColor: textColor.withOpacity(0.4),
+            highlightColor: textColor.withOpacity(0.2),
+            onTap: onTap,
+            borderRadius: BorderRadius.circular(30.0),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: textColor, fontSize: 16.sp, fontWeight: FontWeight.w500),
+              ),
             ),
           ),
         ),

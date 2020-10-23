@@ -5,6 +5,7 @@ import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.da
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
+import 'package:my_catalog/services/focus_service/focus_key.dart';
 import 'package:my_catalog/services/focus_service/focus_service.dart';
 import 'package:my_catalog/services/validation_service/validation_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -47,62 +48,68 @@ class _MainPageState extends State<MainPage> {
           bgColor: CustomTheme.colors.background,
           resizeToAvoidBottomPadding: true,
           canExit: true,
-          // TODO(Daniil): Add logoUrl
-          back: () => vm.exitDialog(EMPTY_STRING),
-          child: CleanedListView(
-            keyValue: MainPageKeys.listView,
-            children: [
-              const SizedBox(height: 24.0),
-              if (vm.stores.isNotEmpty)
-                Text(
-                  dictionary.history,
-                  style: CustomTheme.textStyles.titleTextStyle(),
-                  textAlign: TextAlign.center,
+          back: () => vm.exitDialog(),
+          child: ScrollConfiguration(
+            behavior: CleanBehavior(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (vm.stores.isNotEmpty)
+                  Column(
+                    children: [
+                      SizedBox(height: 24.0.h),
+                      Text(
+                        dictionary.history,
+                        style: CustomTheme.textStyles.titleTextStyle(),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 8.0.h),
+                      StoresList(
+                        keyValue: MainPageKeys.catalogListItem,
+                        stores: vm.stores?.map((e) {
+                              return e.id.toString();
+                            })?.toList() ??
+                            [],
+                        setId: (int id) => setState(() => _controller.text = id.toString()),
+                      ),
+                      SizedBox(height: 48.0.h),
+                    ],
+                  ),
+                Center(
+                  child: Text(
+                    dictionary.enterCatalogId,
+                    style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
+                  ),
                 ),
-              const SizedBox(height: 8.0),
-              StoresList(
-                keyValue: MainPageKeys.catalogListItem,
-                stores: vm.stores?.map((e) {
-                      return e.id.toString();
-                    })?.toList() ??
-                    [],
-                setId: (int id) => setState(() => _controller.text = id.toString()),
-              ),
-              const SizedBox(height: 48.0),
-              Center(
-                child: Text(
-                  dictionary.enterCatalogId,
-                  style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
+                const SizedBox(height: 8.0),
+                CatalogIdSearchTextField(
+                  focusKeyValue: MainPageKeys.textField,
+                  focusService: _focusService,
+                  controller: _controller,
+                  validator: (arg) => ValidationService.numberValidation(
+                    arg,
+                    FlutterDictionary.instance.language.errorDictionary,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8.0),
-              CatalogIdSearchTextField(
-                focusKeyValue: MainPageKeys.textField,
-                focusService: _focusService,
-                controller: _controller,
-                validator: (arg) => ValidationService.numberValidation(
-                  arg,
-                  FlutterDictionary.instance.language.errorDictionary,
+                const SizedBox(height: 20.0),
+                MainButton(
+                  keyValue: MainPageKeys.button,
+                  title: dictionary.viewCatalog,
+                  onTap: () => _onButtonPressed(vm),
+                  controller: _controller,
+                  validator: (arg) => ValidationService.numberValidation(
+                    arg,
+                    FlutterDictionary.instance.language.errorDictionary,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20.0),
-              MainButton(
-                keyValue: MainPageKeys.button,
-                title: dictionary.viewCatalog,
-                onTap: () => _onButtonPressed(vm),
-                controller: _controller,
-                validator: (arg) => ValidationService.numberValidation(
-                  arg,
-                  FlutterDictionary.instance.language.errorDictionary,
+                SizedBox(height: 64.h),
+                LinksButton(
+                  keyValue: MainPageKeys.ownButton,
+                  title: dictionary.iWantToCreate,
+                  url: WANNA_CREATE_MY_CATALOG_LINK,
                 ),
-              ),
-              const SizedBox(height: 64.0),
-              LinksButton(
-                keyValue: MainPageKeys.ownButton,
-                title: dictionary.iWantToCreate,
-                url: WANNA_CREATE_MY_CATALOG_LINK,
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_catalog/dictionary/dictionary_classes/terms_page_dictionary.dart';
-import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -36,63 +34,64 @@ class _TermsPageState extends State<TermsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, TermsPageVM>(
-      converter: TermsPageVM.fromStore,
-      builder: (BuildContext context, TermsPageVM vm) {
-        final TermsPageDictionary dictionary = FlutterDictionary.instance.language.termsPageDictionary;
-        return MainLayout(
-          back: () => back(vm),
-          appBar: MainAppBar(
-            key: TermsPageKeys.appbar,
-            title: vm.titleText(vm.selectedLocale),
-            backButtonText: vm.backButtonText(vm.selectedLocale),
-            backOnTap: () => back(vm),
-          ),
-          child: Container(
-            margin: EdgeInsets.only(
-              left: 16.w,
-              right: 16.w,
-              top: 50.h,
+    return SafeArea(
+      child: StoreConnector<AppState, TermsPageVM>(
+        converter: TermsPageVM.fromStore,
+        builder: (BuildContext context, TermsPageVM vm) {
+          return MainLayout(
+            back: () => back(vm),
+            appBar: MainAppBar(
+              key: TermsPageKeys.appbar,
+              title: vm.titleText(vm.selectedLocale),
+              backButtonText: vm.backButtonText(vm.selectedLocale),
+              backOnTap: () => back(vm),
             ),
-            child: SingleChildScrollView(
-              key: Key(TermsPageKeys.listView),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    vm.termsText,
-                    style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20.0.h),
-                    child: const Divider(thickness: 1.0),
-                  ),
-
-                  /// [AgreeButton] takes [vm.navigateToCatalogsPage] as onTap function and [dictionary.agree] text as title
-                  if (!widget.isReadOnly)
-                    AgreeButton(
-                      keyValue: TermsPageKeys.button,
-                      onTap: () {
-                        timer = Timer(Duration(milliseconds: 1500), () {
-                          if (isAccepted) {
-                            vm.acceptTermsAndNavigate();
-                          }
-                        });
-
-                        setState(() {
-                          isAccepted = !isAccepted;
-                        });
-                      },
-                      isAccepted: isAccepted,
-                      title: vm.buttonText(vm.selectedLocale),
+            child: Container(
+              margin: EdgeInsets.only(
+                left: 16.w,
+                right: 16.w,
+                top: 50.h,
+              ),
+              child: SingleChildScrollView(
+                key: Key(TermsPageKeys.listView),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      vm.termsText,
+                      style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
                     ),
-                  const SizedBox(height: 20.0),
-                ],
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.0.h),
+                      child: const Divider(thickness: 1.0),
+                    ),
+
+                    /// [AgreeButton] takes [vm.navigateToCatalogsPage] as onTap function and [dictionary.agree] text as title
+                    if (!widget.isReadOnly)
+                      AgreeButton(
+                        keyValue: TermsPageKeys.button,
+                        onTap: () {
+                          timer = Timer(Duration(milliseconds: 1500), () {
+                            if (isAccepted) {
+                              vm.acceptTermsAndNavigate();
+                            }
+                          });
+
+                          setState(() {
+                            isAccepted = !isAccepted;
+                          });
+                        },
+                        isAccepted: isAccepted,
+                        title: vm.buttonText(vm.selectedLocale),
+                      ),
+                    const SizedBox(height: 20.0),
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 

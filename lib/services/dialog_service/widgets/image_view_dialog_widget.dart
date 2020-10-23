@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
+
+import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
-import 'package:my_catalog/res/image_assets.dart';
+import 'package:my_catalog/widgets/fade_animation_container.dart';
 import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/models/image_view_dialog.dart';
-import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/image_view_button.dart';
-import 'package:my_catalog/widgets/cashed_network_image.dart';
-import 'package:photo_view/photo_view.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class ImageViewDialogWidget extends StatefulWidget {
   final ImageViewDialog dialog;
@@ -22,7 +24,7 @@ class ImageViewDialogWidget extends StatefulWidget {
 }
 
 class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
-  final PhotoViewController _photoViewController = PhotoViewController();
+  PageController _pageController ;
   int index;
 
   bool _init = false;
@@ -30,6 +32,7 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
   @override
   void initState() {
     index = widget.dialog.currentIndex;
+    _pageController = PageController(keepPage: false, initialPage: index);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _init = true;
       setState(() {});
@@ -49,21 +52,27 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
           children: [
             Center(
               child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: PhotoView.customChild(
-                    minScale: 1.0,
-                    maxScale: 2.5,
-                    childSize: Size(200.0, 200.0),
-                    controller: _photoViewController,
-                    backgroundDecoration: BoxDecoration(color: AppColors.kBlack.withOpacity(0)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: CachedImage(
-                      key: Key(widget.key.toString() + 'CachedImage'),
-                      imageUrl: widget.dialog.gallery[index] ?? '',
-                      fit: BoxFit.contain,
-                    ),
+                width: MediaQuery.of(context).size.width,
+                child: PhotoViewGallery.builder(
+                  scrollPhysics: const NeverScrollableScrollPhysics(),
+                  builder: (BuildContext context, int index) {
+                    return PhotoViewGalleryPageOptions(
+                      minScale: PhotoViewComputedScale.contained * 1.0,
+                      maxScale: PhotoViewComputedScale.contained * 2.5,
+                      imageProvider: NetworkImage(widget.dialog.gallery[index]),
+                      initialScale: PhotoViewComputedScale.contained * 1.0,
+                    );
+                  },
+                  itemCount: widget.dialog.gallery.length,
+                  loadingBuilder: (context, event) => Center(
+                    child: FadeAnimationContainer(),
                   ),
+                  backgroundDecoration: BoxDecoration(color: AppColors.kBlack.withOpacity(0)),
+                  pageController: _pageController,
+                  onPageChanged: (int newIndex) {
+                    index = newIndex;
+                    setState(() {});
+                  },
                 ),
               ),
             ),
@@ -89,19 +98,24 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
               margin: const EdgeInsets.all(12.0),
               child: Material(
                 color: Colors.transparent,
-                child: InkWell(
-                  splashColor: CustomTheme.colors.primaryColor.withOpacity(0.4),
-                  highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(60.0),
-                  onTap: Navigator.of(context, rootNavigator: true).pop,
-                  child: AnimatedOpacity(
-                    curve: Curves.easeInBack,
-                    duration: Duration(milliseconds: 800),
-                    opacity: _init ? 1.0 : 0.0,
-                    child: CircleAvatar(
-                      radius: 25.0,
-                      backgroundColor: CustomTheme.colors.background.withOpacity(0.6),
-                      child: Icon(Icons.close, size: 30.0, color: CustomTheme.colors.primaryColor),
+                child: MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    textScaleFactor: 1.0,
+                  ),
+                  child: InkWell(
+                    splashColor: CustomTheme.colors.primaryColor.withOpacity(0.4),
+                    highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(60.0),
+                    onTap: Navigator.of(context, rootNavigator: true).pop,
+                    child: AnimatedOpacity(
+                      curve: Curves.easeInBack,
+                      duration: Duration(milliseconds: 800),
+                      opacity: _init ? 1.0 : 0.0,
+                      child: CircleAvatar(
+                        radius: 25.0,
+                        backgroundColor: CustomTheme.colors.background.withOpacity(0.6),
+                        child: Icon(Icons.close, size: 30.0, color: CustomTheme.colors.primaryColor),
+                      ),
                     ),
                   ),
                 ),
@@ -119,7 +133,7 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
     } else {
       --index;
     }
-    _photoViewController.reset();
+    _pageController.jumpToPage(index);
     setState(() {});
   }
 
@@ -129,7 +143,7 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
     } else {
       ++index;
     }
-    _photoViewController.reset();
+    _pageController.jumpToPage(index);
     setState(() {});
   }
 }

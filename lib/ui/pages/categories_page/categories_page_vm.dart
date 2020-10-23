@@ -10,9 +10,12 @@ import 'package:redux/redux.dart';
 
 // TODO(Yuri): Add comments for this class.
 class CategoriesPageVM {
+  final bool isLanguagePopupNeeded;
+
   final String currentLocale;
   final bool isSimpleCatalog;
   final List<InfoCategoryModel> categories;
+  final void Function() openLanguagePopup;
   final void Function(int) navigateToSubcategoriesPage;
   final String Function(String) categoriesPageTitle;
   final String Function(String) backButtonText;
@@ -26,6 +29,8 @@ class CategoriesPageVM {
     @required this.categoriesPageTitle,
     @required this.getCurrentCategoryData,
     @required this.navigateToSubcategoriesPage,
+    @required this.isLanguagePopupNeeded,
+    @required this.openLanguagePopup,
   });
 
   static CategoriesPageVM fromStore(Store<AppState> store) {
@@ -38,9 +43,11 @@ class CategoriesPageVM {
       currentLocale: StorageLanguageSelector.getSelectedLocale(store),
       backButtonText: StorageLanguageSelector.getBackButtonText(store),
       categoriesPageTitle: StorageLanguageSelector.getCategoriesTitleText(store),
+      isLanguagePopupNeeded: StorageLanguageSelector.getIsLanguagePopupNeeded(store),
 
       /// StorageFunctionSelector
       getCurrentCategoryData: StorageFunctionSelector.getCurrentCategoryModelFunction(store),
+      openLanguagePopup: StorageLanguageSelector.getOpenLanguageDialogFunction(store),
 
       /// Another
       navigateToSubcategoriesPage: RouteSelectors.gotoSubcategoriesPage(store),

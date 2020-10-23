@@ -42,8 +42,12 @@ class _MainLayoutState extends State<MainLayout> {
           onWillPop: () async {
             if (widget.canExit) {
               _onDoublePop();
-            } else if (widget.back != null) {
+              return false;
+            }
+
+            if (widget.back != null) {
               widget.back();
+              return false;
             }
 
             if (RouteService.instance.canPop) {

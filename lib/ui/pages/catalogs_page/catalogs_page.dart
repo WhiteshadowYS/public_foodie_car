@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/res/keys.dart';
-import 'package:my_catalog/services/internet_connection_service/internet_connection_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
@@ -20,19 +18,14 @@ class CatalogsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, CatalogsPageVM>(
       onInitialBuild: (CatalogsPageVM vm) {
-        InternetConnectionService.startInternetCheck(vm.internetDialog);
         if (vm.isLanguagePopupNeeded) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             vm.openLanguagePopup();
           });
         }
-//        else {
-//          vm.getUpdateTokenFunction();
-//        }
       },
       converter: CatalogsPageVM.fromStore,
       builder: (BuildContext context, vm) {
-
         return MainLayout(
           appBar: MainAppBar(
             key: 'CatalogsPageAppbar',
@@ -43,7 +36,7 @@ class CatalogsPage extends StatelessWidget {
           ),
           bgColor: CustomTheme.colors.background,
           canExit: true,
-          back: () => vm.exitDialog(EMPTY_STRING),
+          back: () => vm.exitDialog(),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 16.0,
@@ -54,6 +47,7 @@ class CatalogsPage extends StatelessWidget {
                   child: ScrollConfiguration(
                     behavior: CleanBehavior(),
                     child: ListView.builder(
+                      physics: ClampingScrollPhysics(),
                       padding: EdgeInsets.symmetric(
                         vertical: 24.h,
                       ),

@@ -15,6 +15,16 @@ part 'second_data_model.g.dart';
   checked: true,
   explicitToJson: true,
 )
+
+/// The class [SecondDataModel] is a model that stores data about the [SecondDataModel].
+/// For this class, [JsonSerializable] was applied, to work with json.
+/// Class [SecondDataModel], implements from the abstract class [IDto].
+/// The [SecondDataModel] class has 5 required variables, [catalogs], [categories], [subcategories],[products], [files].
+/// To obtain all [catalogs] that relate to the selected [SecondDataModel], use the variable [catalogs].
+/// To obtain all [categories] that relate to the selected [SecondDataModel], use the variable [categories].
+/// To obtain all [subcategories] that relate to the selected [SecondDataModel], use the variable [subcategories].
+/// To obtain all [products] that relate to the selected [SecondDataModel], use the variable [products].
+/// To obtain all [files] that relate to the selected [SecondDataModel], use the variable [files].
 class SecondDataModel implements IDto {
   @JsonKey(name: 'catalogs', required: false, nullable: true)
   final List<CatalogModel> catalogs;
@@ -34,8 +44,10 @@ class SecondDataModel implements IDto {
     @required this.products,
     @required this.files,
   });
-
+  /// Also the class [SecondDataModel], has [fromJson] and [toJson] to work with the json format.
+  /// [SecondDataModel], creates a new exemplar [SecondDataModel], based on json.
   factory SecondDataModel.fromJson(json) => _$SecondDataModelFromJson(json);
 
+  /// [toJson], creates a new json from the exemplary of the class [SecondDataModel].
   Map<String, dynamic> toJson() => _$SecondDataModelToJson(this);
 }

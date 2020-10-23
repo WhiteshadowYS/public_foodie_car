@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/dto/post_update_token_request_dto/post_update_token_request_dto.dart';
-import 'package:my_catalog/models/models/update_token_status_model.dart';
 import 'package:my_catalog/network/shared/i_request.dart';
 import 'package:my_catalog/res/api.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';

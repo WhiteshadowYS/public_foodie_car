@@ -2,14 +2,13 @@ import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.d
 import 'package:my_catalog/models/models/storage_model/data/data/category_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/subcategory_model.dart';
+import 'package:my_catalog/services/route_service/models/routes.dart';
+import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_id_actions/check_id_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/get_data_actions/get_data_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/remove_opened_storage_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_accepted_terms_actions/update_accepted_terms_id_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_action.dart';
-import 'package:my_catalog/store/shared/storage/actions/update_token_action.dart';
 import 'package:redux/redux.dart';
 
 import '../route_selectors.dart';
@@ -30,12 +29,12 @@ abstract class StorageFunctionSelector {
 
   static void Function(int, int) getDataFunction(Store<AppState> store) {
     return (int id, int update) {
-      store.dispatch(
-        GetDataAction(
-          id: id,
-          update: update,
-        ),
-      );
+        store.dispatch(
+          GetDataAction(
+            id: id,
+            update: update,
+          ),
+        );
     };
   }
 

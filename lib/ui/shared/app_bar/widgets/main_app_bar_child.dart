@@ -34,33 +34,38 @@ class MainAppBarChild extends StatelessWidget {
               ),
               child: Material(
                 color: Colors.transparent,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(24.0),
-                  onTap: backOnTap,
-                  child: SizedBox(
-                    height: 36.h,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const SizedBox(width: 8.0),
-                        Transform.rotate(
-                          angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
-                          child: SizedBox(
-                            height: 20.0,
-                            child: SVGImages().backArrow(),
+                child: MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    textScaleFactor: 1.0,
+                  ),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(24.0),
+                    onTap: backOnTap,
+                    child: SizedBox(
+                      height: 36.h,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const SizedBox(width: 8.0),
+                          Transform.rotate(
+                            angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
+                            child: SizedBox(
+                              height: 20.0,
+                              child: SVGImages().backArrow(),
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 6.0),
-                        Text(
-                          backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
-                          style: TextStyle(
-                            color: Color(0xFF5DB075),
-                            fontSize: 17.sp,
-                            fontWeight: FontWeight.w400,
+                          const SizedBox(width: 6.0),
+                          Text(
+                            backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
+                            style: TextStyle(
+                              color: Color(0xFF5DB075),
+                              fontSize: 17.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 14.0),
-                      ],
+                          const SizedBox(width: 14.0),
+                        ],
+                      ),
                     ),
                   ),
                 ),

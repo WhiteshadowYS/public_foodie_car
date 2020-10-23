@@ -3,7 +3,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/category_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_category_model.dart';
 import 'package:my_catalog/res/keys.dart';
-import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
@@ -19,6 +18,13 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, CategoriesPageVM>(
+      onInitialBuild: (CategoriesPageVM vm) {
+        if (vm.isLanguagePopupNeeded) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            vm.openLanguagePopup();
+          });
+        }
+      },
       converter: CategoriesPageVM.fromStore,
       builder: (BuildContext context, vm) {
         return MainLayout(

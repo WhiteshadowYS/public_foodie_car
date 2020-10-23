@@ -18,10 +18,9 @@ class CatalogsPageVM {
   final List<InfoCatalogModel> catalogs;
 
   final void Function() logOut;
-  final void Function() internetDialog;
   final void Function() openLanguagePopup;
   final void Function(int) navigateToCategoriesPage;
-  final void Function(String logoUrl) exitDialog;
+  final void Function() exitDialog;
   final String Function(String) logoutText;
   final String Function(String) descriptionTitleText;
   final CatalogModel Function(int) getCurrentCatalogData;
@@ -33,7 +32,6 @@ class CatalogsPageVM {
     @required this.exitDialog,
     @required this.logoutText,
     @required this.currentLocale,
-    @required this.internetDialog,
     @required this.openLanguagePopup,
     @required this.descriptionTitleText,
     @required this.getCurrentCatalogData,
@@ -61,7 +59,6 @@ class CatalogsPageVM {
       /// Another
       navigateToCategoriesPage: RouteSelectors.gotoCategoriesPage(store),
       exitDialog: DialogSelectors.getExitDialogFunction(store),
-      internetDialog: DialogSelectors.getInternetConnectionDialogFunction(store),
     );
   }
 }
