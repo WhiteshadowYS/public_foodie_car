@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/res/locales.dart';
 import 'package:my_catalog/store/shared/initialization/initialize_selector.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -14,10 +15,11 @@ import 'package:my_catalog/dictionary/flutter_delegate.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 
 // TODO(Yuri): Addd comments for Application widget.
+///The [Application] class, in which the creation of [MaterialApp] takes place.
 class Application extends StatelessWidget {
   final Store<AppState> store;
 
-  Application({this.store}) : super(key: Key('Application'));
+  Application({this.store}) : super(key: Key(ApplicationKeys.application));
 
   @override
   Widget build(BuildContext context) {
