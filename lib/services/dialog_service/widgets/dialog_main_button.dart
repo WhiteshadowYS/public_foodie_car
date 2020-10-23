@@ -36,8 +36,6 @@ class DialogMainButton extends StatelessWidget {
           ),
           child: InkWell(
             onTap: onTap,
-            splashColor: textColor.withOpacity(0.4),
-            highlightColor: textColor.withOpacity(0.2),
             borderRadius: BorderRadius.circular(30.0),
             child: Padding(
               padding: const EdgeInsets.all(16.0),

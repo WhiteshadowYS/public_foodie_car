@@ -48,8 +48,6 @@ class _MainGridItemState extends State<MainGridItem> {
           child: InkWell(
             key: Key(widget.keyValue),
             borderRadius: BorderRadius.circular(18.0),
-            splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
-            highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
             onTap: widget.onTap,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
