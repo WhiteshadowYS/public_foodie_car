@@ -23,12 +23,17 @@ class ImageViewButton extends StatelessWidget {
           color: AppColors.kBlack.withOpacity(0.4),
           size: 31.0,
         ),
-        IconButton(
-          key: Key(keyValue),
-          icon: Icon(icon),
-          color: CustomTheme.colors.buttons,
-          iconSize: 30.0,
-          onPressed: jumpToPage,
+        Material(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.all(Radius.circular(50)),
+          child: IconButton(
+            key: Key(keyValue),
+            icon: Icon(icon),
+            color: CustomTheme.colors.buttons,
+            iconSize: 30.0,
+            onPressed: jumpToPage,
+            splashRadius: 20,
+          ),
         ),
       ],
     );
