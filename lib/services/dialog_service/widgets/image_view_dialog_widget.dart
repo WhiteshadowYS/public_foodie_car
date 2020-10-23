@@ -89,19 +89,24 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
               margin: const EdgeInsets.all(12.0),
               child: Material(
                 color: Colors.transparent,
-                child: InkWell(
-                  splashColor: CustomTheme.colors.primaryColor.withOpacity(0.4),
-                  highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(60.0),
-                  onTap: Navigator.of(context, rootNavigator: true).pop,
-                  child: AnimatedOpacity(
-                    curve: Curves.easeInBack,
-                    duration: Duration(milliseconds: 800),
-                    opacity: _init ? 1.0 : 0.0,
-                    child: CircleAvatar(
-                      radius: 25.0,
-                      backgroundColor: CustomTheme.colors.background.withOpacity(0.6),
-                      child: Icon(Icons.close, size: 30.0, color: CustomTheme.colors.primaryColor),
+                child: MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    textScaleFactor: 1.0,
+                  ),
+                  child: InkWell(
+                    splashColor: CustomTheme.colors.primaryColor.withOpacity(0.4),
+                    highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(60.0),
+                    onTap: Navigator.of(context, rootNavigator: true).pop,
+                    child: AnimatedOpacity(
+                      curve: Curves.easeInBack,
+                      duration: Duration(milliseconds: 800),
+                      opacity: _init ? 1.0 : 0.0,
+                      child: CircleAvatar(
+                        radius: 25.0,
+                        backgroundColor: CustomTheme.colors.background.withOpacity(0.6),
+                        child: Icon(Icons.close, size: 30.0, color: CustomTheme.colors.primaryColor),
+                      ),
                     ),
                   ),
                 ),

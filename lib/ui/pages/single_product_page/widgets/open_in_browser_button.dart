@@ -11,19 +11,24 @@ class OpenInBrowserButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(25.0),
-        splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
-        highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
-        onTap: () async {
-          if (await canLaunch(url)) {
-            await launch(url);
-          }
-        },
-        child: Icon(
-          Icons.open_in_browser,
-          color: CustomTheme.colors.primaryColor,
-          size: 42.0,
+      child: MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          textScaleFactor: 1.0,
+        ),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(25.0),
+          splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
+          highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+          onTap: () async {
+            if (await canLaunch(url)) {
+              await launch(url);
+            }
+          },
+          child: Icon(
+            Icons.open_in_browser,
+            color: CustomTheme.colors.primaryColor,
+            size: 42.0,
+          ),
         ),
       ),
     );

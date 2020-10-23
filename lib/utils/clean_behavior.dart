@@ -22,6 +22,7 @@ class CleanedListView extends StatelessWidget {
       behavior: CleanBehavior(),
       child: ListView(
         key: Key(keyValue),
+        physics: ClampingScrollPhysics(),
         children: children,
       ),
     );
