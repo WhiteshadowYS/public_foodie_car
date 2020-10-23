@@ -30,8 +30,6 @@ class CatalogItem extends StatelessWidget {
         child: InkWell(
           key: Key(keyValue),
           borderRadius: BorderRadius.circular(18.0),
-          splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
-          highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
           onTap: () => navigateToCategories(catalog.id),
           child: Column(
             children: [

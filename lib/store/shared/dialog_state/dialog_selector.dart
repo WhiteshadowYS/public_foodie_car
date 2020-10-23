@@ -48,7 +48,7 @@ class DialogSelectors {
     return () => store.dispatch(ShowDialogAction(dialog: InternetConnection()));
   }
 
-  static void Function(String logoUrl) getExitDialogFunction(Store<AppState> store) {
-    return (String logoUrl) => store.dispatch(ShowDialogAction(dialog: ExitDialog(logoUrl: logoUrl)));
+  static void Function() getExitDialogFunction(Store<AppState> store) {
+    return () => store.dispatch(ShowDialogAction(dialog: ExitDialog()));
   }
 }

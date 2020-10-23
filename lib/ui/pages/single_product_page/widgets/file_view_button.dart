@@ -60,8 +60,6 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
         ),
         child: InkWell(
           key: Key(widget.keyValue),
-          splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
-          highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
           onTap: () {
             isOpen = true;
             setState(() {});
