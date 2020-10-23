@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
-import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/models/image_view_dialog.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/image_view_button.dart';
 import 'package:my_catalog/widgets/cashed_network_image.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImageViewDialogWidget extends StatefulWidget {
   final ImageViewDialog dialog;
@@ -89,19 +87,24 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
               margin: const EdgeInsets.all(12.0),
               child: Material(
                 color: Colors.transparent,
-                child: InkWell(
-                  splashColor: CustomTheme.colors.primaryColor.withOpacity(0.4),
-                  highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(60.0),
-                  onTap: Navigator.of(context, rootNavigator: true).pop,
-                  child: AnimatedOpacity(
-                    curve: Curves.easeInBack,
-                    duration: Duration(milliseconds: 800),
-                    opacity: _init ? 1.0 : 0.0,
-                    child: CircleAvatar(
-                      radius: 25.0,
-                      backgroundColor: CustomTheme.colors.background.withOpacity(0.6),
-                      child: Icon(Icons.close, size: 30.0, color: CustomTheme.colors.primaryColor),
+                child: MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    textScaleFactor: 1.0,
+                  ),
+                  child: InkWell(
+                    splashColor: CustomTheme.colors.primaryColor.withOpacity(0.4),
+                    highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(60.0),
+                    onTap: Navigator.of(context, rootNavigator: true).pop,
+                    child: AnimatedOpacity(
+                      curve: Curves.easeInBack,
+                      duration: Duration(milliseconds: 800),
+                      opacity: _init ? 1.0 : 0.0,
+                      child: CircleAvatar(
+                        radius: 25.0,
+                        backgroundColor: CustomTheme.colors.background.withOpacity(0.6),
+                        child: Icon(Icons.close, size: 30.0, color: CustomTheme.colors.primaryColor),
+                      ),
                     ),
                   ),
                 ),

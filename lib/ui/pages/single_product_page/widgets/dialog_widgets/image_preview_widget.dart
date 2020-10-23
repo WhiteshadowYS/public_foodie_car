@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/widgets/cashed_network_image.dart';
 
 class ImagePreviewWidget extends StatelessWidget {

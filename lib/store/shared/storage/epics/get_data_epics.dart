@@ -3,7 +3,11 @@ import 'package:my_catalog/models/models/storage_model/settings/language_model.d
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/locales.dart';
+import 'package:my_catalog/services/dialog_service/models/default_loader_dialog.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
+import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
+import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:my_catalog/store/shared/storage/actions/get_data_actions/do_get_data_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/get_data_actions/get_data_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/get_data_actions/get_data_result_action.dart';
@@ -26,6 +30,12 @@ class GetDataEpics {
         return ConcatStream(
           <Stream>[
             Stream.fromIterable([
+              StartLoadingAction(
+                loader: DefaultLoaderDialog(
+                  state: true,
+                  loaderKey: LoaderKey.getData,
+                ),
+              ),
               DoGetDataAction(
                 id: action.id,
                 update: action.update,
@@ -38,6 +48,11 @@ class GetDataEpics {
 
               if (nAction.response?.error != null) {
                 return ConcatEagerStream([
+                  Stream.value(
+                    StopLoadingAction(
+                      loaderKey: LoaderKey.getData,
+                    ),
+                  ),
                   StorageMainEpic.showError(nAction.response?.error?.error ?? 'Unknown error'),
                   StorageMainEpic.changeCheckIdLoadingState(value: false),
                 ]);
@@ -55,10 +70,10 @@ class GetDataEpics {
                 });
               }
 
-              print('index: $index');
-              print('isFirstOpen: ${action.isInitialLoad}');
-
               return Stream.fromIterable([
+                StopLoadingAction(
+                  loaderKey: LoaderKey.getData,
+                ),
                 UpdateStoresHistoryAction(
                   id: action.id,
                   update: action.update,

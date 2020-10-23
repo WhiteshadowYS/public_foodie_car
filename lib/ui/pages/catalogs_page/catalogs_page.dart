@@ -25,9 +25,6 @@ class CatalogsPage extends StatelessWidget {
             vm.openLanguagePopup();
           });
         }
-//        else {
-//          vm.getUpdateTokenFunction();
-//        }
       },
       converter: CatalogsPageVM.fromStore,
       builder: (BuildContext context, vm) {
@@ -53,6 +50,7 @@ class CatalogsPage extends StatelessWidget {
                   child: ScrollConfiguration(
                     behavior: CleanBehavior(),
                     child: ListView.builder(
+                      physics: ClampingScrollPhysics(),
                       padding: EdgeInsets.symmetric(
                         vertical: 24.h,
                       ),

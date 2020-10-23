@@ -8,6 +8,7 @@ import 'package:my_catalog/store/shared/reducer.dart';
 enum LoaderKey {
   initializationLoading,
   checkIdLoading,
+  getData,
 }
 
 class LoaderState {

@@ -53,7 +53,7 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (vm.stores.length != 0)
+                if (vm.stores.isNotEmpty)
                   Column(
                     children: [
                       SizedBox(height: 24.0.h),
