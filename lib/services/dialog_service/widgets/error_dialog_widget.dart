@@ -22,7 +22,7 @@ class ErrorDialogWidget extends StatelessWidget {
                 Container(
                   alignment: Alignment.topRight,
                   child: InkWell(
-                    onTap: () => DialogService.instance.close(),
+                    onTap: DialogService.instance.close,
                     child: SVGImages().close(),
                   ),
                 ),
