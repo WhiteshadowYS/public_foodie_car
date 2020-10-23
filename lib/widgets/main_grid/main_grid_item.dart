@@ -42,38 +42,43 @@ class _MainGridItemState extends State<MainGridItem> {
       opacity: _init ? 1.0 : 0.0,
       child: Material(
         color: Colors.transparent,
-        child: InkWell(
-          key: Key(widget.keyValue),
-          borderRadius: BorderRadius.circular(18.0),
-          splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
-          highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
-          onTap: widget.onTap,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12.0),
-                  child: CachedImage(
-                    key: Key(widget.key.toString() + 'CachedImage'),
-                    imageUrl: widget.imageUrl ?? '',
-                    width: double.infinity,
+        child: MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaleFactor: 1.0,
+          ),
+          child: InkWell(
+            key: Key(widget.keyValue),
+            borderRadius: BorderRadius.circular(18.0),
+            splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
+            highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+            onTap: widget.onTap,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12.0),
+                    child: CachedImage(
+                      key: Key(widget.key.toString() + 'CachedImage'),
+                      imageUrl: widget.imageUrl ?? '',
+                      width: double.infinity,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 8.0),
-              SizedBox(
-                height: 40.h,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: Text(
-                    widget.title,
-                    style: CustomTheme.textStyles.titleTextStyle(size: 15.sp),
-                    maxLines: 2,
+                const SizedBox(height: 8.0),
+                SizedBox(
+                  height: 40.h,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child: Text(
+                      widget.title,
+                      style: CustomTheme.textStyles.titleTextStyle(size: 15.sp),
+                      maxLines: 2,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
