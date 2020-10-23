@@ -15,7 +15,7 @@ class LanguageDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 18.0.h,
+      height: 20.0.h,
       width: 108.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
