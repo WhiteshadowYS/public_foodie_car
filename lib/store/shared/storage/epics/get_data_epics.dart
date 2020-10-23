@@ -71,9 +71,6 @@ class GetDataEpics {
                 });
               }
 
-              print('index: $index');
-              print('isFirstOpen: ${action.isInitialLoad}');
-
               return Stream.fromIterable([
                 StopLoadingAction(
                   loaderKey: LoaderKey.getData,

@@ -1,5 +1,5 @@
-import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:my_catalog/res/const.dart';
 
 part 'product_model.g.dart';
@@ -55,7 +55,6 @@ class ProductModel implements IDto {
     try {
       return languages[langCode][KEY_POINTS] ?? [];
     } catch (e) {
-      print(e);
       return [];
     }
   }

@@ -26,9 +26,6 @@ class CatalogsPage extends StatelessWidget {
             vm.openLanguagePopup();
           });
         }
-//        else {
-//          vm.getUpdateTokenFunction();
-//        }
       },
       converter: CatalogsPageVM.fromStore,
       builder: (BuildContext context, vm) {
