@@ -39,7 +39,6 @@ class _TermsPageState extends State<TermsPage> {
     return StoreConnector<AppState, TermsPageVM>(
       converter: TermsPageVM.fromStore,
       builder: (BuildContext context, TermsPageVM vm) {
-        final TermsPageDictionary dictionary = FlutterDictionary.instance.language.termsPageDictionary;
         return MainLayout(
           back: () => back(vm),
           appBar: MainAppBar(
