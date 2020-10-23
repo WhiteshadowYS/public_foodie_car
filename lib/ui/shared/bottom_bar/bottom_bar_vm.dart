@@ -6,7 +6,15 @@ import 'package:my_catalog/store/shared/storage/storage_data_selector.dart';
 import 'package:my_catalog/store/shared/storage/storage_function_selector.dart';
 import 'package:redux/redux.dart';
 
-// TODO(Yuri): Add comments for this class.
+///[BottomBarVM] view model for BottomBar
+///[currentIndex] - int with current index which is taken from [StorageDataSelector.getCurrentCatalogID].
+///[footerButtons] - list with [FooterButtonModel] which is taken from [StorageDataSelector.getFooterButtons].
+///[removeOpenedStore] - void function for removing opened store which is taken  function from [StorageFunctionSelector.getRemoveOpenedStorageFunction].
+///[navigateToSettingsPage] - void function for navigation to settings page which is taken from [RouteSelectors.gotoSettingsPage].
+///[navigateToMainPage] - void function for navigation to main page which is taken from [StorageFunctionSelector.getLogOutFunction].
+///[navigateToCatalogsPage] - void function for navigation to catalogs page which is taken from [RouteSelectors.gotoCatalogsPage].
+///[navigateCategoryPage] - void function with int param for navigation to categories page which is taken from [RouteSelectors.gotoCategoriesPage].
+
 class BottomBarVM {
   final int currentIndex;
   final List<FooterButtonModel> footerButtons;

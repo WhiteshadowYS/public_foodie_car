@@ -12,6 +12,7 @@ class DialogCloseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(25.0),
         onTap: DialogService.instance.close,
