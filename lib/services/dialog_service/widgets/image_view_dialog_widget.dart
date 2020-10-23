@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/models/image_view_dialog.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/image_view_button.dart';
-import 'package:my_catalog/widgets/cashed_network_image.dart';
+import 'package:my_catalog/widgets/fade_animation_container.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 
 class ImageViewDialogWidget extends StatefulWidget {
   final ImageViewDialog dialog;
@@ -20,7 +22,7 @@ class ImageViewDialogWidget extends StatefulWidget {
 }
 
 class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
-  final PhotoViewController _photoViewController = PhotoViewController();
+  final PageController _pageController = PageController(keepPage: false);
   int index;
 
   bool _init = false;
@@ -47,21 +49,27 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
           children: [
             Center(
               child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: PhotoView.customChild(
-                    minScale: 1.0,
-                    maxScale: 2.5,
-                    childSize: Size(200.0, 200.0),
-                    controller: _photoViewController,
-                    backgroundDecoration: BoxDecoration(color: AppColors.kBlack.withOpacity(0)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: CachedImage(
-                      key: Key(widget.key.toString() + 'CachedImage'),
-                      imageUrl: widget.dialog.gallery[index] ?? '',
-                      fit: BoxFit.contain,
-                    ),
+                width: MediaQuery.of(context).size.width,
+                child: PhotoViewGallery.builder(
+                  scrollPhysics: const NeverScrollableScrollPhysics(),
+                  builder: (BuildContext context, int index) {
+                    return PhotoViewGalleryPageOptions(
+                      minScale: PhotoViewComputedScale.contained * 1.0,
+                      maxScale: PhotoViewComputedScale.contained * 2.5,
+                      imageProvider: NetworkImage(widget.dialog.gallery[index]),
+                      initialScale: PhotoViewComputedScale.contained * 1.0,
+                    );
+                  },
+                  itemCount: widget.dialog.gallery.length,
+                  loadingBuilder: (context, event) => Center(
+                    child: FadeAnimationContainer(),
                   ),
+                  backgroundDecoration: BoxDecoration(color: AppColors.kBlack.withOpacity(0)),
+                  pageController: _pageController,
+                  onPageChanged: (int newIndex) {
+                    index = newIndex;
+                    setState(() {});
+                  },
                 ),
               ),
             ),
@@ -119,20 +127,24 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
   void _backPhoto() {
     if (index == 0) {
       index = widget.dialog.gallery.length - 1;
+      _pageController.animateToPage(index, duration: MILLISECONDS_900, curve: Curves.linear);
     } else {
       --index;
+      _pageController.animateToPage(index, duration: MILLISECONDS_300, curve: Curves.linear);
     }
-    _photoViewController.reset();
+
     setState(() {});
   }
 
   void _nextPhoto() {
     if (index == widget.dialog.gallery.length - 1) {
       index = 0;
+      _pageController.animateToPage(index, duration: MILLISECONDS_900, curve: Curves.linear);
     } else {
       ++index;
+      _pageController.animateToPage(index, duration: MILLISECONDS_300, curve: Curves.linear);
     }
-    _photoViewController.reset();
+
     setState(() {});
   }
 }
