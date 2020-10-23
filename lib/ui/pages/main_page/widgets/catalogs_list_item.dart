@@ -30,41 +30,44 @@ class _CatalogsListItemState extends State<CatalogsListItem> {
     final AVColors colors = CustomTheme.colors;
     final AVTextStyles textStyles = CustomTheme.textStyles;
 
-    return InkWell(
-      key: Key(widget.keyValue),
-      onTap: widget.onTap,
-      child: Container(
-        color: colors.background,
-        height: 60.0,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AnimatedDefaultTextStyle(
-                    duration: MILLISECONDS_300,
-                    style: widget.isSelected ? textStyles.accentTextStyle(size: 14) : textStyles.titleTextStyle(size: 14),
-                    child: Text(widget.title),
-                  ),
-                  Transform.rotate(
-                    angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
-                    child: Icon(
-                      Icons.keyboard_arrow_right,
-                      color: colors.accentColor.withOpacity(0.8),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        key: Key(widget.keyValue),
+        onTap: widget.onTap,
+        child: Container(
+          color: Colors.transparent,
+          height: 60.0,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AnimatedDefaultTextStyle(
+                      duration: MILLISECONDS_300,
+                      style: widget.isSelected ? textStyles.accentTextStyle(size: 14) : textStyles.titleTextStyle(size: 14),
+                      child: Text(widget.title),
                     ),
-                  ),
-                ],
+                    Transform.rotate(
+                      angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
+                      child: Icon(
+                        Icons.keyboard_arrow_right,
+                        color: colors.accentColor.withOpacity(0.8),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Divider(
-              thickness: 1.5,
-              indent: 10.0,
-              endIndent: 10.0,
-              color: colors.accentColor.withOpacity(0.4),
-            ),
-          ],
+              Divider(
+                thickness: 1.5,
+                indent: 10.0,
+                endIndent: 10.0,
+                color: colors.accentColor.withOpacity(0.4),
+              ),
+            ],
+          ),
         ),
       ),
     );
