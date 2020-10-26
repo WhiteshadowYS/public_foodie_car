@@ -6,7 +6,7 @@ import 'package:my_catalog/services/dialog_service/widgets/dialog_main_button.da
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/terms_page/terms_page_vm.dart';
 import 'package:my_catalog/ui/pages/terms_page/widgets/agree_button.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class TermsAcceptBlock extends StatefulWidget {
   final TermsPageVM vm;
 
@@ -36,7 +36,7 @@ class _TermsAcceptBlockState extends State<TermsAcceptBlock> {
           title: widget.vm.buttonText(widget.vm.selectedLocale),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          padding: EdgeInsets.symmetric(vertical: 24.h),
 
           /// [DialogMainButton ] takes [vm.acceptTermsAndNavigate]  as onTap function
           child: DialogMainButton(
