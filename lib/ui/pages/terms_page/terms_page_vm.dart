@@ -6,7 +6,15 @@ import 'package:my_catalog/store/shared/storage/storage_function_selector.dart';
 import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:redux/redux.dart';
 
-// TODO(Yuri): Add comments for this class.
+///[TermsPageVM] view model for TermsPage
+///[termsText] - string with terms text which is taken from [StorageDataSelector.getTermsText].
+///[selectedLocale] - string with selected locale which is taken from [StorageLanguageSelector.getSelectedLocale].
+///[back] - void function for pop navigation which is taken from [RouteSelectors.doPop].
+///[acceptTermsAndNavigate] - void function for accepting terms and navigating to next page which is taken from [StorageFunctionSelector.getAcceptTermsAndNavigateFunction].
+///[titleText] - void function with string param for getting title text from [StorageLanguageSelector.getTermsTitleText].
+///[buttonText] - void function with string param for getting button text from [StorageLanguageSelector.getTermsButtonText].
+///[backButtonText] - void function with string param for getting text for back button from [StorageLanguageSelector.getBackButtonText].
+
 class TermsPageVM {
   final String termsText;
   final String selectedLocale;

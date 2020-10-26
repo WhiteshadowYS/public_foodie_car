@@ -6,7 +6,10 @@ import 'package:my_catalog/store/shared/storage/storage_data_selector.dart';
 import 'package:my_catalog/store/shared/storage/storage_function_selector.dart';
 import 'package:redux/redux.dart';
 
-// TODO(Yuri): Add comments for this class.
+///[MainPageVM] view model for MainPage
+///[stores] - list with saved stores
+///[checkId] - void function with int param for getting checkId function
+///[exitDialog] - void function for getting exit dialog function
 class MainPageVM {
   final List<SavedStorageModel> stores;
   final void Function(int) checkId;

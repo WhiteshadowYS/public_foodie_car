@@ -8,7 +8,17 @@ import 'package:my_catalog/store/shared/storage/storage_function_selector.dart';
 import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:redux/redux.dart';
 
-// TODO(Yuri): Add comments for this class.
+///[CategoriesPageVM] view model for CategoriesPage
+///[isLanguagePopupNeeded] - bool with info is LanguagePopUp needed which is taken from [StorageLanguageSelector.getIsLanguagePopupNeeded].
+///[currentLocale] - string with current locale which is taken from [StorageLanguageSelector.getSelectedLocale].
+///[isSimpleCatalog] - bool with info is only one catalog present which is taken from [StorageDataSelector.getIsSimpleCatalog].
+///[categories] - list with categories which is taken from [StorageDataSelector.getInfoCategories].
+///[openLanguagePopup] - void function for opening language dialog which is taken  function from [StorageLanguageSelector.getOpenLanguageDialogFunction].
+///[navigateToSubcategoriesPage] - void function with int param for navigation to categories page which is taken from [RouteSelectors.gotoSubcategoriesPage].
+///[categoriesPageTitle] - void function with string param for getting categories page title text from [StorageLanguageSelector.getCategoriesTitleText].
+///[backButtonText] - void function with string param for getting text for back button from [StorageLanguageSelector.getBackButtonText].
+///[getCurrentCategoryData] - this function return [CategoryModel] and takes the int param. This function is taken from [StorageFunctionSelector.getCurrentCategoryModelFunction].
+
 class CategoriesPageVM {
   final bool isLanguagePopupNeeded;
 
