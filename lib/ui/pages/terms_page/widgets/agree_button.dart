@@ -8,7 +8,7 @@ import 'accept_check_box.dart';
 ///[AgreeButton] takes 2 required parameters [onTap], [title] and 1 not required [duration]. Default [duration] is 500 milliseconds.
 class AgreeButton extends StatefulWidget {
   final String keyValue;
-  final Function onTap;
+ final Function onTap;
   final String title;
   final bool isAccepted;
   final Duration duration;
