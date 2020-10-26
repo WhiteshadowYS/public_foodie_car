@@ -23,8 +23,8 @@ class SettingsItem extends StatelessWidget {
         child: Container(
           height: 65.0,
           width: double.infinity,
-          padding: EdgeInsets.only(
-            left: 16.0,
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.0,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,10 +37,7 @@ class SettingsItem extends StatelessWidget {
                       text,
                       style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
-                      child: child,
-                    ),
+                    child,
                   ],
                 ),
               ),

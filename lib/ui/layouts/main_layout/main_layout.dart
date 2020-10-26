@@ -16,13 +16,13 @@ import 'package:my_catalog/ui/layouts/main_layout/main_layout_vm.dart';
 ///   - [back] function returns to the previous page.
 ///   - [canExit] variable that is responsible for whether or not a complete exit from the application is performed?
 class MainLayout extends StatefulWidget {
-  final Widget child;
-  final Color bgColor;
-  final PreferredSizeWidget appBar;
-  final Widget bottomBar;
-  final bool resizeToAvoidBottomPadding;
-  final Function back;
   final bool canExit;
+  final bool resizeToAvoidBottomPadding;
+  final Color bgColor;
+  final Widget bottomBar;
+  final PreferredSizeWidget appBar;
+  final Function back;
+  final Widget child;
 
   MainLayout({
     Key key,
@@ -70,19 +70,22 @@ class _MainLayoutState extends State<MainLayout> {
             appBar: widget.appBar,
             backgroundColor: widget.bgColor,
             bottomNavigationBar: widget.bottomBar,
-            body: GestureDetector(
-              onTap: () {
-                if (FocusScope.of(context).hasFocus) {
-                  FocusScope.of(context).unfocus();
-                }
-              },
-              child: Container(
-                color: widget.bgColor,
-                width: double.infinity,
-                height: double.infinity,
-                child: LoaderLayout(
-                  key: Key(widget.key.toString() + 'Loader'),
-                  child: widget.child,
+            body: Directionality(
+              textDirection: vm.direction ?? TextDirection.ltr,
+              child: GestureDetector(
+                onTap: () {
+                  if (FocusScope.of(context).hasFocus) {
+                    FocusScope.of(context).unfocus();
+                  }
+                },
+                child: Container(
+                  color: widget.bgColor,
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: LoaderLayout(
+                    key: Key(widget.key.toString() + 'Loader'),
+                    child: widget.child,
+                  ),
                 ),
               ),
             ),

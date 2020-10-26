@@ -42,6 +42,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
               title: title,
               logoUrl: logoUrl,
               backButtonText: backButtonText,
+              textDirection: vm.textDirection,
               backOnTap: backOnTap != null || RouteService.instance.canPop
                   ? () {
                       if (backOnTap != null) {

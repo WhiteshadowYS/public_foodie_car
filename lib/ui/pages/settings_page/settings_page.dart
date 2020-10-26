@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -88,10 +90,16 @@ class _SettingsPageState extends State<SettingsPage> {
               SettingsItem(
                 key: SettingsPageKeys.tacBlock,
                 text: dictionary.terms,
-                child: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 18,
-                  color: CustomTheme.colors.minorFont,
+                child: Transform.rotate(
+                  angle: vm.textDirection != TextDirection.ltr ? pi : 0.0,
+                  child: SizedBox(
+                    height: 20.0,
+                    child: Icon(
+                      Icons.keyboard_arrow_right,
+                      size: 18,
+                      color: CustomTheme.colors.minorFont,
+                    ),
+                  ),
                 ),
                 callback: vm.navigateToTermsPage,
               ),
