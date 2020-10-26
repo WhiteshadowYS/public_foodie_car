@@ -7,6 +7,9 @@ import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:redux/redux.dart';
 
 class SettingsPageVM {
+  /// Variable [textDirection] text direction of application.
+  final TextDirection textDirection;
+  
   /// Variable [isPushNotificationsOn] using to check is push notifications enabled
   final bool isPushNotificationsOn;
 
@@ -45,6 +48,7 @@ class SettingsPageVM {
   const SettingsPageVM({
     @required this.info,
     @required this.back,
+    @required this.textDirection,
     @required this.backButtonText,
     @required this.selectedLocale,
     @required this.selectedLanguage,
@@ -62,6 +66,7 @@ class SettingsPageVM {
       info: StorageDataSelector.getInfoModel(store),
 
       /// StorageLanguageSelector
+      textDirection: StorageLanguageSelector.selectedLocaleDirection(store),
       selectedLocale: StorageLanguageSelector.getSelectedLocale(store),
       backButtonText: StorageLanguageSelector.getBackButtonText(store),
       selectedLanguage: StorageLanguageSelector.getSelectedLanguage(store),

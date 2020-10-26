@@ -9,6 +9,7 @@ class DialogMainButton extends StatelessWidget {
   final Color textColor;
   final String title;
   final String keyValue;
+  final Color borderColor;
 
   DialogMainButton({
     @required this.onTap,
@@ -16,6 +17,7 @@ class DialogMainButton extends StatelessWidget {
     @required this.textColor,
     @required this.title,
     @required this.keyValue,
+    this.borderColor,
   }) : super(key: Key(keyValue));
 
   @override
@@ -24,7 +26,7 @@ class DialogMainButton extends StatelessWidget {
       duration: MILLISECONDS_300,
       decoration: BoxDecoration(
         border: Border.all(
-          color: backgroundColor,
+          color: borderColor ?? CustomTheme.colors.primaryColor,
         ),
         color: backgroundColor,
         borderRadius: BorderRadius.circular(100.0),

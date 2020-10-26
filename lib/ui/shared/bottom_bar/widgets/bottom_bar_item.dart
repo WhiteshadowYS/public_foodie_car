@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
 class BottomBarItem extends StatelessWidget {
@@ -32,6 +33,9 @@ class BottomBarItem extends StatelessWidget {
               iconUrl,
               height: 32,
               color: isSelected ? CustomTheme.colors.primaryColor : CustomTheme.colors.primaryColor.withOpacity(0.3),
+              placeholderBuilder: (BuildContext context){
+                return SizedBox(height: 32.0, width: 32.0, child: SvgPicture.asset(ImageAssets.LOGO));
+              },
             ),
           ),
         ),

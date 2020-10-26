@@ -8,6 +8,7 @@ import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
 
 class MainAppBarChild extends StatelessWidget {
+  final TextDirection textDirection;
   final String title;
   final String backButtonText;
   final String logoUrl;
@@ -16,6 +17,7 @@ class MainAppBarChild extends StatelessWidget {
   MainAppBarChild({
     @required String key,
     @required this.title,
+    @required this.textDirection,
     this.backOnTap,
     this.logoUrl,
     this.backButtonText,
@@ -27,34 +29,37 @@ class MainAppBarChild extends StatelessWidget {
       children: [
         if (backOnTap != null)
           Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 8.0,
-              ),
-              child: Material(
-                color: Colors.transparent,
-                child: MediaQuery(
-                  data: MediaQuery.of(context).copyWith(
-                    textScaleFactor: 1.0,
-                  ),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(24.0),
-                    onTap: backOnTap,
-                    child: SizedBox(
-                      height: 36.h,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const SizedBox(width: 8.0),
+            alignment: textDirection == TextDirection.ltr ? Alignment.centerLeft : Alignment.centerRight,
+            child: Material(
+              color: Colors.transparent,
+              child: MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                  textScaleFactor: 1.0,
+                ),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(24.0),
+                  onTap: backOnTap,
+                  child: SizedBox(
+                    height: 36.h,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(width: 14.0),
+                        const SizedBox(width: 8.0),
+                        const SizedBox(width: 14.0),
+                      ]
+                        ..insert(
+                          textDirection == TextDirection.ltr ? 1 : 2,
                           Transform.rotate(
-                            angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
+                            angle: textDirection != TextDirection.ltr ? pi : 0.0,
                             child: SizedBox(
                               height: 20.0,
                               child: SVGImages().backArrow(),
                             ),
                           ),
-                          const SizedBox(width: 6.0),
+                        )
+                        ..insert(
+                          textDirection == TextDirection.ltr ? 3 : 1,
                           Text(
                             backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
                             style: TextStyle(
@@ -63,9 +68,7 @@ class MainAppBarChild extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          const SizedBox(width: 14.0),
-                        ],
-                      ),
+                        ),
                     ),
                   ),
                 ),

@@ -39,7 +39,7 @@ const Language en = Language(
     history: 'History',
     enterCatalogId: 'Please enter a Catalog ID',
     viewCatalog: 'View Catalog',
-    name: 'Name',
+    name: 'Catalog ID',
     iWantToCreate: 'I want to create my own Catalog',
     errorID: 'This ID is incorrect',
   ),

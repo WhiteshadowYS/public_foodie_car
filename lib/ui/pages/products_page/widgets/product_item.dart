@@ -12,6 +12,7 @@ class ProductItem extends StatelessWidget {
   final String keyValue;
   final String locale;
   final ProductModel product;
+  final TextDirection textDirection;
   final void Function() onTap;
 
   ProductItem({
@@ -19,6 +20,7 @@ class ProductItem extends StatelessWidget {
     @required this.locale,
     @required this.product,
     @required this.onTap,
+    @required this.textDirection,
   }) : super(key: Key(keyValue + 'ProductItem'));
 
   @override
@@ -56,7 +58,7 @@ class ProductItem extends StatelessWidget {
               ),
             ),
             trailing: Transform.rotate(
-              angle: FlutterDictionary.instance.isRTL ? pi : 0,
+              angle: textDirection == TextDirection.ltr ? 0 : pi,
               child: Icon(Icons.keyboard_arrow_right),
             ),
             onTap: onTap,

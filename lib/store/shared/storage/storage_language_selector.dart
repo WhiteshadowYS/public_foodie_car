@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/language_model.dart';
@@ -10,6 +11,23 @@ import 'package:my_catalog/store/shared/storage/actions/update_language_actions/
 import 'package:redux/redux.dart';
 
 abstract class StorageLanguageSelector {
+  static TextDirection selectedLocaleDirection(Store<AppState> store) {
+    final List<LanguageModel> languages = store.state.storageState.storage?.settings?.languages;
+
+    final int index = languages?.indexWhere((LanguageModel language) {
+          return language.code.toLowerCase() == getSelectedLocale(store).toLowerCase();
+        }) ??
+        -1;
+
+    if (index == null || index == -1) {
+      return TextDirection.ltr;
+    }
+
+    final TextDirection direction = languages[index].direction.toLowerCase() == 'ltr' ? TextDirection.ltr : TextDirection.rtl;
+
+    return direction;
+  }
+
   static String getSelectedLocale(Store<AppState> store) {
     try {
       final SavedStorageModel lastModel = store.state.storageState?.storesHistory?.last;
@@ -303,11 +321,15 @@ abstract class StorageLanguageSelector {
 
   static void Function(String) getUpdateLanguageFunction(Store<AppState> store) {
     return (String locale) {
-      store.dispatch(
-        UpdateLanguageAction(
-          newModel: store.state.storageState.storesHistory.last.copyWith(locale: locale),
-        ),
-      );
+      final SavedStorageModel storageModel = store.state.storageState.storesHistory.last;
+
+      if (locale != storageModel.locale) {
+        store.dispatch(
+          UpdateLanguageAction(
+            newModel: storageModel.copyWith(locale: locale),
+          ),
+        );
+      }
       store.dispatch(
         UpdateIsFirstOpenAction(
           isFirstOpen: false,

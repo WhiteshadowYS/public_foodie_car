@@ -45,6 +45,7 @@ class ProductsPage extends StatelessWidget {
                 return ProductItem(
                   keyValue: ProductsPageKeys.productItem,
                   product: product,
+                  textDirection: vm.textDirection,
                   locale: vm.currentLocale,
                   onTap: () => vm.navigateToSingleProductPagePage(product.id),
                 );

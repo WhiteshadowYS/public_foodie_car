@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
+import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:redux/redux.dart';
 
 ///[MainAppbarVM] view model for MainAppbar
@@ -9,14 +10,17 @@ import 'package:redux/redux.dart';
 
 class MainAppbarVM {
   final void Function(NavigateToAction) doRoute;
+  final TextDirection textDirection;
 
   MainAppbarVM({
     @required this.doRoute,
+    @required this.textDirection,
   });
 
   static MainAppbarVM fromStore(Store<AppState> store) {
     return MainAppbarVM(
       doRoute: RouteSelectors.getDoRouteFunction(store),
+      textDirection: StorageLanguageSelector.selectedLocaleDirection(store),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/models/models/storage_model/settings/language_model.dart';
 import 'package:my_catalog/services/dialog_service/interfaces/i_dialog.dart';
 import 'package:my_catalog/services/dialog_service/shared/dialog_builders.dart';
-import 'package:my_catalog/services/dialog_service/widgets/language_dialog_widget.dart';
+import 'package:my_catalog/services/dialog_service/widgets/language_dialog/language_dialog_widget.dart';
 
 class LanguageDialog implements IDialog {
   final List<LanguageModel> list;

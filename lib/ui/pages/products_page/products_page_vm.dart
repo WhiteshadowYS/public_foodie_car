@@ -8,7 +8,6 @@ import 'package:my_catalog/store/shared/storage/storage_function_selector.dart';
 import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:redux/redux.dart';
 
-
 ///[ProductsPageVM] view model for ProductsPage
 ///[products] - list with products which is taken from [StorageDataSelector.getInfoProducts].
 ///[currentLocale] - string with current locale which is taken from [StorageLanguageSelector.getSelectedLocale].
@@ -18,6 +17,7 @@ import 'package:redux/redux.dart';
 ///[getCurrentProductData] - this function return [ProductModel] and takes the int param. This function is taken from [StorageFunctionSelector.getCurrentProductModelFunction].
 
 class ProductsPageVM {
+  final TextDirection textDirection;
   final String currentLocale;
   final List<InfoProductModel> products;
 
@@ -28,6 +28,7 @@ class ProductsPageVM {
 
   const ProductsPageVM({
     @required this.products,
+    @required this.textDirection,
     @required this.currentLocale,
     @required this.backButtonText,
     @required this.productsPageTitle,
@@ -41,6 +42,7 @@ class ProductsPageVM {
       products: StorageDataSelector.getInfoProducts(store),
 
       /// StorageLanguageSelector
+      textDirection: StorageLanguageSelector.selectedLocaleDirection(store),
       currentLocale: StorageLanguageSelector.getSelectedLocale(store),
       backButtonText: StorageLanguageSelector.getBackButtonText(store),
       productsPageTitle: StorageLanguageSelector.getProductsTitleText(store),

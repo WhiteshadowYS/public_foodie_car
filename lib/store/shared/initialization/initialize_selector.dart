@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:my_catalog/services/internet_connection_service/internet_connection_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/dialog_state/dialog_selector.dart';

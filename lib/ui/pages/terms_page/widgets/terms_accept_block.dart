@@ -44,6 +44,7 @@ class _TermsAcceptBlockState extends State<TermsAcceptBlock> {
             title: dictionary.goToCatalog,
             textColor: CustomTheme.colors.background,
             backgroundColor: isAccepted ? CustomTheme.colors.primaryColor : CustomTheme.colors.accentColor,
+            borderColor: isAccepted ? CustomTheme.colors.primaryColor : CustomTheme.colors.accentColor,
             onTap: isAccepted ? widget.vm.acceptTermsAndNavigate : null,
           ),
         ),

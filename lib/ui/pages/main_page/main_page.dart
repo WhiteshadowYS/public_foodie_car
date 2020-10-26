@@ -52,68 +52,71 @@ class _MainPageState extends State<MainPage> {
           resizeToAvoidBottomPadding: true,
           canExit: true,
           back: () => vm.exitDialog(),
-          child: CleanedListView(
-            keyValue: MainPageKeys.pageListView,
-            children: [
-              if (vm.stores.isNotEmpty)
-                SizedBox(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 24.h),
-                      Text(
-                        dictionary.history,
-                        style: CustomTheme.textStyles.titleTextStyle(),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 8.0.h),
-                      StoresList(
-                        keyValue: MainPageKeys.catalogListItem,
-                        stores: vm.stores?.map((e) {
-                              return e.id.toString();
-                            })?.toList() ??
-                            [],
-                        setId: (int id) => setState(() => _controller.text = id.toString()),
-                      ),
-                      SizedBox(height: 48.h),
-                    ],
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: CleanedListView(
+              keyValue: MainPageKeys.pageListView,
+              children: [
+                if (vm.stores.isNotEmpty)
+                  SizedBox(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 24.h),
+                        Text(
+                          dictionary.history,
+                          style: CustomTheme.textStyles.titleTextStyle(),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 8.0.h),
+                        StoresList(
+                          keyValue: MainPageKeys.catalogListItem,
+                          stores: vm.stores?.map((e) {
+                                return e.id.toString();
+                              })?.toList() ??
+                              [],
+                          setId: (int id) => setState(() => _controller.text = id.toString()),
+                        ),
+                        SizedBox(height: 48.h),
+                      ],
+                    ),
+                  )
+                else
+                  SizedBox(height: 260.h),
+                Center(
+                  child: Text(
+                    dictionary.enterCatalogId,
+                    style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
                   ),
-                )
-              else
-                SizedBox(height: 260.h),
-              Center(
-                child: Text(
-                  dictionary.enterCatalogId,
-                  style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
                 ),
-              ),
-              const SizedBox(height: 8.0),
-              CatalogIdSearchTextField(
-                focusKeyValue: MainPageKeys.textField,
-                focusService: _focusService,
-                controller: _controller,
-                validator: (arg) => ValidationService.numberValidation(
-                  arg,
-                  FlutterDictionary.instance.language.errorDictionary,
+                const SizedBox(height: 8.0),
+                CatalogIdSearchTextField(
+                  focusKeyValue: MainPageKeys.textField,
+                  focusService: _focusService,
+                  controller: _controller,
+                  validator: (arg) => ValidationService.numberValidation(
+                    arg,
+                    FlutterDictionary.instance.language.errorDictionary,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20.0),
-              MainButton(
-                keyValue: MainPageKeys.button,
-                title: dictionary.viewCatalog,
-                onTap: () => _onButtonPressed(vm),
-                controller: _controller,
-                validator: (arg) => ValidationService.numberValidation(
-                  arg,
-                  FlutterDictionary.instance.language.errorDictionary,
+                const SizedBox(height: 20.0),
+                MainButton(
+                  keyValue: MainPageKeys.button,
+                  title: dictionary.viewCatalog,
+                  onTap: () => _onButtonPressed(vm),
+                  controller: _controller,
+                  validator: (arg) => ValidationService.numberValidation(
+                    arg,
+                    FlutterDictionary.instance.language.errorDictionary,
+                  ),
                 ),
-              ),
-              SizedBox(height: 64.h),
-              LinksButton(
-                keyValue: MainPageKeys.ownButton,
-                title: dictionary.iWantToCreate,
-                url: WANNA_CREATE_MY_CATALOG_LINK,
-              ),
-            ],
+                SizedBox(height: 64.h),
+                LinksButton(
+                  keyValue: MainPageKeys.ownButton,
+                  title: dictionary.iWantToCreate,
+                  url: WANNA_CREATE_MY_CATALOG_LINK,
+                ),
+              ],
+            ),
           ),
         );
       },
