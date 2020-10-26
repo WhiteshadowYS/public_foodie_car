@@ -27,12 +27,12 @@ class CatalogIdSearchTextField extends StatefulWidget {
 class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
   String _errorText;
 
-  bool get hasError => _errorText != null && _errorText != '';
+  bool get hasError => _errorText != null && _errorText != EMPTY_STRING;
 
   @override
   void didUpdateWidget(CatalogIdSearchTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    validatorCallback(widget.controller.text);
+    _validatorCallback(widget.controller.text);
   }
 
   @override
@@ -62,7 +62,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
             ),
             child: Center(
               child: Text(
-                _errorText ?? '',
+                _errorText ?? EMPTY_STRING,
                 textAlign: TextAlign.center,
                 style: CustomTheme.textStyles.buttonTextStyle(size: 8),
               ),
@@ -81,7 +81,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
                 currentFocusKeyValue: widget.focusKeyValue,
               );
             },
-            validator: validatorCallback,
+            validator: _validatorCallback,
             hintText: dictionary.name,
             textStyle: CustomTheme.textStyles.mainTextStyle(size: 16),
             hintTextStyle: CustomTheme.textStyles.mainTextStyle(size: 16),
@@ -91,7 +91,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
     );
   }
 
-  void validatorCallback(String arg) {
+  void _validatorCallback(String arg) {
     final String result = widget.validator(arg);
 
     setState(() => _errorText = result);

@@ -1,3 +1,5 @@
+import 'package:my_catalog/dictionary/dictionary_classes/error_dictionary.dart';
+import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/services/dialog_service/models/internet_connection_dialog.dart';
 import 'package:my_catalog/services/network_service/res/consts.dart';
@@ -19,6 +21,7 @@ class CheckUpdateEpics {
   ]);
 
   static Stream<dynamic> _checkUpdateEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
+    final ErrorDictionary dictionary = FlutterDictionary.instance.language.errorDictionary;
     return actions.whereType<CheckUpdateAction>().switchMap(
       (action) {
         return ConcatStream(
@@ -40,18 +43,19 @@ class CheckUpdateEpics {
 
               if (action.error != null && action.error.statusCode != BAD_GATEWAY_STATUS_CODE) {
                 return ConcatEagerStream([
-                  StorageMainEpic.showError(action.error?.error ?? 'Error not found'),
+                  StorageMainEpic.showError(action.error?.error ?? dictionary.errorNotFound),
                   StorageMainEpic.changeCheckIdLoadingState(value: false),
                 ]);
               }
 
               if (action.error?.statusCode == BAD_GATEWAY_STATUS_CODE) {
                 return ConcatStream([
-                  Stream.value(
+                  Stream.fromIterable([
                     ReloadStoresHistoryAction(
                       newStoreId: action.model.id,
+                      error: action.error?.error ?? dictionary.errorNotFound,
                     ),
-                  ),
+                  ]),
                   StorageMainEpic.changeCheckIdLoadingState(value: false),
                 ]);
               }
@@ -68,9 +72,9 @@ class CheckUpdateEpics {
                   StorageMainEpic.changeCheckIdLoadingState(value: false),
                 ]);
               }
-
               return Stream.fromIterable([
                 ReloadStoresHistoryAction(
+                  error: action.error?.error ?? dictionary.errorNotFound,
                   newStoreId: action.model.id,
                 ),
               ]);

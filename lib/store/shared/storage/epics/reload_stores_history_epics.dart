@@ -1,3 +1,5 @@
+import 'package:my_catalog/dictionary/dictionary_classes/error_dictionary.dart';
+import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_terms_actions/check_terms_action.dart';
@@ -31,7 +33,7 @@ class ReloadStoresHistoryEpics {
 
               if (nAction.history == null && nAction.history.isEmpty) {
                 return ConcatEagerStream([
-                  StorageMainEpic.showError('No Storage found'),
+                  StorageMainEpic.showError(action.error),
                   StorageMainEpic.changeCheckIdLoadingState(value: false),
                 ]);
               }
@@ -42,7 +44,7 @@ class ReloadStoresHistoryEpics {
 
               if (index == null || index == -1) {
                 return ConcatEagerStream([
-                  StorageMainEpic.showError('No Storage found'),
+                  StorageMainEpic.showError(action.error),
                   StorageMainEpic.changeCheckIdLoadingState(value: false),
                 ]);
               }

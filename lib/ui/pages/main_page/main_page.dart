@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
-import 'package:my_catalog/dictionary/flutter_dictionary.dart';
-import 'package:my_catalog/res/const.dart';
+
 import 'package:my_catalog/res/keys.dart';
-import 'package:my_catalog/services/focus_service/focus_key.dart';
-import 'package:my_catalog/services/focus_service/focus_service.dart';
-import 'package:my_catalog/services/validation_service/validation_service.dart';
-import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
-import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
-import 'package:my_catalog/ui/pages/main_page/main_page_vm.dart';
+import 'package:my_catalog/widgets/main_button.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
 import 'package:my_catalog/widgets/links_button.dart';
-import 'package:my_catalog/widgets/main_button.dart';
+import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/dictionary/flutter_dictionary.dart';
+import 'package:my_catalog/ui/pages/main_page/main_page_vm.dart';
+import 'package:my_catalog/services/focus_service/focus_key.dart';
+import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
+import 'package:my_catalog/services/focus_service/focus_service.dart';
+import 'package:my_catalog/services/validation_service/validation_service.dart';
+import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 
-import 'widgets/catalog_id_search.dart';
+
 import 'widgets/catalog_list.dart';
+import 'widgets/catalog_id_search.dart';
 
 class MainPage extends StatefulWidget {
   MainPage() : super(key: Key('MainPage'));
@@ -56,7 +59,7 @@ class _MainPageState extends State<MainPage> {
                 SizedBox(
                   child: Column(
                     children: [
-                      SizedBox(height: 24.0.h),
+                      SizedBox(height: 24.h),
                       Text(
                         dictionary.history,
                         style: CustomTheme.textStyles.titleTextStyle(),
@@ -71,7 +74,7 @@ class _MainPageState extends State<MainPage> {
                             [],
                         setId: (int id) => setState(() => _controller.text = id.toString()),
                       ),
-                      SizedBox(height: 48.0.h),
+                      SizedBox(height: 48.h),
                     ],
                   ),
                 )

@@ -30,7 +30,10 @@ class UpdateStoresHistoryEpics {
               actions.whereType<UpdateStoresHistoryResultAction>(),
             ], (values) {
               return Stream.value(
-                ReloadStoresHistoryAction(newStoreId: action.id),
+                ReloadStoresHistoryAction(
+                  newStoreId: action.id,
+                  error: null,
+                ),
               );
             }).switchMap((action) => action),
           ],
