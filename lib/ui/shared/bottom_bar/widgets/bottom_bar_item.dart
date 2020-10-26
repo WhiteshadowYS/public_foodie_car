@@ -27,13 +27,17 @@ class BottomBarItem extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(48.h),
           onTap: onTap,
-          child: Padding(
+          child: Container(
+            decoration: BoxDecoration(
+              color: isSelected ? CustomTheme.colors.primaryColor : Colors.transparent,
+              borderRadius: BorderRadius.circular(48.h),
+            ),
             padding: const EdgeInsets.all(12.0),
             child: SvgPicture.network(
               iconUrl,
               height: 32,
-              color: isSelected ? CustomTheme.colors.primaryColor : CustomTheme.colors.primaryColor.withOpacity(0.3),
-              placeholderBuilder: (BuildContext context){
+              color: isSelected ? CustomTheme.colors.background : CustomTheme.colors.primaryColor,
+              placeholderBuilder: (BuildContext context) {
                 return SizedBox(height: 32.0, width: 32.0, child: SvgPicture.asset(ImageAssets.LOGO));
               },
             ),

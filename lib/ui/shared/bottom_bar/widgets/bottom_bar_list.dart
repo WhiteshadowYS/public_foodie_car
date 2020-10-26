@@ -58,7 +58,7 @@ class _BottomBarListState extends State<BottomBarList> {
               key: BottomBarKeys.footerButtonKey+'${widget.vm.footerButtons.indexOf(item)}',
               iconUrl: item.iconSvg,
               onTap: () => widget.onTap(item.type, widget.vm),
-              isSelected: selectedIndex == -1 || selectedIndex == widget.vm.footerButtons.indexOf(item),
+              isSelected: selectedIndex == widget.vm.footerButtons.indexOf(item),
             );
           }).toList()),
     );
