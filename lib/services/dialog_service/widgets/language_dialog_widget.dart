@@ -15,72 +15,79 @@ class LanguageDialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () {
-          dialog.onItemSelected(dialog.selectedLanguage);
-          DialogService.instance.close();
-        },
-        child: SizedBox(
-          width: double.infinity,
-          height: double.infinity,
-          child: Column(
-            children: [
-              Spacer(),
-              Material(
-                color: Colors.transparent,
-                child: MediaQuery(
-                  data: MediaQuery.of(context).copyWith(
-                    textScaleFactor: 1.0,
-                  ),
-                  child: InkWell(
-                    highlightColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    onTap: () {
-                      dialog.onItemSelected(dialog.selectedLanguage);
-                      DialogService.instance.close();
-                    },
-                    child: Container(
-                      color: Colors.transparent,
-                      constraints: BoxConstraints(
-                        maxHeight: MediaQuery.of(context).size.height * 0.6,
-                      ),
-                      child: Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: CustomTheme.colors.popupBackground,
-                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          padding: EdgeInsets.symmetric(vertical: 44.0),
-                          margin: EdgeInsets.symmetric(horizontal: 16.0),
-                          height: dialog.list.length * 55.0 + 88.0 < MediaQuery.of(context).size.height * 0.6
-                              ? dialog.list.length * 55.0 + 88.0
-                              : MediaQuery.of(context).size.height * 0.6,
-                          child: CleanedListView(
-                            keyValue: '${key.toString()}CleanedListView',
-                            children: dialog.list.map((language) {
-                              return LanguageItem(
-                                key: '${key.toString()}LanguageItem${language.name}',
-                                language: language,
-                                isSelected: _getIsSelected(language, dialog.selectedLanguage),
-                                callback: () {
-                                  if (language.code != dialog.selectedLanguage) dialog.onItemSelected(language.code);
-                                  DialogService.instance.close();
-                                },
-                              );
-                            }).toList(),
+    return WillPopScope(
+      onWillPop: () async {
+        dialog.onItemSelected(dialog.selectedLanguage);
+        DialogService.instance.close();
+        return false;
+      },
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            dialog.onItemSelected(dialog.selectedLanguage);
+            DialogService.instance.close();
+          },
+          child: SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: Column(
+              children: [
+                Spacer(),
+                Material(
+                  color: Colors.transparent,
+                  child: MediaQuery(
+                    data: MediaQuery.of(context).copyWith(
+                      textScaleFactor: 1.0,
+                    ),
+                    child: InkWell(
+                      highlightColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      onTap: () {
+                        dialog.onItemSelected(dialog.selectedLanguage);
+                        DialogService.instance.close();
+                      },
+                      child: Container(
+                        color: Colors.transparent,
+                        constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.height * 0.6,
+                        ),
+                        child: Center(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: CustomTheme.colors.popupBackground,
+                              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            ),
+                            padding: EdgeInsets.symmetric(vertical: 44.0),
+                            margin: EdgeInsets.symmetric(horizontal: 16.0),
+                            height: dialog.list.length * 55.0 + 88.0 < MediaQuery.of(context).size.height * 0.6
+                                ? dialog.list.length * 55.0 + 88.0
+                                : MediaQuery.of(context).size.height * 0.6,
+                            child: CleanedListView(
+                              keyValue: '${key.toString()}CleanedListView',
+                              children: dialog.list.map((language) {
+                                return LanguageItem(
+                                  key: '${key.toString()}LanguageItem${language.name}',
+                                  language: language,
+                                  isSelected: _getIsSelected(language, dialog.selectedLanguage),
+                                  callback: () {
+                                    if (language.code != dialog.selectedLanguage) dialog.onItemSelected(language.code);
+                                    DialogService.instance.close();
+                                  },
+                                );
+                              }).toList(),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Spacer(),
-            ],
+                Spacer(),
+              ],
+            ),
           ),
         ),
       ),
