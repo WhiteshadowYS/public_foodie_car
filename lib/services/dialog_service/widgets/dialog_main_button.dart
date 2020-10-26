@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,10 +20,11 @@ class DialogMainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: MILLISECONDS_300,
       decoration: BoxDecoration(
         border: Border.all(
-          color: CustomTheme.colors.primaryColor,
+          color: backgroundColor,
         ),
         color: backgroundColor,
         borderRadius: BorderRadius.circular(100.0),

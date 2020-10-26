@@ -1,14 +1,23 @@
 import 'dart:async';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_catalog/dictionary/dictionary_classes/terms_page_dictionary.dart';
+import 'package:my_catalog/dictionary/flutter_dictionary.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
+import 'package:my_catalog/services/dialog_service/widgets/dialog_main_button.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/terms_page/terms_page_vm.dart';
+import 'package:my_catalog/ui/pages/terms_page/widgets/carousel_indicator.dart';
+import 'package:my_catalog/ui/pages/terms_page/widgets/terms_accept_block.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
+import 'package:my_catalog/utils/clean_behavior.dart';
+import 'package:my_catalog/widgets/main_button.dart';
 
 import 'widgets/agree_button.dart';
 
@@ -30,10 +39,11 @@ class TermsPage extends StatefulWidget {
 
 class _TermsPageState extends State<TermsPage> {
   Timer timer;
-  bool isAccepted = false;
+  int _current = 0;
 
   @override
   Widget build(BuildContext context) {
+    final CarouselController _carouselController = CarouselController();
     return SafeArea(
       child: StoreConnector<AppState, TermsPageVM>(
         converter: TermsPageVM.fromStore,
@@ -56,35 +66,56 @@ class _TermsPageState extends State<TermsPage> {
                 key: Key(TermsPageKeys.listView),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      vm.termsText,
-                      style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
+                    ScrollConfiguration(
+                      behavior: CleanBehavior(),
+                      child: CarouselSlider(
+                        carouselController: _carouselController,
+                        items: [
+                          SingleChildScrollView(
+                            child: Text(
+                              vm.termsText,
+                              style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
+                            ),
+                          ),
+                          SingleChildScrollView(
+                            child: Text(
+                              // TODO(Daniil): Add terms
+                              PLACEHOLDER_TEXT,
+                              style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
+                            ),
+                          ),
+                        ],
+                        options: CarouselOptions(
+                          height: 380.h,
+                          enlargeCenterPage: true,
+                          enableInfiniteScroll: false,
+                          viewportFraction: 1,
+                          onPageChanged: onChanged,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: 12.0.h,
+                        bottom: 4.0.h,
+                      ),
+                      height: 12.0.h,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: 2,
+                        itemBuilder: (BuildContext context, int i) {
+                          return circleWidget(i);
+                        },
+                      ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20.0.h),
+                      padding: EdgeInsets.only(bottom: 8.0.h),
                       child: const Divider(thickness: 1.0),
                     ),
-
-                    /// [AgreeButton] takes [vm.navigateToCatalogsPage] as onTap function and [dictionary.agree] text as title
-                    if (!widget.isReadOnly)
-                      AgreeButton(
-                        keyValue: TermsPageKeys.button,
-                        onTap: () {
-                          timer = Timer(Duration(milliseconds: 1500), () {
-                            if (isAccepted) {
-                              vm.acceptTermsAndNavigate();
-                            }
-                          });
-
-                          setState(() {
-                            isAccepted = !isAccepted;
-                          });
-                        },
-                        isAccepted: isAccepted,
-                        title: vm.buttonText(vm.selectedLocale),
-                      ),
-                    const SizedBox(height: 20.0),
+                    if (!widget.isReadOnly) TermsAcceptBlock(vm: vm),
                   ],
                 ),
               ),
@@ -95,9 +126,20 @@ class _TermsPageState extends State<TermsPage> {
     );
   }
 
+  Widget circleWidget(int i) {
+    if (i == _current) {
+      return CarouselIndicator(isSelected: true);
+    }
+    return CarouselIndicator(isSelected: false);
+  }
+
   void back(TermsPageVM vm) {
     timer?.cancel();
-
     vm.back();
+  }
+
+  void onChanged(int index, _) {
+    _current = index;
+    setState(() {});
   }
 }

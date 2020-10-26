@@ -75,6 +75,9 @@ class TermsPageKeys {
   static const String appbar = 'TermsPageAppBar';
   static const String listView = 'TermsPageListView';
   static const String button = 'TermsPageButton';
+  static const String goToCatalogButton  = 'TermsPageGoToCatalogButton';
+  static const String acceptBlock = 'TermsPageAcceptBlock';
+  static const String carouselIndicator = 'TermsPageCarouselIndicator';
 }
 
 ///[DialogKeys] contains keys used in Dialogs

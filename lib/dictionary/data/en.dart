@@ -26,6 +26,7 @@ const Language en = Language(
   termsPageDictionary: TermsPageDictionary(
     title: 'Terms and conditions',
     agree: 'I Agree',
+    goToCatalog: 'Go to catalog',
   ),
   errorDictionary: ErrorDictionary(
     isNumberError: 'Please enter number',
