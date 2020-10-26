@@ -30,6 +30,7 @@ class SubCategoriesPageKeys {
 ///[MainPageKeys]contains keys used on MainPage
 class MainPageKeys {
   static const String listView = 'MainPageListView';
+  static const String pageListView = 'PageListView';
   /// Will using with index. For example: MainPageCatalogListItem1, MainPageCatalogListItem2, MainPageCatalogListItem3.
   static const String catalogListItem = 'MainPageCatalogListItem';
   static const String textField = 'MainPageIdTextField';

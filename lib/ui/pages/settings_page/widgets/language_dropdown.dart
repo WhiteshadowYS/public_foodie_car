@@ -15,29 +15,18 @@ class LanguageDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 20.0.h,
-      width: 108.0,
-      child: Column(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                text,
-                style: CustomTheme.textStyles.mainTextStyle(size: 15.sp),
-              ),
-              Icon(
-                Icons.keyboard_arrow_down,
-                size: 18,
-                color: CustomTheme.colors.minorFont,
-              ),
-            ],
+          Text(
+            text,
+            style: CustomTheme.textStyles.mainTextStyle(size: 15.sp),
           ),
-          Container(
-            width: double.infinity,
-            height: 1.0,
+          const SizedBox(width: 16.0),
+          Icon(
+            Icons.keyboard_arrow_down,
+            size: 18,
             color: CustomTheme.colors.minorFont,
           ),
         ],

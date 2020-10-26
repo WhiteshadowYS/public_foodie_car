@@ -40,30 +40,31 @@ class _CatalogsListItemState extends State<CatalogsListItem> {
           height: 60.0,
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AnimatedDefaultTextStyle(
-                      duration: MILLISECONDS_300,
-                      style: widget.isSelected ? textStyles.accentTextStyle(size: 14) : textStyles.titleTextStyle(size: 14),
-                      child: Text(widget.title),
-                    ),
-                    Transform.rotate(
-                      angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
-                      child: Icon(
-                        Icons.keyboard_arrow_right,
-                        color: colors.accentColor.withOpacity(0.8),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      AnimatedDefaultTextStyle(
+                        duration: MILLISECONDS_300,
+                        style: widget.isSelected ? textStyles.accentTextStyle(size: 14) : textStyles.titleTextStyle(size: 14),
+                        child: Text(widget.title),
                       ),
-                    ),
-                  ],
+                      Transform.rotate(
+                        angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
+                        child: Icon(
+                          Icons.keyboard_arrow_right,
+                          color: colors.accentColor.withOpacity(0.8),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              Divider(
-                thickness: 1.5,
-                indent: 10.0,
-                endIndent: 10.0,
+              Container(
+                height: 1.5,
+                width: double.infinity,
                 color: colors.accentColor.withOpacity(0.4),
               ),
             ],

@@ -110,11 +110,10 @@ class _SettingsPageState extends State<SettingsPage> {
               SizedBox(
                 height: 14.0,
               ),
-
               SizedBox(
                 width: double.infinity,
                 child: Align(
-                  child:LinksButton(
+                  child: LinksButton(
                     keyValue: SettingsPageKeys.createdByLink,
                     title: dictionary.createBy,
                     url: CREATE_BY_LINK,
