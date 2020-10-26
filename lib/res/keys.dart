@@ -86,3 +86,13 @@ class DialogKeys {
   static const String closeExitDialogButton = 'CloseExitDialogButton';
   static const String closeFilePreviewDialogButton = 'closeFilePreviewDialogButton';
 }
+
+///[BottomBarKeys] contains keys used in BottomBar
+class BottomBarKeys{
+  /// Will using with index. For example: footerButton1, footerButton2, footerButton3.
+  static const String footerButtonKey = 'footerButton';
+  static const String bottomBarList = 'BottomBarList';
+  static const String bottomBarSwitch = 'BottomBarSwitch';
+  /// Will using with index. For example: BottomBarSwitchItem1, BottomBarSwitchItem2, BottomBarSwitchItem3.
+  static const String bottomBarSwitchItem = 'BottomBarSwitchItem';
+}

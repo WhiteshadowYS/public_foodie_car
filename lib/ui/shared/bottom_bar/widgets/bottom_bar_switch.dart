@@ -6,6 +6,7 @@ import 'package:my_catalog/models/models/storage_model/settings/footer_button_mo
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
 import 'package:my_catalog/widgets/list_tile_item.dart';
@@ -23,7 +24,7 @@ class BottomBarSwitch extends StatefulWidget {
     @required this.vm,
     @required this.isSwitch,
     @required this.onTap,
-  }) : super(key: Key(keyValue + 'BottomBarSwitch'));
+  }) : super(key: Key(keyValue));
 
   @override
   _BottomBarSwitchState createState() => _BottomBarSwitchState();
@@ -75,7 +76,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
                     physics: ClampingScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return ListTileItem(
-                        keyValue: 'BottomBarSwitch$index',
+                        keyValue: '${BottomBarKeys.bottomBarSwitchItem}$index',
                         title: switchItems[index].name[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()],
                         iconPath: switchItems[index].iconSvg,
                         onTap: () => widget.onTap(switchItems[index].type, widget.vm),

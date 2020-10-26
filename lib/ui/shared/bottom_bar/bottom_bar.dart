@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 
@@ -34,13 +35,13 @@ class _BottomBarState extends State<BottomBar> {
           children: [
             BottomBarSwitch(
               close: _closeSwitchSheet,
-              keyValue: 'BottomBarSwitch',
+              keyValue: BottomBarKeys.bottomBarSwitch,
               isSwitch: isSwitch,
               vm: vm,
               onTap: _onTap,
             ),
             BottomBarList(
-              keyValue: 'BottomBarList',
+              keyValue: BottomBarKeys.bottomBarList,
               onTap: _onTap,
               height: (widget.height).h,
               vm: vm,
