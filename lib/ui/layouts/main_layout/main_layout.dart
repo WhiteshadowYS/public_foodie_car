@@ -6,6 +6,15 @@ import 'package:my_catalog/ui/layouts/loader_layout/loader_layout.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout_vm.dart';
 
 // TODO(Yuri): Add comment for this class.
+/// The [MainLayout] class, the base layer from which the remaining page is created.
+/// Params:
+///   - [child] here is the page itself.
+///   - [bgColor] background color.
+///   - [appBar] accepts AppBar.
+///   - [bottomBar] accepts BottomBar.
+///   - [resizeToAvoidBottomPadding] принимает параметр resizeToAvoidBottomPadding
+///   - [back] function returns to the previous page.
+///   - [canExit] variable that is responsible for whether or not a complete exit from the application is performed?
 class MainLayout extends StatefulWidget {
   final Widget child;
   final Color bgColor;
@@ -83,6 +92,7 @@ class _MainLayoutState extends State<MainLayout> {
     );
   }
 
+  /// The [_onDoublePop] function, when you double-click the button back, minimizes the application.
   void _onDoublePop() {
     final DateTime nowDate = DateTime.now();
     if (_currentBackPressTime != null && nowDate.difference(_currentBackPressTime) < Duration(seconds: 1)) {

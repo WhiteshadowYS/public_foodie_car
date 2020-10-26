@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:my_catalog/models/interfaces/i_dto.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_catalog_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/second_data_model.dart';
 
