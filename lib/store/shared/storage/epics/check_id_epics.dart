@@ -34,23 +34,13 @@ class CheckIdEpics {
             ], (values) {
               final CheckIdResultAction nAction = values.first as CheckIdResultAction;
 
-              if (nAction.response.error != null || nAction.response.response == null) {
-                if (nAction.response.error.statusCode == BAD_GATEWAY_STATUS_CODE) {
-                  return ConcatEagerStream([
-                    Stream.value(ShowDialogAction(dialog: InternetConnection())),
-                    StorageMainEpic.changeCheckIdLoadingState(value: false),
-                  ]);
-                }
-
-                return ConcatEagerStream([
-                  StorageMainEpic.showError(nAction.response.error?.error ?? 'Error not found'),
-                  StorageMainEpic.changeCheckIdLoadingState(value: false),
-                ]);
-              }
-
               return Stream.fromIterable([
                 CheckUpdateAction(
-                  model: nAction.response.response,
+                  model: nAction.response?.response ?? StorageStatusModel(
+                    update: null,
+                    id: action.id,
+                  ),
+                  error: nAction.response?.error,
                 ),
                 SubscribeToStoresUpdatesAction(
                   id: action.id,

@@ -1,5 +1,8 @@
 import 'package:my_catalog/repositories/storage_repository.dart';
+import 'package:my_catalog/services/dialog_service/models/internet_connection_dialog.dart';
+import 'package:my_catalog/services/network_service/res/consts.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_update_actions/check_update_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_update_actions/check_update_result_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_update_actions/do_check_update_action.dart';
@@ -21,12 +24,37 @@ class CheckUpdateEpics {
         return ConcatStream(
           <Stream>[
             Stream.fromIterable([
-              DoCheckUpdateAction(model: action.model),
+              if (action.model != null)
+                DoCheckUpdateAction(
+                  model: action.model,
+                )
+              else
+                CheckUpdateResultAction(
+                  isLastUpdate: true,
+                ),
             ]),
             ZipStream(<Stream>[
               actions.whereType<CheckUpdateResultAction>(),
             ], (values) {
               final CheckUpdateResultAction nAction = values.first as CheckUpdateResultAction;
+
+              if (action.error != null && action.error.statusCode != BAD_GATEWAY_STATUS_CODE) {
+                return ConcatEagerStream([
+                  StorageMainEpic.showError(action.error?.error ?? 'Error not found'),
+                  StorageMainEpic.changeCheckIdLoadingState(value: false),
+                ]);
+              }
+
+              if (action.error?.statusCode == BAD_GATEWAY_STATUS_CODE) {
+                return ConcatStream([
+                  Stream.value(
+                    ReloadStoresHistoryAction(
+                      newStoreId: action.model.id,
+                    ),
+                  ),
+                  StorageMainEpic.changeCheckIdLoadingState(value: false),
+                ]);
+              }
 
               if (!nAction.isLastUpdate) {
                 return ConcatStream([

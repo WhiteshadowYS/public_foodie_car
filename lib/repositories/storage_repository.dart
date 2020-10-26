@@ -247,7 +247,7 @@ class StorageRepository extends Repository {
     logger.d(
         'History list: ${history.map((e) => 'id: ${e.id}, update: ${e.update}').toList()}, \nStatus model: ${history[index].update}, \nHistory Model: ${statusModel.update}');
 
-    if (history[index].update == null) return false;
+    if (history[index].update == null || statusModel.update == null) return false;
 
     if (history[index].update > statusModel.update) return false;
 
