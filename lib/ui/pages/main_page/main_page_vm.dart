@@ -4,6 +4,7 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/dialog_state/dialog_selector.dart';
 import 'package:my_catalog/store/shared/storage/storage_data_selector.dart';
 import 'package:my_catalog/store/shared/storage/storage_function_selector.dart';
+import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:redux/redux.dart';
 
 ///[MainPageVM] view model for MainPage
@@ -14,11 +15,13 @@ class MainPageVM {
   final List<SavedStorageModel> stores;
   final void Function(int) checkId;
   final void Function() exitDialog;
+  final TextDirection textDirection;
 
   MainPageVM({
     @required this.stores,
     @required this.checkId,
     @required this.exitDialog,
+    @required this.textDirection,
   });
 
   static MainPageVM fromStore(Store<AppState> store) {
@@ -28,6 +31,9 @@ class MainPageVM {
 
       /// StorageFunctionSelector
       checkId: StorageFunctionSelector.getCheckIdFunction(store),
+
+      /// StorageLanguageSelector
+      textDirection: StorageLanguageSelector.selectedLocaleDirection(store),
 
       /// Another
       exitDialog: DialogSelectors.getExitDialogFunction(store),

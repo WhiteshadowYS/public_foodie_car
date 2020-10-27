@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/popup_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/keys.dart';
@@ -8,6 +9,7 @@ import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/models/exit_dialog.dart';
 import 'package:my_catalog/services/dialog_service/widgets/dialog_close_button.dart';
 import 'package:my_catalog/services/dialog_service/widgets/dialog_main_button.dart';
+import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
 
@@ -19,6 +21,7 @@ class ExitDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PopUpDictionary dictionary = FlutterDictionary.instance.language.popUpDictionary;
+    //final TextDirection directionality = StorageLanguageSelector.selectedLocaleDirection(StoreProvider.of(context));
     return DialogLayout(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
@@ -26,6 +29,7 @@ class ExitDialogWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
+              //alignment: directionality == TextDirection.rtl ? Alignment.topLeft : Alignment.topRight,
               alignment: Alignment.topRight,
               child: DialogCloseButton(
                 keyValue: DialogKeys.closeExitDialogButton,
