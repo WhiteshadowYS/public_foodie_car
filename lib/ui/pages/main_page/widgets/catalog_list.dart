@@ -4,7 +4,6 @@ import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/widgets/main_list_view.dart';
 
 import 'catalogs_list_item.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StoresList extends StatefulWidget {
   final String keyValue;
@@ -52,14 +51,14 @@ class _CatalogListState extends State<StoresList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        border: Border.symmetric(
-          vertical: BorderSide(
-            width: 0.5,
-            color: CustomTheme.colors.accentColor.withOpacity(0.4),
-          ),
-        ),
-      ),
+     //decoration: BoxDecoration(
+     //  border: Border.symmetric(
+     //    vertical: BorderSide(
+     //      width: 0.5,
+     //      color: CustomTheme.colors.accentColor.withOpacity(0.4),
+     //    ),
+     //  ),
+     //),
       height: 180.0,
       child: ListView.builder(
         key: Key('StoresList'),
