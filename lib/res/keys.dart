@@ -79,6 +79,7 @@ class TermsPageKeys {
   static const String goToCatalogButton  = 'TermsPageGoToCatalogButton';
   static const String acceptBlock = 'TermsPageAcceptBlock';
   static const String carouselIndicator = 'TermsPageCarouselIndicator';
+  static const String termsTextBlock = 'TermsPageTextBlock';
 }
 
 ///[DialogKeys] contains keys used in Dialogs
