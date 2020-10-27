@@ -62,14 +62,14 @@ class _MainGridItemState extends State<MainGridItem> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 8.0),
+                 SizedBox(height: 8.sp),
                 SizedBox(
-                  height: 40.h,
+                  height: 40.sp,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     child: Text(
                       widget.title,
-                      style: CustomTheme.textStyles.titleTextStyle(size: 15.sp),
+                      style: CustomTheme.textStyles.titleTextStyle(size: 12.sp),
                       maxLines: 2,
                     ),
                   ),

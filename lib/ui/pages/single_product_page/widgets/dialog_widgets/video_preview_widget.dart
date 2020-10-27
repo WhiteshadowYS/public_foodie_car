@@ -67,7 +67,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
                     width: 100.sp,
                     height: 100.sp,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(150),
                       border: Border.all(color: CustomTheme.colors.buttons, width: 2.0),
                       color: CustomTheme.colors.primaryColor.withOpacity(0.3),
                     ),
@@ -114,7 +114,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
       );
     }
     return CustomAnimatedPlayIconWidget(
-      size: 30.h,
+      size: 30.sp,
       duration: MILLISECONDS_200,
       color: CustomTheme.colors.buttons,
       strokeColor: CustomTheme.colors.buttons,
