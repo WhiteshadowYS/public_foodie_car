@@ -40,7 +40,7 @@ class MainAppBarChild extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24.0),
                   onTap: backOnTap,
                   child: SizedBox(
-                    height: 36.h,
+                    height: 36.sp,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -53,7 +53,7 @@ class MainAppBarChild extends StatelessWidget {
                           Transform.rotate(
                             angle: textDirection != TextDirection.ltr ? pi : 0.0,
                             child: SizedBox(
-                              height: 20.0.h,
+                              height: 16.sp,
                               child: SVGImages().backArrow(),
                             ),
                           ),
@@ -64,7 +64,7 @@ class MainAppBarChild extends StatelessWidget {
                             backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
                             style: TextStyle(
                               color: Color(0xFF5DB075),
-                              fontSize: 22.h,
+                              fontSize: 16.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -79,7 +79,7 @@ class MainAppBarChild extends StatelessWidget {
           Align(
             child: Text(
               title,
-              style: CustomTheme.textStyles.titleTextStyle(size: 24.h),
+              style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
             ),
           ),
         if (logoUrl != null)
