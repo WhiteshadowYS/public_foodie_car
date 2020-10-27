@@ -22,6 +22,9 @@ const Language en = Language(
     categoriesPageTitle: 'Categories',
     subcategoriesPageTitle: 'Subcategories',
     settingsPageTitle: 'Settings',
+    termsSubTitle: 'Application Terms',
+    terms2SubTitle: 'Store Terms',
+    termsAcceptButton: 'Go to catalog',
     goToCatalog: 'Go to catalog',
   ),
   termsPageDictionary: TermsPageDictionary(

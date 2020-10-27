@@ -1,7 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:my_catalog/dictionary/dictionary_classes/error_dictionary.dart';
-import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -51,10 +47,7 @@ class ReloadStoresHistoryEpics {
                   StorageMainEpic.changeCheckIdLoadingState(value: false),
                 ]);
               }
-              final List<SavedStorageModel> history = nAction.history;
-              final temp = nAction.history.firstWhere((element) => element.id == action.newStoreId);
-              history.remove(temp);
-              history.add(temp);
+
               return Stream.fromIterable([
                 UpdateOpenedStoreIdAction(id: action.newStoreId),
                 SetStoresHistoryAction(storesHistory: nAction.history),
