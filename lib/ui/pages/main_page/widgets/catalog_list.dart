@@ -25,7 +25,7 @@ class _CatalogListState extends State<StoresList> {
   final ScrollController _scrollController = ScrollController(
     initialScrollOffset: itemHeight,
   );
-  static const itemHeight = 60.0;
+  static double itemHeight = 60.0;
 
   @override
   void initState() {
@@ -52,21 +52,21 @@ class _CatalogListState extends State<StoresList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //decoration: BoxDecoration(
-      //  border: Border.symmetric(
-      //    vertical: BorderSide(
-      //      width: 0.5,
-      //      color: CustomTheme.colors.accentColor.withOpacity(0.4),
-      //    ),
-      //  ),
-      //),
-      height: 180.0.h,
+      decoration: BoxDecoration(
+        border: Border.symmetric(
+          vertical: BorderSide(
+            width: 0.5,
+            color: CustomTheme.colors.accentColor.withOpacity(0.4),
+          ),
+        ),
+      ),
+      height: 180.0,
       child: ListView.builder(
         key: Key('StoresList'),
         controller: _scrollController,
-        itemCount: widget.stores.length < 2 ? widget.stores.length + 1 : widget.stores.length + 2,
+        itemCount: widget.stores.length + 2,
         itemBuilder: (BuildContext context, int index) {
-          if (index == 0 || (index == widget.stores.length + 1 && widget.stores.length >= 2)) {
+          if (index == 0 || index == widget.stores.length + 1) {
             return SizedBox(
               height: itemHeight,
             );
@@ -90,7 +90,7 @@ class _CatalogListState extends State<StoresList> {
   }
 
   bool _checkSelect(int index, List<String> stores) {
-    final double _itemMinHeight = itemHeight * index - 1;
+    final double _itemMinHeight = itemHeight * index;
     final double _itemMaxHeight = _itemMinHeight + itemHeight;
 
     return _scrollController.offset + itemHeight >= _itemMinHeight &&
