@@ -12,12 +12,14 @@ class ListTileItem extends StatelessWidget {
   final String title;
   final String iconPath;
   final void Function() onTap;
+  final String placeholderIcon;
 
   ListTileItem({
     @required this.keyValue,
     @required this.title,
     @required this.iconPath,
     @required this.onTap,
+    @required this.placeholderIcon,
   }) : super(key: Key(keyValue + 'ListTileItem'));
 
   @override
@@ -37,6 +39,13 @@ class ListTileItem extends StatelessWidget {
                   iconPath,
                   height: 20.sp,
                   color: CustomTheme.colors.primaryColor,
+                  placeholderBuilder: (BuildContext context) {
+                    return SvgPicture.asset(
+                      placeholderIcon,
+                      height: 20.sp,
+                      color: CustomTheme.colors.primaryColor,
+                    );
+                  },
                 ),
                 title: Text(
                   title,
@@ -59,3 +68,4 @@ class ListTileItem extends StatelessWidget {
     );
   }
 }
+

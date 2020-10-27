@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
@@ -13,6 +14,7 @@ class BottomBarList extends StatefulWidget {
   final String keyValue;
   final BottomBarVM vm;
   final void Function(String, BottomBarVM) onTap;
+  final String Function(String) getPlaceholder;
   final bool isSwitch;
   final double height;
 
@@ -22,6 +24,7 @@ class BottomBarList extends StatefulWidget {
     @required this.vm,
     @required this.isSwitch,
     @required this.onTap,
+    @required this.getPlaceholder,
   }) : super(key: Key(keyValue));
 
   @override
@@ -57,6 +60,7 @@ class _BottomBarListState extends State<BottomBarList> {
             return BottomBarItem(
               key: BottomBarKeys.footerButtonKey+'${widget.vm.footerButtons.indexOf(item)}',
               iconUrl: item.iconSvg,
+              placeholderIcon: widget.getPlaceholder(item.type),
               onTap: () => widget.onTap(item.type, widget.vm),
               isSelected: selectedIndex == widget.vm.footerButtons.indexOf(item),
             );
@@ -64,9 +68,10 @@ class _BottomBarListState extends State<BottomBarList> {
     );
   }
 
+
+
   void _updateSelectedIndex(List<FooterButtonModel> buttons) {
     selectedIndex = -1;
-
     if (RouteService.instance.currentRoute == Routes.categories) {
       selectedIndex = buttons.indexWhere((element) => element.type == PageTypes.HOME_TYPE);
     } else if (RouteService.instance.currentRoute == Routes.settings) {

@@ -41,74 +41,70 @@ class _TermsPageState extends State<TermsPage> {
   Widget build(BuildContext context) {
     final CarouselController _carouselController = CarouselController();
     return SafeArea(
-      child: Container(
-        width: double.infinity,
-        color: CustomTheme.colors.background,
-        child: StoreConnector<AppState, TermsPageVM>(
-          converter: TermsPageVM.fromStore,
-          builder: (BuildContext context, TermsPageVM vm) {
-            return MainLayout(
-              bgColor: CustomTheme.colors.background,
-              back: () => back(vm),
-              appBar: MainAppBar(
-                key: TermsPageKeys.appbar,
-                title: vm.titleText(vm.selectedLocale),
-                backButtonText: vm.backButtonText(vm.selectedLocale),
-                backOnTap: () => back(vm),
+      child: StoreConnector<AppState, TermsPageVM>(
+        converter: TermsPageVM.fromStore,
+        builder: (BuildContext context, TermsPageVM vm) {
+          return MainLayout(
+            bgColor: CustomTheme.colors.background,
+            back: widget.isReadOnly ? null : () => back(vm),
+            appBar: MainAppBar(
+              key: TermsPageKeys.appbar,
+              title: vm.titleText(vm.selectedLocale),
+              backButtonText: widget.isReadOnly ? null : vm.backButtonText(vm.selectedLocale),
+              backOnTap: widget.isReadOnly ? null : () => back(vm),
+            ),
+            child: Container(
+              margin: EdgeInsets.only(
+                left: 16.w,
+                right: 16.w,
+                top: 50.h,
               ),
-              child: Container(
-                margin: EdgeInsets.only(
-                  left: 16.w,
-                  right: 16.w,
-                  top: 50.h,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ScrollConfiguration(
-                      behavior: CleanBehavior(),
-                      child: CarouselSlider(
-                        carouselController: _carouselController,
-                        items: [
-                          TermsTextBlock(subtitle: vm.termsSubtitle(vm.selectedLocale), termsText: vm.termsText),
-                          // TODO(Daniil): Add terms
-                          TermsTextBlock(subtitle: vm.terms2Subtitle(vm.selectedLocale), termsText: vm.termsText2),
-                        ],
-                        options: CarouselOptions(
-                          height: 380.h,
-                          enlargeCenterPage: true,
-                          enableInfiniteScroll: false,
-                          viewportFraction: 1,
-                          onPageChanged: onChanged,
-                        ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ScrollConfiguration(
+                    behavior: CleanBehavior(),
+                    child: CarouselSlider(
+                      carouselController: _carouselController,
+                      items: [
+                        TermsTextBlock(subtitle: vm.termsSubtitle(vm.selectedLocale), termsText: vm.termsText),
+                        // TODO(Daniil): Add terms
+                        TermsTextBlock(subtitle: vm.terms2Subtitle(vm.selectedLocale), termsText: vm.termsText2),
+                      ],
+                      options: CarouselOptions(
+                        height: 380.h,
+                        enlargeCenterPage: true,
+                        enableInfiniteScroll: false,
+                        viewportFraction: 1,
+                        onPageChanged: onChanged,
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: 12.0.h,
-                        bottom: 8.0.h,
-                      ),
-                      height: 12.0.sp,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemCount: 2,
-                        itemBuilder: (BuildContext context, int i) {
-                          return circleWidget(i);
-                        },
-                      ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: 12.0.h,
+                      bottom: 8.0.h,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 12.0.h),
-                      child: const Divider(thickness: 1.0),
+                    height: 12.0.sp,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: 2,
+                      itemBuilder: (BuildContext context, int i) {
+                        return circleWidget(i);
+                      },
                     ),
-                    if (!widget.isReadOnly) TermsAcceptBlock(vm: vm),
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 12.0.h),
+                    child: const Divider(thickness: 1.0),
+                  ),
+                  if (!widget.isReadOnly) TermsAcceptBlock(vm: vm),
+                ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

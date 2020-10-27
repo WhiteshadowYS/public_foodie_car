@@ -1,7 +1,7 @@
 name: my_catalog
 description: A new Flutter project.
 
-version: 0.2.0+1
+version: 0.2.2+2
 
 environment:
   sdk: ">=2.9.0 <3.0.0"
@@ -70,6 +70,11 @@ flutter:
     - assets/svg/close.svg
     - assets/svg/back_arrow.svg
     - assets/svg/handle.svg
+    - assets/svg/another_catalog.svg
+    - assets/svg/home.svg
+    - assets/svg/logout.svg
+    - assets/svg/settings.svg
+    - assets/svg/switch.svg
     - assets/png/mc_logo.png
 
 

@@ -55,14 +55,14 @@ class TermsPageVM {
       terms2Subtitle: StorageLanguageSelector.getTerms2SubTitleText(store),
       acceptButtonText: StorageLanguageSelector.getTermsAcceptButtonText(store),
       goToCatalogButtonText: StorageLanguageSelector.getGoToCatalogButtonText(store),
-      backButtonText: StorageLanguageSelector.getBackButtonText(store),
+      backButtonText: StorageLanguageSelector.getLogoutText(store),
       selectedLocale: StorageLanguageSelector.getSelectedLocale(store),
 
       /// StorageFunctionSelector
       acceptTermsAndNavigate: StorageFunctionSelector.getAcceptTermsAndNavigateFunction(store),
 
       /// Another
-      back: RouteSelectors.doPop(store),
+      back: StorageFunctionSelector.getLogOutFunction(store),
     );
   }
 }

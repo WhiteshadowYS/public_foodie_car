@@ -30,7 +30,7 @@ class ReloadStoresHistoryEpics {
             ], (values) {
               final ReloadStoresHistoryResultAction nAction = values.first as ReloadStoresHistoryResultAction;
 
-              if (nAction.history == null && nAction.history.isEmpty) {
+              if (nAction.history == null || nAction.history.isEmpty) {
                 return ConcatEagerStream([
                   StorageMainEpic.showError(action.error),
                   StorageMainEpic.changeCheckIdLoadingState(value: false),

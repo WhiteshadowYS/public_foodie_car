@@ -18,7 +18,6 @@ class ErrorDialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final TextDirection directionality = StorageLanguageSelector.selectedLocaleDirection(StoreProvider.of(context));
     return DialogLayout(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
