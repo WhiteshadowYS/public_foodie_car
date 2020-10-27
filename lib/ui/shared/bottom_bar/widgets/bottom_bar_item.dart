@@ -6,12 +6,14 @@ import 'package:my_catalog/theme/custom_theme.dart';
 
 class BottomBarItem extends StatelessWidget {
   final String iconUrl;
+  final String placeholderIcon;
   final bool isSelected;
   final void Function() onTap;
 
   BottomBarItem({
     @required String key,
     @required this.iconUrl,
+    @required this.placeholderIcon,
     @required this.isSelected,
     @required this.onTap,
   }) : super(key: Key(key));
@@ -38,7 +40,11 @@ class BottomBarItem extends StatelessWidget {
               height: 28.sp,
               color: isSelected ? CustomTheme.colors.background : CustomTheme.colors.primaryColor,
               placeholderBuilder: (BuildContext context) {
-                return SizedBox(height: 20.sp, width: 20.sp, child: SvgPicture.asset(ImageAssets.LOGO));
+                return SvgPicture.asset(
+                  placeholderIcon,
+                  height: 28.sp,
+                  color: isSelected ? CustomTheme.colors.background : CustomTheme.colors.primaryColor,
+                );
               },
             ),
           ),

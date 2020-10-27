@@ -15,6 +15,7 @@ class BottomBarSwitch extends StatefulWidget {
   final String keyValue;
   final bool isSwitch;
   final void Function(String, BottomBarVM) onTap;
+  final String Function(String) getPlaceholder;
   final void Function() close;
   final BottomBarVM vm;
 
@@ -24,6 +25,7 @@ class BottomBarSwitch extends StatefulWidget {
     @required this.vm,
     @required this.isSwitch,
     @required this.onTap,
+    @required this.getPlaceholder,
   }) : super(key: Key(keyValue));
 
   @override
@@ -79,6 +81,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
                         keyValue: '${BottomBarKeys.bottomBarSwitchItem}$index',
                         title: switchItems[index].name[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()],
                         iconPath: switchItems[index].iconSvg,
+                        placeholderIcon: widget.getPlaceholder(switchItems[index].type),
                         onTap: () => widget.onTap(switchItems[index].type, widget.vm),
                       );
                     },
