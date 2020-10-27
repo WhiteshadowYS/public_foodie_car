@@ -22,14 +22,24 @@ class ErrorDialogWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Container(
-              alignment: Alignment.topRight,
-              child: DialogCloseButton(keyValue: DialogKeys.closeErrorDialogButton),
-            ),
-            Icon(
-              Icons.warning,
-              color: AppColors.kRed,
-              size: 40.sp,
+            Row(
+              children: [
+                SizedBox(
+                  width: 60.sp,
+                ),
+                Spacer(),
+                Icon(
+                  Icons.warning,
+                  color: AppColors.kRed,
+                  size: 40.sp,
+                ),
+                Spacer(),
+                Container(
+                  width: 60.sp,
+                  alignment: Alignment.topRight,
+                  child: DialogCloseButton(keyValue: DialogKeys.closeErrorDialogButton),
+                ),
+              ],
             ),
             Container(
               padding: EdgeInsets.all(16.0),
