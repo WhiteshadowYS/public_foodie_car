@@ -31,12 +31,12 @@ class ListTileItem extends StatelessWidget {
               key: Key(keyValue),
               leading: SvgPicture.network(
                 iconPath,
-                height: 20.0,
+                height: 20.sp,
                 color: CustomTheme.colors.primaryColor,
               ),
               title: Text(
                 title,
-                style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+                style: CustomTheme.textStyles.titleTextStyle(size: 12.sp),
               ),
               trailing: Transform.rotate(
                 angle: FlutterDictionary.instance.isRTL ? pi : 0,

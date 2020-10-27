@@ -19,12 +19,12 @@ class TermsTextBlock extends StatelessWidget {
         children: [
           Text(
             subtitle,
-            style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+            style: CustomTheme.textStyles.titleTextStyle(size: 16.sp),
           ),
           SizedBox(height: 12.h),
           Text(
             termsText,
-            style: CustomTheme.textStyles.mainTextStyle(size: 12.sp),
+            style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
           ),
         ],
       ),

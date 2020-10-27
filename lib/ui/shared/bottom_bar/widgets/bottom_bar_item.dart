@@ -35,10 +35,10 @@ class BottomBarItem extends StatelessWidget {
             padding: EdgeInsets.all(12.h),
             child: SvgPicture.network(
               iconUrl,
-              height: 40.h,
+              height: 20.sp,
               color: isSelected ? CustomTheme.colors.background : CustomTheme.colors.primaryColor,
               placeholderBuilder: (BuildContext context) {
-                return SizedBox(height: 40.h, width: 40.h, child: SvgPicture.asset(ImageAssets.LOGO));
+                return SizedBox(height: 20.sp, width: 20.sp, child: SvgPicture.asset(ImageAssets.LOGO));
               },
             ),
           ),

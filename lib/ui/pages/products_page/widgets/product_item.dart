@@ -52,7 +52,7 @@ class ProductItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
                 product.descriptionForLanguage(locale),
-                style: CustomTheme.textStyles.mainTextStyle(size: 14.h),
+                style: CustomTheme.textStyles.mainTextStyle(size: 12.h),
                 maxLines: 7,
                 overflow: TextOverflow.visible,
               ),
