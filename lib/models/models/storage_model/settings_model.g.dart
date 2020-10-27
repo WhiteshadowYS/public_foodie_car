@@ -16,6 +16,7 @@ SettingsModel _$SettingsModelFromJson(Map<String, dynamic> json) {
               ?.map((e) => e == null ? null : LanguageModel.fromJson(e))
               ?.toList()),
       tac: $checkedConvert(json, 'tac', (v) => v as String),
+      tac2: $checkedConvert(json, 'tac2', (v) => v as String),
       info: $checkedConvert(
           json, 'info', (v) => v == null ? null : InfoModel.fromJson(v)),
       font: $checkedConvert(json, 'font', (v) => v as String),
@@ -43,6 +44,7 @@ Map<String, dynamic> _$SettingsModelToJson(SettingsModel instance) =>
       'languages': instance.languages?.map((e) => e?.toJson())?.toList(),
       'language_data': instance.languageData?.toJson(),
       'tac': instance.tac,
+      'tac2': instance.tac2,
       'info': instance.info?.toJson(),
       'font': instance.font,
       'color_hex': instance.colors?.toJson(),

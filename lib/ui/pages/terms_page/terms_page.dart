@@ -4,20 +4,16 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_catalog/dictionary/dictionary_classes/terms_page_dictionary.dart';
-import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
-import 'package:my_catalog/services/dialog_service/widgets/dialog_main_button.dart';
 import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/terms_page/terms_page_vm.dart';
 import 'package:my_catalog/ui/pages/terms_page/widgets/carousel_indicator.dart';
 import 'package:my_catalog/ui/pages/terms_page/widgets/terms_accept_block.dart';
+import 'package:my_catalog/ui/pages/terms_page/widgets/terms_text_block.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
-import 'package:my_catalog/widgets/main_button.dart';
 
 import 'widgets/agree_button.dart';
 
@@ -62,62 +58,48 @@ class _TermsPageState extends State<TermsPage> {
                 right: 16.w,
                 top: 50.h,
               ),
-              child: SingleChildScrollView(
-                key: Key(TermsPageKeys.listView),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ScrollConfiguration(
-                      behavior: CleanBehavior(),
-                      child: CarouselSlider(
-                        carouselController: _carouselController,
-                        items: [
-                          SingleChildScrollView(
-                            child: Text(
-                              vm.termsText,
-                              style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
-                            ),
-                          ),
-                          SingleChildScrollView(
-                            child: Text(
-                              // TODO(Daniil): Add terms
-                              PLACEHOLDER_TEXT,
-                              style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
-                            ),
-                          ),
-                        ],
-                        options: CarouselOptions(
-                          height: 380.h,
-                          enlargeCenterPage: true,
-                          enableInfiniteScroll: false,
-                          viewportFraction: 1,
-                          onPageChanged: onChanged,
-                        ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ScrollConfiguration(
+                    behavior: CleanBehavior(),
+                    child: CarouselSlider(
+                      carouselController: _carouselController,
+                      items: [
+                        TermsTextBlock(subtitle: vm.termsSubtitle(vm.selectedLocale), termsText: vm.termsText),
+                        // TODO(Daniil): Add terms
+                        TermsTextBlock(subtitle: vm.terms2Subtitle(vm.selectedLocale), termsText: vm.termsText2),
+                      ],
+                      options: CarouselOptions(
+                        height: 380.h,
+                        enlargeCenterPage: true,
+                        enableInfiniteScroll: false,
+                        viewportFraction: 1,
+                        onPageChanged: onChanged,
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: 12.0.h,
-                        bottom: 4.0.h,
-                      ),
-                      height: 12.0.h,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemCount: 2,
-                        itemBuilder: (BuildContext context, int i) {
-                          return circleWidget(i);
-                        },
-                      ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: 12.0.h,
+                      bottom: 8.0.h,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 8.0.h),
-                      child: const Divider(thickness: 1.0),
+                    height: 12.0.h,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: 2,
+                      itemBuilder: (BuildContext context, int i) {
+                        return circleWidget(i);
+                      },
                     ),
-                    if (!widget.isReadOnly) TermsAcceptBlock(vm: vm),
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 12.0.h),
+                    child: const Divider(thickness: 1.0),
+                  ),
+                  if (!widget.isReadOnly) TermsAcceptBlock(vm: vm),
+                ],
               ),
             ),
           );

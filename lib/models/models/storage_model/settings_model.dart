@@ -36,6 +36,8 @@ class SettingsModel implements IDto {
   final LanguageDataModel languageData;
   @JsonKey(name: 'tac', required: false, nullable: true)
   final String tac;
+  @JsonKey(name: 'tac2', required: false, nullable: true)
+  final String tac2;
   @JsonKey(name: 'info', required: false, nullable: true)
   final InfoModel info;
   @JsonKey(name: 'font', required: false, nullable: true)
@@ -48,6 +50,7 @@ class SettingsModel implements IDto {
   const SettingsModel({
     @required this.languages,
     @required this.tac,
+    @required this.tac2,
     @required this.info,
     @required this.font,
     @required this.colors,
