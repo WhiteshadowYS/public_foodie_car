@@ -46,12 +46,12 @@ class _TermsPageState extends State<TermsPage> {
         builder: (BuildContext context, TermsPageVM vm) {
           return MainLayout(
             bgColor: CustomTheme.colors.background,
-            back: () => back(vm),
+            back: widget.isReadOnly ? null : () => back(vm),
             appBar: MainAppBar(
               key: TermsPageKeys.appbar,
               title: vm.titleText(vm.selectedLocale),
-              backButtonText: vm.backButtonText(vm.selectedLocale),
-              backOnTap: () => back(vm),
+              backButtonText: widget.isReadOnly ? null : vm.backButtonText(vm.selectedLocale),
+              backOnTap: widget.isReadOnly ? null : () => back(vm),
             ),
             child: Container(
               margin: EdgeInsets.only(
