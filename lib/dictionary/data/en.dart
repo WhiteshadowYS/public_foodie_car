@@ -29,6 +29,8 @@ const Language en = Language(
     goToCatalog: 'Go to catalog',
   ),
   errorDictionary: ErrorDictionary(
+    errorNotFound: 'Error not found',
+    notCatalogFound: 'No catalogs found',
     isNumberError: 'Please enter number',
     isNegativeNumIdError: 'Id cannot be negative',
     isZeroNumIdError: 'Id can\'t equal 0',

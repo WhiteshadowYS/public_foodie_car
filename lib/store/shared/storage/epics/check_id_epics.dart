@@ -1,11 +1,15 @@
 import 'package:my_catalog/models/models/storage_status_model.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
+import 'package:my_catalog/services/dialog_service/models/default_loader_dialog.dart';
 import 'package:my_catalog/services/dialog_service/models/internet_connection_dialog.dart';
 import 'package:my_catalog/services/internet_connection_service/internet_connection_service.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 import 'package:my_catalog/services/network_service/res/consts.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/dialog_state/actions/show_dialog_action.dart';
+import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
+import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
+import 'package:my_catalog/store/shared/loader/loader_state.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_id_actions/check_id_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_id_actions/check_id_result_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_id_actions/do_check_id_action.dart';
@@ -27,19 +31,25 @@ class CheckIdEpics {
         return ConcatStream(
           <Stream>[
             Stream.fromIterable([
+              StartLoadingAction(
+                loader: DefaultLoaderDialog(
+                  state: true,
+                  loaderKey: LoaderKey.checkIdLoading,
+                ),
+              ),
               DoCheckIdAction(id: action.id),
             ]),
             ZipStream(<Stream>[
               actions.whereType<CheckIdResultAction>(),
             ], (values) {
               final CheckIdResultAction nAction = values.first as CheckIdResultAction;
-
               return Stream.fromIterable([
                 CheckUpdateAction(
-                  model: nAction.response?.response ?? StorageStatusModel(
-                    update: null,
-                    id: action.id,
-                  ),
+                  model: nAction.response?.response ??
+                      StorageStatusModel(
+                        update: null,
+                        id: action.id,
+                      ),
                   error: nAction.response?.error,
                 ),
                 SubscribeToStoresUpdatesAction(
