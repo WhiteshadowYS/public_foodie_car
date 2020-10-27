@@ -21,7 +21,7 @@ class FilePreviewBottomBlock extends StatelessWidget {
         children: [
           Text(
             itemName,
-            style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+            style: CustomTheme.textStyles.titleTextStyle(size: 12.sp),
           ),
           Material(
             color: Colors.transparent,
@@ -31,7 +31,7 @@ class FilePreviewBottomBlock extends StatelessWidget {
               child: Icon(
                 Icons.share,
                 color: CustomTheme.colors.primaryColor,
-                size: 42.0,
+                size: 42.h,
               ),
             ),
           ),
