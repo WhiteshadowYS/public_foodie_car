@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SVGImages {
@@ -11,6 +12,7 @@ class SVGImages {
   Widget close({Color color = const Color(0xFF5DB075)}) {
     return SvgPicture.asset(
       'assets/svg/close.svg',
+      height: 25.h,
       color: color,
     );
   }

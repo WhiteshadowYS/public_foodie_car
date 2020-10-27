@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
@@ -46,8 +47,8 @@ class _DialogLayoutState extends State<DialogLayout> with SingleTickerProviderSt
           ),
           child: Center(
             child: Container(
-              margin: widget.margin ?? const EdgeInsets.symmetric(horizontal: 16.0),
-              padding: widget.margin ?? const EdgeInsets.symmetric(vertical: 8.0),
+              margin: widget.margin ?? EdgeInsets.symmetric(horizontal: 16.sp),
+              padding: widget.margin ??  EdgeInsets.symmetric(vertical: 8.sp),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
                 color: widget.background ?? CustomTheme.colors.background,
