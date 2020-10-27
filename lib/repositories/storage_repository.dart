@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/adapters/get_check_id_adapter.dart';
 import 'package:my_catalog/adapters/get_data_adapter.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
@@ -14,7 +13,6 @@ import 'package:my_catalog/res/api.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/local_storage_service.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
-import 'package:my_catalog/store/application/app_state.dart';
 
 /// This repository need for get data about storage from server.
 /// Methods:

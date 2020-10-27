@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -15,7 +16,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.logoUrl,
     this.backOnTap,
     this.backButtonText,
-  })  : preferredSize = Size.fromHeight(height),
+  })  : preferredSize = Size.fromHeight(height.sp),
         super(key: Key(key));
 
   @override

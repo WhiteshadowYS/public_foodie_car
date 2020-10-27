@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSwitch extends StatefulWidget {
   bool value;
@@ -21,6 +22,7 @@ class CustomSwitch extends StatefulWidget {
 }
 
 class _CustomSwitchState extends State<CustomSwitch> {
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -35,8 +37,8 @@ class _CustomSwitchState extends State<CustomSwitch> {
       child: AnimatedContainer(
         duration: Duration(milliseconds: 200),
         curve: Curves.easeIn,
-        height: 29.0,
-        width: 56.0,
+        height: 29.h,
+        width: 56.h,
         decoration: BoxDecoration(
           border: Border.all(
             width: 0.0,
@@ -57,8 +59,8 @@ class _CustomSwitchState extends State<CustomSwitch> {
                 : MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                height: 22.0,
-                width: 22.0,
+                height: 22.h,
+                width: 22.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(22.0),
                   color: widget.circleColor,

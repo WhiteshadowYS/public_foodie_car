@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:my_catalog/dictionary/dictionary_classes/main_page_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/const.dart';
@@ -44,13 +47,13 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
         AnimatedContainer(
           curve: Curves.bounceOut,
           duration: hasError ? MILLISECONDS_500 : MILLISECONDS_300,
-          height: 50.0,
+          height: 50.sp,
           alignment: hasError ? Alignment.topRight : Alignment.bottomRight,
           child: AnimatedContainer(
             duration: hasError ? MILLISECONDS_500 : MILLISECONDS_300,
             alignment: Alignment.bottomCenter,
             margin: const EdgeInsets.symmetric(horizontal: 16.0),
-            width: 150.0,
+            width: 150.sp,
             height: 22.0,
             decoration: BoxDecoration(
               color: CustomTheme.colors.errorColor.withOpacity(hasError ? 1.0 : 0.0),
@@ -83,8 +86,8 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
             },
             validator: _validatorCallback,
             hintText: dictionary.name,
-            textStyle: CustomTheme.textStyles.mainTextStyle(size: 16),
-            hintTextStyle: CustomTheme.textStyles.mainTextStyle(size: 16),
+            textStyle: CustomTheme.textStyles.mainTextStyle(size: 16.sp),
+            hintTextStyle: CustomTheme.textStyles.mainTextStyle(size: 16.sp),
           ),
         ),
       ],

@@ -14,7 +14,6 @@ import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_act
 import 'package:my_catalog/store/shared/storage/actions/update_language_actions/set_language_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_action.dart';
 
-
 // TODO(Yuri): Update comment for this class.
 /// [StorageState] it is state of last loaded storage.
 /// This state need for save all data need it in the app.
@@ -194,12 +193,23 @@ class StorageState {
   /// The [action] parameter has parameter [storesHistory].
   /// If successful, it writes a new value to the state, to [storesHistory] parameters.
   StorageState _setStoresHistory(SetStoresHistoryAction action) {
-    print('New History languages: ${action.storesHistory.map((lng) => '{id: ${lng.id}, locale: ${lng.locale}').toList()}}');
-
     if (action.storesHistory == null || action.storesHistory.isEmpty) return this;
 
+    final List<SavedStorageModel> history = action.storesHistory;
+    final temp = action.storesHistory.firstWhere(
+      (element) => element.id == action.idSelect ?? openedStoreId,
+      orElse: () {
+        return null;
+      },
+    );
+
+    if (temp != null) {
+      history.remove(temp);
+      history.add(temp);
+    }
+
     return copyWith(
-      storesHistory: action.storesHistory,
+      storesHistory: history,
     );
   }
 
@@ -210,7 +220,7 @@ class StorageState {
     if (action.newModel == null) return this;
 
     if (storesHistory == null || storesHistory.isEmpty) {
-      logger.e('List of stores was empty: <SetLanguageAction>');
+      logger.w('List of stores was empty: <SetLanguageAction>');
       return this;
     }
 
@@ -219,7 +229,7 @@ class StorageState {
     });
 
     if (index == null || index == -1) {
-      logger.e('Storage not found, action: <SetLanguageAction>');
+      logger.w('Storage not found, action: <SetLanguageAction>');
       return this;
     }
 
@@ -238,27 +248,22 @@ class StorageState {
   /// The [action] parameter has parameter [newModel].
   /// If successful, it writes a new value to the state, to [storesHistory] parameters.
   StorageState _setStoreLanguage(SetLanguageAction action) {
-    print('_setStoreLanguage start');
     if (action.model == null) return this;
 
-    print('_setStoreLanguage 1');
     if (storesHistory == null || storesHistory.isEmpty) {
-      logger.e('List of stores was empty: <SetLanguageAction>');
+      logger.w('List of stores was empty: <SetLanguageAction>');
       return this;
     }
 
-    print('_setStoreLanguage 2');
     final int index = storesHistory.indexWhere((element) {
       return element.id == action.id;
     });
 
-    print('_setStoreLanguage 3');
     if (index == null || index == -1) {
-      logger.e('Storage not found, action: <SetLanguageAction>');
+      logger.w('Storage not found, action: <SetLanguageAction>');
       return this;
     }
 
-    print('_setStoreLanguage 4');
     final SavedStorageModel model = storesHistory[index];
 
     storesHistory.removeAt(index);
@@ -267,9 +272,6 @@ class StorageState {
         model.copyWith(
           storage: action.model,
         ));
-
-    print('Opened store id: ${openedStoreId}');
-    print('Test History languages: ${storesHistory.map((lng) => '{id: ${lng.id}, locale: ${lng.locale}}').toList()}');
 
     return copyWith(
       storesHistory: storesHistory,

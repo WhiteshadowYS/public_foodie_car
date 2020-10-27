@@ -3,10 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_catalog/dictionary/flutter_dictionary.dart';
-import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
+
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/widgets/cashed_network_image.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 
 class ProductItem extends StatelessWidget {
   final String keyValue;

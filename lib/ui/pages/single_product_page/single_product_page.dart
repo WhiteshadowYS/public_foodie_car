@@ -66,13 +66,13 @@ class SingleProductPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   vm.product.descriptionForLanguage(vm.currentLocale),
-                  style: CustomTheme.textStyles.mainTextStyle(size: 15),
+                  style: CustomTheme.textStyles.mainTextStyle(size: 15.h),
                   textAlign: TextAlign.center,
                 ),
               ),
               for (String point in vm.product.pointsForLanguage(vm.currentLocale))
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  padding: EdgeInsets.symmetric(horizontal: 4.sp),
                   child: SingleProductListItem(
                     keyValue: 'SingleProductListItem${vm.product.pointsForLanguage(vm.currentLocale).indexOf(point)}',
                     title: point,
@@ -82,7 +82,7 @@ class SingleProductPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   vm.product.description2ForLanguage(vm.currentLocale),
-                  style: CustomTheme.textStyles.mainTextStyle(size: 15),
+                  style: CustomTheme.textStyles.mainTextStyle(size: 15.h),
                   textAlign: TextAlign.center,
                 ),
               ),

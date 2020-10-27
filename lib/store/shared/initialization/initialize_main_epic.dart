@@ -49,7 +49,7 @@ class InitializeMainEpic {
 
       if (history != null && history.isNotEmpty) {
         yield* Stream.fromIterable([
-          SetStoresHistoryAction(storesHistory: history),
+          SetStoresHistoryAction(storesHistory: history, idSelect: openedStorageId),
         ]);
       }
 

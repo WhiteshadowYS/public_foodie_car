@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
@@ -23,29 +26,23 @@ class ErrorDialogWidget extends StatelessWidget {
               alignment: Alignment.topRight,
               child: DialogCloseButton(keyValue: DialogKeys.closeErrorDialogButton),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                // Spacer(),
-                Icon(
-                  Icons.warning,
-                  color: AppColors.kRed,
-                  size: 50.0,
-                ),
-              ],
+            Icon(
+              Icons.warning,
+              color: AppColors.kRed,
+              size: 40.sp,
             ),
             Container(
               padding: EdgeInsets.all(16.0),
               child: Text(
                 dialogModel.title,
                 textAlign: TextAlign.center,
-                style: CustomTheme.textStyles.titleTextStyle(size: 22.0),
+                style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
               ),
             ),
             Text(
               dialogModel.message,
               textAlign: TextAlign.center,
-              style: CustomTheme.textStyles.mainTextStyle(size: 16.0),
+              style: CustomTheme.textStyles.mainTextStyle(size: 12.sp),
             ),
           ],
         ),

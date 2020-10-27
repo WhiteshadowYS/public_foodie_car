@@ -4,9 +4,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/terms_page/terms_page_vm.dart';
 import 'package:my_catalog/ui/pages/terms_page/widgets/carousel_indicator.dart';
@@ -45,6 +45,7 @@ class _TermsPageState extends State<TermsPage> {
         converter: TermsPageVM.fromStore,
         builder: (BuildContext context, TermsPageVM vm) {
           return MainLayout(
+            bgColor: CustomTheme.colors.background,
             back: () => back(vm),
             appBar: MainAppBar(
               key: TermsPageKeys.appbar,
@@ -84,7 +85,7 @@ class _TermsPageState extends State<TermsPage> {
                       top: 12.0.h,
                       bottom: 8.0.h,
                     ),
-                    height: 12.0.h,
+                    height: 12.0.sp,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
