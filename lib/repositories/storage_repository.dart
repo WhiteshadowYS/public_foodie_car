@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/adapters/get_check_id_adapter.dart';
 import 'package:my_catalog/adapters/get_data_adapter.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
@@ -9,9 +10,11 @@ import 'package:my_catalog/models/models/storage_status_model.dart';
 import 'package:my_catalog/network/requests/get_check_id_request.dart';
 import 'package:my_catalog/network/requests/get_data_request.dart';
 import 'package:my_catalog/repositories/shared/repository.dart';
+import 'package:my_catalog/res/api.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/services/local_storage_service.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
+import 'package:my_catalog/store/application/app_state.dart';
 
 /// This repository need for get data about storage from server.
 /// Methods:
@@ -161,8 +164,21 @@ class StorageRepository extends Repository {
 
   Future<void> updateOpenedStoreId({@required int id}) async {
     final String json = jsonEncode(id);
+    final String jsonStore = await LocalStorageService.instance.getValueByKey(StorageKeys.stores);
+    final List<dynamic> stores = (jsonDecode(jsonStore) as List<dynamic>);
+
+    for (var item in stores) {
+      if (item[ApiKeys.id] == id) {
+
+        final temp = item;
+        stores.remove(item);
+        stores.add(temp);
+        break;
+      }
+    }
 
     await LocalStorageService.instance.saveValueByKey(StorageKeys.openedStoreId, json);
+    await LocalStorageService.instance.saveValueByKey(StorageKeys.stores, jsonEncode(stores));
   }
 
   Future<void> removeOpenedStoreId() async {

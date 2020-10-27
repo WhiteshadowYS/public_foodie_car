@@ -59,12 +59,14 @@ class AVTextStyles implements IAVTextStyles {
     );
   }
 
-  TextStyle accentTextStyle({double size, double height, FontWeight fontWeight = FontWeight.w400}) {
+  TextStyle accentTextStyle(
+      {double size, Color color, double height, FontWeight fontWeight = FontWeight.w400, List<BoxShadow> shadow}) {
     return TextStyle(
+      shadows: shadow,
       fontFamily: fontFamily,
       height: height,
       fontSize: size,
-      color: _accentTextColor,
+      color: color ?? _accentTextColor,
       fontWeight: fontWeight,
     );
   }

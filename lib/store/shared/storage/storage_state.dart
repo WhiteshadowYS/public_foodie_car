@@ -12,6 +12,7 @@ import 'package:my_catalog/store/shared/storage/actions/set_stores_history_actio
 import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_action.dart';
 
+
 // TODO(Yuri): Update comment for this class.
 /// [StorageState] it is state of last loaded storage.
 /// This state need for save all data need it in the app.
@@ -126,7 +127,6 @@ class StorageState {
   /// If successful, it writes a new value to the state, to [isFirstOpen] parameters.
   StorageState _updateIsFirstOpen(UpdateIsFirstOpenAction action) {
     if (action.isFirstOpen == null) return this;
-
     return copyWith(
       isFirstOpen: action.isFirstOpen,
     );

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
+import 'package:my_catalog/res/app_styles/app_shadows.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/theme/models/appvesto_colors.dart';
@@ -47,8 +48,12 @@ class _CatalogsListItemState extends State<CatalogsListItem> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AnimatedDefaultTextStyle(
-                        duration: MILLISECONDS_300,
-                        style: widget.isSelected ? textStyles.accentTextStyle(size: 14) : textStyles.titleTextStyle(size: 14),
+                        duration: MILLISECONDS_400,
+                        style: textStyles.accentTextStyle(
+                          color: widget.isSelected ? CustomTheme.colors.primaryColor : CustomTheme.colors.accentColor,
+                          size: 14.0,
+                          fontWeight: FontWeight.w800,
+                        ),
                         child: Text(widget.title),
                       ),
                       Transform.rotate(

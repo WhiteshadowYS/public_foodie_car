@@ -58,27 +58,25 @@ class _MainPageState extends State<MainPage> {
               keyValue: MainPageKeys.pageListView,
               children: [
                 if (vm.stores.isNotEmpty)
-                  SizedBox(
-                    child: Column(
-                      children: [
-                        SizedBox(height: 24.h),
-                        Text(
-                          dictionary.history,
-                          style: CustomTheme.textStyles.titleTextStyle(),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 8.0.h),
-                        StoresList(
-                          keyValue: MainPageKeys.catalogListItem,
-                          stores: vm.stores?.map((e) {
-                                return e.id.toString();
-                              })?.toList() ??
-                              [],
-                          setId: (int id) => setState(() => _controller.text = id.toString()),
-                        ),
-                        SizedBox(height: 48.h),
-                      ],
-                    ),
+                  Column(
+                    children: [
+                      SizedBox(height: 24.h),
+                      Text(
+                        dictionary.history,
+                        style: CustomTheme.textStyles.titleTextStyle(),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 8.0.h),
+                      StoresList(
+                        keyValue: MainPageKeys.catalogListItem,
+                        stores: vm.stores?.map((e) {
+                              return e.id.toString();
+                            })?.toList() ??
+                            [],
+                        setId: (int id) => setState(() => _controller.text = id.toString()),
+                      ),
+                      SizedBox(height: 48.h),
+                    ],
                   )
                 else
                   SizedBox(height: 260.h),
