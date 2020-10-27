@@ -15,17 +15,17 @@ class MainGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        left: 16.w,
-        right: 16.w,
-        top: 16.h,
+        left: 16.sp,
+        right: 16.sp,
+        top: 16.sp,
       ),
       child: ScrollConfiguration(
         behavior: CleanBehavior(),
         child: GridView.count(
           physics: ClampingScrollPhysics(),
           crossAxisCount: 2,
-          crossAxisSpacing: 16.0,
-          mainAxisSpacing: 8.0,
+          crossAxisSpacing: 16.sp,
+          mainAxisSpacing: 8.sp,
           childAspectRatio: 0.75,
           children: getChildren(widgets) ?? [],
         ),

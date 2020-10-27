@@ -31,28 +31,28 @@ class ProductItem extends StatelessWidget {
         children: [
           ListTile(
             key: Key(keyValue),
-            contentPadding: EdgeInsets.symmetric(
+            contentPadding: const EdgeInsets.symmetric(
               vertical: 10.0,
               horizontal: 16.0,
             ),
             leading: ClipRRect(
-              borderRadius: BorderRadius.circular(30.0),
+              borderRadius: BorderRadius.circular(35.0),
               child: CachedImage(
-                width: 50.sp,
-                height: 50.sp,
+                width: 50.h,
+                height: 50.h,
                 key: Key(key.toString() + 'CachedImage'),
                 imageUrl: product.imageLink ?? '',
               ),
             ),
             title: Text(
               product.titleForLanguage(locale),
-              style: CustomTheme.textStyles.titleTextStyle(size: 14.0),
+              style: CustomTheme.textStyles.titleTextStyle(size: 16.h),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
                 product.descriptionForLanguage(locale),
-                style: CustomTheme.textStyles.mainTextStyle(size: 13.0),
+                style: CustomTheme.textStyles.mainTextStyle(size: 14.h),
                 maxLines: 7,
                 overflow: TextOverflow.visible,
               ),

@@ -33,20 +33,20 @@ class CatalogItem extends StatelessWidget {
           onTap: () => navigateToCategories(catalog.id),
           child: Column(
             children: [
-              const SizedBox(height: 14.0),
+               SizedBox(height: 14.sp),
               Text(
                 catalog.titleForLanguage(locale),
                 style: CustomTheme.textStyles.titleTextStyle(
                   size: 18.sp,
                 ),
               ),
-              const SizedBox(height: 14.0),
+             SizedBox(height: 14.sp),
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: CachedImage(
                   key: Key(key.toString() + 'CachedImage'),
                   imageUrl: catalog.imageLink ?? '',
-                  height: 172.h,
+                  height: 172.sp,
                   width: double.infinity,
                   fit: BoxFit.fitWidth,
                 ),
@@ -63,12 +63,12 @@ class CatalogItem extends StatelessWidget {
                 catalog.descriptionForLanguage(locale),
                 textAlign: TextAlign.center,
                 style: CustomTheme.textStyles.mainTextStyle(
-                  size: 13.sp,
-                  height: 1.4.h,
+                  size: 12.sp,
+                  height: 1.4,
                 ),
                 maxLines: 5,
               ),
-              const SizedBox(height: 14.0),
+               SizedBox(height: 14.sp),
             ],
           ),
         ),
