@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
+import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,37 +23,40 @@ class ListTileItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextDirection directionality = StorageLanguageSelector.selectedLocaleDirection(StoreProvider.of(context));
     return Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        child: Column(
-          children: [
-            ListTile(
-              key: Key(keyValue),
-              leading: SvgPicture.network(
-                iconPath,
-                height: 20.sp,
-                color: CustomTheme.colors.primaryColor,
+        child: Directionality(
+          textDirection: directionality,
+          child: Column(
+            children: [
+              ListTile(
+                key: Key(keyValue),
+                leading: SvgPicture.network(
+                  iconPath,
+                  height: 20.sp,
+                  color: CustomTheme.colors.primaryColor,
+                ),
+                title: Text(
+                  title,
+                  style: CustomTheme.textStyles.titleTextStyle(size: 12.sp),
+                ),
+                trailing: Transform.rotate(
+                  angle: directionality == TextDirection.rtl ? pi : 0,
+                  child: Icon(Icons.keyboard_arrow_right),
+                ),
               ),
-              title: Text(
-                title,
-                style: CustomTheme.textStyles.titleTextStyle(size: 12.sp),
+              Container(
+                color: CustomTheme.colors.accentColor.withOpacity(0.2),
+                height: 1.5,
+                margin: const EdgeInsets.only(left: 12.0, right: 12.0, top: 8.0),
               ),
-              trailing: Transform.rotate(
-                angle: FlutterDictionary.instance.isRTL ? pi : 0,
-                child: Icon(Icons.keyboard_arrow_right),
-              ),
-            ),
-            Container(
-              color: CustomTheme.colors.accentColor.withOpacity(0.2),
-              height: 1.5,
-              margin: const EdgeInsets.only(left: 12.0, right: 12.0, top: 8.0),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
