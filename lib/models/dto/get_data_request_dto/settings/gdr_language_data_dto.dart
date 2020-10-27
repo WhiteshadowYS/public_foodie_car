@@ -31,6 +31,15 @@ class GDRLanguageDataDto implements IDto {
   @JsonKey(name: 'terms_title', required: false, nullable: true)
   final Map<String, dynamic> termsTitle;
 
+  @JsonKey(name: 'terms_button_text', required: false, nullable: true)
+  final Map<String, dynamic> termsButtonText;
+
+  @JsonKey(name: 'tac_subtitle', required: false, nullable: true)
+  final Map<String, dynamic> termsSubTitle;
+
+  @JsonKey(name: 'tac2_subtitle', required: false, nullable: true)
+  final Map<String, dynamic> terms2SubTitle;
+
   @JsonKey(name: 'terms_accept_button', required: false, nullable: true)
   final Map<String, dynamic> termsAcceptButton;
 
@@ -54,6 +63,9 @@ class GDRLanguageDataDto implements IDto {
     @required this.logoutText,
     @required this.backButtonText,
     @required this.termsTitle,
+    @required this.termsButtonText,
+    @required this.termsSubTitle,
+    @required this.terms2SubTitle,
     @required this.termsAcceptButton,
     @required this.productsTitle,
     @required this.categoriesTitle,

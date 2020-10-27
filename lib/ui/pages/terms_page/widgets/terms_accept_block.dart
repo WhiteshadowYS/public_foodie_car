@@ -33,7 +33,7 @@ class _TermsAcceptBlockState extends State<TermsAcceptBlock> {
             });
           },
           isAccepted: isAccepted,
-          title: widget.vm.buttonText(widget.vm.selectedLocale),
+          title: widget.vm.acceptButtonText(widget.vm.selectedLocale),
         ),
         Padding(
           padding: EdgeInsets.symmetric(vertical: 24.h),
@@ -41,7 +41,7 @@ class _TermsAcceptBlockState extends State<TermsAcceptBlock> {
           /// [DialogMainButton ] takes [vm.acceptTermsAndNavigate]  as onTap function
           child: DialogMainButton(
             keyValue: TermsPageKeys.goToCatalogButton,
-            title: dictionary.goToCatalog,
+            title: widget.vm.goToCatalogButtonText(widget.vm.selectedLocale),
             textColor: CustomTheme.colors.background,
             backgroundColor: isAccepted ? CustomTheme.colors.primaryColor : CustomTheme.colors.accentColor,
             borderColor: isAccepted ? CustomTheme.colors.primaryColor : CustomTheme.colors.accentColor,

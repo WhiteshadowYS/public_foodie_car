@@ -22,6 +22,8 @@ class GDRSettingsDto implements IDto {
   final GDRLanguageDataDto languageData;
   @JsonKey(name: 'tac', required: false, nullable: true)
   final String tac;
+  @JsonKey(name: 'tac2', required: false, nullable: true)
+  final String tac2;
   @JsonKey(name: 'info', required: false, nullable: true)
   final GDRInfoDto info;
   @JsonKey(name: 'font', required: false, nullable: true)
@@ -34,6 +36,7 @@ class GDRSettingsDto implements IDto {
   const GDRSettingsDto({
     @required this.languages,
     @required this.tac,
+    @required this.tac2,
     @required this.info,
     @required this.font,
     @required this.colors,

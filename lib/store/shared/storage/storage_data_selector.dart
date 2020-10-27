@@ -23,6 +23,10 @@ abstract class StorageDataSelector {
     return store.state?.storageState?.storage?.settings?.tac ?? '';
   }
 
+  static String getTerms2Text(Store<AppState> store) {
+    return store.state?.storageState?.storage?.settings?.tac2 ?? '';
+  }
+
   static InfoModel getInfoModel(Store<AppState> store) {
     return store.state.storageState.storage.settings.info;
   }

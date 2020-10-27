@@ -22,11 +22,11 @@ const Language en = Language(
     categoriesPageTitle: 'Categories',
     subcategoriesPageTitle: 'Subcategories',
     settingsPageTitle: 'Settings',
+    goToCatalog: 'Go to catalog',
   ),
   termsPageDictionary: TermsPageDictionary(
     title: 'Terms and conditions',
     agree: 'I Agree',
-    goToCatalog: 'Go to catalog',
   ),
   errorDictionary: ErrorDictionary(
     isNumberError: 'Please enter number',

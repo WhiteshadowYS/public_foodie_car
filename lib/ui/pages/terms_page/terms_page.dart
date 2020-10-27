@@ -66,9 +66,9 @@ class _TermsPageState extends State<TermsPage> {
                     child: CarouselSlider(
                       carouselController: _carouselController,
                       items: [
-                        TermsTextBlock(subtitle: 'Subtitle1', termsText: vm.termsText),
+                        TermsTextBlock(subtitle: vm.termsSubtitle(vm.selectedLocale), termsText: vm.termsText),
                         // TODO(Daniil): Add terms
-                        TermsTextBlock(subtitle: 'Subtitle2', termsText: PLACEHOLDER_TEXT),
+                        TermsTextBlock(subtitle: vm.terms2Subtitle(vm.selectedLocale), termsText: vm.termsText2),
                       ],
                       options: CarouselOptions(
                         height: 380.h,

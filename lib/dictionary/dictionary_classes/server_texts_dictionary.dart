@@ -13,6 +13,7 @@ class ServerTextsDictionary {
   final String categoriesPageTitle;
   final String subcategoriesPageTitle;
   final String settingsPageTitle;
+  final String goToCatalog;
 
   const ServerTextsDictionary({
     @required this.errorTitleText,
@@ -27,5 +28,6 @@ class ServerTextsDictionary {
     @required this.categoriesPageTitle,
     @required this.subcategoriesPageTitle,
     @required this.settingsPageTitle,
+    @required this.goToCatalog,
   });
 }

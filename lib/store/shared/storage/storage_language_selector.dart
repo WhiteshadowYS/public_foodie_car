@@ -1,6 +1,7 @@
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/language_model.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/locales.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/language_dialog.dart';
@@ -72,6 +73,25 @@ abstract class StorageLanguageSelector {
     return store.state.storageState.storage.settings.languages.length > 1;
   }
 
+  static String Function(String locale) getGoToCatalogButtonText(Store<AppState> store) {
+    return (String locale) {
+      final String termsButtonText = FlutterDictionary.instance.language.serverTextsDictionary.goToCatalog;
+
+      if (locale == null || locale == '') {
+        return termsButtonText;
+      }
+
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.termsButtonText[locale];
+        if (newValue == null) return termsButtonText;
+
+        return newValue;
+      } catch (e) {
+        return termsButtonText;
+      }
+    };
+  }
+
   static String Function(String locale) getTermsTitleText(Store<AppState> store) {
     return (String locale) {
       final String termsTitle = FlutterDictionary.instance.language.serverTextsDictionary.termsPageTitle;
@@ -91,7 +111,45 @@ abstract class StorageLanguageSelector {
     };
   }
 
-  static String Function(String locale) getTermsButtonText(Store<AppState> store) {
+  static String Function(String locale) getTermsSubTitleText(Store<AppState> store) {
+    return (String locale) {
+      final String termsSubTitle = EMPTY_STRING;
+
+      if (locale == null || locale == '') {
+        return termsSubTitle;
+      }
+
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.termsSubTitle[locale];
+        if (newValue == null) return termsSubTitle;
+
+        return newValue;
+      } catch (e) {
+        return termsSubTitle;
+      }
+    };
+  }
+
+  static String Function(String locale) getTerms2SubTitleText(Store<AppState> store) {
+    return (String locale) {
+      final String terms2SubTitle = EMPTY_STRING;
+
+      if (locale == null || locale == '') {
+        return terms2SubTitle;
+      }
+
+      try {
+        final String newValue = store.state?.storageState?.storage?.settings?.languageData?.terms2SubTitle[locale];
+        if (newValue == null) return terms2SubTitle;
+
+        return newValue;
+      } catch (e) {
+        return terms2SubTitle;
+      }
+    };
+  }
+
+  static String Function(String locale) getTermsAcceptButtonText(Store<AppState> store) {
     return (String locale) {
       final String value = FlutterDictionary.instance.language.serverTextsDictionary.termsPageAgreeButton;
 
