@@ -37,12 +37,12 @@ class ListTileItem extends StatelessWidget {
                 key: Key(keyValue),
                 leading: SvgPicture.network(
                   iconPath,
-                  height: 20.sp,
+                  height: 28.sp,
                   color: CustomTheme.colors.primaryColor,
                   placeholderBuilder: (BuildContext context) {
                     return SvgPicture.asset(
                       placeholderIcon,
-                      height: 20.sp,
+                      height: 28.sp,
                       color: CustomTheme.colors.primaryColor,
                     );
                   },
