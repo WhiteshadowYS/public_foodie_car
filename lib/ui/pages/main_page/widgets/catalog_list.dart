@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/widgets/main_list_view.dart';
 
 import 'catalogs_list_item.dart';
@@ -24,12 +25,21 @@ class _CatalogListState extends State<StoresList> {
   final ScrollController _scrollController = ScrollController(
     initialScrollOffset: itemHeight,
   );
-  static const itemHeight = 60.0;
+  static double itemHeight = 60.0;
 
   @override
   void initState() {
     _scrollController.addListener(_updateState);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _scrollController.jumpTo((widget.stores.length-1) * itemHeight);
+    });
     super.initState();
+  }
+
+@override
+  void reassemble() {
+    _scrollController.jumpTo((widget.stores.length-1) * itemHeight);
+    super.reassemble();
   }
 
   @override
@@ -41,38 +51,46 @@ class _CatalogListState extends State<StoresList> {
 
   @override
   Widget build(BuildContext context) {
-    return MainListView(
-      keyValue: 'StoresList',
-      scrollController: _scrollController,
-      itemCount: widget.stores.length + 2,
-      itemHeight: itemHeight,
-      height: 180.0.h,
-      itemBuilder: (BuildContext context, int index) {
-        if (index == 0 || index == widget.stores.length + 1) {
-          return SizedBox(
-            height: itemHeight,
-          );
-        }
-
-        return CatalogsListItem(
-          keyValue: widget.keyValue,
-          onTap: () {
-            widget.setId(int.tryParse(widget.stores[index - 1]));
-            _scrollController.animateTo(
-              itemHeight * (index - 1),
-              duration: MILLISECONDS_400,
-              curve: Curves.easeOut,
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.symmetric(
+          vertical: BorderSide(
+            width: 0.5,
+            color: CustomTheme.colors.accentColor.withOpacity(0.4),
+          ),
+        ),
+      ),
+      height: 180.0,
+      child: ListView.builder(
+        key: Key('StoresList'),
+        controller: _scrollController,
+        itemCount: widget.stores.length + 2,
+        itemBuilder: (BuildContext context, int index) {
+          if (index == 0 || index == widget.stores.length + 1) {
+            return SizedBox(
+              height: itemHeight,
             );
-          },
-          title: widget.stores[index - 1],
-          isSelected: _checkSelect(index, widget.stores),
-        );
-      },
+          }
+          return CatalogsListItem(
+            keyValue: widget.keyValue,
+            onTap: () {
+              widget.setId(int.tryParse(widget.stores[index - 1]));
+              _scrollController.animateTo(
+                itemHeight * (index - 1),
+                duration: MILLISECONDS_400,
+                curve: Curves.easeOut,
+              );
+            },
+            title: widget.stores[index - 1],
+            isSelected: _checkSelect(index, widget.stores),
+          );
+        },
+      ),
     );
   }
 
   bool _checkSelect(int index, List<String> stores) {
-    final double _itemMinHeight = itemHeight * index - 1;
+    final double _itemMinHeight = itemHeight * index;
     final double _itemMaxHeight = _itemMinHeight + itemHeight;
 
     return _scrollController.offset + itemHeight >= _itemMinHeight &&
