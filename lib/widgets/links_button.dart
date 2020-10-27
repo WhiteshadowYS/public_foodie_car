@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/utils/launch_browser.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/utils/launch_browser.dart';
 
 class LinksButton extends StatefulWidget {
   final String keyValue;
@@ -32,7 +35,7 @@ class _LinksButtonState extends State<LinksButton> {
         child: AnimatedDefaultTextStyle(
           duration: MILLISECONDS_300,
           style: CustomTheme.textStyles.linkTextStyle(
-            size: 18.0,
+            size: 18.0.sp,
             decorationThickness: 0.6,
             fontWeight: FontWeight.bold,
             decorationColor: _tap

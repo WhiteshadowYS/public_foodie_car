@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/theme/custom_theme.dart';
-import 'package:my_catalog/widgets/main_list_view.dart';
 
 import 'catalogs_list_item.dart';
 
@@ -59,7 +59,7 @@ class _CatalogListState extends State<StoresList> {
      //    ),
      //  ),
      //),
-      height: 180.0,
+      height: 180,
       child: ListView.builder(
         key: Key('StoresList'),
         controller: _scrollController,

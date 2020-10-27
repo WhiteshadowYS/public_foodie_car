@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -51,7 +52,7 @@ class _CatalogsListItemState extends State<CatalogsListItem> {
                         duration: MILLISECONDS_400,
                         style: textStyles.accentTextStyle(
                           color: widget.isSelected ? CustomTheme.colors.primaryColor : CustomTheme.colors.accentColor,
-                          size: 14.0,
+                          size: 14.sp,
                           fontWeight: FontWeight.w800,
                         ),
                         child: Text(widget.title),
