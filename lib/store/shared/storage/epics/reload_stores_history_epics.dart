@@ -50,7 +50,7 @@ class ReloadStoresHistoryEpics {
 
               return Stream.fromIterable([
                 UpdateOpenedStoreIdAction(id: action.newStoreId),
-                SetStoresHistoryAction(storesHistory: nAction.history),
+                SetStoresHistoryAction(storesHistory: nAction.history, idSelect: action.newStoreId),
                 CheckTermsAction(
                   id: action.newStoreId,
                   model: nAction.history[index],

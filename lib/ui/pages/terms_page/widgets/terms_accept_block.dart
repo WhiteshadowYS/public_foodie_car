@@ -21,7 +21,6 @@ class _TermsAcceptBlockState extends State<TermsAcceptBlock> {
 
   @override
   Widget build(BuildContext context) {
-    final TermsPageDictionary dictionary = FlutterDictionary.instance.language.termsPageDictionary;
     return Column(
       children: [
         /// [AgreeButton] takes [dictionary.agree] text as title

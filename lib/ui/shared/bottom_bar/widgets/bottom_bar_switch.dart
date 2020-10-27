@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_catalog/dictionary/flutter_delegate.dart';
-import 'package:my_catalog/dictionary/flutter_dictionary.dart';
-import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
-import 'package:my_catalog/res/app_styles/app_colors.dart';
+
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
-import 'package:my_catalog/res/keys.dart';
-import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
 import 'package:my_catalog/widgets/list_tile_item.dart';
+import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:my_catalog/dictionary/flutter_delegate.dart';
+import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
+import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
 
 class BottomBarSwitch extends StatefulWidget {
   final String keyValue;
@@ -45,7 +45,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
       onVerticalDragUpdate: (DragUpdateDetails detail) => _verticalDrag(detail),
       child: AnimatedContainer(
         duration: MILLISECONDS_300,
-        height: widget.isSwitch ? _height : 0,
+        height: widget.isSwitch ? _height : 0.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(20.0),
@@ -94,10 +94,10 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
   }
 
   void _verticalDrag(DragUpdateDetails detail) {
-    if (detail.localPosition.dy < 0) {
+    if (detail.localPosition.dy < 0.0) {
       return;
     }
-    if (_height < _initialHeight / 4) {
+    if (_height < _initialHeight / 4.0) {
       widget.close();
       _height = _initialHeight;
       setState(() {});
