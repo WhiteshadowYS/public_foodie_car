@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/res/const.dart';
+import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
@@ -39,6 +40,7 @@ class _BottomBarState extends State<BottomBar> {
               isSwitch: isSwitch,
               vm: vm,
               onTap: _onTap,
+              getPlaceholder: _placeholderIcon,
             ),
             BottomBarList(
               keyValue: BottomBarKeys.bottomBarList,
@@ -46,6 +48,7 @@ class _BottomBarState extends State<BottomBar> {
               height: (widget.height).h,
               vm: vm,
               isSwitch: isSwitch,
+              getPlaceholder: _placeholderIcon,
             ),
           ],
         );
@@ -57,6 +60,22 @@ class _BottomBarState extends State<BottomBar> {
     setState(() {
       isSwitch = false;
     });
+  }
+
+  // TODO(Daniil): Fix it
+  String _placeholderIcon(String type) {
+    switch (type) {
+      case PageTypes.HOME_TYPE:
+        return ImageAssets.HOME_ICON;
+      case PageTypes.SETTINGS_TYPE:
+        return ImageAssets.SETTINGS_ICON;
+      case PageTypes.SIGNOUT_TYPE:
+        return ImageAssets.LOGOUT_ICON;
+      case PageTypes.ANOTHER_CATALOG:
+        return ImageAssets.ANOTHER_CATALOG_ICON;
+      case PageTypes.SWITCH_TYPE:
+        return ImageAssets.SWITCH_ICON;
+    }
   }
 
   void _onTap(String type, BottomBarVM vm) {
