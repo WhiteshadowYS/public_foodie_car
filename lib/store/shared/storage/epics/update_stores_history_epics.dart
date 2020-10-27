@@ -53,7 +53,7 @@ class UpdateStoresHistoryEpics {
           locale: action.locale,
         );
 
-        return EmptyAction();
+        return UpdateStoresHistoryResultAction();
       },
     );
   }

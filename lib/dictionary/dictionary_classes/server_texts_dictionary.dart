@@ -8,6 +8,9 @@ class ServerTextsDictionary {
   final String logoutButtonText;
   final String backButtonText;
   final String termsPageTitle;
+  final String termsSubTitle;
+  final String terms2SubTitle;
+  final String termsAcceptButton;
   final String termsPageAgreeButton;
   final String productsPageTitle;
   final String categoriesPageTitle;
@@ -29,5 +32,8 @@ class ServerTextsDictionary {
     @required this.subcategoriesPageTitle,
     @required this.settingsPageTitle,
     @required this.goToCatalog,
+    @required this.termsAcceptButton,
+    @required this.terms2SubTitle,
+    @required this.termsSubTitle,
   });
 }

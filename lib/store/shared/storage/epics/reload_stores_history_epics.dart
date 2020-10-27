@@ -1,3 +1,4 @@
+import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/storage/actions/check_terms_actions/check_terms_action.dart';

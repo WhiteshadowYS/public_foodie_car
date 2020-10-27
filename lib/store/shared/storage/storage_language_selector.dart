@@ -152,7 +152,7 @@ abstract class StorageLanguageSelector {
 
   static String Function(String locale) getTermsSubTitleText(Store<AppState> store) {
     return (String locale) {
-      final String termsSubTitle = EMPTY_STRING;
+      final String termsSubTitle = FlutterDictionary.instance.language.serverTextsDictionary.termsSubTitle;
 
       if (locale == null || locale == '') {
         return termsSubTitle;
@@ -171,7 +171,7 @@ abstract class StorageLanguageSelector {
 
   static String Function(String locale) getTerms2SubTitleText(Store<AppState> store) {
     return (String locale) {
-      final String terms2SubTitle = EMPTY_STRING;
+      final String terms2SubTitle = FlutterDictionary.instance.language.serverTextsDictionary.terms2SubTitle;
 
       if (locale == null || locale == '') {
         return terms2SubTitle;
@@ -401,8 +401,6 @@ abstract class StorageLanguageSelector {
   static void Function(String) getUpdateLanguageFunction(Store<AppState> store) {
     return (String locale) {
       final List<SavedStorageModel> history = store.state.storageState.storesHistory;
-
-      print('Old History languages: ${history.map((lng) => 'id: ${lng.id}, locale: ${lng.locale}').toList()}');
 
       final int index = history.indexWhere((element) {
         return element.id == store.state.storageState?.openedStoreId;
