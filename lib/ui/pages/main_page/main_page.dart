@@ -63,7 +63,7 @@ class _MainPageState extends State<MainPage> {
                       SizedBox(height: 24.h),
                       Text(
                         dictionary.history,
-                        style: CustomTheme.textStyles.titleTextStyle(),
+                        style: CustomTheme.textStyles.titleTextStyle(size: 20.sp),
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: 8.0.h),

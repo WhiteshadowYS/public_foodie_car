@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 
@@ -37,13 +40,13 @@ class CatalogTextField extends StatelessWidget {
         alignment: Alignment.topCenter,
         children: <Widget>[
           Container(
-            height: 50.0,
+            height: 50.sp,
             width: double.infinity,
             color: CustomTheme.colors.background,
           ),
           Container(
             alignment: Alignment.center,
-            height: 45.0,
+            height: 45.0.sp,
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             decoration: BoxDecoration(
               color: CustomTheme.colors.accentColor.withOpacity(0.1),
