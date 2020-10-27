@@ -1,11 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:my_catalog/dictionary/flutter_dictionary.dart';
-import 'package:my_catalog/res/app_styles/app_shadows.dart';
+
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/theme/models/appvesto_colors.dart';
+import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
 
 class CatalogsListItem extends StatefulWidget {

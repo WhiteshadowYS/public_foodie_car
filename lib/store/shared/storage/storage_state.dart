@@ -14,7 +14,6 @@ import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_act
 import 'package:my_catalog/store/shared/storage/actions/update_language_actions/set_language_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_action.dart';
 
-
 // TODO(Yuri): Update comment for this class.
 /// [StorageState] it is state of last loaded storage.
 /// This state need for save all data need it in the app.
@@ -95,7 +94,8 @@ class StorageState {
         SetLanguageAction: (dynamic action) => _setStoreLanguage(action as SetLanguageAction),
         SetOpenedCatalogIdAction: (dynamic action) => _setOpenedCatalogId(action as SetOpenedCatalogIdAction),
         SetOpenedCategoryIdAction: (dynamic action) => _setOpenedCategoryId(action as SetOpenedCategoryIdAction),
-        SetOpenedSubCategoryIdAction: (dynamic action) => _setOpenedSubCategoryId(action as SetOpenedSubCategoryIdAction),
+        SetOpenedSubCategoryIdAction: (dynamic action) =>
+            _setOpenedSubCategoryId(action as SetOpenedSubCategoryIdAction),
         SetOpenedProductIdAction: (dynamic action) => _setOpenedProductId(action as SetOpenedProductIdAction),
         UpdateIsFirstOpenAction: (dynamic action) => _updateIsFirstOpen(action as UpdateIsFirstOpenAction),
       }),
@@ -194,12 +194,19 @@ class StorageState {
   /// The [action] parameter has parameter [storesHistory].
   /// If successful, it writes a new value to the state, to [storesHistory] parameters.
   StorageState _setStoresHistory(SetStoresHistoryAction action) {
-    print('New History languages: ${action.storesHistory.map((lng) => '{id: ${lng.id}, locale: ${lng.locale}').toList()}}');
+    print(
+        'New History languages: ${action.storesHistory.map((lng) => '{id: ${lng.id}, locale: ${lng.locale}').toList()}}');
 
     if (action.storesHistory == null || action.storesHistory.isEmpty) return this;
 
+    final List<SavedStorageModel> history = action.storesHistory;
+    final temp = action.storesHistory.firstWhere((element) => element.id == action.idSelect ?? openedStoreId);
+    print(openedStoreId);
+    history.remove(temp);
+    history.add(temp);
+
     return copyWith(
-      storesHistory: action.storesHistory,
+      storesHistory: history,
     );
   }
 
