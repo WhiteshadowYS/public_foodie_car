@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,7 +10,7 @@ class TermsTextBlock extends StatelessWidget {
   TermsTextBlock({
     @required this.subtitle,
     @required this.termsText,
-  });
+  }): super(key: Key(TermsPageKeys.termsTextBlock));
 
   @override
   Widget build(BuildContext context) {
