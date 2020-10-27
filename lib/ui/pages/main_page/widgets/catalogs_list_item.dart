@@ -58,7 +58,7 @@ class _CatalogsListItemState extends State<CatalogsListItem> {
                         child: Text(widget.title),
                       ),
                       Transform.rotate(
-                        angle: FlutterDictionary.instance.isRTL ? pi : 0.0,
+                        angle: Directionality.of(context) == TextDirection.rtl? pi : 0.0,
                         child: Icon(
                           Icons.keyboard_arrow_right,
                           color: colors.accentColor.withOpacity(0.8),
