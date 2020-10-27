@@ -17,16 +17,16 @@ class InfoBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: 16.0,
+        horizontal: 16.sp,
       ),
       child: Column(
         children: [
           SizedBox(
-            height: 16.0,
+            height: 16.h,
           ),
           SizedBox(
-            width: 35.0,
-            height: 35.0,
+            width: 35.sp,
+            height: 35.sp,
             child: info.logoImage != null &&
               info.logoImage != '' &&
               info.logoImage.length >= 5 &&
@@ -35,21 +35,21 @@ class InfoBlock extends StatelessWidget {
                 : SVGImages().mcLogo(),
           ),
           SizedBox(
-            height: 12.0,
+            height: 12.h,
           ),
           Text(
             info.title,
             style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
           ),
           SizedBox(
-            height: 14.0,
+            height: 14.h,
           ),
           Text(
             info.text,
-            style: CustomTheme.textStyles.mainTextStyle(size: 14.sp),
+            style: CustomTheme.textStyles.mainTextStyle(size: 14.h),
           ),
           SizedBox(
-            height: 38.0,
+            height: 38.h,
           ),
         ],
       ),

@@ -21,10 +21,10 @@ class SettingsItem extends StatelessWidget {
       child: InkWell(
         onTap: callback,
         child: Container(
-          height: 65.0,
+          height: 76.h,
           width: double.infinity,
           padding: EdgeInsets.symmetric(
-            horizontal: 16.0,
+            horizontal: 16.sp,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,7 +42,7 @@ class SettingsItem extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 1.0,
+                height: 1.h,
                 width: double.infinity,
                 color: CustomTheme.colors.font.withOpacity(0.4),
               ),

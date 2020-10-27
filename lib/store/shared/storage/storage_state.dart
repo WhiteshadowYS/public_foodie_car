@@ -193,14 +193,20 @@ class StorageState {
   /// The [action] parameter has parameter [storesHistory].
   /// If successful, it writes a new value to the state, to [storesHistory] parameters.
   StorageState _setStoresHistory(SetStoresHistoryAction action) {
-
     if (action.storesHistory == null || action.storesHistory.isEmpty) return this;
 
     final List<SavedStorageModel> history = action.storesHistory;
-    final temp = action.storesHistory.firstWhere((element) => element.id == action.idSelect ?? openedStoreId);
-    print(openedStoreId);
-    history.remove(temp);
-    history.add(temp);
+    final temp = action.storesHistory.firstWhere(
+      (element) => element.id == action.idSelect ?? openedStoreId,
+      orElse: () {
+        return null;
+      },
+    );
+
+    if (temp != null) {
+      history.remove(temp);
+      history.add(temp);
+    }
 
     return copyWith(
       storesHistory: history,

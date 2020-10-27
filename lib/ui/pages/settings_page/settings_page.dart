@@ -83,6 +83,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   text: dictionary.language,
                   child: LanguageDropdown(
                     key: SettingsPageKeys.languageBlockDropdown,
+                    textDirection: vm.textDirection,
                     text: vm.selectedLanguage,
                   ),
                   callback: vm.openLanguagesPopup,
@@ -93,10 +94,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Transform.rotate(
                   angle: vm.textDirection != TextDirection.ltr ? pi : 0.0,
                   child: SizedBox(
-                    height: 20.0,
+                    height: 20.sp,
                     child: Icon(
                       Icons.keyboard_arrow_right,
-                      size: 18,
+                      size: 18.sp,
                       color: CustomTheme.colors.minorFont,
                     ),
                   ),
