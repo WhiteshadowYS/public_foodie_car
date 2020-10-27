@@ -46,6 +46,7 @@ class DialogService {
   /// if [_isDisplayed] is true - you will see in console a error message. (Dialog not be showed).
   /// if [_isDisplayed] is false - you will see on the screen a new dialog
   void _display(BuilderFunction builder) {
+    print('Is displayed $_isDisplayed');
     if (_isDisplayed) {
       logger.e('$tag => <_display> => Error Message: _isDisplayed: $_isDisplayed, Dialog cant be showed.');
       return;

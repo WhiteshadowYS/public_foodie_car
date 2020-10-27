@@ -40,6 +40,7 @@ class DialogSelectors {
 
   static void Function(List<String> gallery, int currentIndex) getShowImageViewDialogFunction(Store<AppState> store) {
     return (List<String> gallery, int currentIndex) {
+
       store.dispatch(ShowDialogAction(dialog: ImageViewDialog(gallery: gallery, currentIndex: currentIndex)));
     };
   }
