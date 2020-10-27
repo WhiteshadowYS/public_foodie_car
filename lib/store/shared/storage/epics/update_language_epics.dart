@@ -1,13 +1,15 @@
+import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/update_token_status_model.dart';
 import 'package:my_catalog/repositories/notifications_repository.dart';
 import 'package:my_catalog/repositories/storage_repository.dart';
 import 'package:my_catalog/services/network_service/models/base_http_response.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/store/shared/storage/actions/set_stores_history_actions/set_stores_history_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_language_actions/do_update_lagnuage_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_result_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_token_action.dart';
 import 'package:my_catalog/store/shared/storage/storage_main_epic.dart';
-import 'package:my_catalog/utils/empty_action.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -21,14 +23,27 @@ class UpdateLanguageEpics {
   static Stream<dynamic> _updateLanguageEpic(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<UpdateLanguageAction>().switchMap(
       (action) {
-        return Stream.fromIterable([
-          UpdateTokenAction(
-            id: action.newModel.id,
-            language: action.newModel.locale,
-          ),
-          DoUpdateLanguageAction(
-            newModel: action.newModel,
-          ),
+        return ConcatStream([
+          Stream.fromIterable([
+            UpdateTokenAction(
+              id: action.newModel.id,
+              language: action.newModel.locale,
+            ),
+            DoUpdateLanguageAction(
+              newModel: action.newModel,
+            ),
+          ]),
+          ZipStream(<Stream>[
+            actions.whereType<UpdateLanguageResultAction>(),
+          ], (values) {
+            final UpdateLanguageResultAction nAction = values.first as UpdateLanguageResultAction;
+
+            return Stream.value(
+              SetStoresHistoryAction(
+                storesHistory: nAction.history,
+              ),
+            );
+          }).switchMap((action) => action),
         ]);
       },
     );
@@ -60,7 +75,11 @@ class UpdateLanguageEpics {
           update: action.newModel.update,
         );
 
-        return EmptyAction();
+        final List<SavedStorageModel> history = await StorageRepository().getStoresHistory();
+
+        return UpdateLanguageResultAction(
+          history: history,
+        );
       },
     );
   }

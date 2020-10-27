@@ -4,12 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 import 'package:my_catalog/network/requests/get_data_request.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/store/shared/reducer.dart';
 import 'package:my_catalog/store/shared/storage/actions/open_store_actions/open_store_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/open_terms_actions/open_terms_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/set_opened_id_actions.dart';
 import 'package:my_catalog/store/shared/storage/actions/set_stores_history_actions/set_stores_history_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_language_actions/set_language_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_action.dart';
 
 // TODO(Yuri): Update comment for this class.
@@ -89,10 +91,10 @@ class StorageState {
         SetOpenedStoreIdAction: (dynamic action) => _setOpenedStoreId(action as SetOpenedStoreIdAction),
         SetStoresHistoryAction: (dynamic action) => _setStoresHistory(action as SetStoresHistoryAction),
         UpdateLanguageAction: (dynamic action) => _updateStoreLanguage(action as UpdateLanguageAction),
+        SetLanguageAction: (dynamic action) => _setStoreLanguage(action as SetLanguageAction),
         SetOpenedCatalogIdAction: (dynamic action) => _setOpenedCatalogId(action as SetOpenedCatalogIdAction),
         SetOpenedCategoryIdAction: (dynamic action) => _setOpenedCategoryId(action as SetOpenedCategoryIdAction),
-        SetOpenedSubCategoryIdAction: (dynamic action) =>
-            _setOpenedSubCategoryId(action as SetOpenedSubCategoryIdAction),
+        SetOpenedSubCategoryIdAction: (dynamic action) => _setOpenedSubCategoryId(action as SetOpenedSubCategoryIdAction),
         SetOpenedProductIdAction: (dynamic action) => _setOpenedProductId(action as SetOpenedProductIdAction),
         UpdateIsFirstOpenAction: (dynamic action) => _updateIsFirstOpen(action as UpdateIsFirstOpenAction),
       }),
@@ -110,6 +112,7 @@ class StorageState {
       storage: action.storage,
     );
   }
+
   /// The [_openTerms] function accepts the [action] parameter, which has the [OpenTermsAction] type.
   /// The [action] parameter has parameter [storage].
   /// If successful, it writes a new value to the state, to [storage] parameters.
@@ -142,6 +145,7 @@ class StorageState {
       openedStoreId: action.id,
     );
   }
+
   /// The [_setOpenedCatalogId] function accepts the [action] parameter, which has the [SetOpenedCatalogIdAction] type.
   /// The [action] parameter has parameter [id].
   /// If successful, it writes a new value to the state, to [openedCatalogId] parameters.
@@ -152,6 +156,7 @@ class StorageState {
       openedCatalogId: action.id,
     );
   }
+
   /// The [_setOpenedCategoryId] function accepts the [action] parameter, which has the [SetOpenedCategoryIdAction] type.
   /// The [action] parameter has parameter [id].
   /// If successful, it writes a new value to the state, to [openedCategoryId] parameters.
@@ -162,6 +167,7 @@ class StorageState {
       openedCategoryId: action.id,
     );
   }
+
   /// The [_setOpenedSubCategoryId] function accepts the [action] parameter, which has the [SetOpenedSubCategoryIdAction] type.
   /// The [action] parameter has parameter [id].
   /// If successful, it writes a new value to the state, to [openedSubCategoryId] parameters.
@@ -172,6 +178,7 @@ class StorageState {
       openedSubCategoryId: action.id,
     );
   }
+
   /// The [_setOpenedProductId] function accepts the [action] parameter, which has the [SetOpenedProductIdAction] type.
   /// The [action] parameter has parameter [id].
   /// If successful, it writes a new value to the state, to [openedProductId] parameters.
@@ -182,32 +189,90 @@ class StorageState {
       openedProductId: action.id,
     );
   }
+
   /// The [_setStoresHistory] function accepts the [action] parameter, which has the [SetStoresHistoryAction] type.
   /// The [action] parameter has parameter [storesHistory].
   /// If successful, it writes a new value to the state, to [storesHistory] parameters.
   StorageState _setStoresHistory(SetStoresHistoryAction action) {
+    print('New History languages: ${action.storesHistory.map((lng) => '{id: ${lng.id}, locale: ${lng.locale}').toList()}}');
+
     if (action.storesHistory == null || action.storesHistory.isEmpty) return this;
 
     return copyWith(
       storesHistory: action.storesHistory,
     );
   }
+
   /// The [_updateStoreLanguage] function accepts the [action] parameter, which has the [UpdateLanguageAction] type.
   /// The [action] parameter has parameter [newModel].
   /// If successful, it writes a new value to the state, to [storesHistory] parameters.
   StorageState _updateStoreLanguage(UpdateLanguageAction action) {
     if (action.newModel == null) return this;
 
-    if (List.from(storesHistory) == null || List.from(storesHistory).isEmpty) {
-      return copyWith(
-        storesHistory: List.from(storesHistory)..add(action.newModel),
-      );
+    if (storesHistory == null || storesHistory.isEmpty) {
+      logger.e('List of stores was empty: <SetLanguageAction>');
+      return this;
     }
 
+    final int index = storesHistory.indexWhere((element) {
+      return element.id == action.newModel.id;
+    });
+
+    if (index == null || index == -1) {
+      logger.e('Storage not found, action: <SetLanguageAction>');
+      return this;
+    }
+
+    storesHistory.removeAt(index);
+    storesHistory.insert(
+      index,
+      action.newModel,
+    );
+
     return copyWith(
-      storesHistory: List.from(storesHistory)
-        ..removeLast()
-        ..add(action.newModel),
+      storesHistory: storesHistory,
+    );
+  }
+
+  /// The [_updateStoreLanguage] function accepts the [action] parameter, which has the [UpdateLanguageAction] type.
+  /// The [action] parameter has parameter [newModel].
+  /// If successful, it writes a new value to the state, to [storesHistory] parameters.
+  StorageState _setStoreLanguage(SetLanguageAction action) {
+    print('_setStoreLanguage start');
+    if (action.model == null) return this;
+
+    print('_setStoreLanguage 1');
+    if (storesHistory == null || storesHistory.isEmpty) {
+      logger.e('List of stores was empty: <SetLanguageAction>');
+      return this;
+    }
+
+    print('_setStoreLanguage 2');
+    final int index = storesHistory.indexWhere((element) {
+      return element.id == action.id;
+    });
+
+    print('_setStoreLanguage 3');
+    if (index == null || index == -1) {
+      logger.e('Storage not found, action: <SetLanguageAction>');
+      return this;
+    }
+
+    print('_setStoreLanguage 4');
+    final SavedStorageModel model = storesHistory[index];
+
+    storesHistory.removeAt(index);
+    storesHistory.insert(
+        index,
+        model.copyWith(
+          storage: action.model,
+        ));
+
+    print('Opened store id: ${openedStoreId}');
+    print('Test History languages: ${storesHistory.map((lng) => '{id: ${lng.id}, locale: ${lng.locale}}').toList()}');
+
+    return copyWith(
+      storesHistory: storesHistory,
     );
   }
 }

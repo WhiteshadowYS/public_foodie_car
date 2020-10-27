@@ -9,6 +9,7 @@ import 'package:my_catalog/store/shared/storage/actions/open_store_actions/open_
 import 'package:my_catalog/store/shared/storage/actions/open_store_actions/open_store_result_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/set_opened_id_actions.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
+import 'package:my_catalog/store/shared/storage/actions/update_language_actions/set_language_action.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -36,11 +37,12 @@ class OpenStoreEpics {
               final String lastRoute = RouteService.instance.currentRoute;
 
               if (lastRoute == Routes.main || lastRoute == Routes.terms || lastRoute == null) {
-                return _routeStream(nAction.isFirstOpen, action.storage);
+                return _routeStream(nAction.isFirstOpen, action.storage, action.id);
               }
-              return Stream.value(
+
+              return Stream.fromIterable([
                 UpdateIsFirstOpenAction(isFirstOpen: nAction.isFirstOpen),
-              );
+              ]);
             }).switchMap((action) => action),
           ],
         );
@@ -48,16 +50,19 @@ class OpenStoreEpics {
     );
   }
 
-  static Stream<dynamic> _routeStream(bool isFirstOpen, StorageModel model) {
+  static Stream<dynamic> _routeStream(bool isFirstOpen, StorageModel model, int id) {
     return ConcatEagerStream([
+      Stream.value(
+        SetLanguageAction(
+          id: id,
+          model: model,
+        ),
+      ),
       Stream.value(
         UpdateIsFirstOpenAction(isFirstOpen: isFirstOpen),
       ),
       if (model.data?.hierarchy != null && model.data?.hierarchy?.length == 1)
-        Stream.fromIterable([
-          SetOpenedCatalogIdAction(id: model?.data?.hierarchy?.first?.id),
-          RouteSelectors.gotoCategoriesPageAction
-        ])
+        Stream.fromIterable([SetOpenedCatalogIdAction(id: model?.data?.hierarchy?.first?.id), RouteSelectors.gotoCategoriesPageAction])
       else
         Stream.value(RouteSelectors.gotoCatalogsPageAction),
     ]);

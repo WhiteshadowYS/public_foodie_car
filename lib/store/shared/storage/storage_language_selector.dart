@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/models/models/saved_storage_model.dart';
 import 'package:my_catalog/models/models/storage_model/settings/language_model.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/locales.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/services/dialog_service/models/language_dialog.dart';
@@ -30,14 +31,25 @@ abstract class StorageLanguageSelector {
 
   static String getSelectedLocale(Store<AppState> store) {
     try {
-      final SavedStorageModel lastModel = store.state.storageState?.storesHistory?.last;
+      final List<SavedStorageModel> history = store.state.storageState?.storesHistory;
+
+      final int index = history.indexWhere((element) {
+        return element.id == store.state.storageState.openedStoreId;
+      });
+
+      if (index == null || index == -1) {
+        return Locales.base;
+      }
+
+      final SavedStorageModel selectedModel = history[index];
+
       int _tmpIndex;
 
-      if (lastModel != null) {
-        _tmpIndex = lastModel.storage.settings.languages.indexWhere((lang) => lang.code == lastModel.locale);
+      if (selectedModel != null) {
+        _tmpIndex = selectedModel.storage.settings.languages.indexWhere((lang) => lang.code == selectedModel.locale);
 
         if (_tmpIndex != -1) {
-          return lastModel.storage.settings.languages[_tmpIndex].code;
+          return selectedModel.storage.settings.languages[_tmpIndex].code;
         }
       }
 
@@ -55,14 +67,24 @@ abstract class StorageLanguageSelector {
 
   static String getSelectedLanguage(Store<AppState> store) {
     try {
-      final SavedStorageModel lastModel = store.state.storageState?.storesHistory?.last;
+      final List<SavedStorageModel> history = store.state.storageState?.storesHistory;
+
+      final int index = history.indexWhere((element) {
+        return element.id == store.state.storageState.openedStoreId;
+      });
+
+      if (index == null || index == -1) {
+        return Locales.base;
+      }
+
+      final SavedStorageModel selectedModel = history[index];
       int _tmpIndex;
 
-      if (lastModel != null) {
-        _tmpIndex = lastModel.storage.settings.languages.indexWhere((lang) => lang.code == lastModel.locale);
+      if (selectedModel != null) {
+        _tmpIndex = selectedModel.storage.settings.languages.indexWhere((lang) => lang.code == selectedModel.locale);
 
         if (_tmpIndex != -1) {
-          return lastModel.storage.settings.languages[_tmpIndex].name;
+          return selectedModel.storage.settings.languages[_tmpIndex].name;
         }
       }
 
@@ -321,7 +343,20 @@ abstract class StorageLanguageSelector {
 
   static void Function(String) getUpdateLanguageFunction(Store<AppState> store) {
     return (String locale) {
-      final SavedStorageModel storageModel = store.state.storageState.storesHistory.last;
+      final List<SavedStorageModel> history = store.state.storageState.storesHistory;
+
+      print('Old History languages: ${history.map((lng) => 'id: ${lng.id}, locale: ${lng.locale}').toList()}');
+
+      final int index = history.indexWhere((element) {
+        return element.id == store.state.storageState?.openedStoreId;
+      });
+
+      if (index == null || index == -1) {
+        logger.e('<getUpdateLanguageFunction> storage was not found');
+        return;
+      }
+
+      final SavedStorageModel storageModel = history[index];
 
       if (locale != storageModel.locale) {
         store.dispatch(
