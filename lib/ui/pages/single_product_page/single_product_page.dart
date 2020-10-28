@@ -11,6 +11,7 @@ import 'package:my_catalog/ui/pages/single_product_page/widgets/file_view_button
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
+import 'package:my_catalog/widgets/cashed_network_image.dart';
 
 import 'widgets/image_viewer.dart';
 import 'widgets/single_product_list_item.dart';
@@ -47,7 +48,7 @@ class SingleProductPage extends StatelessWidget {
               ImageViewer(
                 showGallery: vm.showImage,
                 keyValue: SingleProductKeys.gallery,
-                gallery: vm.product.galleryImagesLinks,
+                cachedImagesGalery: buildCachedImagesList(vm.product.galleryImagesLinks),
               ),
               const SizedBox(height: 16.0),
               Padding(
@@ -106,5 +107,20 @@ class SingleProductPage extends StatelessWidget {
         );
       },
     );
+  }
+
+  List<Widget> buildCachedImagesList(List<String> images) {
+    List<Widget> cachedImagesList = [];
+    for (String image in images) {
+      cachedImagesList.add(
+        CachedImage(
+          key: Key(SingleProductKeys.gallery + 'CachedImage'),
+          imageUrl: image ?? '',
+          fit: BoxFit.contain,
+        ),
+      );
+    }
+
+    return cachedImagesList;
   }
 }

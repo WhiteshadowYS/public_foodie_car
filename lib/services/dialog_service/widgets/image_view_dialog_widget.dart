@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:photo_view/photo_view.dart';
@@ -56,10 +57,10 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
                 child: PhotoViewGallery.builder(
                   scrollPhysics: const NeverScrollableScrollPhysics(),
                   builder: (BuildContext context, int index) {
-                    return PhotoViewGalleryPageOptions(
+                    return PhotoViewGalleryPageOptions.customChild(
                       minScale: PhotoViewComputedScale.contained * 1.0,
                       maxScale: PhotoViewComputedScale.contained * 2.5,
-                      imageProvider: NetworkImage(widget.dialog.gallery[index]),
+                      child: widget.dialog.gallery[index],
                       initialScale: PhotoViewComputedScale.contained * 1.0,
                     );
                   },
