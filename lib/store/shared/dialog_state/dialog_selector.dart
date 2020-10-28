@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/file_model.dart';
 import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
 import 'package:my_catalog/services/dialog_service/models/exit_dialog.dart';
@@ -38,8 +39,8 @@ class DialogSelectors {
     return (FileModel file) => store.dispatch(ShowDialogAction(dialog: FilePreviewDialog(file: file)));
   }
 
-  static void Function(List<String> gallery, int currentIndex) getShowImageViewDialogFunction(Store<AppState> store) {
-    return (List<String> gallery, int currentIndex) {
+  static void Function(List<Widget> gallery, int currentIndex) getShowImageViewDialogFunction(Store<AppState> store) {
+    return (List<Widget> gallery, int currentIndex) {
 
       store.dispatch(ShowDialogAction(dialog: ImageViewDialog(gallery: gallery, currentIndex: currentIndex)));
     };

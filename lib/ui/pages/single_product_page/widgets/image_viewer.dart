@@ -6,14 +6,14 @@ import 'image_view_button.dart';
 
 class ImageViewer extends StatefulWidget {
   final String keyValue;
-  final List<String> gallery;
-  final void Function(List<String> gallery, int currentIndex) showGallery;
+  final List<Widget> cachedImagesGalery;
+  final void Function(List<Widget> gallery, int currentIndex) showGallery;
 
   ImageViewer({
     @required this.keyValue,
-    @required this.gallery,
+    @required this.cachedImagesGalery,
     @required this.showGallery,
-  })  : assert(gallery != null),
+  })  : assert(cachedImagesGalery != null),
         super(key: Key(keyValue + 'ImageViewer'));
 
   @override
@@ -36,19 +36,15 @@ class _ImageViewerState extends State<ImageViewer> {
             CarouselSlider(
               carouselController: _carouselController,
               items: [
-                for (String image in widget.gallery)
+                for (Widget cachedImage in widget.cachedImagesGalery)
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
                     child: SizedBox(
                       height: double.infinity,
                       width: double.infinity,
                       child: GestureDetector(
-                        onTap: () => widget.showGallery(widget.gallery, widget.gallery.indexOf(image)),
-                        child: CachedImage(
-                          key: Key(widget.key.toString() + 'CachedImage'),
-                          imageUrl: image ?? '',
-                          fit: BoxFit.contain,
-                        ),
+                        onTap: () => widget.showGallery(widget.cachedImagesGalery, widget.cachedImagesGalery.indexOf(cachedImage)),
+                        child: cachedImage,
                       ),
                     ),
                   )

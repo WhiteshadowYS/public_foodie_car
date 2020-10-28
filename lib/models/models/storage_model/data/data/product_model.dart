@@ -17,7 +17,7 @@ part 'product_model.g.dart';
 /// The [ProductModel] class has 4 required variables, [id], [imageLink], [galleryImagesLinks], [languages].
 /// Variable [id], catalogs the id of the directory, being unique for each product.
 /// [image], catalog the url image that will be displayed in the application on the [ProductModel].
-/// Variable [gallery], contains a list of url images to be displayed.
+/// Variable [cachedImagesGalery], contains a list of url images to be displayed.
 /// The parameter [languages], has the type [Map], accepts as the key [Locale],
 /// and returns the name, description, description2 and points depending on the Locale to be transferred.
 class ProductModel implements IDto {

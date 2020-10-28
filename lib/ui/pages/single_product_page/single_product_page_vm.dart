@@ -28,7 +28,7 @@ class SingleProductPageVM {
 
   final void Function() navigateToSettingsPage;
   final void Function(FileModel file) filePreview;
-  final void Function(List<String> gallery, int currentIndex) showImage;
+  final void Function(List<Widget> gallery, int currentIndex) showImage;
   final String Function(String) descriptionText;
   final String Function(String) backButtonText;
 
