@@ -21,9 +21,8 @@ class BottomBarVM {
   final int currentIndex;
   final String selectedLocale;
   final List<FooterButtonModel> footerButtons;
-  final void Function() removeOpenedStore;
   final void Function() navigateToSettingsPage;
-  final void Function() navigateToMainPage;
+  final void Function() getLogoutFunction;
   final void Function() navigateToCatalogsPage;
   final void Function(int) navigateCategoryPage;
 
@@ -32,9 +31,8 @@ class BottomBarVM {
     @required this.selectedLocale,
     @required this.footerButtons,
     @required this.navigateCategoryPage,
-    @required this.navigateToMainPage,
+    @required this.getLogoutFunction,
     @required this.navigateToSettingsPage,
-    @required this.removeOpenedStore,
     @required this.navigateToCatalogsPage,
   });
 
@@ -48,8 +46,7 @@ class BottomBarVM {
       selectedLocale: StorageLanguageSelector.getSelectedLocale(store),
 
       /// StorageFunctionSelector
-      navigateToMainPage: StorageFunctionSelector.getLogOutFunction(store),
-      removeOpenedStore: StorageFunctionSelector.getRemoveOpenedStorageFunction(store),
+      getLogoutFunction: StorageFunctionSelector.getLogOutFunction(store),
 
       /// Another
       navigateCategoryPage: RouteSelectors.gotoCategoriesPage(store),

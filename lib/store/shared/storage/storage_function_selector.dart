@@ -15,11 +15,6 @@ import '../route_selectors.dart';
 
 abstract class StorageFunctionSelector {
 
-
-  static void Function() getRemoveOpenedStorageFunction(Store<AppState> store) {
-    return () => store.dispatch(RemoveOpenedStorageAction());
-  }
-
   static void Function() getLogOutFunction(Store<AppState> store) {
     return () {
       store.dispatch(RemoveOpenedStorageAction());
@@ -29,12 +24,12 @@ abstract class StorageFunctionSelector {
 
   static void Function(int, int) getDataFunction(Store<AppState> store) {
     return (int id, int update) {
-        store.dispatch(
-          GetDataAction(
-            id: id,
-            update: update,
-          ),
-        );
+      store.dispatch(
+        GetDataAction(
+          id: id,
+          update: update,
+        ),
+      );
     };
   }
 
