@@ -13,7 +13,6 @@ class MainGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.width/640);
     return Container(
       margin: EdgeInsets.only(
         left: 16.sp,
