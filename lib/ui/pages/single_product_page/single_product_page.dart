@@ -25,7 +25,7 @@ class SingleProductPage extends StatelessWidget {
       converter: SingleProductPageVM.fromStore,
       builder: (BuildContext context, SingleProductPageVM vm) {
         return MainLayout(
-          bgColor: AppColors.kWhite,
+          bgColor: CustomTheme.colors.background,
           appBar: MainAppBar(
             backButtonText: vm.backButtonText(
               vm.currentLocale,

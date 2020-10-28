@@ -20,7 +20,7 @@ GDRSettingsDto _$GDRSettingsDtoFromJson(Map<String, dynamic> json) {
       info: $checkedConvert(
           json, 'info', (v) => v == null ? null : GDRInfoDto.fromJson(v)),
       font: $checkedConvert(json, 'font', (v) => v as String),
-      colors: $checkedConvert(json, 'color_hex',
+      colors: $checkedConvert(json, 'colors_hex',
           (v) => v == null ? null : GDRColorsDto.fromJson(v)),
       languageData: $checkedConvert(json, 'language_data',
           (v) => v == null ? null : GDRLanguageDataDto.fromJson(v)),
@@ -33,7 +33,7 @@ GDRSettingsDto _$GDRSettingsDtoFromJson(Map<String, dynamic> json) {
     );
     return val;
   }, fieldKeyMap: const {
-    'colors': 'color_hex',
+    'colors': 'colors_hex',
     'languageData': 'language_data',
     'footerButtons': 'footer_buttons'
   });
@@ -47,7 +47,7 @@ Map<String, dynamic> _$GDRSettingsDtoToJson(GDRSettingsDto instance) =>
       'tac2': instance.tac2,
       'info': instance.info?.toJson(),
       'font': instance.font,
-      'color_hex': instance.colors?.toJson(),
+      'colors_hex': instance.colors?.toJson(),
       'footer_buttons':
           instance.footerButtons?.map((e) => e?.toJson())?.toList(),
     };

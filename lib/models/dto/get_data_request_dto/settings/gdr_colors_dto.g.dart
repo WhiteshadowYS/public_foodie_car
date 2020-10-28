@@ -9,6 +9,12 @@ part of 'gdr_colors_dto.dart';
 GDRColorsDto _$GDRColorsDtoFromJson(Map<String, dynamic> json) {
   return $checkedNew('GDRColorsDto', json, () {
     final val = GDRColorsDto(
+      primaryColor:  $checkedConvert(json, 'primary_color', (v) => v as String),
+      accentColor:  $checkedConvert(json, 'accent_color', (v) => v as String),
+      accentFont:  $checkedConvert(json, 'accent_font', (v) => v as String),
+      buttonFont:  $checkedConvert(json, 'button_font', (v) => v as String),
+      minorFont:  $checkedConvert(json, 'minor_font', (v) => v as String),
+      errorColor:  $checkedConvert(json, 'error_color', (v) => v as String),
       font: $checkedConvert(json, 'font', (v) => v as String),
       background: $checkedConvert(json, 'background', (v) => v as String),
       buttons: $checkedConvert(json, 'buttons', (v) => v as String),
@@ -30,6 +36,12 @@ GDRColorsDto _$GDRColorsDtoFromJson(Map<String, dynamic> json) {
     );
     return val;
   }, fieldKeyMap: const {
+    'primaryColor': 'primary_color',
+    'accentColor': 'accent_color',
+    'accentFont': 'accent_font',
+    'minorFont': 'minor_font',
+    'buttonFont': 'button_font',
+    'errorColor': 'error_color',
     'footerBackground': 'footer_background',
     'footerFont': 'footer_font',
     'footerIcons': 'footer_icons',
@@ -44,6 +56,12 @@ GDRColorsDto _$GDRColorsDtoFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$GDRColorsDtoToJson(GDRColorsDto instance) =>
     <String, dynamic>{
+      'primary_color': instance.primaryColor,
+      'accent_color': instance.accentColor,
+      'accent_font': instance.accentFont,
+      'minor_font': instance.minorFont,
+      'button_font': instance.buttonFont,
+      'error_color': instance.errorColor,
       'font': instance.font,
       'background': instance.background,
       'footer_icons': instance.footerIcons,

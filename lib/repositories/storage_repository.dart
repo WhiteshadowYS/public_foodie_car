@@ -60,7 +60,6 @@ class StorageRepository extends Repository {
     if (storesJson == null || storesJson == '') {
       return null;
     }
-
     final List decodedData = jsonDecode(storesJson);
 
     return decodedData.map<SavedStorageModel>((item) => SavedStorageModel.fromJson(item)).toList();

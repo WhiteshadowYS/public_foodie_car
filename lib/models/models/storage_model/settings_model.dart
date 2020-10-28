@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -42,7 +44,7 @@ class SettingsModel implements IDto {
   final InfoModel info;
   @JsonKey(name: 'font', required: false, nullable: true)
   final String font;
-  @JsonKey(name: 'color_hex', required: false, nullable: true)
+  @JsonKey(name: 'colors_hex', required: false, nullable: true)
   final ColorsModel colors;
   @JsonKey(name: 'footer_buttons', required: false, nullable: true)
   final List<FooterButtonModel> footerButtons;

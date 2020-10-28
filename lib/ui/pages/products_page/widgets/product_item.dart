@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/widgets/cashed_network_image.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
@@ -41,18 +42,18 @@ class ProductItem extends StatelessWidget {
                 width: 50.h,
                 height: 50.h,
                 key: Key(key.toString() + 'CachedImage'),
-                imageUrl: product.imageLink ?? '',
+                imageUrl: product.imageLink ?? EMPTY_STRING,
               ),
             ),
             title: Text(
               product.titleForLanguage(locale),
-              style: CustomTheme.textStyles.titleTextStyle(size: 16.h),
+              style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
                 product.descriptionForLanguage(locale),
-                style: CustomTheme.textStyles.mainTextStyle(size: 12.h),
+                style: CustomTheme.textStyles.mainTextStyle(size: 11.sp),
                 maxLines: 7,
                 overflow: TextOverflow.visible,
               ),

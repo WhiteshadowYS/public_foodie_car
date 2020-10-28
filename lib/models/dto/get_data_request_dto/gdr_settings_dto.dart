@@ -28,7 +28,7 @@ class GDRSettingsDto implements IDto {
   final GDRInfoDto info;
   @JsonKey(name: 'font', required: false, nullable: true)
   final String font;
-  @JsonKey(name: 'color_hex', required: false, nullable: true)
+  @JsonKey(name: 'colors_hex', required: false, nullable: true)
   final GDRColorsDto colors;
   @JsonKey(name: 'footer_buttons', required: false, nullable: true)
   final List<GDRFooterButtonDto> footerButtons;

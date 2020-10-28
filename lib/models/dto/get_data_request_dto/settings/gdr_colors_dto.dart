@@ -10,6 +10,31 @@ part 'gdr_colors_dto.g.dart';
   explicitToJson: true,
 )
 class GDRColorsDto implements IDto {
+ //@required this.primary_color,
+ //@required this.accent_color,
+ //@required this.error_color,
+ //@required this.minor_font,
+ //@required this.button_font,
+ //@required this.accent_font,
+
+  @JsonKey(name: 'primary_color', required: false, nullable: true)
+  final String primaryColor;
+
+  @JsonKey(name: 'accent_color', required: false, nullable: true)
+  final String accentColor;
+
+  @JsonKey(name: 'error_color', required: false, nullable: true)
+  final String errorColor;
+
+  @JsonKey(name: 'minor_font', required: false, nullable: true)
+  final String minorFont;
+
+  @JsonKey(name: 'button_font', required: false, nullable: true)
+  final String buttonFont;
+
+  @JsonKey(name: 'accent_font', required: false, nullable: true)
+  final String accentFont;
+
   @JsonKey(name: 'font', required: false, nullable: true)
   final String font;
 
@@ -47,6 +72,12 @@ class GDRColorsDto implements IDto {
   final String popupCancelButton;
 
   const GDRColorsDto({
+    @required this.primaryColor,
+    @required this.accentColor,
+    @required this.errorColor,
+    @required this.minorFont,
+    @required this.buttonFont,
+    @required this.accentFont,
     @required this.font,
     @required this.background,
     @required this.buttons,
