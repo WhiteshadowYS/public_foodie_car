@@ -4,6 +4,7 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:my_catalog/store/shared/storage/storage_data_selector.dart';
 import 'package:my_catalog/store/shared/storage/storage_function_selector.dart';
+import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:redux/redux.dart';
 
 ///[BottomBarVM] view model for BottomBar
@@ -14,9 +15,11 @@ import 'package:redux/redux.dart';
 ///[navigateToMainPage] - void function for navigation to main page which is taken from [StorageFunctionSelector.getLogOutFunction].
 ///[navigateToCatalogsPage] - void function for navigation to catalogs page which is taken from [RouteSelectors.gotoCatalogsPage].
 ///[navigateCategoryPage] - void function with int param for navigation to categories page which is taken from [RouteSelectors.gotoCategoriesPage].
+///[selectedLocale] show current locale
 
 class BottomBarVM {
   final int currentIndex;
+  final String selectedLocale;
   final List<FooterButtonModel> footerButtons;
   final void Function() removeOpenedStore;
   final void Function() navigateToSettingsPage;
@@ -26,6 +29,7 @@ class BottomBarVM {
 
   BottomBarVM({
     @required this.currentIndex,
+    @required this.selectedLocale,
     @required this.footerButtons,
     @required this.navigateCategoryPage,
     @required this.navigateToMainPage,
@@ -39,6 +43,9 @@ class BottomBarVM {
       /// StorageDataSelector
       currentIndex: StorageDataSelector.getCurrentCatalogID(store),
       footerButtons: StorageDataSelector.getFooterButtons(store),
+
+      /// StorageLanguageSelector
+      selectedLocale: StorageLanguageSelector.getSelectedLocale(store),
 
       /// StorageFunctionSelector
       navigateToMainPage: StorageFunctionSelector.getLogOutFunction(store),
