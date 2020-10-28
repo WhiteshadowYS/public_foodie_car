@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OpenInBrowserButton extends StatelessWidget {
   final String url;
@@ -25,7 +26,7 @@ class OpenInBrowserButton extends StatelessWidget {
           child: Icon(
             Icons.open_in_browser,
             color: CustomTheme.colors.primaryColor,
-            size: 42.0,
+            size: 42.h,
           ),
         ),
       ),
