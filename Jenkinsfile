@@ -72,9 +72,9 @@ pipeline {
                    env.Build_text =
                    "\nProject Name: ${env.PROJECT_NAME}\nProject Version: ${env.PROJECT_VERSION}\nProject Description: ${env.PROJECT_DESCRIPTION}\n\nFlutter Version: $PROJECT_FLUTTER_VERSION\n\nCommit message: ${env.GIT_COMMIT_MSG}$BUILD_PAGE_TEXT$BUILD_LOGS_TEXT";
 
-                   bitbucketStatusNotify buildState: 'INPROGRESS'
                }
             }
+            bitbucketStatusNotify buildState: 'INPROGRESS'
         }
         stage ('Flutter version') {
             when {
@@ -146,6 +146,7 @@ pipeline {
     post {
         success {
              echo "Success"
+             bitbucketStatusNotify buildState: 'SUCCESSFUL'
              script {
                   if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                       // Telegram send notification with Image
@@ -154,11 +155,11 @@ pipeline {
                       // Slack send notification
                       slackSend message: "${env.PROJECT_NAME} $BUILD_STATUS_TEXT $STATUS_SUCCESS ${env.Build_text} $SUCCESS_IMAGE", color: "good"
                   }
-                  bitbucketStatusNotify buildState: 'SUCCESSFUL'
              }
         }
         aborted {
             echo "Aborted"
+            bitbucketStatusNotify buildState: 'FAILED'
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
@@ -167,11 +168,11 @@ pipeline {
                     // Slack send notification
                     slackSend message: "${env.PROJECT_NAME} $BUILD_STATUS_TEXT $STATUS_ABORTED ${env.Build_text} $ABORTED_IMAGE", color: "danger"
                 }
-                bitbucketStatusNotify buildState: 'FAILED'
             }
         }
         failure {
             echo "Failure"
+            bitbucketStatusNotify buildState: 'FAILED'
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
@@ -180,7 +181,6 @@ pipeline {
                     // Slack send notification
                     slackSend message: "${env.PROJECT_NAME} $BUILD_STATUS_TEXT $STATUS_FAILED ${env.Build_text} $ERROR_IMAGE", color: "danger"
                 }
-                bitbucketStatusNotify buildState: 'FAILED'
             }
         }
     }
