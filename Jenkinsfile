@@ -99,7 +99,7 @@ pipeline {
                     try {
                         sh 'flutter version $PROJECT_FLUTTER_VERSION'
                     } catch (error) {
-                        ech "$error"
+                        echo "$error"
                     }
                 }
             }
