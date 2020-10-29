@@ -72,7 +72,7 @@ pipeline {
                    env.Build_text =
                    "\nProject Name: ${env.PROJECT_NAME}\nProject Version: ${env.PROJECT_VERSION}\nProject Description: ${env.PROJECT_DESCRIPTION}\n\nFlutter Version: $PROJECT_FLUTTER_VERSION\n\nCommit message: ${env.GIT_COMMIT_MSG}$BUILD_PAGE_TEXT$BUILD_LOGS_TEXT";
 
-                   bitbucketStatusNotify buildState: 'INPROGRESS', buildName: currentBuild.displayName, buildDescription: currentBuild.description, commitId: env.GIT_COMMIT
+                   bitbucketStatusNotify buildState: 'INPROGRESS'
                }
             }
         }
@@ -154,7 +154,7 @@ pipeline {
                       // Slack send notification
                       slackSend message: "${env.PROJECT_NAME} $BUILD_STATUS_TEXT $STATUS_SUCCESS ${env.Build_text} $SUCCESS_IMAGE", color: "good"
                   }
-                  bitbucketStatusNotify buildState: 'SUCCESSFUL', buildName: currentBuild.displayName, buildDescription: currentBuild.description, commitId: env.GIT_COMMIT
+                  bitbucketStatusNotify buildState: 'SUCCESSFUL'
              }
         }
         aborted {
@@ -167,7 +167,7 @@ pipeline {
                     // Slack send notification
                     slackSend message: "${env.PROJECT_NAME} $BUILD_STATUS_TEXT $STATUS_ABORTED ${env.Build_text} $ABORTED_IMAGE", color: "danger"
                 }
-                bitbucketStatusNotify buildState: 'FAILED', buildName: currentBuild.displayName, buildDescription: currentBuild.description, commitId: env.GIT_COMMIT
+                bitbucketStatusNotify buildState: 'FAILED'
             }
         }
         failure {
@@ -180,7 +180,7 @@ pipeline {
                     // Slack send notification
                     slackSend message: "${env.PROJECT_NAME} $BUILD_STATUS_TEXT $STATUS_FAILED ${env.Build_text} $ERROR_IMAGE", color: "danger"
                 }
-                bitbucketStatusNotify buildState: 'FAILED', buildName: currentBuild.displayName, buildDescription: currentBuild.description, commitId: env.GIT_COMMIT
+                bitbucketStatusNotify buildState: 'FAILED'
             }
         }
     }
