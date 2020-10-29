@@ -5,6 +5,7 @@ pipeline {
     agent any
 
     environment {
+        REPO_SLUG = "my_catalog";
         PROJECT_FLUTTER_VERSION = "1.20.4";
 
         // Tokens
@@ -33,6 +34,10 @@ pipeline {
         STATUS_FAILED = "FAILED!!!"
         STATUS_UNSTABLE = "UNSTABLE!!!"
         STATUS_ABORTED = "ABORTED!!!"
+
+        BITBUCKET_STATUS_SUCCESS = "SUCCESSFUL";
+        BITBUCKET_STATUS_FAILED = "FAILED";
+        BITBUCKET_STATUS_INPROGRESS = "INPROGRESS";
     }
 
     stages {
@@ -43,7 +48,6 @@ pipeline {
         }
         stage ('Steps Analysis') {
             steps {
-               bitbucketStatusNotify(buildState: 'INPROGRESS')
                script {
                    env.FLUTTER_VERSION = sh (script: 'flutter --version', returnStdout: true).trim()
                    env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
@@ -70,6 +74,14 @@ pipeline {
 
                    currentBuild.displayName = "${env.PROJECT_NAME}-v${env.PROJECT_VERSION} - Build number: ${env.BUILD_NUMBER}"
                    currentBuild.description = "${env.PROJECT_DESCRIPTION}\n${env.GIT_COMMIT_MSG}"
+
+                     bitbucketStatusNotify(
+                      buildState: BITBUCKET_STATUS_INPROGRESS,
+                      buildName: currentBuild.displayName,
+                      buildDescription: currentBuild.description,
+                      repoSlug: REPO_SLUG,
+                      commitId: env.GIT_COMMIT
+                     )
 
                    env.Build_text =
                    "\nProject Name: ${env.PROJECT_NAME}\nProject Version: ${env.PROJECT_VERSION}\nProject Description: ${env.PROJECT_DESCRIPTION}\n\nFlutter Version: $PROJECT_FLUTTER_VERSION\n\nCommit message: ${env.GIT_COMMIT_MSG}$BUILD_PAGE_TEXT$BUILD_LOGS_TEXT";
@@ -147,13 +159,12 @@ pipeline {
     post {
         success {
              echo "Success"
-//              bitbucketStatusNotify(buildState: 'SUCCESSFUL')
              bitbucketStatusNotify(
-              buildState: 'SUCCESSFUL',
-              buildKey: 'test',
-              buildName: 'Test',
-              repoSlug: 'my_catalog',
-              commitId: '57fb7e5ab9b9526e397cc65e04afb7c251b85eb6'
+              buildState: BITBUCKET_STATUS_SUCCESS,
+              buildName: currentBuild.displayName,
+              buildDescription: currentBuild.description,
+              repoSlug: REPO_SLUG,
+              commitId: env.GIT_COMMIT
              )
              script {
                   if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
@@ -167,7 +178,13 @@ pipeline {
         }
         aborted {
             echo "Aborted"
-            bitbucketStatusNotify(buildState: 'FAILED')
+             bitbucketStatusNotify(
+              buildState: BITBUCKET_STATUS_FAILED,
+              buildName: currentBuild.displayName,
+              buildDescription: currentBuild.description,
+              repoSlug: REPO_SLUG,
+              commitId: env.GIT_COMMIT
+             )
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
@@ -180,7 +197,13 @@ pipeline {
         }
         failure {
             echo "Failure"
-            bitbucketStatusNotify(buildState: 'FAILED')
+             bitbucketStatusNotify(
+              buildState: BITBUCKET_STATUS_FAILED,
+              buildName: currentBuild.displayName,
+              buildDescription: currentBuild.description,
+              repoSlug: REPO_SLUG,
+              commitId: env.GIT_COMMIT
+             )
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
