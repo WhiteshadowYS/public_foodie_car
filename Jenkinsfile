@@ -75,13 +75,13 @@ pipeline {
                    currentBuild.displayName = "${env.PROJECT_NAME}-v${env.PROJECT_VERSION} - Build number: ${env.BUILD_NUMBER}"
                    currentBuild.description = "${env.PROJECT_DESCRIPTION}\n${env.GIT_COMMIT_MSG}"
 
-                     bitbucketStatusNotify(
-                      buildState: BITBUCKET_STATUS_INPROGRESS,
-                      buildName: currentBuild.displayName,
-                      buildDescription: currentBuild.description,
-                      repoSlug: REPO_SLUG,
-                      commitId: env.GIT_COMMIT
-                     )
+                    bitbucketStatusNotify(
+                     buildState: BITBUCKET_STATUS_INPROGRESS,
+                     buildName: currentBuild.displayName,
+                     buildDescription: currentBuild.description,
+                     repoSlug: REPO_SLUG,
+                     commitId: env.GIT_COMMIT
+                    )
 
                    env.Build_text =
                    "\nProject Name: ${env.PROJECT_NAME}\nProject Version: ${env.PROJECT_VERSION}\nProject Description: ${env.PROJECT_DESCRIPTION}\n\nFlutter Version: $PROJECT_FLUTTER_VERSION\n\nCommit message: ${env.GIT_COMMIT_MSG}$BUILD_PAGE_TEXT$BUILD_LOGS_TEXT";
@@ -166,6 +166,7 @@ pipeline {
               repoSlug: REPO_SLUG,
               commitId: env.GIT_COMMIT
              )
+             jiraSendDeploymentInfo site: 'appvesto.atlassian.net', environmentId: 'MC-142'
              script {
                   if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                       // Telegram send notification with Image
@@ -178,13 +179,13 @@ pipeline {
         }
         aborted {
             echo "Aborted"
-             bitbucketStatusNotify(
-              buildState: BITBUCKET_STATUS_FAILED,
-              buildName: currentBuild.displayName,
-              buildDescription: currentBuild.description,
-              repoSlug: REPO_SLUG,
-              commitId: env.GIT_COMMIT
-             )
+            bitbucketStatusNotify(
+             buildState: BITBUCKET_STATUS_FAILED,
+             buildName: currentBuild.displayName,
+             buildDescription: currentBuild.description,
+             repoSlug: REPO_SLUG,
+             commitId: env.GIT_COMMIT
+            )
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
@@ -197,13 +198,13 @@ pipeline {
         }
         failure {
             echo "Failure"
-             bitbucketStatusNotify(
-              buildState: BITBUCKET_STATUS_FAILED,
-              buildName: currentBuild.displayName,
-              buildDescription: currentBuild.description,
-              repoSlug: REPO_SLUG,
-              commitId: env.GIT_COMMIT
-             )
+            bitbucketStatusNotify(
+             buildState: BITBUCKET_STATUS_FAILED,
+             buildName: currentBuild.displayName,
+             buildDescription: currentBuild.description,
+             repoSlug: REPO_SLUG,
+             commitId: env.GIT_COMMIT
+            )
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
