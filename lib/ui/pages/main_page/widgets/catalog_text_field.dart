@@ -40,17 +40,17 @@ class CatalogTextField extends StatelessWidget {
         alignment: Alignment.topCenter,
         children: <Widget>[
           Container(
-            height: 50.sp,
+            height: 50.h,
             width: double.infinity,
             color: CustomTheme.colors.background,
           ),
           Container(
             alignment: Alignment.center,
-            height: 45.0.sp,
+            height: 45.0.h,
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             decoration: BoxDecoration(
-              color: CustomTheme.colors.accentColor.withOpacity(0.1),
-              border: Border.all(color: AppColors.kGrey.withOpacity(0.3)),
+              color: CustomTheme.colors.accentColor.withOpacity(0.08),
+              border: Border.all(color: AppColors.kGrey.withOpacity(0.1)),
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: TextFormField(

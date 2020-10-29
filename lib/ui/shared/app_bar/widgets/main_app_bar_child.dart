@@ -63,8 +63,8 @@ class MainAppBarChild extends StatelessWidget {
                           Text(
                             backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
                             style: TextStyle(
-                              color: Color(0xFF5DB075),
-                              fontSize: 16.sp,
+                              color: CustomTheme.colors.primaryColor,
+                              fontSize: 16.sp > 26.0 ? 26.0 : 16.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -77,9 +77,15 @@ class MainAppBarChild extends StatelessWidget {
           ),
         if (title != null)
           Align(
-            child: Text(
-              title,
-              style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
+            child: SizedBox(
+              width: 200.w,
+              child: Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         if (logoUrl != null)

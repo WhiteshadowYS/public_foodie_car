@@ -6,6 +6,7 @@ import 'package:my_catalog/models/models/storage_model/data/data/file_model.dart
 import 'package:my_catalog/res/app_styles/app_shadows.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FileViewButton extends StatefulWidget {
   final String keyValue;
@@ -81,9 +82,9 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                         ),
                         title: Text(
                           'Watch video "${widget.file.nameForLanguage(widget.locale)}"',
-                          style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                          style: CustomTheme.textStyles.titleTextStyle(size: 14.h),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
+                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14.h),
                       ),
                     if (widget.file.type == FileTypes.IMAGE_TYPE)
                       ListTile(
@@ -94,9 +95,9 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                         ),
                         title: Text(
                           'See pictures "${widget.file.nameForLanguage(widget.locale)}"',
-                          style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                          style: CustomTheme.textStyles.titleTextStyle(size: 14.h),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
+                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14.h),
                       ),
                     if (widget.file.type == FileTypes.PDF_TYPE)
                       ListTile(
@@ -107,9 +108,9 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
                         ),
                         title: Text(
                           'Check documents "${widget.file.nameForLanguage(widget.locale)}"',
-                          style: CustomTheme.textStyles.titleTextStyle(size: 14),
+                          style: CustomTheme.textStyles.titleTextStyle(size: 14.h),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14),
+                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14.h),
                       ),
                     const SizedBox(height: 10.0),
                     Container(

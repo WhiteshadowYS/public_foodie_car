@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/category_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_category_model.dart';
 import 'package:my_catalog/res/keys.dart';
@@ -31,6 +32,7 @@ class CategoriesPage extends StatelessWidget {
           bgColor: CustomTheme.colors.background,
           bottomBar: BottomBar(key: CategoriesPageKeys.bottomBar),
           appBar: MainAppBar(
+            height: 50.sp,
             key: CategoriesPageKeys.appbar,
             title: vm.categoriesPageTitle(vm.currentLocale),
             backButtonText: vm.backButtonText(vm.currentLocale),

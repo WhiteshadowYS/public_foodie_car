@@ -61,6 +61,7 @@ class _CatalogListState extends State<StoresList> {
      //),
       height: 180,
       child: ListView.builder(
+        physics: ClampingScrollPhysics(),
         key: Key('StoresList'),
         controller: _scrollController,
         itemCount: widget.stores.length + 2,

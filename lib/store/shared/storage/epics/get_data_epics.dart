@@ -111,7 +111,6 @@ class GetDataEpics {
           logger.d('action.update: ${action.update}, history[index].update: ${oHistory[oIndex].update}');
           return EmptyAction();
         }
-
         return GetDataResultAction(
           response: await repository.getStorageData(id: action.id),
         );

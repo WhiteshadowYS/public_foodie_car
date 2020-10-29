@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:my_catalog/res/const.dart';
 
 import 'package:my_catalog/theme/data/default_theme.dart';
@@ -38,6 +39,10 @@ class CustomTheme {
         additionalTextColor: newColors.buttonFont,
       ),
     );
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+      statusBarColor: _theme.colors.background,
+    ));
   }
 
   void setFontFamily(String fontFamily) {
@@ -50,6 +55,9 @@ class CustomTheme {
   void setDefaultTheme() {
     logger.d('$tag => <setDefaultTheme()>');
     _theme = defaultTheme;
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+      statusBarColor: _theme.colors.background,
+    ));
   }
 
   static AVColors get colors => instance._theme.colors;

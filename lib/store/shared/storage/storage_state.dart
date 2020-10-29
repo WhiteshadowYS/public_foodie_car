@@ -13,6 +13,7 @@ import 'package:my_catalog/store/shared/storage/actions/set_stores_history_actio
 import 'package:my_catalog/store/shared/storage/actions/update_is_first_open_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_language_actions/set_language_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/update_language_actions/update_language_action.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
 // TODO(Yuri): Update comment for this class.
 /// [StorageState] it is state of last loaded storage.
@@ -94,7 +95,8 @@ class StorageState {
         SetLanguageAction: (dynamic action) => _setStoreLanguage(action as SetLanguageAction),
         SetOpenedCatalogIdAction: (dynamic action) => _setOpenedCatalogId(action as SetOpenedCatalogIdAction),
         SetOpenedCategoryIdAction: (dynamic action) => _setOpenedCategoryId(action as SetOpenedCategoryIdAction),
-        SetOpenedSubCategoryIdAction: (dynamic action) => _setOpenedSubCategoryId(action as SetOpenedSubCategoryIdAction),
+        SetOpenedSubCategoryIdAction: (dynamic action) =>
+            _setOpenedSubCategoryId(action as SetOpenedSubCategoryIdAction),
         SetOpenedProductIdAction: (dynamic action) => _setOpenedProductId(action as SetOpenedProductIdAction),
         UpdateIsFirstOpenAction: (dynamic action) => _updateIsFirstOpen(action as UpdateIsFirstOpenAction),
       }),
@@ -107,6 +109,10 @@ class StorageState {
   StorageState _openStore(OpenStoreAction action) {
     if (action.storage == null || action.id == null) return this;
 
+    if (action.storage?.settings?.colors != null) {
+      CustomTheme.instance.setColorsFromJson(action.storage?.settings?.colors?.toJson());
+    }
+
     return copyWith(
       openedStoreId: action.id,
       storage: action.storage,
@@ -118,6 +124,10 @@ class StorageState {
   /// If successful, it writes a new value to the state, to [storage] parameters.
   StorageState _openTerms(OpenTermsAction action) {
     if (action.storage == null) return this;
+
+    if (action.storage?.settings?.colors != null) {
+      CustomTheme.instance.setColorsFromJson(action.storage?.settings?.colors?.toJson());
+    }
 
     return copyWith(
       storage: action.storage,

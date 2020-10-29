@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/keys.dart';
-import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
-import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
-import 'package:my_catalog/services/dialog_service/widgets/dialog_close_button.dart';
-import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:my_catalog/services/dialog_service/models/error_dialog.dart';
+import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
+import 'package:my_catalog/services/dialog_service/widgets/dialog_close_button.dart';
+
 
 class ErrorDialogWidget extends StatelessWidget {
   final ErrorDialog dialogModel;

@@ -47,7 +47,7 @@ class _MainButtonState extends State<MainButton> {
     return Container(
       decoration: BoxDecoration(
         color: status ? CustomTheme.colors.primaryColor : Colors.grey,
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(30.sp),
       ),
       width: double.infinity,
       margin: EdgeInsets.symmetric(

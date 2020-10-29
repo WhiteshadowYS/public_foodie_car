@@ -5,6 +5,8 @@ pipeline {
     agent any
 
     environment {
+        JIRA_LINK = "appvesto.atlassian.net";
+        REPO_SLUG = "my_catalog";
         PROJECT_FLUTTER_VERSION = "1.20.4";
 
         // Tokens
@@ -33,6 +35,10 @@ pipeline {
         STATUS_FAILED = "FAILED!!!"
         STATUS_UNSTABLE = "UNSTABLE!!!"
         STATUS_ABORTED = "ABORTED!!!"
+
+        BITBUCKET_STATUS_SUCCESS = "SUCCESSFUL";
+        BITBUCKET_STATUS_FAILED = "FAILED";
+        BITBUCKET_STATUS_INPROGRESS = "INPROGRESS";
     }
 
     stages {
@@ -59,17 +65,28 @@ pipeline {
                    echo "Is Flutter version correct: ${env.IS_FLUTTER_VERSION_CORRECT}"
                    echo "IOS: ${IS_IOS_BUILD}, Android debug: ${env.IS_ANDROID_DEBUG_BUILD}, Android release: ${IS_ANDROID_RELEASE_BUILD}"
 
+
                    def data = readYaml file: "pubspec.yaml"
                    env.PROJECT_VERSION = data.version
                    env.PROJECT_NAME = data.name
                    env.PROJECT_DESCRIPTION = data.description
                    echo "name: ${env.PROJECT_NAME}, description: ${env.PROJECT_DESCRIPTION}, version: ${env.PROJECT_VERSION}"
+                   echo "${env.GIT_COMMIT}"
 
                    currentBuild.displayName = "${env.PROJECT_NAME}-v${env.PROJECT_VERSION} - Build number: ${env.BUILD_NUMBER}"
                    currentBuild.description = "${env.PROJECT_DESCRIPTION}\n${env.GIT_COMMIT_MSG}"
 
+                    bitbucketStatusNotify(
+                     buildState: BITBUCKET_STATUS_INPROGRESS,
+                     buildName: currentBuild.displayName,
+                     buildDescription: currentBuild.description,
+                     repoSlug: REPO_SLUG,
+                     commitId: env.GIT_COMMIT
+                    )
+
                    env.Build_text =
                    "\nProject Name: ${env.PROJECT_NAME}\nProject Version: ${env.PROJECT_VERSION}\nProject Description: ${env.PROJECT_DESCRIPTION}\n\nFlutter Version: $PROJECT_FLUTTER_VERSION\n\nCommit message: ${env.GIT_COMMIT_MSG}$BUILD_PAGE_TEXT$BUILD_LOGS_TEXT";
+
                }
             }
         }
@@ -143,6 +160,14 @@ pipeline {
     post {
         success {
              echo "Success"
+             bitbucketStatusNotify(
+              buildState: BITBUCKET_STATUS_SUCCESS,
+              buildName: currentBuild.displayName,
+              buildDescription: currentBuild.description,
+              repoSlug: REPO_SLUG,
+              commitId: env.GIT_COMMIT
+             )
+             jiraSendBuildInfo site: JIRA_LINK
              script {
                   if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                       // Telegram send notification with Image
@@ -155,6 +180,14 @@ pipeline {
         }
         aborted {
             echo "Aborted"
+            bitbucketStatusNotify(
+             buildState: BITBUCKET_STATUS_FAILED,
+             buildName: currentBuild.displayName,
+             buildDescription: currentBuild.description,
+             repoSlug: REPO_SLUG,
+             commitId: env.GIT_COMMIT
+            )
+            jiraSendBuildInfo site: JIRA_LINK
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
@@ -167,6 +200,14 @@ pipeline {
         }
         failure {
             echo "Failure"
+            bitbucketStatusNotify(
+             buildState: BITBUCKET_STATUS_FAILED,
+             buildName: currentBuild.displayName,
+             buildDescription: currentBuild.description,
+             repoSlug: REPO_SLUG,
+             commitId: env.GIT_COMMIT
+            )
+            jiraSendBuildInfo site: JIRA_LINK
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post

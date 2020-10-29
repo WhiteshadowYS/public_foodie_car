@@ -52,7 +52,6 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(20.0),
-
           ),
           boxShadow: [
             BoxShadow(
@@ -60,7 +59,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
               blurRadius: 1.5,
             ),
           ],
-          color: AppColors.kWhite,
+          color: CustomTheme.colors.footerBackground,
         ),
         alignment: Alignment.topCenter,
         child: AnimatedOpacity(

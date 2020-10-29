@@ -21,6 +21,8 @@ void main() {
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
   ]);
 
   final Store store = Store<AppState>(
