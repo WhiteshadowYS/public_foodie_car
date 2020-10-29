@@ -7,6 +7,7 @@ import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'bottom_bar_item.dart';
 
@@ -54,6 +55,7 @@ class _BottomBarListState extends State<BottomBarList> {
         color: AppColors.kWhite,
       ),
       height: widget.height,
+      width: widget.vm.footerButtons.length * 50.w,
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: widget.vm.footerButtons.map((item) {

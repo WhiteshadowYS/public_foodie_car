@@ -30,6 +30,7 @@ class _BottomBarState extends State<BottomBar> {
     return StoreConnector<AppState, BottomBarVM>(
       converter: BottomBarVM.fromStore,
       builder: (BuildContext context, vm) {
+        double width = vm.footerButtons.length * 80.0;
         return Column(
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
