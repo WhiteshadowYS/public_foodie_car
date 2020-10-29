@@ -43,7 +43,7 @@ pipeline {
         }
         stage ('Steps Analysis') {
             steps {
-               bitbucketStatusNotify buildState: 'INPROGRESS', repoSlug: 'https://YuraShevelevAppVesto@bitbucket.org/flutterodessa/my_catalog.git', commitId: env.GIT_COMMIT
+               bitbucketStatusNotify(buildState: 'INPROGRESS')
                script {
                    env.FLUTTER_VERSION = sh (script: 'flutter --version', returnStdout: true).trim()
                    env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
@@ -146,7 +146,7 @@ pipeline {
     post {
         success {
              echo "Success"
-             bitbucketStatusNotify buildState: 'SUCCESSFUL', repoSlug: 'https://YuraShevelevAppVesto@bitbucket.org/flutterodessa/my_catalog.git', commitId: env.GIT_COMMIT
+             bitbucketStatusNotify(buildState: 'SUCCESSFUL')
              script {
                   if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                       // Telegram send notification with Image
@@ -159,7 +159,7 @@ pipeline {
         }
         aborted {
             echo "Aborted"
-            bitbucketStatusNotify buildState: 'FAILED', repoSlug: 'https://YuraShevelevAppVesto@bitbucket.org/flutterodessa/my_catalog.git', commitId: env.GIT_COMMIT
+            bitbucketStatusNotify(buildState: 'FAILED')
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
@@ -172,7 +172,7 @@ pipeline {
         }
         failure {
             echo "Failure"
-            bitbucketStatusNotify buildState: 'FAILED', repoSlug: 'https://YuraShevelevAppVesto@bitbucket.org/flutterodessa/my_catalog.git', commitId: env.GIT_COMMIT
+            bitbucketStatusNotify(buildState: 'FAILED')
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
