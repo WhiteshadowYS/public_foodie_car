@@ -43,6 +43,7 @@ pipeline {
         }
         stage ('Steps Analysis') {
             steps {
+               bitbucketStatusNotify buildState: 'INPROGRESS'
                script {
                    env.FLUTTER_VERSION = sh (script: 'flutter --version', returnStdout: true).trim()
                    env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
@@ -74,7 +75,6 @@ pipeline {
 
                }
             }
-            bitbucketStatusNotify buildState: 'INPROGRESS'
         }
         stage ('Flutter version') {
             when {
