@@ -36,7 +36,7 @@ class DialogMainButton extends StatelessWidget {
         color: Colors.transparent,
         child: MediaQuery(
           data: MediaQuery.of(context).copyWith(
-            textScaleFactor: 1.0,
+            textScaleFactor: 1.0, 
           ),
           child: InkWell(
             splashColor: textColor.withOpacity(0.4),
