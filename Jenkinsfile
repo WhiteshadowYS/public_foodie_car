@@ -5,6 +5,7 @@ pipeline {
     agent any
 
     environment {
+        JIRA_LINK = "appvesto.atlassian.net";
         REPO_SLUG = "my_catalog";
         PROJECT_FLUTTER_VERSION = "1.20.4";
 
@@ -166,7 +167,7 @@ pipeline {
               repoSlug: REPO_SLUG,
               commitId: env.GIT_COMMIT
              )
-             jiraSendBuildInfo site: 'appvesto.atlassian.net'
+             jiraSendBuildInfo site: JIRA_LINK
              script {
                   if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                       // Telegram send notification with Image
@@ -186,6 +187,7 @@ pipeline {
              repoSlug: REPO_SLUG,
              commitId: env.GIT_COMMIT
             )
+            jiraSendBuildInfo site: JIRA_LINK
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
@@ -205,6 +207,7 @@ pipeline {
              repoSlug: REPO_SLUG,
              commitId: env.GIT_COMMIT
             )
+            jiraSendBuildInfo site: JIRA_LINK
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
