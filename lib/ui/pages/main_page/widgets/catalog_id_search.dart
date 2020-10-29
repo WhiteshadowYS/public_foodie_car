@@ -47,13 +47,13 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
         AnimatedContainer(
           curve: Curves.bounceOut,
           duration: hasError ? MILLISECONDS_500 : MILLISECONDS_300,
-          height: 50.sp,
+          height: 50.0,
           alignment: hasError ? Alignment.topRight : Alignment.bottomRight,
           child: AnimatedContainer(
             duration: hasError ? MILLISECONDS_500 : MILLISECONDS_300,
             alignment: Alignment.bottomCenter,
             margin: const EdgeInsets.symmetric(horizontal: 16.0),
-            width: 150.sp,
+            width: 150.0,
             height: 22.0,
             decoration: BoxDecoration(
               color: CustomTheme.colors.errorColor.withOpacity(hasError ? 1.0 : 0.0),

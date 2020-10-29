@@ -29,7 +29,7 @@ class CatalogsPage extends StatelessWidget {
         return MainLayout(
           appBar: MainAppBar(
             key: 'CatalogsPageAppbar',
-            height: 50.h,
+            height: 50.sp,
             logoUrl: vm.logoUrl,
             backOnTap: vm.logOut,
             backButtonText: vm.logoutText(vm.currentLocale),
@@ -49,14 +49,13 @@ class CatalogsPage extends StatelessWidget {
                     child: ListView.builder(
                       physics: ClampingScrollPhysics(),
                       padding: EdgeInsets.symmetric(
-                        vertical: 24.h,
+                        vertical: 24.0,
                       ),
                       itemCount: vm.catalogs.length,
                       itemBuilder: (BuildContext context, int index) {
                         final CatalogModel catalog = vm.getCurrentCatalogData(vm.catalogs[index].id);
 
                         if (catalog == null) return Container();
-
                         return CatalogItem(
                           keyValue: CatalogsPageKeys.catalogItem + '$index',
                           locale: vm.currentLocale,

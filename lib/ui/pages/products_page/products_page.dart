@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
-import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -23,6 +23,7 @@ class ProductsPage extends StatelessWidget {
         return MainLayout(
           bgColor: CustomTheme.colors.background,
           appBar: MainAppBar(
+            height: 50.sp,
             key: ProductsPageKeys.appbar,
             backButtonText: vm.backButtonText(
               vm.currentLocale,

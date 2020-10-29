@@ -35,8 +35,8 @@ class CustomPlayIconPaint extends CustomPainter {
       ],
       true,
     );
-    canvas.drawPath(path, paint);
     canvas.drawPath(path, paintStroke);
+    canvas.drawPath(path, paint);
   }
 
   @override

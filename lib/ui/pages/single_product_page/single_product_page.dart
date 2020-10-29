@@ -32,7 +32,7 @@ class SingleProductPage extends StatelessWidget {
             ),
             logoUrl: vm.logoUrl,
             key: SingleProductKeys.appbar,
-            height: 56.h,
+            height: 50.sp,
           ),
           bottomBar: BottomBar(key: SingleProductKeys.bottomBar),
           child: CleanedListView(

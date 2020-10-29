@@ -42,7 +42,7 @@ class AVTextStyles implements IAVTextStyles {
     return TextStyle(
       fontFamily: fontFamily,
       height: height,
-      fontSize: size,
+      fontSize: size > 30.0 ? 30.0 : size,
       color: _titleTextColor,
       fontWeight: FontWeight.w700,
     );
@@ -53,7 +53,7 @@ class AVTextStyles implements IAVTextStyles {
     return TextStyle(
       fontFamily: fontFamily,
       height: height,
-      fontSize: size,
+      fontSize: size > 20.0 ? 20.0 : size,
       color: _mainTextColor,
       fontWeight: FontWeight.w400,
     );
@@ -65,7 +65,7 @@ class AVTextStyles implements IAVTextStyles {
       shadows: shadow,
       fontFamily: fontFamily,
       height: height,
-      fontSize: size,
+      fontSize:  size > 30.0 ? 30.0 : size,
       color: color ?? _accentTextColor,
       fontWeight: fontWeight,
     );
@@ -79,7 +79,7 @@ class AVTextStyles implements IAVTextStyles {
   }) {
     return TextStyle(
       fontFamily: fontFamily,
-      fontSize: size,
+      fontSize: size > 26.0 ? 26.0 : size,
       color: _accentTextColor,
       fontWeight: fontWeight,
       decoration: TextDecoration.underline,
@@ -92,7 +92,7 @@ class AVTextStyles implements IAVTextStyles {
     return TextStyle(
       fontFamily: fontFamily,
       height: height,
-      fontSize: size,
+      fontSize: size > 26.0 ? 26.0 : size,
       color: _additionalTextColor,
       fontWeight: FontWeight.w500,
     );

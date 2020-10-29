@@ -109,7 +109,7 @@ class _MainPageState extends State<MainPage> {
                     FlutterDictionary.instance.language.errorDictionary,
                   ),
                 ),
-                SizedBox(height: 64.h),
+                SizedBox(height: 18.sp),
                 LinksButton(
                   keyValue: MainPageKeys.ownButton,
                   title: dictionary.iWantToCreate,

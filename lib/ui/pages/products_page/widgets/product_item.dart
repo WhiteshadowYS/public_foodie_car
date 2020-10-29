@@ -37,10 +37,10 @@ class ProductItem extends StatelessWidget {
               horizontal: 16.0,
             ),
             leading: ClipRRect(
-              borderRadius: BorderRadius.circular(35.0),
+              borderRadius: BorderRadius.circular(85.0),
               child: CachedImage(
-                width: 50.h,
-                height: 50.h,
+                width: 55,
+                height: 55,
                 key: Key(key.toString() + 'CachedImage'),
                 imageUrl: product.imageLink ?? EMPTY_STRING,
               ),
@@ -60,7 +60,7 @@ class ProductItem extends StatelessWidget {
             ),
             trailing: Transform.rotate(
               angle: textDirection == TextDirection.ltr ? 0 : pi,
-              child: Icon(Icons.keyboard_arrow_right),
+              child: Icon(Icons.keyboard_arrow_right, size: 24.h),
             ),
             onTap: onTap,
           ),

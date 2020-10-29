@@ -49,6 +49,7 @@ class _SettingsPageState extends State<SettingsPage> {
         return MainLayout(
           back: vm.back,
           appBar: MainAppBar(
+            height: 50.sp,
             key: SettingsPageKeys.appbar,
             title: vm.settingsPageTitle(vm.selectedLocale),
             backOnTap: vm.back,

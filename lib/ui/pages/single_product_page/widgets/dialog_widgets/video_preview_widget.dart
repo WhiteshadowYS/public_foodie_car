@@ -116,7 +116,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
     return CustomAnimatedPlayIconWidget(
       size: 30.sp,
       duration: MILLISECONDS_200,
-      color: CustomTheme.colors.buttons,
+      color: CustomTheme.colors.primaryColor,
       strokeColor: CustomTheme.colors.buttons,
       controller: _controller,
     );
