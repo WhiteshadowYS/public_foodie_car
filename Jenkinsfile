@@ -166,7 +166,7 @@ pipeline {
               repoSlug: REPO_SLUG,
               commitId: env.GIT_COMMIT
              )
-             jiraSendDeploymentInfo site: 'appvesto.atlassian.net', environmentId: 'MC-142'
+             jiraSendBuildInfo site: 'appvesto.atlassian.net'
              script {
                   if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                       // Telegram send notification with Image
