@@ -95,7 +95,6 @@ pipeline {
                 expression {(env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true"  || env.IS_ALL_BUILDS == "true") && IS_FLUTTER_VERSION_CORRECT == "false"}
             }
             steps {
-
                 script {
                     try {
                         sh 'flutter version $PROJECT_FLUTTER_VERSION'
