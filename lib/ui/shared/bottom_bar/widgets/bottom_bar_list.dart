@@ -6,6 +6,7 @@ import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 
 import 'bottom_bar_item.dart';
@@ -50,8 +51,8 @@ class _BottomBarListState extends State<BottomBarList> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.kWhite),
-        color: AppColors.kWhite,
+        border: Border.all(color: CustomTheme.colors.footerBackground),
+        color: CustomTheme.colors.footerBackground,
       ),
       height: widget.height,
       child: Row(

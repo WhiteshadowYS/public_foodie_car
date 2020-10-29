@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/subcategory_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_subcategory_model.dart';
 import 'package:my_catalog/res/keys.dart';
@@ -24,6 +25,7 @@ class SubcategoriesPage extends StatelessWidget {
           bgColor: CustomTheme.colors.background,
           bottomBar: BottomBar(key: SubCategoriesPageKeys.bottomBar),
           appBar: MainAppBar(
+            height: 50.sp,
             key: SubCategoriesPageKeys.appbar,
             title: vm.subcategoriesPageTitle(vm.currentLocale),
             backButtonText: vm.backButtonText(vm.currentLocale),

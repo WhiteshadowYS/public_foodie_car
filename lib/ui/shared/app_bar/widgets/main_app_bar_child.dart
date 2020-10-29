@@ -63,8 +63,8 @@ class MainAppBarChild extends StatelessWidget {
                           Text(
                             backButtonText ?? FlutterDictionary.instance.language.appbarDictionary.back,
                             style: TextStyle(
-                              color: Color(0xFF5DB075),
-                              fontSize: 16.sp,
+                              color: CustomTheme.colors.primaryColor,
+                              fontSize: 16.sp > 26.0 ? 26.0 : 16.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ),

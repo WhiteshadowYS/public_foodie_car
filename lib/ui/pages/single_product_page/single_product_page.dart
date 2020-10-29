@@ -25,14 +25,14 @@ class SingleProductPage extends StatelessWidget {
       converter: SingleProductPageVM.fromStore,
       builder: (BuildContext context, SingleProductPageVM vm) {
         return MainLayout(
-          bgColor: AppColors.kWhite,
+          bgColor: CustomTheme.colors.background,
           appBar: MainAppBar(
             backButtonText: vm.backButtonText(
               vm.currentLocale,
             ),
             logoUrl: vm.logoUrl,
             key: SingleProductKeys.appbar,
-            height: 56.h,
+            height: 50.sp,
           ),
           bottomBar: BottomBar(key: SingleProductKeys.bottomBar),
           child: CleanedListView(

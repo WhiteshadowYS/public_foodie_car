@@ -51,6 +51,7 @@ class _TermsPageState extends State<TermsPage> {
               bgColor: CustomTheme.colors.background,
               back: widget.isReadOnly ? null : () => back(vm),
               appBar: MainAppBar(
+                height: 50.sp,
                 key: TermsPageKeys.appbar,
                 title: vm.titleText(vm.selectedLocale),
                 backButtonText: widget.isReadOnly ? null : vm.backButtonText(vm.selectedLocale),

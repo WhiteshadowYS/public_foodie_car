@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_catalog/models/interfaces/i_dto.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 
 part 'colors_model.g.dart';
 
@@ -45,7 +48,7 @@ class ColorsModel implements IDto {
   @JsonKey(name: 'popup_cancel_button', required: false, nullable: true)
   final String popupCancelButton;
 
-  const ColorsModel({
+  ColorsModel({
     @required this.background,
     @required this.accentColor,
     @required this.accentFont,

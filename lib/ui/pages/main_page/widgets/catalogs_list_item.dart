@@ -52,13 +52,13 @@ class _CatalogsListItemState extends State<CatalogsListItem> {
                         duration: MILLISECONDS_400,
                         style: textStyles.accentTextStyle(
                           color: widget.isSelected ? CustomTheme.colors.primaryColor : CustomTheme.colors.accentColor,
-                          size: 14.sp,
+                          size: 14.sp > 24.0 ? 24.0 : 14.sp,
                           fontWeight: FontWeight.w800,
                         ),
                         child: Text(widget.title),
                       ),
                       Transform.rotate(
-                        angle: Directionality.of(context) == TextDirection.rtl? pi : 0.0,
+                        angle: Directionality.of(context) == TextDirection.rtl ? pi : 0.0,
                         child: Icon(
                           Icons.keyboard_arrow_right,
                           color: colors.accentColor.withOpacity(0.8),

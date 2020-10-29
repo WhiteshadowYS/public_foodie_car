@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_catalog/res/app_styles/app_colors.dart';
 
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/res/const.dart';
@@ -36,6 +37,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
+    CustomTheme.instance.setDefaultTheme();
     _focusService.addKey(
       FocusKey(order: 1, value: MainPageKeys.textField),
     );
@@ -48,7 +50,7 @@ class _MainPageState extends State<MainPage> {
       converter: MainPageVM.fromStore,
       builder: (BuildContext context, MainPageVM vm) {
         return MainLayout(
-          bgColor: CustomTheme.colors.background,
+          bgColor: AppColors.kWhite,
           resizeToAvoidBottomPadding: true,
           canExit: true,
           back: () => vm.exitDialog(),
@@ -107,7 +109,7 @@ class _MainPageState extends State<MainPage> {
                     FlutterDictionary.instance.language.errorDictionary,
                   ),
                 ),
-                SizedBox(height: 64.h),
+                SizedBox(height: 18.sp),
                 LinksButton(
                   keyValue: MainPageKeys.ownButton,
                   title: dictionary.iWantToCreate,
