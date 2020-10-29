@@ -82,7 +82,7 @@ class LanguageDialogWidget extends StatelessWidget {
                                   keyValue: '${key.toString()}CleanedListView',
                                   children: dialog.list.map((language) {
                                     return LanguageItem(
-                                      key: '${key.toString()}LanguageItem${language.name}',
+                                      key: '${key.toString()}LanguageItem${language.code}',
                                       language: language,
                                       textDirection: vm.textDirection,
                                       isSelected: _getIsSelected(language, dialog.selectedLanguage),
