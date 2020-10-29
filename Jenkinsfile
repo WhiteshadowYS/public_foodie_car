@@ -148,6 +148,7 @@ pipeline {
         success {
              echo "Success"
              bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+             notifyBitbucket()
              script {
                   if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                       // Telegram send notification with Image
@@ -161,6 +162,7 @@ pipeline {
         aborted {
             echo "Aborted"
             bitbucketStatusNotify(buildState: 'FAILED')
+            notifyBitbucket()
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
@@ -174,6 +176,7 @@ pipeline {
         failure {
             echo "Failure"
             bitbucketStatusNotify(buildState: 'FAILED')
+            notifyBitbucket()
             script {
                 if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
                     // Telegram logs post
