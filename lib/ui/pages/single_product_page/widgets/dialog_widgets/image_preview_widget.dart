@@ -11,6 +11,7 @@ class ImagePreviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedImage(
+      width: double.infinity,
       key: Key(key.toString() + 'CachedImage'),
       imageUrl: imageUrl ?? '',
     );

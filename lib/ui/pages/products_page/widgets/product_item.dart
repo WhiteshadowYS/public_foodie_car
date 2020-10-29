@@ -32,14 +32,14 @@ class ProductItem extends StatelessWidget {
           ListTile(
             key: Key(keyValue),
             contentPadding: const EdgeInsets.symmetric(
-              vertical: 10.0,
+              vertical: 12.0,
               horizontal: 16.0,
             ),
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(35.0),
               child: CachedImage(
-                width: 50.h,
-                height: 50.h,
+                    width: 55,
+                   height: 55,
                 key: Key(key.toString() + 'CachedImage'),
                 imageUrl: product.imageLink ?? '',
               ),
@@ -52,7 +52,7 @@ class ProductItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
                 product.descriptionForLanguage(locale),
-                style: CustomTheme.textStyles.mainTextStyle(size: 12.h),
+                style: CustomTheme.textStyles.mainTextStyle(size: 14.h),
                 maxLines: 7,
                 overflow: TextOverflow.visible,
               ),
