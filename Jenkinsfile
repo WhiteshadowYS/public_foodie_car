@@ -60,6 +60,7 @@ pipeline {
                    echo "Is Flutter version correct: ${env.IS_FLUTTER_VERSION_CORRECT}"
                    echo "IOS: ${IS_IOS_BUILD}, Android debug: ${env.IS_ANDROID_DEBUG_BUILD}, Android release: ${IS_ANDROID_RELEASE_BUILD}"
 
+
                    def data = readYaml file: "pubspec.yaml"
                    env.PROJECT_VERSION = data.version
                    env.PROJECT_NAME = data.name
