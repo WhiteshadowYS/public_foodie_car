@@ -149,11 +149,11 @@ pipeline {
              echo "Success"
 //              bitbucketStatusNotify(buildState: 'SUCCESSFUL')
              bitbucketStatusNotify(
-               buildState: 'SUCCESSFUL',
-               buildKey: 'build',
-               buildName: 'Build',
-               repoSlug: 'https://bitbucket.org/flutterodessa/my_catalog',
-               commitId: env.GIT_COMMIT
+              buildState: 'SUCCESSFUL',
+              buildKey: 'test',
+              buildName: 'Test',
+              repoSlug: 'flutterodessa/my_catalog',
+              commitId: '57fb7e5ab9b9526e397cc65e04afb7c251b85eb6'
              )
              script {
                   if (env.IS_ANDROID_DEBUG_BUILD == "true" || env.IS_ANDROID_RELEASE_BUILD == "true" || env.IS_IOS_BUILD == "true" || env.IS_ALL_BUILDS == "true") {
