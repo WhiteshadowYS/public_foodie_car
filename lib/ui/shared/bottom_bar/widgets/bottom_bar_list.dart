@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
-import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
@@ -56,7 +54,6 @@ class _BottomBarListState extends State<BottomBarList> {
         color: CustomTheme.colors.footerBackground,
       ),
       height: widget.height,
-      width: widget.vm.footerButtons.length * 50.w,
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: widget.vm.footerButtons.map((item) {

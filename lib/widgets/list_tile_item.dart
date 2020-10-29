@@ -33,33 +33,36 @@ class ListTileItem extends StatelessWidget {
           textDirection: directionality,
           child: Column(
             children: [
-              ListTile(
-                key: Key(keyValue),
-                leading: SvgPicture.network(
-                  iconPath,
-                  height: 32.h,
-                  color: CustomTheme.colors.primaryColor,
-                  placeholderBuilder: (BuildContext context) {
-                    return SvgPicture.asset(
-                      placeholderIcon,
-                      height: 32.h,
-                      color: CustomTheme.colors.primaryColor,
-                    );
-                  },
-                ),
-                title: Text(
-                  title,
-                  style: CustomTheme.textStyles.titleTextStyle(size: 12.sp),
-                ),
-                trailing: Transform.rotate(
-                  angle: directionality == TextDirection.rtl ? pi : 0,
-                  child: Icon(Icons.keyboard_arrow_right,size: 24.h,),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.h),
+                child: ListTile(
+                  key: Key(keyValue),
+                  leading: SvgPicture.network(
+                    iconPath,
+                    height: 32.h,
+                    color: CustomTheme.colors.primaryColor,
+                    placeholderBuilder: (BuildContext context) {
+                      return SvgPicture.asset(
+                        placeholderIcon,
+                        height: 32.h,
+                        color: CustomTheme.colors.primaryColor,
+                      );
+                    },
+                  ),
+                  title: Text(
+                    title,
+                    style: CustomTheme.textStyles.titleTextStyle(size: 16.h),
+                  ),
+                  trailing: Transform.rotate(
+                    angle: directionality == TextDirection.rtl ? pi : 0,
+                    child: Icon(Icons.keyboard_arrow_right,size: 24.h,),
+                  ),
                 ),
               ),
               Container(
                 color: CustomTheme.colors.accentColor.withOpacity(0.2),
                 height: 1.5.h,
-                margin:  EdgeInsets.only(left: 12.0, right: 12.0, top: 8.sp),
+                margin:  EdgeInsets.only(left: 12.0, right: 12.0),
               ),
             ],
           ),
