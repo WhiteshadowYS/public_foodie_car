@@ -11,6 +11,7 @@ import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/dictionary/flutter_delegate.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottomBarSwitch extends StatefulWidget {
   final String keyValue;
@@ -34,7 +35,7 @@ class BottomBarSwitch extends StatefulWidget {
 }
 
 class _BottomBarSwitchState extends State<BottomBarSwitch> {
-  final double _initialHeight = 190;
+  final double _initialHeight = 200.h;
   double _height ;
 
   @override
@@ -69,8 +70,8 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SvgPicture.asset(ImageAssets.HANDLE),
+                padding: EdgeInsets.all(12.h),
+                child: SvgPicture.asset(ImageAssets.HANDLE,width: 24.w,),
               ),
               Expanded(
                 child: ScrollConfiguration(
@@ -80,7 +81,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
                     itemBuilder: (BuildContext context, int index) {
                       return ListTileItem(
                         keyValue: '${BottomBarKeys.bottomBarSwitchItem}$index',
-                        title: switchItems[index].name[widget.vm.selectedLocale],
+                        title: switchItems[index].name[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()],
                         iconPath: switchItems[index].iconSvg,
                         placeholderIcon: widget.getPlaceholder(switchItems[index].type),
                         onTap: () => widget.onTap(switchItems[index].type, widget.vm),

@@ -44,17 +44,15 @@ class SingleProductPage extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: CustomTheme.textStyles.accentTextStyle(size: 22.sp, fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 16.0),
+               SizedBox(height: 16.sp),
               ImageViewer(
                 showGallery: vm.showImage,
                 keyValue: SingleProductKeys.gallery,
                 cachedImagesGalery: buildCachedImagesList(vm.product.galleryImagesLinks),
               ),
-              const SizedBox(height: 16.0),
+              SizedBox(height: 16.sp),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                ),
+                padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.0),
                 child: Text(
                   vm.descriptionText(
                     vm.currentLocale,
@@ -80,7 +78,7 @@ class SingleProductPage extends StatelessWidget {
                   ),
                 ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.0),
                 child: Text(
                   vm.product.description2ForLanguage(vm.currentLocale),
                   style: CustomTheme.textStyles.mainTextStyle(size: 15.h),

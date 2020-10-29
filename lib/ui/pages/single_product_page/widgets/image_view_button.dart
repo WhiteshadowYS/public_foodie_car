@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImageViewButton extends StatelessWidget {
   final String keyValue;
@@ -21,7 +22,7 @@ class ImageViewButton extends StatelessWidget {
         Icon(
           icon,
           color: AppColors.kBlack.withOpacity(0.4),
-          size: 31.0,
+          size: 32.sp,
         ),
         Material(
           color: Colors.transparent,
@@ -30,7 +31,7 @@ class ImageViewButton extends StatelessWidget {
             key: Key(keyValue),
             icon: Icon(icon),
             color: CustomTheme.colors.buttons,
-            iconSize: 30.0,
+            iconSize: 31.sp,
             onPressed: jumpToPage,
             splashRadius: 20,
           ),
