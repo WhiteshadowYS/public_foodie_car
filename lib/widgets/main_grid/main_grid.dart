@@ -13,6 +13,7 @@ class MainGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size.width/640);
     return Container(
       margin: EdgeInsets.only(
         left: 16.sp,
@@ -23,7 +24,7 @@ class MainGrid extends StatelessWidget {
         behavior: CleanBehavior(),
         child: GridView.count(
           physics: ClampingScrollPhysics(),
-          crossAxisCount: 2,
+          crossAxisCount: 2 + (MediaQuery.of(context).size.width/640).floor(),
           crossAxisSpacing: 16.sp,
           mainAxisSpacing: 8.sp,
           childAspectRatio: 0.75,

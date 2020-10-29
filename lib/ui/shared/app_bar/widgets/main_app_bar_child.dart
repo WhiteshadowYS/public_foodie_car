@@ -77,9 +77,15 @@ class MainAppBarChild extends StatelessWidget {
           ),
         if (title != null)
           Align(
-            child: Text(
-              title,
-              style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
+            child: SizedBox(
+              width: 200.w,
+              child: Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: CustomTheme.textStyles.titleTextStyle(size: 18.sp),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         if (logoUrl != null)
