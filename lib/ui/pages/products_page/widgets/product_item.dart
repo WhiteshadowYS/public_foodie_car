@@ -33,7 +33,7 @@ class ProductItem extends StatelessWidget {
           ListTile(
             key: Key(keyValue),
             contentPadding: const EdgeInsets.symmetric(
-              vertical: 10.0,
+              vertical: 12.0,
               horizontal: 16.0,
             ),
             leading: ClipRRect(
@@ -53,7 +53,7 @@ class ProductItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
                 product.descriptionForLanguage(locale),
-                style: CustomTheme.textStyles.mainTextStyle(size: 11.sp),
+                style: CustomTheme.textStyles.mainTextStyle(size: 14.h),
                 maxLines: 7,
                 overflow: TextOverflow.visible,
               ),

@@ -11,6 +11,7 @@ import 'package:my_catalog/ui/pages/products_page/widgets/product_item.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductsPage extends StatelessWidget {
   ProductsPage() : super(key: Key('ProductsPage'));
@@ -33,25 +34,29 @@ class ProductsPage extends StatelessWidget {
             ),
           ),
           bottomBar: BottomBar(key: ProductsPageKeys.bottomBar),
-          child: ScrollConfiguration(
-            behavior: CleanBehavior(),
-            child: ListView.builder(
-              key: Key(ProductsPageKeys.listView),
-              physics: ClampingScrollPhysics(),
-              itemCount: vm.products.length,
-              itemBuilder: (BuildContext context, int index) {
-                final ProductModel product = vm.getCurrentProductData(vm.products[index].id);
+          child: Container(margin: EdgeInsets.only(
+            top: 20.sp,
+          ),
+            child: ScrollConfiguration(
+              behavior: CleanBehavior(),
+              child: ListView.builder(
+                key: Key(ProductsPageKeys.listView),
+                physics: ClampingScrollPhysics(),
+                itemCount: vm.products.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final ProductModel product = vm.getCurrentProductData(vm.products[index].id);
 
-                if (product == null) return Container();
+                  if (product == null) return Container();
 
-                return ProductItem(
-                  keyValue: ProductsPageKeys.productItem,
-                  product: product,
-                  textDirection: vm.textDirection,
-                  locale: vm.currentLocale,
-                  onTap: () => vm.navigateToSingleProductPagePage(product.id),
-                );
-              },
+                  return ProductItem(
+                    keyValue: ProductsPageKeys.productItem,
+                    product: product,
+                    textDirection: vm.textDirection,
+                    locale: vm.currentLocale,
+                    onTap: () => vm.navigateToSingleProductPagePage(product.id),
+                  );
+                },
+              ),
             ),
           ),
         );

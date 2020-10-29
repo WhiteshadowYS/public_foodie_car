@@ -76,6 +76,7 @@ class _TermsPageState extends State<TermsPage> {
                           TermsTextBlock(subtitle: vm.terms2Subtitle(vm.selectedLocale), termsText: vm.termsText2),
                         ],
                         options: CarouselOptions(
+                          scrollPhysics: ClampingScrollPhysics(),
                           height: 380.h,
                           enlargeCenterPage: true,
                           enableInfiniteScroll: false,
@@ -91,6 +92,7 @@ class _TermsPageState extends State<TermsPage> {
                       ),
                       height: 12.0.sp,
                       child: ListView.builder(
+                        physics: ClampingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
                         itemCount: 2,

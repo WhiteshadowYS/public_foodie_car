@@ -80,7 +80,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
                     itemBuilder: (BuildContext context, int index) {
                       return ListTileItem(
                         keyValue: '${BottomBarKeys.bottomBarSwitchItem}$index',
-                        title: switchItems[index].name[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()],
+                        title: switchItems[index].name[widget.vm.selectedLocale],
                         iconPath: switchItems[index].iconSvg,
                         placeholderIcon: widget.getPlaceholder(switchItems[index].type),
                         onTap: () => widget.onTap(switchItems[index].type, widget.vm),
