@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/dictionary/dictionary_classes/popup_dictionary.dart';
 import 'package:my_catalog/dictionary/flutter_dictionary.dart';
 import 'package:my_catalog/res/keys.dart';
@@ -9,9 +8,9 @@ import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/models/exit_dialog.dart';
 import 'package:my_catalog/services/dialog_service/widgets/dialog_close_button.dart';
 import 'package:my_catalog/services/dialog_service/widgets/dialog_main_button.dart';
-import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExitDialogWidget extends StatelessWidget {
   final ExitDialog dialogModel;
@@ -36,15 +35,15 @@ class ExitDialogWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 50.0,
+              height: 50.sp,
               child: SVGImages().mcLogo(),
             ),
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.sp),
               child: Text(
                 dictionary.exitText,
                 textAlign: TextAlign.center,
-                style: CustomTheme.textStyles.titleTextStyle(size: 22.0),
+                style: CustomTheme.textStyles.titleTextStyle(size: 22.sp),
               ),
             ),
             DialogMainButton(
@@ -55,7 +54,7 @@ class ExitDialogWidget extends StatelessWidget {
               onTap: () => SystemNavigator.pop(),
             ),
             SizedBox(
-              height: 16.0,
+              height: 16.h,
             ),
             DialogMainButton(
               keyValue: DialogKeys.exitDialogNoButton,

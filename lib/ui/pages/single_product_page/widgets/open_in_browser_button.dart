@@ -17,7 +17,7 @@ class OpenInBrowserButton extends StatelessWidget {
           textScaleFactor: 1.0,
         ),
         child: InkWell(
-          borderRadius: BorderRadius.circular(25.0),
+          borderRadius: BorderRadius.circular(35.0),
           onTap: () async {
             if (await canLaunch(url)) {
               await launch(url);
