@@ -152,7 +152,7 @@ pipeline {
               buildState: 'SUCCESSFUL',
               buildKey: 'test',
               buildName: 'Test',
-              repoSlug: 'flutterodessa/my_catalog',
+              repoSlug: 'my_catalog',
               commitId: '57fb7e5ab9b9526e397cc65e04afb7c251b85eb6'
              )
              script {
