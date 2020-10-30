@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:my_catalog/widgets/cashed_network_image.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'image_view_button.dart';
 
@@ -26,7 +26,8 @@ class _ImageViewerState extends State<ImageViewer> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 260.0,
+     // height: 260.0,
+      width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16.0,
@@ -50,7 +51,7 @@ class _ImageViewerState extends State<ImageViewer> {
                   )
               ],
               options: CarouselOptions(
-                height: 260.0,
+                height: 260.sp,
                 enlargeCenterPage: true,
                 autoPlay: true,
                 viewportFraction: 1,
@@ -58,7 +59,7 @@ class _ImageViewerState extends State<ImageViewer> {
               ),
             ),
             SizedBox(
-              height: 260.0,
+              height: 260.sp,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

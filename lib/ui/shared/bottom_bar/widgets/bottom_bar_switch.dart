@@ -35,7 +35,7 @@ class BottomBarSwitch extends StatefulWidget {
 }
 
 class _BottomBarSwitchState extends State<BottomBarSwitch> {
-  final double _initialHeight = 190.h;
+  final double _initialHeight = 200.h;
   double _height ;
 
   @override
@@ -70,8 +70,8 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SvgPicture.asset(ImageAssets.HANDLE),
+                padding: EdgeInsets.all(12.h),
+                child: SvgPicture.asset(ImageAssets.HANDLE,width: 24.w,),
               ),
               Expanded(
                 child: ScrollConfiguration(
@@ -79,15 +79,12 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
                   child: ListView.builder(
                     physics: ClampingScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding:  EdgeInsets.symmetric(vertical: 8.h),
-                        child: ListTileItem(
-                          keyValue: '${BottomBarKeys.bottomBarSwitchItem}$index',
-                          title: switchItems[index].name[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()],
-                          iconPath: switchItems[index].iconSvg,
-                          placeholderIcon: widget.getPlaceholder(switchItems[index].type),
-                          onTap: () => widget.onTap(switchItems[index].type, widget.vm),
-                        ),
+                      return ListTileItem(
+                        keyValue: '${BottomBarKeys.bottomBarSwitchItem}$index',
+                        title: switchItems[index].name[FlutterDictionaryDelegate.getCurrentLocale.toUpperCase()],
+                        iconPath: switchItems[index].iconSvg,
+                        placeholderIcon: widget.getPlaceholder(switchItems[index].type),
+                        onTap: () => widget.onTap(switchItems[index].type, widget.vm),
                       );
                     },
                     itemCount: switchItems.length,

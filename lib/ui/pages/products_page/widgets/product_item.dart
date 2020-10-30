@@ -47,7 +47,7 @@ class ProductItem extends StatelessWidget {
             ),
             title: Text(
               product.titleForLanguage(locale),
-              style: CustomTheme.textStyles.titleTextStyle(size: 14.sp),
+              style: CustomTheme.textStyles.titleTextStyle(size: 16.h),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 8.0),

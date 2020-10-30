@@ -29,7 +29,7 @@ class SingleProductListItem extends StatelessWidget {
               padding: EdgeInsets.all(12.h),
               child: CircleAvatar(
                 backgroundColor: CustomTheme.colors.primaryColor,
-                radius: radius.sp,
+                radius: radius.h,
                 child: icon,
               ),
             ),

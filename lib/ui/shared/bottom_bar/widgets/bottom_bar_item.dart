@@ -34,7 +34,7 @@ class BottomBarItem extends StatelessWidget {
               color: isSelected ? CustomTheme.colors.primaryColor : Colors.transparent,
               borderRadius: BorderRadius.circular(48.h),
             ),
-            padding: EdgeInsets.all(12.h),
+            padding: EdgeInsets.all(12.w),
             child: SvgPicture.network(
               iconUrl,
               height: 32.h,
