@@ -4,6 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/widgets/dialog_close_button.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/file_preview_bottom_block.dart';
@@ -36,7 +37,8 @@ class FilePreviewDialogWidget extends StatelessWidget {
                   keyValue: DialogKeys.closeFilePreviewDialogButton,
                 ),
               ),
-              Padding(
+              Container(
+             //   height: 240.sp,
                 padding: const EdgeInsets.symmetric(vertical: 23.0),
                 child: _getPreviewFileWidget(dialogModel.file.type, dialogModel.file.file),
               ),

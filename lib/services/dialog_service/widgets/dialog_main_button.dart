@@ -42,9 +42,9 @@ class DialogMainButton extends StatelessWidget {
             splashColor: textColor.withOpacity(0.4),
             highlightColor: textColor.withOpacity(0.2),
             onTap: onTap,
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(50.0),
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:  EdgeInsets.all(8.sp),
               child: Text(
                 title,
                 textAlign: TextAlign.center,

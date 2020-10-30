@@ -39,6 +39,13 @@ class _SplashScreenState extends State<SplashScreen> {
         width: DESIGN_SCREEN_WIDTH,
         allowFontScaling: DESIGN_SCREEN_ALLOW_FONT_SCALING,
       );
+//      if(MediaQuery.of(context).size.width > 600) {
+//        SystemChrome.setPreferredOrientations([
+//          DeviceOrientation.portraitUp,
+//          DeviceOrientation.landscapeLeft,
+//          DeviceOrientation.landscapeRight,
+//        ]);
+//      }
     });
 
     /// This function displays the current version of the application in the console.
@@ -61,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
               style: CustomTheme.textStyles.titleTextStyle(size: 30.0),
             ),
             const SizedBox(height: 20.0),
-            SvgPicture.asset(ImageAssets.LOGO),
+            SvgPicture.asset(ImageAssets.LOGO, height: MediaQuery.of(context).size.height * 0.15,),
             const SizedBox(height: 40.0),
 
             /// Here the download widget is called, he should specify [duration] as a parameter.

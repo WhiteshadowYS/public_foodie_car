@@ -62,9 +62,9 @@ class _MainButtonState extends State<MainButton> {
           child: InkWell(
             key: Key(widget.keyValue),
             onTap: status ? widget.onTap : () {},
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(50.0),
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:  EdgeInsets.all(12.sp),
               child: Text(
                 widget.title,
                 textAlign: TextAlign.center,
