@@ -33,7 +33,7 @@ class ImageViewButton extends StatelessWidget {
             color: CustomTheme.colors.buttons,
             iconSize: 31.sp,
             onPressed: jumpToPage,
-            splashRadius: 20,
+            splashRadius: 16.sp,
           ),
         ),
       ],
