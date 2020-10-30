@@ -67,7 +67,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
               child: Text(
                 _errorText ?? EMPTY_STRING,
                 textAlign: TextAlign.center,
-                style: CustomTheme.textStyles.buttonTextStyle(size: 8.sp),
+                style: CustomTheme.textStyles.buttonTextStyle(size: 10.sp),
               ),
             ),
           ),
