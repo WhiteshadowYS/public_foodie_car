@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/services/dialog_service/dialog_service.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DialogCloseButton extends StatelessWidget {
   final String keyValue;
@@ -17,7 +18,7 @@ class DialogCloseButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(35.0),
         onTap: DialogService.instance.close,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding:  EdgeInsets.all(8.sp),
           child: SVGImages().close(),
         ),
       ),

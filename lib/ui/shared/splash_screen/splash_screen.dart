@@ -39,6 +39,13 @@ class _SplashScreenState extends State<SplashScreen> {
         width: DESIGN_SCREEN_WIDTH,
         allowFontScaling: DESIGN_SCREEN_ALLOW_FONT_SCALING,
       );
+//      if(MediaQuery.of(context).size.width > 600) {
+//        SystemChrome.setPreferredOrientations([
+//          DeviceOrientation.portraitUp,
+//          DeviceOrientation.landscapeLeft,
+//          DeviceOrientation.landscapeRight,
+//        ]);
+//      }
     });
 
     /// This function displays the current version of the application in the console.

@@ -63,50 +63,52 @@ class _TermsPageState extends State<TermsPage> {
                   right: 16.w,
                   top: 50.h,
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ScrollConfiguration(
-                      behavior: CleanBehavior(),
-                      child: CarouselSlider(
-                        carouselController: _carouselController,
-                        items: [
-                          TermsTextBlock(subtitle: vm.termsSubtitle(vm.selectedLocale), termsText: vm.termsText),
-                          // TODO(Daniil): Add terms
-                          TermsTextBlock(subtitle: vm.terms2Subtitle(vm.selectedLocale), termsText: vm.termsText2),
-                        ],
-                        options: CarouselOptions(
-                          scrollPhysics: ClampingScrollPhysics(),
-                          height: 380.h,
-                          enlargeCenterPage: true,
-                          enableInfiniteScroll: false,
-                          viewportFraction: 1,
-                          onPageChanged: onChanged,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ScrollConfiguration(
+                        behavior: CleanBehavior(),
+                        child: CarouselSlider(
+                          carouselController: _carouselController,
+                          items: [
+                            TermsTextBlock(subtitle: vm.termsSubtitle(vm.selectedLocale), termsText: vm.termsText),
+                            // TODO(Daniil): Add terms
+                            TermsTextBlock(subtitle: vm.terms2Subtitle(vm.selectedLocale), termsText: vm.termsText2),
+                          ],
+                          options: CarouselOptions(
+                            scrollPhysics: ClampingScrollPhysics(),
+                            height: 380.h,
+                            enlargeCenterPage: true,
+                            enableInfiniteScroll: false,
+                            viewportFraction: 1,
+                            onPageChanged: onChanged,
+                          ),
                         ),
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: 12.0.h,
-                        bottom: 8.0.h,
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: 12.0.h,
+                          bottom: 8.0.h,
+                        ),
+                        height: 12.0.sp,
+                        child: ListView.builder(
+                          physics: ClampingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemCount: 2,
+                          itemBuilder: (BuildContext context, int i) {
+                            return circleWidget(i);
+                          },
+                        ),
                       ),
-                      height: 12.0.sp,
-                      child: ListView.builder(
-                        physics: ClampingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemCount: 2,
-                        itemBuilder: (BuildContext context, int i) {
-                          return circleWidget(i);
-                        },
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 12.0.h),
+                        child: const Divider(thickness: 1.0),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 12.0.h),
-                      child: const Divider(thickness: 1.0),
-                    ),
-                    if (!widget.isReadOnly) TermsAcceptBlock(vm: vm),
-                  ],
+                      if (!widget.isReadOnly) TermsAcceptBlock(vm: vm),
+                    ],
+                  ),
                 ),
               ),
             );

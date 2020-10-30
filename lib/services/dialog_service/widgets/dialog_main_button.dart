@@ -44,7 +44,7 @@ class DialogMainButton extends StatelessWidget {
             onTap: onTap,
             borderRadius: BorderRadius.circular(50.0),
             child: Padding(
-              padding:  EdgeInsets.all(12.sp),
+              padding:  EdgeInsets.all(8.sp),
               child: Text(
                 title,
                 textAlign: TextAlign.center,
