@@ -48,7 +48,7 @@ class CatalogItem extends StatelessWidget {
                   imageUrl: catalog.imageLink ?? '',
                   height: 172.sp,
                   width: double.infinity,
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.fill,
                 ),
               ),
               const SizedBox(height: 14.0),
