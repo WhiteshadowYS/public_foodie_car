@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
               style: CustomTheme.textStyles.titleTextStyle(size: 30.0),
             ),
             const SizedBox(height: 20.0),
-            SvgPicture.asset(ImageAssets.LOGO),
+            SvgPicture.asset(ImageAssets.LOGO, height: MediaQuery.of(context).size.height * 0.15,),
             const SizedBox(height: 40.0),
 
             /// Here the download widget is called, he should specify [duration] as a parameter.
