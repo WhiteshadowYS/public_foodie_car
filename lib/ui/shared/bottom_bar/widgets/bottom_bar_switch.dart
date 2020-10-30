@@ -70,7 +70,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: SvgPicture.asset(ImageAssets.HANDLE),
+                child: SvgPicture.asset(ImageAssets.HANDLE,),
               ),
               Expanded(
                 child: ScrollConfiguration(

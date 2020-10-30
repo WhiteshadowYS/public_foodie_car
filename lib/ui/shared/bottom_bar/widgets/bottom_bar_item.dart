@@ -38,12 +38,12 @@ class BottomBarItem extends StatelessWidget {
             child: SvgPicture.network(
               iconUrl,
               height: 28.sp,
-              color: isSelected ? CustomTheme.colors.footerIcons : CustomTheme.colors.footerIconsSelected,
+              color: isSelected ? CustomTheme.colors.footerIconsSelected : CustomTheme.colors.footerIcons,
               placeholderBuilder: (BuildContext context) {
                 return SvgPicture.asset(
                   placeholderIcon,
                   height: 28.sp,
-                  color: isSelected ? CustomTheme.colors.background : CustomTheme.colors.primaryColor,
+                  color: isSelected ? CustomTheme.colors.footerIcons : CustomTheme.colors.footerIconsSelected,
                 );
               },
             ),

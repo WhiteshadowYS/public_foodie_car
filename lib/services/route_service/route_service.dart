@@ -36,7 +36,7 @@ class RouteService {
 
   NavigateToAction pop() {
     if (_isDialogDisplayed()) return null;
-    if (_history.isEmpty) return null;
+    if (_history == null || _history.isEmpty) return null;
 
     _history.removeLast();
 

@@ -68,7 +68,7 @@ class _ClientDropdownState extends State<ClientDropdown> {
           ),
           Container(color: Colors.black26, height: 1.0),
           Container(
-            height: 240,
+            height: 240.0,
             padding: const EdgeInsets.symmetric(
               horizontal: 20.0,
             ),
@@ -81,17 +81,12 @@ class _ClientDropdownState extends State<ClientDropdown> {
                     widget.dialog.list[index][widget.dialog.printedParam] == null ||
                     widget.dialog.list[index][widget.dialog.printedParam].isEmpty ||
                     widget.dialog.list[index][widget.dialog.printedParam] == ' ') {
-                  return Container();
+                  return const SizedBox();
                 }
 
                 if (widget.dialog.list.length - 1 == index) {
                   return InkWell(
-                    onTap: () {
-                      setState(() {
-                        isForceClose = false;
-                      });
-                      widget.dialog.onItemSelected(index);
-                    },
+                    onTap: () => _onTap(index),
                     child: Container(
                       height: 45.0,
                       width: double.infinity,
@@ -108,12 +103,7 @@ class _ClientDropdownState extends State<ClientDropdown> {
                 return Column(
                   children: <Widget>[
                     InkWell(
-                      onTap: () {
-                        setState(() {
-                          isForceClose = false;
-                        });
-                        widget.dialog.onItemSelected(index);
-                      },
+                      onTap: () => _onTap(index),
                       child: Container(
                         height: 45.0,
                         width: double.infinity,
@@ -134,5 +124,12 @@ class _ClientDropdownState extends State<ClientDropdown> {
         ],
       ),
     );
+  }
+
+  void _onTap(int index) {
+    setState(() {
+      isForceClose = false;
+    });
+    widget.dialog.onItemSelected(index);
   }
 }

@@ -53,7 +53,7 @@ class ListTileItem extends StatelessWidget {
                 ),
                 trailing: Transform.rotate(
                   angle: directionality == TextDirection.rtl ? pi : 0,
-                  child: Icon(Icons.keyboard_arrow_right),
+                  child: Icon(Icons.keyboard_arrow_right, size: 25.sp, color: CustomTheme.colors.footerIcons),
                 ),
               ),
               Container(
