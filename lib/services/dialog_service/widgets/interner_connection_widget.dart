@@ -6,6 +6,7 @@ import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/models/internet_connection_dialog.dart';
 import 'package:my_catalog/services/dialog_service/widgets/dialog_main_button.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InternetConnectionWidget extends StatelessWidget {
   final InternetConnection dialogModel;
@@ -23,7 +24,7 @@ class InternetConnectionWidget extends StatelessWidget {
           children: <Widget>[
             Icon(
               Icons.signal_cellular_connected_no_internet_4_bar,
-              size: 40,
+              size: 40.sp,
               color: CustomTheme.colors.primaryColor,
             ),
             Container(
@@ -31,7 +32,7 @@ class InternetConnectionWidget extends StatelessWidget {
               child: Text(
                 dictionary.noInternet,
                 textAlign: TextAlign.center,
-                style: CustomTheme.textStyles.titleTextStyle(size: 22.0),
+                style: CustomTheme.textStyles.titleTextStyle(size: 22.sp),
               ),
             ),
             DialogMainButton(

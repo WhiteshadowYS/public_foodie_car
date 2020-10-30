@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
-import 'package:my_catalog/res/app_styles/app_colors.dart';
 import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'bottom_bar_item.dart';
 

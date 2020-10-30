@@ -68,57 +68,54 @@ class _FileViewButtonState extends State<FileViewButton> with SingleTickerProvid
           },
           child: Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 5.0),
-                    if (widget.file.type == FileTypes.VIDEO_TYPE)
-                      ListTile(
-                        leading: CircleAvatar(
-                          radius: 24,
-                          backgroundColor: CustomTheme.colors.primaryColor,
-                          child: Icon(Icons.videocam, color: CustomTheme.colors.background, size: 28),
-                        ),
-                        title: Text(
-                          'Watch video "${widget.file.nameForLanguage(widget.locale)}"',
-                          style: CustomTheme.textStyles.titleTextStyle(size: 14.h),
-                        ),
-                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14.h),
+              Column(
+                children: [
+                  const SizedBox(height: 5.0),
+                  if (widget.file.type == FileTypes.VIDEO_TYPE)
+                    ListTile(
+                      leading: CircleAvatar(
+                        radius: 24.h,
+                        backgroundColor: CustomTheme.colors.primaryColor,
+                        child: Icon(Icons.videocam, color: CustomTheme.colors.background, size: 28.h),
                       ),
-                    if (widget.file.type == FileTypes.IMAGE_TYPE)
-                      ListTile(
-                        leading: CircleAvatar(
-                          radius: 24,
-                          backgroundColor: CustomTheme.colors.primaryColor,
-                          child: Icon(Icons.image, color: CustomTheme.colors.background, size: 28),
-                        ),
-                        title: Text(
-                          'See pictures "${widget.file.nameForLanguage(widget.locale)}"',
-                          style: CustomTheme.textStyles.titleTextStyle(size: 14.h),
-                        ),
-                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14.h),
+                      title: Text(
+                        'Watch video "${widget.file.nameForLanguage(widget.locale)}"',
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14.h),
                       ),
-                    if (widget.file.type == FileTypes.PDF_TYPE)
-                      ListTile(
-                        leading: CircleAvatar(
-                          radius: 24,
-                          backgroundColor: CustomTheme.colors.primaryColor,
-                          child: Icon(Icons.picture_as_pdf, color: CustomTheme.colors.background, size: 28),
-                        ),
-                        title: Text(
-                          'Check documents "${widget.file.nameForLanguage(widget.locale)}"',
-                          style: CustomTheme.textStyles.titleTextStyle(size: 14.h),
-                        ),
-                        trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14.h),
-                      ),
-                    const SizedBox(height: 10.0),
-                    Container(
-                      height: 0.5,
-                      color: Colors.grey.withOpacity(0.3),
+                      trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14.h),
                     ),
-                  ],
-                ),
+                  if (widget.file.type == FileTypes.IMAGE_TYPE)
+                    ListTile(
+                      leading: CircleAvatar(
+                        radius: 24.h,
+                        backgroundColor: CustomTheme.colors.primaryColor,
+                        child: Icon(Icons.image, color: CustomTheme.colors.background, size: 28.h),
+                      ),
+                      title: Text(
+                        'See pictures "${widget.file.nameForLanguage(widget.locale)}"',
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14.h),
+                      ),
+                      trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14.h),
+                    ),
+                  if (widget.file.type == FileTypes.PDF_TYPE)
+                    ListTile(
+                      leading: CircleAvatar(
+                        radius: 24.h,
+                        backgroundColor: CustomTheme.colors.primaryColor,
+                        child: Icon(Icons.picture_as_pdf, color: CustomTheme.colors.background, size: 28.h),
+                      ),
+                      title: Text(
+                        'Check documents "${widget.file.nameForLanguage(widget.locale)}"',
+                        style: CustomTheme.textStyles.titleTextStyle(size: 14.h),
+                      ),
+                      trailing: Icon(Icons.arrow_forward_ios, color: CustomTheme.colors.accentColor, size: 14.h),
+                    ),
+                  const SizedBox(height: 10.0),
+                  Container(
+                    height: 0.5,
+                    color: Colors.grey.withOpacity(0.3),
+                  ),
+                ],
               ),
               if (!isOpen)
                 ClipRRect(

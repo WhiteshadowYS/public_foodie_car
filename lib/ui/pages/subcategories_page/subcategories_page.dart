@@ -59,7 +59,7 @@ class SubcategoriesPage extends StatelessWidget {
       if (subcategory == null) return null;
 
       return MainGridItem(
-        keyValue: CategoriesPageKeys.categoryItem + '${subcategory.id}',
+        keyValue: SubCategoriesPageKeys.subcategoryItem + '${subcategory.id}',
         title: subcategory.titleForLanguage(vm.currentLocale),
         imageUrl: subcategory.imageLink,
         index: index,
