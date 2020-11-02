@@ -39,8 +39,8 @@ class ProductItem extends StatelessWidget {
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(85.0),
               child: CachedImage(
-                width: 55,
-                height: 55,
+                width: 55.0,
+                height: 55.0,
                 key: Key(key.toString() + 'CachedImage'),
                 imageUrl: product.imageLink ?? EMPTY_STRING,
               ),

@@ -9,7 +9,6 @@ import 'package:my_catalog/models/models/storage_model/data/data/subcategory_mod
 
 part 'second_data_model.g.dart';
 
-// TODO(Yuri): Add comment for this class.
 @JsonSerializable(
   fieldRename: FieldRename.snake,
   checked: true,

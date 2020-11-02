@@ -7,7 +7,6 @@ import 'package:my_catalog/models/interfaces/i_dto.dart';
 
 part 'subcategory_model.g.dart';
 
-// TODO(Yuri): Add comment for this class.
 @JsonSerializable(
   fieldRename: FieldRename.snake,
   checked: true,

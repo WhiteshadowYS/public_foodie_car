@@ -5,13 +5,11 @@ import 'package:my_catalog/models/models/storage_model/storage_model.dart';
 
 part 'saved_storage_model.g.dart';
 
-// TODO(Yuri): Add comment for this class.
 @JsonSerializable(
   fieldRename: FieldRename.snake,
   checked: true,
   explicitToJson: true,
 )
-
 /// The class [SavedStorageModel] is a model that stores data about the [SavedStorageModel].
 /// The purpose of the [SavedStorageModel] class is to store all information including, current version, storage and locale.
 /// For this class, [JsonSerializable] was applied, to work with json.
