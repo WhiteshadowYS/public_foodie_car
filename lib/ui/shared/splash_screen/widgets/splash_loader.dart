@@ -32,7 +32,7 @@ class SplashLoader extends StatefulWidget {
   SplashLoader({
     @required this.duration,
     this.strokeWidth = 0.0,
-    this.height = 2.0,
+    this.height = 2.5,
     this.radius = 11.0,
     this.padding = const EdgeInsets.symmetric(horizontal: 70.0),
     this.color,

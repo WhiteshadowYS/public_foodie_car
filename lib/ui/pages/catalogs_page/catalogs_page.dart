@@ -48,9 +48,6 @@ class CatalogsPage extends StatelessWidget {
                     behavior: CleanBehavior(),
                     child: ListView.builder(
                       physics: ClampingScrollPhysics(),
-                      padding: EdgeInsets.symmetric(
-                        vertical: 24.0,
-                      ),
                       itemCount: vm.catalogs.length,
                       itemBuilder: (BuildContext context, int index) {
                         final CatalogModel catalog = vm.getCurrentCatalogData(vm.catalogs[index].id);

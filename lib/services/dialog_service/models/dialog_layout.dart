@@ -42,6 +42,7 @@ class _DialogLayoutState extends State<DialogLayout> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
+   final bool isTablet = MediaQuery.of(context).size.width > 640;
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -56,10 +57,10 @@ class _DialogLayoutState extends State<DialogLayout> with SingleTickerProviderSt
             ),
             child: Center(
               child: Container(
-                margin: widget.margin ?? EdgeInsets.symmetric(horizontal: 16.sp),
+                margin: widget.margin ?? EdgeInsets.symmetric(horizontal: isTablet? 32.sp : 16.sp),
                 padding: widget.margin ??  EdgeInsets.symmetric(vertical: 8.sp),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(12.0),
                   color: widget.background ?? CustomTheme.colors.popupBackground,
                 ),
                 child: widget.child,

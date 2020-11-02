@@ -22,9 +22,6 @@ class InfoBlock extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 16.h,
-          ),
-          SizedBox(
             width: 35.sp,
             height: 35.sp,
             child: info.logoImage != null &&

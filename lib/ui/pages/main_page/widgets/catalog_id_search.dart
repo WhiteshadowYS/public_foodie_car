@@ -53,7 +53,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
             duration: hasError ? MILLISECONDS_500 : MILLISECONDS_300,
             alignment: Alignment.bottomCenter,
             margin: const EdgeInsets.symmetric(horizontal: 16.0),
-            width: 150.0,
+            width: 150.sp,
             height: 22.0,
             decoration: BoxDecoration(
               color: CustomTheme.colors.errorColor.withOpacity(hasError ? 1.0 : 0.0),
@@ -67,7 +67,7 @@ class _CatalogIdSearchTextFieldState extends State<CatalogIdSearchTextField> {
               child: Text(
                 _errorText ?? EMPTY_STRING,
                 textAlign: TextAlign.center,
-                style: CustomTheme.textStyles.buttonTextStyle(size: 8.sp),
+                style: CustomTheme.textStyles.buttonTextStyle(size: 10.sp),
               ),
             ),
           ),
