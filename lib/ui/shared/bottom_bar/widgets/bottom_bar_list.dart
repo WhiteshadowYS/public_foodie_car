@@ -51,11 +51,12 @@ class _BottomBarListState extends State<BottomBarList> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: CustomTheme.colors.footerBackground),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
         color: CustomTheme.colors.footerBackground,
       ),
       height: widget.height,
       child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: widget.vm.footerButtons.map((item) {
             return BottomBarItem(
               key: BottomBarKeys.footerButtonKey+'${widget.vm.footerButtons.indexOf(item)}',

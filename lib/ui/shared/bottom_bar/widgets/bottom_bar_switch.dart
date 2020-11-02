@@ -50,6 +50,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
       child: AnimatedContainer(
         duration: MILLISECONDS_300,
         height: widget.isSwitch ? _height : 0.0,
+        width: 350,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(20.0),

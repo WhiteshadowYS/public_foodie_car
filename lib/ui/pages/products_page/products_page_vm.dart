@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_product_model.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/store/shared/dialog_state/dialog_selector.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:my_catalog/store/shared/storage/storage_data_selector.dart';
 import 'package:my_catalog/store/shared/storage/storage_function_selector.dart';
@@ -20,17 +21,17 @@ class ProductsPageVM {
   final TextDirection textDirection;
   final String currentLocale;
   final List<InfoProductModel> products;
-
+  final ProductModel product;
   final void Function(int) navigateToSingleProductPagePage;
   final String Function(String) productsPageTitle;
   final String Function(String) backButtonText;
   final ProductModel Function(int) getCurrentProductData;
-
-  const ProductsPageVM({
+  final void Function(List<Widget> gallery, int currentIndex) showImage;
+  const ProductsPageVM({ @required this.showImage,
     @required this.products,
     @required this.textDirection,
     @required this.currentLocale,
-    @required this.backButtonText,
+    @required this.backButtonText, @required this.product,
     @required this.productsPageTitle,
     @required this.getCurrentProductData,
     @required this.navigateToSingleProductPagePage,
@@ -40,12 +41,13 @@ class ProductsPageVM {
     return ProductsPageVM(
       /// StorageDataSelector
       products: StorageDataSelector.getInfoProducts(store),
-
+      showImage: DialogSelectors.getShowImageViewDialogFunction(store),
       /// StorageLanguageSelector
       textDirection: StorageLanguageSelector.selectedLocaleDirection(store),
       currentLocale: StorageLanguageSelector.getSelectedLocale(store),
       backButtonText: StorageLanguageSelector.getBackButtonText(store),
       productsPageTitle: StorageLanguageSelector.getProductsTitleText(store),
+      product: StorageFunctionSelector.getCurrentProductModelFunction(store)(store.state.storageState.openedProductId),
 
       /// StorageFunctionSelector
       getCurrentProductData: StorageFunctionSelector.getCurrentProductModelFunction(store),

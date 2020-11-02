@@ -16,7 +16,7 @@ class BottomBar extends StatefulWidget {
 
   BottomBar({
     @required String key,
-    this.height = 100.0,
+    this.height = 88.0,
   }) : super(key: Key(key));
 
   @override
@@ -47,7 +47,7 @@ class _BottomBarState extends State<BottomBar> {
             BottomBarList(
               keyValue: BottomBarKeys.bottomBarList,
               onTap: _onTap,
-              height: (widget.height).h,
+              height: (widget.height),
               vm: vm,
               isSwitch: isSwitch,
               getPlaceholder: _placeholderIcon,

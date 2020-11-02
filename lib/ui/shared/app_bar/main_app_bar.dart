@@ -32,7 +32,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        height: height,
+        height: height.h,
         width: double.infinity,
         color: CustomTheme.colors.background,
         alignment: Alignment.center,
