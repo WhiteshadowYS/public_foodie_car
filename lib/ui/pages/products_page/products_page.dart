@@ -1,8 +1,8 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
@@ -10,18 +10,11 @@ import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
 import 'package:my_catalog/ui/pages/products_page/products_page_vm.dart';
 import 'package:my_catalog/ui/pages/products_page/widgets/product_item.dart';
-import 'package:my_catalog/ui/pages/single_product_page/single_product_page.dart';
-import 'package:my_catalog/ui/pages/single_product_page/single_product_page_vm.dart';
-import 'package:my_catalog/ui/pages/single_product_page/widgets/file_view_button.dart';
-import 'package:my_catalog/ui/pages/single_product_page/widgets/image_viewer.dart';
-import 'package:my_catalog/ui/pages/single_product_page/widgets/single_product_list_item.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/single_product_page_widget.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
 import 'package:my_catalog/ui/shared/svg_images.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_catalog/widgets/cashed_network_image.dart';
 
 class ProductsPage extends StatefulWidget {
   ProductsPage() : super(key: Key('ProductsPage'));
