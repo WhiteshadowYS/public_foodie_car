@@ -25,6 +25,12 @@ class _ImageViewerState extends State<ImageViewer> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLargeScreen = false;
+    if (MediaQuery.of(context).size.width > 600) {
+      isLargeScreen = true;
+    } else {
+      isLargeScreen = false;
+    }
     return SizedBox(
      // height: 260.0,
       width: double.infinity,
@@ -51,7 +57,7 @@ class _ImageViewerState extends State<ImageViewer> {
                   )
               ],
               options: CarouselOptions(
-                height: 260.sp,
+                height: isLargeScreen ? 120.sp : 260.sp,
                 enlargeCenterPage: true,
                 autoPlay: true,
                 viewportFraction: 1,
@@ -59,7 +65,7 @@ class _ImageViewerState extends State<ImageViewer> {
               ),
             ),
             SizedBox(
-              height: 260.sp,
+              height: isLargeScreen ? 120.sp : 260.sp ,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

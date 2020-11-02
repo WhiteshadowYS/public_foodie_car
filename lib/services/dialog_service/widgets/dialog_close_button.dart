@@ -15,10 +15,10 @@ class DialogCloseButton extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(35.0),
+        borderRadius: BorderRadius.circular(55.0),
         onTap: DialogService.instance.close,
         child: Padding(
-          padding:  EdgeInsets.all(8.sp),
+          padding:  EdgeInsets.all(4.sp),
           child: SVGImages().close(),
         ),
       ),

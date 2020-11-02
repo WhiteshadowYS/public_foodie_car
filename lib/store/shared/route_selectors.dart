@@ -77,6 +77,8 @@ class RouteSelectors {
     };
   }
 
+
+
   static void Function(int) gotoSingleProductPage(Store<AppState> store) {
     return (int id) {
       store.dispatch(SetOpenedProductIdAction(id: id));

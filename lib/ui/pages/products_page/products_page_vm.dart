@@ -21,36 +21,37 @@ class ProductsPageVM {
   final TextDirection textDirection;
   final String currentLocale;
   final List<InfoProductModel> products;
-  final ProductModel product;
   final void Function(int) navigateToSingleProductPagePage;
+  final void Function(int) setOpenedProduct;
   final String Function(String) productsPageTitle;
   final String Function(String) backButtonText;
   final ProductModel Function(int) getCurrentProductData;
-  final void Function(List<Widget> gallery, int currentIndex) showImage;
-  const ProductsPageVM({ @required this.showImage,
+
+  const ProductsPageVM({
     @required this.products,
     @required this.textDirection,
     @required this.currentLocale,
-    @required this.backButtonText, @required this.product,
+    @required this.backButtonText,
     @required this.productsPageTitle,
     @required this.getCurrentProductData,
     @required this.navigateToSingleProductPagePage,
+    @required this.setOpenedProduct,
   });
 
   static ProductsPageVM fromStore(Store<AppState> store) {
     return ProductsPageVM(
       /// StorageDataSelector
       products: StorageDataSelector.getInfoProducts(store),
-      showImage: DialogSelectors.getShowImageViewDialogFunction(store),
+
       /// StorageLanguageSelector
       textDirection: StorageLanguageSelector.selectedLocaleDirection(store),
       currentLocale: StorageLanguageSelector.getSelectedLocale(store),
       backButtonText: StorageLanguageSelector.getBackButtonText(store),
       productsPageTitle: StorageLanguageSelector.getProductsTitleText(store),
-      product: StorageFunctionSelector.getCurrentProductModelFunction(store)(store.state.storageState.openedProductId),
 
       /// StorageFunctionSelector
       getCurrentProductData: StorageFunctionSelector.getCurrentProductModelFunction(store),
+      setOpenedProduct: StorageFunctionSelector.setOpenedProductFunction(store),
 
       /// Another
       navigateToSingleProductPagePage: RouteSelectors.gotoSingleProductPage(store),

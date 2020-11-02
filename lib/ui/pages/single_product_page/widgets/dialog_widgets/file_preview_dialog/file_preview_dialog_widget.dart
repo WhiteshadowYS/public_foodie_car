@@ -38,8 +38,9 @@ class FilePreviewDialogWidget extends StatelessWidget {
                 ),
               ),
               Container(
-             //   height: 240.sp,
-                padding: const EdgeInsets.symmetric(vertical: 23.0),
+                alignment: Alignment.center,
+               // height: 240.sp,
+                padding:  EdgeInsets.symmetric(vertical: 8.sp),
                 child: _getPreviewFileWidget(dialogModel.file.type, dialogModel.file.file),
               ),
               FilePreviewBottomBlock(

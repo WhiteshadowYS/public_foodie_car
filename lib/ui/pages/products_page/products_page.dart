@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_catalog/res/app_styles/app_colors.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -13,22 +17,35 @@ import 'package:my_catalog/ui/pages/single_product_page/single_product_page_vm.d
 import 'package:my_catalog/ui/pages/single_product_page/widgets/file_view_button.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/image_viewer.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/single_product_list_item.dart';
+import 'package:my_catalog/ui/pages/single_product_page/widgets/single_product_page_widget.dart';
 import 'package:my_catalog/ui/shared/app_bar/main_app_bar.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar.dart';
+import 'package:my_catalog/ui/shared/svg_images.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/widgets/cashed_network_image.dart';
 
-class ProductsPage extends StatelessWidget {
+class ProductsPage extends StatefulWidget {
   ProductsPage() : super(key: Key('ProductsPage'));
-  bool isLargeScreen = false;
+
+  @override
+  _ProductsPageState createState() => _ProductsPageState();
+}
+
+class _ProductsPageState extends State<ProductsPage> {
+  bool _isProductSelected = false;
+  bool _shouldShowList = true;
+
   @override
   Widget build(BuildContext context) {
-    if(MediaQuery.of(context).size.width > 600) {
+    bool isLargeScreen = false;
+    if (MediaQuery.of(context).size.width > 600) {
       isLargeScreen = true;
     } else {
       isLargeScreen = false;
     }
+    final double listWidth =
+        isLargeScreen ? (MediaQuery.of(context).size.width - 25.5) / 2.5 : MediaQuery.of(context).size.width;
     return StoreConnector<AppState, ProductsPageVM>(
       converter: ProductsPageVM.fromStore,
       builder: (BuildContext context, ProductsPageVM vm) {
@@ -44,130 +61,71 @@ class ProductsPage extends StatelessWidget {
             ),
           ),
           bottomBar: BottomBar(key: ProductsPageKeys.bottomBar),
-          child: Container(margin: EdgeInsets.only(
-            top: 0.sp,
-          ),
-            child: Row(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width /2.5,
-                  child: ScrollConfiguration(
-                    behavior: CleanBehavior(),
-                    child: ListView.builder(
-                      key: Key(ProductsPageKeys.listView),
-                      physics: ClampingScrollPhysics(),
-                      itemCount: vm.products.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final ProductModel product = vm.getCurrentProductData(vm.products[index].id);
-
-                        if (product == null) return Container();
-
-                        return ProductItem(
-                          keyValue: ProductsPageKeys.productItem,
-                          product: product,
-                          textDirection: vm.textDirection,
-                          locale: vm.currentLocale,
-                          onTap: () => vm.navigateToSingleProductPagePage(product.id),
-                        );
-                      },
-                    ),
+          child: Row(
+            children: [
+              AnimatedContainer(
+                duration: MILLISECONDS_300,
+                width: _shouldShowList ? listWidth : 0,
+                child: ScrollConfiguration(
+                  behavior: CleanBehavior(),
+                  child: ListView.builder(
+                    key: Key(ProductsPageKeys.listView),
+                    physics: ClampingScrollPhysics(),
+                    itemCount: vm.products.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final ProductModel product = vm.getCurrentProductData(vm.products[index].id);
+                      if (product == null) return Container();
+                      return ProductItem(
+                        keyValue: ProductsPageKeys.productItem,
+                        product: product,
+                        textDirection: vm.textDirection,
+                        locale: vm.currentLocale,
+                        onTap: () {
+                          if (isLargeScreen) {
+                            vm.setOpenedProduct(product.id);
+                            _isProductSelected = true;
+                          } else {
+                            vm.navigateToSingleProductPagePage(product.id);
+                          }
+                        },
+                      );
+                    },
                   ),
                 ),
-                Container(height: double.infinity, width: 2.5, color:  Colors.blue,),
-                isLargeScreen ? Container(
-                  width:  (MediaQuery.of(context).size.width -2.5) / 1.7,
-                  child: StoreConnector<AppState, SingleProductPageVM>(
-                      converter: SingleProductPageVM.fromStore,
-                      builder: (BuildContext context, SingleProductPageVM vm) {
-                      return CleanedListView(
-                        keyValue: SingleProductKeys.listView,
-                        children: [
-                          const SizedBox(height: 20.0),
-                          Text(
-                            vm.product.titleForLanguage(vm.currentLocale),
-                            textAlign: TextAlign.center,
-                            style: CustomTheme.textStyles.accentTextStyle(size: 22.sp, fontWeight: FontWeight.w600),
-                          ),
-                          SizedBox(height: 16.sp),
-                          ImageViewer(
-                            showGallery: vm.showImage,
-                            keyValue: SingleProductKeys.gallery,
-                            cachedImagesGalery: buildCachedImagesList(vm.product.galleryImagesLinks),
-                          ),
-                          SizedBox(height: 16.sp),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.0),
-                            child: Text(
-                              vm.descriptionText(
-                                vm.currentLocale,
-                              ),
-                              style: CustomTheme.textStyles.titleTextStyle(size: 15.sp),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              vm.product.descriptionForLanguage(vm.currentLocale),
-                              style: CustomTheme.textStyles.mainTextStyle(size: 15.h),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          for (String point in vm.product.pointsForLanguage(vm.currentLocale))
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 4.sp),
-                              child: SingleProductListItem(
-                                keyValue: 'SingleProductListItem${vm.product.pointsForLanguage(vm.currentLocale).indexOf(point)}',
-                                title: point,
-                              ),
-                            ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.0),
-                            child: Text(
-                              vm.product.description2ForLanguage(vm.currentLocale),
-                              style: CustomTheme.textStyles.mainTextStyle(size: 15.h),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          SizedBox(
-                            height: vm.files.length * 80.0,
-                            child: ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: vm.files.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return FileViewButton(
-                                  keyValue: SingleProductKeys.fileItem + index.toString(),
-                                  file: vm.files[index],
-                                  locale: vm.currentLocale,
-                                  onTap: () => vm.filePreview(vm.files[index]),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                      );
-                    }
-                  ),
-                ) : Container(),
-              ],
-            ),
+              ),
+              if (isLargeScreen) ...largeScreenProduct(isProductSelected: _isProductSelected),
+            ],
           ),
         );
       },
     );
   }
-  List<Widget> buildCachedImagesList(List<String> images) {
-    List<Widget> cachedImagesList = [];
-    for (String image in images) {
-      cachedImagesList.add(
-        CachedImage(
-          key: Key(SingleProductKeys.gallery + 'CachedImage'),
-          imageUrl: image ?? '',
-          fit: BoxFit.contain,
-        ),
-      );
-    }
 
-    return cachedImagesList;
+  List<Widget> largeScreenProduct({bool isProductSelected}) {
+    return [
+      Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            _shouldShowList = !_shouldShowList;
+            setState(() {});
+          },
+          child: Transform.rotate(
+            angle: _shouldShowList ? 0.0 : pi,
+            child: Container(
+              height: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: SVGImages().backArrow(),
+            ),
+          ),
+        ),
+      ),
+      Container(
+        height: double.infinity,
+        width: 1.5,
+        color: Colors.grey.withOpacity(0.4),
+      ),
+      if (isProductSelected) Expanded(child: SingleProductPageWidget()) else SizedBox(),
+    ];
   }
 }
