@@ -12,7 +12,6 @@ import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/splash_screen/splash_screen.dart';
 import 'package:redux/redux.dart';
 
-// TODO(Yuri): Add comment for this class.
 /// The [Application] class, in which the creation of [MaterialApp] takes place.
 /// It takes [store] as a parameter, which is initialized in [main].
 /// As [key], we set the string, "Application", which is inside [ApplicationKeys].

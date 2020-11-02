@@ -50,15 +50,7 @@ class _CatalogListState extends State<StoresList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-     //decoration: BoxDecoration(
-     //  border: Border.symmetric(
-     //    vertical: BorderSide(
-     //      width: 0.5,
-     //      color: CustomTheme.colors.accentColor.withOpacity(0.4),
-     //    ),
-     //  ),
-     //),
+    return SizedBox(
       height: 180.0,
       child: ListView.builder(
         physics: ClampingScrollPhysics(),

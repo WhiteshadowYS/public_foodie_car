@@ -7,7 +7,6 @@ import 'package:redux/redux.dart';
 
 ///[MainLayoutVM] view model for MainLayout
 ///[doRoute] - void function with params: [NavigateToAction]
-
 class MainLayoutVM {
   final void Function(NavigateToAction) doRoute;
   final TextDirection direction;

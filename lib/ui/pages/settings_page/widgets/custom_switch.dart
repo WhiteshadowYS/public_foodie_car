@@ -22,18 +22,10 @@ class CustomSwitch extends StatefulWidget {
 }
 
 class _CustomSwitchState extends State<CustomSwitch> {
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (widget.callBack != null) {
-          setState(() {
-            widget.value = !widget.value;
-            if (widget.value != null) widget.callBack(widget.value);
-          });
-        }
-      },
+      onTap: onTap,
       child: AnimatedContainer(
         duration: Duration(milliseconds: 200),
         curve: Curves.easeIn,
@@ -42,21 +34,15 @@ class _CustomSwitchState extends State<CustomSwitch> {
         decoration: BoxDecoration(
           border: Border.all(
             width: 0.0,
-            color: widget.value
-                ? widget.activeColor
-                : widget.inactiveColor,
+            color: widget.value ? widget.activeColor : widget.inactiveColor,
           ),
           borderRadius: BorderRadius.circular(50.0),
-          color: widget.value
-              ? widget.activeColor
-              : widget.inactiveColor,
+          color: widget.value ? widget.activeColor : widget.inactiveColor,
         ),
         child: Container(
           padding: EdgeInsets.all(4.0),
           child: Row(
-            mainAxisAlignment: !widget.value
-                ? MainAxisAlignment.start
-                : MainAxisAlignment.end,
+            mainAxisAlignment: !widget.value ? MainAxisAlignment.start : MainAxisAlignment.end,
             children: <Widget>[
               Container(
                 height: 22.h,
@@ -71,5 +57,14 @@ class _CustomSwitchState extends State<CustomSwitch> {
         ),
       ),
     );
+  }
+
+  void onTap() {
+    if (widget.callBack != null) {
+      setState(() {
+        widget.value = !widget.value;
+        if (widget.value != null) widget.callBack(widget.value);
+      });
+    }
   }
 }

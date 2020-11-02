@@ -28,7 +28,6 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
-
     return StoreConnector<AppState, BottomBarVM>(
       converter: BottomBarVM.fromStore,
       builder: (BuildContext context, vm) {
@@ -64,7 +63,6 @@ class _BottomBarState extends State<BottomBar> {
     });
   }
 
-  // TODO(Daniil): Fix it
   String _placeholderIcon(String type) {
     switch (type) {
       case PageTypes.HOME_TYPE:
@@ -78,6 +76,7 @@ class _BottomBarState extends State<BottomBar> {
       case PageTypes.SWITCH_TYPE:
         return ImageAssets.SWITCH_ICON;
     }
+    return '';
   }
 
   void _onTap(String type, BottomBarVM vm) {

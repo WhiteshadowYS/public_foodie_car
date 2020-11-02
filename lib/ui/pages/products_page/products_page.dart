@@ -34,9 +34,10 @@ class ProductsPage extends StatelessWidget {
             ),
           ),
           bottomBar: BottomBar(key: ProductsPageKeys.bottomBar),
-          child: Container(margin: EdgeInsets.only(
-            top: 20.sp,
-          ),
+          child: Container(
+            margin: EdgeInsets.only(
+              top: 20.sp,
+            ),
             child: ScrollConfiguration(
               behavior: CleanBehavior(),
               child: ListView.builder(
@@ -46,7 +47,7 @@ class ProductsPage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   final ProductModel product = vm.getCurrentProductData(vm.products[index].id);
 
-                  if (product == null) return Container();
+                  if (product == null) return SizedBox();
 
                   return ProductItem(
                     keyValue: ProductsPageKeys.productItem,

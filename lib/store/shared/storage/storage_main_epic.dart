@@ -22,8 +22,6 @@ import 'package:my_catalog/store/shared/storage/epics/update_opened_store_id_epi
 import 'package:my_catalog/store/shared/storage/epics/update_stores_history_epics.dart';
 import 'package:redux_epics/redux_epics.dart';
 
-// TODO(Yuri): Add comment for this class.
-// TODO(Yuri): Move storage state to shared folder.
 ///In [StorageMainEpic] class, all other epics are initialized.
 class StorageMainEpic {
   static final indexEpic = combineEpics<AppState>([
