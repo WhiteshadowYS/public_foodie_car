@@ -15,7 +15,6 @@ import 'package:my_catalog/store/shared/initialization/actions/start_initializat
 import 'package:my_catalog/store/shared/storage/actions/check_id_actions/check_id_action.dart';
 import 'package:my_catalog/store/shared/storage/actions/set_stores_history_actions/set_stores_history_action.dart';
 
-// TODO(Yuri): Update comments for this class.
 /// [InitializeMainEpic] the main epic which is started for initialization.
 /// The class [InitializeMainEpic], has only one static variable [indexEpic].
 /// The variable [indexEpic], returns a sheet of [combineEpics] that stores one epic, [_startInitializationEpic].

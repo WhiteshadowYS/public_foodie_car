@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
@@ -52,6 +50,7 @@ class _ProductsPageState extends State<ProductsPage> {
         return MainLayout(
           bgColor: CustomTheme.colors.background,
           appBar: MainAppBar(
+            height: 50.sp,
             key: ProductsPageKeys.appbar,
             backButtonText: vm.backButtonText(
               vm.currentLocale,
@@ -74,7 +73,7 @@ class _ProductsPageState extends State<ProductsPage> {
                     itemCount: vm.products.length,
                     itemBuilder: (BuildContext context, int index) {
                       final ProductModel product = vm.getCurrentProductData(vm.products[index].id);
-                      if (product == null) return Container();
+                      if (product == null) return SizedBox();
                       return ProductItem(
                         keyValue: ProductsPageKeys.productItem,
                         product: product,

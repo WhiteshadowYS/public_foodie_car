@@ -8,7 +8,6 @@ import 'package:my_catalog/store/shared/storage/storage_main_epic.dart';
 import 'package:my_catalog/store/shared/dialog_state/dialog_state.dart';
 import 'package:my_catalog/store/shared/initialization/initialize_main_epic.dart';
 
-// TODO(Yuri): Add comment for this State.
 /// Class [AppState], is the main [state] application.
 /// It keeps 3, smaller states.
 /// Namely, [dialogState], [storageState], [loaderState].

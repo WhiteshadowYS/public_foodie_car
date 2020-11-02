@@ -73,7 +73,6 @@ class _TermsPageState extends State<TermsPage> {
                           carouselController: _carouselController,
                           items: [
                             TermsTextBlock(subtitle: vm.termsSubtitle(vm.selectedLocale), termsText: vm.termsText),
-                            // TODO(Daniil): Add terms
                             TermsTextBlock(subtitle: vm.terms2Subtitle(vm.selectedLocale), termsText: vm.termsText2),
                           ],
                           options: CarouselOptions(

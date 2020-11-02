@@ -5,7 +5,6 @@ import 'package:my_catalog/models/interfaces/i_model.dart';
 
 part 'storage_status_model.g.dart';
 
-// TODO(Yuri): Add comment for this class.
 @JsonSerializable(
   fieldRename: FieldRename.snake,
   checked: true,

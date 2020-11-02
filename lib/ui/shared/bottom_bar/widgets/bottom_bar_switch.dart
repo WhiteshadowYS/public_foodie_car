@@ -36,7 +36,7 @@ class BottomBarSwitch extends StatefulWidget {
 
 class _BottomBarSwitchState extends State<BottomBarSwitch> {
   final double _initialHeight = 200.h;
-  double _height ;
+  double _height = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -68,12 +68,16 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
           curve: Curves.easeInOutCirc,
           opacity: widget.isSwitch ? 1.0 : 0.0,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
-                padding: EdgeInsets.all(12.h),
-                child: SvgPicture.asset(ImageAssets.HANDLE,width: 24.w,),
+              Expanded(
+                child: SvgPicture.asset(
+                  ImageAssets.HANDLE,
+                  width: 24.w,
+                ),
               ),
               Expanded(
+                flex: 6,
                 child: ScrollConfiguration(
                   behavior: CleanBehavior(),
                   child: ListView.builder(

@@ -33,14 +33,14 @@ class CatalogItem extends StatelessWidget {
           onTap: () => navigateToCategories(catalog.id),
           child: Column(
             children: [
-               SizedBox(height: 14.sp),
+              SizedBox(height: 14.sp),
               Text(
                 catalog.titleForLanguage(locale),
                 style: CustomTheme.textStyles.titleTextStyle(
                   size: 18.sp,
                 ),
               ),
-             SizedBox(height: 14.sp),
+              SizedBox(height: 14.sp),
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: CachedImage(
@@ -68,7 +68,7 @@ class CatalogItem extends StatelessWidget {
                 ),
                 maxLines: 5,
               ),
-               SizedBox(height: 14.sp),
+              SizedBox(height: 14.sp),
             ],
           ),
         ),

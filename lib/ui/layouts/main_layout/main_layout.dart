@@ -5,7 +5,6 @@ import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/ui/layouts/loader_layout/loader_layout.dart';
 import 'package:my_catalog/ui/layouts/main_layout/main_layout_vm.dart';
 
-// TODO(Yuri): Add comment for this class.
 /// The [MainLayout] class, the base layer from which the remaining page is created.
 /// Params:
 ///   - [child] here is the page itself.
@@ -48,23 +47,7 @@ class _MainLayoutState extends State<MainLayout> {
       converter: MainLayoutVM.fromStore,
       builder: (BuildContext context, MainLayoutVM vm) {
         return WillPopScope(
-          onWillPop: () async {
-            if (widget.canExit) {
-              _onDoublePop();
-              return false;
-            }
-
-            if (widget.back != null) {
-              widget.back();
-              return false;
-            }
-
-            if (RouteService.instance.canPop) {
-              vm.doRoute(RouteService.instance.pop());
-            }
-
-            return false;
-          },
+          onWillPop: () => _willPopScope(vm),
           child: Scaffold(
             resizeToAvoidBottomPadding: widget.resizeToAvoidBottomPadding,
             appBar: widget.appBar,
@@ -93,6 +76,26 @@ class _MainLayoutState extends State<MainLayout> {
         );
       },
     );
+  }
+
+  /// [_willPopScope] function for [WillPopScope] widget.
+  /// This function will
+  Future<bool> _willPopScope(MainLayoutVM vm) async {
+    if (widget.canExit) {
+      _onDoublePop();
+      return false;
+    }
+
+    if (widget.back != null) {
+      widget.back();
+      return false;
+    }
+
+    if (RouteService.instance.canPop) {
+      vm.doRoute(RouteService.instance.pop());
+    }
+
+    return false;
   }
 
   /// The [_onDoublePop] function, when you double-click the button back, minimizes the application.
