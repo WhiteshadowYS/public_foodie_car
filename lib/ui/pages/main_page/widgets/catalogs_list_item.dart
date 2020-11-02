@@ -52,7 +52,7 @@ class _CatalogsListItemState extends State<CatalogsListItem> {
                         duration: MILLISECONDS_400,
                         style: textStyles.accentTextStyle(
                           color: widget.isSelected ? CustomTheme.colors.primaryColor : CustomTheme.colors.accentColor,
-                          size: 14.sp > 24.0 ? 24.0 : 14.sp,
+                          size: 14.sp > 22.0 ? 22.0 : 14.sp,
                           fontWeight: FontWeight.w800,
                         ),
                         child: Text(widget.title),

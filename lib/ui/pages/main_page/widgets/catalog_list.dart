@@ -59,7 +59,7 @@ class _CatalogListState extends State<StoresList> {
      //    ),
      //  ),
      //),
-      height: 180,
+      height: 180.0,
       child: ListView.builder(
         physics: ClampingScrollPhysics(),
         key: Key('StoresList'),

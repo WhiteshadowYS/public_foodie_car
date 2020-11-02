@@ -40,6 +40,7 @@ class ProductModel implements IDto {
   /// [descriptionForLanguage], [description2ForLanguage] and [pointsForLanguage]
   /// The [titleForLanguage] function returns the title depending on the language.
   String titleForLanguage(String langCode) {
+    print(languages[langCode][KEY_TITLE]);
     try {
       return languages[langCode][KEY_TITLE] ?? EMPTY_STRING;
     } catch (e) {

@@ -48,7 +48,7 @@ class DialogMainButton extends StatelessWidget {
               child: Text(
                 title,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: textColor, fontSize: 16.sp, fontWeight: FontWeight.w500),
+                style: CustomTheme.textStyles.buttonTextStyle(size: 16.sp),
               ),
             ),
           ),

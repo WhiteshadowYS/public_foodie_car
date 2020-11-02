@@ -44,7 +44,7 @@ class RouteService {
   }
 
   NavigateToAction push(String route) {
-    if (_isDialogDisplayed()) return null;
+    if (_history == null || _isDialogDisplayed()) return null;
     if (_history.isNotEmpty && _history.last == route) return null;
 
     _history.add(route);
@@ -53,7 +53,7 @@ class RouteService {
   }
 
   NavigateToAction pushAndRemoveUntil(String route) {
-    if (_isDialogDisplayed()) return null;
+    if (_history == null || _isDialogDisplayed()) return null;
     if (_history.isNotEmpty && _history.last == route) return null;
 
     _history.clear();

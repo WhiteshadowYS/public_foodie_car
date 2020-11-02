@@ -46,7 +46,7 @@ class CatalogTextField extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.center,
-            height: 45.0.h,
+            height: 50.0,
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             decoration: BoxDecoration(
               color: CustomTheme.colors.accentColor.withOpacity(0.08),
