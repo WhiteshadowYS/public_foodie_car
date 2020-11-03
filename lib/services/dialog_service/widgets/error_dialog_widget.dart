@@ -19,9 +19,10 @@ class ErrorDialogWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DialogLayout(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+
           children: <Widget>[
             Row(
               children: [
@@ -37,6 +38,7 @@ class ErrorDialogWidget extends StatelessWidget {
                 Spacer(),
                 Container(
                   width: 60.sp,
+                  height: 40.sp,
                   //alignment: directionality == TextDirection.rtl ? Alignment.topLeft : Alignment.topRight,
                   alignment: Alignment.topRight,
                   child: DialogCloseButton(keyValue: DialogKeys.closeErrorDialogButton),

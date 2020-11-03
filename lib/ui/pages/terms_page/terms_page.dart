@@ -90,7 +90,7 @@ class _TermsPageState extends State<TermsPage> {
                         top: 12.0.h,
                         bottom: 8.0.h,
                       ),
-                      height: 12.0.h,
+                      height: 18.0.h,
                       child: ListView.builder(
                         physics: ClampingScrollPhysics(),
                         scrollDirection: Axis.horizontal,

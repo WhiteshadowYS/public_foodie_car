@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 
 import 'widgets/bottom_bar_list.dart';
@@ -16,7 +14,7 @@ class BottomBar extends StatefulWidget {
 
   BottomBar({
     @required String key,
-    this.height = 88.0,
+    this.height = 55.0,
   }) : super(key: Key(key));
 
   @override

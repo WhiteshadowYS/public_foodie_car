@@ -43,7 +43,7 @@ class _ProductsPageState extends State<ProductsPage> {
         return MainLayout(
           bgColor: CustomTheme.colors.background,
           appBar: MainAppBar(
-            height: 50.sp,
+            height: 50.0,
             key: ProductsPageKeys.appbar,
             backButtonText: vm.backButtonText(
               vm.currentLocale,

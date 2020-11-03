@@ -73,7 +73,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
               Expanded(
                 child: SvgPicture.asset(
                   ImageAssets.HANDLE,
-                  width: 24.w,
+                  width: 20.0.w,
                 ),
               ),
               Expanded(

@@ -34,15 +34,15 @@ class BottomBarItem extends StatelessWidget {
               color: isSelected ? CustomTheme.colors.primaryColor : Colors.transparent,
               borderRadius: BorderRadius.circular(48.h),
             ),
-            padding: EdgeInsets.all(12.w),
+            padding: EdgeInsets.all(12.0),
             child: SvgPicture.network(
               iconUrl,
-              height: 32.h,
+              height: 32.0,
               color: isSelected ? CustomTheme.colors.footerIconsSelected : CustomTheme.colors.footerIcons,
               placeholderBuilder: (BuildContext context) {
                 return SvgPicture.asset(
                   placeholderIcon,
-                  height: 32.h,
+                  height: 32.0,
                   color: isSelected ? CustomTheme.colors.footerIconsSelected : CustomTheme.colors.footerIcons,
                 );
               },

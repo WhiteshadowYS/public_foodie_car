@@ -63,7 +63,7 @@ class _MainPageState extends State<MainPage> {
                   behavior: CleanBehavior(),
                   child:  Column(
                     children: [
-                      SizedBox(height: 24.h),
+                      Spacer(),
                       if (vm.stores.isNotEmpty)
                         Column(
                           children: [
