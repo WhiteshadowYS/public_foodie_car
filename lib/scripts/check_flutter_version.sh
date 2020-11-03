@@ -3,7 +3,7 @@
 #--------IMPORTANT---------
 #--------------------------
 # To use check_flutter_version() paste to command line:
-# bash lib/scripts/main.sh check_flutter_version
+# bash lib/scripts/check_flutter_version.sh
 #--------------------------
 #--------------------------
 
@@ -34,3 +34,5 @@ function check_flutter_version() {
       flutter channel stable && flutter version v$PROJECT_FLUTTER_VERSION & y
   fi
 }
+
+check_flutter_version
