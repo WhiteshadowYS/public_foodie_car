@@ -51,15 +51,18 @@ class _BottomBarListState extends State<BottomBarList> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: CustomTheme.colors.footerBackground),
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
+        ),
         color: CustomTheme.colors.footerBackground,
       ),
       height: widget.height,
       child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: ScreenUtil.screenWidth < 600 ? MainAxisAlignment.spaceEvenly : MainAxisAlignment.center,
           children: widget.vm.footerButtons.map((item) {
             return BottomBarItem(
-              key: BottomBarKeys.footerButtonKey+'${widget.vm.footerButtons.indexOf(item)}',
+              key: BottomBarKeys.footerButtonKey + '${widget.vm.footerButtons.indexOf(item)}',
               iconUrl: item.iconSvg,
               placeholderIcon: widget.getPlaceholder(item.type),
               onTap: () => widget.onTap(item.type, widget.vm),
@@ -68,8 +71,6 @@ class _BottomBarListState extends State<BottomBarList> {
           }).toList()),
     );
   }
-
-
 
   void _updateSelectedIndex(List<FooterButtonModel> buttons) {
     selectedIndex = -1;
