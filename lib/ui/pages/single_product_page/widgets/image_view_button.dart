@@ -22,7 +22,7 @@ class ImageViewButton extends StatelessWidget {
         Icon(
           icon,
           color: AppColors.kBlack.withOpacity(0.4),
-          size: 32.sp,
+          size: 36.h,
         ),
         Material(
           color: Colors.transparent,
@@ -31,9 +31,9 @@ class ImageViewButton extends StatelessWidget {
             key: Key(keyValue),
             icon: Icon(icon),
             color: CustomTheme.colors.buttons,
-            iconSize: 31.sp,
+            iconSize: 35.h,
             onPressed: jumpToPage,
-            splashRadius: 16.sp,
+            splashRadius: 24.h,
           ),
         ),
       ],

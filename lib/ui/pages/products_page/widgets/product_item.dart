@@ -28,47 +28,61 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: Column(
-        children: [
-          ListTile(
-            key: Key(keyValue),
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 12.0,
-              horizontal: 16.0,
-            ),
-            leading: ClipRRect(
-              borderRadius: BorderRadius.circular(85.0),
-              child: CachedImage(
-                width: 55.0,
-                height: 55.0,
-                key: Key(key.toString() + 'CachedImage'),
-                imageUrl: product.imageLink ?? EMPTY_STRING,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          margin: EdgeInsets.only(left: 16.0, right: 16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100.0),
+                    child: CachedImage(
+                      width: 55.h,
+                      height: 55.h,
+                      key: Key(key.toString() + 'CachedImage'),
+                      imageUrl: product.imageLink ?? EMPTY_STRING,
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            product.titleForLanguage(locale),
+                            style: CustomTheme.textStyles.titleTextStyle(size: 16.h),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              product.descriptionForLanguage(locale),
+                              style: CustomTheme.textStyles.mainTextStyle(size: 14.h),
+                              maxLines: 7,
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Transform.rotate(
+                    angle: textDirection == TextDirection.ltr ? 0 : pi,
+                    child: Icon(Icons.keyboard_arrow_right, size: 24.h),
+                  ),
+                ],
               ),
-            ),
-            title: Text(
-              product.titleForLanguage(locale),
-              style: CustomTheme.textStyles.titleTextStyle(size: 16.h),
-            ),
-            subtitle: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Text(
-                product.descriptionForLanguage(locale),
-                style: CustomTheme.textStyles.mainTextStyle(size: 14.h),
-                maxLines: 7,
-                overflow: TextOverflow.visible,
+              Container(
+                height: 1.5,
+                color: Colors.grey.withOpacity(0.4),
               ),
-            ),
-            trailing: Transform.rotate(
-              angle: textDirection == TextDirection.ltr ? 0 : pi,
-              child: Icon(Icons.keyboard_arrow_right, size: 24.h),
-            ),
-            onTap: onTap,
+            ],
           ),
-          Container(
-            height: 1.5,
-            color: Colors.grey.withOpacity(0.4),
-          ),
-        ],
+        ),
       ),
     );
   }

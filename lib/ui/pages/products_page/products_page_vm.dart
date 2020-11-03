@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 import 'package:my_catalog/models/models/storage_model/data/info_product_model.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/store/shared/dialog_state/dialog_selector.dart';
 import 'package:my_catalog/store/shared/route_selectors.dart';
 import 'package:my_catalog/store/shared/storage/storage_data_selector.dart';
 import 'package:my_catalog/store/shared/storage/storage_function_selector.dart';
@@ -20,8 +21,8 @@ class ProductsPageVM {
   final TextDirection textDirection;
   final String currentLocale;
   final List<InfoProductModel> products;
-
   final void Function(int) navigateToSingleProductPagePage;
+  final void Function(int) setOpenedProduct;
   final String Function(String) productsPageTitle;
   final String Function(String) backButtonText;
   final ProductModel Function(int) getCurrentProductData;
@@ -34,6 +35,7 @@ class ProductsPageVM {
     @required this.productsPageTitle,
     @required this.getCurrentProductData,
     @required this.navigateToSingleProductPagePage,
+    @required this.setOpenedProduct,
   });
 
   static ProductsPageVM fromStore(Store<AppState> store) {
@@ -49,6 +51,7 @@ class ProductsPageVM {
 
       /// StorageFunctionSelector
       getCurrentProductData: StorageFunctionSelector.getCurrentProductModelFunction(store),
+      setOpenedProduct: StorageFunctionSelector.setOpenedProductFunction(store),
 
       /// Another
       navigateToSingleProductPagePage: RouteSelectors.gotoSingleProductPage(store),
