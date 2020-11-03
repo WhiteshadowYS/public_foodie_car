@@ -18,7 +18,7 @@ class BottomBarList extends StatefulWidget {
   final bool isSwitch;
   final double height;
 
-  BottomBarList({
+   BottomBarList({
     @required this.keyValue,
     @required this.height,
     @required this.vm,
@@ -51,10 +51,10 @@ class _BottomBarListState extends State<BottomBarList> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: CustomTheme.colors.footerBackground),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(25),
-          topRight: Radius.circular(25),
-        ),
+//        borderRadius: BorderRadius.only(
+//          topLeft: Radius.circular(25),
+//          topRight: Radius.circular(25),
+//        ),
         color: CustomTheme.colors.footerBackground,
       ),
       height: widget.height,

@@ -55,7 +55,7 @@ class _ProductsPageState extends State<ProductsPage> {
           child: Row(
             children: [
               AnimatedContainer(
-                duration: MILLISECONDS_300,
+                duration: MILLISECONDS_200,
                 width: _shouldShowList ? listWidth : 0,
                 child: ScrollConfiguration(
                   behavior: CleanBehavior(),

@@ -49,11 +49,12 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
       onVerticalDragUpdate: (DragUpdateDetails detail) => _verticalDrag(detail),
       child: AnimatedContainer(
         duration: MILLISECONDS_300,
-        height: widget.isSwitch ? _height : 0.0,
+        height: widget.isSwitch ? _height : 10.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(20.0),
           ),
+          border: Border.all(color: CustomTheme.colors.footerBackground),
           boxShadow: [
             BoxShadow(
               color: AppColors.kBlack.withOpacity(0.3),
