@@ -20,7 +20,7 @@ class PdfPreviewWidget extends StatelessWidget {
         PDF.network(
           pdfUrl,
           width: double.infinity,
-          height: 200.sp,
+          height: ScreenUtil.screenHeight * 0.5,
           placeHolder: Image.asset(ImageAssets.LOGO_PNG),
         ),
         Positioned(

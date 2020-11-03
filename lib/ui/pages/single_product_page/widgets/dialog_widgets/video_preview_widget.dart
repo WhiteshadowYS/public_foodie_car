@@ -64,10 +64,10 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
                   duration: _controller.value.isPlaying ? SECONDS_1 : MILLISECONDS_300,
                   opacity: _controller.value.isPlaying ? 0 : 1,
                   child: Container(
-                    width: 100.sp,
-                    height: 100.sp,
+                    width: 112.0,
+                    height: 112.0,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(150),
+                      borderRadius: BorderRadius.circular(350),
                       border: Border.all(color: CustomTheme.colors.buttons, width: 2.0),
                       color: CustomTheme.colors.primaryColor.withOpacity(0.3),
                     ),
@@ -106,7 +106,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
       return IconButton(
         icon: Icon(Icons.repeat),
         color: CustomTheme.colors.buttons,
-        iconSize: 50.h,
+        iconSize: 50.0,
         onPressed: () async {
           await _controller.seekTo(Duration.zero);
           await _controller.play();
@@ -114,7 +114,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
       );
     }
     return CustomAnimatedPlayIconWidget(
-      size: 30.sp,
+      size: 42.0,
       duration: MILLISECONDS_200,
       color: CustomTheme.colors.primaryColor,
       strokeColor: CustomTheme.colors.buttons,

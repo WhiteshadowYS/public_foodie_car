@@ -52,6 +52,7 @@ class SingleProductKeys {
   static const String listView = 'SingleProductListView';
   static const String appbar = 'SingleProductAppBar';
   static const String bottomBar = 'SingleProductBottomBar';
+  static const String mainWidget = 'SingleProductPageWidget';
   /// Will using with index. For example: SingleProductFileItem1, SingleProductFileItem2, SingleProductFileItem3.
   static const String fileItem = 'SingleProductFileItem';
   static const String gallery = 'SingleProductGallery';
