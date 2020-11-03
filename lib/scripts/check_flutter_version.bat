@@ -1,10 +1,3 @@
-#--------IMPORTANT---------
-#--------------------------
-# To use check_flutter_version() paste to command line:
-# bash lib/scripts/check_flutter_version.sh
-#--------------------------
-#--------------------------
-
 # Colors, are used to stylize echo text.
 # To use with printf no paste ${YOUR_COLOR} into string.
 # To use with echo no paste ${YOUR_COLOR} into string and between echo and string add -e.
