@@ -64,7 +64,7 @@ class _MainButtonState extends State<MainButton> {
             onTap: status ? widget.onTap : () {},
             borderRadius: BorderRadius.circular(50.0),
             child: Padding(
-              padding:  EdgeInsets.all(12.sp),
+              padding:  EdgeInsets.all(12.h),
               child: Text(
                 widget.title,
                 textAlign: TextAlign.center,

@@ -17,6 +17,7 @@ class TermsTextBlock extends StatelessWidget {
     return SingleChildScrollView(
       physics: ClampingScrollPhysics(),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(

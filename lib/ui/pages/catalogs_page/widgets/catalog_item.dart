@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:my_catalog/ui/pages/catalogs_page/widgets/phone_catalog_item.dart';
+import 'package:my_catalog/ui/pages/catalogs_page/widgets/table_catalog_item.dart';
 import 'package:my_catalog/widgets/cashed_network_image.dart';
 
 class CatalogItem extends StatelessWidget {
@@ -27,52 +29,30 @@ class CatalogItem extends StatelessWidget {
         data: MediaQuery.of(context).copyWith(
           textScaleFactor: 1.0,
         ),
-        child: InkWell(
-          key: Key(keyValue),
-          borderRadius: BorderRadius.circular(18.0),
-          onTap: () => navigateToCategories(catalog.id),
-          child: Column(
-            children: [
-              SizedBox(height: 14.sp),
-              Text(
-                catalog.titleForLanguage(locale),
-                style: CustomTheme.textStyles.titleTextStyle(
-                  size: 18.sp,
-                ),
-              ),
-              SizedBox(height: 14.sp),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: CachedImage(
-                  key: Key(key.toString() + 'CachedImage'),
-                  imageUrl: catalog.imageLink ?? '',
-                  height: 172.sp,
-                  width: double.infinity,
-                  fit: BoxFit.fill,
-                ),
-              ),
-              const SizedBox(height: 14.0),
-              Text(
-                descriptionTitle ?? '',
-                style: CustomTheme.textStyles.titleTextStyle(
-                  size: 14.sp,
-                ),
-              ),
-              const SizedBox(height: 14.0),
-              Text(
-                catalog.descriptionForLanguage(locale),
-                textAlign: TextAlign.center,
-                style: CustomTheme.textStyles.mainTextStyle(
-                  size: 12.sp,
-                  height: 1.4,
-                ),
-                maxLines: 5,
-              ),
-              SizedBox(height: 14.sp),
-            ],
-          ),
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 8.0),
+          child: InkWell(
+              key: Key(keyValue),
+              borderRadius: BorderRadius.circular(18.0),
+              onTap: () => navigateToCategories(catalog.id),
+              child: _getCurrentChild()),
         ),
       ),
+    );
+  }
+
+  Widget _getCurrentChild() {
+    if (ScreenUtil.screenWidth > 600) {
+      return TableCatalogItem(
+        descriptionTitle: descriptionTitle,
+        catalog: catalog,
+        locale: locale,
+      );
+    }
+    return PhoneCatalogItem(
+      descriptionTitle: descriptionTitle,
+      catalog: catalog,
+      locale: locale,
     );
   }
 }

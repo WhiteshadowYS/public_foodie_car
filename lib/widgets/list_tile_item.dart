@@ -40,7 +40,7 @@ class ListTileItem extends StatelessWidget {
                   leading: SvgPicture.network(
                     iconPath,
                     height: 32.h,
-                    color: CustomTheme.colors.primaryColor,
+                    color: CustomTheme.colors.footerIcons,
                     placeholderBuilder: (BuildContext context) {
                       return SvgPicture.asset(
                         placeholderIcon,
@@ -55,7 +55,7 @@ class ListTileItem extends StatelessWidget {
                   ),
                   trailing: Transform.rotate(
                     angle: directionality == TextDirection.rtl ? pi : 0,
-                    child: Icon(Icons.keyboard_arrow_right,size: 24.h,),
+                    child: Icon(Icons.keyboard_arrow_right,size: 24.h, color: CustomTheme.colors.footerIcons),
                   ),
                 ),
               ),

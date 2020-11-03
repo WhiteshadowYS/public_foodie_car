@@ -29,7 +29,7 @@ class CatalogsPage extends StatelessWidget {
         return MainLayout(
           appBar: MainAppBar(
             key: 'CatalogsPageAppbar',
-            height: 50.sp,
+            height: 50.0,
             logoUrl: vm.logoUrl,
             backOnTap: vm.logOut,
             backButtonText: vm.logoutText(vm.currentLocale),

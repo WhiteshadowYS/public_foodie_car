@@ -15,6 +15,7 @@ const Duration MILLISECONDS_200 = Duration(milliseconds: 200);
 const Duration MILLISECONDS_300 = Duration(milliseconds: 300);
 const Duration MILLISECONDS_400 = Duration(milliseconds: 400);
 const Duration MILLISECONDS_500 = Duration(milliseconds: 500);
+const Duration MILLISECONDS_700 = Duration(milliseconds: 700);
 const Duration MILLISECONDS_900 = Duration(milliseconds: 900);
 //endregion
 
