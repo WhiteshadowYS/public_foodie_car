@@ -25,7 +25,6 @@ class SubcategoriesPage extends StatelessWidget {
           bgColor: CustomTheme.colors.background,
           bottomBar: BottomBar(key: SubCategoriesPageKeys.bottomBar),
           appBar: MainAppBar(
-            height: 50.0,
             key: SubCategoriesPageKeys.appbar,
             title: vm.subcategoriesPageTitle(vm.currentLocale),
             backButtonText: vm.backButtonText(vm.currentLocale),

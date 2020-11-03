@@ -32,7 +32,6 @@ class CategoriesPage extends StatelessWidget {
           bgColor: CustomTheme.colors.background,
           bottomBar: BottomBar(key: CategoriesPageKeys.bottomBar),
           appBar: MainAppBar(
-            height: 50.0,
             key: CategoriesPageKeys.appbar,
             title: vm.categoriesPageTitle(vm.currentLocale),
             backButtonText: vm.backButtonText(vm.currentLocale),
