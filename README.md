@@ -1,4 +1,4 @@
-sh# MyCatalog
+# MyCatalog
 MyCatalog it is AppVesto project.
 
 ## Architecture - Redux
