@@ -92,7 +92,7 @@ class AVTextStyles implements IAVTextStyles {
     return TextStyle(
       fontFamily: fontFamily,
       height: height,
-      fontSize: size > 26.0 ? 26.0 : size,
+      fontSize: size > 20.0 ? 20.0 : size,
       color: _additionalTextColor,
       fontWeight: FontWeight.w500,
     );

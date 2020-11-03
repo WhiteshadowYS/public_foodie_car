@@ -23,7 +23,6 @@ class SingleProductPage extends StatelessWidget {
             backButtonText: vm.backButtonText(vm.currentLocale),
             logoUrl: vm.logoUrl,
             key: SingleProductKeys.appbar,
-            height: 50.sp,
           ),
           bottomBar: BottomBar(key: SingleProductKeys.bottomBar),
           child: SingleProductPageWidget(),

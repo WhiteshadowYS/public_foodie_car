@@ -36,6 +36,7 @@ class ProductItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Row(
+                //crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ClipRRect(
