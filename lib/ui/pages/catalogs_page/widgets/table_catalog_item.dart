@@ -17,51 +17,48 @@ class TableCatalogItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 16.0),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 3,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: CachedImage(
-                key: Key(key.toString() + 'CachedImage'),
-                imageUrl: catalog.imageLink ?? '',
-                height:  160.h,
-                width: (ScreenUtil.screenWidth - 64) / 2,
-                fit: BoxFit.fill,
-              ),
+    return Row(
+      children: [
+        Expanded(
+          flex: 3,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: CachedImage(
+              key: Key(key.toString() + 'CachedImage'),
+              imageUrl: catalog.imageLink ?? '',
+              height:  200.0,
+              width: (ScreenUtil.screenWidth - 64) / 2,
+              fit: BoxFit.fill,
             ),
           ),
-          Expanded(
-            flex: 5,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
-              child: Column(
-                children: [
-                  Text(
-                    catalog.titleForLanguage(locale),
-                    style: CustomTheme.textStyles.titleTextStyle(
-                      size: 18.sp,
-                    ),
+        ),
+        Expanded(
+          flex: 5,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
+            child: Column(
+              children: [
+                Text(
+                  catalog.titleForLanguage(locale),
+                  style: CustomTheme.textStyles.titleTextStyle(
+                    size: 18.sp,
                   ),
+                ),
 
-                  Text(
-                    catalog.descriptionForLanguage(locale),
-                    textAlign: TextAlign.start,
-                    style: CustomTheme.textStyles.mainTextStyle(
-                      size: 12.sp,
-                      height: 1.4,
-                    ),
-                    maxLines: 5,
+                Text(
+                  catalog.descriptionForLanguage(locale),
+                  textAlign: TextAlign.start,
+                  style: CustomTheme.textStyles.mainTextStyle(
+                    size: 12.sp,
+                    height: 1.4,
                   ),
-                ],
-              ),
+                  maxLines: 5,
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

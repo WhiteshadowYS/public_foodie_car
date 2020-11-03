@@ -29,11 +29,14 @@ class CatalogItem extends StatelessWidget {
         data: MediaQuery.of(context).copyWith(
           textScaleFactor: 1.0,
         ),
-        child: InkWell(
-            key: Key(keyValue),
-            borderRadius: BorderRadius.circular(18.0),
-            onTap: () => navigateToCategories(catalog.id),
-            child: _getCurrentChild()),
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 8.0),
+          child: InkWell(
+              key: Key(keyValue),
+              borderRadius: BorderRadius.circular(18.0),
+              onTap: () => navigateToCategories(catalog.id),
+              child: _getCurrentChild()),
+        ),
       ),
     );
   }

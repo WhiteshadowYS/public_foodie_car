@@ -63,11 +63,7 @@ class _MainPageState extends State<MainPage> {
                   behavior: CleanBehavior(),
                   child:  Column(
                     children: [
-                      AnimatedContainer(
-                        height: 100.h - phoneSize.viewInsets.bottom < 0 ? 0 : 100.h - phoneSize.viewInsets.bottom,
-                        duration: MILLISECONDS_400,
-                        curve: Curves.easeInSine,
-                      ),
+                      SizedBox(height: 24.h),
                       if (vm.stores.isNotEmpty)
                         Column(
                           children: [

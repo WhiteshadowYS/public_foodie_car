@@ -24,8 +24,8 @@ class MainGrid extends StatelessWidget {
         child: GridView.count(
           physics: ClampingScrollPhysics(),
           crossAxisCount: 2 + (MediaQuery.of(context).size.width / 640).floor(),
-          crossAxisSpacing: 16.sp,
-          mainAxisSpacing: 8.sp,
+          crossAxisSpacing: 16.w,
+          mainAxisSpacing: 8.h,
           childAspectRatio: 0.75,
           children: getChildren(widgets) ?? [],
         ),

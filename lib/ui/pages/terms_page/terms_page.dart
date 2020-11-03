@@ -51,7 +51,7 @@ class _TermsPageState extends State<TermsPage> {
               bgColor: CustomTheme.colors.background,
               back: widget.isReadOnly ? null : () => back(vm),
               appBar: MainAppBar(
-                height: 50.sp,
+                height: 50.0,
                 key: TermsPageKeys.appbar,
                 title: vm.titleText(vm.selectedLocale),
                 backButtonText: widget.isReadOnly ? null : vm.backButtonText(vm.selectedLocale),
@@ -61,7 +61,7 @@ class _TermsPageState extends State<TermsPage> {
                 margin: EdgeInsets.only(
                   left: 16.w,
                   right: 16.w,
-                  top: 50.h,
+                  top: 50.0,
                 ),
                 child: Column(
                   children: [
@@ -75,7 +75,7 @@ class _TermsPageState extends State<TermsPage> {
                           TermsTextBlock(subtitle: vm.terms2Subtitle(vm.selectedLocale), termsText: vm.termsText2),
                         ],
                         options: CarouselOptions(
-                          height: 200.0.h,
+                          height: 350.0,
                           scrollPhysics: ClampingScrollPhysics(),
                           enlargeCenterPage: true,
                           enableInfiniteScroll: false,
@@ -90,7 +90,7 @@ class _TermsPageState extends State<TermsPage> {
                         top: 12.0.h,
                         bottom: 8.0.h,
                       ),
-                      height: 12.0.sp,
+                      height: 12.0.h,
                       child: ListView.builder(
                         physics: ClampingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
