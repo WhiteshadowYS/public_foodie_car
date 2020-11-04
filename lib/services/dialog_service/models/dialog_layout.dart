@@ -22,6 +22,8 @@ class _DialogLayoutState extends State<DialogLayout> with SingleTickerProviderSt
   AnimationController controller;
   Animation<double> scaleAnimation;
 
+
+
   @override
   void initState() {
     super.initState();
@@ -44,7 +46,7 @@ class _DialogLayoutState extends State<DialogLayout> with SingleTickerProviderSt
   Widget build(BuildContext context) {
    final bool isTablet = MediaQuery.of(context).size.width > 600;
     return OrientationBuilder(builder: (context, orientation){
-      final double horizontalTabletMargin = orientation == Orientation.landscape ? 60.sp : 10.sp;
+      final double horizontalTabletMargin = orientation == Orientation.landscape ? 80.sp : 10.sp;
       return Container(
         color: CustomTheme.colors.background.withOpacity(0.01),
         child: ScaleTransition(

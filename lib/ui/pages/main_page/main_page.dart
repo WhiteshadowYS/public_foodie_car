@@ -57,6 +57,7 @@ class _MainPageState extends State<MainPage> {
           child: Directionality(
             textDirection: TextDirection.ltr,
             child: SingleChildScrollView(
+              physics: ClampingScrollPhysics(),
               child: SizedBox(
                 height: phoneSize.size.height,
                 child: ScrollConfiguration(

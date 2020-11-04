@@ -14,17 +14,23 @@ class PdfPreviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isLargeScreen = false;
+    if (MediaQuery.of(context).size.width > 600) {
+      isLargeScreen = true;
+    } else {
+      isLargeScreen = false;
+    }
     return Stack(
-      alignment: Alignment.bottomRight,
+      alignment: Alignment.bottomRight,c
       children: [
         PDF.network(
           pdfUrl,
-          width: double.infinity,
-          height: ScreenUtil.screenHeight * 0.44,
+          width: isLargeScreen ? ScreenUtil.screenWidth * 0.84 : double.infinity,
+          height: ScreenUtil.screenHeight * 0.4,
           placeHolder: Image.asset(ImageAssets.LOGO_PNG),
         ),
         Positioned(
-          right: 20.h,
+          right: 20,
           child: OpenInBrowserButton(url: pdfUrl),
         ),
       ],
