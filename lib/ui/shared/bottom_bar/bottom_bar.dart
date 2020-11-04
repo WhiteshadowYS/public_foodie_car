@@ -4,6 +4,7 @@ import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
+import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
 
 import 'widgets/bottom_bar_list.dart';
@@ -26,32 +27,37 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, BottomBarVM>(
-      converter: BottomBarVM.fromStore,
-      builder: (BuildContext context, vm) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            BottomBarSwitch(
-              close: _closeSwitchSheet,
-              keyValue: BottomBarKeys.bottomBarSwitch,
-              isSwitch: isSwitch,
-              vm: vm,
-              onTap: _onTap,
-              getPlaceholder: _placeholderIcon,
-            ),
-            BottomBarList(
-              keyValue: BottomBarKeys.bottomBarList,
-              onTap: _onTap,
-              height: (widget.height),
-              vm: vm,
-              isSwitch: isSwitch,
-              getPlaceholder: _placeholderIcon,
-            ),
-          ],
-        );
-      },
+    return Container(
+      color: CustomTheme.colors.footerBackground,
+      child: SafeArea(
+        child: StoreConnector<AppState, BottomBarVM>(
+          converter: BottomBarVM.fromStore,
+          builder: (BuildContext context, vm) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                BottomBarSwitch(
+                  close: _closeSwitchSheet,
+                  keyValue: BottomBarKeys.bottomBarSwitch,
+                  isSwitch: isSwitch,
+                  vm: vm,
+                  onTap: _onTap,
+                  getPlaceholder: _placeholderIcon,
+                ),
+                BottomBarList(
+                  keyValue: BottomBarKeys.bottomBarList,
+                  onTap: _onTap,
+                  height: (widget.height),
+                  vm: vm,
+                  isSwitch: isSwitch,
+                  getPlaceholder: _placeholderIcon,
+                ),
+              ],
+            );
+          },
+        ),
+      ),
     );
   }
 
