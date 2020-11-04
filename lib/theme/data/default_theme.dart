@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:my_catalog/res/app_styles/app_colors.dart';
 
 import 'package:my_catalog/theme/models/appvesto_theme.dart';
@@ -25,6 +28,7 @@ AVTheme defaultTheme = AVTheme(
     popupCloseButton: AppColors.kGreen,
     popupOkButton: AppColors.kGreen,
     popupCancelButton: AppColors.kGreen,
+    brightness: Platform.isIOS ? Brightness.light : Brightness.dark,
   ),
   textStyles: AVTextStyles(
     fontFamily: 'Ubuntu',

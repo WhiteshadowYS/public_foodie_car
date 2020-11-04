@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:my_catalog/res/const.dart';
 
@@ -42,6 +44,8 @@ class CustomTheme {
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarColor: _theme.colors.background,
+      statusBarBrightness: _theme.colors.brightness,
+      statusBarIconBrightness: _theme.colors.brightness,
     ));
   }
 
@@ -57,6 +61,8 @@ class CustomTheme {
     _theme = defaultTheme;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarColor: _theme.colors.background,
+      statusBarBrightness: _theme.colors.brightness,
+      statusBarIconBrightness: _theme.colors.brightness,
     ));
   }
 

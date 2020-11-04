@@ -21,10 +21,10 @@ LanguageDataModel _$LanguageDataModelFromJson(Map<String, dynamic> json) {
           json, 'logout_text', (v) => v as Map<String, dynamic>),
       backButtonText: $checkedConvert(
           json, 'back_button_text', (v) => v as Map<String, dynamic>),
-      termsButtonText: $checkedConvert(
-          json, 'terms_button_text', (v) => v as Map<String, dynamic>),
       termsTitle: $checkedConvert(
           json, 'terms_title', (v) => v as Map<String, dynamic>),
+      termsButtonText: $checkedConvert(
+          json, 'terms_button_text', (v) => v as Map<String, dynamic>),
       termsSubTitle: $checkedConvert(
           json, 'tac_subtitle', (v) => v as Map<String, dynamic>),
       terms2SubTitle: $checkedConvert(
@@ -48,10 +48,10 @@ LanguageDataModel _$LanguageDataModelFromJson(Map<String, dynamic> json) {
     'descriptionText': 'description_text',
     'logoutText': 'logout_text',
     'backButtonText': 'back_button_text',
-    'terms_button_text': 'terms_button_text',
     'termsTitle': 'terms_title',
-    'tac_subtitle': 'tac_subtitle',
-    'tac2_subtitle': 'tac2_subtitle',
+    'termsButtonText': 'terms_button_text',
+    'termsSubTitle': 'tac_subtitle',
+    'terms2SubTitle': 'tac2_subtitle',
     'termsAcceptButton': 'terms_accept_button',
     'productsTitle': 'products_title',
     'categoriesTitle': 'categories_title',
@@ -68,8 +68,8 @@ Map<String, dynamic> _$LanguageDataModelToJson(LanguageDataModel instance) =>
       'description_text': instance.descriptionText,
       'logout_text': instance.logoutText,
       'back_button_text': instance.backButtonText,
-      'terms_button_text': instance.termsButtonText,
       'terms_title': instance.termsTitle,
+      'terms_button_text': instance.termsButtonText,
       'tac_subtitle': instance.termsSubTitle,
       'tac2_subtitle': instance.terms2SubTitle,
       'terms_accept_button': instance.termsAcceptButton,
