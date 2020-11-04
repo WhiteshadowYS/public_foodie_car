@@ -25,12 +25,7 @@ class _ImageViewerState extends State<ImageViewer> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLargeScreen = false;
-    if (MediaQuery.of(context).size.width > 600) {
-      isLargeScreen = true;
-    } else {
-      isLargeScreen = false;
-    }
+    final bool isLargeScreen = MediaQuery.of(context).size.width > 600.0;
     return SizedBox(
      // height: 260.0,
       width: double.infinity,

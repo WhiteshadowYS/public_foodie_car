@@ -14,12 +14,7 @@ class PdfPreviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLargeScreen = false;
-    if (MediaQuery.of(context).size.width > 600) {
-      isLargeScreen = true;
-    } else {
-      isLargeScreen = false;
-    }
+    final bool isLargeScreen = MediaQuery.of(context).size.width > 600.0;
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
