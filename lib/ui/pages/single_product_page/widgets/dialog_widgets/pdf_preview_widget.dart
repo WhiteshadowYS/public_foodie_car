@@ -21,7 +21,7 @@ class PdfPreviewWidget extends StatelessWidget {
       isLargeScreen = false;
     }
     return Stack(
-      alignment: Alignment.bottomRight,c
+      alignment: Alignment.bottomRight,
       children: [
         PDF.network(
           pdfUrl,
