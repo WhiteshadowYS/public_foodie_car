@@ -23,18 +23,34 @@ class ProductsPage extends StatefulWidget {
   _ProductsPageState createState() => _ProductsPageState();
 }
 
-class _ProductsPageState extends State<ProductsPage> {
+class _ProductsPageState extends State<ProductsPage> with SingleTickerProviderStateMixin {
   bool _isProductSelected = false;
   bool _shouldShowList = true;
+  bool isLargeScreen = false;
+  AnimationController _sizeController;
+  Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _sizeController = AnimationController(vsync: this, duration: MILLISECONDS_500, value: 1.0);
+    _sizeController.addListener(_animationListener);
+    animation = CurvedAnimation(
+      parent: _sizeController,
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  @override
+  void dispose() {
+    _sizeController.removeListener(_animationListener);
+    _sizeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    bool isLargeScreen = false;
-    if (MediaQuery.of(context).size.width > 600) {
-      isLargeScreen = true;
-    } else {
-      isLargeScreen = false;
-    }
+    final isLargeScreen = MediaQuery.of(context).size.width > 600.0;
     final double listWidth =
         isLargeScreen ? (MediaQuery.of(context).size.width - 25.5) / 2.5 : MediaQuery.of(context).size.width;
     return StoreConnector<AppState, ProductsPageVM>(
@@ -44,43 +60,43 @@ class _ProductsPageState extends State<ProductsPage> {
           bgColor: CustomTheme.colors.background,
           appBar: MainAppBar(
             key: ProductsPageKeys.appbar,
-            backButtonText: vm.backButtonText(
-              vm.currentLocale,
-            ),
-            title: vm.productsPageTitle(
-              vm.currentLocale,
-            ),
+            backButtonText: vm.backButtonText(vm.currentLocale),
+            title: vm.productsPageTitle(vm.currentLocale),
           ),
           bottomBar: BottomBar(key: ProductsPageKeys.bottomBar),
           child: Row(
             children: [
-              AnimatedContainer(
-                duration: MILLISECONDS_200,
-                width: _shouldShowList ? listWidth : 0,
-                child: ScrollConfiguration(
-                  behavior: CleanBehavior(),
-                  child: ListView.builder(
-                    key: Key(ProductsPageKeys.listView),
-                    physics: ClampingScrollPhysics(),
-                    itemCount: vm.products.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final ProductModel product = vm.getCurrentProductData(vm.products[index].id);
-                      if (product == null) return SizedBox();
-                      return ProductItem(
-                        keyValue: ProductsPageKeys.productItem,
-                        product: product,
-                        textDirection: vm.textDirection,
-                        locale: vm.currentLocale,
-                        onTap: () {
-                          if (isLargeScreen) {
-                            vm.setOpenedProduct(product.id);
-                            _isProductSelected = true;
-                          } else {
-                            vm.navigateToSingleProductPagePage(product.id);
-                          }
-                        },
-                      );
-                    },
+              SizeTransition(
+                axisAlignment: -1,
+                sizeFactor: animation,
+                axis: Axis.horizontal,
+                child: SizedBox(
+                  width: listWidth,
+                  child: ScrollConfiguration(
+                    behavior: CleanBehavior(),
+                    child: ListView.builder(
+                      key: Key(ProductsPageKeys.listView),
+                      physics: ClampingScrollPhysics(),
+                      itemCount: vm.products.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final ProductModel product = vm.getCurrentProductData(vm.products[index].id);
+                        if (product == null) return SizedBox();
+                        return ProductItem(
+                          keyValue: ProductsPageKeys.productItem,
+                          product: product,
+                          textDirection: vm.textDirection,
+                          locale: vm.currentLocale,
+                          onTap: () {
+                            if (isLargeScreen) {
+                              vm.setOpenedProduct(product.id);
+                              _isProductSelected = true;
+                            } else {
+                              vm.navigateToSingleProductPagePage(product.id);
+                            }
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -98,11 +114,16 @@ class _ProductsPageState extends State<ProductsPage> {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
+            if (_shouldShowList) {
+              _sizeController.reverse();
+            } else {
+              _sizeController.forward();
+            }
             _shouldShowList = !_shouldShowList;
             setState(() {});
           },
           child: Transform.rotate(
-            angle: _shouldShowList ? 0.0 : pi,
+            angle: pi * (1 - animation.value),
             child: Container(
               height: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -118,5 +139,9 @@ class _ProductsPageState extends State<ProductsPage> {
       ),
       if (isProductSelected) Expanded(child: SingleProductPageWidget()) else SizedBox(),
     ];
+  }
+
+  void _animationListener() {
+    setState(() {});
   }
 }
