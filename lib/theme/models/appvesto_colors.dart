@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/interfaces/i_appvesto_colors.dart';
@@ -23,6 +26,8 @@ class AVColors implements IAVColors {
   Color popupOkButton;
   Color popupCancelButton;
 
+  Brightness brightness;
+
   AVColors({
     this.primaryColor,
     this.accentColor,
@@ -42,6 +47,8 @@ class AVColors implements IAVColors {
     this.popupCloseButton,
     this.popupOkButton,
     this.popupCancelButton,
+
+    this.brightness,
   });
 
   AVColors fromColorsDTO(ColorsDTO colorsDTO) {
@@ -65,6 +72,8 @@ class AVColors implements IAVColors {
       popupCloseButton: _hexStringToColor(colorsDTO.popupCloseButton),
       popupOkButton: _hexStringToColor(colorsDTO.popupOkButton),
       popupCancelButton: _hexStringToColor(colorsDTO.popupCancelButton),
+
+      brightness: _getBrightness(colorsDTO.brightness),
     );
 
     return _c;
@@ -88,6 +97,7 @@ class AVColors implements IAVColors {
     Color popupCloseButton,
     Color popupOkButton,
     Color popupCancelButton,
+    Brightness brightness,
   }) {
     return AVColors(
       primaryColor: primaryColor ?? this.primaryColor,
@@ -108,7 +118,21 @@ class AVColors implements IAVColors {
       popupCloseButton: popupCloseButton ?? this.popupCloseButton,
       popupOkButton: popupOkButton ?? this.popupOkButton,
       popupCancelButton: popupCancelButton ?? this.popupCancelButton,
+
+      brightness: brightness ?? this.brightness,
     );
+  }
+
+  Brightness _getBrightness(String brightness) {
+    if (Platform.isIOS) {
+      if (brightness == 'DARK') return Brightness.light;
+
+      return Brightness.dark;
+    } else {
+    if (brightness == 'DARK') return Brightness.dark;
+
+    return Brightness.light;
+    }
   }
 
   Color _hexStringToColor(String hex) {

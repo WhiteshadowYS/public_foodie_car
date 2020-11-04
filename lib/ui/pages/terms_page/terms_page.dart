@@ -40,10 +40,10 @@ class _TermsPageState extends State<TermsPage> {
   @override
   Widget build(BuildContext context) {
     final CarouselController _carouselController = CarouselController();
-    return SafeArea(
-      child: Container(
-        width: double.infinity,
-        color: CustomTheme.colors.background,
+    return Container(
+      width: double.infinity,
+      color: CustomTheme.colors.background,
+      child: SafeArea(
         child: StoreConnector<AppState, TermsPageVM>(
           converter: TermsPageVM.fromStore,
           builder: (BuildContext context, TermsPageVM vm) {

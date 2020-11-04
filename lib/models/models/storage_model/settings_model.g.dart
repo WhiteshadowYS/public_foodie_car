@@ -20,8 +20,8 @@ SettingsModel _$SettingsModelFromJson(Map<String, dynamic> json) {
       info: $checkedConvert(
           json, 'info', (v) => v == null ? null : InfoModel.fromJson(v)),
       font: $checkedConvert(json, 'font', (v) => v as String),
-      colors: $checkedConvert(
-          json, 'colors_hex', (v) => v == null ? null : ColorsModel.fromJson(v)),
+      colors: $checkedConvert(json, 'colors_hex',
+          (v) => v == null ? null : ColorsModel.fromJson(v)),
       languageData: $checkedConvert(json, 'language_data',
           (v) => v == null ? null : LanguageDataModel.fromJson(v)),
       footerButtons: $checkedConvert(

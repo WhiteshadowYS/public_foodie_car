@@ -32,6 +32,7 @@ ColorsModel _$ColorsModelFromJson(Map<String, dynamic> json) {
       popupOkButton:
           $checkedConvert(json, 'popup_ok_button', (v) => v as String),
       primaryColor: $checkedConvert(json, 'primary_color', (v) => v as String),
+      brightness: $checkedConvert(json, 'brightness', (v) => v as String),
     );
     return val;
   }, fieldKeyMap: const {
@@ -71,4 +72,5 @@ Map<String, dynamic> _$ColorsModelToJson(ColorsModel instance) =>
       'popup_close_button': instance.popupCloseButton,
       'popup_ok_button': instance.popupOkButton,
       'popup_cancel_button': instance.popupCancelButton,
+      'brightness': instance.brightness,
     };
