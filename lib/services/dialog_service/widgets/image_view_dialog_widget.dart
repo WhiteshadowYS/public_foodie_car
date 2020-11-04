@@ -1,5 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:my_catalog/widgets/cashed_network_image.dart';
 
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -10,7 +12,6 @@ import 'package:my_catalog/widgets/fade_animation_container.dart';
 import 'package:my_catalog/services/dialog_service/models/dialog_layout.dart';
 import 'package:my_catalog/services/dialog_service/models/image_view_dialog.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/image_view_button.dart';
-
 
 class ImageViewDialogWidget extends StatefulWidget {
   final ImageViewDialog dialog;
@@ -25,20 +26,30 @@ class ImageViewDialogWidget extends StatefulWidget {
 }
 
 class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
-  PageController _pageController ;
-  int index;
+  PageController _pageController;
 
+  final PhotoViewController _photoViewController = PhotoViewController();
+  int index;
   bool _init = false;
 
   @override
   void initState() {
     index = widget.dialog.currentIndex;
     _pageController = PageController(keepPage: false, initialPage: index);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    _photoViewController.addIgnorableListener(_photoViewControllerListener);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       _init = true;
       setState(() {});
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _photoViewController.removeIgnorableListener(_photoViewControllerListener);
+    _photoViewController.dispose();
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -58,6 +69,7 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
                   scrollPhysics: const NeverScrollableScrollPhysics(),
                   builder: (BuildContext context, int index) {
                     return PhotoViewGalleryPageOptions.customChild(
+                      controller: _photoViewController,
                       minScale: PhotoViewComputedScale.contained * 1.0,
                       maxScale: PhotoViewComputedScale.contained * 2.5,
                       child: widget.dialog.gallery[index],
@@ -134,6 +146,7 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
     } else {
       --index;
     }
+    _photoViewController.reset();
     _pageController.jumpToPage(index);
     setState(() {});
   }
@@ -144,7 +157,17 @@ class _ImageViewDialogWidgetState extends State<ImageViewDialogWidget> {
     } else {
       ++index;
     }
+    _photoViewController.reset();
     _pageController.jumpToPage(index);
     setState(() {});
+  }
+
+  void _photoViewControllerListener() {
+    if (_photoViewController.scale < 1) {
+      _photoViewController.scale = 1;
+    }
+    if (_photoViewController.position.dy != 0) {
+      _photoViewController.position = Offset(_photoViewController.position.dx, 0);
+    }
   }
 }

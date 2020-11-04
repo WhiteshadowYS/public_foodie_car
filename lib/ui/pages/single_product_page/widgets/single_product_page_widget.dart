@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/store/application/app_state.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
@@ -28,13 +29,13 @@ class SingleProductPageWidget extends StatelessWidget {
               textAlign: TextAlign.center,
               style: CustomTheme.textStyles.accentTextStyle(size: 24.h, fontWeight: FontWeight.w600),
             ),
-          SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ImageViewer(
               showGallery: vm.showImage,
               keyValue: SingleProductKeys.gallery,
               cachedImagesGalery: buildCachedImagesList(vm.product.galleryImagesLinks),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
               child: Text(
@@ -91,12 +92,12 @@ class SingleProductPageWidget extends StatelessWidget {
   }
 
   List<Widget> buildCachedImagesList(List<String> images) {
-    List<Widget> cachedImagesList = [];
+    final List<Widget> cachedImagesList = [];
     for (String image in images) {
       cachedImagesList.add(
         CachedImage(
           key: Key(SingleProductKeys.gallery + 'CachedImage'),
-          imageUrl: image ?? '',
+          imageUrl: image ?? EMPTY_STRING,
           fit: BoxFit.contain,
         ),
       );
