@@ -32,7 +32,7 @@ class MainGrid extends StatelessWidget {
           crossAxisCount: 2 + (MediaQuery.of(context).size.width / 600.0).floor(),
           crossAxisSpacing: 16.w,
           mainAxisSpacing: 8.h,
-          childAspectRatio: isLargeScreen ? MediaQuery.of(context).devicePixelRatio * 0.35 : 0.75,//(0.8 - (0.1 * (MediaQuery.of(context).size.width / 600))),
+          childAspectRatio: isLargeScreen ? MediaQuery.of(context).devicePixelRatio * 0.35 : 0.75,
           children: getChildren(widgets) ?? [],
         ),
       ),
