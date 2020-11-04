@@ -1,7 +1,7 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/product_model.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
@@ -50,9 +50,8 @@ class _ProductsPageState extends State<ProductsPage> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 600.0;
-    final double listWidth =
-        isLargeScreen ? (MediaQuery.of(context).size.width - 25.5) / 2.5 : MediaQuery.of(context).size.width;
+    final bool isLargeScreen = MediaQuery.of(context).size.width > 600.0;
+    final double listWidth = isLargeScreen ? (MediaQuery.of(context).size.width - 25.5) / 2.5 : MediaQuery.of(context).size.width;
     return StoreConnector<AppState, ProductsPageVM>(
       converter: ProductsPageVM.fromStore,
       builder: (BuildContext context, ProductsPageVM vm) {
