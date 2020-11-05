@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/models/models/storage_model/data/data/catalog_model.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/catalogs_page/widgets/phone_catalog_item.dart';
 import 'package:my_catalog/ui/pages/catalogs_page/widgets/table_catalog_item.dart';
@@ -42,7 +43,7 @@ class CatalogItem extends StatelessWidget {
   }
 
   Widget _getCurrentChild() {
-    if (ScreenUtil.screenWidth > 600) {
+    if (ScreenUtil.screenWidth > MIN_TABLET_WIDTH) {
       return TableCatalogItem(
         descriptionTitle: descriptionTitle,
         catalog: catalog,

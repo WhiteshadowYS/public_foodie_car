@@ -26,7 +26,6 @@ class ProductsPage extends StatefulWidget {
 class _ProductsPageState extends State<ProductsPage> with SingleTickerProviderStateMixin {
   bool _isProductSelected = false;
   bool _shouldShowList = true;
-  bool isLargeScreen = false;
   AnimationController _sizeController;
   Animation<double> animation;
 
@@ -50,7 +49,7 @@ class _ProductsPageState extends State<ProductsPage> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    final bool isLargeScreen = MediaQuery.of(context).size.width > 600.0;
+    final bool isLargeScreen = MediaQuery.of(context).size.width > MIN_TABLET_WIDTH;
     final double listWidth = isLargeScreen ? (MediaQuery.of(context).size.width - 25.5) / 2.5 : MediaQuery.of(context).size.width;
     return StoreConnector<AppState, ProductsPageVM>(
       converter: ProductsPageVM.fromStore,

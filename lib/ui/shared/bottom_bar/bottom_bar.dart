@@ -28,7 +28,14 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: CustomTheme.colors.footerBackground,
+
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(15.0),
+        ),
+        border: Border.all(color: CustomTheme.colors.footerBackground),
+        color: CustomTheme.colors.footerBackground,
+      ),
       child: SafeArea(
         child: StoreConnector<AppState, BottomBarVM>(
           converter: BottomBarVM.fromStore,

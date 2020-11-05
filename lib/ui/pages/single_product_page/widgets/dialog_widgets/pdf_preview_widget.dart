@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/image_assets.dart';
 import 'package:my_catalog/ui/pages/single_product_page/widgets/open_in_browser_button.dart';
 import 'package:pdf_flutter/pdf_flutter.dart';
@@ -14,7 +15,7 @@ class PdfPreviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isLargeScreen = MediaQuery.of(context).size.width > 600.0;
+    final bool isLargeScreen = MediaQuery.of(context).size.width > MIN_TABLET_WIDTH;
     return Stack(
       alignment: Alignment.bottomRight,
       children: [

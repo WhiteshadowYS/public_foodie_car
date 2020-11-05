@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/dictionary/dictionary_classes/terms_page_dictionary.dart';
-import 'package:my_catalog/dictionary/flutter_dictionary.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/res/keys.dart';
 import 'package:my_catalog/services/dialog_service/widgets/dialog_main_button.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/pages/terms_page/terms_page_vm.dart';
 import 'package:my_catalog/ui/pages/terms_page/widgets/agree_button.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 class TermsAcceptBlock extends StatefulWidget {
   final TermsPageVM vm;
 
