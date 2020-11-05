@@ -39,19 +39,19 @@ class ListTileItem extends StatelessWidget {
                   key: Key(keyValue),
                   leading: SvgPicture.network(
                     iconPath,
-                    height: 32.h,
+                    height: 32,
                     color: CustomTheme.colors.footerIcons,
                     placeholderBuilder: (BuildContext context) {
                       return SvgPicture.asset(
                         placeholderIcon,
-                        height: 32.h,
+                        height: 32,
                         color: CustomTheme.colors.primaryColor,
                       );
                     },
                   ),
                   title: Text(
                     title,
-                    style: CustomTheme.textStyles.titleTextStyle(size: 16.h),
+                    style: CustomTheme.textStyles.titleTextStyle(size: 14.h),
                   ),
                   trailing: Transform.rotate(
                     angle: directionality == TextDirection.rtl ? pi : 0,

@@ -26,7 +26,6 @@ class ProductsPage extends StatefulWidget {
 class _ProductsPageState extends State<ProductsPage> with SingleTickerProviderStateMixin {
   bool _isProductSelected = false;
   bool _shouldShowList = true;
-  bool isLargeScreen = false;
   AnimationController _sizeController;
   Animation<double> animation;
 

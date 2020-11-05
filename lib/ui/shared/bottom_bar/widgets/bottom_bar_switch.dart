@@ -52,7 +52,7 @@ class _BottomBarSwitchState extends State<BottomBarSwitch> {
         height: widget.isSwitch ? _height : 10.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(20.0),
+            top: Radius.circular(25.0),
           ),
           border: Border.all(color: CustomTheme.colors.footerBackground),
           boxShadow: [

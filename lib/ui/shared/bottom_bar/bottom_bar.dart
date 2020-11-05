@@ -27,36 +27,33 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: CustomTheme.colors.footerBackground,
-      child: SafeArea(
-        child: StoreConnector<AppState, BottomBarVM>(
-          converter: BottomBarVM.fromStore,
-          builder: (BuildContext context, vm) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                BottomBarSwitch(
-                  close: _closeSwitchSheet,
-                  keyValue: BottomBarKeys.bottomBarSwitch,
-                  isSwitch: isSwitch,
-                  vm: vm,
-                  onTap: _onTap,
-                  getPlaceholder: _placeholderIcon,
-                ),
-                BottomBarList(
-                  keyValue: BottomBarKeys.bottomBarList,
-                  onTap: _onTap,
-                  height: (widget.height),
-                  vm: vm,
-                  isSwitch: isSwitch,
-                  getPlaceholder: _placeholderIcon,
-                ),
-              ],
-            );
-          },
-        ),
+    return SafeArea(
+      child: StoreConnector<AppState, BottomBarVM>(
+        converter: BottomBarVM.fromStore,
+        builder: (BuildContext context, vm) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              BottomBarSwitch(
+                close: _closeSwitchSheet,
+                keyValue: BottomBarKeys.bottomBarSwitch,
+                isSwitch: isSwitch,
+                vm: vm,
+                onTap: _onTap,
+                getPlaceholder: _placeholderIcon,
+              ),
+              BottomBarList(
+                keyValue: BottomBarKeys.bottomBarList,
+                onTap: _onTap,
+                height: (widget.height),
+                vm: vm,
+                isSwitch: isSwitch,
+                getPlaceholder: _placeholderIcon,
+              ),
+            ],
+          );
+        },
       ),
     );
   }
