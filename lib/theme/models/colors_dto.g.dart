@@ -32,7 +32,6 @@ ColorsDTO _$ColorsDTOFromJson(Map<String, dynamic> json) {
           $checkedConvert(json, 'popup_ok_button', (v) => v as String),
       popupCancelButton:
           $checkedConvert(json, 'popup_cancel_button', (v) => v as String),
-      brightness: $checkedConvert(json, 'brightness', (v) => v as String),
     );
     return val;
   }, fieldKeyMap: const {
@@ -71,5 +70,4 @@ Map<String, dynamic> _$ColorsDTOToJson(ColorsDTO instance) => <String, dynamic>{
       'popup_close_button': instance.popupCloseButton,
       'popup_ok_button': instance.popupOkButton,
       'popup_cancel_button': instance.popupCancelButton,
-      'brightness': instance.brightness,
     };

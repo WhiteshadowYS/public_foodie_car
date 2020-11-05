@@ -29,8 +29,6 @@ class ColorsDTO implements IDto {
   String popupOkButton;
   String popupCancelButton;
 
-  String brightness;
-
   ColorsDTO({
     this.primaryColor,
     this.accentColor,
@@ -50,8 +48,6 @@ class ColorsDTO implements IDto {
     this.popupCloseButton,
     this.popupOkButton,
     this.popupCancelButton,
-
-    this.brightness,
   });
 
   factory ColorsDTO.fromJson(json) => _$ColorsDTOFromJson(json);
