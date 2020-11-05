@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/utils/clean_behavior.dart';
 
 class MainGrid extends StatelessWidget {
@@ -13,12 +14,8 @@ class MainGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLargeScreen = false;
-    if (MediaQuery.of(context).size.width > 600) {
-      isLargeScreen = true;
-    } else {
-      isLargeScreen = false;
-    }
+    final bool isLargeScreen = MediaQuery.of(context).size.width > MIN_TABLET_WIDTH;
+    final int crossAxisCount = 2 + (MediaQuery.of(context).size.width / MIN_TABLET_WIDTH).floor();
     return Container(
       margin: EdgeInsets.only(
         left: 16.sp,
@@ -29,14 +26,24 @@ class MainGrid extends StatelessWidget {
         behavior: CleanBehavior(),
         child: GridView.count(
           physics: ClampingScrollPhysics(),
-          crossAxisCount: 2 + (MediaQuery.of(context).size.width / 600.0).floor(),
-          crossAxisSpacing: 16.w,
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: 16.0,
           mainAxisSpacing: 8.h,
-          childAspectRatio: isLargeScreen ? MediaQuery.of(context).devicePixelRatio * 0.35 : 0.75,
+          childAspectRatio: _gridAspectRatio(isLargeScreen, context),
           children: getChildren(widgets) ?? [],
         ),
       ),
     );
+  }
+
+  double _gridAspectRatio(bool isLargeScreen, BuildContext context) {
+    if(isLargeScreen) {
+      if(MediaQuery.of(context).size.width > MediaQuery.of(context).size.height) {
+        return MediaQuery.of(context).size.aspectRatio / 2.4;
+      }
+      return MediaQuery.of(context).size.aspectRatio;
+    }
+    return 0.75;
   }
 
   List<Widget> getChildren(List<Widget> widgets) {

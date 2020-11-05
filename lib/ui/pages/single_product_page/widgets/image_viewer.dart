@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_catalog/res/const.dart';
 
 import 'image_view_button.dart';
 
@@ -25,7 +26,7 @@ class _ImageViewerState extends State<ImageViewer> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isLargeScreen = MediaQuery.of(context).size.width > 600.0;
+    final bool isLargeScreen = MediaQuery.of(context).size.width > MIN_TABLET_WIDTH;
     return SizedBox(
      // height: 260.0,
       width: double.infinity,

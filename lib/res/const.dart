@@ -38,6 +38,7 @@ const String PLACEHOLDER_TEXT = 'Lorem ipsum dolor sit amet, consectetur adipisc
 const bool DESIGN_SCREEN_ALLOW_FONT_SCALING = true;
 const double DESIGN_SCREEN_HEIGHT = 812.0;
 const double DESIGN_SCREEN_WIDTH = 375.0;
+const double MIN_TABLET_WIDTH = 600.0;
 //endregion
 
 //region [Keys]

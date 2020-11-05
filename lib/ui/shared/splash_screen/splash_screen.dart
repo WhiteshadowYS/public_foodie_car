@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
         width: DESIGN_SCREEN_WIDTH,
         allowFontScaling: DESIGN_SCREEN_ALLOW_FONT_SCALING,
       );
-      if(MediaQuery.of(context).size.width > 600) {
+      if(MediaQuery.of(context).size.width > MIN_TABLET_WIDTH) {
         SystemChrome.setPreferredOrientations([
           DeviceOrientation.portraitUp,
           DeviceOrientation.landscapeLeft,

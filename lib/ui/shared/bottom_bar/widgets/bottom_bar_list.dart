@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_catalog/models/models/storage_model/settings/footer_button_model.dart';
 import 'package:my_catalog/res/const.dart';
 import 'package:my_catalog/res/keys.dart';
@@ -6,7 +7,6 @@ import 'package:my_catalog/services/route_service/models/routes.dart';
 import 'package:my_catalog/services/route_service/route_service.dart';
 import 'package:my_catalog/theme/custom_theme.dart';
 import 'package:my_catalog/ui/shared/bottom_bar/bottom_bar_vm.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'bottom_bar_item.dart';
 
@@ -18,7 +18,7 @@ class BottomBarList extends StatefulWidget {
   final bool isSwitch;
   final double height;
 
-   BottomBarList({
+  BottomBarList({
     @required this.keyValue,
     @required this.height,
     @required this.vm,
@@ -55,7 +55,7 @@ class _BottomBarListState extends State<BottomBarList> {
       ),
       height: widget.height,
       child: Row(
-          mainAxisAlignment: ScreenUtil.screenWidth < 600 ? MainAxisAlignment.spaceEvenly : MainAxisAlignment.center,
+          mainAxisAlignment: ScreenUtil.screenWidth < MIN_TABLET_WIDTH ? MainAxisAlignment.spaceEvenly : MainAxisAlignment.center,
           children: widget.vm.footerButtons.map((item) {
             return BottomBarItem(
               key: BottomBarKeys.footerButtonKey + '${widget.vm.footerButtons.indexOf(item)}',
