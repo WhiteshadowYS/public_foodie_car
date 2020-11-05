@@ -28,7 +28,6 @@ AVTheme defaultTheme = AVTheme(
     popupCloseButton: AppColors.kGreen,
     popupOkButton: AppColors.kGreen,
     popupCancelButton: AppColors.kGreen,
-    brightness: Platform.isIOS ? Brightness.light : Brightness.dark,
   ),
   textStyles: AVTextStyles(
     fontFamily: 'Ubuntu',

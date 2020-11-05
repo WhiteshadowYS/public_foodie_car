@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_catalog/res/const.dart';
 
@@ -9,6 +10,7 @@ import 'package:my_catalog/theme/models/appvesto_theme.dart';
 import 'package:my_catalog/theme/models/appvesto_colors.dart';
 import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
 import 'package:my_catalog/theme/models/colors_dto.dart';
+import 'package:my_catalog/utils/check_is_hex_dark.dart';
 
 class CustomTheme {
   static const String tag = '[CustomTheme]';
@@ -44,8 +46,8 @@ class CustomTheme {
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarColor: _theme.colors.background,
-      statusBarBrightness: _theme.colors.brightness,
-      statusBarIconBrightness: _theme.colors.brightness,
+      statusBarBrightness: _getBrightness(_theme.colors.background),
+      statusBarIconBrightness: _getBrightness(_theme.colors.background),
     ));
   }
 
@@ -61,9 +63,21 @@ class CustomTheme {
     _theme = defaultTheme;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarColor: _theme.colors.background,
-      statusBarBrightness: _theme.colors.brightness,
-      statusBarIconBrightness: _theme.colors.brightness,
+      statusBarBrightness: _getBrightness(_theme.colors.background),
+      statusBarIconBrightness: _getBrightness(_theme.colors.background),
     ));
+  }
+
+  Brightness _getBrightness(Color backgroundHex) {
+    String hex = backgroundHex.toString();
+    hex = hex.replaceAll('Color(0x', '');
+    hex = hex.replaceAll(')', '');
+
+    final bool isBackgroundDark = checkIsHexDark(hex);
+
+    if (isBackgroundDark) return Brightness.dark;
+
+    return Brightness.light;
   }
 
   static AVColors get colors => instance._theme.colors;

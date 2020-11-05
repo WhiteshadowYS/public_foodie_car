@@ -47,8 +47,6 @@ class ColorsModel implements IDto {
   final String popupOkButton;
   @JsonKey(name: 'popup_cancel_button', required: false, nullable: true)
   final String popupCancelButton;
-  @JsonKey(name: 'brightness', required: false, nullable: true)
-  final String brightness;
 
   ColorsModel({
     @required this.background,
@@ -68,7 +66,6 @@ class ColorsModel implements IDto {
     @required this.popupCloseButton,
     @required this.popupOkButton,
     @required this.primaryColor,
-    @required this.brightness,
   });
 
   factory ColorsModel.fromJson(json) => _$ColorsModelFromJson(json);
