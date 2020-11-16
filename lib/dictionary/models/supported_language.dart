@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_catalog/dictionary/models/language.dart';
+import 'package:base_project_template/dictionary/models/language.dart';
 
 class SupportedLanguage {
 

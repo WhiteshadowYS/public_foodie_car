@@ -1,8 +1,7 @@
 import 'dart:async';
 
+import 'package:base_project_template/res/const.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:my_catalog/res/const.dart';
-
 
 /// [FirebaseService] it is service for work with firebase.
 /// This class it - Singleton, for function using use [FirebaseService.instance]
@@ -23,7 +22,7 @@ class FirebaseService {
   StreamSubscription<Event> _subscription;
 
   void listenChanges(int id, void Function(int, int) getData) async {
-   // await _subscription?.cancel();
+    // await _subscription?.cancel();
     await unsubscribeFromUpdates();
     _subscription = databaseReference.onChildChanged.where((Event event) => event.snapshot.key == id.toString()).listen(
       (Event event) {
@@ -33,7 +32,7 @@ class FirebaseService {
     );
   }
 
-  Future<void> unsubscribeFromUpdates() async{
+  Future<void> unsubscribeFromUpdates() async {
     await _subscription?.cancel();
   }
 
@@ -41,7 +40,6 @@ class FirebaseService {
     final DataSnapshot data = await databaseReference.once();
 
     logger.d('Loaded data: ${data.value}, type: ${data.value.runtimeType}');
-
     return data.value;
   }
 }

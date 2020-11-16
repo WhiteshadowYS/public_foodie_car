@@ -6,7 +6,7 @@ pipeline {
 
     environment {
         JIRA_LINK = "appvesto.atlassian.net";
-        REPO_SLUG = "my_catalog";
+        REPO_SLUG = "base_project_template";
         PROJECT_FLUTTER_VERSION = "1.20.4";
 
         // Tokens

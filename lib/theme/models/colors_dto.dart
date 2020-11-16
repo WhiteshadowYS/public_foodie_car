@@ -1,4 +1,4 @@
-import 'package:my_catalog/models/interfaces/i_dto.dart';
+import 'package:base_project_template/models/interfaces/i_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'colors_dto.g.dart';

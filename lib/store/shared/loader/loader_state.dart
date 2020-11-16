@@ -1,9 +1,9 @@
 import 'dart:collection';
 import 'package:flutter/cupertino.dart';
-import 'package:my_catalog/services/dialog_service/interfaces/i_loader.dart';
-import 'package:my_catalog/store/shared/loader/actions/start_loading_action.dart';
-import 'package:my_catalog/store/shared/loader/actions/stop_loading_action.dart';
-import 'package:my_catalog/store/shared/reducer.dart';
+import 'package:base_project_template/services/dialog_service/shared/i_loader.dart';
+import 'package:base_project_template/store/shared/loader/actions/start_loading_action.dart';
+import 'package:base_project_template/store/shared/loader/actions/stop_loading_action.dart';
+import 'package:base_project_template/store/shared/reducer.dart';
 
 enum LoaderKey {
   initializationLoading,

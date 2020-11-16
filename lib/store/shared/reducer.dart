@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:my_catalog/res/const.dart';
+import 'package:base_project_template/res/const.dart';
 
 class Reducer<T> {
   final String tag = '[Reducer<$T>]';

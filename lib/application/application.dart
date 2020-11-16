@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
-import 'package:my_catalog/dictionary/flutter_delegate.dart';
-import 'package:my_catalog/res/keys.dart';
-import 'package:my_catalog/res/locales.dart';
-import 'package:my_catalog/services/route_service/route_builder.dart' as route;
-import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/store/shared/initialization/initialize_selector.dart';
-import 'package:my_catalog/store/shared/storage/storage_language_selector.dart';
-import 'package:my_catalog/theme/custom_theme.dart';
-import 'package:my_catalog/ui/shared/splash_screen/splash_screen.dart';
+import 'package:base_project_template/dictionary/flutter_delegate.dart';
+import 'package:base_project_template/res/keys.dart';
+import 'package:base_project_template/res/locales.dart';
+import 'package:base_project_template/services/route_service/route_builder.dart' as route;
+import 'package:base_project_template/store/application/app_state.dart';
+import 'package:base_project_template/store/shared/initialization/initialize_selector.dart';
+import 'package:base_project_template/theme/custom_theme.dart';
+import 'package:base_project_template/ui/shared/splash_screen/splash_screen.dart';
 import 'package:redux/redux.dart';
 
 /// The [Application] class, in which the creation of [MaterialApp] takes place.
@@ -45,9 +44,7 @@ class Application extends StatelessWidget {
             navigatorKey: NavigatorHolder.navigatorKey,
             onGenerateRoute: route.RouteBuilder.onGenerateRoute,
             home: SplashScreen(),
-            locale: Locale(
-              StorageLanguageSelector.getSelectedLocale(store).toLowerCase() ?? Locales.base,
-            ),
+            locale: Locale(Locales.base),
             supportedLocales: FlutterDictionaryDelegate.getSupportedLocales,
             localizationsDelegates: FlutterDictionaryDelegate.getLocalizationDelegates,
             builder: (context, child) {

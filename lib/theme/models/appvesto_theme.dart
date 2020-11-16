@@ -1,8 +1,8 @@
-import 'package:my_catalog/theme/models/appvesto_colors.dart';
-import 'package:my_catalog/theme/models/appvesto_edge_insets.dart';
-import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
+import 'package:base_project_template/theme/models/appvesto_colors.dart';
+import 'package:base_project_template/theme/models/appvesto_edge_insets.dart';
+import 'package:base_project_template/theme/models/appvesto_text_styles.dart';
 
-import 'package:my_catalog/theme/interfaces/i_appvesto_edge_insets.dart';
+import 'package:base_project_template/theme/interfaces/i_appvesto_edge_insets.dart';
 
 class AVTheme {
   final String themeName;

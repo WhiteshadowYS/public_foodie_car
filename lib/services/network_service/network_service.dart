@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/services/internet_connection_service/internet_connection_service.dart';
-import 'package:my_catalog/services/network_service/interfaces/i_base_error.dart';
-import 'package:my_catalog/services/network_service/interfaces/i_base_http_error.dart';
-import 'package:my_catalog/services/network_service/interfaces/i_base_request.dart';
-import 'package:my_catalog/services/network_service/shared/request_builders.dart';
+import 'package:base_project_template/res/const.dart';
+import 'package:base_project_template/services/internet_connection_service/internet_connection_service.dart';
+import 'package:base_project_template/services/network_service/interfaces/i_base_error.dart';
+import 'package:base_project_template/services/network_service/interfaces/i_base_http_error.dart';
+import 'package:base_project_template/services/network_service/interfaces/i_base_request.dart';
+import 'package:base_project_template/services/network_service/shared/request_builders.dart';
 
 import 'models/base_http_response.dart';
 import 'res/consts.dart';

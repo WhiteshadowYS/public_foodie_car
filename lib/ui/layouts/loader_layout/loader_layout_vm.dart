@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:my_catalog/services/dialog_service/interfaces/i_loader.dart';
-import 'package:my_catalog/store/application/app_state.dart';
+import 'package:base_project_template/services/dialog_service/shared/i_loader.dart';
+import 'package:base_project_template/store/application/app_state.dart';
 import 'package:redux/redux.dart';
 
 ///[LoaderLayoutVM] is view model for loaders

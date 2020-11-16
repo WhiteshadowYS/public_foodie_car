@@ -1,11 +1,8 @@
-import 'dart:io';
+import 'package:base_project_template/res/app_styles/app_colors.dart';
 
-import 'package:flutter/cupertino.dart';
-import 'package:my_catalog/res/app_styles/app_colors.dart';
-
-import 'package:my_catalog/theme/models/appvesto_theme.dart';
-import 'package:my_catalog/theme/models/appvesto_colors.dart';
-import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
+import 'package:base_project_template/theme/models/appvesto_theme.dart';
+import 'package:base_project_template/theme/models/appvesto_colors.dart';
+import 'package:base_project_template/theme/models/appvesto_text_styles.dart';
 
 AVTheme defaultTheme = AVTheme(
   themeName: 'default_theme',

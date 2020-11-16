@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:my_catalog/store/application/app_state.dart';
-import 'package:my_catalog/ui/layouts/loader_layout/loader_layout_vm.dart';
+import 'package:base_project_template/store/application/app_state.dart';
+import 'package:base_project_template/ui/layouts/loader_layout/loader_layout_vm.dart';
 
 /// The [LoaderLayout] class is required to display the loaders in application.
 class LoaderLayout extends StatelessWidget {

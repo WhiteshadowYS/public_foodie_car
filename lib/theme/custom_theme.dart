@@ -1,16 +1,14 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_catalog/res/const.dart';
+import 'package:base_project_template/res/const.dart';
 
-import 'package:my_catalog/theme/data/default_theme.dart';
+import 'package:base_project_template/theme/data/default_theme.dart';
 
-import 'package:my_catalog/theme/models/appvesto_theme.dart';
-import 'package:my_catalog/theme/models/appvesto_colors.dart';
-import 'package:my_catalog/theme/models/appvesto_text_styles.dart';
-import 'package:my_catalog/theme/models/colors_dto.dart';
-import 'package:my_catalog/utils/check_is_hex_dark.dart';
+import 'package:base_project_template/theme/models/appvesto_theme.dart';
+import 'package:base_project_template/theme/models/appvesto_colors.dart';
+import 'package:base_project_template/theme/models/appvesto_text_styles.dart';
+import 'package:base_project_template/theme/models/colors_dto.dart';
+import 'package:base_project_template/utils/check_is_hex_dark.dart';
 
 class CustomTheme {
   static const String tag = '[CustomTheme]';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:base_project_template/theme/custom_theme.dart';
 
 class SVGImages {
   Widget mcLogo({Color color}) {

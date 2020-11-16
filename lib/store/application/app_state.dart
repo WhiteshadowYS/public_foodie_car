@@ -2,11 +2,9 @@ import 'package:flutter/foundation.dart';
 
 import 'package:redux_epics/redux_epics.dart';
 
-import 'package:my_catalog/store/shared/loader/loader_state.dart';
-import 'package:my_catalog/store/shared/storage/storage_state.dart';
-import 'package:my_catalog/store/shared/storage/storage_main_epic.dart';
-import 'package:my_catalog/store/shared/dialog_state/dialog_state.dart';
-import 'package:my_catalog/store/shared/initialization/initialize_main_epic.dart';
+import 'package:base_project_template/store/shared/loader/loader_state.dart';
+import 'package:base_project_template/store/shared/dialog_state/dialog_state.dart';
+import 'package:base_project_template/store/shared/initialization/initialize_main_epic.dart';
 
 /// Class [AppState], is the main [state] application.
 /// It keeps 3, smaller states.
@@ -17,12 +15,10 @@ import 'package:my_catalog/store/shared/initialization/initialize_main_epic.dart
 class AppState {
   final DialogState dialogState;
   final LoaderState loaderState;
-  final StorageState storageState;
 
   AppState({
     @required this.dialogState,
     @required this.loaderState,
-    @required this.storageState,
   });
 
   ///All states are initialized in the [initial] function.
@@ -30,7 +26,6 @@ class AppState {
     return AppState(
       dialogState: DialogState.initial(),
       loaderState: LoaderState.initial(),
-      storageState: StorageState.initial(),
     );
   }
 
@@ -39,12 +34,10 @@ class AppState {
     return AppState(
       dialogState: state.dialogState.reducer(action),
       loaderState: state.loaderState.reducer(action),
-      storageState: state.storageState.reducer(action),
     );
   }
   ///In [getAppEpic], call the main epic.
   static final getAppEpic = combineEpics<AppState>([
-    StorageMainEpic.indexEpic,
     InitializeMainEpic.indexEpic,
   ]);
 }

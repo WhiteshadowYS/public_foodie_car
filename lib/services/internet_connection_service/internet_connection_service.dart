@@ -1,8 +1,8 @@
+import 'package:base_project_template/services/network_service/interfaces/i_base_http_error.dart';
+import 'package:base_project_template/services/network_service/models/base_http_response.dart';
+import 'package:base_project_template/services/network_service/res/consts.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/services.dart';
-import 'package:my_catalog/services/network_service/interfaces/i_base_http_error.dart';
-import 'package:my_catalog/services/network_service/models/base_http_response.dart';
-import 'package:my_catalog/services/network_service/res/consts.dart';
 
 class InternetConnectionService {
   static bool startCheck = false;
@@ -35,6 +35,7 @@ class InternetConnectionService {
 
     return null;
   }
+
   static void handleAppLifecycleState() {
     SystemChannels.lifecycle.setMessageHandler((state) async {
       if (state == 'AppLifecycleState.resumed') {

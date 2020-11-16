@@ -1,4 +1,4 @@
-import 'package:my_catalog/adapters/interfaces/i_adapter.dart';
+import 'package:base_project_template/adapters/interfaces/i_adapter.dart';
 
 class Repository {
   Future<T> repository<T>(IAdapter adapter) async {

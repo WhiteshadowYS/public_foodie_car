@@ -1,5 +1,5 @@
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
-import 'package:my_catalog/services/dialog_service/dialog_service.dart';
+import 'package:base_project_template/services/dialog_service/dialog_service.dart';
 
 /// [RouteService] it is service for routing in application.
 /// This class it - Singleton, for function using use [RouteService.instance]

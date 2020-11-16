@@ -1,4 +1,4 @@
-import 'package:my_catalog/network/shared/i_request.dart';
+import 'package:base_project_template/network/shared/i_request.dart';
 
 /// Interface for adapters for http requests.
 abstract class IAdapter<T> {

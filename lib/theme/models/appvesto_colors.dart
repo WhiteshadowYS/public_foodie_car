@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/theme/interfaces/i_appvesto_colors.dart';
-import 'package:my_catalog/theme/models/colors_dto.dart';
+import 'package:base_project_template/res/const.dart';
+import 'package:base_project_template/theme/interfaces/i_appvesto_colors.dart';
+import 'package:base_project_template/theme/models/colors_dto.dart';
 
 class AVColors implements IAVColors {
   Color primaryColor;

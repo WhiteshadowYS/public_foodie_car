@@ -1,8 +1,8 @@
+import 'package:base_project_template/dictionary/models/language.dart';
 import 'package:flutter/material.dart';
 
-import 'package:my_catalog/dictionary/data/en.dart';
-import 'package:my_catalog/dictionary/models/supported_language.dart';
-import 'package:my_catalog/res/locales.dart';
+import 'package:base_project_template/dictionary/models/supported_language.dart';
+import 'package:base_project_template/res/locales.dart';
 
 class SupportedLocales {
   List<SupportedLanguage> _supportedLocales;
@@ -11,7 +11,7 @@ class SupportedLocales {
     _supportedLocales = <SupportedLanguage>[
       SupportedLanguage(
         languageCode: Locales.en,
-        language: en,
+        language: Language(),
       )..choose(),
     ];
   }

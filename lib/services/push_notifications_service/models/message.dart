@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_catalog/services/push_notifications_service/interfaces/i_message.dart';
+import 'package:base_project_template/services/push_notifications_service/interfaces/i_message.dart';
 
 class Message implements IMessage {
   Message({

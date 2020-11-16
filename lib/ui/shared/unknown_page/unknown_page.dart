@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_catalog/ui/layouts/main_layout/main_layout.dart';
+import 'package:base_project_template/ui/layouts/main_layout/main_layout.dart';
 
 class UnknownPage extends StatelessWidget {
   UnknownPage() : super(key: Key('UnknownPage'));

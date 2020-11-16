@@ -1,10 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:my_catalog/store/shared/base_action.dart';
+import 'package:base_project_template/store/shared/base_action.dart';
 
 class StartInitialization extends BaseAction {
-  final void Function(int, int) getDataFunction;
-
-  StartInitialization({
-    @required this.getDataFunction,
-  }) : super(type: 'StartInitialization');
+  StartInitialization() : super(type: 'StartInitialization');
 }

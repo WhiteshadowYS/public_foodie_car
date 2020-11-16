@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_catalog/res/app_styles/app_colors.dart';
-import 'package:my_catalog/theme/custom_theme.dart';
+import 'package:base_project_template/res/app_styles/app_colors.dart';
 
 class AppShadows {
   static List<BoxShadow> shadowText(Color color) {

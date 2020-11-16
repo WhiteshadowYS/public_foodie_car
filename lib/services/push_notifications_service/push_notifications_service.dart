@@ -1,10 +1,10 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:my_catalog/res/const.dart';
-import 'package:my_catalog/services/dialog_service/dialog_service.dart';
-import 'package:my_catalog/services/dialog_service/models/notification_dialog.dart';
-import 'package:my_catalog/services/push_notifications_service/models/message.dart';
-import 'package:my_catalog/services/push_notifications_service/res/consts.dart';
-import 'package:my_catalog/services/push_notifications_service/shared/message_adapter.dart';
+import 'package:base_project_template/res/const.dart';
+import 'package:base_project_template/services/dialog_service/dialog_service.dart';
+import 'package:base_project_template/services/dialog_service/dialogs/notification_dialog/notification_dialog.dart';
+import 'package:base_project_template/services/push_notifications_service/models/message.dart';
+import 'package:base_project_template/services/push_notifications_service/res/consts.dart';
+import 'package:base_project_template/services/push_notifications_service/shared/message_adapter.dart';
 
 /// [PushNotificationsService] it is service for control dialogs.
 /// This class it - Singleton, for function using use [PushNotificationsService.instance]

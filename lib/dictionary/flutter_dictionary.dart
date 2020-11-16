@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_catalog/res/const.dart';
+import 'package:base_project_template/res/const.dart';
 
-import 'package:my_catalog/dictionary/models/language.dart';
-import 'package:my_catalog/dictionary/flutter_delegate.dart';
-import 'package:my_catalog/res/locales.dart';
+import 'package:base_project_template/dictionary/models/language.dart';
+import 'package:base_project_template/dictionary/flutter_delegate.dart';
+import 'package:base_project_template/res/locales.dart';
 
 class FlutterDictionary {
   static const String tag = '[FlutterDictionary]';
