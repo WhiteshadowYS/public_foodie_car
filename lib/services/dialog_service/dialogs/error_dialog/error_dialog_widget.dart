@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:base_project_template/res/keys.dart';
 import 'package:base_project_template/theme/custom_theme.dart';
 import 'package:base_project_template/res/app_styles/app_colors.dart';
 import 'package:base_project_template/services/dialog_service/dialogs/error_dialog/error_dialog.dart';
@@ -41,7 +40,9 @@ class ErrorDialogWidget extends StatelessWidget {
                   height: 40.sp,
                   //alignment: directionality == TextDirection.rtl ? Alignment.topLeft : Alignment.topRight,
                   alignment: Alignment.topRight,
-                  child: DialogCloseButton(keyValue: DialogKeys.closeErrorDialogButton),
+                  child: DialogCloseButton(
+                    keyValue: '123',
+                  ),
                 ),
               ],
             ),

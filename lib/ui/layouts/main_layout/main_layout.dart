@@ -19,7 +19,6 @@ import 'package:redux/redux.dart';
 ///   - [resizeToAvoidBottomPadding] принимает параметр resizeToAvoidBottomPadding
 ///   - [back] function returns to the previous page.
 ///   - [canExit] variable that is responsible for whether or not a complete exit from the application is performed?
-
 class TestPageViewModel implements IViewModel {
   static TestPageViewModel fromStore(Store<AppState> store) {
     return TestPageViewModel();
@@ -43,7 +42,6 @@ class PageData<T> {
 }
 
 class TestPage extends StatelessWidget {
-
   TestPage() : super(key: Key('TestPageKey'));
 
   @override
@@ -68,7 +66,7 @@ class TestPage extends StatelessWidget {
   }
 }
 
-typedef MainLayoutBuilder = Widget Function(BuildContext context, PageData pageData, Widget child);
+typedef MainLayoutBuilder<T> = Widget Function(BuildContext context, PageData<T> pageData, Widget child);
 
 class MainLayout<T> extends StatefulWidget {
   final T Function(Store<AppState>) converter;
@@ -76,14 +74,19 @@ class MainLayout<T> extends StatefulWidget {
   final void Function(Store<AppState> store) onDispose;
   final void Function(T) onInitialBuild;
 
-  final MainLayoutBuilder builder;
-  final MainLayoutBuilder iosBuilder;
-  final MainLayoutBuilder iosTabletBuilder;
-  final MainLayoutBuilder tabletBuilder;
+  final MainLayoutBuilder<T> builder;
+  final MainLayoutBuilder<T> iosBuilder;
+  final MainLayoutBuilder<T> iosTabletBuilder;
+  final MainLayoutBuilder<T> tabletBuilder;
   final Widget child;
 
   final bool canExit;
+  final bool topSafeArea;
+  final bool bottomSafeArea;
+  final bool resizeToAvoidBottomPadding;
+
   final PreferredSizeWidget appBarWidget;
+  final Widget bottomBarWidget;
 
   final void Function() onPop;
 
@@ -95,11 +98,15 @@ class MainLayout<T> extends StatefulWidget {
     this.iosTabletBuilder,
     this.tabletBuilder,
     this.appBarWidget,
+    this.bottomBarWidget,
     this.child = const SizedBox(),
     this.onInit,
     this.onDispose,
     this.onInitialBuild,
     this.canExit = false,
+    this.topSafeArea = false,
+    this.bottomSafeArea = false,
+    this.resizeToAvoidBottomPadding = false,
     this.onPop,
   }) : super(key: key);
 
@@ -121,15 +128,62 @@ class _MainLayoutState<T> extends State<MainLayout<T>> {
       builder: (BuildContext context, MainLayoutVM layoutVM) {
         return WillPopScope(
           onWillPop: () => _willPopScope(layoutVM),
-          child: Scaffold(
-            body: StoreConnector<AppState, T>(
-              converter: widget.converter,
-              onInit: widget.onInit,
-              onDispose: widget.onDispose,
-              onInitialBuild: widget.onInitialBuild,
-              builder: (BuildContext context, T vm) {
-                if (_isTablet(context) && _isIos(context) && widget.iosTabletBuilder != null) {
-                  return widget.iosTabletBuilder(
+          child: SafeArea(
+            top: widget.topSafeArea,
+            bottom: widget.bottomSafeArea,
+            child: Scaffold(
+              bottomNavigationBar: widget.bottomBarWidget,
+              resizeToAvoidBottomPadding: widget.resizeToAvoidBottomPadding,
+              appBar: widget.appBarWidget,
+              body: StoreConnector<AppState, T>(
+                converter: widget.converter,
+                onInit: widget.onInit,
+                onDispose: widget.onDispose,
+                onInitialBuild: widget.onInitialBuild,
+                builder: (BuildContext context, T vm) {
+                  if (_isTablet(context) && _isIos(context) && widget.iosTabletBuilder != null) {
+                    return widget.iosTabletBuilder(
+                      context,
+                      PageData<T>(
+                        viewModel: vm,
+                        locale: layoutVM.locale,
+                        language: layoutVM.language,
+                        textDirection: layoutVM.textDirection,
+                        theme: CustomTheme.instance,
+                      ),
+                      widget.child,
+                    );
+                  }
+
+                  if (_isTablet(context) && widget.tabletBuilder != null) {
+                    return widget.tabletBuilder(
+                      context,
+                      PageData<T>(
+                        viewModel: vm,
+                        locale: layoutVM.locale,
+                        language: layoutVM.language,
+                        textDirection: layoutVM.textDirection,
+                        theme: CustomTheme.instance,
+                      ),
+                      widget.child,
+                    );
+                  }
+
+                  if (_isIos(context) && widget.iosBuilder != null) {
+                    return widget.iosBuilder(
+                      context,
+                      PageData<T>(
+                        viewModel: vm,
+                        locale: layoutVM.locale,
+                        language: layoutVM.language,
+                        textDirection: layoutVM.textDirection,
+                        theme: CustomTheme.instance,
+                      ),
+                      widget.child,
+                    );
+                  }
+
+                  return widget.builder(
                     context,
                     PageData<T>(
                       viewModel: vm,
@@ -140,48 +194,8 @@ class _MainLayoutState<T> extends State<MainLayout<T>> {
                     ),
                     widget.child,
                   );
-                }
-
-                if (_isTablet(context) && widget.tabletBuilder != null) {
-                  return widget.tabletBuilder(
-                    context,
-                    PageData<T>(
-                      viewModel: vm,
-                      locale: layoutVM.locale,
-                      language: layoutVM.language,
-                      textDirection: layoutVM.textDirection,
-                      theme: CustomTheme.instance,
-                    ),
-                    widget.child,
-                  );
-                }
-
-                if (_isIos(context) && widget.iosBuilder != null) {
-                  return widget.iosBuilder(
-                    context,
-                    PageData<T>(
-                      viewModel: vm,
-                      locale: layoutVM.locale,
-                      language: layoutVM.language,
-                      textDirection: layoutVM.textDirection,
-                      theme: CustomTheme.instance,
-                    ),
-                    widget.child,
-                  );
-                }
-
-                return widget.builder(
-                  context,
-                  PageData<T>(
-                    viewModel: vm,
-                    locale: layoutVM.locale,
-                    language: layoutVM.language,
-                    textDirection: layoutVM.textDirection,
-                    theme: CustomTheme.instance,
-                  ),
-                  widget.child,
-                );
-              },
+                },
+              ),
             ),
           ),
         );
@@ -194,6 +208,7 @@ class _MainLayoutState<T> extends State<MainLayout<T>> {
     if (_lastPopDateTime != null && DateTime.now().difference(_lastPopDateTime) < Duration(seconds: 1)) {
       widget.onPop();
     }
+
     _lastPopDateTime = DateTime.now();
   }
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:base_project_template/res/keys.dart';
 import 'package:base_project_template/services/dialog_service/dialog_service.dart';
 import 'package:base_project_template/services/dialog_service/shared/dialog_layout.dart';
 import 'package:base_project_template/services/dialog_service/dialogs/exit_dialog/exit_dialog.dart';
@@ -28,7 +27,7 @@ class ExitDialogWidget extends StatelessWidget {
               //alignment: directionality == TextDirection.rtl ? Alignment.topLeft : Alignment.topRight,
               alignment: Alignment.topRight,
               child: DialogCloseButton(
-                keyValue: DialogKeys.closeExitDialogButton,
+                keyValue: '1234',
               ),
             ),
             SizedBox(
@@ -44,7 +43,7 @@ class ExitDialogWidget extends StatelessWidget {
               ),
             ),
             DialogMainButton(
-              keyValue: DialogKeys.exitDialogYesButton,
+              keyValue: '12345',
               backgroundColor: CustomTheme.colors.primaryColor,
               textColor: CustomTheme.colors.background,
               title: 'Yes',
@@ -54,7 +53,7 @@ class ExitDialogWidget extends StatelessWidget {
               height: 16.h,
             ),
             DialogMainButton(
-              keyValue: DialogKeys.exitDialogNoButton,
+              keyValue: '123456',
               backgroundColor: CustomTheme.colors.background,
               textColor: CustomTheme.colors.primaryColor,
               title: 'No',

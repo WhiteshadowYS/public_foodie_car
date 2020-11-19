@@ -1,11 +1,8 @@
-import 'package:base_project_template/res/app_styles/app_colors.dart';
-import 'package:base_project_template/store/application/app_state.dart';
+import 'package:base_project_template/services/route_service/models/routes.dart';
 import 'package:base_project_template/theme/custom_theme.dart';
 import 'package:base_project_template/ui/layouts/main_layout/main_layout.dart';
 import 'package:base_project_template/ui/pages/main_page/main_page_vm.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
 
 class MainPage extends StatefulWidget {
   MainPage() : super(key: Key('MainPage'));
@@ -15,7 +12,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-
   @override
   void initState() {
     super.initState();
@@ -24,15 +20,20 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, MainPageVM>(
+    return MainLayout<MainPageVM>(
+      key: Key('MainPageKey'),
       converter: MainPageVM.fromStore,
-      builder: (BuildContext context, MainPageVM vm) {
-        return MainLayout(
-          bgColor: AppColors.kWhite,
-          resizeToAvoidBottomPadding: true,
-          canExit: true,
-          back: () => vm.exitDialog(),
-          child: Container(),
+      appBarWidget: AppBar(
+        title: Text('Text'),
+      ),
+      child: RaisedButton(
+        onPressed: () {
+          Navigator.pushNamed(context, Routes.settings);
+        },
+      ),
+      builder: (BuildContext context, PageData<MainPageVM> pageData, Widget child) {
+        return Container(
+          child: child,
         );
       },
     );

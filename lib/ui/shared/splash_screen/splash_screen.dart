@@ -8,7 +8,6 @@ import 'package:base_project_template/dictionary/flutter_delegate.dart';
 import 'package:base_project_template/dictionary/flutter_dictionary.dart';
 
 import 'package:base_project_template/res/const.dart';
-import 'package:base_project_template/res/image_assets.dart';
 import 'package:base_project_template/theme/custom_theme.dart';
 import 'package:base_project_template/theme/models/appvesto_colors.dart';
 import 'package:base_project_template/ui/shared/splash_screen/widgets/splash_loader.dart';
@@ -68,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> {
               style: CustomTheme.textStyles.titleTextStyle(size: 30.0),
             ),
             const SizedBox(height: 20.0),
-            SvgPicture.asset(ImageAssets.LOGO, height: MediaQuery.of(context).size.height * 0.15,),
+            SvgPicture.asset('', height: MediaQuery.of(context).size.height * 0.15,),
             const SizedBox(height: 40.0),
 
             /// Here the download widget is called, he should specify [duration] as a parameter.

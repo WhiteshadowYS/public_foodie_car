@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:base_project_template/res/image_assets.dart';
 import 'package:base_project_template/ui/shared/fade_animation_container.dart';
 
 class CachedImage extends StatelessWidget {
@@ -32,7 +31,7 @@ class CachedImage extends StatelessWidget {
           return FadeAnimationContainer();
         },
         errorWidget: (BuildContext context, String image, obj) {
-          return SvgPicture.asset(ImageAssets.LOGO);
+          return SvgPicture.asset('');
         },
       ),
     );

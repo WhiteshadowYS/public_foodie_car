@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:base_project_template/res/keys.dart';
 import 'package:base_project_template/services/dialog_service/shared/dialog_layout.dart';
 import 'package:base_project_template/services/dialog_service/dialogs/internet_connection_dialog/internet_connection_dialog.dart';
 import 'package:base_project_template/services/dialog_service/shared/dialog_main_button.dart';
@@ -33,7 +32,7 @@ class InternetConnectionDialogWidget extends StatelessWidget {
               ),
             ),
             DialogMainButton(
-              keyValue: DialogKeys.exitDialogYesButton,
+              keyValue: '1234567',
               backgroundColor: CustomTheme.colors.primaryColor,
               textColor: CustomTheme.colors.background,
               title: 'Ok',
