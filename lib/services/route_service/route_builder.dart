@@ -1,3 +1,8 @@
+import 'dart:io';
+
+import 'package:base_project_template/models/pages/models/id_page_data.dart';
+import 'package:base_project_template/ui/pages/id_page/id_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:base_project_template/res/const.dart';
@@ -23,6 +28,17 @@ class RouteBuilder {
           page: MainPage(),
         );
 
+      case Routes.idPage:
+        return _defaultRoute(
+          settings: settings,
+          page: IdPage(
+            idPageData: settings.arguments ?? IdPageData(
+              id: 'IdPage',
+              pageNumber: 0,
+            ),
+          ),
+        );
+
       default:
         logger.w('$tag => <onGenerateRoute> => invalid route!!! => ${settings.name}');
         return _defaultRoute(
@@ -33,6 +49,15 @@ class RouteBuilder {
   }
 
   static Route<dynamic> _defaultRoute({RouteSettings settings, Widget page}) {
+    if (Platform.isIOS) {
+      return CupertinoPageRoute(
+        settings: settings,
+        builder: (BuildContext context) {
+          return page;
+        },
+      );
+    }
+
     return PageRouteBuilder<dynamic>(
       pageBuilder: (
         BuildContext context,

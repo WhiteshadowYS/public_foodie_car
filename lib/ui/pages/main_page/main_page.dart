@@ -28,7 +28,7 @@ class _MainPageState extends State<MainPage> {
       ),
       child: RaisedButton(
         onPressed: () {
-          Navigator.pushNamed(context, Routes.settings);
+          Navigator.pushNamed(context, Routes.idPage);
         },
       ),
       builder: (BuildContext context, PageData<MainPageVM> pageData, Widget child) {

@@ -1,3 +1,4 @@
+import 'package:base_project_template/models/pages/interfaces/i_page_data.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:base_project_template/services/dialog_service/dialog_service.dart';
 
@@ -43,13 +44,12 @@ class RouteService {
     return NavigateToAction.pop();
   }
 
-  NavigateToAction push(String route) {
+  NavigateToAction push(String route, [IPageData data]) {
     if (_history == null || _isDialogDisplayed()) return null;
-    if (_history.isNotEmpty && _history.last == route) return null;
 
     _history.add(route);
 
-    return NavigateToAction.push(route);
+    return NavigateToAction.push(route, arguments: data);
   }
 
   NavigateToAction pushAndRemoveUntil(String route) {

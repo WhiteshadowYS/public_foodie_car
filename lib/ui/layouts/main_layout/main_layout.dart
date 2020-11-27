@@ -126,80 +126,88 @@ class _MainLayoutState<T> extends State<MainLayout<T>> {
     return StoreConnector<AppState, MainLayoutVM>(
       converter: MainLayoutVM.fromStore,
       builder: (BuildContext context, MainLayoutVM layoutVM) {
+        if (Platform.isIOS) {
+          return getWidget(layoutVM);
+        }
+
         return WillPopScope(
           onWillPop: () => _willPopScope(layoutVM),
-          child: SafeArea(
-            top: widget.topSafeArea,
-            bottom: widget.bottomSafeArea,
-            child: Scaffold(
-              bottomNavigationBar: widget.bottomBarWidget,
-              resizeToAvoidBottomPadding: widget.resizeToAvoidBottomPadding,
-              appBar: widget.appBarWidget,
-              body: StoreConnector<AppState, T>(
-                converter: widget.converter,
-                onInit: widget.onInit,
-                onDispose: widget.onDispose,
-                onInitialBuild: widget.onInitialBuild,
-                builder: (BuildContext context, T vm) {
-                  if (_isTablet(context) && _isIos(context) && widget.iosTabletBuilder != null) {
-                    return widget.iosTabletBuilder(
-                      context,
-                      PageData<T>(
-                        viewModel: vm,
-                        locale: layoutVM.locale,
-                        language: layoutVM.language,
-                        textDirection: layoutVM.textDirection,
-                        theme: CustomTheme.instance,
-                      ),
-                      widget.child,
-                    );
-                  }
-
-                  if (_isTablet(context) && widget.tabletBuilder != null) {
-                    return widget.tabletBuilder(
-                      context,
-                      PageData<T>(
-                        viewModel: vm,
-                        locale: layoutVM.locale,
-                        language: layoutVM.language,
-                        textDirection: layoutVM.textDirection,
-                        theme: CustomTheme.instance,
-                      ),
-                      widget.child,
-                    );
-                  }
-
-                  if (_isIos(context) && widget.iosBuilder != null) {
-                    return widget.iosBuilder(
-                      context,
-                      PageData<T>(
-                        viewModel: vm,
-                        locale: layoutVM.locale,
-                        language: layoutVM.language,
-                        textDirection: layoutVM.textDirection,
-                        theme: CustomTheme.instance,
-                      ),
-                      widget.child,
-                    );
-                  }
-
-                  return widget.builder(
-                    context,
-                    PageData<T>(
-                      viewModel: vm,
-                      locale: layoutVM.locale,
-                      language: layoutVM.language,
-                      textDirection: layoutVM.textDirection,
-                      theme: CustomTheme.instance,
-                    ),
-                    widget.child,
-                  );
-                },
-              ),
-            ),
-          ),
+          child: getWidget(layoutVM),
         );
       },
+    );
+  }
+
+  Widget getWidget(MainLayoutVM layoutVM) {
+    return SafeArea(
+      top: widget.topSafeArea,
+      bottom: widget.bottomSafeArea,
+      child: Scaffold(
+        bottomNavigationBar: widget.bottomBarWidget,
+        resizeToAvoidBottomPadding: widget.resizeToAvoidBottomPadding,
+        appBar: widget.appBarWidget,
+        body: StoreConnector<AppState, T>(
+          converter: widget.converter,
+          onInit: widget.onInit,
+          onDispose: widget.onDispose,
+          onInitialBuild: widget.onInitialBuild,
+          builder: (BuildContext context, T vm) {
+            if (_isTablet(context) && _isIos(context) && widget.iosTabletBuilder != null) {
+              return widget.iosTabletBuilder(
+                context,
+                PageData<T>(
+                  viewModel: vm,
+                  locale: layoutVM.locale,
+                  language: layoutVM.language,
+                  textDirection: layoutVM.textDirection,
+                  theme: CustomTheme.instance,
+                ),
+                widget.child,
+              );
+            }
+
+            if (_isTablet(context) && widget.tabletBuilder != null) {
+              return widget.tabletBuilder(
+                context,
+                PageData<T>(
+                  viewModel: vm,
+                  locale: layoutVM.locale,
+                  language: layoutVM.language,
+                  textDirection: layoutVM.textDirection,
+                  theme: CustomTheme.instance,
+                ),
+                widget.child,
+              );
+            }
+
+            if (_isIos(context) && widget.iosBuilder != null) {
+              return widget.iosBuilder(
+                context,
+                PageData<T>(
+                  viewModel: vm,
+                  locale: layoutVM.locale,
+                  language: layoutVM.language,
+                  textDirection: layoutVM.textDirection,
+                  theme: CustomTheme.instance,
+                ),
+                widget.child,
+              );
+            }
+
+            return widget.builder(
+              context,
+              PageData<T>(
+                viewModel: vm,
+                locale: layoutVM.locale,
+                language: layoutVM.language,
+                textDirection: layoutVM.textDirection,
+                theme: CustomTheme.instance,
+              ),
+              widget.child,
+            );
+          },
+        ),
+      ),
     );
   }
 

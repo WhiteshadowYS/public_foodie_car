@@ -9,4 +9,6 @@ class Routes {
   static const String catalogs = '/catalogs_page';
   static const String categories = '/categories_page';
   static const String subCategories = '/sub_categories_page';
+
+  static const String idPage = '/id_page';
 }
