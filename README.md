@@ -1,6 +1,9 @@
 # MyCatalog
 MyCatalog it is AppVesto project.
 
+
+For generation use: 
+
 ## Architecture - Redux
 ## Project Links
 - [Git](https://bitbucket.org/flutterodessa/base_project_template/src/dev/)

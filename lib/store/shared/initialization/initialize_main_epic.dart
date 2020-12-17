@@ -1,4 +1,4 @@
-import 'package:base_project_template/services/dialog_service/loaders/default_loader/default_loader.dart';
+import 'package:base_project_template/domain/functional_services/dialog_service/models/default_loader_dialog.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:redux_epics/redux_epics.dart';
 

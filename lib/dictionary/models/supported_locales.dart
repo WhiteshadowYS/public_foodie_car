@@ -1,8 +1,8 @@
+import 'package:base_project_template/data/res/locales.dart';
 import 'package:base_project_template/dictionary/models/language.dart';
 import 'package:flutter/material.dart';
 
 import 'package:base_project_template/dictionary/models/supported_language.dart';
-import 'package:base_project_template/res/locales.dart';
 
 class SupportedLocales {
   List<SupportedLanguage> _supportedLocales;
@@ -34,5 +34,4 @@ class SupportedLocales {
   SupportedLanguage getSupportedLanguage(Locale locale) {
     return _supportedLocales.firstWhere((SupportedLanguage supLang) => supLang.languageCode == locale.languageCode);
   }
-
 }

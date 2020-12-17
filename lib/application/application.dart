@@ -1,14 +1,13 @@
+import 'package:base_project_template/data/res/keys.dart';
+import 'package:base_project_template/data/res/locales.dart';
+import 'package:base_project_template/data/theme/custom_theme.dart';
+import 'package:base_project_template/domain/functional_services/route_service/route_builder.dart';
+import 'package:base_project_template/ui/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:base_project_template/dictionary/flutter_delegate.dart';
-import 'package:base_project_template/res/keys.dart';
-import 'package:base_project_template/res/locales.dart';
-import 'package:base_project_template/services/route_service/route_builder.dart' as route;
 import 'package:base_project_template/store/application/app_state.dart';
-import 'package:base_project_template/store/shared/initialization/initialize_selector.dart';
-import 'package:base_project_template/theme/custom_theme.dart';
-import 'package:base_project_template/ui/shared/splash_screen/splash_screen.dart';
 import 'package:redux/redux.dart';
 
 /// The [Application] class, in which the creation of [MaterialApp] takes place.
@@ -17,7 +16,7 @@ import 'package:redux/redux.dart';
 class Application extends StatelessWidget {
   final Store<AppState> store;
 
-  Application({this.store}) : super(key: Key(ApplicationKeys.application));
+  Application({@required this.store}) : super(key: Key(ApplicationKeys.application));
 
   /// Here he connects to [StoreProvider], so that the application has one [store].
   /// In the [navigatorKey] option, we will write [NavigatorHolder] to NavigateToAction.
@@ -33,7 +32,9 @@ class Application extends StatelessWidget {
       store: store,
       child: StoreConnector<AppState, AppState>(
         converter: (Store<AppState> store) => store.state,
-        onInitialBuild: (AppState state) => InitializeSelectors.startInitialization(store),
+        onInitialBuild: (AppState state) {
+          // TODO(Yurii): Start initialization
+        },
         builder: (BuildContext context, AppState state) {
           return MaterialApp(
             theme: ThemeData(
@@ -42,8 +43,8 @@ class Application extends StatelessWidget {
             ),
             debugShowCheckedModeBanner: false,
             navigatorKey: NavigatorHolder.navigatorKey,
-            onGenerateRoute: route.RouteBuilder.onGenerateRoute,
-            home: SplashScreen(),
+            onGenerateRoute: RouteBuilder.onGenerateRoute,
+            home: MainPage(),
             locale: Locale(Locales.base),
             supportedLocales: FlutterDictionaryDelegate.getSupportedLocales,
             localizationsDelegates: FlutterDictionaryDelegate.getLocalizationDelegates,

@@ -1,11 +1,9 @@
 import 'dart:collection';
 
-import 'package:base_project_template/services/dialog_service/dialog_service.dart';
-import 'package:base_project_template/services/dialog_service/shared/i_dialog.dart';
+import 'package:base_project_template/domain/functional_services/dialog_service/dialog_service.dart';
 import 'package:base_project_template/store/shared/dialog_state/actions/force_close_dialog_action.dart';
 import 'package:base_project_template/store/shared/dialog_state/actions/show_dialog_action.dart';
 import 'package:base_project_template/store/shared/reducer.dart';
-
 
 /// Dialog state - it state need for work with dialogs from Epics.
 /// Params:

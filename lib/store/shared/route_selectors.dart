@@ -1,8 +1,6 @@
-import 'package:base_project_template/models/pages/interfaces/i_page_data.dart';
-import 'package:base_project_template/models/pages/models/id_page_data.dart';
+import 'package:base_project_template/domain/functional_services/route_service/models/routes.dart';
+import 'package:base_project_template/domain/functional_services/route_service/route_service.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
-import 'package:base_project_template/services/route_service/models/routes.dart';
-import 'package:base_project_template/services/route_service/route_service.dart';
 import 'package:base_project_template/store/application/app_state.dart';
 import 'package:redux/redux.dart';
 
@@ -29,9 +27,9 @@ class RouteSelectors {
     return (NavigateToAction action) => store.dispatch(action);
   }
 
-  static void Function(IPageData, String) getPushToWithArgumentsFunction(Store<AppState> store) {
-    return (IPageData data, String route) {
-      store.dispatch(RouteService.instance.push(route, data));
+  static void Function(String) getPushToWithArgumentsFunction(Store<AppState> store) {
+    return (String route) {
+      store.dispatch(RouteService.instance.push(route));
     };
   }
 }
