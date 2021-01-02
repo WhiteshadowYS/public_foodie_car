@@ -12,6 +12,10 @@ import 'package:injectable/injectable.dart';
 
 import '../config/app_config.dart';
 import 'third_party_module.dart';
+import '../data/network/repositories/user_repository.dart';
+import '../domain/data_services/user_service.dart';
+import '../data/services/user_service_impl.dart';
+import '../data/local/user_storage.dart';
 
 /// Environment names
 const _dev = 'dev';
@@ -40,6 +44,13 @@ GetIt $initGetIt(
   gh.lazySingleton<FirebaseMessaging>(() => thirdPartyModule.firebaseMessaging);
   gh.lazySingleton<FlutterSecureStorage>(
       () => thirdPartyModule.flutterSecureStorage);
+  gh.lazySingleton<UserService>(() => UserServiceImpl());
+  gh.lazySingleton<UserStorage>(() => UserStorage(get<FlutterSecureStorage>()));
+  gh.lazySingleton<UserRepository>(() => UserRepository(
+        get<Dio>(),
+        get<UserService>(),
+        get<UserStorage>(),
+      ));
   return get;
 }
 

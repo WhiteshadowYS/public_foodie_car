@@ -1,4 +1,6 @@
+import 'package:base_project_template/store/shared/reducer.dart';
 import 'package:flutter/foundation.dart';
+import 'package:redux/redux.dart';
 
 import 'package:redux_epics/redux_epics.dart';
 
@@ -36,6 +38,7 @@ class AppState {
       loaderState: state.loaderState.reducer(action),
     );
   }
+
   ///In [getAppEpic], call the main epic.
   static final getAppEpic = combineEpics<AppState>([
     InitializeMainEpic.indexEpic,
