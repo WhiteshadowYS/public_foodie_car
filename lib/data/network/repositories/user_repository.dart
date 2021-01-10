@@ -1,6 +1,6 @@
-import 'package:base_project_template/data/local/user_storage.dart';
-import 'package:base_project_template/data/network/repositories/base_repository.dart';
-import 'package:base_project_template/domain/data_services/user_service.dart';
+import 'package:foody_client_template/data/local/user_storage.dart';
+import 'package:foody_client_template/data/network/repositories/base_repository.dart';
+import 'package:foody_client_template/domain/data_services/user_service.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';

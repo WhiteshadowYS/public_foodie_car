@@ -1,8 +1,9 @@
-import 'package:base_project_template/data/res/locales.dart';
+import 'package:foody_client_template/data/res/locales.dart';
 import 'package:flutter/material.dart';
 
-import 'package:base_project_template/dictionary/models/language.dart';
-import 'package:base_project_template/dictionary/flutter_delegate.dart';
+import 'package:foody_client_template/dictionary/models/language.dart';
+import 'package:foody_client_template/dictionary/flutter_delegate.dart';
+import 'package:foody_client_template/dictionary/models/supported_locales.dart';
 
 class FlutterDictionary {
   static const String tag = '[FlutterDictionary]';
@@ -13,10 +14,12 @@ class FlutterDictionary {
 
   static FlutterDictionary get instance => _instance;
 
-  final Locale locale;
+  Locale locale;
   Language language;
 
-  FlutterDictionary(this.locale);
+  FlutterDictionary(this.locale) {
+    setNewLanguage(SupportedLocales.instance.getCurrentLocale);
+  }
 
   void setNewLanguage(String languageCode) {
     print('$tag => setNewLanguage() => locale => $languageCode');
@@ -29,13 +32,7 @@ class FlutterDictionary {
     language = FlutterDictionaryDelegate.getLanguageByLanguageCode(languageCode);
   }
 
-  static const List<String> _rtlLanguages = <String>[
-    Locales.he,
-    Locales.ps,
-    Locales.ur,
-    Locales.ar,
-    Locales.fa,
-  ];
+  static const List<String> _rtlLanguages = <String>[];
 
   bool get isRTL {
     return _rtlLanguages.contains(FlutterDictionaryDelegate.getCurrentLocale);

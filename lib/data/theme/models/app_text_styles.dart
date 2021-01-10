@@ -1,14 +1,14 @@
-import 'package:base_project_template/data/theme/interfaces/i_appvesto_text_theme.dart';
+import 'package:foody_client_template/data/theme/interfaces/i_app_text_theme.dart';
 import 'package:flutter/material.dart';
 
-class AVTextStyles implements IAVTextStyles {
+class AppTextStyles implements IAppTextStyles {
   final String fontFamily;
   final Color _titleTextColor;
   final Color _mainTextColor;
   final Color _accentTextColor;
   final Color _additionalTextColor;
 
-  AVTextStyles({
+  AppTextStyles({
     @required this.fontFamily,
     Color titleTextColor,
     Color mainTextColor,
@@ -20,14 +20,14 @@ class AVTextStyles implements IAVTextStyles {
         _additionalTextColor = additionalTextColor;
 
   @override
-  AVTextStyles copyWith({
+  AppTextStyles copyWith({
     String fontFamily,
     Color titleTextColor,
     Color mainTextColor,
     Color accentTextColor,
     Color additionalTextColor,
   }) {
-    return AVTextStyles(
+    return AppTextStyles(
       fontFamily: fontFamily ?? this.fontFamily,
       titleTextColor: titleTextColor ?? _titleTextColor,
       mainTextColor: mainTextColor ?? _mainTextColor,
@@ -48,7 +48,7 @@ class AVTextStyles implements IAVTextStyles {
   }
 
   @override
-  TextStyle mainTextStyle({double size, double height}) {
+  TextStyle mainTextStyle({double size = 20.0, double height}) {
     return TextStyle(
       fontFamily: fontFamily,
       height: height,

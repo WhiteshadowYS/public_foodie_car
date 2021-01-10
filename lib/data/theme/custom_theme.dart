@@ -1,11 +1,11 @@
-import 'package:base_project_template/data/theme/data/default_theme.dart';
-import 'package:base_project_template/data/theme/models/appvesto_colors.dart';
-import 'package:base_project_template/data/theme/models/appvesto_text_styles.dart';
-import 'package:base_project_template/data/theme/models/appvesto_theme.dart';
-import 'package:base_project_template/data/theme/models/colors_dto.dart';
+import 'package:foody_client_template/data/theme/data/default_theme.dart';
+import 'package:foody_client_template/data/theme/models/app_colors.dart';
+import 'package:foody_client_template/data/theme/models/app_text_styles.dart';
+import 'package:foody_client_template/data/theme/models/app_theme.dart';
+import 'package:foody_client_template/data/theme/models/colors_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:base_project_template/utils/check_is_hex_dark.dart';
+import 'package:foody_client_template/utils/check_is_hex_dark.dart';
 
 class CustomTheme {
   static const String tag = '[CustomTheme]';
@@ -18,16 +18,16 @@ class CustomTheme {
 
   static CustomTheme get instance => _instance;
 
-  AVTheme _theme;
+  AppTheme _theme;
 
-  void setNewTheme(AVTheme thm) {
+  void setNewTheme(AppTheme thm) {
     print('$tag => setNewTheme() => theme => ${thm.themeName}');
     _theme = thm;
   }
 
   void setColorsFromJson(Map<String, dynamic> json) {
     print('$tag => <setColorsFromJson()> => json => $json');
-    final AVColors newColors = colors.fromColorsDTO(ColorsDTO.fromJson(json));
+    final AppColors newColors = colors.fromColorsDTO(ColorsDTO.fromJson(json));
 
     _theme = _theme.copyWith(
       colors: newColors,
@@ -75,7 +75,7 @@ class CustomTheme {
     return Brightness.light;
   }
 
-  static AVColors get colors => instance._theme.colors;
+  static AppColors get colors => instance._theme.colors;
 
-  static AVTextStyles get textStyles => instance._theme.textStyles;
+  static AppTextStyles get textStyles => instance._theme.textStyles;
 }

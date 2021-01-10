@@ -1,5 +1,5 @@
-import 'package:base_project_template/config/app_config.dart';
-import 'package:base_project_template/data/network/interceptors/curl_intercepter.dart';
+import 'package:foody_client_template/config/app_config.dart';
+import 'package:foody_client_template/data/network/interceptors/curl_intercepter.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';

@@ -1,34 +1,34 @@
-import 'package:base_project_template/data/res/app_styles/app_colors.dart';
-import 'package:base_project_template/data/theme/models/appvesto_colors.dart';
-import 'package:base_project_template/data/theme/models/appvesto_text_styles.dart';
-import 'package:base_project_template/data/theme/models/appvesto_theme.dart';
+import 'package:foody_client_template/data/res/app_styles/default_app_colors.dart';
+import 'package:foody_client_template/data/theme/models/app_colors.dart';
+import 'package:foody_client_template/data/theme/models/app_text_styles.dart';
+import 'package:foody_client_template/data/theme/models/app_theme.dart';
 
-AVTheme defaultTheme = AVTheme(
+AppTheme defaultTheme = AppTheme(
   themeName: 'default_theme',
-  colors: AVColors(
-    primaryColor: AppColors.kGreen,
-    accentColor: AppColors.kLightGrey,
-    errorColor: AppColors.kRed,
-    font: AppColors.kGrey,
-    minorFont: AppColors.kLightGrey,
-    accentFont: AppColors.kGreen,
-    background: AppColors.kWhite,
-    footerIcons: AppColors.kGreen,
-    footerIconsSelected: AppColors.kGreen,
-    footerBackground: AppColors.kWhite,
-    buttonFont: AppColors.kWhite,
-    buttons: AppColors.kGreen,
-    popupBackground: AppColors.kWhite,
-    popupText: AppColors.kGrey,
-    popupCloseButton: AppColors.kGreen,
-    popupOkButton: AppColors.kGreen,
-    popupCancelButton: AppColors.kGreen,
+  colors: AppColors(
+    primaryColor: DefaultAppColors.orange,
+    accentColor: DefaultAppColors.purple,
+    errorColor: DefaultAppColors.red,
+    font: DefaultAppColors.grey,
+    minorFont: DefaultAppColors.lightGrey,
+    accentFont: DefaultAppColors.orange,
+    background: DefaultAppColors.white,
+    footerIcons: DefaultAppColors.orange,
+    footerIconsSelected: DefaultAppColors.orange,
+    footerBackground: DefaultAppColors.white,
+    buttonFont: DefaultAppColors.white,
+    buttons: DefaultAppColors.orange,
+    popupBackground: DefaultAppColors.white,
+    popupText: DefaultAppColors.grey,
+    popupCloseButton: DefaultAppColors.orange,
+    popupOkButton: DefaultAppColors.orange,
+    popupCancelButton: DefaultAppColors.orange,
   ),
-  textStyles: AVTextStyles(
+  textStyles: AppTextStyles(
     fontFamily: 'Ubuntu',
-    mainTextColor: AppColors.kDarkGrey.withOpacity(0.6),
-    titleTextColor: AppColors.kGrey,
-    additionalTextColor: AppColors.kWhite,
-    accentTextColor: AppColors.kGreen,
+    mainTextColor: DefaultAppColors.black.withOpacity(0.6),
+    titleTextColor: DefaultAppColors.white,
+    additionalTextColor: DefaultAppColors.white,
+    accentTextColor: DefaultAppColors.orange,
   ),
 );

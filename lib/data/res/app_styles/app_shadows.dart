@@ -1,4 +1,4 @@
-import 'package:base_project_template/data/res/app_styles/app_colors.dart';
+import 'package:foody_client_template/data/res/app_styles/default_app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppShadows {
@@ -10,7 +10,7 @@ class AppShadows {
 
   static List<BoxShadow> emptyShadow() {
     return [
-      BoxShadow(color: AppColors.kWhite.withOpacity(0)),
+      BoxShadow(color: DefaultAppColors.white.withOpacity(0)),
     ];
   }
 
@@ -18,7 +18,7 @@ class AppShadows {
     return [
       BoxShadow(
         offset: Offset(-1, 0),
-        color: AppColors.kWhite.withOpacity(0.2),
+        color: DefaultAppColors.white.withOpacity(0.2),
         blurRadius: 12.0,
       ),
       BoxShadow(

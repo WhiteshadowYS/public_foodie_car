@@ -1,8 +1,10 @@
-import 'package:base_project_template/data/res/locales.dart';
-import 'package:base_project_template/dictionary/models/language.dart';
+import 'package:foody_client_template/data/res/locales.dart';
+import 'package:foody_client_template/dictionary/data/en.dart';
+import 'package:foody_client_template/dictionary/data/ru.dart';
+import 'package:foody_client_template/dictionary/models/language.dart';
 import 'package:flutter/material.dart';
 
-import 'package:base_project_template/dictionary/models/supported_language.dart';
+import 'package:foody_client_template/dictionary/models/supported_language.dart';
 
 class SupportedLocales {
   List<SupportedLanguage> _supportedLocales;
@@ -10,9 +12,13 @@ class SupportedLocales {
   SupportedLocales._() {
     _supportedLocales = <SupportedLanguage>[
       SupportedLanguage(
-        languageCode: Locales.en,
-        language: Language(),
+        languageCode: Locales.ru,
+        language: ru,
       )..choose(),
+      SupportedLanguage(
+        languageCode: Locales.en,
+        language: en,
+      ),
     ];
   }
 
@@ -25,6 +31,10 @@ class SupportedLocales {
 
   List<Locale> get getSupportedLocales {
     return _supportedLocales?.map((SupportedLanguage supLang) => supLang.getLocale)?.toList() ?? <SupportedLanguage>[];
+  }
+
+  List<SupportedLanguage> get getSupportedLanguages {
+    return _supportedLocales ?? <SupportedLanguage>[];
   }
 
   String get getCurrentLocale {

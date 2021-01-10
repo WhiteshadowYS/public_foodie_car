@@ -1,9 +1,9 @@
-import 'package:base_project_template/data/theme/interfaces/i_appvesto_colors.dart';
-import 'package:base_project_template/data/theme/models/colors_dto.dart';
+import 'package:foody_client_template/data/theme/interfaces/i_app_colors.dart';
+import 'package:foody_client_template/data/theme/models/colors_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
-class AVColors implements IAVColors {
+class AppColors implements IAppColors {
   Color primaryColor;
   Color accentColor;
   Color errorColor;
@@ -25,7 +25,7 @@ class AVColors implements IAVColors {
 
   Brightness brightness;
 
-  AVColors({
+  AppColors({
     this.primaryColor,
     this.accentColor,
     this.errorColor,
@@ -45,8 +45,8 @@ class AVColors implements IAVColors {
     this.popupCancelButton,
   });
 
-  AVColors fromColorsDTO(ColorsDTO colorsDTO) {
-    final AVColors _c = copyWith(
+  AppColors fromColorsDTO(ColorsDTO colorsDTO) {
+    final AppColors _c = copyWith(
       primaryColor: _hexStringToColor(colorsDTO.primaryColor),
       accentColor: _hexStringToColor(colorsDTO.accentColor),
       errorColor: _hexStringToColor(colorsDTO.errorColor),
@@ -69,7 +69,7 @@ class AVColors implements IAVColors {
     return _c;
   }
 
-  AVColors copyWith({
+  AppColors copyWith({
     Color primaryColor,
     Color accentColor,
     Color errorColor,
@@ -88,7 +88,7 @@ class AVColors implements IAVColors {
     Color popupOkButton,
     Color popupCancelButton,
   }) {
-    return AVColors(
+    return AppColors(
       primaryColor: primaryColor ?? this.primaryColor,
       accentColor: accentColor ?? this.accentColor,
       errorColor: errorColor ?? this.errorColor,

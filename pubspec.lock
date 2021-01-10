@@ -339,7 +339,7 @@ packages:
       name: flutter_screenutil
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.1"
+    version: "4.0.2+3"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -700,22 +700,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.14.0"
-  redux_gen:
-    dependency: "direct dev"
-    description:
-      path: "../../generators/redux_gen"
-      relative: true
-    source: path
-    version: "0.0.1"
-  redux_gen_annotation:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: master
-      resolved-ref: "9cfa0562cf413b5fcc94123e4593625d4726c88c"
-      url: "git://github.com/WhiteshadowYS/redux_gen_annotation.git"
-    source: git
-    version: "0.0.1"
   rxdart:
     dependency: "direct main"
     description:

@@ -1,12 +1,11 @@
 import 'package:flutter/painting.dart';
 
-abstract class IAVTextStyles {
-
+abstract class IAppTextStyles {
   TextStyle titleTextStyle({double size, double height});
 
   TextStyle mainTextStyle({double size, double height});
 
-  IAVTextStyles copyWith({
+  IAppTextStyles copyWith({
     String fontFamily,
     Color titleTextColor,
     Color mainTextColor,

@@ -1,4 +1,4 @@
-import 'package:base_project_template/domain/data_services/user_service.dart';
+import 'package:foody_client_template/domain/data_services/user_service.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: UserService)

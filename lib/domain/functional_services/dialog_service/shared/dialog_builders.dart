@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DialogBuilders {
-  static Future<void> defaultDialogBuilder({BuildContext context, Widget widget}) {
-    return showDialog(
+  static Future<void> defaultDialogBuilder({BuildContext context, Widget widget}) async {
+    return await showDialog(
       context: context,
       builder: (BuildContext ctx) => widget,
     );

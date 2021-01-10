@@ -1,4 +1,4 @@
-import 'package:base_project_template/domain/functional_services/dialog_service/dialog_service.dart';
+import 'package:foody_client_template/domain/functional_services/dialog_service/dialog_service.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 
 /// [RouteService] it is service for routing in application.

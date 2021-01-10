@@ -1,5 +1,5 @@
 import 'package:flutter/painting.dart';
 
-abstract class IAVEdgeInsets {
+abstract class IAppEdgeInsets {
   EdgeInsets primaryEdgeInsets;
 }

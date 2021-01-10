@@ -1,13 +1,13 @@
-import 'package:base_project_template/domain/functional_services/dialog_service/models/default_loader_dialog.dart';
+import 'package:foody_client_template/domain/functional_services/dialog_service/models/default_loader_dialog.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:redux_epics/redux_epics.dart';
 
-import 'package:base_project_template/store/application/app_state.dart';
-import 'package:base_project_template/store/shared/route_selectors.dart';
-import 'package:base_project_template/store/shared/loader/loader_state.dart';
-import 'package:base_project_template/store/shared/loader/actions/stop_loading_action.dart';
-import 'package:base_project_template/store/shared/loader/actions/start_loading_action.dart';
-import 'package:base_project_template/store/shared/initialization/actions/start_initialization.dart';
+import 'package:foody_client_template/store/application/app_state.dart';
+import 'package:foody_client_template/store/shared/route_selectors.dart';
+import 'package:foody_client_template/store/shared/loader/loader_state.dart';
+import 'package:foody_client_template/store/shared/loader/actions/stop_loading_action.dart';
+import 'package:foody_client_template/store/shared/loader/actions/start_loading_action.dart';
+import 'package:foody_client_template/store/shared/initialization/actions/start_initialization.dart';
 
 /// [InitializeMainEpic] the main epic which is started for initialization.
 /// The class [InitializeMainEpic], has only one static variable [indexEpic].
@@ -25,7 +25,7 @@ class InitializeMainEpic {
     return actions.whereType<StartInitialization>().switchMap((action) async* {
       yield* _changeInitializationLoading(true);
 
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(Duration(seconds: 3));
 
       yield* _changeInitializationLoading(false);
 
@@ -51,6 +51,6 @@ class InitializeMainEpic {
 
   /// The [_navigationStream] function performs the transition depending on what is passed in [id].
   static Stream<dynamic> _navigationStream() {
-    return Stream.value(RouteSelectors.gotoMainPageAction);
+    return Stream.value(RouteSelectors.gotoHomePageAction);
   }
 }
