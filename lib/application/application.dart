@@ -1,14 +1,16 @@
+import 'package:foody_client_template/data/res/const.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foody_client_template/data/res/keys.dart';
+import 'package:foody_client_template/data/res/locales.dart';
+import 'package:foody_client_template/data/theme/custom_theme.dart';
+import 'package:foody_client_template/domain/functional_services/route_service/route_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
-import 'package:base_project_template/dictionary/flutter_delegate.dart';
-import 'package:base_project_template/res/keys.dart';
-import 'package:base_project_template/res/locales.dart';
-import 'package:base_project_template/services/route_service/route_builder.dart' as route;
-import 'package:base_project_template/store/application/app_state.dart';
-import 'package:base_project_template/store/shared/initialization/initialize_selector.dart';
-import 'package:base_project_template/theme/custom_theme.dart';
-import 'package:base_project_template/ui/shared/splash_screen/splash_screen.dart';
+import 'package:foody_client_template/dictionary/flutter_delegate.dart';
+import 'package:foody_client_template/store/application/app_state.dart';
+import 'package:foody_client_template/store/shared/initialization/initialize_selector.dart';
+import 'package:foody_client_template/ui/widgets/splash_screen.dart';
 import 'package:redux/redux.dart';
 
 /// The [Application] class, in which the creation of [MaterialApp] takes place.
@@ -17,7 +19,7 @@ import 'package:redux/redux.dart';
 class Application extends StatelessWidget {
   final Store<AppState> store;
 
-  Application({this.store}) : super(key: Key(ApplicationKeys.application));
+  Application({@required this.store}) : super(key: Key(ApplicationKeys.application));
 
   /// Here he connects to [StoreProvider], so that the application has one [store].
   /// In the [navigatorKey] option, we will write [NavigatorHolder] to NavigateToAction.
@@ -29,34 +31,41 @@ class Application extends StatelessWidget {
   /// After initialization, we will move to [SplashScreen].
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<AppState>(
-      store: store,
-      child: StoreConnector<AppState, AppState>(
-        converter: (Store<AppState> store) => store.state,
-        onInitialBuild: (AppState state) => InitializeSelectors.startInitialization(store),
-        builder: (BuildContext context, AppState state) {
-          return MaterialApp(
-            theme: ThemeData(
-              splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
-              highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
-            ),
-            debugShowCheckedModeBanner: false,
-            navigatorKey: NavigatorHolder.navigatorKey,
-            onGenerateRoute: route.RouteBuilder.onGenerateRoute,
-            home: SplashScreen(),
-            locale: Locale(Locales.base),
-            supportedLocales: FlutterDictionaryDelegate.getSupportedLocales,
-            localizationsDelegates: FlutterDictionaryDelegate.getLocalizationDelegates,
-            builder: (context, child) {
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(
-                  textScaleFactor: 1.0,
-                ),
-                child: child,
-              );
-            },
-          );
-        },
+    return ScreenUtilInit(
+      allowFontScaling: DESIGN_SCREEN_ALLOW_FONT_SCALING,
+      designSize: Size(
+        DESIGN_SCREEN_WIDTH,
+        DESIGN_SCREEN_HEIGHT,
+      ),
+      child: StoreProvider<AppState>(
+        store: store,
+        child: StoreConnector<AppState, AppState>(
+          converter: (Store<AppState> store) => store.state,
+          onInitialBuild: (AppState state) => InitializeSelectors.startInitialization(store),
+          builder: (BuildContext context, AppState state) {
+            return MaterialApp(
+              theme: ThemeData(
+                splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
+                highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+              ),
+              debugShowCheckedModeBanner: false,
+              navigatorKey: NavigatorHolder.navigatorKey,
+              onGenerateRoute: RouteBuilder.onGenerateRoute,
+              home: SplashScreen(),
+              locale: Locale(Locales.base),
+              supportedLocales: FlutterDictionaryDelegate.getSupportedLocales,
+              localizationsDelegates: FlutterDictionaryDelegate.getLocalizationDelegates,
+              builder: (context, child) {
+                return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    textScaleFactor: 1.0,
+                  ),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

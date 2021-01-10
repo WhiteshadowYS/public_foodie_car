@@ -1,10 +1,12 @@
+import 'package:foody_client_template/store/shared/reducer.dart';
 import 'package:flutter/foundation.dart';
+import 'package:redux/redux.dart';
 
 import 'package:redux_epics/redux_epics.dart';
 
-import 'package:base_project_template/store/shared/loader/loader_state.dart';
-import 'package:base_project_template/store/shared/dialog_state/dialog_state.dart';
-import 'package:base_project_template/store/shared/initialization/initialize_main_epic.dart';
+import 'package:foody_client_template/store/shared/loader/loader_state.dart';
+import 'package:foody_client_template/store/shared/dialog_state/dialog_state.dart';
+import 'package:foody_client_template/store/shared/initialization/initialize_main_epic.dart';
 
 /// Class [AppState], is the main [state] application.
 /// It keeps 3, smaller states.
@@ -36,6 +38,7 @@ class AppState {
       loaderState: state.loaderState.reducer(action),
     );
   }
+
   ///In [getAppEpic], call the main epic.
   static final getAppEpic = combineEpics<AppState>([
     InitializeMainEpic.indexEpic,

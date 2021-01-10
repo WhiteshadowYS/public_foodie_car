@@ -1,11 +1,13 @@
 import 'dart:collection';
+import 'package:foody_client_template/domain/functional_services/dialog_service/interfaces/i_loader.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:base_project_template/services/dialog_service/shared/i_loader.dart';
-import 'package:base_project_template/store/shared/loader/actions/start_loading_action.dart';
-import 'package:base_project_template/store/shared/loader/actions/stop_loading_action.dart';
-import 'package:base_project_template/store/shared/reducer.dart';
+import 'package:foody_client_template/store/shared/loader/actions/start_loading_action.dart';
+import 'package:foody_client_template/store/shared/loader/actions/stop_loading_action.dart';
+import 'package:foody_client_template/store/shared/reducer.dart';
 
 enum LoaderKey {
+  global,
+
   initializationLoading,
   checkIdLoading,
   getData,

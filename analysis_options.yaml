@@ -78,4 +78,8 @@ linter:
 analyzer:
   enable-experiment:
     - spread-collections
-  exclude: [build/**]
+  exclude: 
+   exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "build/**"

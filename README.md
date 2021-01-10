@@ -1,9 +1,12 @@
 # MyCatalog
 MyCatalog it is AppVesto project.
 
+
+For generation use: 
+
 ## Architecture - Redux
 ## Project Links
-- [Git](https://bitbucket.org/flutterodessa/base_project_template/src/dev/)
+- [Git](https://bitbucket.org/flutterodessa/foody_client_template/src/dev/)
 - [Jira](https://appvesto.atlassian.net/secure/RapidBoard.jspa?rapidView=2&projectKey=MC&selectedIssue=MC-23)
 - [Design (Not Added)](https://zpl.io/2jnWG4Q)
 - [Confluence](https://appvesto.atlassian.net/l/c/BTkHodu2)
