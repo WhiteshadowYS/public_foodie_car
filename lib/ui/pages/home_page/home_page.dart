@@ -12,27 +12,30 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, HomePageVM>(
-      converter: HomePageVM.init,
-      builder: (context, snapshot) {
-        return MainLayout(
-          key: Key('[HomePage]'),
-          child: ListView.builder(
-            padding: const EdgeInsets.all(16.0),
-            itemCount: 10,
-            itemBuilder: (BuildContext context, int index) {
-              return ProductItem(
-                key: Key('[ProductItem][$index]'),
-                product: Product(
-                  name: 'Test',
-                  price: 200,
-                  url: 'https://ambar.net.ua/image/data/2398.jpg',
-                ),
-              );
-            },
-          ),
-        );
-      },
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: StoreConnector<AppState, HomePageVM>(
+        converter: HomePageVM.init,
+        builder: (context, snapshot) {
+          return MainLayout(
+            key: Key('[HomePage]'),
+            child: ListView.builder(
+              padding: const EdgeInsets.all(16.0),
+              itemCount: 10,
+              itemBuilder: (BuildContext context, int index) {
+                return ProductItem(
+                  key: Key('[ProductItem][$index]'),
+                  product: Product(
+                    name: 'Test',
+                    price: 200,
+                    url: 'https://ambar.net.ua/image/data/2398.jpg',
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

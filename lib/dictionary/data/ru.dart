@@ -9,6 +9,6 @@ const Language ru = Language(
   galleryPageTitle: 'Галерея',
   categoriesPageTitle: 'Категории',
   aboutPageTitle: 'О Нас',
-  subCategoriesPageTitle: 'Под категории',
+  busketPageTitle: 'Корзина',
   splashScreenTitle: 'Добро Пожаловать!',
 );

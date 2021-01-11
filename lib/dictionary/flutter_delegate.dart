@@ -34,7 +34,7 @@ class FlutterDictionaryDelegate extends LocalizationsDelegate<FlutterDictionary>
   Future<FlutterDictionary> load(Locale locale) {
     // Returning a SynchronousFuture here because an async "load" operation
     // isn't needed to produce an instance of DemoLocalizations.
-    return SynchronousFuture<FlutterDictionary>(FlutterDictionary(locale));
+    return SynchronousFuture<FlutterDictionary>(FlutterDictionary());
   }
 
   @override

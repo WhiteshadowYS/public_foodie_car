@@ -34,20 +34,73 @@ class ProductItem extends StatelessWidget {
           ),
         ],
       ),
-      height: 200.sp,
+      height: 160.sp,
       width: double.infinity,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 160.sp,
+          Expanded(
             child: CachedNetworkImage(
               imageUrl: product.url,
             ),
           ),
           const SizedBox(width: 24.0),
-          Text(
-            product.name,
+          Expanded(
+            child: Stack(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Title',
+                      style: CustomTheme.textStyles.mainTextStyle(
+                        size: 20.sp,
+                      ),
+                    ),
+                    Text(
+                      'Продукты',
+                      style: CustomTheme.textStyles.mainTextStyle(
+                        size: 10.sp,
+                      ),
+                    ),
+                    Text(
+                      'Вес',
+                      style: CustomTheme.textStyles.mainTextStyle(
+                        size: 10.sp,
+                      ),
+                    ),
+                  ],
+                ),
+                Positioned(
+                  right: 0.0,
+                  bottom: 0.0,
+                  child: Column(
+                    children: [
+                      Text(
+                        '200 грн',
+                        style: CustomTheme.textStyles.accentTextStyle(
+                          size: 16.sp,
+                        ),
+                      ),
+                      SizedBox(height: 8.sp),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 28.sp,
+                        width: 100.sp,
+                        decoration: BoxDecoration(
+                          color: CustomTheme.colors.buttons,
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Text(
+                          'Купить',
+                          style: CustomTheme.textStyles.buttonTextStyle(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

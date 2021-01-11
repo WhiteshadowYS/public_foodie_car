@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:foodie_client_template/data/res/settings.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodie_client_template/data/theme/custom_theme.dart';
-import 'package:foodie_client_template/ui/layouts/bottom_bar/widgets/bottom_bar_item.dart';
+import 'package:foodie_client_template/ui/layouts/bottom_bar/widgets/app_bottom_bar_item.dart';
 
 class AppBottomBar extends StatelessWidget {
   final String selectedPage;
-  final List<AppBottomBaritem> items;
+  final List<AppBottomBarItem> items;
   final void Function(String) gotoPage;
 
   const AppBottomBar({
@@ -26,22 +26,20 @@ class AppBottomBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: items.map<Widget>((item) {
             if (item.page != null && selectedPage == item.page) {
-              return InkWell(
+              return AppBottomBarItem(
+                key: Key('[AppBottomBarItem][Active]'),
+                icon: item.icon,
+                isActive: true,
+                page: item.page,
                 onTap: () => gotoPage(item.page),
-                child: Container(
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: CustomTheme.colors.accentColor,
-                  ),
-                  child: item,
-                ),
               );
             }
 
-            return InkWell(
+            return AppBottomBarItem(
+              key: Key('[AppBottomBarItem][${item.page}]'),
+              icon: item.icon,
+              page: item.page,
               onTap: () => gotoPage(item.page),
-              child: item,
             );
           }).toList(),
         ),

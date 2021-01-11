@@ -48,7 +48,7 @@ class AppTextStyles implements IAppTextStyles {
   }
 
   @override
-  TextStyle mainTextStyle({double size = 20.0, double height}) {
+  TextStyle mainTextStyle({double size = 16.0, double height}) {
     return TextStyle(
       fontFamily: fontFamily,
       height: height,
@@ -58,7 +58,7 @@ class AppTextStyles implements IAppTextStyles {
     );
   }
 
-  TextStyle accentTextStyle({double size, Color color, double height, FontWeight fontWeight = FontWeight.w400, List<BoxShadow> shadow}) {
+  TextStyle accentTextStyle({double size = 14.0, Color color, double height, FontWeight fontWeight = FontWeight.w400, List<BoxShadow> shadow}) {
     return TextStyle(
       shadows: shadow,
       fontFamily: fontFamily,
@@ -70,7 +70,7 @@ class AppTextStyles implements IAppTextStyles {
   }
 
   TextStyle linkTextStyle({
-    double size,
+    double size = 14.0,
     FontWeight fontWeight,
     double decorationThickness,
     Color decorationColor,
@@ -86,7 +86,7 @@ class AppTextStyles implements IAppTextStyles {
     );
   }
 
-  TextStyle buttonTextStyle({double size, double height}) {
+  TextStyle buttonTextStyle({double size = 16.0, double height}) {
     return TextStyle(
       fontFamily: fontFamily,
       height: height,

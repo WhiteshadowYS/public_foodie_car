@@ -1,3 +1,5 @@
+import 'package:foodie_client_template/domain/functional_services/dialog_service/dialog_service.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/models/choose_language_dialog.dart';
 import 'package:foodie_client_template/domain/functional_services/dialog_service/models/default_loader_dialog.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:redux_epics/redux_epics.dart';
@@ -25,11 +27,13 @@ class InitializeMainEpic {
     return actions.whereType<StartInitialization>().switchMap((action) async* {
       yield* _changeInitializationLoading(true);
 
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: 1));
 
       yield* _changeInitializationLoading(false);
 
       yield* _navigationStream();
+
+      DialogService.instance.show(ChooseLanguageDialog());
     });
   }
 

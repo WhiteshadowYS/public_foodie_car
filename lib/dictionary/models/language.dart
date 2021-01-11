@@ -8,7 +8,7 @@ class Language {
   final String galleryPageTitle;
   final String categoriesPageTitle;
   final String aboutPageTitle;
-  final String subCategoriesPageTitle;
+  final String busketPageTitle;
   final String splashScreenTitle;
 
   const Language({
@@ -19,6 +19,6 @@ class Language {
     this.galleryPageTitle,
     this.homePageTitle,
     this.splashScreenTitle,
-    this.subCategoriesPageTitle,
+    this.busketPageTitle,
   });
 }

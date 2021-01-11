@@ -7,7 +7,7 @@ AppTheme defaultTheme = AppTheme(
   themeName: 'default_theme',
   colors: AppColors(
     primaryColor: DefaultAppColors.orange,
-    accentColor: DefaultAppColors.purple,
+    accentColor: DefaultAppColors.blue,
     errorColor: DefaultAppColors.red,
     font: DefaultAppColors.grey,
     minorFont: DefaultAppColors.lightGrey,

@@ -3,12 +3,13 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:foodie_client_template/data/theme/custom_theme.dart';
 import 'package:foodie_client_template/domain/functional_services/route_service/models/routes.dart';
 import 'package:foodie_client_template/store/application/app_state.dart';
-import 'package:foodie_client_template/ui/layouts/bottom_bar/bottom_bar.dart';
-import 'package:foodie_client_template/ui/layouts/bottom_bar/widgets/bottom_bar_item.dart';
+import 'package:foodie_client_template/ui/layouts/app_bar/app_top_bar.dart';
+import 'package:foodie_client_template/ui/layouts/bottom_bar/app_bottom_bar.dart';
+import 'package:foodie_client_template/ui/layouts/bottom_bar/widgets/app_bottom_bar_item.dart';
 import 'package:foodie_client_template/ui/layouts/focus_layout/focus_layout.dart';
 import 'package:foodie_client_template/ui/layouts/main_layout/main_layout_vm.dart';
 
-class MainLayout extends StatelessWidget {
+class MainLayout extends StatefulWidget {
   final bool showAppBar;
   final bool showBottomBar;
   final Widget child;
@@ -21,40 +22,39 @@ class MainLayout extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _MainLayoutState createState() => _MainLayoutState();
+}
+
+class _MainLayoutState extends State<MainLayout> {
+  @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, MainLayoutVM>(
       converter: MainLayoutVM.init,
       builder: (BuildContext context, MainLayoutVM vm) {
         return Scaffold(
-          appBar: showAppBar
-              ? AppBar(
-                  backgroundColor: CustomTheme.colors.primaryColor,
-                  title: Text(
-                    vm.title,
-                    style: CustomTheme.textStyles.titleTextStyle(),
-                  ),
+          appBar: widget.showAppBar
+              ? AppTopBar(
+                  pop: vm.pop,
+                  openBusket: vm.gotoBusketPage,
+                  openLocationInfo: vm.gotoAboutPage,
+                  title: vm.title,
                 )
               : null,
-          bottomNavigationBar: showBottomBar
+          bottomNavigationBar: widget.showBottomBar
               ? AppBottomBar(
                   key: Key('[BottomBar]'),
                   selectedPage: vm.selectedPage,
                   gotoPage: vm.gotoPage,
                   items: [
-                    AppBottomBaritem(
+                    AppBottomBarItem(
                       key: Key('${Routes.home_page}[BottomBarButton]'),
                       page: Routes.home_page,
                       icon: Icons.home,
                     ),
-                    AppBottomBaritem(
+                    AppBottomBarItem(
                       key: Key('${Routes.gallery_page}[BottomBarButton]'),
                       page: Routes.gallery_page,
                       icon: Icons.image,
-                    ),
-                    AppBottomBaritem(
-                      key: Key('${Routes.about_page}[BottomBarButton]'),
-                      page: Routes.about_page,
-                      icon: Icons.info,
                     ),
                   ],
                 )
@@ -64,8 +64,8 @@ class MainLayout extends StatelessWidget {
             width: double.infinity,
             height: double.infinity,
             child: FocusLayout(
-              key: Key(child.runtimeType.toString() + '[MainLayout]' + '[FocusLayout]'),
-              child: child,
+              key: Key(widget.child.runtimeType.toString() + '[MainLayout]' + '[FocusLayout]'),
+              child: widget.child,
             ),
           ),
         );

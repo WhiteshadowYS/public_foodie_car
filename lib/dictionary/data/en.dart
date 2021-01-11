@@ -9,6 +9,6 @@ const Language en = Language(
   galleryPageTitle: 'Gallery',
   categoriesPageTitle: 'Categories',
   aboutPageTitle: 'About us',
-  subCategoriesPageTitle: 'Subcategories',
+  busketPageTitle: 'Busket',
   splashScreenTitle: 'Hello!',
 );

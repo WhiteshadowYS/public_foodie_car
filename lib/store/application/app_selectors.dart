@@ -15,8 +15,8 @@ abstract class AppSelectors {
         return FlutterDictionary.instance.language.aboutPageTitle;
       case Routes.categories_page:
         return FlutterDictionary.instance.language.categoriesPageTitle;
-      case Routes.subcategories_page:
-        return FlutterDictionary.instance.language.subCategoriesPageTitle;
+      case Routes.busket_page:
+        return FlutterDictionary.instance.language.busketPageTitle;
       case Routes.splash_screen:
         return FlutterDictionary.instance.language.splashScreenTitle;
       case Routes.gallery_page:

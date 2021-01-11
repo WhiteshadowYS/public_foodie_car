@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodie_client_template/data/res/keys.dart';
 import 'package:foodie_client_template/data/res/locales.dart';
 import 'package:foodie_client_template/data/theme/custom_theme.dart';
+import 'package:foodie_client_template/dictionary/flutter_dictionary.dart';
 import 'package:foodie_client_template/domain/functional_services/route_service/route_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -43,24 +44,29 @@ class Application extends StatelessWidget {
           converter: (Store<AppState> store) => store.state,
           onInitialBuild: (AppState state) => InitializeSelectors.startInitialization(store),
           builder: (BuildContext context, AppState state) {
-            return MaterialApp(
-              theme: ThemeData(
-                splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
-                highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
-              ),
-              debugShowCheckedModeBanner: false,
-              navigatorKey: NavigatorHolder.navigatorKey,
-              onGenerateRoute: RouteBuilder.onGenerateRoute,
-              home: SplashScreen(),
-              locale: Locale(Locales.base),
-              supportedLocales: FlutterDictionaryDelegate.getSupportedLocales,
-              localizationsDelegates: FlutterDictionaryDelegate.getLocalizationDelegates,
-              builder: (context, child) {
-                return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(
-                    textScaleFactor: 1.0,
+            return ValueListenableBuilder(
+              valueListenable: FlutterDictionary.instance.localeNotifier,
+              builder: (BuildContext context, locale, _) {
+                return MaterialApp(
+                  theme: ThemeData(
+                    splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
+                    highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
                   ),
-                  child: child,
+                  debugShowCheckedModeBanner: false,
+                  navigatorKey: NavigatorHolder.navigatorKey,
+                  onGenerateRoute: RouteBuilder.onGenerateRoute,
+                  home: SplashScreen(),
+                  locale: locale,
+                  supportedLocales: FlutterDictionaryDelegate.getSupportedLocales,
+                  localizationsDelegates: FlutterDictionaryDelegate.getLocalizationDelegates,
+                  builder: (context, child) {
+                    return MediaQuery(
+                      data: MediaQuery.of(context).copyWith(
+                        textScaleFactor: 1.0,
+                      ),
+                      child: child,
+                    );
+                  },
                 );
               },
             );
