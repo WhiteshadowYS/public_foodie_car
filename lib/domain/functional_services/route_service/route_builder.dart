@@ -1,13 +1,13 @@
-import 'package:foody_client_template/domain/functional_services/route_service/models/routes.dart';
+import 'package:foodie_client_template/domain/functional_services/route_service/models/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foody_client_template/ui/pages/about_page/about_page.dart';
-import 'package:foody_client_template/ui/pages/categories_page/categories_page.dart';
-import 'package:foody_client_template/ui/pages/gallery_page/gallery_page.dart';
-import 'package:foody_client_template/ui/pages/home_page/home_page.dart';
-import 'package:foody_client_template/ui/pages/subcategories_page/subcategories_page.dart';
-import 'package:foody_client_template/ui/widgets/splash_screen.dart';
-import 'package:foody_client_template/ui/widgets/unknown_page.dart';
+import 'package:foodie_client_template/ui/pages/about_page/about_page.dart';
+import 'package:foodie_client_template/ui/pages/categories_page/categories_page.dart';
+import 'package:foodie_client_template/ui/pages/gallery_page/gallery_page.dart';
+import 'package:foodie_client_template/ui/pages/home_page/home_page.dart';
+import 'package:foodie_client_template/ui/pages/subcategories_page/subcategories_page.dart';
+import 'package:foodie_client_template/ui/widgets/splash_screen.dart';
+import 'package:foodie_client_template/ui/widgets/unknown_page.dart';
 
 class RouteBuilder {
   static const String tag = '[RouteBuilder]';

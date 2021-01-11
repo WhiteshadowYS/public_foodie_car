@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foody_client_template/data/res/locales.dart';
-import 'package:foody_client_template/dictionary/models/language.dart';
+import 'package:foodie_client_template/data/res/locales.dart';
+import 'package:foodie_client_template/dictionary/models/language.dart';
 
 const Language en = Language(
   name: 'English',

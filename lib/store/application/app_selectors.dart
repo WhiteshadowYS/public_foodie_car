@@ -1,7 +1,7 @@
-import 'package:foody_client_template/dictionary/flutter_dictionary.dart';
-import 'package:foody_client_template/domain/functional_services/route_service/models/routes.dart';
-import 'package:foody_client_template/domain/functional_services/route_service/route_service.dart';
-import 'package:foody_client_template/store/application/app_state.dart';
+import 'package:foodie_client_template/dictionary/flutter_dictionary.dart';
+import 'package:foodie_client_template/domain/functional_services/route_service/models/routes.dart';
+import 'package:foodie_client_template/domain/functional_services/route_service/route_service.dart';
+import 'package:foodie_client_template/store/application/app_state.dart';
 import 'package:redux/redux.dart';
 
 abstract class AppSelectors {

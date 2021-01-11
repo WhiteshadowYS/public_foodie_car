@@ -1,6 +1,6 @@
 {
-    "name": "foody_client_template",
-    "short_name": "foody_client_template",
+    "name": "foodie_client_template",
+    "short_name": "foodie_client_template",
     "start_url": ".",
     "display": "minimal-ui",
     "background_color": "#0175C2",

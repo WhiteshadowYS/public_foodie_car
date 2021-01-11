@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foody_client_template/store/application/app_selectors.dart';
-import 'package:foody_client_template/store/application/app_state.dart';
-import 'package:foody_client_template/store/shared/route_selectors.dart';
+import 'package:foodie_client_template/store/application/app_selectors.dart';
+import 'package:foodie_client_template/store/application/app_state.dart';
+import 'package:foodie_client_template/store/shared/route_selectors.dart';
 import 'package:redux/redux.dart';
 
 class MainLayoutVM {

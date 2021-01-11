@@ -1,4 +1,4 @@
-import 'package:foody_client_template/domain/functional_services/dialog_service/interfaces/i_dialog.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/interfaces/i_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';

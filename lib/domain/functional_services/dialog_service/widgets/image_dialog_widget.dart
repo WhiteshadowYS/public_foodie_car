@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/models/image_dialog.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/shared/dialog_layout/dialog_layout.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/models/image_dialog.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/shared/dialog_layout/dialog_layout.dart';
 
 class ImageDialogWidget extends StatelessWidget {
   final ImageDialog data;

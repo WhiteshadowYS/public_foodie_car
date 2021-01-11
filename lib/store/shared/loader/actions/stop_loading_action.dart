@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foody_client_template/store/shared/base_action.dart';
-import 'package:foody_client_template/store/shared/loader/loader_state.dart';
+import 'package:foodie_client_template/store/shared/base_action.dart';
+import 'package:foodie_client_template/store/shared/loader/loader_state.dart';
 
 class StopLoadingAction extends BaseAction {
   final LoaderKey loaderKey;

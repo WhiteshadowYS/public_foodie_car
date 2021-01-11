@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "foody_client",
+            "name": "foodie_client",
             "request": "launch",
             "type": "dart"
         }

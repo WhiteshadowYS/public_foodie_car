@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/dialog_service.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/dialog_service.dart';
 
 class DialogLayout extends StatelessWidget {
   final Widget child;

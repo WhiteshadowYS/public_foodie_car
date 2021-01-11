@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/dialog_service.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/models/image_dialog.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/dialog_service.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/models/image_dialog.dart';
 
 class GalleryItem extends StatelessWidget {
   final String url;

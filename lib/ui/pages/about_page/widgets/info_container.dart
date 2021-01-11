@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foody_client_template/data/theme/custom_theme.dart';
+import 'package:foodie_client_template/data/theme/custom_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InfoContainer extends StatelessWidget {

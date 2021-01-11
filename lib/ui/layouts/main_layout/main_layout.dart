@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:foody_client_template/data/theme/custom_theme.dart';
-import 'package:foody_client_template/domain/functional_services/route_service/models/routes.dart';
-import 'package:foody_client_template/store/application/app_state.dart';
-import 'package:foody_client_template/ui/layouts/bottom_bar/bottom_bar.dart';
-import 'package:foody_client_template/ui/layouts/bottom_bar/widgets/bottom_bar_item.dart';
-import 'package:foody_client_template/ui/layouts/focus_layout/focus_layout.dart';
-import 'package:foody_client_template/ui/layouts/main_layout/main_layout_vm.dart';
+import 'package:foodie_client_template/data/theme/custom_theme.dart';
+import 'package:foodie_client_template/domain/functional_services/route_service/models/routes.dart';
+import 'package:foodie_client_template/store/application/app_state.dart';
+import 'package:foodie_client_template/ui/layouts/bottom_bar/bottom_bar.dart';
+import 'package:foodie_client_template/ui/layouts/bottom_bar/widgets/bottom_bar_item.dart';
+import 'package:foodie_client_template/ui/layouts/focus_layout/focus_layout.dart';
+import 'package:foodie_client_template/ui/layouts/main_layout/main_layout_vm.dart';
 
 class MainLayout extends StatelessWidget {
   final bool showAppBar;

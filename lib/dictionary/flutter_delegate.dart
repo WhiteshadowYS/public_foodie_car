@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'package:foody_client_template/dictionary/models/language.dart';
-import 'package:foody_client_template/dictionary/flutter_dictionary.dart';
-import 'package:foody_client_template/dictionary/models/supported_locales.dart';
+import 'package:foodie_client_template/dictionary/models/language.dart';
+import 'package:foodie_client_template/dictionary/flutter_dictionary.dart';
+import 'package:foodie_client_template/dictionary/models/supported_locales.dart';
 
 class FlutterDictionaryDelegate extends LocalizationsDelegate<FlutterDictionary> {
   static List<LocalizationsDelegate<dynamic>> get getLocalizationDelegates {

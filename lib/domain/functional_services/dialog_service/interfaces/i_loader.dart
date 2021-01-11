@@ -1,5 +1,5 @@
-import 'package:foody_client_template/domain/functional_services/dialog_service/interfaces/i_dialog.dart';
-import 'package:foody_client_template/store/shared/loader/loader_state.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/interfaces/i_dialog.dart';
+import 'package:foodie_client_template/store/shared/loader/loader_state.dart';
 import 'package:flutter/material.dart';
 
 class ILoader extends IDialog {

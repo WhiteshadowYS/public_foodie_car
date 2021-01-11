@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/dialog_service.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/models/choose_language_dialog.dart';
-import 'package:foody_client_template/store/application/app_state.dart';
-import 'package:foody_client_template/ui/layouts/main_layout/main_layout.dart';
-import 'package:foody_client_template/ui/pages/home_page/home_page_vm.dart';
-import 'package:foody_client_template/ui/pages/home_page/widgets/product_item.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/dialog_service.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/models/choose_language_dialog.dart';
+import 'package:foodie_client_template/store/application/app_state.dart';
+import 'package:foodie_client_template/ui/layouts/main_layout/main_layout.dart';
+import 'package:foodie_client_template/ui/pages/home_page/home_page_vm.dart';
+import 'package:foodie_client_template/ui/pages/home_page/widgets/product_item.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key key}) : super(key: key);

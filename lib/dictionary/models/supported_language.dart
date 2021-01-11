@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:foody_client_template/dictionary/models/language.dart';
+import 'package:foodie_client_template/dictionary/models/language.dart';
 
 class SupportedLanguage {
   final String languageCode;

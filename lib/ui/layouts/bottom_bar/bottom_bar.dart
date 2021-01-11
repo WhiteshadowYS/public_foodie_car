@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foody_client_template/data/res/settings.dart';
+import 'package:foodie_client_template/data/res/settings.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foody_client_template/data/theme/custom_theme.dart';
-import 'package:foody_client_template/ui/layouts/bottom_bar/widgets/bottom_bar_item.dart';
+import 'package:foodie_client_template/data/theme/custom_theme.dart';
+import 'package:foodie_client_template/ui/layouts/bottom_bar/widgets/bottom_bar_item.dart';
 
 class AppBottomBar extends StatelessWidget {
   final String selectedPage;

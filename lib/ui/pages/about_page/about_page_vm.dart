@@ -1,4 +1,4 @@
-import 'package:foody_client_template/store/application/app_state.dart';
+import 'package:foodie_client_template/store/application/app_state.dart';
 import 'package:redux/redux.dart';
 
 class AboutPageVM {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foody_client_template/ui/layouts/main_layout/main_layout.dart';
+import 'package:foodie_client_template/ui/layouts/main_layout/main_layout.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key key}) : super(key: key);

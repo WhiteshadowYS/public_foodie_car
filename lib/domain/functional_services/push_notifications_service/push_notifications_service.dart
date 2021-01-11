@@ -1,10 +1,10 @@
-import 'package:foody_client_template/data/res/const.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/dialog_service.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/models/default_loader_dialog.dart';
-import 'package:foody_client_template/domain/functional_services/push_notifications_service/models/message.dart';
-import 'package:foody_client_template/domain/functional_services/push_notifications_service/res/consts.dart';
-import 'package:foody_client_template/domain/functional_services/push_notifications_service/shared/message_adapter.dart';
-import 'package:foody_client_template/store/shared/loader/loader_state.dart';
+import 'package:foodie_client_template/data/res/const.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/dialog_service.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/models/default_loader_dialog.dart';
+import 'package:foodie_client_template/domain/functional_services/push_notifications_service/models/message.dart';
+import 'package:foodie_client_template/domain/functional_services/push_notifications_service/res/consts.dart';
+import 'package:foodie_client_template/domain/functional_services/push_notifications_service/shared/message_adapter.dart';
+import 'package:foodie_client_template/store/shared/loader/loader_state.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 /// [PushNotificationsService] it is service for control dialogs.

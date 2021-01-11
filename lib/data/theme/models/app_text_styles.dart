@@ -1,4 +1,4 @@
-import 'package:foody_client_template/data/theme/interfaces/i_app_text_theme.dart';
+import 'package:foodie_client_template/data/theme/interfaces/i_app_text_theme.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyles implements IAppTextStyles {

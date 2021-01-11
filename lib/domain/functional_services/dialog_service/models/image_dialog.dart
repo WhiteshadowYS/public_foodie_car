@@ -1,7 +1,7 @@
-import 'package:foody_client_template/domain/functional_services/dialog_service/interfaces/i_dialog.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/shared/dialog_builders.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/widgets/image_dialog_widget.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/widgets/test_dialog.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/interfaces/i_dialog.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/shared/dialog_builders.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/widgets/image_dialog_widget.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/widgets/test_dialog.dart';
 import 'package:flutter/material.dart';
 
 class ImageDialog implements IDialog {

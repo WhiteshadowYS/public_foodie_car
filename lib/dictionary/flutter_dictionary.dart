@@ -1,9 +1,9 @@
-import 'package:foody_client_template/data/res/locales.dart';
+import 'package:foodie_client_template/data/res/locales.dart';
 import 'package:flutter/material.dart';
 
-import 'package:foody_client_template/dictionary/models/language.dart';
-import 'package:foody_client_template/dictionary/flutter_delegate.dart';
-import 'package:foody_client_template/dictionary/models/supported_locales.dart';
+import 'package:foodie_client_template/dictionary/models/language.dart';
+import 'package:foodie_client_template/dictionary/flutter_delegate.dart';
+import 'package:foodie_client_template/dictionary/models/supported_locales.dart';
 
 class FlutterDictionary {
   static const String tag = '[FlutterDictionary]';

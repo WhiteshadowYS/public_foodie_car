@@ -1,8 +1,8 @@
-import 'package:foody_client_template/domain/functional_services/dialog_service/interfaces/i_dialog.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/interfaces/i_loader.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/shared/dialog_builders.dart';
-import 'package:foody_client_template/domain/functional_services/dialog_service/widgets/test_dialog.dart';
-import 'package:foody_client_template/store/shared/loader/loader_state.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/interfaces/i_dialog.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/interfaces/i_loader.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/shared/dialog_builders.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/widgets/test_dialog.dart';
+import 'package:foodie_client_template/store/shared/loader/loader_state.dart';
 import 'package:flutter/material.dart';
 
 /// [LoaderDialog] realisation for [IDialog] interface. This [dialog] was using for show loader in the application.

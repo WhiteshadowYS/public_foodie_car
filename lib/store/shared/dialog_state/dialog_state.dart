@@ -1,9 +1,9 @@
 import 'dart:collection';
 
-import 'package:foody_client_template/domain/functional_services/dialog_service/dialog_service.dart';
-import 'package:foody_client_template/store/shared/dialog_state/actions/force_close_dialog_action.dart';
-import 'package:foody_client_template/store/shared/dialog_state/actions/show_dialog_action.dart';
-import 'package:foody_client_template/store/shared/reducer.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/dialog_service.dart';
+import 'package:foodie_client_template/store/shared/dialog_state/actions/force_close_dialog_action.dart';
+import 'package:foodie_client_template/store/shared/dialog_state/actions/show_dialog_action.dart';
+import 'package:foodie_client_template/store/shared/reducer.dart';
 
 /// Dialog state - it state need for work with dialogs from Epics.
 /// Params:

@@ -1,11 +1,11 @@
-import 'package:foody_client_template/data/theme/data/default_theme.dart';
-import 'package:foody_client_template/data/theme/models/app_colors.dart';
-import 'package:foody_client_template/data/theme/models/app_text_styles.dart';
-import 'package:foody_client_template/data/theme/models/app_theme.dart';
-import 'package:foody_client_template/data/theme/models/colors_dto.dart';
+import 'package:foodie_client_template/data/theme/data/default_theme.dart';
+import 'package:foodie_client_template/data/theme/models/app_colors.dart';
+import 'package:foodie_client_template/data/theme/models/app_text_styles.dart';
+import 'package:foodie_client_template/data/theme/models/app_theme.dart';
+import 'package:foodie_client_template/data/theme/models/colors_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:foody_client_template/utils/check_is_hex_dark.dart';
+import 'package:foodie_client_template/utils/check_is_hex_dark.dart';
 
 class CustomTheme {
   static const String tag = '[CustomTheme]';
