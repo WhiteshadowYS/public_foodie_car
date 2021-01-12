@@ -2,13 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodie_client_template/data/theme/custom_theme.dart';
+import 'package:foodie_client_template/domain/entity/product/product.dart';
 
 class ProductItem extends StatelessWidget {
   final Product product;
+  final void Function(Product) buyFunction;
 
   const ProductItem({
     @required Key key,
     @required this.product,
+    @required this.buyFunction,
   }) : super(key: key);
 
   @override
@@ -41,7 +44,7 @@ class ProductItem extends StatelessWidget {
         children: [
           Expanded(
             child: CachedNetworkImage(
-              imageUrl: product.url,
+              imageUrl: product.imageUrl,
             ),
           ),
           const SizedBox(width: 24.0),
@@ -52,19 +55,19 @@ class ProductItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Title',
+                      product?.title ?? '',
                       style: CustomTheme.textStyles.mainTextStyle(
                         size: 20.sp,
                       ),
                     ),
                     Text(
-                      'Продукты',
+                      product?.description ?? '',
                       style: CustomTheme.textStyles.mainTextStyle(
                         size: 10.sp,
                       ),
                     ),
                     Text(
-                      'Вес',
+                      (product?.weight?.toString() ?? '0.0') + ' g',
                       style: CustomTheme.textStyles.mainTextStyle(
                         size: 10.sp,
                       ),
@@ -77,23 +80,26 @@ class ProductItem extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        '200 грн',
+                        '${product?.price ?? 0.0} грн',
                         style: CustomTheme.textStyles.accentTextStyle(
                           size: 16.sp,
                         ),
                       ),
                       SizedBox(height: 8.sp),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 28.sp,
-                        width: 100.sp,
-                        decoration: BoxDecoration(
-                          color: CustomTheme.colors.buttons,
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Text(
-                          'Купить',
-                          style: CustomTheme.textStyles.buttonTextStyle(),
+                      InkWell(
+                        onTap: () => buyFunction(product),
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 28.sp,
+                          width: 100.sp,
+                          decoration: BoxDecoration(
+                            color: CustomTheme.colors.buttons,
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Text(
+                            'Купить',
+                            style: CustomTheme.textStyles.buttonTextStyle(),
+                          ),
                         ),
                       ),
                     ],
@@ -106,16 +112,4 @@ class ProductItem extends StatelessWidget {
       ),
     );
   }
-}
-
-class Product {
-  final String url;
-  final String name;
-  final double price;
-
-  const Product({
-    this.name,
-    this.price,
-    this.url,
-  });
 }

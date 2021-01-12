@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:foodie_client_template/domain/entity/product/product.dart';
 import 'package:foodie_client_template/domain/functional_services/dialog_service/dialog_service.dart';
 import 'package:foodie_client_template/domain/functional_services/dialog_service/models/choose_language_dialog.dart';
 import 'package:foodie_client_template/store/application/app_state.dart';
@@ -16,7 +17,8 @@ class HomePage extends StatelessWidget {
       onWillPop: () async => false,
       child: StoreConnector<AppState, HomePageVM>(
         converter: HomePageVM.init,
-        builder: (context, snapshot) {
+        onInitialBuild: (vm) => vm.getData(),
+        builder: (BuildContext context, HomePageVM vm) {
           return MainLayout(
             key: Key('[HomePage]'),
             child: ListView.builder(
@@ -25,10 +27,14 @@ class HomePage extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return ProductItem(
                   key: Key('[ProductItem][$index]'),
+                  buyFunction: vm.addToBusket,
                   product: Product(
-                    name: 'Test',
-                    price: 200,
-                    url: 'https://ambar.net.ua/image/data/2398.jpg',
+                    id: index,
+                    title: 'Бургер #$index',
+                    description: 'Я самый вкусный бургер',
+                    price: (index + 1) * 100,
+                    weight: 100,
+                    imageUrl: 'https://ambar.net.ua/image/data/2398.jpg',
                   ),
                 );
               },

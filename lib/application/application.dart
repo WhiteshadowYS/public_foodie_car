@@ -1,3 +1,4 @@
+import 'package:foodie_client_template/application/application_vm.dart';
 import 'package:foodie_client_template/data/res/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodie_client_template/data/res/keys.dart';
@@ -40,33 +41,29 @@ class Application extends StatelessWidget {
       ),
       child: StoreProvider<AppState>(
         store: store,
-        child: StoreConnector<AppState, AppState>(
-          converter: (Store<AppState> store) => store.state,
-          onInitialBuild: (AppState state) => InitializeSelectors.startInitialization(store),
-          builder: (BuildContext context, AppState state) {
-            return ValueListenableBuilder(
-              valueListenable: FlutterDictionary.instance.localeNotifier,
-              builder: (BuildContext context, locale, _) {
-                return MaterialApp(
-                  theme: ThemeData(
-                    splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
-                    highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+        child: StoreConnector<AppState, ApplicationVM>(
+          converter: ApplicationVM.init,
+          onInitialBuild: (ApplicationVM vm) => InitializeSelectors.startInitialization(store),
+          builder: (BuildContext context, ApplicationVM vm) {
+            print('locale');
+            return MaterialApp(
+              theme: ThemeData(
+                splashColor: CustomTheme.colors.primaryColor.withOpacity(0.3),
+                highlightColor: CustomTheme.colors.primaryColor.withOpacity(0.2),
+              ),
+              debugShowCheckedModeBanner: false,
+              navigatorKey: NavigatorHolder.navigatorKey,
+              onGenerateRoute: RouteBuilder.onGenerateRoute,
+              home: SplashScreen(),
+              locale: Locale(vm.locale),
+              supportedLocales: FlutterDictionaryDelegate.getSupportedLocales,
+              localizationsDelegates: FlutterDictionaryDelegate.getLocalizationDelegates,
+              builder: (context, child) {
+                return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    textScaleFactor: 1.0,
                   ),
-                  debugShowCheckedModeBanner: false,
-                  navigatorKey: NavigatorHolder.navigatorKey,
-                  onGenerateRoute: RouteBuilder.onGenerateRoute,
-                  home: SplashScreen(),
-                  locale: locale,
-                  supportedLocales: FlutterDictionaryDelegate.getSupportedLocales,
-                  localizationsDelegates: FlutterDictionaryDelegate.getLocalizationDelegates,
-                  builder: (context, child) {
-                    return MediaQuery(
-                      data: MediaQuery.of(context).copyWith(
-                        textScaleFactor: 1.0,
-                      ),
-                      child: child,
-                    );
-                  },
+                  child: child,
                 );
               },
             );

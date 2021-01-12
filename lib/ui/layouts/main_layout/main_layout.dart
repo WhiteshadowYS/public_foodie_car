@@ -43,8 +43,8 @@ class _MainLayoutState extends State<MainLayout> {
           bottomNavigationBar: widget.showBottomBar
               ? AppBottomBar(
                   key: Key('[BottomBar]'),
-                  selectedPage: vm.selectedPage,
                   gotoPage: vm.gotoPage,
+                  selectedPage: vm.selectedPage,
                   items: [
                     AppBottomBarItem(
                       key: Key('${Routes.home_page}[BottomBarButton]'),
@@ -60,12 +60,15 @@ class _MainLayoutState extends State<MainLayout> {
                 )
               : null,
           backgroundColor: Colors.white,
-          body: SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: FocusLayout(
-              key: Key(widget.child.runtimeType.toString() + '[MainLayout]' + '[FocusLayout]'),
-              child: widget.child,
+          body: Directionality(
+            textDirection: vm.textDirection,
+            child: SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: FocusLayout(
+                key: Key(widget.child.runtimeType.toString() + '[MainLayout]' + '[FocusLayout]'),
+                child: widget.child,
+              ),
             ),
           ),
         );

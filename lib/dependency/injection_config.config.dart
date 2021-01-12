@@ -11,11 +11,15 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
 import '../config/app_config.dart';
+import '../store/brands_state/brands_main_epic.dart';
+import '../data/network/repositories/brands_repository.dart';
+import '../domain/data_services/brands_service.dart';
+import '../data/services/brands_service_impl.dart';
+import '../data/local/langauge_storage.dart';
+import '../data/network/repositories/products_repository.dart';
+import '../domain/data_services/products_service.dart';
+import '../data/services/products_service_impl.dart';
 import 'third_party_module.dart';
-import '../data/network/repositories/user_repository.dart';
-import '../domain/data_services/user_service.dart';
-import '../data/services/user_service_impl.dart';
-import '../data/local/user_storage.dart';
 
 /// Environment names
 const _dev = 'dev';
@@ -33,6 +37,10 @@ GetIt $initGetIt(
   final thirdPartyModule = _$ThirdPartyModule();
   gh.factory<AppConfig>(() => DevConfig(), registerFor: {_dev});
   gh.factory<AppConfig>(() => ProdConfig(), registerFor: {_prod});
+  gh.factory<BrandsMainEpic>(() => BrandsMainEpic());
+  gh.lazySingleton<BrandsRepository>(() => BrandsRepository());
+  gh.lazySingleton<BrandsService>(
+      () => BrandsServiceImpl(get<BrandsRepository>()));
   gh.lazySingleton<Dio>(
       () => thirdPartyModule.provideAuthorizedDio(
           get<AppConfig>(), get<String>()),
@@ -44,13 +52,10 @@ GetIt $initGetIt(
   gh.lazySingleton<FirebaseMessaging>(() => thirdPartyModule.firebaseMessaging);
   gh.lazySingleton<FlutterSecureStorage>(
       () => thirdPartyModule.flutterSecureStorage);
-  gh.lazySingleton<UserService>(() => UserServiceImpl());
-  gh.lazySingleton<UserStorage>(() => UserStorage(get<FlutterSecureStorage>()));
-  gh.lazySingleton<UserRepository>(() => UserRepository(
-        get<Dio>(),
-        get<UserService>(),
-        get<UserStorage>(),
-      ));
+  gh.lazySingleton<LanguageStorage>(
+      () => LanguageStorage(get<FlutterSecureStorage>()));
+  gh.lazySingleton<ProductsRepository>(() => ProductsRepository(get<Dio>()));
+  gh.lazySingleton<ProductsService>(() => ProductsServiceImpl());
   return get;
 }
 

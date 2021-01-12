@@ -1,24 +1,20 @@
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Language {
-  final String name;
-  final Locale locale;
+part 'language.g.dart';
+part 'language.freezed.dart';
 
-  final String homePageTitle;
-  final String galleryPageTitle;
-  final String categoriesPageTitle;
-  final String aboutPageTitle;
-  final String busketPageTitle;
-  final String splashScreenTitle;
+@freezed
+abstract class Language with _$Language {
+  @JsonSerializable()
+  const factory Language({
+    String name,
+    String homePageTitle,
+    String galleryPageTitle,
+    String categoriesPageTitle,
+    String aboutPageTitle,
+    String busketPageTitle,
+    String splashScreenTitle,
+  }) = _Language;
 
-  const Language({
-    this.name,
-    this.locale,
-    this.aboutPageTitle,
-    this.categoriesPageTitle,
-    this.galleryPageTitle,
-    this.homePageTitle,
-    this.splashScreenTitle,
-    this.busketPageTitle,
-  });
+  factory Language.fromJson(Map json) => _$LanguageFromJson(json);
 }

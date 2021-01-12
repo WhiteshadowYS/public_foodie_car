@@ -7,36 +7,36 @@ import 'package:foodie_client_template/dictionary/flutter_delegate.dart';
 class FlutterDictionary {
   static const String tag = '[FlutterDictionary]';
 
-  FlutterDictionary._privateConstructor({String localeCode = Locales.base}) {
-    localeNotifier.value = Locale(localeCode);
-  }
+  FlutterDictionary._privateConstructor({this.locale});
 
-  FlutterDictionary({String localeCode = Locales.base}) {
-    localeNotifier.value = Locale(localeCode);
-  }
+  FlutterDictionary({this.locale});
 
   static final FlutterDictionary _instance = FlutterDictionary._privateConstructor();
 
   static FlutterDictionary get instance => _instance;
 
-  final ValueNotifier localeNotifier = ValueNotifier<Locale>(Locale(Locales.base));
+  final Locale locale;
   Language language;
 
   void setNewLanguage(String languageCode) {
     print('$tag => setNewLanguage() => locale => $languageCode');
-    // FlutterDictionaryDelegate.changeLocaleWithLanguageCode(languageCode);
-    localeNotifier.value = Locale(languageCode);
+    FlutterDictionaryDelegate.changeLocaleWithLanguageCode(languageCode);
     language = FlutterDictionaryDelegate.getLanguageByLanguageCode(languageCode);
-    print(localeNotifier.value);
   }
 
   void setNewLanguageAndSave(String languageCode) {
     print('$tag => setNewLanguageAndSave() => locale => $languageCode');
-    localeNotifier.value = Locale(languageCode);
     language = FlutterDictionaryDelegate.getLanguageByLanguageCode(languageCode);
   }
 
-  static const List<String> _rtlLanguages = <String>[];
+  static const List<String> _rtlLanguages = <String>[
+    'he',
+    'ab',
+  ];
+
+  bool isLocaleRTL(String locale) {
+    return _rtlLanguages.contains(locale);
+  }
 
   bool get isRTL {
     return _rtlLanguages.contains(FlutterDictionaryDelegate.getCurrentLocale);

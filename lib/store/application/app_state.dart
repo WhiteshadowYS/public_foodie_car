@@ -1,6 +1,8 @@
-import 'package:foodie_client_template/store/shared/reducer.dart';
+import 'package:foodie_client_template/store/basket_state/busket_state.dart';
+import 'package:foodie_client_template/store/brands_state/brands_main_epic.dart';
+import 'package:foodie_client_template/store/brands_state/brands_state.dart';
+import 'package:foodie_client_template/store/shared/language_state/language_state.dart';
 import 'package:flutter/foundation.dart';
-import 'package:redux/redux.dart';
 
 import 'package:redux_epics/redux_epics.dart';
 
@@ -17,17 +19,26 @@ import 'package:foodie_client_template/store/shared/initialization/initialize_ma
 class AppState {
   final DialogState dialogState;
   final LoaderState loaderState;
+  final LanguageState languageState;
+  final BusketState busketState;
+  final BrandsState brandsState;
 
   AppState({
     @required this.dialogState,
     @required this.loaderState,
+    @required this.languageState,
+    @required this.busketState,
+    @required this.brandsState,
   });
 
   ///All states are initialized in the [initial] function.
   factory AppState.initial() {
     return AppState(
+      languageState: LanguageState.initial(),
       dialogState: DialogState.initial(),
       loaderState: LoaderState.initial(),
+      busketState: BusketState.initial(),
+      brandsState: BrandsState.initial(),
     );
   }
 
@@ -36,11 +47,15 @@ class AppState {
     return AppState(
       dialogState: state.dialogState.reducer(action),
       loaderState: state.loaderState.reducer(action),
+      languageState: state.languageState.reducer(action),
+      busketState: state.busketState.reducer(action),
+      brandsState: state.brandsState.reducer(action),
     );
   }
 
   ///In [getAppEpic], call the main epic.
   static final getAppEpic = combineEpics<AppState>([
     InitializeMainEpic.indexEpic,
+    BrandsMainEpic.indexEpic,
   ]);
 }

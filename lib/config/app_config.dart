@@ -19,7 +19,7 @@ abstract class AppConfig {
 @Injectable(as: AppConfig)
 class DevConfig extends AppConfig {
   @override
-  String get baseUrl => 'https://us-central1-mycatalog-appvesto.cloudfunctions.net/';
+  String get baseUrl => 'http://test.foodie.org.ua/public/api';
 
   @override
   bool get enableLogs => true;
@@ -32,7 +32,7 @@ class DevConfig extends AppConfig {
 @Injectable(as: AppConfig)
 class ProdConfig implements AppConfig {
   @override
-  String get baseUrl => 'https://us-central1-mycatalog-appvesto.cloudfunctions.net/';
+  String get baseUrl => 'http://test.foodie.org.ua/public/api';
 
   @override
   bool get enableLogs => false;
