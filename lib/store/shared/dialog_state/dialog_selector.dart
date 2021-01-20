@@ -1,6 +1,10 @@
+import 'package:foodie_client_template/domain/functional_services/dialog_service/dialog_service.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/models/choose_city_dialog.dart';
+import 'package:foodie_client_template/domain/functional_services/dialog_service/models/choose_language_dialog.dart';
 import 'package:foodie_client_template/store/application/app_state.dart';
+import 'package:foodie_client_template/store/city_state/actions/save_city_action.dart';
 import 'package:foodie_client_template/store/shared/dialog_state/actions/force_close_dialog_action.dart';
-import 'package:foodie_client_template/store/shared/dialog_state/actions/show_dialog_action.dart';
+import 'package:foodie_client_template/store/shared/language_state/actions/change_language_action.dart';
 import 'package:redux/redux.dart';
 
 /// [DialogSelectors] it class with static functions for work with Dialogs from Pages.
@@ -11,6 +15,31 @@ import 'package:redux/redux.dart';
 ///   - [getInternetConnectionDialogFunction]. This function is getting function for showing lost internet connection dialog.
 ///   - [getExitDialogFunction]. This function is getting function for showing exit dialog.
 class DialogSelectors {
+  static void Function() getShowLanguageDialogFunction(Store<AppState> store) {
+    return () async {
+      await DialogService.instance.show(
+        ChooseLanguageDialog(
+          selectLanguage: (locale) => store.dispatch(
+            ChangeLanguageAction(locale: locale),
+          ),
+        ),
+      );
+    };
+  }
+
+  static void Function() getShowCityDialogFunction(Store<AppState> store) {
+    return () async {
+      await DialogService.instance.show(
+        ChooseCityDialog(
+          locations: store.state.cityState?.cityList ?? [],
+          selectCity: (city) => store.dispatch(
+            SaveCityAction(city: city),
+          ),
+        ),
+      );
+    };
+  }
+
   static bool isDialogDisplayed(Store<AppState> store) {
     return store.state.dialogState.isDialogDisplayed;
   }

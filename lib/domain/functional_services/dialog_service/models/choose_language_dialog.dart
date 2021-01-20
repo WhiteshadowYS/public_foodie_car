@@ -13,12 +13,12 @@ class ChooseLanguageDialog implements IDialog {
   Widget get widget => ChooseLanguageDialogWidget(this);
 
   Future<void> _builder(BuildContext context) async {
-    return DialogBuilders.defaultDialogBuilder(
+    return await DialogBuilders.defaultDialogBuilder(
       widget: widget,
       context: context,
     );
   }
 
   @override
-  void show(DisplayFunction display) => display(_builder);
+  Future<void> show(DisplayFunction display) async => await display(_builder);
 }

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 /// Methods:
 ///   - [show] public method what accept [DisplayFunction] from [DialogService] and will build a current dialog.
 abstract class IDialog {
-  void show(DisplayFunction display);
+  Future<void> show(DisplayFunction display);
 }
 
 /// Display function it function in the [DialogService] what will track a [IDialog] state.
-typedef DisplayFunction = void Function(BuilderFunction);
+typedef DisplayFunction = Future<void> Function(BuilderFunction);
 
 /// [BuilderFunction] it function what will accept [DisplayFunction] from [IDialog]. This function will using for build dialog.
 typedef BuilderFunction = Future<void> Function(BuildContext context);

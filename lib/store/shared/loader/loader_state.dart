@@ -7,10 +7,7 @@ import 'package:foodie_client_template/store/shared/reducer.dart';
 
 enum LoaderKey {
   global,
-
   initializationLoading,
-  checkIdLoading,
-  getData,
 }
 
 class LoaderState {

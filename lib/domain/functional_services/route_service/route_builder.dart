@@ -6,6 +6,9 @@ import 'package:foodie_client_template/ui/pages/busket_page/busket_page.dart';
 import 'package:foodie_client_template/ui/pages/categories_page/categories_page.dart';
 import 'package:foodie_client_template/ui/pages/gallery_page/gallery_page.dart';
 import 'package:foodie_client_template/ui/pages/home_page/home_page.dart';
+import 'package:foodie_client_template/ui/pages/product_page/product_page.dart';
+import 'package:foodie_client_template/ui/pages/products_page/products_page.dart';
+import 'package:foodie_client_template/ui/pages/profile_page/profile_page.dart';
 import 'package:foodie_client_template/ui/widgets/splash_screen.dart';
 import 'package:foodie_client_template/ui/widgets/unknown_page.dart';
 
@@ -14,10 +17,22 @@ class RouteBuilder {
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.splash_screen:
+        return _defaultRoute(
+          settings: settings,
+          page: SplashScreen(),
+        );
+
       case Routes.home_page:
         return _defaultRoute(
           settings: settings,
           page: HomePage(),
+        );
+
+      case Routes.profile_page:
+        return _defaultRoute(
+          settings: settings,
+          page: ProfilePage(),
         );
       case Routes.about_page:
         return _defaultRoute(
@@ -39,10 +54,15 @@ class RouteBuilder {
           settings: settings,
           page: GalleryPage(),
         );
-      case Routes.splash_screen:
+      case Routes.product_page:
         return _defaultRoute(
           settings: settings,
-          page: SplashScreen(),
+          page: ProductPage(),
+        );
+      case Routes.products_page:
+        return _defaultRoute(
+          settings: settings,
+          page: ProductsPage(),
         );
 
       default:

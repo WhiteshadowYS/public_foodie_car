@@ -10,17 +10,23 @@ abstract class AppSelectors {
   static String getTitleForPage(Store<AppState> store) {
     switch (RouteService.instance.currentRoute) {
       case Routes.home_page:
-        return FlutterDictionary.instance.language.homePageTitle;
+        return FlutterDictionary.instance.language.homePage.title;
       case Routes.about_page:
-        return FlutterDictionary.instance.language.aboutPageTitle;
+        return FlutterDictionary.instance.language.aboutPage.title;
       case Routes.categories_page:
-        return FlutterDictionary.instance.language.categoriesPageTitle;
+        return FlutterDictionary.instance.language.categoriesPage.title;
       case Routes.busket_page:
-        return FlutterDictionary.instance.language.busketPageTitle;
+        return FlutterDictionary.instance.language.busketPage.title;
       case Routes.splash_screen:
-        return FlutterDictionary.instance.language.splashScreenTitle;
+        return 'Hello';
       case Routes.gallery_page:
-        return FlutterDictionary.instance.language.galleryPageTitle;
+        return FlutterDictionary.instance.language.galleryPage.title;
+      case Routes.product_page:
+        return FlutterDictionary.instance.language.productPage.title;
+      case Routes.products_page:
+        return FlutterDictionary.instance.language.productsPage.title;
+      case Routes.profile_page:
+        return FlutterDictionary.instance.language.profilePage.title;
       default:
         return 'Default Title';
     }

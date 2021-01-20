@@ -18,5 +18,5 @@ class ILoader extends IDialog {
   }
 
   @override
-  void show(DisplayFunction displayFunction) {}
+  Future<void> show(DisplayFunction displayFunction) async {}
 }

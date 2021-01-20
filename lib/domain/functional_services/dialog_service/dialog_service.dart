@@ -25,7 +25,7 @@ class DialogService {
 
   /// This function starts the process of opening a dialog window.
   /// [dialog] param will take a class object extended from [IDialog] interface.
-  void show(IDialog dialog) => dialog.show(_display);
+  Future<void> show(IDialog dialog) async => await dialog.show(_display);
 
   /// This function will close opened dialog if [_isDisplayed] is true.
   /// And will show message to console if [_isDisplayed] is false.
@@ -44,7 +44,7 @@ class DialogService {
   /// This function will start builder of [IDialog] object and will track the dialog state.
   /// if [_isDisplayed] is true - you will see in console a error message. (Dialog not be showed).
   /// if [_isDisplayed] is false - you will see on the screen a new dialog
-  void _display(BuilderFunction builder) {
+  Future<void> _display(BuilderFunction builder) async {
     print('Is displayed $_isDisplayed');
     if (_isDisplayed) {
       print('$tag => <_display> => Error Message: _isDisplayed: $_isDisplayed, Dialog cant be showed.');
@@ -55,7 +55,7 @@ class DialogService {
 
     final BuildContext ctx = NavigatorHolder.navigatorKey.currentState.overlay.context;
 
-    builder(ctx).then((_) {
+    await builder(ctx).then((_) {
       FocusScope.of(ctx).unfocus();
       _isDisplayed = false;
     });

@@ -1,6 +1,13 @@
 import 'package:foodie_client_template/store/basket_state/busket_state.dart';
-import 'package:foodie_client_template/store/brands_state/brands_main_epic.dart';
-import 'package:foodie_client_template/store/brands_state/brands_state.dart';
+import 'package:foodie_client_template/store/cafe_state/cafe_main_epic.dart';
+import 'package:foodie_client_template/store/cafe_state/cafe_state.dart';
+import 'package:foodie_client_template/store/category_state/category_main_epic.dart';
+import 'package:foodie_client_template/store/category_state/category_state.dart';
+import 'package:foodie_client_template/store/city_state/city_main_epic.dart';
+import 'package:foodie_client_template/store/city_state/city_state.dart';
+import 'package:foodie_client_template/store/product_state/product_main_epic.dart';
+import 'package:foodie_client_template/store/product_state/product_state.dart';
+import 'package:foodie_client_template/store/shared/language_state/language_main_epic.dart';
 import 'package:foodie_client_template/store/shared/language_state/language_state.dart';
 import 'package:flutter/foundation.dart';
 
@@ -21,14 +28,20 @@ class AppState {
   final LoaderState loaderState;
   final LanguageState languageState;
   final BusketState busketState;
-  final BrandsState brandsState;
+  final CityState cityState;
+  final ProductState productState;
+  final CafeState cafeState;
+  final CategoryState categoryState;
 
   AppState({
     @required this.dialogState,
     @required this.loaderState,
     @required this.languageState,
     @required this.busketState,
-    @required this.brandsState,
+    @required this.cityState,
+    @required this.productState,
+    @required this.cafeState,
+    @required this.categoryState,
   });
 
   ///All states are initialized in the [initial] function.
@@ -38,7 +51,10 @@ class AppState {
       dialogState: DialogState.initial(),
       loaderState: LoaderState.initial(),
       busketState: BusketState.initial(),
-      brandsState: BrandsState.initial(),
+      cityState: CityState.initial(),
+      productState: ProductState.initial(),
+      cafeState: CafeState.initial(),
+      categoryState: CategoryState.initial(),
     );
   }
 
@@ -49,13 +65,20 @@ class AppState {
       loaderState: state.loaderState.reducer(action),
       languageState: state.languageState.reducer(action),
       busketState: state.busketState.reducer(action),
-      brandsState: state.brandsState.reducer(action),
+      cityState: state.cityState.reducer(action),
+      productState: state.productState.reducer(action),
+      cafeState: state.cafeState.reducer(action),
+      categoryState: state.categoryState.reducer(action),
     );
   }
 
   ///In [getAppEpic], call the main epic.
   static final getAppEpic = combineEpics<AppState>([
     InitializeMainEpic.indexEpic,
-    BrandsMainEpic.indexEpic,
+    CityMainEpic.indexEpic,
+    CategoryMainEpic.indexEpic,
+    CafeMainEpic.indexEpic,
+    ProductMainEpic.indexEpic,
+    LanguageMainEpic.indexEpic,
   ]);
 }

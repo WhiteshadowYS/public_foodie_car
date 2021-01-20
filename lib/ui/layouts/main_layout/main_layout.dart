@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:foodie_client_template/data/theme/custom_theme.dart';
 import 'package:foodie_client_template/domain/functional_services/route_service/models/routes.dart';
 import 'package:foodie_client_template/store/application/app_state.dart';
 import 'package:foodie_client_template/ui/layouts/app_bar/app_top_bar.dart';
@@ -47,6 +46,11 @@ class _MainLayoutState extends State<MainLayout> {
                   selectedPage: vm.selectedPage,
                   items: [
                     AppBottomBarItem(
+                      key: Key('${Routes.profile_page}[BottomBarButton]'),
+                      page: Routes.profile_page,
+                      icon: Icons.person,
+                    ),
+                    AppBottomBarItem(
                       key: Key('${Routes.home_page}[BottomBarButton]'),
                       page: Routes.home_page,
                       icon: Icons.home,
@@ -65,9 +69,16 @@ class _MainLayoutState extends State<MainLayout> {
             child: SizedBox(
               width: double.infinity,
               height: double.infinity,
-              child: FocusLayout(
-                key: Key(widget.child.runtimeType.toString() + '[MainLayout]' + '[FocusLayout]'),
-                child: widget.child,
+              child: Stack(
+                children: [
+                  ...vm.loaders.map<Widget>((e) {
+                    return e.widget;
+                  }).toList(),
+                  FocusLayout(
+                    key: Key(widget.child.runtimeType.toString() + '[MainLayout]' + '[FocusLayout]'),
+                    child: widget.child,
+                  ),
+                ],
               ),
             ),
           ),

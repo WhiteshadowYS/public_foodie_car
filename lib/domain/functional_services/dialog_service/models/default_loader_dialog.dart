@@ -26,7 +26,7 @@ class DefaultLoaderDialog implements ILoader {
   });
 
   @override
-  Widget get widget => TestDialog();
+  Widget get widget => Container();
 
   Future<void> _builder(BuildContext context) async {
     return DialogBuilders.defaultDialogBuilder(
@@ -35,5 +35,5 @@ class DefaultLoaderDialog implements ILoader {
   }
 
   @override
-  void show(DisplayFunction display) => display(_builder);
+  Future<void> show(DisplayFunction display) => display(_builder);
 }

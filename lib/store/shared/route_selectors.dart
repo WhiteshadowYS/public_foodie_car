@@ -1,3 +1,4 @@
+import 'package:foodie_client_template/domain/entity/cafe/cafe.dart';
 import 'package:foodie_client_template/domain/functional_services/route_service/models/routes.dart';
 import 'package:foodie_client_template/domain/functional_services/route_service/route_service.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
@@ -9,10 +10,14 @@ class RouteSelectors {
 
   static NavigateToAction get pop => RouteService.instance.pop();
 
+  static NavigateToAction get gotoSplashScreenAction => RouteService.instance.pushAndRemoveUntil(Routes.splash_screen);
+
   static NavigateToAction get gotoHomePageAction => RouteService.instance.pushAndRemoveUntil(Routes.home_page);
   static NavigateToAction get gotoGalleryPageAction => RouteService.instance.pushAndRemoveUntil(Routes.gallery_page);
-  static NavigateToAction get gotoCategoriesPageAction => RouteService.instance.pushAndRemoveUntil(Routes.categories_page);
-  static NavigateToAction get gotoSplashScreenAction => RouteService.instance.pushAndRemoveUntil(Routes.splash_screen);
+  static NavigateToAction get gotoCategoriesPageAction => RouteService.instance.push(Routes.categories_page);
+  static NavigateToAction get gotoProductsPageAction => RouteService.instance.push(Routes.products_page);
+  static NavigateToAction get gotoProductPageAction => RouteService.instance.push(Routes.product_page);
+  static NavigateToAction get gotoProfilePageAction => RouteService.instance.pushAndRemoveUntil(Routes.profile_page);
 
   static NavigateToAction get gotoAboutPageActon => RouteService.instance.push(Routes.about_page);
   static NavigateToAction get gotoBusketPageAction => RouteService.instance.push(Routes.busket_page);
@@ -49,6 +54,18 @@ class RouteSelectors {
     return () => store.dispatch(gotoBusketPageAction);
   }
 
+  static void Function() gotoProductsPage(Store<AppState> store) {
+    return () => store.dispatch(gotoProductsPageAction);
+  }
+
+  static void Function() gotoProductPage(Store<AppState> store) {
+    return () => store.dispatch(gotoProductPageAction);
+  }
+
+  static void Function() gotoProfilePage(Store<AppState> store) {
+    return () => store.dispatch(gotoProfilePageAction);
+  }
+
   static void Function(String) getGotoRoute(Store<AppState> store) {
     return (String route) => store.dispatch(_getActionForRoute(route));
   }
@@ -77,6 +94,12 @@ class RouteSelectors {
         return gotoBusketPageAction;
       case Routes.splash_screen:
         return gotoSplashScreenAction;
+      case Routes.product_page:
+        return gotoProductPageAction;
+      case Routes.products_page:
+        return gotoProductsPageAction;
+      case Routes.profile_page:
+        return gotoProfilePageAction;
 
       default:
         return gotoHomePageAction;

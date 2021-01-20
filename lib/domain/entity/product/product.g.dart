@@ -12,12 +12,18 @@ _$_Product _$_$_ProductFromJson(Map<String, dynamic> json) {
       id: $checkedConvert(json, 'id', (v) => v as num),
       title: $checkedConvert(json, 'title', (v) => v as String),
       description: $checkedConvert(json, 'description', (v) => v as String),
-      price: $checkedConvert(json, 'price', (v) => v as num),
+      category: $checkedConvert(json, 'category', (v) => v as String),
+      price: $checkedConvert(json, 'price', (v) => v as String),
       weight: $checkedConvert(json, 'weight', (v) => v as num),
-      imageUrl: $checkedConvert(json, 'String', (v) => v as String),
+      baseImage: $checkedConvert(
+          json,
+          'base_image',
+          (v) =>
+              v == null ? null : BaseImage.fromJson(v as Map<String, dynamic>)),
+      count: $checkedConvert(json, 'count', (v) => v as num) ?? 0,
     );
     return val;
-  }, fieldKeyMap: const {'imageUrl': 'String'});
+  }, fieldKeyMap: const {'baseImage': 'base_image'});
 }
 
 Map<String, dynamic> _$_$_ProductToJson(_$_Product instance) =>
@@ -25,7 +31,9 @@ Map<String, dynamic> _$_$_ProductToJson(_$_Product instance) =>
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
+      'category': instance.category,
       'price': instance.price,
       'weight': instance.weight,
-      'String': instance.imageUrl,
+      'base_image': instance.baseImage?.toJson(),
+      'count': instance.count,
     };

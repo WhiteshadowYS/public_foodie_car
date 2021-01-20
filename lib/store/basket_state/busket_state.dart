@@ -43,9 +43,18 @@ class BusketState {
   }
 
   BusketState _removeFromBusketAction(RemoveFromBusketAction action) {
-    return copyWith(
-      products: products..removeWhere((item) => item.id == action.product.id),
+    final Product _product = products.firstWhere(
+      (item) => item.id == action.product.id,
+      orElse: () => null,
     );
+
+    if (_product != null) {
+      return copyWith(
+        products: products..remove(_product),
+      );
+    }
+
+    return this;
   }
 
   BusketState _clearBusketAction(ClearBusketAction action) {

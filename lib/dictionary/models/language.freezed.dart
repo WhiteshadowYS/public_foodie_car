@@ -18,21 +18,27 @@ class _$LanguageTearOff {
 
 // ignore: unused_element
   _Language call(
-      {String name,
-      String homePageTitle,
-      String galleryPageTitle,
-      String categoriesPageTitle,
-      String aboutPageTitle,
-      String busketPageTitle,
-      String splashScreenTitle}) {
+      {@required String name,
+      @required BusketPageLanguage busketPage,
+      @required ProductsPageLanguage productsPage,
+      @required ProductPageLanguage productPage,
+      @required HomePageLanguage homePage,
+      @required GalleryPageLanguage galleryPage,
+      @required CategoriesPageLanguage categoriesPage,
+      @required AboutPageLanguage aboutPage,
+      @required ProfilePageLanguage profilePage,
+      @required GlobalLanguage global}) {
     return _Language(
       name: name,
-      homePageTitle: homePageTitle,
-      galleryPageTitle: galleryPageTitle,
-      categoriesPageTitle: categoriesPageTitle,
-      aboutPageTitle: aboutPageTitle,
-      busketPageTitle: busketPageTitle,
-      splashScreenTitle: splashScreenTitle,
+      busketPage: busketPage,
+      productsPage: productsPage,
+      productPage: productPage,
+      homePage: homePage,
+      galleryPage: galleryPage,
+      categoriesPage: categoriesPage,
+      aboutPage: aboutPage,
+      profilePage: profilePage,
+      global: global,
     );
   }
 
@@ -49,12 +55,15 @@ const $Language = _$LanguageTearOff();
 /// @nodoc
 mixin _$Language {
   String get name;
-  String get homePageTitle;
-  String get galleryPageTitle;
-  String get categoriesPageTitle;
-  String get aboutPageTitle;
-  String get busketPageTitle;
-  String get splashScreenTitle;
+  BusketPageLanguage get busketPage;
+  ProductsPageLanguage get productsPage;
+  ProductPageLanguage get productPage;
+  HomePageLanguage get homePage;
+  GalleryPageLanguage get galleryPage;
+  CategoriesPageLanguage get categoriesPage;
+  AboutPageLanguage get aboutPage;
+  ProfilePageLanguage get profilePage;
+  GlobalLanguage get global;
 
   Map<String, dynamic> toJson();
   $LanguageCopyWith<Language> get copyWith;
@@ -66,12 +75,25 @@ abstract class $LanguageCopyWith<$Res> {
       _$LanguageCopyWithImpl<$Res>;
   $Res call(
       {String name,
-      String homePageTitle,
-      String galleryPageTitle,
-      String categoriesPageTitle,
-      String aboutPageTitle,
-      String busketPageTitle,
-      String splashScreenTitle});
+      BusketPageLanguage busketPage,
+      ProductsPageLanguage productsPage,
+      ProductPageLanguage productPage,
+      HomePageLanguage homePage,
+      GalleryPageLanguage galleryPage,
+      CategoriesPageLanguage categoriesPage,
+      AboutPageLanguage aboutPage,
+      ProfilePageLanguage profilePage,
+      GlobalLanguage global});
+
+  $BusketPageLanguageCopyWith<$Res> get busketPage;
+  $ProductsPageLanguageCopyWith<$Res> get productsPage;
+  $ProductPageLanguageCopyWith<$Res> get productPage;
+  $HomePageLanguageCopyWith<$Res> get homePage;
+  $GalleryPageLanguageCopyWith<$Res> get galleryPage;
+  $CategoriesPageLanguageCopyWith<$Res> get categoriesPage;
+  $AboutPageLanguageCopyWith<$Res> get aboutPage;
+  $ProfilePageLanguageCopyWith<$Res> get profilePage;
+  $GlobalLanguageCopyWith<$Res> get global;
 }
 
 /// @nodoc
@@ -85,34 +107,134 @@ class _$LanguageCopyWithImpl<$Res> implements $LanguageCopyWith<$Res> {
   @override
   $Res call({
     Object name = freezed,
-    Object homePageTitle = freezed,
-    Object galleryPageTitle = freezed,
-    Object categoriesPageTitle = freezed,
-    Object aboutPageTitle = freezed,
-    Object busketPageTitle = freezed,
-    Object splashScreenTitle = freezed,
+    Object busketPage = freezed,
+    Object productsPage = freezed,
+    Object productPage = freezed,
+    Object homePage = freezed,
+    Object galleryPage = freezed,
+    Object categoriesPage = freezed,
+    Object aboutPage = freezed,
+    Object profilePage = freezed,
+    Object global = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed ? _value.name : name as String,
-      homePageTitle: homePageTitle == freezed
-          ? _value.homePageTitle
-          : homePageTitle as String,
-      galleryPageTitle: galleryPageTitle == freezed
-          ? _value.galleryPageTitle
-          : galleryPageTitle as String,
-      categoriesPageTitle: categoriesPageTitle == freezed
-          ? _value.categoriesPageTitle
-          : categoriesPageTitle as String,
-      aboutPageTitle: aboutPageTitle == freezed
-          ? _value.aboutPageTitle
-          : aboutPageTitle as String,
-      busketPageTitle: busketPageTitle == freezed
-          ? _value.busketPageTitle
-          : busketPageTitle as String,
-      splashScreenTitle: splashScreenTitle == freezed
-          ? _value.splashScreenTitle
-          : splashScreenTitle as String,
+      busketPage: busketPage == freezed
+          ? _value.busketPage
+          : busketPage as BusketPageLanguage,
+      productsPage: productsPage == freezed
+          ? _value.productsPage
+          : productsPage as ProductsPageLanguage,
+      productPage: productPage == freezed
+          ? _value.productPage
+          : productPage as ProductPageLanguage,
+      homePage:
+          homePage == freezed ? _value.homePage : homePage as HomePageLanguage,
+      galleryPage: galleryPage == freezed
+          ? _value.galleryPage
+          : galleryPage as GalleryPageLanguage,
+      categoriesPage: categoriesPage == freezed
+          ? _value.categoriesPage
+          : categoriesPage as CategoriesPageLanguage,
+      aboutPage: aboutPage == freezed
+          ? _value.aboutPage
+          : aboutPage as AboutPageLanguage,
+      profilePage: profilePage == freezed
+          ? _value.profilePage
+          : profilePage as ProfilePageLanguage,
+      global: global == freezed ? _value.global : global as GlobalLanguage,
     ));
+  }
+
+  @override
+  $BusketPageLanguageCopyWith<$Res> get busketPage {
+    if (_value.busketPage == null) {
+      return null;
+    }
+    return $BusketPageLanguageCopyWith<$Res>(_value.busketPage, (value) {
+      return _then(_value.copyWith(busketPage: value));
+    });
+  }
+
+  @override
+  $ProductsPageLanguageCopyWith<$Res> get productsPage {
+    if (_value.productsPage == null) {
+      return null;
+    }
+    return $ProductsPageLanguageCopyWith<$Res>(_value.productsPage, (value) {
+      return _then(_value.copyWith(productsPage: value));
+    });
+  }
+
+  @override
+  $ProductPageLanguageCopyWith<$Res> get productPage {
+    if (_value.productPage == null) {
+      return null;
+    }
+    return $ProductPageLanguageCopyWith<$Res>(_value.productPage, (value) {
+      return _then(_value.copyWith(productPage: value));
+    });
+  }
+
+  @override
+  $HomePageLanguageCopyWith<$Res> get homePage {
+    if (_value.homePage == null) {
+      return null;
+    }
+    return $HomePageLanguageCopyWith<$Res>(_value.homePage, (value) {
+      return _then(_value.copyWith(homePage: value));
+    });
+  }
+
+  @override
+  $GalleryPageLanguageCopyWith<$Res> get galleryPage {
+    if (_value.galleryPage == null) {
+      return null;
+    }
+    return $GalleryPageLanguageCopyWith<$Res>(_value.galleryPage, (value) {
+      return _then(_value.copyWith(galleryPage: value));
+    });
+  }
+
+  @override
+  $CategoriesPageLanguageCopyWith<$Res> get categoriesPage {
+    if (_value.categoriesPage == null) {
+      return null;
+    }
+    return $CategoriesPageLanguageCopyWith<$Res>(_value.categoriesPage,
+        (value) {
+      return _then(_value.copyWith(categoriesPage: value));
+    });
+  }
+
+  @override
+  $AboutPageLanguageCopyWith<$Res> get aboutPage {
+    if (_value.aboutPage == null) {
+      return null;
+    }
+    return $AboutPageLanguageCopyWith<$Res>(_value.aboutPage, (value) {
+      return _then(_value.copyWith(aboutPage: value));
+    });
+  }
+
+  @override
+  $ProfilePageLanguageCopyWith<$Res> get profilePage {
+    if (_value.profilePage == null) {
+      return null;
+    }
+    return $ProfilePageLanguageCopyWith<$Res>(_value.profilePage, (value) {
+      return _then(_value.copyWith(profilePage: value));
+    });
+  }
+
+  @override
+  $GlobalLanguageCopyWith<$Res> get global {
+    if (_value.global == null) {
+      return null;
+    }
+    return $GlobalLanguageCopyWith<$Res>(_value.global, (value) {
+      return _then(_value.copyWith(global: value));
+    });
   }
 }
 
@@ -123,12 +245,34 @@ abstract class _$LanguageCopyWith<$Res> implements $LanguageCopyWith<$Res> {
   @override
   $Res call(
       {String name,
-      String homePageTitle,
-      String galleryPageTitle,
-      String categoriesPageTitle,
-      String aboutPageTitle,
-      String busketPageTitle,
-      String splashScreenTitle});
+      BusketPageLanguage busketPage,
+      ProductsPageLanguage productsPage,
+      ProductPageLanguage productPage,
+      HomePageLanguage homePage,
+      GalleryPageLanguage galleryPage,
+      CategoriesPageLanguage categoriesPage,
+      AboutPageLanguage aboutPage,
+      ProfilePageLanguage profilePage,
+      GlobalLanguage global});
+
+  @override
+  $BusketPageLanguageCopyWith<$Res> get busketPage;
+  @override
+  $ProductsPageLanguageCopyWith<$Res> get productsPage;
+  @override
+  $ProductPageLanguageCopyWith<$Res> get productPage;
+  @override
+  $HomePageLanguageCopyWith<$Res> get homePage;
+  @override
+  $GalleryPageLanguageCopyWith<$Res> get galleryPage;
+  @override
+  $CategoriesPageLanguageCopyWith<$Res> get categoriesPage;
+  @override
+  $AboutPageLanguageCopyWith<$Res> get aboutPage;
+  @override
+  $ProfilePageLanguageCopyWith<$Res> get profilePage;
+  @override
+  $GlobalLanguageCopyWith<$Res> get global;
 }
 
 /// @nodoc
@@ -143,33 +287,42 @@ class __$LanguageCopyWithImpl<$Res> extends _$LanguageCopyWithImpl<$Res>
   @override
   $Res call({
     Object name = freezed,
-    Object homePageTitle = freezed,
-    Object galleryPageTitle = freezed,
-    Object categoriesPageTitle = freezed,
-    Object aboutPageTitle = freezed,
-    Object busketPageTitle = freezed,
-    Object splashScreenTitle = freezed,
+    Object busketPage = freezed,
+    Object productsPage = freezed,
+    Object productPage = freezed,
+    Object homePage = freezed,
+    Object galleryPage = freezed,
+    Object categoriesPage = freezed,
+    Object aboutPage = freezed,
+    Object profilePage = freezed,
+    Object global = freezed,
   }) {
     return _then(_Language(
       name: name == freezed ? _value.name : name as String,
-      homePageTitle: homePageTitle == freezed
-          ? _value.homePageTitle
-          : homePageTitle as String,
-      galleryPageTitle: galleryPageTitle == freezed
-          ? _value.galleryPageTitle
-          : galleryPageTitle as String,
-      categoriesPageTitle: categoriesPageTitle == freezed
-          ? _value.categoriesPageTitle
-          : categoriesPageTitle as String,
-      aboutPageTitle: aboutPageTitle == freezed
-          ? _value.aboutPageTitle
-          : aboutPageTitle as String,
-      busketPageTitle: busketPageTitle == freezed
-          ? _value.busketPageTitle
-          : busketPageTitle as String,
-      splashScreenTitle: splashScreenTitle == freezed
-          ? _value.splashScreenTitle
-          : splashScreenTitle as String,
+      busketPage: busketPage == freezed
+          ? _value.busketPage
+          : busketPage as BusketPageLanguage,
+      productsPage: productsPage == freezed
+          ? _value.productsPage
+          : productsPage as ProductsPageLanguage,
+      productPage: productPage == freezed
+          ? _value.productPage
+          : productPage as ProductPageLanguage,
+      homePage:
+          homePage == freezed ? _value.homePage : homePage as HomePageLanguage,
+      galleryPage: galleryPage == freezed
+          ? _value.galleryPage
+          : galleryPage as GalleryPageLanguage,
+      categoriesPage: categoriesPage == freezed
+          ? _value.categoriesPage
+          : categoriesPage as CategoriesPageLanguage,
+      aboutPage: aboutPage == freezed
+          ? _value.aboutPage
+          : aboutPage as AboutPageLanguage,
+      profilePage: profilePage == freezed
+          ? _value.profilePage
+          : profilePage as ProfilePageLanguage,
+      global: global == freezed ? _value.global : global as GlobalLanguage,
     ));
   }
 }
@@ -179,13 +332,26 @@ class __$LanguageCopyWithImpl<$Res> extends _$LanguageCopyWithImpl<$Res>
 /// @nodoc
 class _$_Language implements _Language {
   const _$_Language(
-      {this.name,
-      this.homePageTitle,
-      this.galleryPageTitle,
-      this.categoriesPageTitle,
-      this.aboutPageTitle,
-      this.busketPageTitle,
-      this.splashScreenTitle});
+      {@required this.name,
+      @required this.busketPage,
+      @required this.productsPage,
+      @required this.productPage,
+      @required this.homePage,
+      @required this.galleryPage,
+      @required this.categoriesPage,
+      @required this.aboutPage,
+      @required this.profilePage,
+      @required this.global})
+      : assert(name != null),
+        assert(busketPage != null),
+        assert(productsPage != null),
+        assert(productPage != null),
+        assert(homePage != null),
+        assert(galleryPage != null),
+        assert(categoriesPage != null),
+        assert(aboutPage != null),
+        assert(profilePage != null),
+        assert(global != null);
 
   factory _$_Language.fromJson(Map<String, dynamic> json) =>
       _$_$_LanguageFromJson(json);
@@ -193,21 +359,27 @@ class _$_Language implements _Language {
   @override
   final String name;
   @override
-  final String homePageTitle;
+  final BusketPageLanguage busketPage;
   @override
-  final String galleryPageTitle;
+  final ProductsPageLanguage productsPage;
   @override
-  final String categoriesPageTitle;
+  final ProductPageLanguage productPage;
   @override
-  final String aboutPageTitle;
+  final HomePageLanguage homePage;
   @override
-  final String busketPageTitle;
+  final GalleryPageLanguage galleryPage;
   @override
-  final String splashScreenTitle;
+  final CategoriesPageLanguage categoriesPage;
+  @override
+  final AboutPageLanguage aboutPage;
+  @override
+  final ProfilePageLanguage profilePage;
+  @override
+  final GlobalLanguage global;
 
   @override
   String toString() {
-    return 'Language(name: $name, homePageTitle: $homePageTitle, galleryPageTitle: $galleryPageTitle, categoriesPageTitle: $categoriesPageTitle, aboutPageTitle: $aboutPageTitle, busketPageTitle: $busketPageTitle, splashScreenTitle: $splashScreenTitle)';
+    return 'Language(name: $name, busketPage: $busketPage, productsPage: $productsPage, productPage: $productPage, homePage: $homePage, galleryPage: $galleryPage, categoriesPage: $categoriesPage, aboutPage: $aboutPage, profilePage: $profilePage, global: $global)';
   }
 
   @override
@@ -216,36 +388,47 @@ class _$_Language implements _Language {
         (other is _Language &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.homePageTitle, homePageTitle) ||
+            (identical(other.busketPage, busketPage) ||
                 const DeepCollectionEquality()
-                    .equals(other.homePageTitle, homePageTitle)) &&
-            (identical(other.galleryPageTitle, galleryPageTitle) ||
+                    .equals(other.busketPage, busketPage)) &&
+            (identical(other.productsPage, productsPage) ||
                 const DeepCollectionEquality()
-                    .equals(other.galleryPageTitle, galleryPageTitle)) &&
-            (identical(other.categoriesPageTitle, categoriesPageTitle) ||
+                    .equals(other.productsPage, productsPage)) &&
+            (identical(other.productPage, productPage) ||
                 const DeepCollectionEquality()
-                    .equals(other.categoriesPageTitle, categoriesPageTitle)) &&
-            (identical(other.aboutPageTitle, aboutPageTitle) ||
+                    .equals(other.productPage, productPage)) &&
+            (identical(other.homePage, homePage) ||
                 const DeepCollectionEquality()
-                    .equals(other.aboutPageTitle, aboutPageTitle)) &&
-            (identical(other.busketPageTitle, busketPageTitle) ||
+                    .equals(other.homePage, homePage)) &&
+            (identical(other.galleryPage, galleryPage) ||
                 const DeepCollectionEquality()
-                    .equals(other.busketPageTitle, busketPageTitle)) &&
-            (identical(other.splashScreenTitle, splashScreenTitle) ||
+                    .equals(other.galleryPage, galleryPage)) &&
+            (identical(other.categoriesPage, categoriesPage) ||
                 const DeepCollectionEquality()
-                    .equals(other.splashScreenTitle, splashScreenTitle)));
+                    .equals(other.categoriesPage, categoriesPage)) &&
+            (identical(other.aboutPage, aboutPage) ||
+                const DeepCollectionEquality()
+                    .equals(other.aboutPage, aboutPage)) &&
+            (identical(other.profilePage, profilePage) ||
+                const DeepCollectionEquality()
+                    .equals(other.profilePage, profilePage)) &&
+            (identical(other.global, global) ||
+                const DeepCollectionEquality().equals(other.global, global)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(homePageTitle) ^
-      const DeepCollectionEquality().hash(galleryPageTitle) ^
-      const DeepCollectionEquality().hash(categoriesPageTitle) ^
-      const DeepCollectionEquality().hash(aboutPageTitle) ^
-      const DeepCollectionEquality().hash(busketPageTitle) ^
-      const DeepCollectionEquality().hash(splashScreenTitle);
+      const DeepCollectionEquality().hash(busketPage) ^
+      const DeepCollectionEquality().hash(productsPage) ^
+      const DeepCollectionEquality().hash(productPage) ^
+      const DeepCollectionEquality().hash(homePage) ^
+      const DeepCollectionEquality().hash(galleryPage) ^
+      const DeepCollectionEquality().hash(categoriesPage) ^
+      const DeepCollectionEquality().hash(aboutPage) ^
+      const DeepCollectionEquality().hash(profilePage) ^
+      const DeepCollectionEquality().hash(global);
 
   @override
   _$LanguageCopyWith<_Language> get copyWith =>
@@ -259,30 +442,39 @@ class _$_Language implements _Language {
 
 abstract class _Language implements Language {
   const factory _Language(
-      {String name,
-      String homePageTitle,
-      String galleryPageTitle,
-      String categoriesPageTitle,
-      String aboutPageTitle,
-      String busketPageTitle,
-      String splashScreenTitle}) = _$_Language;
+      {@required String name,
+      @required BusketPageLanguage busketPage,
+      @required ProductsPageLanguage productsPage,
+      @required ProductPageLanguage productPage,
+      @required HomePageLanguage homePage,
+      @required GalleryPageLanguage galleryPage,
+      @required CategoriesPageLanguage categoriesPage,
+      @required AboutPageLanguage aboutPage,
+      @required ProfilePageLanguage profilePage,
+      @required GlobalLanguage global}) = _$_Language;
 
   factory _Language.fromJson(Map<String, dynamic> json) = _$_Language.fromJson;
 
   @override
   String get name;
   @override
-  String get homePageTitle;
+  BusketPageLanguage get busketPage;
   @override
-  String get galleryPageTitle;
+  ProductsPageLanguage get productsPage;
   @override
-  String get categoriesPageTitle;
+  ProductPageLanguage get productPage;
   @override
-  String get aboutPageTitle;
+  HomePageLanguage get homePage;
   @override
-  String get busketPageTitle;
+  GalleryPageLanguage get galleryPage;
   @override
-  String get splashScreenTitle;
+  CategoriesPageLanguage get categoriesPage;
+  @override
+  AboutPageLanguage get aboutPage;
+  @override
+  ProfilePageLanguage get profilePage;
+  @override
+  GlobalLanguage get global;
   @override
   _$LanguageCopyWith<_Language> get copyWith;
 }

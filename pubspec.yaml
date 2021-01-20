@@ -74,10 +74,11 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/png/mc_logo.png"
+  image_path: "assets/png/app_icon.png"
 
 flutter:
   uses-material-design: true
 
   assets:
     - assets/
+    - assets/png/app_icon.png

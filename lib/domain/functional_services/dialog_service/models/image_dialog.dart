@@ -17,12 +17,12 @@ class ImageDialog implements IDialog {
       );
 
   Future<void> _builder(BuildContext context) async {
-    return DialogBuilders.defaultDialogBuilder(
+    return await DialogBuilders.defaultDialogBuilder(
       widget: widget,
       context: context,
     );
   }
 
   @override
-  void show(DisplayFunction display) => display(_builder);
+  Future<void> show(DisplayFunction display) async => display(_builder);
 }

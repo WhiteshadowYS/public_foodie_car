@@ -2,16 +2,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodie_client_template/data/theme/custom_theme.dart';
+import 'package:foodie_client_template/dictionary/flutter_dictionary.dart';
 import 'package:foodie_client_template/domain/entity/product/product.dart';
+import 'package:foodie_client_template/ui/widgets/image_container.dart';
 
 class BusketItem extends StatelessWidget {
   final Product product;
   final void Function(Product) delete;
 
-  const BusketItem({
+  BusketItem({
+    @required Key key,
     @required this.product,
     @required this.delete,
-  }) : super();
+  }) : super(key: key);
+
+  final lng = FlutterDictionary.instance.language;
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +47,14 @@ class BusketItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: Container(
-              height: 60.sp,
-              width: 60.sp,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(product.imageUrl),
-                  fit: BoxFit.cover,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: SizedBox(
+                height: 60.sp,
+                width: 60.sp,
+                child: ImageContainer(
+                  key: Key(key.toString() + '[ImageContainer][Key]'),
+                  imageUrl: product.baseImage?.originalImageUrl ?? '',
                 ),
               ),
             ),
@@ -62,7 +67,7 @@ class BusketItem extends StatelessWidget {
                   height: double.infinity,
                   width: double.infinity,
                   child: Text(
-                    product?.title ?? '',
+                    product?.title ?? lng.global.noNameText,
                     style: CustomTheme.textStyles.accentTextStyle(
                       color: CustomTheme.colors.font,
                       size: 20.0,
@@ -74,7 +79,7 @@ class BusketItem extends StatelessWidget {
                   left: 0.0,
                   bottom: 0.0,
                   child: Text(
-                    (product?.price?.toString() ?? '0.0') + ' грн',
+                    product.count.toString() + 'x ' + (product?.price ?? '0.0') + lng.global.currencyValue,
                     style: CustomTheme.textStyles.accentTextStyle(
                       color: CustomTheme.colors.errorColor,
                       size: 18.0,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:foodie_client_template/data/theme/custom_theme.dart';
 import 'package:foodie_client_template/domain/functional_services/route_service/route_service.dart';
 
