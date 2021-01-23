@@ -13,6 +13,7 @@ _$_Product _$_$_ProductFromJson(Map<String, dynamic> json) {
       title: $checkedConvert(json, 'title', (v) => v as String),
       description: $checkedConvert(json, 'description', (v) => v as String),
       category: $checkedConvert(json, 'category', (v) => v as String),
+      restourant: $checkedConvert(json, 'restourant', (v) => v as String),
       price: $checkedConvert(json, 'price', (v) => v as String),
       weight: $checkedConvert(json, 'weight', (v) => v as num),
       baseImage: $checkedConvert(
@@ -32,6 +33,7 @@ Map<String, dynamic> _$_$_ProductToJson(_$_Product instance) =>
       'title': instance.title,
       'description': instance.description,
       'category': instance.category,
+      'restourant': instance.restourant,
       'price': instance.price,
       'weight': instance.weight,
       'base_image': instance.baseImage?.toJson(),

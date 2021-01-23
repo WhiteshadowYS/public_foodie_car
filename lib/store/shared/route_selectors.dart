@@ -13,7 +13,7 @@ class RouteSelectors {
   static NavigateToAction get gotoSplashScreenAction => RouteService.instance.pushAndRemoveUntil(Routes.splash_screen);
 
   static NavigateToAction get gotoHomePageAction => RouteService.instance.pushAndRemoveUntil(Routes.home_page);
-  static NavigateToAction get gotoGalleryPageAction => RouteService.instance.pushAndRemoveUntil(Routes.gallery_page);
+  static NavigateToAction get gotoGalleryPageAction => RouteService.instance.push(Routes.gallery_page);
   static NavigateToAction get gotoCategoriesPageAction => RouteService.instance.push(Routes.categories_page);
   static NavigateToAction get gotoProductsPageAction => RouteService.instance.push(Routes.products_page);
   static NavigateToAction get gotoProductPageAction => RouteService.instance.push(Routes.product_page);

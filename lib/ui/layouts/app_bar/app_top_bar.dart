@@ -4,6 +4,7 @@ import 'package:foodie_client_template/domain/functional_services/route_service/
 
 class AppTopBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
+  final int buscketCount;
   final void Function() pop;
   final void Function() openBusket;
   final void Function() openLocationInfo;
@@ -13,6 +14,7 @@ class AppTopBar extends StatelessWidget with PreferredSizeWidget {
     this.pop,
     this.openBusket,
     this.openLocationInfo,
+    this.buscketCount,
   }) : super(key: const Key('AppTopBar'));
 
   @override
@@ -30,10 +32,43 @@ class AppTopBar extends StatelessWidget with PreferredSizeWidget {
               icon: Icon(Icons.arrow_back_ios),
             ),
       actions: [
-        IconButton(
-          onPressed: openBusket,
-          icon: Icon(
-            Icons.shopping_basket,
+        SizedBox(
+          height: 48.0,
+          width: 48.0,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              IconButton(
+                onPressed: openBusket,
+                icon: Icon(
+                  Icons.shopping_basket,
+                ),
+              ),
+              buscketCount != null && buscketCount != 0
+                  ? Positioned(
+                      top: 16.0,
+                      left: 4.0,
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 16.0,
+                        height: 16.0,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.red,
+                        ),
+                        child: Text(
+                          buscketCount.toString(),
+                          textAlign: TextAlign.center,
+                          style: CustomTheme.textStyles.accentTextStyle(
+                            size: 10.0,
+                            fontWeight: FontWeight.bold,
+                            color: CustomTheme.colors.background,
+                          ),
+                        ),
+                      ),
+                    )
+                  : SizedBox(),
+            ],
           ),
         ),
         SizedBox(width: 8.0),

@@ -7,6 +7,8 @@ import 'package:foodie_client_template/store/city_state/city_main_epic.dart';
 import 'package:foodie_client_template/store/city_state/city_state.dart';
 import 'package:foodie_client_template/store/product_state/product_main_epic.dart';
 import 'package:foodie_client_template/store/product_state/product_state.dart';
+import 'package:foodie_client_template/store/profile_state/profile_main_epic.dart';
+import 'package:foodie_client_template/store/profile_state/profile_state.dart';
 import 'package:foodie_client_template/store/shared/language_state/language_main_epic.dart';
 import 'package:foodie_client_template/store/shared/language_state/language_state.dart';
 import 'package:flutter/foundation.dart';
@@ -32,6 +34,7 @@ class AppState {
   final ProductState productState;
   final CafeState cafeState;
   final CategoryState categoryState;
+  final ProfileState profileState;
 
   AppState({
     @required this.dialogState,
@@ -42,6 +45,7 @@ class AppState {
     @required this.productState,
     @required this.cafeState,
     @required this.categoryState,
+    @required this.profileState,
   });
 
   ///All states are initialized in the [initial] function.
@@ -55,6 +59,7 @@ class AppState {
       productState: ProductState.initial(),
       cafeState: CafeState.initial(),
       categoryState: CategoryState.initial(),
+      profileState: ProfileState.initial(),
     );
   }
 
@@ -69,6 +74,7 @@ class AppState {
       productState: state.productState.reducer(action),
       cafeState: state.cafeState.reducer(action),
       categoryState: state.categoryState.reducer(action),
+      profileState: state.profileState.reducer(action),
     );
   }
 
@@ -80,5 +86,6 @@ class AppState {
     CafeMainEpic.indexEpic,
     ProductMainEpic.indexEpic,
     LanguageMainEpic.indexEpic,
+    ProfileMainEpic.indexEpic,
   ]);
 }

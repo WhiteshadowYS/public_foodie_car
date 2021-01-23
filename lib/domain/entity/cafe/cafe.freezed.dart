@@ -23,7 +23,8 @@ class _$CafeTearOff {
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'imageUrl') String imageUrl,
-      @JsonKey(name: 'locations') List<City> locations}) {
+      @JsonKey(name: 'locations') List<City> locations,
+      @JsonKey(name: 'images') List<String> images}) {
     return _Cafe(
       id: id,
       status: status,
@@ -31,6 +32,7 @@ class _$CafeTearOff {
       description: description,
       imageUrl: imageUrl,
       locations: locations,
+      images: images,
     );
   }
 
@@ -58,6 +60,8 @@ mixin _$Cafe {
   String get imageUrl;
   @JsonKey(name: 'locations')
   List<City> get locations;
+  @JsonKey(name: 'images')
+  List<String> get images;
 
   Map<String, dynamic> toJson();
   $CafeCopyWith<Cafe> get copyWith;
@@ -73,7 +77,8 @@ abstract class $CafeCopyWith<$Res> {
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'imageUrl') String imageUrl,
-      @JsonKey(name: 'locations') List<City> locations});
+      @JsonKey(name: 'locations') List<City> locations,
+      @JsonKey(name: 'images') List<String> images});
 }
 
 /// @nodoc
@@ -92,6 +97,7 @@ class _$CafeCopyWithImpl<$Res> implements $CafeCopyWith<$Res> {
     Object description = freezed,
     Object imageUrl = freezed,
     Object locations = freezed,
+    Object images = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as num,
@@ -102,6 +108,7 @@ class _$CafeCopyWithImpl<$Res> implements $CafeCopyWith<$Res> {
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       locations:
           locations == freezed ? _value.locations : locations as List<City>,
+      images: images == freezed ? _value.images : images as List<String>,
     ));
   }
 }
@@ -117,7 +124,8 @@ abstract class _$CafeCopyWith<$Res> implements $CafeCopyWith<$Res> {
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'imageUrl') String imageUrl,
-      @JsonKey(name: 'locations') List<City> locations});
+      @JsonKey(name: 'locations') List<City> locations,
+      @JsonKey(name: 'images') List<String> images});
 }
 
 /// @nodoc
@@ -137,6 +145,7 @@ class __$CafeCopyWithImpl<$Res> extends _$CafeCopyWithImpl<$Res>
     Object description = freezed,
     Object imageUrl = freezed,
     Object locations = freezed,
+    Object images = freezed,
   }) {
     return _then(_Cafe(
       id: id == freezed ? _value.id : id as num,
@@ -147,6 +156,7 @@ class __$CafeCopyWithImpl<$Res> extends _$CafeCopyWithImpl<$Res>
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       locations:
           locations == freezed ? _value.locations : locations as List<City>,
+      images: images == freezed ? _value.images : images as List<String>,
     ));
   }
 }
@@ -162,7 +172,8 @@ class _$_Cafe implements _Cafe {
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'imageUrl') this.imageUrl,
-      @JsonKey(name: 'locations') this.locations});
+      @JsonKey(name: 'locations') this.locations,
+      @JsonKey(name: 'images') this.images});
 
   factory _$_Cafe.fromJson(Map<String, dynamic> json) =>
       _$_$_CafeFromJson(json);
@@ -185,10 +196,13 @@ class _$_Cafe implements _Cafe {
   @override
   @JsonKey(name: 'locations')
   final List<City> locations;
+  @override
+  @JsonKey(name: 'images')
+  final List<String> images;
 
   @override
   String toString() {
-    return 'Cafe(id: $id, status: $status, name: $name, description: $description, imageUrl: $imageUrl, locations: $locations)';
+    return 'Cafe(id: $id, status: $status, name: $name, description: $description, imageUrl: $imageUrl, locations: $locations, images: $images)';
   }
 
   @override
@@ -209,7 +223,9 @@ class _$_Cafe implements _Cafe {
                     .equals(other.imageUrl, imageUrl)) &&
             (identical(other.locations, locations) ||
                 const DeepCollectionEquality()
-                    .equals(other.locations, locations)));
+                    .equals(other.locations, locations)) &&
+            (identical(other.images, images) ||
+                const DeepCollectionEquality().equals(other.images, images)));
   }
 
   @override
@@ -220,7 +236,8 @@ class _$_Cafe implements _Cafe {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(locations);
+      const DeepCollectionEquality().hash(locations) ^
+      const DeepCollectionEquality().hash(images);
 
   @override
   _$CafeCopyWith<_Cafe> get copyWith =>
@@ -239,7 +256,8 @@ abstract class _Cafe implements Cafe {
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'imageUrl') String imageUrl,
-      @JsonKey(name: 'locations') List<City> locations}) = _$_Cafe;
+      @JsonKey(name: 'locations') List<City> locations,
+      @JsonKey(name: 'images') List<String> images}) = _$_Cafe;
 
   factory _Cafe.fromJson(Map<String, dynamic> json) = _$_Cafe.fromJson;
 
@@ -261,6 +279,9 @@ abstract class _Cafe implements Cafe {
   @override
   @JsonKey(name: 'locations')
   List<City> get locations;
+  @override
+  @JsonKey(name: 'images')
+  List<String> get images;
   @override
   _$CafeCopyWith<_Cafe> get copyWith;
 }

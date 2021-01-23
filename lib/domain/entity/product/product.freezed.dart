@@ -22,6 +22,7 @@ class _$ProductTearOff {
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'category') String category,
+      @JsonKey(name: 'restourant') String restourant,
       @JsonKey(name: 'price') String price,
       @JsonKey(name: 'weight') num weight,
       @JsonKey(name: 'base_image') BaseImage baseImage,
@@ -31,6 +32,7 @@ class _$ProductTearOff {
       title: title,
       description: description,
       category: category,
+      restourant: restourant,
       price: price,
       weight: weight,
       baseImage: baseImage,
@@ -58,6 +60,8 @@ mixin _$Product {
   String get description;
   @JsonKey(name: 'category')
   String get category;
+  @JsonKey(name: 'restourant')
+  String get restourant;
   @JsonKey(name: 'price')
   String get price;
   @JsonKey(name: 'weight')
@@ -80,6 +84,7 @@ abstract class $ProductCopyWith<$Res> {
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'category') String category,
+      @JsonKey(name: 'restourant') String restourant,
       @JsonKey(name: 'price') String price,
       @JsonKey(name: 'weight') num weight,
       @JsonKey(name: 'base_image') BaseImage baseImage,
@@ -102,6 +107,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object title = freezed,
     Object description = freezed,
     Object category = freezed,
+    Object restourant = freezed,
     Object price = freezed,
     Object weight = freezed,
     Object baseImage = freezed,
@@ -113,6 +119,8 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
       description:
           description == freezed ? _value.description : description as String,
       category: category == freezed ? _value.category : category as String,
+      restourant:
+          restourant == freezed ? _value.restourant : restourant as String,
       price: price == freezed ? _value.price : price as String,
       weight: weight == freezed ? _value.weight : weight as num,
       baseImage:
@@ -142,6 +150,7 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'category') String category,
+      @JsonKey(name: 'restourant') String restourant,
       @JsonKey(name: 'price') String price,
       @JsonKey(name: 'weight') num weight,
       @JsonKey(name: 'base_image') BaseImage baseImage,
@@ -166,6 +175,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
     Object title = freezed,
     Object description = freezed,
     Object category = freezed,
+    Object restourant = freezed,
     Object price = freezed,
     Object weight = freezed,
     Object baseImage = freezed,
@@ -177,6 +187,8 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
       description:
           description == freezed ? _value.description : description as String,
       category: category == freezed ? _value.category : category as String,
+      restourant:
+          restourant == freezed ? _value.restourant : restourant as String,
       price: price == freezed ? _value.price : price as String,
       weight: weight == freezed ? _value.weight : weight as num,
       baseImage:
@@ -196,6 +208,7 @@ class _$_Product implements _Product {
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'category') this.category,
+      @JsonKey(name: 'restourant') this.restourant,
       @JsonKey(name: 'price') this.price,
       @JsonKey(name: 'weight') this.weight,
       @JsonKey(name: 'base_image') this.baseImage,
@@ -217,6 +230,9 @@ class _$_Product implements _Product {
   @JsonKey(name: 'category')
   final String category;
   @override
+  @JsonKey(name: 'restourant')
+  final String restourant;
+  @override
   @JsonKey(name: 'price')
   final String price;
   @override
@@ -231,7 +247,7 @@ class _$_Product implements _Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, title: $title, description: $description, category: $category, price: $price, weight: $weight, baseImage: $baseImage, count: $count)';
+    return 'Product(id: $id, title: $title, description: $description, category: $category, restourant: $restourant, price: $price, weight: $weight, baseImage: $baseImage, count: $count)';
   }
 
   @override
@@ -248,6 +264,9 @@ class _$_Product implements _Product {
             (identical(other.category, category) ||
                 const DeepCollectionEquality()
                     .equals(other.category, category)) &&
+            (identical(other.restourant, restourant) ||
+                const DeepCollectionEquality()
+                    .equals(other.restourant, restourant)) &&
             (identical(other.price, price) ||
                 const DeepCollectionEquality().equals(other.price, price)) &&
             (identical(other.weight, weight) ||
@@ -266,6 +285,7 @@ class _$_Product implements _Product {
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(category) ^
+      const DeepCollectionEquality().hash(restourant) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(weight) ^
       const DeepCollectionEquality().hash(baseImage) ^
@@ -287,6 +307,7 @@ abstract class _Product implements Product {
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'category') String category,
+      @JsonKey(name: 'restourant') String restourant,
       @JsonKey(name: 'price') String price,
       @JsonKey(name: 'weight') num weight,
       @JsonKey(name: 'base_image') BaseImage baseImage,
@@ -306,6 +327,9 @@ abstract class _Product implements Product {
   @override
   @JsonKey(name: 'category')
   String get category;
+  @override
+  @JsonKey(name: 'restourant')
+  String get restourant;
   @override
   @JsonKey(name: 'price')
   String get price;

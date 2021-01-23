@@ -21,6 +21,8 @@ _$_Cafe _$_$_CafeFromJson(Map<String, dynamic> json) {
               ?.map((e) =>
                   e == null ? null : City.fromJson(e as Map<String, dynamic>))
               ?.toList()),
+      images: $checkedConvert(json, 'images',
+          (v) => (v as List)?.map((e) => e as String)?.toList()),
     );
     return val;
   });
@@ -33,4 +35,5 @@ Map<String, dynamic> _$_$_CafeToJson(_$_Cafe instance) => <String, dynamic>{
       'description': instance.description,
       'imageUrl': instance.imageUrl,
       'locations': instance.locations?.map((e) => e?.toJson())?.toList(),
+      'images': instance.images,
     };

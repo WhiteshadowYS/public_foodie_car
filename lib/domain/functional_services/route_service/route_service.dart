@@ -47,6 +47,10 @@ class RouteService {
     if (_history == null || _isDialogDisplayed()) return null;
     if (_history.isNotEmpty && _history.last == route) return null;
 
+    if (_history.length > 2 && _history[_history.length - 2] == route) {
+      return pop();
+    }
+
     _history.add(route);
 
     return NavigateToAction.push(route);

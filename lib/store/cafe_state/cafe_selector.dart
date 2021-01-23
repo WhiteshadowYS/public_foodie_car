@@ -6,8 +6,39 @@ import 'package:foodie_client_template/store/cafe_state/actions/select_cafe_acti
 import 'package:foodie_client_template/store/cafe_state/actions/unselect_cafe_action.dart';
 
 abstract class CafeSelector {
+  static String getCafeLocation(Store<AppState> store) {
+    return store.state.cafeState.selectedCafe.locations?.firstWhere(
+      (element) {
+        return element.id == store.state.cityState.selectedCity.id;
+      },
+      orElse: () => null,
+    )?.name;
+  }
+
+  static String getCafeDescription(Store<AppState> store) {
+    return store.state.cafeState.selectedCafe.description;
+  }
+
+  static String getCafePhone(Store<AppState> store) {
+    return store.state.cafeState.selectedCafe.description;
+  }
+
+  static List<String> getCafeGallery(Store<AppState> store) {
+    return store.state.cafeState.selectedCafe?.images ?? [];
+  }
+
   static List<Cafe> getCafeList(Store<AppState> store) {
-    return store.state.cafeState?.cafeList ?? [];
+    return store.state.cafeState?.cafeList?.where((cafe) {
+          final location = cafe.locations.firstWhere(
+            (loc) {
+              return loc.id == store.state.cityState.selectedCity.id;
+            },
+            orElse: () => null,
+          );
+
+          return location != null;
+        })?.toList() ??
+        [];
   }
 
   static Cafe getSelectedCafe(Store<AppState> store) {

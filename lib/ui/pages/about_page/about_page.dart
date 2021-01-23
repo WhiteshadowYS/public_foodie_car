@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:foodie_client_template/ui/layouts/main_layout/main_layout.dart';
 import 'package:foodie_client_template/ui/pages/about_page/widgets/info_container.dart';
+import 'package:maps/maps.dart';
 
 class AboutPage extends StatelessWidget {
   AboutPage({Key key}) : super(key: key);
@@ -32,8 +33,20 @@ class AboutPage extends StatelessWidget {
             icon: Icons.navigation,
             text: 'Test Address',
           ),
-          CachedNetworkImage(
-            imageUrl: 'https://static.irk.ru/media/img/site/gallery/27996/d9ed3ae9-c3be-482b-a978-79af7539c621_png_800x600_x-False_q85.jpg',
+          SizedBox(
+            height: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width,
+            child: MapWidget(
+              adapter: MapAdapter.platformSpecific(
+                ios: AppleMapsNativeAdapter(),
+                otherwise: BingMapsIframeAdapter(),
+              ),
+              location: MapLocation(
+                zoom: Zoom(13),
+                geoPoint: GeoPoint(46.4775, 30.7326),
+                // query: 'ukraine',
+              ),
+            ),
           ),
         ],
       ),

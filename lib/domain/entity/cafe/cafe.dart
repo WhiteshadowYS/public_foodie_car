@@ -18,6 +18,7 @@ abstract class Cafe with _$Cafe {
     @JsonKey(name: 'description') String description,
     @JsonKey(name: 'imageUrl') String imageUrl,
     @JsonKey(name: 'locations') List<City> locations,
+    @JsonKey(name: 'images') List<String> images,
   }) = _Cafe;
 
   factory Cafe.fromJson(Map json) => _$CafeFromJson(json);

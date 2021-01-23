@@ -34,6 +34,7 @@ class _MainLayoutState extends State<MainLayout> {
           appBar: widget.showAppBar
               ? AppTopBar(
                   pop: vm.pop,
+                  buscketCount: vm.buscketCount,
                   openBusket: vm.gotoBusketPage,
                   openLocationInfo: vm.gotoAboutPage,
                   title: vm.title,
@@ -54,11 +55,6 @@ class _MainLayoutState extends State<MainLayout> {
                       key: Key('${Routes.home_page}[BottomBarButton]'),
                       page: Routes.home_page,
                       icon: Icons.home,
-                    ),
-                    AppBottomBarItem(
-                      key: Key('${Routes.gallery_page}[BottomBarButton]'),
-                      page: Routes.gallery_page,
-                      icon: Icons.image,
                     ),
                   ],
                 )

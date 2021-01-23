@@ -16,6 +16,7 @@ abstract class Product with _$Product {
     @JsonKey(name: 'title') String title,
     @JsonKey(name: 'description') String description,
     @JsonKey(name: 'category') String category,
+    @JsonKey(name: 'restourant') String restourant,
     @JsonKey(name: 'price') String price,
     @JsonKey(name: 'weight') num weight,
     @JsonKey(name: 'base_image') BaseImage baseImage,

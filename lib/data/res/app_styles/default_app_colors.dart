@@ -10,7 +10,7 @@ class DefaultAppColors {
   static const Color darkGrey = Color(0xFF3C3C43);
   static const Color lightGrey = Color(0xFF828282);
 
-  static const Color green = Color(0xFF52B998);
+  static const Color green = Color(0xFF5DB075);
   static const Color red = Colors.redAccent;
   static const Color blue = Colors.blueAccent;
   static const Color orange = Colors.deepOrangeAccent;

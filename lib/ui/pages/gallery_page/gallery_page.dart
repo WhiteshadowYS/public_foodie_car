@@ -20,14 +20,14 @@ class GalleryPage extends StatelessWidget {
             child: GridView.builder(
               key: Key('[GalleryPage][Grid]'),
               padding: const EdgeInsets.all(8.0),
-              itemCount: 4,
+              itemCount: vm.galleryImages?.length ?? [],
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
               ),
               itemBuilder: (BuildContext context, int index) {
                 return GalleryItem(
                   key: Key('[GalleryPage][Grid][$index]'),
-                  url: 'https://static.toiimg.com/photo/72975551.cms',
+                  url: vm.galleryImages[index],
                 );
               },
             ),

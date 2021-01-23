@@ -13,6 +13,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  maps: ^0.4.3
+
   intl: ^0.16.1
   get_version: ^0.2.2
   carousel_slider: ^2.3.1

@@ -14,8 +14,10 @@ class CategoriesPageVM {
   final bool isLoading;
   final Cafe selectedCafe;
   final List<Category> categories;
+
   final void Function() getCategories;
   final void Function(Category) selectCategory;
+  final void Function() gotoGallery;
   final void Function() gotoProductsPage;
 
   CategoriesPageVM({
@@ -25,6 +27,7 @@ class CategoriesPageVM {
     @required this.selectCategory,
     @required this.selectedCafe,
     @required this.gotoProductsPage,
+    @required this.gotoGallery,
   });
 
   static CategoriesPageVM init(Store<AppState> store) {
@@ -35,6 +38,7 @@ class CategoriesPageVM {
       getCategories: CategorySelector.getCategoriesForCafe(store),
       selectCategory: CategorySelector.getSelectCategoryFunction(store),
       gotoProductsPage: RouteSelectors.gotoProductsPage(store),
+      gotoGallery: RouteSelectors.gotoGalleryPage(store),
     );
   }
 }
