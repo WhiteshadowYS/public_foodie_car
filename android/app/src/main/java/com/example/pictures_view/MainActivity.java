@@ -1,4 +1,4 @@
-package com.appvesto.myCatalog;
+package com.whiteshadow.foodieCar;
 
 import io.flutter.embedding.android.FlutterActivity;
 

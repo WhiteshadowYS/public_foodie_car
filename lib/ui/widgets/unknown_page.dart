@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodie_client_template/ui/layouts/main_layout/main_layout.dart';
+import 'package:foodie_car_template/ui/layouts/main_layout/main_layout.dart';
 
 class UnknownPage extends StatelessWidget {
   const UnknownPage({Key key}) : super(key: key);

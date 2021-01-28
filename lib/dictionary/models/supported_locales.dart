@@ -1,9 +1,8 @@
-import 'package:foodie_client_template/data/res/locales.dart';
-import 'package:foodie_client_template/dictionary/data/en.dart';
-import 'package:foodie_client_template/dictionary/data/ru.dart';
+import 'package:foodie_car_template/data/res/locales.dart';
+import 'package:foodie_car_template/dictionary/data/ru.dart';
 import 'package:flutter/material.dart';
 
-import 'package:foodie_client_template/dictionary/models/supported_language.dart';
+import 'package:foodie_car_template/dictionary/models/supported_language.dart';
 
 class SupportedLocales {
   List<SupportedLanguage> _supportedLocales;
@@ -14,10 +13,6 @@ class SupportedLocales {
         languageCode: Locales.ru,
         language: ru,
       )..choose(),
-      SupportedLanguage(
-        languageCode: Locales.en,
-        language: en,
-      ),
     ];
   }
 

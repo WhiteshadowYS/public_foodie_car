@@ -1,13 +1,11 @@
-import 'package:foodie_client_template/dependency/injection_config.dart';
-import 'package:foodie_client_template/domain/data_services/city_service.dart';
-import 'package:foodie_client_template/store/city_state/actions/get_cityList_action.dart';
-import 'package:foodie_client_template/store/city_state/actions/save_cityList_action.dart';
-import 'package:foodie_client_template/store/city_state/actions/save_city_action.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:redux_epics/redux_epics.dart';
-
-import 'package:foodie_client_template/store/application/app_state.dart';
-import 'package:foodie_client_template/store/shared/initialization/actions/start_initialization.dart';
+import 'package:foodie_car_template/store/application/app_state.dart';
+import 'package:foodie_car_template/dependency/injection_config.dart';
+import 'package:foodie_car_template/domain/data_services/city_service.dart';
+import 'package:foodie_car_template/store/city_state/actions/save_city_action.dart';
+import 'package:foodie_car_template/store/city_state/actions/get_cityList_action.dart';
+import 'package:foodie_car_template/store/city_state/actions/save_cityList_action.dart';
 
 class CityMainEpic {
   static const String tag = '[InitializeEpics]';

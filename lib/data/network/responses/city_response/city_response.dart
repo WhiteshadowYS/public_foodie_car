@@ -1,4 +1,4 @@
-import 'package:foodie_client_template/domain/entity/city/city.dart';
+import 'package:foodie_car_template/domain/entity/city/city.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'city_response.g.dart';

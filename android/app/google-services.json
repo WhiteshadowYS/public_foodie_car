@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:360161594253:android:41ab185edcc749074ccbc4",
         "android_client_info": {
-          "package_name": "com.appvesto.myCatalog"
+          "package_name": "com.whiteshadow.foodieCar"
         }
       },
       "oauth_client": [
@@ -35,7 +35,7 @@
               "client_id": "360161594253-112gpnacvqtqp77ukdi8ne24iej8kakq.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.appvesto.myCatalog"
+                "bundle_id": "com.whiteshadow.foodieCar"
               }
             }
           ]

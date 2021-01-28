@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:foodie_client_template/dictionary/models/language.dart';
+import 'package:foodie_car_template/dictionary/models/language.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'supported_language.g.dart';

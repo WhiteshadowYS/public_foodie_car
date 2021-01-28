@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:foodie_client_template/domain/functional_services/route_service/models/routes.dart';
-import 'package:foodie_client_template/store/application/app_state.dart';
-import 'package:foodie_client_template/ui/layouts/app_bar/app_top_bar.dart';
-import 'package:foodie_client_template/ui/layouts/bottom_bar/app_bottom_bar.dart';
-import 'package:foodie_client_template/ui/layouts/bottom_bar/widgets/app_bottom_bar_item.dart';
-import 'package:foodie_client_template/ui/layouts/focus_layout/focus_layout.dart';
-import 'package:foodie_client_template/ui/layouts/main_layout/main_layout_vm.dart';
+import 'package:foodie_car_template/store/application/app_state.dart';
+import 'package:foodie_car_template/ui/layouts/app_bar/app_top_bar.dart';
+import 'package:foodie_car_template/ui/layouts/focus_layout/focus_layout.dart';
+import 'package:foodie_car_template/ui/layouts/main_layout/main_layout_vm.dart';
 
 class MainLayout extends StatefulWidget {
   final bool showAppBar;
@@ -36,27 +33,8 @@ class _MainLayoutState extends State<MainLayout> {
                   pop: vm.pop,
                   buscketCount: vm.buscketCount,
                   openBusket: vm.gotoBusketPage,
-                  openLocationInfo: vm.gotoAboutPage,
+                  openLocationInfo: vm.gotoLoginPage,
                   title: vm.title,
-                )
-              : null,
-          bottomNavigationBar: widget.showBottomBar
-              ? AppBottomBar(
-                  key: Key('[BottomBar]'),
-                  gotoPage: vm.gotoPage,
-                  selectedPage: vm.selectedPage,
-                  items: [
-                    AppBottomBarItem(
-                      key: Key('${Routes.profile_page}[BottomBarButton]'),
-                      page: Routes.profile_page,
-                      icon: Icons.person,
-                    ),
-                    AppBottomBarItem(
-                      key: Key('${Routes.home_page}[BottomBarButton]'),
-                      page: Routes.home_page,
-                      icon: Icons.home,
-                    ),
-                  ],
                 )
               : null,
           backgroundColor: Colors.white,

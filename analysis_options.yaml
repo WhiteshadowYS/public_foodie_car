@@ -69,7 +69,6 @@ linter:
     no_adjacent_strings_in_list: true
     non_constant_identifier_names: true
     unrelated_type_equality_checks: true
-    use_key_in_widget_constructors: true
     use_full_hex_values_for_flutter_colors: true
     prefer_relative_imports: false
     omit_local_variable_types: false

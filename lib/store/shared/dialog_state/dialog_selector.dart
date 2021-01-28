@@ -1,10 +1,10 @@
-import 'package:foodie_client_template/domain/functional_services/dialog_service/dialog_service.dart';
-import 'package:foodie_client_template/domain/functional_services/dialog_service/models/choose_city_dialog.dart';
-import 'package:foodie_client_template/domain/functional_services/dialog_service/models/choose_language_dialog.dart';
-import 'package:foodie_client_template/store/application/app_state.dart';
-import 'package:foodie_client_template/store/city_state/actions/save_city_action.dart';
-import 'package:foodie_client_template/store/shared/dialog_state/actions/force_close_dialog_action.dart';
-import 'package:foodie_client_template/store/shared/language_state/actions/change_language_action.dart';
+import 'package:foodie_car_template/domain/functional_services/dialog_service/dialog_service.dart';
+import 'package:foodie_car_template/domain/functional_services/dialog_service/models/choose_city_dialog.dart';
+import 'package:foodie_car_template/domain/functional_services/dialog_service/models/choose_language_dialog.dart';
+import 'package:foodie_car_template/store/application/app_state.dart';
+import 'package:foodie_car_template/store/city_state/actions/save_city_action.dart';
+import 'package:foodie_car_template/store/shared/dialog_state/actions/force_close_dialog_action.dart';
+import 'package:foodie_car_template/store/shared/language_state/actions/change_language_action.dart';
 import 'package:redux/redux.dart';
 
 /// [DialogSelectors] it class with static functions for work with Dialogs from Pages.

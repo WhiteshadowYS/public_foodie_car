@@ -1,8 +1,8 @@
-import 'package:foodie_client_template/data/local/city_storage.dart';
-import 'package:foodie_client_template/data/network/repositories/city_repository.dart';
-import 'package:foodie_client_template/data/network/responses/city_response/city_response.dart';
-import 'package:foodie_client_template/domain/data_services/city_service.dart';
-import 'package:foodie_client_template/domain/entity/city/city.dart';
+import 'package:foodie_car_template/data/local/city_storage.dart';
+import 'package:foodie_car_template/data/network/repositories/city_repository.dart';
+import 'package:foodie_car_template/data/network/responses/city_response/city_response.dart';
+import 'package:foodie_car_template/domain/data_services/city_service.dart';
+import 'package:foodie_car_template/domain/entity/city/city.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: CityService)

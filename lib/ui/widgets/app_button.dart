@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodie_client_template/data/theme/custom_theme.dart';
+import 'package:foodie_car_template/data/theme/custom_theme.dart';
 
 class AppButton extends StatelessWidget {
   final Widget child;
@@ -12,7 +12,6 @@ class AppButton extends StatelessWidget {
   final void Function() onTap;
 
   AppButton({
-    @required Key key,
     @required this.child,
     this.onTap,
     this.radius = 0.0,
@@ -21,7 +20,7 @@ class AppButton extends StatelessWidget {
     this.alignment = Alignment.center,
     this.margin = const EdgeInsets.all(0.0),
     this.padding = const EdgeInsets.all(0.0),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-import 'package:foodie_client_template/data/res/app_styles/default_app_colors.dart';
+import 'package:foodie_car_template/data/res/app_styles/default_app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppGradient {

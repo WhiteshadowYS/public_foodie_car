@@ -1,4 +1,4 @@
-name: foodie_client_template
+name: foodie_car_template
 description: A new Flutter project.
 
 version: 0.5.4+1
@@ -30,6 +30,8 @@ dependencies:
   share: ^0.6.5+3
   device_info: ^0.4.2+9
   enum_to_string: ^1.0.13
+  maps_adapter_google_maps: ^0.2.2
+
 
   # Firebase
   firebase_core: ^0.5.0+1

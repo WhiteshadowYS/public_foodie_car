@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodie_client_template/dictionary/flutter_dictionary.dart';
-import 'package:foodie_client_template/dictionary/models/supported_locales.dart';
-import 'package:foodie_client_template/store/application/app_state.dart';
+import 'package:foodie_car_template/dictionary/flutter_dictionary.dart';
+import 'package:foodie_car_template/dictionary/models/supported_locales.dart';
+import 'package:foodie_car_template/store/application/app_state.dart';
 import 'package:redux/redux.dart';
 
 abstract class LanguageSelector {

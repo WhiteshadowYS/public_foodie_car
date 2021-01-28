@@ -1,10 +1,10 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:foodie_client_template/domain/entity/city/city.dart';
-import 'package:foodie_client_template/store/city_state/actions/save_cityList_action.dart';
-import 'package:foodie_client_template/store/city_state/actions/save_city_action.dart';
-import 'package:foodie_client_template/store/shared/reducer.dart';
+import 'package:foodie_car_template/domain/entity/city/city.dart';
+import 'package:foodie_car_template/store/city_state/actions/save_cityList_action.dart';
+import 'package:foodie_car_template/store/city_state/actions/save_city_action.dart';
+import 'package:foodie_car_template/store/shared/reducer.dart';
 
 class CityState {
   final City selectedCity;

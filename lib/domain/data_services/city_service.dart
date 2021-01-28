@@ -1,4 +1,4 @@
-import 'package:foodie_client_template/domain/entity/city/city.dart';
+import 'package:foodie_car_template/domain/entity/city/city.dart';
 
 abstract class CityService {
   Future<List<City>> getCityList();

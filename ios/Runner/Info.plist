@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
-	<string>com.appvesto.myCatalog</string>
+	<string>com.whiteshadow.foodieCar</string>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
 	<key>CFBundleVersion</key>

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodie_client_template/data/res/settings.dart';
-import 'package:foodie_client_template/data/theme/custom_theme.dart';
+import 'package:foodie_car_template/data/res/settings.dart';
+import 'package:foodie_car_template/data/theme/custom_theme.dart';
 
 class AppBottomBarItem extends StatelessWidget {
   final double iconSize;

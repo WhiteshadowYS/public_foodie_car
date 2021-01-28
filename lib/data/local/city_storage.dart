@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:foodie_client_template/domain/entity/city/city.dart';
+import 'package:foodie_car_template/domain/entity/city/city.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton

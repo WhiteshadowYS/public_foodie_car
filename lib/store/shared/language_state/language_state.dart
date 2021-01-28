@@ -1,10 +1,10 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:foodie_client_template/data/res/locales.dart';
-import 'package:foodie_client_template/dictionary/flutter_dictionary.dart';
-import 'package:foodie_client_template/store/shared/language_state/actions/change_language_action.dart';
-import 'package:foodie_client_template/store/shared/reducer.dart';
+import 'package:foodie_car_template/data/res/locales.dart';
+import 'package:foodie_car_template/dictionary/flutter_dictionary.dart';
+import 'package:foodie_car_template/store/shared/language_state/actions/change_language_action.dart';
+import 'package:foodie_car_template/store/shared/reducer.dart';
 
 class LanguageState {
   final String locale;

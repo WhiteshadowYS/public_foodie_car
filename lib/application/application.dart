@@ -1,18 +1,18 @@
-import 'package:foodie_client_template/application/application_vm.dart';
-import 'package:foodie_client_template/data/res/const.dart';
+import 'package:foodie_car_template/application/application_vm.dart';
+import 'package:foodie_car_template/data/res/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodie_client_template/data/res/keys.dart';
-import 'package:foodie_client_template/data/res/locales.dart';
-import 'package:foodie_client_template/data/theme/custom_theme.dart';
-import 'package:foodie_client_template/dictionary/flutter_dictionary.dart';
-import 'package:foodie_client_template/domain/functional_services/route_service/route_builder.dart';
+import 'package:foodie_car_template/data/res/keys.dart';
+import 'package:foodie_car_template/data/res/locales.dart';
+import 'package:foodie_car_template/data/theme/custom_theme.dart';
+import 'package:foodie_car_template/dictionary/flutter_dictionary.dart';
+import 'package:foodie_car_template/domain/functional_services/route_service/route_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
-import 'package:foodie_client_template/dictionary/flutter_delegate.dart';
-import 'package:foodie_client_template/store/application/app_state.dart';
-import 'package:foodie_client_template/store/shared/initialization/initialize_selector.dart';
-import 'package:foodie_client_template/ui/widgets/splash_screen.dart';
+import 'package:foodie_car_template/dictionary/flutter_delegate.dart';
+import 'package:foodie_car_template/store/application/app_state.dart';
+import 'package:foodie_car_template/store/shared/initialization/initialize_selector.dart';
+import 'package:foodie_car_template/ui/widgets/splash_screen.dart';
 import 'package:redux/redux.dart';
 
 /// The [Application] class, in which the creation of [MaterialApp] takes place.

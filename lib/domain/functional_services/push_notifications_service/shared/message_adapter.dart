@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:foodie_client_template/domain/functional_services/push_notifications_service/interfaces/i_message.dart';
-import 'package:foodie_client_template/domain/functional_services/push_notifications_service/models/dtos/message_dto.dart';
-import 'package:foodie_client_template/domain/functional_services/push_notifications_service/models/message.dart';
-import 'package:foodie_client_template/domain/functional_services/push_notifications_service/res/consts.dart';
+import 'package:foodie_car_template/domain/functional_services/push_notifications_service/interfaces/i_message.dart';
+import 'package:foodie_car_template/domain/functional_services/push_notifications_service/models/dtos/message_dto.dart';
+import 'package:foodie_car_template/domain/functional_services/push_notifications_service/models/message.dart';
+import 'package:foodie_car_template/domain/functional_services/push_notifications_service/res/consts.dart';
 
 class MessageAdapter {
   static const String TAG = '[MessageAdapter]';

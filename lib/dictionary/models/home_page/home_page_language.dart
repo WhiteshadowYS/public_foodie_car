@@ -8,6 +8,13 @@ abstract class HomePageLanguage with _$HomePageLanguage {
   @JsonSerializable()
   const factory HomePageLanguage({
     @required String title,
+    @required String createdOrdersTitle,
+    @required String activeOrdersTitle,
+    @required String closedOrdersTitle,
+    @required String closeOrder,
+    @required String startOrder,
+    @required String startText,
+    @required String endText,
   }) = _HomePageLanguage;
 
   factory HomePageLanguage.fromJson(Map json) => _$HomePageLanguageFromJson(json);

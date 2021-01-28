@@ -1,9 +1,9 @@
 import 'dart:collection';
-import 'package:foodie_client_template/domain/functional_services/dialog_service/interfaces/i_loader.dart';
+import 'package:foodie_car_template/domain/functional_services/dialog_service/interfaces/i_loader.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:foodie_client_template/store/shared/loader/actions/start_loading_action.dart';
-import 'package:foodie_client_template/store/shared/loader/actions/stop_loading_action.dart';
-import 'package:foodie_client_template/store/shared/reducer.dart';
+import 'package:foodie_car_template/store/shared/loader/actions/start_loading_action.dart';
+import 'package:foodie_car_template/store/shared/loader/actions/stop_loading_action.dart';
+import 'package:foodie_car_template/store/shared/reducer.dart';
 
 enum LoaderKey {
   global,

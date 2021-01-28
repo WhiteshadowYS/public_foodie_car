@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:foodie_client_template/data/res/image_assets.dart';
+import 'package:foodie_car_template/data/res/image_assets.dart';
 
 class ImageContainer extends StatelessWidget {
   final String imageUrl;

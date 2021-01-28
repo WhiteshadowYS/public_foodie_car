@@ -1,14 +1,14 @@
-import 'package:foodie_client_template/dependency/injection_config.dart';
-import 'package:foodie_client_template/dictionary/flutter_dictionary.dart';
-import 'package:foodie_client_template/dictionary/models/supported_language.dart';
-import 'package:foodie_client_template/dictionary/models/supported_locales.dart';
-import 'package:foodie_client_template/domain/data_services/language_service.dart';
-import 'package:foodie_client_template/store/shared/language_state/actions/change_language_action.dart';
+import 'package:foodie_car_template/dependency/injection_config.dart';
+import 'package:foodie_car_template/dictionary/flutter_dictionary.dart';
+import 'package:foodie_car_template/dictionary/models/supported_language.dart';
+import 'package:foodie_car_template/dictionary/models/supported_locales.dart';
+import 'package:foodie_car_template/domain/data_services/language_service.dart';
+import 'package:foodie_car_template/store/shared/language_state/actions/change_language_action.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:redux_epics/redux_epics.dart';
 
-import 'package:foodie_client_template/store/application/app_state.dart';
-import 'package:foodie_client_template/store/shared/initialization/actions/start_initialization.dart';
+import 'package:foodie_car_template/store/application/app_state.dart';
+import 'package:foodie_car_template/store/shared/initialization/actions/start_initialization.dart';
 
 /// [InitializeMainEpic] the main epic which is started for initialization.
 /// The class [InitializeMainEpic], has only one static variable [indexEpic].

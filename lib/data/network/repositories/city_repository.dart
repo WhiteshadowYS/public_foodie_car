@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:foodie_client_template/config/app_config.dart';
-import 'package:foodie_client_template/data/network/responses/city_response/city_response.dart';
+import 'package:foodie_car_template/config/app_config.dart';
+import 'package:foodie_car_template/data/network/responses/city_response/city_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:http/http.dart' as http;
 

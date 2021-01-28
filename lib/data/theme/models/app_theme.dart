@@ -1,7 +1,7 @@
-import 'package:foodie_client_template/data/theme/interfaces/i_app_edge_insets.dart';
-import 'package:foodie_client_template/data/theme/models/app_colors.dart';
-import 'package:foodie_client_template/data/theme/models/app_edge_insets.dart';
-import 'package:foodie_client_template/data/theme/models/app_text_styles.dart';
+import 'package:foodie_car_template/data/theme/interfaces/i_app_edge_insets.dart';
+import 'package:foodie_car_template/data/theme/models/app_colors.dart';
+import 'package:foodie_car_template/data/theme/models/app_edge_insets.dart';
+import 'package:foodie_car_template/data/theme/models/app_text_styles.dart';
 
 class AppTheme {
   final String themeName;

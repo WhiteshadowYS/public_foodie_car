@@ -1,7 +1,7 @@
-import 'package:foodie_client_template/data/res/app_styles/default_app_colors.dart';
-import 'package:foodie_client_template/data/theme/models/app_colors.dart';
-import 'package:foodie_client_template/data/theme/models/app_text_styles.dart';
-import 'package:foodie_client_template/data/theme/models/app_theme.dart';
+import 'package:foodie_car_template/data/res/app_styles/default_app_colors.dart';
+import 'package:foodie_car_template/data/theme/models/app_colors.dart';
+import 'package:foodie_car_template/data/theme/models/app_text_styles.dart';
+import 'package:foodie_car_template/data/theme/models/app_theme.dart';
 
 AppTheme defaultTheme = AppTheme(
   themeName: 'default_theme',

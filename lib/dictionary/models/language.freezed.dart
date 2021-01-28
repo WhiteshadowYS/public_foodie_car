@@ -19,25 +19,13 @@ class _$LanguageTearOff {
 // ignore: unused_element
   _Language call(
       {@required String name,
-      @required BusketPageLanguage busketPage,
-      @required ProductsPageLanguage productsPage,
-      @required ProductPageLanguage productPage,
       @required HomePageLanguage homePage,
-      @required GalleryPageLanguage galleryPage,
-      @required CategoriesPageLanguage categoriesPage,
-      @required AboutPageLanguage aboutPage,
-      @required ProfilePageLanguage profilePage,
+      @required LoginPageLanguage loginPage,
       @required GlobalLanguage global}) {
     return _Language(
       name: name,
-      busketPage: busketPage,
-      productsPage: productsPage,
-      productPage: productPage,
       homePage: homePage,
-      galleryPage: galleryPage,
-      categoriesPage: categoriesPage,
-      aboutPage: aboutPage,
-      profilePage: profilePage,
+      loginPage: loginPage,
       global: global,
     );
   }
@@ -55,14 +43,8 @@ const $Language = _$LanguageTearOff();
 /// @nodoc
 mixin _$Language {
   String get name;
-  BusketPageLanguage get busketPage;
-  ProductsPageLanguage get productsPage;
-  ProductPageLanguage get productPage;
   HomePageLanguage get homePage;
-  GalleryPageLanguage get galleryPage;
-  CategoriesPageLanguage get categoriesPage;
-  AboutPageLanguage get aboutPage;
-  ProfilePageLanguage get profilePage;
+  LoginPageLanguage get loginPage;
   GlobalLanguage get global;
 
   Map<String, dynamic> toJson();
@@ -75,24 +57,12 @@ abstract class $LanguageCopyWith<$Res> {
       _$LanguageCopyWithImpl<$Res>;
   $Res call(
       {String name,
-      BusketPageLanguage busketPage,
-      ProductsPageLanguage productsPage,
-      ProductPageLanguage productPage,
       HomePageLanguage homePage,
-      GalleryPageLanguage galleryPage,
-      CategoriesPageLanguage categoriesPage,
-      AboutPageLanguage aboutPage,
-      ProfilePageLanguage profilePage,
+      LoginPageLanguage loginPage,
       GlobalLanguage global});
 
-  $BusketPageLanguageCopyWith<$Res> get busketPage;
-  $ProductsPageLanguageCopyWith<$Res> get productsPage;
-  $ProductPageLanguageCopyWith<$Res> get productPage;
   $HomePageLanguageCopyWith<$Res> get homePage;
-  $GalleryPageLanguageCopyWith<$Res> get galleryPage;
-  $CategoriesPageLanguageCopyWith<$Res> get categoriesPage;
-  $AboutPageLanguageCopyWith<$Res> get aboutPage;
-  $ProfilePageLanguageCopyWith<$Res> get profilePage;
+  $LoginPageLanguageCopyWith<$Res> get loginPage;
   $GlobalLanguageCopyWith<$Res> get global;
 }
 
@@ -107,73 +77,19 @@ class _$LanguageCopyWithImpl<$Res> implements $LanguageCopyWith<$Res> {
   @override
   $Res call({
     Object name = freezed,
-    Object busketPage = freezed,
-    Object productsPage = freezed,
-    Object productPage = freezed,
     Object homePage = freezed,
-    Object galleryPage = freezed,
-    Object categoriesPage = freezed,
-    Object aboutPage = freezed,
-    Object profilePage = freezed,
+    Object loginPage = freezed,
     Object global = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed ? _value.name : name as String,
-      busketPage: busketPage == freezed
-          ? _value.busketPage
-          : busketPage as BusketPageLanguage,
-      productsPage: productsPage == freezed
-          ? _value.productsPage
-          : productsPage as ProductsPageLanguage,
-      productPage: productPage == freezed
-          ? _value.productPage
-          : productPage as ProductPageLanguage,
       homePage:
           homePage == freezed ? _value.homePage : homePage as HomePageLanguage,
-      galleryPage: galleryPage == freezed
-          ? _value.galleryPage
-          : galleryPage as GalleryPageLanguage,
-      categoriesPage: categoriesPage == freezed
-          ? _value.categoriesPage
-          : categoriesPage as CategoriesPageLanguage,
-      aboutPage: aboutPage == freezed
-          ? _value.aboutPage
-          : aboutPage as AboutPageLanguage,
-      profilePage: profilePage == freezed
-          ? _value.profilePage
-          : profilePage as ProfilePageLanguage,
+      loginPage: loginPage == freezed
+          ? _value.loginPage
+          : loginPage as LoginPageLanguage,
       global: global == freezed ? _value.global : global as GlobalLanguage,
     ));
-  }
-
-  @override
-  $BusketPageLanguageCopyWith<$Res> get busketPage {
-    if (_value.busketPage == null) {
-      return null;
-    }
-    return $BusketPageLanguageCopyWith<$Res>(_value.busketPage, (value) {
-      return _then(_value.copyWith(busketPage: value));
-    });
-  }
-
-  @override
-  $ProductsPageLanguageCopyWith<$Res> get productsPage {
-    if (_value.productsPage == null) {
-      return null;
-    }
-    return $ProductsPageLanguageCopyWith<$Res>(_value.productsPage, (value) {
-      return _then(_value.copyWith(productsPage: value));
-    });
-  }
-
-  @override
-  $ProductPageLanguageCopyWith<$Res> get productPage {
-    if (_value.productPage == null) {
-      return null;
-    }
-    return $ProductPageLanguageCopyWith<$Res>(_value.productPage, (value) {
-      return _then(_value.copyWith(productPage: value));
-    });
   }
 
   @override
@@ -187,43 +103,12 @@ class _$LanguageCopyWithImpl<$Res> implements $LanguageCopyWith<$Res> {
   }
 
   @override
-  $GalleryPageLanguageCopyWith<$Res> get galleryPage {
-    if (_value.galleryPage == null) {
+  $LoginPageLanguageCopyWith<$Res> get loginPage {
+    if (_value.loginPage == null) {
       return null;
     }
-    return $GalleryPageLanguageCopyWith<$Res>(_value.galleryPage, (value) {
-      return _then(_value.copyWith(galleryPage: value));
-    });
-  }
-
-  @override
-  $CategoriesPageLanguageCopyWith<$Res> get categoriesPage {
-    if (_value.categoriesPage == null) {
-      return null;
-    }
-    return $CategoriesPageLanguageCopyWith<$Res>(_value.categoriesPage,
-        (value) {
-      return _then(_value.copyWith(categoriesPage: value));
-    });
-  }
-
-  @override
-  $AboutPageLanguageCopyWith<$Res> get aboutPage {
-    if (_value.aboutPage == null) {
-      return null;
-    }
-    return $AboutPageLanguageCopyWith<$Res>(_value.aboutPage, (value) {
-      return _then(_value.copyWith(aboutPage: value));
-    });
-  }
-
-  @override
-  $ProfilePageLanguageCopyWith<$Res> get profilePage {
-    if (_value.profilePage == null) {
-      return null;
-    }
-    return $ProfilePageLanguageCopyWith<$Res>(_value.profilePage, (value) {
-      return _then(_value.copyWith(profilePage: value));
+    return $LoginPageLanguageCopyWith<$Res>(_value.loginPage, (value) {
+      return _then(_value.copyWith(loginPage: value));
     });
   }
 
@@ -245,32 +130,14 @@ abstract class _$LanguageCopyWith<$Res> implements $LanguageCopyWith<$Res> {
   @override
   $Res call(
       {String name,
-      BusketPageLanguage busketPage,
-      ProductsPageLanguage productsPage,
-      ProductPageLanguage productPage,
       HomePageLanguage homePage,
-      GalleryPageLanguage galleryPage,
-      CategoriesPageLanguage categoriesPage,
-      AboutPageLanguage aboutPage,
-      ProfilePageLanguage profilePage,
+      LoginPageLanguage loginPage,
       GlobalLanguage global});
 
   @override
-  $BusketPageLanguageCopyWith<$Res> get busketPage;
-  @override
-  $ProductsPageLanguageCopyWith<$Res> get productsPage;
-  @override
-  $ProductPageLanguageCopyWith<$Res> get productPage;
-  @override
   $HomePageLanguageCopyWith<$Res> get homePage;
   @override
-  $GalleryPageLanguageCopyWith<$Res> get galleryPage;
-  @override
-  $CategoriesPageLanguageCopyWith<$Res> get categoriesPage;
-  @override
-  $AboutPageLanguageCopyWith<$Res> get aboutPage;
-  @override
-  $ProfilePageLanguageCopyWith<$Res> get profilePage;
+  $LoginPageLanguageCopyWith<$Res> get loginPage;
   @override
   $GlobalLanguageCopyWith<$Res> get global;
 }
@@ -287,41 +154,17 @@ class __$LanguageCopyWithImpl<$Res> extends _$LanguageCopyWithImpl<$Res>
   @override
   $Res call({
     Object name = freezed,
-    Object busketPage = freezed,
-    Object productsPage = freezed,
-    Object productPage = freezed,
     Object homePage = freezed,
-    Object galleryPage = freezed,
-    Object categoriesPage = freezed,
-    Object aboutPage = freezed,
-    Object profilePage = freezed,
+    Object loginPage = freezed,
     Object global = freezed,
   }) {
     return _then(_Language(
       name: name == freezed ? _value.name : name as String,
-      busketPage: busketPage == freezed
-          ? _value.busketPage
-          : busketPage as BusketPageLanguage,
-      productsPage: productsPage == freezed
-          ? _value.productsPage
-          : productsPage as ProductsPageLanguage,
-      productPage: productPage == freezed
-          ? _value.productPage
-          : productPage as ProductPageLanguage,
       homePage:
           homePage == freezed ? _value.homePage : homePage as HomePageLanguage,
-      galleryPage: galleryPage == freezed
-          ? _value.galleryPage
-          : galleryPage as GalleryPageLanguage,
-      categoriesPage: categoriesPage == freezed
-          ? _value.categoriesPage
-          : categoriesPage as CategoriesPageLanguage,
-      aboutPage: aboutPage == freezed
-          ? _value.aboutPage
-          : aboutPage as AboutPageLanguage,
-      profilePage: profilePage == freezed
-          ? _value.profilePage
-          : profilePage as ProfilePageLanguage,
+      loginPage: loginPage == freezed
+          ? _value.loginPage
+          : loginPage as LoginPageLanguage,
       global: global == freezed ? _value.global : global as GlobalLanguage,
     ));
   }
@@ -333,24 +176,12 @@ class __$LanguageCopyWithImpl<$Res> extends _$LanguageCopyWithImpl<$Res>
 class _$_Language implements _Language {
   const _$_Language(
       {@required this.name,
-      @required this.busketPage,
-      @required this.productsPage,
-      @required this.productPage,
       @required this.homePage,
-      @required this.galleryPage,
-      @required this.categoriesPage,
-      @required this.aboutPage,
-      @required this.profilePage,
+      @required this.loginPage,
       @required this.global})
       : assert(name != null),
-        assert(busketPage != null),
-        assert(productsPage != null),
-        assert(productPage != null),
         assert(homePage != null),
-        assert(galleryPage != null),
-        assert(categoriesPage != null),
-        assert(aboutPage != null),
-        assert(profilePage != null),
+        assert(loginPage != null),
         assert(global != null);
 
   factory _$_Language.fromJson(Map<String, dynamic> json) =>
@@ -359,27 +190,15 @@ class _$_Language implements _Language {
   @override
   final String name;
   @override
-  final BusketPageLanguage busketPage;
-  @override
-  final ProductsPageLanguage productsPage;
-  @override
-  final ProductPageLanguage productPage;
-  @override
   final HomePageLanguage homePage;
   @override
-  final GalleryPageLanguage galleryPage;
-  @override
-  final CategoriesPageLanguage categoriesPage;
-  @override
-  final AboutPageLanguage aboutPage;
-  @override
-  final ProfilePageLanguage profilePage;
+  final LoginPageLanguage loginPage;
   @override
   final GlobalLanguage global;
 
   @override
   String toString() {
-    return 'Language(name: $name, busketPage: $busketPage, productsPage: $productsPage, productPage: $productPage, homePage: $homePage, galleryPage: $galleryPage, categoriesPage: $categoriesPage, aboutPage: $aboutPage, profilePage: $profilePage, global: $global)';
+    return 'Language(name: $name, homePage: $homePage, loginPage: $loginPage, global: $global)';
   }
 
   @override
@@ -388,30 +207,12 @@ class _$_Language implements _Language {
         (other is _Language &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.busketPage, busketPage) ||
-                const DeepCollectionEquality()
-                    .equals(other.busketPage, busketPage)) &&
-            (identical(other.productsPage, productsPage) ||
-                const DeepCollectionEquality()
-                    .equals(other.productsPage, productsPage)) &&
-            (identical(other.productPage, productPage) ||
-                const DeepCollectionEquality()
-                    .equals(other.productPage, productPage)) &&
             (identical(other.homePage, homePage) ||
                 const DeepCollectionEquality()
                     .equals(other.homePage, homePage)) &&
-            (identical(other.galleryPage, galleryPage) ||
+            (identical(other.loginPage, loginPage) ||
                 const DeepCollectionEquality()
-                    .equals(other.galleryPage, galleryPage)) &&
-            (identical(other.categoriesPage, categoriesPage) ||
-                const DeepCollectionEquality()
-                    .equals(other.categoriesPage, categoriesPage)) &&
-            (identical(other.aboutPage, aboutPage) ||
-                const DeepCollectionEquality()
-                    .equals(other.aboutPage, aboutPage)) &&
-            (identical(other.profilePage, profilePage) ||
-                const DeepCollectionEquality()
-                    .equals(other.profilePage, profilePage)) &&
+                    .equals(other.loginPage, loginPage)) &&
             (identical(other.global, global) ||
                 const DeepCollectionEquality().equals(other.global, global)));
   }
@@ -420,14 +221,8 @@ class _$_Language implements _Language {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(busketPage) ^
-      const DeepCollectionEquality().hash(productsPage) ^
-      const DeepCollectionEquality().hash(productPage) ^
       const DeepCollectionEquality().hash(homePage) ^
-      const DeepCollectionEquality().hash(galleryPage) ^
-      const DeepCollectionEquality().hash(categoriesPage) ^
-      const DeepCollectionEquality().hash(aboutPage) ^
-      const DeepCollectionEquality().hash(profilePage) ^
+      const DeepCollectionEquality().hash(loginPage) ^
       const DeepCollectionEquality().hash(global);
 
   @override
@@ -443,14 +238,8 @@ class _$_Language implements _Language {
 abstract class _Language implements Language {
   const factory _Language(
       {@required String name,
-      @required BusketPageLanguage busketPage,
-      @required ProductsPageLanguage productsPage,
-      @required ProductPageLanguage productPage,
       @required HomePageLanguage homePage,
-      @required GalleryPageLanguage galleryPage,
-      @required CategoriesPageLanguage categoriesPage,
-      @required AboutPageLanguage aboutPage,
-      @required ProfilePageLanguage profilePage,
+      @required LoginPageLanguage loginPage,
       @required GlobalLanguage global}) = _$_Language;
 
   factory _Language.fromJson(Map<String, dynamic> json) = _$_Language.fromJson;
@@ -458,21 +247,9 @@ abstract class _Language implements Language {
   @override
   String get name;
   @override
-  BusketPageLanguage get busketPage;
-  @override
-  ProductsPageLanguage get productsPage;
-  @override
-  ProductPageLanguage get productPage;
-  @override
   HomePageLanguage get homePage;
   @override
-  GalleryPageLanguage get galleryPage;
-  @override
-  CategoriesPageLanguage get categoriesPage;
-  @override
-  AboutPageLanguage get aboutPage;
-  @override
-  ProfilePageLanguage get profilePage;
+  LoginPageLanguage get loginPage;
   @override
   GlobalLanguage get global;
   @override

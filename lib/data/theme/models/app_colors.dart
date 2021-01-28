@@ -1,5 +1,5 @@
-import 'package:foodie_client_template/data/theme/interfaces/i_app_colors.dart';
-import 'package:foodie_client_template/data/theme/models/colors_dto.dart';
+import 'package:foodie_car_template/data/theme/interfaces/i_app_colors.dart';
+import 'package:foodie_car_template/data/theme/models/colors_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 

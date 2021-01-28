@@ -1,8 +1,8 @@
-import 'package:foodie_client_template/data/res/locales.dart';
+import 'package:foodie_car_template/data/res/locales.dart';
 import 'package:flutter/material.dart';
 
-import 'package:foodie_client_template/dictionary/models/language.dart';
-import 'package:foodie_client_template/dictionary/flutter_delegate.dart';
+import 'package:foodie_car_template/dictionary/models/language.dart';
+import 'package:foodie_car_template/dictionary/flutter_delegate.dart';
 
 class FlutterDictionary {
   static const String tag = '[FlutterDictionary]';

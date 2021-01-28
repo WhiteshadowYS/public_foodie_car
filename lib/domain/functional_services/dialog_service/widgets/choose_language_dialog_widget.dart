@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodie_client_template/data/theme/custom_theme.dart';
-import 'package:foodie_client_template/dictionary/models/supported_locales.dart';
-import 'package:foodie_client_template/domain/functional_services/dialog_service/dialog_service.dart';
-import 'package:foodie_client_template/domain/functional_services/dialog_service/models/choose_language_dialog.dart';
-import 'package:foodie_client_template/domain/functional_services/dialog_service/shared/dialog_layout/dialog_layout.dart';
+import 'package:foodie_car_template/data/theme/custom_theme.dart';
+import 'package:foodie_car_template/dictionary/models/supported_locales.dart';
+import 'package:foodie_car_template/domain/functional_services/dialog_service/dialog_service.dart';
+import 'package:foodie_car_template/domain/functional_services/dialog_service/models/choose_language_dialog.dart';
+import 'package:foodie_car_template/domain/functional_services/dialog_service/shared/dialog_layout/dialog_layout.dart';
 
 class ChooseLanguageDialogWidget extends StatelessWidget {
   final ChooseLanguageDialog data;
@@ -19,7 +19,6 @@ class ChooseLanguageDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DialogLayout(
-      key: Key('[ChooseLanguageDialogWidget][DialogLayout]'),
       child: Center(
         child: Container(
           height: 300.sp,

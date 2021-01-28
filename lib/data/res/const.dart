@@ -27,6 +27,9 @@ const double MIN_TABLET_WIDTH = 600.0;
 //endregion
 
 //region [Keys]
+const String ORDER_STATUS_CLOSED = 'closed';
+const String ORDER_STATUS_OPENED = 'opened';
+const String ORDER_STATUS_ACTIVE = 'active';
 //endregion
 
 //region [Errors]

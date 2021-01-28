@@ -1,11 +1,11 @@
-import 'package:foodie_client_template/data/res/locales.dart';
-import 'package:foodie_client_template/dictionary/flutter_dictionary.dart';
-import 'package:foodie_client_template/domain/entity/city/city.dart';
-import 'package:foodie_client_template/store/application/app_state.dart';
-import 'package:foodie_client_template/store/city_state/actions/save_cityList_action.dart';
-import 'package:foodie_client_template/store/city_state/actions/save_city_action.dart';
-import 'package:foodie_client_template/store/shared/initialization/actions/start_initialization.dart';
-import 'package:foodie_client_template/store/shared/language_state/actions/change_language_action.dart';
+import 'package:foodie_car_template/data/res/locales.dart';
+import 'package:foodie_car_template/dictionary/flutter_dictionary.dart';
+import 'package:foodie_car_template/domain/entity/city/city.dart';
+import 'package:foodie_car_template/store/application/app_state.dart';
+import 'package:foodie_car_template/store/city_state/actions/save_cityList_action.dart';
+import 'package:foodie_car_template/store/city_state/actions/save_city_action.dart';
+import 'package:foodie_car_template/store/shared/initialization/actions/start_initialization.dart';
+import 'package:foodie_car_template/store/shared/language_state/actions/change_language_action.dart';
 import 'package:redux/redux.dart';
 
 abstract class InitializeSelectors {

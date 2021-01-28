@@ -1,38 +1,52 @@
-import 'package:foodie_client_template/domain/entity/cafe/cafe.dart';
-import 'package:foodie_client_template/store/cafe_state/cafe_selector.dart';
-import 'package:foodie_client_template/store/shared/loader/loader_selectors.dart';
-import 'package:foodie_client_template/store/shared/loader/loader_state.dart';
+import 'package:flutter/material.dart';
+import 'package:foodie_car_template/domain/entity/order/order.dart';
+import 'package:foodie_car_template/domain/functional_services/dialog_service/dialog_service.dart';
+import 'package:foodie_car_template/domain/functional_services/dialog_service/models/map_dialog.dart';
+import 'package:foodie_car_template/domain/functional_services/dialog_service/models/phone_dialog.dart';
+import 'package:foodie_car_template/store/orders_state/actions/change_order_menu_state_action.dart';
+import 'package:foodie_car_template/store/orders_state/orders_selector.dart';
+import 'package:foodie_car_template/store/orders_state/orders_state.dart';
 import 'package:redux/redux.dart';
-import 'package:foodie_client_template/store/shared/route_selectors.dart';
-import 'package:foodie_client_template/store/application/app_state.dart';
-import 'package:foodie_client_template/store/shared/language_state/language_selector.dart';
+import 'package:foodie_car_template/store/application/app_state.dart';
 
 class HomePageVM {
-  final bool isLoading;
-  final String locale;
-  final List<Cafe> cafeList;
-
-  final void Function() gotoCategories;
-  final void Function(Cafe) selectCafe;
-  final void Function() getCafeList;
+  final List<Order> orders;
+  final OrdersMenuState menuState;
+  final void Function(OrdersMenuState) changeMenuState;
+  final void Function(Order) startOrder;
+  final void Function(Order) closeOrder;
+  final void Function(String) openPhoneDialog;
+  final void Function(String) openMapDialog;
 
   const HomePageVM({
-    this.isLoading,
-    this.cafeList,
-    this.locale,
-    this.gotoCategories,
-    this.selectCafe,
-    this.getCafeList,
+    @required this.orders,
+    @required this.menuState,
+    @required this.startOrder,
+    @required this.closeOrder,
+    @required this.changeMenuState,
+    @required this.openPhoneDialog,
+    @required this.openMapDialog,
   });
 
   static HomePageVM init(Store<AppState> store) {
     return HomePageVM(
-      isLoading: LoaderSelectors.getValueForLoadingKey(store, LoaderKey.global),
-      cafeList: CafeSelector.getCafeList(store),
-      locale: LanguageSelector.getCurrentLocale(store),
-      gotoCategories: RouteSelectors.gotoCategoriesPage(store),
-      selectCafe: CafeSelector.getSelectCafeFunction(store),
-      getCafeList: CafeSelector.getCafeForCity(store),
+      orders: OrdersSelector.getOrders(store),
+      openMapDialog: (String address) => DialogService.instance.show(
+        MapDialog(address: address),
+      ),
+      openPhoneDialog: (String phone) => DialogService.instance.show(
+        PhoneDialog(phone: phone),
+      ),
+      startOrder: OrdersSelector.getStartOrderFunction(store),
+      closeOrder: OrdersSelector.getCloseOrderFunction(store),
+      menuState: store.state.ordersState.menuState,
+      changeMenuState: (OrdersMenuState menuState) {
+        store.dispatch(
+          ChangeOrderMenuStateAction(
+            menuState: menuState,
+          ),
+        );
+      },
     );
   }
 }
